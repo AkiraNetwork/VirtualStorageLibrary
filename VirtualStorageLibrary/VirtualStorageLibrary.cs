@@ -69,6 +69,32 @@
         {
             return (VirtualDirectory)DeepClone();
         }
+
+        public void Add(string key, VirtualNode node, bool allowOverwrite = false)
+        {
+            if (Nodes.ContainsKey(key) && !allowOverwrite)
+            {
+                throw new InvalidOperationException($"指定されたキー '{key}' に対応するノードは既に存在します。上書きは許可されていません。");
+            }
+
+            Nodes[key] = node;
+        }
+
+        public VirtualNode this[string key]
+        {
+            get
+            {
+                if (!Nodes.ContainsKey(key))
+                {
+                    throw new KeyNotFoundException($"指定されたキー '{key}' は存在しません。");
+                }
+                return Nodes[key];
+            }
+            set
+            {
+                Nodes[key] = value;
+            }
+        }
     }
 
     public class VirtualStorage
