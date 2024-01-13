@@ -73,6 +73,11 @@
 
     public class VirtualStorage
     {
+        public VirtualStorage()
+        {
+            Root = new VirtualDirectory("/");
+        }
+
         public VirtualDirectory Root { get; set; }
     }
 }
