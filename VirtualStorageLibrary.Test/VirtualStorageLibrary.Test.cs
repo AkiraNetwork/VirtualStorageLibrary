@@ -1,4 +1,4 @@
-namespace VirtualStorageLibrary.Test
+ï»¿namespace VirtualStorageLibrary.Test
 {
     [TestClass]
     public class VirtualItemTest
@@ -6,17 +6,17 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void VirtualItemConstructor_CreatesObjectCorrectly()
         {
-            // ƒeƒXƒgƒf[ƒ^
+            // ãƒ†ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
             var testData = new byte[] { 1, 2, 3 };
 
-            // BinaryData ƒIƒuƒWƒFƒNƒg‚ğì¬
+            // BinaryData ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
             var binaryData = new BinaryData(testData);
 
-            // VirtualItem<BinaryData> ƒIƒuƒWƒFƒNƒg‚ğì¬
+            // VirtualItem<BinaryData> ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
             string name = "TestBinaryItem";
             var virtualItem = new VirtualItem<BinaryData>(name, binaryData);
 
-            // ƒIƒuƒWƒFƒNƒg‚ª³‚µ‚­ì¬‚³‚ê‚½‚©ŒŸØ
+            // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ­£ã—ãä½œæˆã•ã‚ŒãŸã‹æ¤œè¨¼
             Assert.IsNotNull(virtualItem);
             Assert.AreEqual(name, virtualItem.Name);
             Assert.AreEqual(binaryData, virtualItem.Item);
@@ -26,20 +26,20 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void VirtualItemDeepClone_CreatesDistinctCopyWithSameData()
         {
-            // ƒeƒXƒgƒf[ƒ^
+            // ãƒ†ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
             var testData = new byte[] { 1, 2, 3 };
 
-            // BinaryData ƒIƒuƒWƒFƒNƒg‚ğì¬
+            // BinaryData ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
             var binaryData = new BinaryData(testData);
 
-            // VirtualItem<BinaryData> ƒIƒuƒWƒFƒNƒg‚ğì¬
+            // VirtualItem<BinaryData> ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
             string name = "TestBinaryItem";
             var originalVirtualItem = new VirtualItem<BinaryData>(name, binaryData);
 
-            // DeepClone ƒƒ\ƒbƒh‚ğg—p‚µ‚ÄƒNƒ[ƒ“‚ğì¬
+            // DeepClone ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã—ã¦ã‚¯ãƒ­ãƒ¼ãƒ³ã‚’ä½œæˆ
             var clonedVirtualItem = originalVirtualItem.DeepClone() as VirtualItem<BinaryData>;
 
-            // ƒNƒ[ƒ“‚ª³‚µ‚­ì¬‚³‚ê‚½‚©ŒŸØ
+            // ã‚¯ãƒ­ãƒ¼ãƒ³ãŒæ­£ã—ãä½œæˆã•ã‚ŒãŸã‹æ¤œè¨¼
             Assert.IsNotNull(clonedVirtualItem);
             Assert.AreNotSame(originalVirtualItem, clonedVirtualItem);
             Assert.AreEqual(originalVirtualItem.Name, clonedVirtualItem.Name);
@@ -54,11 +54,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void VirtualDirectoryConstructor_CreatesObjectCorrectly()
         {
-            // VirtualDirectory ƒIƒuƒWƒFƒNƒg‚ğì¬
+            // VirtualDirectory ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
             string name = "TestDirectory";
             var virtualDirectory = new VirtualDirectory(name);
 
-            // ƒIƒuƒWƒFƒNƒg‚ª³‚µ‚­ì¬‚³‚ê‚½‚©ŒŸØ
+            // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ­£ã—ãä½œæˆã•ã‚ŒãŸã‹æ¤œè¨¼
             Assert.IsNotNull(virtualDirectory);
             Assert.AreEqual(name, virtualDirectory.Name);
             Assert.IsNotNull(virtualDirectory.Nodes);
@@ -68,23 +68,23 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void VirtualDirectoryDeepClone_CreatesDistinctCopyWithSameData()
         {
-            // VirtualDirectory ƒIƒuƒWƒFƒNƒg‚ğì¬‚µA‚¢‚­‚Â‚©‚Ìƒm[ƒh‚ğ’Ç‰Á
+            // VirtualDirectory ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã€ã„ãã¤ã‹ã®ãƒãƒ¼ãƒ‰ã‚’è¿½åŠ 
             string name = "TestDirectory";
             var originalDirectory = new VirtualDirectory(name);
             originalDirectory.Nodes.Add("Node1", new VirtualItem<BinaryData>("Item1", new BinaryData()));
             originalDirectory.Nodes.Add("Node2", new VirtualItem<BinaryData>("Item2", new BinaryData()));
 
-            // DeepClone ƒƒ\ƒbƒh‚ğg—p‚µ‚ÄƒNƒ[ƒ“‚ğì¬
+            // DeepClone ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã—ã¦ã‚¯ãƒ­ãƒ¼ãƒ³ã‚’ä½œæˆ
             var clonedDirectory = originalDirectory.DeepClone() as VirtualDirectory;
 
-            // ƒNƒ[ƒ“‚ª³‚µ‚­ì¬‚³‚ê‚½‚©ŒŸØ
+            // ã‚¯ãƒ­ãƒ¼ãƒ³ãŒæ­£ã—ãä½œæˆã•ã‚ŒãŸã‹æ¤œè¨¼
             Assert.IsNotNull(clonedDirectory);
             Assert.AreNotSame(originalDirectory, clonedDirectory);
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
             Assert.AreNotSame(originalDirectory.Nodes, clonedDirectory.Nodes);
             Assert.AreEqual(originalDirectory.Nodes.Count, clonedDirectory.Nodes.Count);
 
-            // Šeƒm[ƒh‚à“KØ‚ÉƒNƒ[ƒ“‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ğŒŸØ
+            // å„ãƒãƒ¼ãƒ‰ã‚‚é©åˆ‡ã«ã‚¯ãƒ­ãƒ¼ãƒ³ã•ã‚Œã¦ã„ã‚‹ã“ã¨ã‚’æ¤œè¨¼
             foreach (var key in originalDirectory.Nodes.Keys)
             {
                 Assert.AreNotSame(originalDirectory.Nodes[key], clonedDirectory.Nodes[key]);
