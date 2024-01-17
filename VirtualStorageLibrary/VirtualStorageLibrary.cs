@@ -70,14 +70,21 @@
             return (VirtualDirectory)DeepClone();
         }
 
-        public void Add(string key, VirtualNode node, bool allowOverwrite = false)
+        public void Add(VirtualNode node, bool allowOverwrite = false)
         {
+            string key = node.Name;
+
             if (Nodes.ContainsKey(key) && !allowOverwrite)
             {
-                throw new InvalidOperationException($"指定されたキー '{key}' に対応するノードは既に存在します。上書きは許可されていません。");
+                throw new InvalidOperationException($"ノード '{key}' は既に存在します。上書きは許可されていません。");
             }
 
             Nodes[key] = node;
+        }
+
+        public void AddDirectory(string name, bool allowOverwrite = false)
+        {
+            Add(new VirtualDirectory(name), allowOverwrite);
         }
 
         public VirtualNode this[string key]
@@ -86,7 +93,7 @@
             {
                 if (!Nodes.ContainsKey(key))
                 {
-                    throw new KeyNotFoundException($"指定されたキー '{key}' は存在しません。");
+                    throw new KeyNotFoundException($"指定されたノード '{key}' は存在しません。");
                 }
                 return Nodes[key];
             }

@@ -98,11 +98,11 @@
             var testData = new byte[] { 1, 2, 3 };
             var newNode = new VirtualItem<BinaryData>("NewItem", new BinaryData(testData));
 
-            directory.Add("NewItemKey", newNode);
+            directory.Add(newNode);
 
-            Assert.IsTrue(directory.Nodes.ContainsKey("NewItemKey"));
-            Assert.AreEqual(newNode, directory.Nodes["NewItemKey"]);
-            CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory.Nodes["NewItemKey"]).Item).Data);
+            Assert.IsTrue(directory.Nodes.ContainsKey("NewItem"));
+            Assert.AreEqual(newNode, directory.Nodes["NewItem"]);
+            CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory.Nodes["NewItem"]).Item).Data);
         }
 
         [TestMethod]
@@ -111,13 +111,13 @@
             var directory = new VirtualDirectory("TestDirectory");
             var testData = new byte[] { 1, 2, 3 };
             var originalNode = new VirtualItem<BinaryData>("OriginalItem", new BinaryData(testData));
-            directory.Add("NodeKey", originalNode);
+            directory.Add(originalNode);
 
-            var newNode = new VirtualItem<BinaryData>("NewItem", new BinaryData(testData));
+            var newNode = new VirtualItem<BinaryData>("OriginalItem", new BinaryData(testData));
 
             Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                directory.Add("NodeKey", newNode);
+                directory.Add(newNode);
             });
         }
 
@@ -127,25 +127,101 @@
             var directory = new VirtualDirectory("TestDirectory");
             var testData = new byte[] { 1, 2, 3 };
             var originalNode = new VirtualItem<BinaryData>("OriginalItem", new BinaryData(testData));
-            directory.Add("NodeKey", originalNode);
+            directory.Add(originalNode);
 
             var newTestData = new byte[] { 4, 5, 6 };
-            var newNode = new VirtualItem<BinaryData>("NewItem", new BinaryData(newTestData));
+            var newNode = new VirtualItem<BinaryData>("OriginalItem", new BinaryData(newTestData));
 
-            directory.Add("NodeKey", newNode, allowOverwrite: true);
+            directory.Add(newNode, allowOverwrite: true);
 
-            Assert.AreEqual(newNode, directory.Nodes["NodeKey"]);
-            CollectionAssert.AreEqual(newTestData, ((BinaryData)((VirtualItem<BinaryData>)directory.Nodes["NodeKey"]).Item).Data);
+            Assert.AreEqual(newNode, directory.Nodes["OriginalItem"]);
+            CollectionAssert.AreEqual(newTestData, ((BinaryData)((VirtualItem<BinaryData>)directory.Nodes["OriginalItem"]).Item).Data);
         }
 
+        [TestMethod]
+        public void Add_NewDirectory_AddsDirectoryCorrectly()
+        {
+            var parentDirectory = new VirtualDirectory("ParentDirectory");
+            var childDirectory = new VirtualDirectory("ChildDirectory");
+
+            parentDirectory.Add(childDirectory);
+
+            Assert.IsTrue(parentDirectory.Nodes.ContainsKey("ChildDirectory"));
+            Assert.AreEqual(childDirectory, parentDirectory.Nodes["ChildDirectory"]);
+        }
+
+        [TestMethod]
+        public void Add_ExistingDirectoryWithoutOverwrite_ThrowsInvalidOperationException()
+        {
+            var parentDirectory = new VirtualDirectory("ParentDirectory");
+            var originalDirectory = new VirtualDirectory("OriginalDirectory");
+            parentDirectory.Add(originalDirectory);
+
+            var newDirectory = new VirtualDirectory("OriginalDirectory");
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                parentDirectory.Add(newDirectory);
+            });
+        }
+
+        [TestMethod]
+        public void Add_ExistingDirectoryWithOverwrite_OverwritesDirectory()
+        {
+            var parentDirectory = new VirtualDirectory("ParentDirectory");
+            var originalDirectory = new VirtualDirectory("OriginalDirectory");
+            parentDirectory.Add(originalDirectory);
+
+            var newDirectory = new VirtualDirectory("OriginalDirectory");
+
+            parentDirectory.Add(newDirectory, allowOverwrite: true);
+
+            Assert.AreEqual(newDirectory, parentDirectory.Nodes["OriginalDirectory"]);
+        }
+
+        [TestMethod]
+        public void AddDirectory_NewDirectory_AddsDirectoryCorrectly()
+        {
+            var parentDirectory = new VirtualDirectory("ParentDirectory");
+
+            parentDirectory.AddDirectory("ChildDirectory");
+
+            Assert.IsTrue(parentDirectory.Nodes.ContainsKey("ChildDirectory"));
+            Assert.IsInstanceOfType(parentDirectory.Nodes["ChildDirectory"], typeof(VirtualDirectory));
+        }
+
+        [TestMethod]
+        public void AddDirectory_ExistingDirectoryWithoutOverwrite_ThrowsInvalidOperationException()
+        {
+            var parentDirectory = new VirtualDirectory("ParentDirectory");
+            parentDirectory.AddDirectory("OriginalDirectory");
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                parentDirectory.AddDirectory("OriginalDirectory");
+            });
+        }
+
+        [TestMethod]
+        public void AddDirectory_ExistingDirectoryWithOverwrite_OverwritesDirectory()
+        {
+            var parentDirectory = new VirtualDirectory("ParentDirectory");
+            parentDirectory.AddDirectory("OriginalDirectory");
+
+            parentDirectory.AddDirectory("OriginalDirectory", allowOverwrite: true);
+
+            Assert.IsTrue(parentDirectory.Nodes.ContainsKey("OriginalDirectory"));
+            Assert.IsInstanceOfType(parentDirectory.Nodes["OriginalDirectory"], typeof(VirtualDirectory));
+        }
+        
         [TestMethod]
         public void Indexer_ValidKey_ReturnsNode()
         {
             var directory = new VirtualDirectory("TestDirectory");
             var node = new VirtualItem<BinaryData>("Item", new BinaryData());
-            directory.Add("ItemKey", node);
+            directory.Add(node);
 
-            var result = directory["ItemKey"];
+            var result = directory["Item"];
 
             Assert.AreEqual(node, result);
         }
