@@ -159,11 +159,11 @@
 
     public class VirtualStorage
     {
+        private VirtualDirectory _root;
+
         public VirtualStorage()
         {
-            Root = new VirtualDirectory("/");
+            _root = new VirtualDirectory("/");
         }
-
-        public VirtualDirectory Root { get; set; }
     }
 }
