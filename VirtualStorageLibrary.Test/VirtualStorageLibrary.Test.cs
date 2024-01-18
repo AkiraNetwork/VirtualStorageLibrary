@@ -26,25 +26,22 @@
         [TestMethod]
         public void VirtualItemDeepClone_CreatesDistinctCopyWithSameData()
         {
-            // テストデータ
-            var testData = new byte[] { 1, 2, 3 };
-
             // BinaryData オブジェクトを作成
-            var binaryData = new BinaryData(testData);
-
-            // VirtualItem<BinaryData> オブジェクトを作成
-            string name = "TestBinaryItem";
-            var originalVirtualItem = new VirtualItem<BinaryData>(name, binaryData);
+            byte[] testData = new byte[] { 1, 2, 3 };
+            var originalItem = new VirtualItem<BinaryData>("TestItem", new BinaryData(testData));
 
             // DeepClone メソッドを使用してクローンを作成
-            var clonedVirtualItem = originalVirtualItem.DeepClone() as VirtualItem<BinaryData>;
+            var clonedItem = originalItem.DeepClone() as VirtualItem<BinaryData>;
 
             // クローンが正しく作成されたか検証
-            Assert.IsNotNull(clonedVirtualItem);
-            Assert.AreNotSame(originalVirtualItem, clonedVirtualItem);
-            Assert.AreEqual(originalVirtualItem.Name, clonedVirtualItem.Name);
-            Assert.AreNotSame(originalVirtualItem.Item, clonedVirtualItem.Item);
-            CollectionAssert.AreEqual(originalVirtualItem.Item.Data, clonedVirtualItem.Item.Data);
+            Assert.IsNotNull(clonedItem);
+            Assert.AreNotSame(originalItem, clonedItem);
+            Assert.AreEqual(originalItem.Name, clonedItem.Name);
+            Assert.AreNotSame(originalItem.Item, clonedItem.Item);
+
+            // BinaryData の Data プロパティが適切にクローンされていることを検証
+            CollectionAssert.AreEqual(originalItem.Item.Data, clonedItem.Item.Data);
+            Assert.AreNotSame(originalItem.Item.Data, clonedItem.Item.Data);
         }
     }
 
@@ -71,8 +68,8 @@
             // VirtualDirectory オブジェクトを作成し、いくつかのノードを追加
             string name = "TestDirectory";
             var originalDirectory = new VirtualDirectory(name);
-            originalDirectory.Nodes.Add("Node1", new VirtualItem<BinaryData>("Item1", new BinaryData()));
-            originalDirectory.Nodes.Add("Node2", new VirtualItem<BinaryData>("Item2", new BinaryData()));
+            originalDirectory.AddDirectory("Node1");
+            originalDirectory.AddDirectory("Node2");
 
             // DeepClone メソッドを使用してクローンを作成
             var clonedDirectory = originalDirectory.DeepClone() as VirtualDirectory;
@@ -88,9 +85,10 @@
             foreach (var key in originalDirectory.Nodes.Keys)
             {
                 Assert.AreNotSame(originalDirectory.Nodes[key], clonedDirectory.Nodes[key]);
+                Assert.AreEqual(originalDirectory.Nodes[key].Name, clonedDirectory.Nodes[key].Name);
             }
         }
-
+        
         [TestMethod]
         public void Add_NewNode_AddsNodeCorrectly()
         {
