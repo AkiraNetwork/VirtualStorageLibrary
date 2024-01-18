@@ -357,5 +357,94 @@
                 directory.Rename("ExistingNode1", "ExistingNode2");
             });
         }
+
+        [TestMethod]
+        public void NodeNames_EmptyDirectory_ReturnsEmpty()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+
+            var nodeNames = directory.NodeNames;
+
+            Assert.IsNotNull(nodeNames);
+            Assert.AreEqual(0, nodeNames.Count());
+        }
+
+        [TestMethod]
+        public void NodeNames_DirectoryWithNodes_ReturnsNodeNames()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddDirectory("Node1");
+            directory.AddDirectory("Node2");
+
+            var nodeNames = directory.NodeNames;
+
+            Assert.IsNotNull(nodeNames);
+            Assert.AreEqual(2, nodeNames.Count());
+            CollectionAssert.Contains(nodeNames.ToList(), "Node1");
+            CollectionAssert.Contains(nodeNames.ToList(), "Node2");
+        }
+
+        [TestMethod]
+        public void NodeNames_DirectoryWithNodesAfterRemovingOne_ReturnsRemainingNodeNames()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddDirectory("Node1");
+            directory.AddDirectory("Node2");
+            directory.Remove("Node1");
+
+            var nodeNames = directory.NodeNames;
+
+            Assert.IsNotNull(nodeNames);
+            Assert.AreEqual(1, nodeNames.Count());
+            CollectionAssert.DoesNotContain(nodeNames.ToList(), "Node1");
+            CollectionAssert.Contains(nodeNames.ToList(), "Node2");
+        }
+
+        [TestMethod]
+        public void Nodes_EmptyDirectory_ReturnsEmpty()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+
+            var nodes = directory.Nodes;
+
+            Assert.IsNotNull(nodes);
+            Assert.AreEqual(0, nodes.Count());
+        }
+
+        [TestMethod]
+        public void Nodes_DirectoryWithNodes_ReturnsNodes()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddDirectory("Node1");
+            directory.AddDirectory("Node2");
+
+            var nodes = directory.Nodes;
+
+            Assert.IsNotNull(nodes);
+            Assert.AreEqual(2, nodes.Count());
+            CollectionAssert.Contains(nodes.ToList(), directory["Node1"]);
+            CollectionAssert.Contains(nodes.ToList(), directory["Node2"]);
+        }
+
+        [TestMethod]
+        public void Nodes_DirectoryWithNodesAfterRemovingOne_ReturnsRemainingNodes()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddDirectory("Node1");
+            directory.AddDirectory("Node2");
+            directory.Remove("Node1");
+
+            var nodes = directory.Nodes;
+
+            Assert.IsNotNull(nodes);
+            Assert.AreEqual(1, nodes.Count());
+            Assert.ThrowsException<KeyNotFoundException>(() =>
+            {
+                // "Node1"が正しく削除されていることを確認
+                var node = directory["Node1"];
+            });
+            CollectionAssert.Contains(nodes.ToList(), directory["Node2"]);
+        }
+
     }
 }
