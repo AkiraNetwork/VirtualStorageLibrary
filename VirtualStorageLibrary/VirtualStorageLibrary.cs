@@ -41,11 +41,17 @@
 
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
-        public Dictionary<string, VirtualNode> Nodes { get; set; }
+        private Dictionary<string, VirtualNode> _nodes;
+
+        public int Count => _nodes.Count;
+
+        public IEnumerable<string> GetNodeNames() => _nodes.Keys;
+
+        public bool IsExists(string name) => _nodes.ContainsKey(name);
 
         public VirtualDirectory(string name) : base(name)
         {
-            Nodes = new Dictionary<string, VirtualNode>();
+            _nodes = new Dictionary<string, VirtualNode>();
         }
 
         public override VirtualNode DeepClone()
@@ -54,12 +60,12 @@
             {
                 CreateDate = this.CreateDate,
                 UpdateDate = this.UpdateDate,
-                Nodes = new Dictionary<string, VirtualNode>()
+                _nodes = new Dictionary<string, VirtualNode>()
             };
 
-            foreach (var pair in this.Nodes)
+            foreach (var pair in this._nodes)
             {
-                clonedDirectory.Nodes.Add(pair.Key, pair.Value.DeepClone());
+                clonedDirectory._nodes.Add(pair.Key, pair.Value.DeepClone());
             }
 
             return clonedDirectory;
@@ -74,12 +80,12 @@
         {
             string key = node.Name;
 
-            if (Nodes.ContainsKey(key) && !allowOverwrite)
+            if (_nodes.ContainsKey(key) && !allowOverwrite)
             {
                 throw new InvalidOperationException($"ノード '{key}' は既に存在します。上書きは許可されていません。");
             }
 
-            Nodes[key] = node;
+            _nodes[key] = node;
         }
 
         public void AddDirectory(string name, bool allowOverwrite = false)
@@ -91,15 +97,15 @@
         {
             get
             {
-                if (!Nodes.ContainsKey(key))
+                if (!_nodes.ContainsKey(key))
                 {
                     throw new KeyNotFoundException($"指定されたノード '{key}' は存在しません。");
                 }
-                return Nodes[key];
+                return _nodes[key];
             }
             set
             {
-                Nodes[key] = value;
+                _nodes[key] = value;
             }
         }
     }

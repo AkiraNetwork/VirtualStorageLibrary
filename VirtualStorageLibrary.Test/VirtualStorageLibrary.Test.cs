@@ -58,16 +58,14 @@
             // オブジェクトが正しく作成されたか検証
             Assert.IsNotNull(virtualDirectory);
             Assert.AreEqual(name, virtualDirectory.Name);
-            Assert.IsNotNull(virtualDirectory.Nodes);
-            Assert.AreEqual(0, virtualDirectory.Nodes.Count);
+            Assert.AreEqual(0, virtualDirectory.Count);
         }
 
         [TestMethod]
         public void VirtualDirectoryDeepClone_CreatesDistinctCopyWithSameData()
         {
             // VirtualDirectory オブジェクトを作成し、いくつかのノードを追加
-            string name = "TestDirectory";
-            var originalDirectory = new VirtualDirectory(name);
+            var originalDirectory = new VirtualDirectory("TestDirectory");
             originalDirectory.AddDirectory("Node1");
             originalDirectory.AddDirectory("Node2");
 
@@ -78,14 +76,15 @@
             Assert.IsNotNull(clonedDirectory);
             Assert.AreNotSame(originalDirectory, clonedDirectory);
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
-            Assert.AreNotSame(originalDirectory.Nodes, clonedDirectory.Nodes);
-            Assert.AreEqual(originalDirectory.Nodes.Count, clonedDirectory.Nodes.Count);
+            Assert.AreEqual(originalDirectory.CreateDate, clonedDirectory.CreateDate);
+            Assert.AreEqual(originalDirectory.UpdateDate, clonedDirectory.UpdateDate);
+            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
 
             // 各ノードも適切にクローンされていることを検証
-            foreach (var key in originalDirectory.Nodes.Keys)
+            foreach (var name in originalDirectory.GetNodeNames())
             {
-                Assert.AreNotSame(originalDirectory.Nodes[key], clonedDirectory.Nodes[key]);
-                Assert.AreEqual(originalDirectory.Nodes[key].Name, clonedDirectory.Nodes[key].Name);
+                Assert.AreNotSame(originalDirectory[name], clonedDirectory[name]);
+                Assert.AreEqual(originalDirectory[name].Name, clonedDirectory[name].Name);
             }
         }
         
@@ -98,9 +97,9 @@
 
             directory.Add(newNode);
 
-            Assert.IsTrue(directory.Nodes.ContainsKey("NewItem"));
-            Assert.AreEqual(newNode, directory.Nodes["NewItem"]);
-            CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory.Nodes["NewItem"]).Item).Data);
+            Assert.IsTrue(directory.IsExists("NewItem"));
+            Assert.AreEqual(newNode, directory["NewItem"]);
+            CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory["NewItem"]).Item).Data);
         }
 
         [TestMethod]
@@ -132,8 +131,8 @@
 
             directory.Add(newNode, allowOverwrite: true);
 
-            Assert.AreEqual(newNode, directory.Nodes["OriginalItem"]);
-            CollectionAssert.AreEqual(newTestData, ((BinaryData)((VirtualItem<BinaryData>)directory.Nodes["OriginalItem"]).Item).Data);
+            Assert.AreEqual(newNode, directory["OriginalItem"]);
+            CollectionAssert.AreEqual(newTestData, ((BinaryData)((VirtualItem<BinaryData>)directory["OriginalItem"]).Item).Data);
         }
 
         [TestMethod]
@@ -144,8 +143,8 @@
 
             parentDirectory.Add(childDirectory);
 
-            Assert.IsTrue(parentDirectory.Nodes.ContainsKey("ChildDirectory"));
-            Assert.AreEqual(childDirectory, parentDirectory.Nodes["ChildDirectory"]);
+            Assert.IsTrue(parentDirectory.IsExists("ChildDirectory"));
+            Assert.AreEqual(childDirectory, parentDirectory["ChildDirectory"]);
         }
 
         [TestMethod]
@@ -174,7 +173,7 @@
 
             parentDirectory.Add(newDirectory, allowOverwrite: true);
 
-            Assert.AreEqual(newDirectory, parentDirectory.Nodes["OriginalDirectory"]);
+            Assert.AreEqual(newDirectory, parentDirectory["OriginalDirectory"]);
         }
 
         [TestMethod]
@@ -184,8 +183,8 @@
 
             parentDirectory.AddDirectory("ChildDirectory");
 
-            Assert.IsTrue(parentDirectory.Nodes.ContainsKey("ChildDirectory"));
-            Assert.IsInstanceOfType(parentDirectory.Nodes["ChildDirectory"], typeof(VirtualDirectory));
+            Assert.IsTrue(parentDirectory.IsExists("ChildDirectory"));
+            Assert.IsInstanceOfType(parentDirectory["ChildDirectory"], typeof(VirtualDirectory));
         }
 
         [TestMethod]
@@ -208,8 +207,8 @@
 
             parentDirectory.AddDirectory("OriginalDirectory", allowOverwrite: true);
 
-            Assert.IsTrue(parentDirectory.Nodes.ContainsKey("OriginalDirectory"));
-            Assert.IsInstanceOfType(parentDirectory.Nodes["OriginalDirectory"], typeof(VirtualDirectory));
+            Assert.IsTrue(parentDirectory.IsExists("OriginalDirectory"));
+            Assert.IsInstanceOfType(parentDirectory["OriginalDirectory"], typeof(VirtualDirectory));
         }
         
         [TestMethod]
