@@ -81,7 +81,7 @@
             Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
 
             // 各ノードも適切にクローンされていることを検証
-            foreach (var name in originalDirectory.GetNodeNames())
+            foreach (var name in originalDirectory.NodeNames)
             {
                 Assert.AreNotSame(originalDirectory[name], clonedDirectory[name]);
                 Assert.AreEqual(originalDirectory[name].Name, clonedDirectory[name].Name);
@@ -244,6 +244,118 @@
             var result = directory["NewItemKey"];
 
             Assert.AreEqual(newNode, result);
+        }
+
+        [TestMethod]
+        public void Remove_NonExistentNodeWithoutForce_ThrowsKeyNotFoundException()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+
+            Assert.ThrowsException<KeyNotFoundException>(() =>
+            {
+                directory.Remove("NonExistentNode");
+            });
+        }
+
+        [TestMethod]
+        public void Remove_NonExistentNodeWithForce_DoesNotThrow()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+
+            // 例外がスローされないことを確認
+            directory.Remove("NonExistentNode", forceRemove: true);
+        }
+
+        [TestMethod]
+        public void Remove_ExistingNode_RemovesNode()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            var testData = new byte[] { 1, 2, 3 };
+            string nodeName = "ExistingNode";
+            var node = new VirtualItem<BinaryData>(nodeName, new BinaryData(testData));
+            directory.Add(node);
+
+            directory.Remove(nodeName);
+
+            Assert.IsFalse(directory.IsExists(nodeName));
+        }
+
+        [TestMethod]
+        public void Get_ExistingNode_ReturnsNode()
+        {
+            // VirtualDirectory オブジェクトを作成し、ノードを追加
+            var directory = new VirtualDirectory("TestDirectory");
+            var testData = new byte[] { 1, 2, 3 };
+            var existingNode = new VirtualItem<BinaryData>("ExistingNode", new BinaryData(testData));
+            directory.Add(existingNode);
+
+            // Get メソッドを使用してノードを取得
+            var retrievedNode = directory.Get("ExistingNode");
+
+            // 取得したノードが期待通りであることを確認
+            Assert.AreEqual(existingNode, retrievedNode);
+        }
+
+        [TestMethod]
+        public void Get_NonExistingNode_ThrowsKeyNotFoundException()
+        {
+            // VirtualDirectory オブジェクトを作成
+            var directory = new VirtualDirectory("TestDirectory");
+
+            // 存在しないノード名で Get メソッドを呼び出すと例外がスローされることを確認
+            Assert.ThrowsException<KeyNotFoundException>(() =>
+            {
+                var retrievedNode = directory.Get("NonExistingNode");
+            });
+        }
+
+        [TestMethod]
+        public void Rename_ExistingNode_RenamesNodeCorrectly()
+        {
+            // VirtualDirectory オブジェクトを作成し、ノードを追加
+            var directory = new VirtualDirectory("TestDirectory");
+            var testData = new byte[] { 1, 2, 3 };
+            var existingNode = new VirtualItem<BinaryData>("ExistingNode", new BinaryData(testData));
+            directory.Add(existingNode);
+
+            // Rename メソッドを使用してノードの名前を変更
+            var newName = "RenamedNode";
+            directory.Rename("ExistingNode", newName);
+
+            // 名前が変更されたノードが存在し、元のノードが存在しないことを確認
+            Assert.IsTrue(directory.IsExists(newName));
+            Assert.IsFalse(directory.IsExists("ExistingNode"));
+        }
+
+        [TestMethod]
+        public void Rename_NonExistingNode_ThrowsKeyNotFoundException()
+        {
+            // VirtualDirectory オブジェクトを作成
+            var directory = new VirtualDirectory("TestDirectory");
+
+            // 存在しないノード名で Rename メソッドを呼び出すと例外がスローされることを確認
+            Assert.ThrowsException<KeyNotFoundException>(() =>
+            {
+                directory.Rename("NonExistingNode", "NewName");
+            });
+        }
+
+        [TestMethod]
+        public void Rename_ToExistingNodeName_ThrowsInvalidOperationException()
+        {
+            // VirtualDirectory オブジェクトを作成し、2つのノードを追加
+            var directory = new VirtualDirectory("TestDirectory");
+            var testData = new byte[] { 1, 2, 3 };
+            var existingNode1 = new VirtualItem<BinaryData>("ExistingNode1", new BinaryData(testData));
+            var existingNode2 = new VirtualItem<BinaryData>("ExistingNode2", new BinaryData(testData));
+            directory.Add(existingNode1);
+            directory.Add(existingNode2);
+
+            // 既に存在するノード名に Rename メソッドを使用してノードの名前を変更しようとすると例外がスローされることを確認
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                directory.Rename("ExistingNode1", "ExistingNode2");
+            });
         }
     }
 }

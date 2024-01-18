@@ -45,7 +45,9 @@
 
         public int Count => _nodes.Count;
 
-        public IEnumerable<string> GetNodeNames() => _nodes.Keys;
+        public IEnumerable<string> NodeNames => _nodes.Keys;
+
+        public IEnumerable<VirtualNode> Nodes => _nodes.Values;
 
         public bool IsExists(string name) => _nodes.ContainsKey(name);
 
@@ -97,7 +99,7 @@
         {
             get
             {
-                if (!_nodes.ContainsKey(key))
+                if (!IsExists(key))
                 {
                     throw new KeyNotFoundException($"指定されたノード '{key}' は存在しません。");
                 }
@@ -107,6 +109,51 @@
             {
                 _nodes[key] = value;
             }
+        }
+
+        public void Remove(string name, bool forceRemove = false)
+        {
+            if (!IsExists(name))
+            {
+                if (!forceRemove)
+                {
+                    throw new KeyNotFoundException($"ノード '{name}' は存在しません。");
+                }
+                else
+                {
+                    // forceRemoveがtrueの場合、ノードが存在しなくても正常終了
+                    return;
+                }
+            }
+
+            _nodes.Remove(name);
+        }
+
+        public VirtualNode Get(string name)
+        {
+            if (!IsExists(name))
+            {
+                throw new KeyNotFoundException($"指定されたノード '{name}' は存在しません。");
+            }
+            return _nodes[name];
+        }
+
+        public void Rename(string oldName, string newName)
+        {
+            if (!IsExists(oldName))
+            {
+                throw new KeyNotFoundException($"ノード '{oldName}' は存在しません。");
+            }
+
+            if (IsExists(newName))
+            {
+                throw new InvalidOperationException($"ノード '{newName}' は既に存在します。");
+            }
+
+            var node = Get(oldName);
+            node.Name = newName;
+            Add(node);
+            Remove(oldName);
         }
     }
 
