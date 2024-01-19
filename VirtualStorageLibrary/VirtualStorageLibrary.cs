@@ -161,9 +161,12 @@
     {
         private VirtualDirectory _root;
 
+        public string CurrentPath { get; }
+
         public VirtualStorage()
         {
             _root = new VirtualDirectory("/");
+            CurrentPath = "/";
         }
     }
 }
