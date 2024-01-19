@@ -161,13 +161,50 @@
     {
         private VirtualDirectory _root;
 
-        public string CurrentPath { get; }
+        public string CurrentPath { get; private set; }
 
         public VirtualStorage()
         {
             _root = new VirtualDirectory("/");
             CurrentPath = "/";
         }
+
+        public string ConvertToAbsolutePath(string relativePath)
+        {
+            if (relativePath.StartsWith("/"))
+            {
+                return relativePath;
+            }
+            else
+            {
+                string[] currentPathParts = CurrentPath.Split('/');
+                string[] relativePathParts = relativePath.Split('/');
+
+                var newPathParts = new LinkedList<string>(currentPathParts);
+                foreach (var part in relativePathParts)
+                {
+                    if (part == ".")
+                    {
+                        // Do nothing, '.' refers to the current directory
+                    }
+                    else if (part == "..")
+                    {
+                        // '..' refers to the parent directory, so remove the last part
+                        if (newPathParts.Count > 0)
+                        {
+                            newPathParts.RemoveLast();
+                        }
+                    }
+                    else
+                    {
+                        newPathParts.AddLast(part);
+                    }
+                }
+
+                return string.Join("/", newPathParts);
+            }
+        }
+
     }
 
     public static class VirtualPath
@@ -211,6 +248,18 @@
             {
                 // '/' が見つからない場合は、そのままのパスを返す
                 return path;
+            }
+        }
+
+        public static string Combine(string path1, string path2)
+        {
+            if (path1.EndsWith("/"))
+            {
+                return $"{path1}{path2}";
+            }
+            else
+            {
+                return $"{path1}/{path2}";
             }
         }
     }
