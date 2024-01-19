@@ -169,4 +169,30 @@
             CurrentPath = "/";
         }
     }
+
+    public static class VirtualPath
+    {
+        public static string GetDirectoryPath(string path)
+        {
+            // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
+            if (!path.StartsWith("/"))
+            {
+                return path;
+            }
+
+            int lastSlashIndex = path.LastIndexOf('/');
+            // '/' が見つからない場合は、ルートディレクトリを示す '/' を返す
+            if (lastSlashIndex <= 0)
+            {
+                return "/";
+            }
+            else
+            {
+                // フルパスから最後の '/' までの部分を抜き出して返す
+                return path.Substring(0, lastSlashIndex);
+            }
+        }
+    }
+
+
 }

@@ -445,6 +445,49 @@
             });
             CollectionAssert.Contains(nodes.ToList(), directory["Node2"]);
         }
-
     }
+
+    [TestClass]
+    public class VirtualPathTest
+    {
+        [TestMethod]
+        public void GetDirectoryPath_ReturnsCorrectPath_ForAbsolutePath()
+        {
+            // テストデータ
+            string absolutePath = "/directory/subdirectory/file";
+
+            // メソッドを実行
+            string result = VirtualPath.GetDirectoryPath(absolutePath);
+
+            // 結果を検証
+            Assert.AreEqual("/directory/subdirectory", result);
+        }
+
+        [TestMethod]
+        public void GetDirectoryPath_ReturnsRoot_ForRootPath()
+        {
+            // テストデータ
+            string rootPath = "/";
+
+            // メソッドを実行
+            string result = VirtualPath.GetDirectoryPath(rootPath);
+
+            // 結果を検証
+            Assert.AreEqual("/", result);
+        }
+
+        [TestMethod]
+        public void GetDirectoryPath_ReturnsSamePath_ForRelativePath()
+        {
+            // テストデータ
+            string relativePath = "file";
+
+            // メソッドを実行
+            string result = VirtualPath.GetDirectoryPath(relativePath);
+
+            // 結果を検証
+            Assert.AreEqual("file", result);
+        }
+    }
+
 }
