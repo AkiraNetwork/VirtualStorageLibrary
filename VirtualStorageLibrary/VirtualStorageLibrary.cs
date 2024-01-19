@@ -192,6 +192,27 @@
                 return path.Substring(0, lastSlashIndex);
             }
         }
+
+        public static string GetNodeName(string path)
+        {
+            if (path == "/")
+            {
+                //　ルートの場合は、ルートディレクトリを示す '/' を返す
+                return "/";
+            }
+
+            int lastSlashIndex = path.LastIndexOf('/');
+            if (lastSlashIndex >= 0)
+            {
+                // フルパスから最後の '/' より後の部分を抜き出して返す
+                return path.Substring(lastSlashIndex + 1);
+            }
+            else
+            {
+                // '/' が見つからない場合は、そのままのパスを返す
+                return path;
+            }
+        }
     }
 
 

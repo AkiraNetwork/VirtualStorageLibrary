@@ -488,6 +488,95 @@
             // 結果を検証
             Assert.AreEqual("file", result);
         }
+
+        [TestMethod]
+        public void GetNodeName_WithFullPath_ReturnsNodeName()
+        {
+            string path = "/path/to/node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithSingleNodeName_ReturnsSameName()
+        {
+            string path = "node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithEmptyString_ReturnsEmptyString()
+        {
+            string path = "";
+            string expectedNodeName = "";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithRootPath_ReturnsRootPath()
+        {
+            string path = "/";
+            string expectedNodeName = "/";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithDot_ReturnsDot()
+        {
+            string path = ".";
+            string expectedNodeName = ".";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithDotDot_ReturnsDotDot()
+        {
+            string path = "..";
+            string expectedNodeName = "..";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithRelativePathUsingDot_ReturnsNodeName()
+        {
+            string path = "./node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithRelativePathUsingDotDot_ReturnsNodeName()
+        {
+            string path = "../node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
     }
 
 }
