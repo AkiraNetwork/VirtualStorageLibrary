@@ -97,7 +97,7 @@
 
             directory.Add(newNode);
 
-            Assert.IsTrue(directory.IsExists("NewItem"));
+            Assert.IsTrue(directory.NodeExists("NewItem"));
             Assert.AreEqual(newNode, directory["NewItem"]);
             CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory["NewItem"]).Item).Data);
         }
@@ -143,7 +143,7 @@
 
             parentDirectory.Add(childDirectory);
 
-            Assert.IsTrue(parentDirectory.IsExists("ChildDirectory"));
+            Assert.IsTrue(parentDirectory.NodeExists("ChildDirectory"));
             Assert.AreEqual(childDirectory, parentDirectory["ChildDirectory"]);
         }
 
@@ -183,7 +183,7 @@
 
             parentDirectory.AddDirectory("ChildDirectory");
 
-            Assert.IsTrue(parentDirectory.IsExists("ChildDirectory"));
+            Assert.IsTrue(parentDirectory.NodeExists("ChildDirectory"));
             Assert.IsInstanceOfType(parentDirectory["ChildDirectory"], typeof(VirtualDirectory));
         }
 
@@ -207,7 +207,7 @@
 
             parentDirectory.AddDirectory("OriginalDirectory", allowOverwrite: true);
 
-            Assert.IsTrue(parentDirectory.IsExists("OriginalDirectory"));
+            Assert.IsTrue(parentDirectory.NodeExists("OriginalDirectory"));
             Assert.IsInstanceOfType(parentDirectory["OriginalDirectory"], typeof(VirtualDirectory));
         }
         
@@ -277,7 +277,7 @@
 
             directory.Remove(nodeName);
 
-            Assert.IsFalse(directory.IsExists(nodeName));
+            Assert.IsFalse(directory.NodeExists(nodeName));
         }
 
         [TestMethod]
@@ -323,8 +323,8 @@
             directory.Rename("ExistingNode", newName);
 
             // 名前が変更されたノードが存在し、元のノードが存在しないことを確認
-            Assert.IsTrue(directory.IsExists(newName));
-            Assert.IsFalse(directory.IsExists("ExistingNode"));
+            Assert.IsTrue(directory.NodeExists(newName));
+            Assert.IsFalse(directory.NodeExists("ExistingNode"));
         }
 
         [TestMethod]
@@ -444,6 +444,274 @@
                 var node = directory["Node1"];
             });
             CollectionAssert.Contains(nodes.ToList(), directory["Node2"]);
+        }
+    }
+
+    [TestClass]
+    public class VirtualStorageTests
+    {
+        [TestMethod]
+        public void ConvertToAbsolutePath_WhenPathStartsWithSlash_ReturnsSamePath()
+        {
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/root/subdirectory", true);
+            virtualStorage.ChangeDirectory("/root/subdirectory");
+
+            var result = virtualStorage.ConvertToAbsolutePath("/test/path");
+
+            Assert.AreEqual("/test/path", result);
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WhenPathDoesNotStartWithSlash_ReturnsAbsolutePath()
+        {
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/root/subdirectory", true);
+            virtualStorage.ChangeDirectory("/root/subdirectory");
+
+            var result = virtualStorage.ConvertToAbsolutePath("test/path");
+
+            Assert.AreEqual("/root/subdirectory/test/path", result);
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WhenPathContainsDot_ReturnsAbsolutePathWithoutDot()
+        {
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/root/subdirectory", true);
+            virtualStorage.ChangeDirectory("/root/subdirectory");
+
+            var result = virtualStorage.ConvertToAbsolutePath("./test/path");
+
+            Assert.AreEqual("/root/subdirectory/test/path", result);
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WhenPathContainsDoubleDot_ReturnsParentDirectoryPath()
+        {
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/root/subdirectory", true);
+            virtualStorage.ChangeDirectory("/root/subdirectory");
+
+            var result = virtualStorage.ConvertToAbsolutePath("../test/path");
+
+            Assert.AreEqual("/root/test/path", result);
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WhenPathContainsMultipleDoubleDots_ReturnsCorrectPath()
+        {
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/root/subdirectory", true);
+            virtualStorage.ChangeDirectory("/root/subdirectory");
+
+            var result = virtualStorage.ConvertToAbsolutePath("../../test/path");
+
+            Assert.AreEqual("/test/path", result);
+        }
+
+        [TestMethod]
+        public void MakeDirectory_WithValidPath_CreatesDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            virtualStorage.MakeDirectory("/test/directory", true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.DirectoryExists("/test/directory"));
+        }
+
+        [TestMethod]
+        public void MakeDirectory_WithNestedPathAndCreateSubdirectoriesFalse_ThrowsException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act & Assert
+            Assert.ThrowsException<Exception>(() => virtualStorage.MakeDirectory("/test/directory", false));
+        }
+
+        [TestMethod]
+        public void MakeDirectory_WithNestedPathAndCreateSubdirectoriesTrue_CreatesDirectories()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            virtualStorage.MakeDirectory("/test/directory/subdirectory", true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.DirectoryExists("/test/directory/subdirectory"));
+        }
+
+        [TestMethod]
+        public void MakeDirectory_WithExistingDirectory_DoesNotThrowException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/test/directory", true);
+
+            // Act & Assert
+            virtualStorage.MakeDirectory("/test/directory", true);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithExistingDirectory_ReturnsTrue()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/test/directory", true);
+
+            // Act
+            bool result = virtualStorage.DirectoryExists("/test/directory");
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithNonExistingDirectory_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            bool result = virtualStorage.DirectoryExists("/test/directory");
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithNestedExistingDirectory_ReturnsTrue()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/test/directory/subdirectory", true);
+
+            // Act
+            bool result = virtualStorage.DirectoryExists("/test/directory/subdirectory");
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithNestedNonExistingDirectory_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/test/directory", true);
+
+            // Act
+            bool result = virtualStorage.DirectoryExists("/test/directory/subdirectory");
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void GetDirectory_WithValidPath_ReturnsCorrectDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/TestDirectory/SubDirectory", true);
+
+            // Act
+            var directory = virtualStorage.GetDirectory("/TestDirectory/SubDirectory");
+
+            // Assert
+            Assert.IsNotNull(directory);
+            Assert.AreEqual("SubDirectory", directory.Name);
+        }
+
+        [TestMethod]
+        public void GetDirectory_WithRootPath_ReturnsRootDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            var directory = virtualStorage.GetDirectory("/");
+
+            // Assert
+            Assert.IsNotNull(directory);
+            Assert.AreEqual("/", directory.Name); // Assuming the root directory has an empty name
+        }
+
+        [TestMethod]
+        public void GetDirectory_WithNonexistentPath_ThrowsException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act & Assert
+            Assert.ThrowsException<Exception>(() => virtualStorage.GetDirectory("/NonexistentDirectory"));
+        }
+
+        [TestMethod]
+        public void GetDirectory_WithEmptyPath_ThrowsException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act & Assert
+            Assert.ThrowsException<Exception>(() => virtualStorage.GetDirectory(""));
+        }
+
+        [TestMethod]
+        public void RemoveDirectory_WhenDirectoryIsEmpty_RemovesDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory", true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
+
+            // Act
+            virtualStorage.RemoveDirectory("ParentDirectory/ChildDirectory");
+
+            // Assert
+            Assert.IsFalse(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
+        }
+
+        [TestMethod]
+        public void RemoveDirectory_WhenDirectoryIsNotEmptyAndForceDeleteIsFalse_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory", true);
+            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory/GrandChildDirectory", true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                virtualStorage.RemoveDirectory("ParentDirectory/ChildDirectory");
+            });
+        }
+
+        [TestMethod]
+        public void RemoveDirectory_WhenDirectoryIsNotEmptyAndForceDeleteIsTrue_RemovesDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory", true);
+            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory/GrandChildDirectory", true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
+
+            // Act
+            virtualStorage.RemoveDirectory("ParentDirectory/ChildDirectory", true);
+
+            // Assert
+            Assert.IsFalse(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
         }
     }
 
@@ -577,6 +845,96 @@
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
 
-    }
+        [TestMethod]
+        public void Combine_Path1EndsWithSlash_CombinesCorrectly()
+        {
+            string path1 = "path/to/directory/";
+            string path2 = "file.txt";
+            string expected = "path/to/directory/file.txt";
 
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_Path1DoesNotEndWithSlash_CombinesCorrectly()
+        {
+            string path1 = "path/to/directory";
+            string path2 = "file.txt";
+            string expected = "path/to/directory/file.txt";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_Path2StartsWithSlash_CombinesCorrectly()
+        {
+            string path1 = "path/to/directory";
+            string path2 = "/file.txt";
+            string expected = "path/to/directory/file.txt";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_BothPathsAreEmpty_ReturnsSlash()
+        {
+            string path1 = "";
+            string path2 = "";
+            string expected = "/";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithRootPath_ReturnsEmpty()
+        {
+            string path = "/";
+            string expected = "/";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithSingleLevelPath_ReturnsRoot()
+        {
+            string path = "/level1";
+            string expected = "/";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithMultiLevelPath_ReturnsParentPath()
+        {
+            string path = "/level1/level2/level3";
+            string expected = "/level1/level2";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithTrailingSlash_ReturnsParentPath()
+        {
+            string path = "/level1/level2/level3/";
+            string expected = "/level1/level2";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+    }
 }

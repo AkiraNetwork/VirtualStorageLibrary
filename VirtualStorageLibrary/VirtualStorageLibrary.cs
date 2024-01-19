@@ -5,6 +5,92 @@
         T DeepClone();
     }
 
+    public static class VirtualPath
+    {
+        public static string GetDirectoryPath(string path)
+        {
+            // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
+            if (!path.StartsWith("/"))
+            {
+                return path;
+            }
+
+            int lastSlashIndex = path.LastIndexOf('/');
+            // '/' が見つからない場合は、ルートディレクトリを示す '/' を返す
+            if (lastSlashIndex <= 0)
+            {
+                return "/";
+            }
+            else
+            {
+                // フルパスから最後の '/' までの部分を抜き出して返す
+                return path.Substring(0, lastSlashIndex);
+            }
+        }
+
+        public static string GetNodeName(string path)
+        {
+            if (path == "/")
+            {
+                //　ルートの場合は、ルートディレクトリを示す '/' を返す
+                return "/";
+            }
+
+            int lastSlashIndex = path.LastIndexOf('/');
+            if (lastSlashIndex >= 0)
+            {
+                // フルパスから最後の '/' より後の部分を抜き出して返す
+                return path.Substring(lastSlashIndex + 1);
+            }
+            else
+            {
+                // '/' が見つからない場合は、そのままのパスを返す
+                return path;
+            }
+        }
+
+        public static string Combine(string path1, string path2)
+        {
+            if (string.IsNullOrEmpty(path1) && string.IsNullOrEmpty(path2))
+            {
+                return "/";
+            }
+
+            if (string.IsNullOrEmpty(path1))
+            {
+                return path2;
+            }
+
+            if (string.IsNullOrEmpty(path2))
+            {
+                return path1;
+            }
+
+            string combinedPath = path1.TrimEnd('/') + "/" + path2.TrimStart('/');
+            return combinedPath;
+        }
+
+        public static string GetParentPath(string path)
+        {
+            // パスの最後の '/' を取り除きます
+            string trimmedPath = path.TrimEnd('/');
+            // パスを '/' で分割します
+            string[] pathParts = trimmedPath.Split('/');
+            // 最後の部分を除去します
+            string[] parentPathParts = pathParts.Take(pathParts.Length - 1).ToArray();
+            // パスを再構築します
+            string parentPath = string.Join("/", parentPathParts);
+
+            // パスが空になった場合は、ルートを返します
+            if (string.IsNullOrEmpty(parentPath))
+            {
+                return "/";
+            }
+
+            return parentPath;
+        }
+    }
+
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
     {
         public string Name { get; set; }
@@ -49,7 +135,17 @@
 
         public IEnumerable<VirtualNode> Nodes => _nodes.Values;
 
-        public bool IsExists(string name) => _nodes.ContainsKey(name);
+        public bool NodeExists(string name) => _nodes.ContainsKey(name);
+
+        public bool DirectoryExists(string name)
+        {
+            if (!NodeExists(name))
+            {
+                return false;
+            }
+
+            return _nodes[name] is VirtualDirectory;
+        }
 
         public VirtualDirectory(string name) : base(name)
         {
@@ -99,7 +195,7 @@
         {
             get
             {
-                if (!IsExists(key))
+                if (!NodeExists(key))
                 {
                     throw new KeyNotFoundException($"指定されたノード '{key}' は存在しません。");
                 }
@@ -113,7 +209,7 @@
 
         public void Remove(string name, bool forceRemove = false)
         {
-            if (!IsExists(name))
+            if (!NodeExists(name))
             {
                 if (!forceRemove)
                 {
@@ -131,7 +227,7 @@
 
         public VirtualNode Get(string name)
         {
-            if (!IsExists(name))
+            if (!NodeExists(name))
             {
                 throw new KeyNotFoundException($"指定されたノード '{name}' は存在しません。");
             }
@@ -140,12 +236,12 @@
 
         public void Rename(string oldName, string newName)
         {
-            if (!IsExists(oldName))
+            if (!NodeExists(oldName))
             {
                 throw new KeyNotFoundException($"ノード '{oldName}' は存在しません。");
             }
 
-            if (IsExists(newName))
+            if (NodeExists(newName))
             {
                 throw new InvalidOperationException($"ノード '{newName}' は既に存在します。");
             }
@@ -167,6 +263,20 @@
         {
             _root = new VirtualDirectory("/");
             CurrentPath = "/";
+        }
+
+        public void ChangeDirectory(string path)
+        {
+            string absolutePath = ConvertToAbsolutePath(path);
+
+            // Check if the path exists
+            if (!DirectoryExists(absolutePath))
+            {
+                throw new DirectoryNotFoundException($"ディレクトリ '{absolutePath}' は存在しません。");
+            }
+
+            // Change the current path
+            CurrentPath = absolutePath;
         }
 
         public string ConvertToAbsolutePath(string relativePath)
@@ -205,64 +315,88 @@
             }
         }
 
-    }
-
-    public static class VirtualPath
-    {
-        public static string GetDirectoryPath(string path)
+        public bool DirectoryExists(string path)
         {
-            // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
-            if (!path.StartsWith("/"))
-            {
-                return path;
-            }
+            string absolutePath = ConvertToAbsolutePath(path);
+            string[] nodeNameList = absolutePath.Split('/');
+            VirtualDirectory directory = _root;
 
-            int lastSlashIndex = path.LastIndexOf('/');
-            // '/' が見つからない場合は、ルートディレクトリを示す '/' を返す
-            if (lastSlashIndex <= 0)
+            foreach (var nodeName in nodeNameList)
             {
-                return "/";
+                if (directory.DirectoryExists(nodeName))
+                {
+                    directory = (VirtualDirectory)directory.Get(nodeName);
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            return true;
+        }
+
+        public void MakeDirectory(string path, bool createSubdirectories = false)
+        {
+            string absolutePath = ConvertToAbsolutePath(path);
+            string[] nodeNameList = absolutePath.Split('/');
+            VirtualDirectory directory = _root;
+
+            foreach (var nodeName in nodeNameList)
             {
-                // フルパスから最後の '/' までの部分を抜き出して返す
-                return path.Substring(0, lastSlashIndex);
+                if (!directory.DirectoryExists(nodeName))
+                {
+                    if (createSubdirectories)
+                    {
+                        directory.Add(new VirtualDirectory(nodeName));
+                    }
+                    else
+                    {
+                        throw new Exception($"ディレクトリ {nodeName} は存在しません。");
+                    }
+                }
+
+                directory = (VirtualDirectory)directory.Get(nodeName);
             }
         }
 
-        public static string GetNodeName(string path)
+        public VirtualDirectory GetDirectory(string path)
         {
+            // ルートディレクトリが要求された場合、すぐにそれを返します
             if (path == "/")
             {
-                //　ルートの場合は、ルートディレクトリを示す '/' を返す
-                return "/";
+                return _root;
             }
 
-            int lastSlashIndex = path.LastIndexOf('/');
-            if (lastSlashIndex >= 0)
+            string absolutePath = ConvertToAbsolutePath(path);
+            string[] directoryNameList = absolutePath.Split('/');
+            VirtualDirectory directory = _root;
+
+            foreach (var directoryName in directoryNameList)
             {
-                // フルパスから最後の '/' より後の部分を抜き出して返す
-                return path.Substring(lastSlashIndex + 1);
+                if (!directory.DirectoryExists(directoryName))
+                {
+                    throw new Exception($"ディレクトリ {directoryName} は存在しません。");
+                }
+
+                directory = (VirtualDirectory)directory.Get(directoryName);
             }
-            else
-            {
-                // '/' が見つからない場合は、そのままのパスを返す
-                return path;
-            }
+
+            return directory;
         }
 
-        public static string Combine(string path1, string path2)
+        public void RemoveDirectory(string path, bool forceDelete = false)
         {
-            if (path1.EndsWith("/"))
+            VirtualDirectory directory = GetDirectory(path);
+
+            if (!forceDelete && directory.Count > 0)
             {
-                return $"{path1}{path2}";
+                throw new InvalidOperationException("ディレクトリが空ではありません。削除するには強制削除フラグを設定してください。");
             }
-            else
-            {
-                return $"{path1}/{path2}";
-            }
+
+            string parentPath = VirtualPath.GetParentPath(path);
+            VirtualDirectory parentDirectory = GetDirectory(parentPath);
+
+            parentDirectory.Remove(directory.Name);
         }
     }
-
-
 }
