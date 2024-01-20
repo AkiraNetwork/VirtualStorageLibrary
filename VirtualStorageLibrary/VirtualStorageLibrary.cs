@@ -1,5 +1,20 @@
 ﻿namespace VirtualStorageLibrary
 {
+    public class VirtualNodeNotFoundException : Exception
+    {
+        public VirtualNodeNotFoundException()
+        {
+        }
+        
+        public VirtualNodeNotFoundException(string message) : base(message)
+        {
+        }
+
+        public VirtualNodeNotFoundException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
+
     public interface IDeepCloneable<T>
     {
         T DeepClone();
@@ -231,19 +246,19 @@
             Add(new VirtualDirectory(name), allowOverwrite);
         }
 
-        public VirtualNode this[string key]
+        public VirtualNode this[string name]
         {
             get
             {
-                if (!NodeExists(key))
+                if (!NodeExists(name))
                 {
-                    throw new KeyNotFoundException($"指定されたノード '{key}' は存在しません。");
+                    throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
                 }
-                return _nodes[key];
+                return _nodes[name];
             }
             set
             {
-                _nodes[key] = value;
+                _nodes[name] = value;
             }
         }
 
@@ -253,7 +268,7 @@
             {
                 if (!forceRemove)
                 {
-                    throw new KeyNotFoundException($"ノード '{name}' は存在しません。");
+                    throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
                 }
                 else
                 {
@@ -269,7 +284,7 @@
         {
             if (!NodeExists(name))
             {
-                throw new KeyNotFoundException($"指定されたノード '{name}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
             }
             return _nodes[name];
         }
@@ -278,12 +293,12 @@
         {
             if (!NodeExists(oldName))
             {
-                throw new KeyNotFoundException($"ノード '{oldName}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"指定されたノード '{oldName}' は存在しません。");
             }
 
             if (NodeExists(newName))
             {
-                throw new InvalidOperationException($"ノード '{newName}' は既に存在します。");
+                throw new InvalidOperationException($"指定されたノード '{newName}' は存在しません。");
             }
 
             var node = Get(oldName);

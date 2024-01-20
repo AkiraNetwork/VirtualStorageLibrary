@@ -449,11 +449,11 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_InvalidKey_ThrowsKeyNotFoundException()
+        public void Indexer_InvalidKey_ThrowsVirtualNodeNotFoundException()
         {
             var directory = new VirtualDirectory("TestDirectory");
 
-            Assert.ThrowsException<KeyNotFoundException>(() =>
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 var result = directory["InvalidKey"];
             });
@@ -472,11 +472,11 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Remove_NonExistentNodeWithoutForce_ThrowsKeyNotFoundException()
+        public void Remove_NonExistentNodeWithoutForce_ThrowsVirtualNodeNotFoundException()
         {
             var directory = new VirtualDirectory("TestDirectory");
 
-            Assert.ThrowsException<KeyNotFoundException>(() =>
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 directory.Remove("NonExistentNode");
             });
@@ -522,13 +522,13 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Get_NonExistingNode_ThrowsKeyNotFoundException()
+        public void Get_NonExistingNode_ThrowsVirtualNodeNotFoundException()
         {
             // VirtualDirectory オブジェクトを作成
             var directory = new VirtualDirectory("TestDirectory");
 
             // 存在しないノード名で Get メソッドを呼び出すと例外がスローされることを確認
-            Assert.ThrowsException<KeyNotFoundException>(() =>
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 var retrievedNode = directory.Get("NonExistingNode");
             });
@@ -553,13 +553,13 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Rename_NonExistingNode_ThrowsKeyNotFoundException()
+        public void Rename_NonExistingNode_ThrowsVirtualNodeNotFoundException()
         {
             // VirtualDirectory オブジェクトを作成
             var directory = new VirtualDirectory("TestDirectory");
 
             // 存在しないノード名で Rename メソッドを呼び出すと例外がスローされることを確認
-            Assert.ThrowsException<KeyNotFoundException>(() =>
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 directory.Rename("NonExistingNode", "NewName");
             });
@@ -663,7 +663,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.IsNotNull(nodes);
             Assert.AreEqual(1, nodes.Count());
-            Assert.ThrowsException<KeyNotFoundException>(() =>
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 // "Node1"が正しく削除されていることを確認
                 var node = directory["Node1"];
@@ -997,7 +997,7 @@ namespace VirtualStorageLibrary.Test
             var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
 
             // Act & Assert
-            Assert.ThrowsException<KeyNotFoundException>(() =>
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 storage.AddItem(item, "NonExistentDirectory");
             });
