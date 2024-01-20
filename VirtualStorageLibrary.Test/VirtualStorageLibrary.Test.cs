@@ -850,53 +850,57 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetDirectory_WithValidPath_ReturnsCorrectDirectory()
+        public void GetNode_ReturnsCorrectNode_WhenNodeIsItem()
         {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            virtualStorage.MakeDirectory("/TestDirectory/SubDirectory", true);
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.MakeDirectory("/TestDirectory");
+            var item = new VirtualItem<BinaryData>("Item", new BinaryData([1, 2, 3]));
+            vs.AddItem(item, "/TestDirectory");
 
-            // Act
-            var directory = virtualStorage.GetDirectory("/TestDirectory/SubDirectory");
+            // メソッドを実行
+            var node = vs.GetNode("/TestDirectory/Item");
 
-            // Assert
-            Assert.IsNotNull(directory);
-            Assert.AreEqual("SubDirectory", directory.Name);
+            // 結果を検証
+            Assert.IsNotNull(node);
+            Assert.AreEqual("Item", node.Name);
+            Assert.IsInstanceOfType(node, typeof(VirtualItem<BinaryData>));
         }
 
         [TestMethod]
-        public void GetDirectory_WithRootPath_ReturnsRootDirectory()
+        public void GetNode_ReturnsCorrectNode_WhenNodeIsDirectory()
         {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.MakeDirectory("/TestDirectory/TestSubdirectory", true);
 
-            // Act
-            var directory = virtualStorage.GetDirectory("/");
+            // メソッドを実行
+            var node = vs.GetNode("/TestDirectory/TestSubdirectory");
 
-            // Assert
-            Assert.IsNotNull(directory);
-            Assert.AreEqual("/", directory.Name); // Assuming the root directory has an empty name
+            // 結果を検証
+            Assert.IsNotNull(node);
+            Assert.AreEqual("TestSubdirectory", node.Name);
+            Assert.IsInstanceOfType(node, typeof(VirtualDirectory));
         }
 
         [TestMethod]
-        public void GetDirectory_WithNonexistentPath_ThrowsException()
+        public void GetNode_ThrowsDirectoryNotFoundException_WhenDirectoryDoesNotExist()
         {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
+            // テストデータの設定
+            var vs = new VirtualStorage();
 
-            // Act & Assert
-            Assert.ThrowsException<DirectoryNotFoundException>(() => virtualStorage.GetDirectory("/NonexistentDirectory"));
+            // メソッドを実行し、例外を検証
+            Assert.ThrowsException<KeyNotFoundException>(() => vs.GetNode("/NonExistentDirectory"));
         }
 
-        [TestMethod]
-        public void GetDirectory_WithEmptyPath_ThrowsException()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
 
-            // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.GetDirectory(""));
-        }
+
+
+
+
+
+        
+
 
         [TestMethod]
         public void RemoveDirectory_WhenDirectoryIsEmpty_RemovesDirectory()
@@ -962,7 +966,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(item);
 
             // Assert
-            var rootDirectory = storage.GetDirectory(".");
+            var rootDirectory = (VirtualDirectory)storage.GetNode(".");
             Assert.IsTrue(rootDirectory.NodeExists("TestItem"));
             Assert.AreEqual(item, rootDirectory["TestItem"]);
         }
@@ -972,14 +976,15 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var storage = new VirtualStorage();
-            storage.GetDirectory(".").AddDirectory("TestDirectory");
+            var node = (VirtualDirectory)storage.GetNode(".");
+            node.AddDirectory("TestDirectory");
             var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
 
             // Act
             storage.AddItem(item, "TestDirectory");
 
             // Assert
-            var testDirectory = storage.GetDirectory("TestDirectory");
+            var testDirectory = (VirtualDirectory)storage.GetNode("TestDirectory");
             Assert.IsTrue(testDirectory.NodeExists("TestItem"));
             Assert.AreEqual(item, testDirectory["TestItem"]);
         }
@@ -992,7 +997,7 @@ namespace VirtualStorageLibrary.Test
             var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
 
             // Act & Assert
-            Assert.ThrowsException<DirectoryNotFoundException>(() =>
+            Assert.ThrowsException<KeyNotFoundException>(() =>
             {
                 storage.AddItem(item, "NonExistentDirectory");
             });

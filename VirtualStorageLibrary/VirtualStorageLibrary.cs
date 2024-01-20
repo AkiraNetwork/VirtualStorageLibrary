@@ -384,7 +384,7 @@
             }
         }
 
-        public VirtualDirectory GetDirectory(string path)
+        public VirtualNode GetNode(string path)
         {
             string absolutePath = ConvertToAbsolutePath(path);
 
@@ -393,29 +393,42 @@
                 return _root;
             }
 
-            string[] directoryNameList = absolutePath.Split('/');
-            VirtualDirectory directory = _root;
+            string[] nodeNameList = absolutePath.Split('/');
+            VirtualNode node = _root;
 
-            foreach (var directoryName in directoryNameList)
+            foreach (var nodeName in nodeNameList)
             {
-                if (directoryName != "")
+                if (nodeName != "")
                 {
-                    if (!directory.DirectoryExists(directoryName))
+                    if (node is VirtualDirectory directory)
                     {
-                        throw new DirectoryNotFoundException($"ディレクトリ {directoryName} は存在しません。");
+                        node = directory.Get(nodeName);
                     }
-
-                    directory = (VirtualDirectory)directory.Get(directoryName);
                 }
             }
 
-            return directory;
+            return node;
+        }
+
+        public VirtualDirectory GetDirectory(string path)
+        {
+            string absolutePath = ConvertToAbsolutePath(path);
+            VirtualNode node = GetNode(absolutePath);
+
+            if (node is VirtualDirectory directory)
+            {
+                return directory;
+            }
+            else
+            {
+                throw new DirectoryNotFoundException($"ディレクトリ {absolutePath} は存在しません。");
+            }
         }
 
         public void RemoveDirectory(string path, bool forceDelete = false)
         {
             string absolutePath = ConvertToAbsolutePath(path);
-            VirtualDirectory directory = GetDirectory(absolutePath);
+            VirtualDirectory directory = (VirtualDirectory)GetNode(absolutePath);
 
             if (!forceDelete && directory.Count > 0)
             {
@@ -423,7 +436,7 @@
             }
 
             string parentPath = VirtualPath.GetParentPath(absolutePath);
-            VirtualDirectory parentDirectory = GetDirectory(parentPath);
+            VirtualDirectory parentDirectory = (VirtualDirectory)GetNode(parentPath);
 
             parentDirectory.Remove(directory.Name);
         }
@@ -431,7 +444,7 @@
         public void AddItem<T>(VirtualItem<T> item, string path = ".") where T : IDeepCloneable<T>
         {
             var absolutePath = ConvertToAbsolutePath(path);
-            var directory = GetDirectory(absolutePath);
+            var directory = (VirtualDirectory)GetNode(absolutePath);
 
             directory.Add(item);
         }
@@ -440,7 +453,7 @@
         {
             var absolutePath = ConvertToAbsolutePath(path);
             var parentPath = VirtualPath.GetParentPath(absolutePath);
-            var parentDirectory = GetDirectory(parentPath);
+            var parentDirectory = (VirtualDirectory)GetNode(parentPath);
             var itemName = VirtualPath.GetNodeName(absolutePath);
 
             parentDirectory.Remove(itemName);
@@ -481,7 +494,7 @@
                 throw new ArgumentException("絶対パスを指定してください。{basePath}");
             }
 
-            var directory = GetDirectory(basePath);
+            var directory = (VirtualDirectory)GetNode(basePath);
 
             foreach (var node in directory.Nodes)
             {
@@ -513,7 +526,7 @@
                 throw new ArgumentException("絶対パスを指定してください。{basePath}");
             }
 
-            var directory = GetDirectory(basePath);
+            var directory = (VirtualDirectory)GetNode(basePath);
 
             foreach (var node in directory.Nodes)
             {
