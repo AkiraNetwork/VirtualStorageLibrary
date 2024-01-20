@@ -1,6 +1,229 @@
 ﻿namespace VirtualStorageLibrary.Test
 {
     [TestClass]
+    public class VirtualPathTest
+    {
+        [TestMethod]
+        public void GetDirectoryPath_ReturnsCorrectPath_ForAbsolutePath()
+        {
+            // テストデータ
+            string absolutePath = "/directory/subdirectory/file";
+
+            // メソッドを実行
+            string result = VirtualPath.GetDirectoryPath(absolutePath);
+
+            // 結果を検証
+            Assert.AreEqual("/directory/subdirectory", result);
+        }
+
+        [TestMethod]
+        public void GetDirectoryPath_ReturnsRoot_ForRootPath()
+        {
+            // テストデータ
+            string rootPath = "/";
+
+            // メソッドを実行
+            string result = VirtualPath.GetDirectoryPath(rootPath);
+
+            // 結果を検証
+            Assert.AreEqual("/", result);
+        }
+
+        [TestMethod]
+        public void GetDirectoryPath_ReturnsSamePath_ForRelativePath()
+        {
+            // テストデータ
+            string relativePath = "file";
+
+            // メソッドを実行
+            string result = VirtualPath.GetDirectoryPath(relativePath);
+
+            // 結果を検証
+            Assert.AreEqual("file", result);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithFullPath_ReturnsNodeName()
+        {
+            string path = "/path/to/node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithSingleNodeName_ReturnsSameName()
+        {
+            string path = "node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithEmptyString_ReturnsEmptyString()
+        {
+            string path = "";
+            string expectedNodeName = "";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithRootPath_ReturnsRootPath()
+        {
+            string path = "/";
+            string expectedNodeName = "/";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithDot_ReturnsDot()
+        {
+            string path = ".";
+            string expectedNodeName = ".";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithDotDot_ReturnsDotDot()
+        {
+            string path = "..";
+            string expectedNodeName = "..";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithRelativePathUsingDot_ReturnsNodeName()
+        {
+            string path = "./node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeName_WithRelativePathUsingDotDot_ReturnsNodeName()
+        {
+            string path = "../node";
+            string expectedNodeName = "node";
+
+            string actualNodeName = VirtualPath.GetNodeName(path);
+
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+        }
+
+        [TestMethod]
+        public void Combine_Path1EndsWithSlash_CombinesCorrectly()
+        {
+            string path1 = "path/to/directory/";
+            string path2 = "file.txt";
+            string expected = "path/to/directory/file.txt";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_Path1DoesNotEndWithSlash_CombinesCorrectly()
+        {
+            string path1 = "path/to/directory";
+            string path2 = "file.txt";
+            string expected = "path/to/directory/file.txt";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_Path2StartsWithSlash_CombinesCorrectly()
+        {
+            string path1 = "path/to/directory";
+            string path2 = "/file.txt";
+            string expected = "path/to/directory/file.txt";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_BothPathsAreEmpty_ReturnsSlash()
+        {
+            string path1 = "";
+            string path2 = "";
+            string expected = "/";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithRootPath_ReturnsEmpty()
+        {
+            string path = "/";
+            string expected = "/";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithSingleLevelPath_ReturnsRoot()
+        {
+            string path = "/level1";
+            string expected = "/";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithMultiLevelPath_ReturnsParentPath()
+        {
+            string path = "/level1/level2/level3";
+            string expected = "/level1/level2";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetParentPath_WithTrailingSlash_ReturnsParentPath()
+        {
+            string path = "/level1/level2/level3/";
+            string expected = "/level1/level2";
+
+            string actual = VirtualPath.GetParentPath(path);
+
+            Assert.AreEqual(expected, actual);
+        }
+    }
+
+    [TestClass]
     public class VirtualItemTest
     {
         [TestMethod]
@@ -451,6 +674,18 @@
     public class VirtualStorageTests
     {
         [TestMethod]
+        public void ConvertToAbsolutePath_WhenCurrentPathIsRootAndPathDoesNotStartWithSlash_ReturnsAbsolutePath()
+        {
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/TestDirectory");
+            virtualStorage.ChangeDirectory("/");
+
+            var result = virtualStorage.ConvertToAbsolutePath("TestDirectory");
+
+            Assert.AreEqual("/TestDirectory", result);
+        }
+
+        [TestMethod]
         public void ConvertToAbsolutePath_WhenPathStartsWithSlash_ReturnsSamePath()
         {
             var virtualStorage = new VirtualStorage();
@@ -648,7 +883,7 @@
             var virtualStorage = new VirtualStorage();
 
             // Act & Assert
-            Assert.ThrowsException<Exception>(() => virtualStorage.GetDirectory("/NonexistentDirectory"));
+            Assert.ThrowsException<DirectoryNotFoundException>(() => virtualStorage.GetDirectory("/NonexistentDirectory"));
         }
 
         [TestMethod]
@@ -658,7 +893,7 @@
             var virtualStorage = new VirtualStorage();
 
             // Act & Assert
-            Assert.ThrowsException<Exception>(() => virtualStorage.GetDirectory(""));
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.GetDirectory(""));
         }
 
         [TestMethod]
@@ -713,228 +948,90 @@
             // Assert
             Assert.IsFalse(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
         }
+
+        [TestMethod]
+        public void AddItem_AddsItemToRootDirectory_WhenPathIsDefault()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act
+            storage.AddItem(item);
+
+            // Assert
+            var rootDirectory = storage.GetDirectory(".");
+            Assert.IsTrue(rootDirectory.NodeExists("TestItem"));
+            Assert.AreEqual(item, rootDirectory["TestItem"]);
+        }
+
+        [TestMethod]
+        public void AddItem_AddsItemToSpecifiedDirectory_WhenPathIsProvided()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.GetDirectory(".").AddDirectory("TestDirectory");
+            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act
+            storage.AddItem(item, "TestDirectory");
+
+            // Assert
+            var testDirectory = storage.GetDirectory("TestDirectory");
+            Assert.IsTrue(testDirectory.NodeExists("TestItem"));
+            Assert.AreEqual(item, testDirectory["TestItem"]);
+        }
+
+        [TestMethod]
+        public void AddItem_ThrowsException_WhenDirectoryDoesNotExist()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act & Assert
+            Assert.ThrowsException<DirectoryNotFoundException>(() =>
+            {
+                storage.AddItem(item, "NonExistentDirectory");
+            });
+        }
+
+        [TestMethod]
+        public void RemoveItem_RemovesItem_WhenItemExists()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            string path = "/path/to/existing";
+            string itemName = "TestItem";
+            string itemFullPath = VirtualPath.Combine(path, itemName);
+            virtualStorage.MakeDirectory(path, true);
+            var item = new VirtualItem<BinaryData>(itemName, new BinaryData(new byte[] { 1, 2, 3 }));
+            virtualStorage.AddItem(item, path);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.ItemExists(itemFullPath));
+
+            // Act
+            virtualStorage.RemoveItem(itemFullPath);
+
+            // Assert
+            Assert.IsFalse(virtualStorage.ItemExists(itemFullPath));
+        }
+
+        [TestMethod]
+        public void RemoveItem_ThrowsException_WhenItemDoesNotExist()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            string path = "/path/to/existing";
+            string itemName = "TestItem";
+            string itemFullPath = VirtualPath.Combine(path, itemName);
+            virtualStorage.MakeDirectory(path, true);
+
+            // Act & Assert
+            Assert.ThrowsException<KeyNotFoundException>(() => virtualStorage.RemoveItem(itemFullPath));
+        }
+
     }
 
-    [TestClass]
-    public class VirtualPathTest
-    {
-        [TestMethod]
-        public void GetDirectoryPath_ReturnsCorrectPath_ForAbsolutePath()
-        {
-            // テストデータ
-            string absolutePath = "/directory/subdirectory/file";
-
-            // メソッドを実行
-            string result = VirtualPath.GetDirectoryPath(absolutePath);
-
-            // 結果を検証
-            Assert.AreEqual("/directory/subdirectory", result);
-        }
-
-        [TestMethod]
-        public void GetDirectoryPath_ReturnsRoot_ForRootPath()
-        {
-            // テストデータ
-            string rootPath = "/";
-
-            // メソッドを実行
-            string result = VirtualPath.GetDirectoryPath(rootPath);
-
-            // 結果を検証
-            Assert.AreEqual("/", result);
-        }
-
-        [TestMethod]
-        public void GetDirectoryPath_ReturnsSamePath_ForRelativePath()
-        {
-            // テストデータ
-            string relativePath = "file";
-
-            // メソッドを実行
-            string result = VirtualPath.GetDirectoryPath(relativePath);
-
-            // 結果を検証
-            Assert.AreEqual("file", result);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithFullPath_ReturnsNodeName()
-        {
-            string path = "/path/to/node";
-            string expectedNodeName = "node";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithSingleNodeName_ReturnsSameName()
-        {
-            string path = "node";
-            string expectedNodeName = "node";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithEmptyString_ReturnsEmptyString()
-        {
-            string path = "";
-            string expectedNodeName = "";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithRootPath_ReturnsRootPath()
-        {
-            string path = "/";
-            string expectedNodeName = "/";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithDot_ReturnsDot()
-        {
-            string path = ".";
-            string expectedNodeName = ".";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithDotDot_ReturnsDotDot()
-        {
-            string path = "..";
-            string expectedNodeName = "..";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithRelativePathUsingDot_ReturnsNodeName()
-        {
-            string path = "./node";
-            string expectedNodeName = "node";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void GetNodeName_WithRelativePathUsingDotDot_ReturnsNodeName()
-        {
-            string path = "../node";
-            string expectedNodeName = "node";
-
-            string actualNodeName = VirtualPath.GetNodeName(path);
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void Combine_Path1EndsWithSlash_CombinesCorrectly()
-        {
-            string path1 = "path/to/directory/";
-            string path2 = "file.txt";
-            string expected = "path/to/directory/file.txt";
-
-            string result = VirtualPath.Combine(path1, path2);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
-        public void Combine_Path1DoesNotEndWithSlash_CombinesCorrectly()
-        {
-            string path1 = "path/to/directory";
-            string path2 = "file.txt";
-            string expected = "path/to/directory/file.txt";
-
-            string result = VirtualPath.Combine(path1, path2);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
-        public void Combine_Path2StartsWithSlash_CombinesCorrectly()
-        {
-            string path1 = "path/to/directory";
-            string path2 = "/file.txt";
-            string expected = "path/to/directory/file.txt";
-
-            string result = VirtualPath.Combine(path1, path2);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
-        public void Combine_BothPathsAreEmpty_ReturnsSlash()
-        {
-            string path1 = "";
-            string path2 = "";
-            string expected = "/";
-
-            string result = VirtualPath.Combine(path1, path2);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
-        public void GetParentPath_WithRootPath_ReturnsEmpty()
-        {
-            string path = "/";
-            string expected = "/";
-
-            string actual = VirtualPath.GetParentPath(path);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void GetParentPath_WithSingleLevelPath_ReturnsRoot()
-        {
-            string path = "/level1";
-            string expected = "/";
-
-            string actual = VirtualPath.GetParentPath(path);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void GetParentPath_WithMultiLevelPath_ReturnsParentPath()
-        {
-            string path = "/level1/level2/level3";
-            string expected = "/level1/level2";
-
-            string actual = VirtualPath.GetParentPath(path);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void GetParentPath_WithTrailingSlash_ReturnsParentPath()
-        {
-            string path = "/level1/level2/level3/";
-            string expected = "/level1/level2";
-
-            string actual = VirtualPath.GetParentPath(path);
-
-            Assert.AreEqual(expected, actual);
-        }
-    }
 }
