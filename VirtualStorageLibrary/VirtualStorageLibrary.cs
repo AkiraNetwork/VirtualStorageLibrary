@@ -498,7 +498,7 @@
             return directory.NodeExists(itemName);
         }
 
-        public IEnumerable<VirtualNode> EnumerateNodesRecursively(string basePath, bool includeItems = true)
+        private IEnumerable<T> EnumerateNodesRecursively<T>(string basePath, bool includeItems, Func<VirtualNode, string, T> selector)
         {
             if (basePath == "")
             {
@@ -506,7 +506,7 @@
             }
             if (!basePath.StartsWith("/"))
             {
-                throw new ArgumentException("絶対パスを指定してください。{basePath}");
+                throw new ArgumentException($"絶対パスを指定してください。{basePath}");
             }
 
             var directory = (VirtualDirectory)GetNode(basePath);
@@ -515,53 +515,29 @@
             {
                 if (node is VirtualDirectory subdirectory)
                 {
-                    yield return subdirectory;
+                    yield return selector(subdirectory, VirtualPath.Combine(basePath, subdirectory.Name));
 
                     var subdirectoryPath = VirtualPath.Combine(basePath, subdirectory.Name);
-                    foreach (var subNode in EnumerateNodesRecursively(subdirectoryPath, includeItems))
+                    foreach (var subNode in EnumerateNodesRecursively(subdirectoryPath, includeItems, selector))
                     {
                         yield return subNode;
                     }
                 }
                 else if (includeItems)
                 {
-                    yield return node;
+                    yield return selector(node, VirtualPath.Combine(basePath, node.Name));
                 }
             }
+        }
+
+        public IEnumerable<VirtualNode> EnumerateNodesRecursively(string basePath, bool includeItems = true)
+        {
+            return EnumerateNodesRecursively(basePath, includeItems, (node, path) => node);
         }
 
         public IEnumerable<string> EnumerateNodeNamesRecursively(string basePath, bool includeItems = true)
         {
-            if (basePath == "")
-            {
-                throw new ArgumentException("パスが空です。");
-            }
-            if (!basePath.StartsWith("/"))
-            {
-                throw new ArgumentException("絶対パスを指定してください。{basePath}");
-            }
-
-            var directory = (VirtualDirectory)GetNode(basePath);
-
-            foreach (var node in directory.Nodes)
-            {
-                if (node is VirtualDirectory subdirectory)
-                {
-                    yield return VirtualPath.Combine(basePath, subdirectory.Name);
-
-                    var subdirectoryPath = VirtualPath.Combine(basePath, subdirectory.Name);
-                    foreach (var subNodeName in EnumerateNodeNamesRecursively(subdirectoryPath, includeItems))
-                    {
-                        yield return VirtualPath.Combine(basePath, subNodeName);
-                    }
-                }
-                else if (includeItems)
-                {
-                    yield return VirtualPath.Combine(basePath, node.Name);
-                }
-            }
+            return EnumerateNodesRecursively(basePath, includeItems, (node, path) => path);
         }
-
-
     }
 }
