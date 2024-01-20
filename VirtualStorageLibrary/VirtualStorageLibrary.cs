@@ -470,10 +470,18 @@
             return directory.NodeExists(itemName);
         }
 
-        public IEnumerable<VirtualNode> EnumerateNodesRecursively(string path, bool includeItems = true)
+        public IEnumerable<VirtualNode> EnumerateNodesRecursively(string basePath, bool includeItems = true)
         {
-            var fullPath = ConvertToAbsolutePath(path);
-            var directory = GetDirectory(fullPath);
+            if (basePath == "")
+            {
+                throw new ArgumentException("パスが空です。");
+            }
+            if (!basePath.StartsWith("/"))
+            {
+                throw new ArgumentException("絶対パスを指定してください。{basePath}");
+            }
+
+            var directory = GetDirectory(basePath);
 
             foreach (var node in directory.Nodes)
             {
@@ -481,7 +489,8 @@
                 {
                     yield return subdirectory;
 
-                    foreach (var subNode in EnumerateNodesRecursively(subdirectory.Name, includeItems))
+                    var subdirectoryPath = VirtualPath.Combine(basePath, subdirectory.Name);
+                    foreach (var subNode in EnumerateNodesRecursively(subdirectoryPath, includeItems))
                     {
                         yield return subNode;
                     }
@@ -493,6 +502,37 @@
             }
         }
 
+        public IEnumerable<string> EnumerateNodeNamesRecursively(string basePath, bool includeItems = true)
+        {
+            if (basePath == "")
+            {
+                throw new ArgumentException("パスが空です。");
+            }
+            if (!basePath.StartsWith("/"))
+            {
+                throw new ArgumentException("絶対パスを指定してください。{basePath}");
+            }
+
+            var directory = GetDirectory(basePath);
+
+            foreach (var node in directory.Nodes)
+            {
+                if (node is VirtualDirectory subdirectory)
+                {
+                    yield return VirtualPath.Combine(basePath, subdirectory.Name);
+
+                    var subdirectoryPath = VirtualPath.Combine(basePath, subdirectory.Name);
+                    foreach (var subNodeName in EnumerateNodeNamesRecursively(subdirectoryPath, includeItems))
+                    {
+                        yield return VirtualPath.Combine(basePath, subNodeName);
+                    }
+                }
+                else if (includeItems)
+                {
+                    yield return VirtualPath.Combine(basePath, node.Name);
+                }
+            }
+        }
 
 
     }
