@@ -884,23 +884,14 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNode_ThrowsDirectoryNotFoundException_WhenDirectoryDoesNotExist()
+        public void GetNode_ThrowsVirtualNodeNotFoundException_WhenDirectoryDoesNotExist()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
 
             // メソッドを実行し、例外を検証
-            Assert.ThrowsException<KeyNotFoundException>(() => vs.GetNode("/NonExistentDirectory"));
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetNode("/NonExistentDirectory"));
         }
-
-
-
-
-
-
-
-        
-
 
         [TestMethod]
         public void RemoveDirectory_WhenDirectoryIsEmpty_RemovesDirectory()
@@ -1036,7 +1027,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.MakeDirectory(path, true);
 
             // Act & Assert
-            Assert.ThrowsException<KeyNotFoundException>(() => virtualStorage.RemoveItem(itemFullPath));
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.RemoveItem(itemFullPath));
         }
 
         [TestMethod]
