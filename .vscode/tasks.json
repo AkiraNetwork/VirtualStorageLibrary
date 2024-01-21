@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "coverage",
+            "type": "shell",
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-File",
+                    "${workspaceFolder}/coverage.ps1"
+                ]
+            },
+            "linux": {
+                "command": "pwsh",
+                "args": [
+                    "-File",
+                    "${workspaceFolder}/coverage.ps1"
+                ]
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "focus": false
+            }
+        }
+    ]
+}
