@@ -3,6 +3,39 @@
 namespace VirtualStorageLibrary.Test
 {
     [TestClass]
+    public class VirtualNodeNotFoundExceptionTest
+    {
+        [TestMethod]
+        public void DefaultConstructor_CreatesInstance()
+        {
+            var exception = new VirtualNodeNotFoundException();
+            Assert.IsNotNull(exception);
+        }
+
+        [TestMethod]
+        public void ConstructorWithMessage_CreatesInstanceWithMessage()
+        {
+            string message = "Test message";
+            var exception = new VirtualNodeNotFoundException(message);
+
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(message, exception.Message);
+        }
+
+        [TestMethod]
+        public void ConstructorWithMessageAndInnerException_CreatesInstanceWithMessageAndInnerException()
+        {
+            string message = "Test message";
+            var innerException = new Exception("Inner exception");
+            var exception = new VirtualNodeNotFoundException(message, innerException);
+
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(message, exception.Message);
+            Assert.AreEqual(innerException, exception.InnerException);
+        }
+    }
+
+    [TestClass]
     public class VirtualPathTest
     {
         [TestMethod]
