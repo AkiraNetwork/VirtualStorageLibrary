@@ -374,6 +374,22 @@ namespace VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(originalItem.Item.Data, clonedItem.Item.Data);
             Assert.AreNotSame(originalItem.Item.Data, clonedItem.Item.Data);
         }
+
+        [TestMethod]
+        public void DeepClone_ReturnsDeepCopyOfVirtualItem()
+        {
+            // Arrange
+            var originalItem = new VirtualItem<BinaryData>("item", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act
+            var clonedItem = ((IDeepCloneable<VirtualItem<BinaryData>>)originalItem).DeepClone();
+
+            // Assert
+            Assert.IsNotNull(clonedItem);
+            Assert.AreNotSame(originalItem, clonedItem);
+            CollectionAssert.AreEqual(originalItem.Item.Data, clonedItem.Item.Data);
+            Assert.AreEqual(originalItem.Name, clonedItem.Name);
+        }
     }
 
     [TestClass]
