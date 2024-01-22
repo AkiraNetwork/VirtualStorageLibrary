@@ -434,6 +434,47 @@ namespace VirtualStorageLibrary.Test
                 Assert.AreEqual(originalDirectory[name].Name, clonedDirectory[name].Name);
             }
         }
+
+        [TestMethod]
+        public void DeepClone_ReturnsDeepCopyOfVirtualDirectory()
+        {
+            // Arrange
+            var originalDirectory = new VirtualDirectory("original");
+            originalDirectory.Add(new VirtualItem<BinaryData>("item", new BinaryData(new byte[] { 1, 2, 3 })));
+
+            // Act
+            var clonedDirectory = ((IDeepCloneable<VirtualDirectory>)originalDirectory).DeepClone();
+
+            // Assert
+            Assert.IsNotNull(clonedDirectory);
+            Assert.AreNotSame(originalDirectory, clonedDirectory);
+            Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
+            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
+            Assert.AreNotSame(originalDirectory.Nodes.First(), clonedDirectory.Nodes.First());
+        }
+
+        [TestMethod]
+        public void DeepClone_ReturnsDeepCopyOfVirtualDirectory_WithSubdirectories()
+        {
+            // Arrange
+            var originalDirectory = new VirtualDirectory("original");
+            var subDirectory = new VirtualDirectory("sub");
+            originalDirectory.Add(subDirectory);
+
+            // Act
+            var clonedDirectory = ((IDeepCloneable<VirtualDirectory>)originalDirectory).DeepClone();
+
+            // Assert
+            Assert.IsNotNull(clonedDirectory);
+            Assert.AreNotSame(originalDirectory, clonedDirectory);
+            Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
+            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
+            Assert.AreNotSame(originalDirectory.Nodes.First(), clonedDirectory.Nodes.First());
+
+            var clonedSubDirectory = (VirtualDirectory)clonedDirectory.Nodes.First();
+            Assert.AreEqual(subDirectory.Name, clonedSubDirectory.Name);
+            Assert.AreNotSame(subDirectory, clonedSubDirectory);
+        }
         
         [TestMethod]
         public void Add_NewNode_AddsNodeCorrectly()
