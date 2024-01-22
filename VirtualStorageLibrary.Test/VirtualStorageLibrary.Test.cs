@@ -39,6 +39,55 @@ namespace VirtualStorageLibrary.Test
     public class VirtualPathTest
     {
         [TestMethod]
+        public void NormalizePath_WithAbsolutePath_ReturnsNormalizedPath()
+        {
+            string path = "/path/to/../directory/./";
+            string expected = "/path/directory";
+
+            string result = VirtualPath.NormalizePath(path);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void NormalizePath_WithRelativePath_ReturnsNormalizedPath()
+        {
+            string path = "path/to/../directory/./";
+            string expected = "path/directory";
+
+            string result = VirtualPath.NormalizePath(path);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void NormalizePath_WithEmptyPath_ThrowsArgumentException()
+        {
+            string path = "";
+
+            Assert.ThrowsException<ArgumentException>(() => VirtualPath.NormalizePath(path));
+        }
+
+        [TestMethod]
+        public void NormalizePath_WithInvalidPath_ThrowsInvalidOperationException()
+        {
+            string path = "/../";
+
+            Assert.ThrowsException<InvalidOperationException>(() => VirtualPath.NormalizePath(path));
+        }
+
+        [TestMethod]
+        public void NormalizePath_WithPathEndingWithParentDirectory_ReturnsNormalizedPath()
+        {
+            string path = "aaa/../..";
+            string expected = "..";
+
+            string result = VirtualPath.NormalizePath(path);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
         public void GetDirectoryPath_ReturnsCorrectPath_ForAbsolutePath()
         {
             // テストデータ
@@ -207,6 +256,30 @@ namespace VirtualStorageLibrary.Test
             string path1 = "";
             string path2 = "";
             string expected = "/";
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_WithPath1Empty_ReturnsPath2()
+        {
+            string path1 = "";
+            string path2 = "/directory/subdirectory";
+            string expected = path2;
+
+            string result = VirtualPath.Combine(path1, path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_WithPath2Empty_ReturnsPath1()
+        {
+            string path1 = "/directory/subdirectory";
+            string path2 = "";
+            string expected = path1;
 
             string result = VirtualPath.Combine(path1, path2);
 
