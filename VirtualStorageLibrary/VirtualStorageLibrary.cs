@@ -539,5 +539,58 @@
         {
             return EnumerateNodesRecursively(basePath, includeItems, (node, path) => path);
         }
+
+        public void CopyNode(string sourcePath, string destinationPath, bool recursive = false, bool overwrite = false)
+        {
+            string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
+            string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+
+            VirtualNode sourceNode = GetNode(absoluteSourcePath);
+
+            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.EndsWith("/");
+
+            string targetDirectoryPath, newNodeName;
+            if (destinationIsDirectory)
+            {
+                targetDirectoryPath = absoluteDestinationPath;
+                newNodeName = VirtualPath.GetNodeName(absoluteSourcePath);
+            }
+            else
+            {
+                targetDirectoryPath = VirtualPath.GetParentPath(absoluteDestinationPath);
+                newNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
+            }
+
+            VirtualDirectory targetDirectory = GetDirectory(targetDirectoryPath);
+
+            if (sourceNode is VirtualDirectory sourceDirectory)
+            {
+                // 再帰フラグが false でもディレクトリが空の場合はコピーを許可
+                if (!recursive && sourceDirectory.Nodes.Any())
+                {
+                    throw new InvalidOperationException("非空のディレクトリをコピーするには再帰フラグが必要です。");
+                }
+
+                // 再帰的なディレクトリコピーまたは空のディレクトリコピー
+                VirtualDirectory newDirectory = new VirtualDirectory(newNodeName);
+                targetDirectory.Add(newDirectory, overwrite);
+                if (recursive)
+                {
+                    foreach (var node in sourceDirectory.Nodes)
+                    {
+                        string intermediatePath = VirtualPath.Combine(targetDirectoryPath, newNodeName);
+                        string newDestinationPath = VirtualPath.Combine(intermediatePath, node.Name);
+                        CopyNode(VirtualPath.Combine(absoluteSourcePath, node.Name), newDestinationPath, true, overwrite);
+                    }
+                }
+            }
+            else
+            {
+                // 単一ノードのコピー
+                VirtualNode clonedNode = sourceNode.DeepClone();
+                clonedNode.Name = newNodeName;
+                targetDirectory.Add(clonedNode, overwrite);
+            }
+        }
     }
 }
