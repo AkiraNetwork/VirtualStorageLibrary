@@ -1589,6 +1589,75 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(storage.ItemExists("/destinationDir/newDir/file"));
         }
 
+        [TestMethod]
+        public void CopyDeepNestedDirectoryToNewLocation_CopiesAllNestedContentsAndEnsuresDifferentInstances()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/source/deep/nested/dir", true);
+            var originalItem = new VirtualItem<BinaryData>("nestedFile", new BinaryData(new byte[] { 1, 2, 3 }));
+            storage.AddItem(originalItem, "/source/deep/nested/dir");
 
+            storage.CopyNode("/source/deep", "/destination/deepCopy", true, false);
+
+            var copiedItem = (VirtualItem<BinaryData>)storage.GetNode("/destination/deepCopy/nested/dir/nestedFile");
+
+            Assert.IsNotNull(originalItem);
+            Assert.IsNotNull(copiedItem);
+            Assert.AreNotSame(originalItem, copiedItem);
+            Assert.AreNotSame(originalItem.Item, copiedItem.Item);
+        }
+
+        [TestMethod]
+        public void CopyMultipleNestedDirectories_CopiesAllDirectoriesAndContentsAndEnsuresDifferentInstances()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/source/dir1/subdir1", true);
+            storage.MakeDirectory("/source/dir2/subdir2", true);
+            var originalFile1 = new VirtualItem<BinaryData>("file1", new BinaryData(new byte[] { 4, 5, 6 }));
+            var originalFile2 = new VirtualItem<BinaryData>("file2", new BinaryData(new byte[] { 7, 8, 9 }));
+            storage.AddItem(originalFile1, "/source/dir1/subdir1");
+            storage.AddItem(originalFile2, "/source/dir2/subdir2");
+
+            storage.CopyNode("/source", "/destination", true, false);
+
+            var copiedFile1 = (VirtualItem<BinaryData>)storage.GetNode("/destination/dir1/subdir1/file1");
+            var copiedFile2 = (VirtualItem<BinaryData>)storage.GetNode("/destination/dir2/subdir2/file2");
+
+            Assert.IsNotNull(originalFile1);
+            Assert.IsNotNull(copiedFile1);
+            Assert.IsNotNull(originalFile2);
+            Assert.IsNotNull(copiedFile2);
+            Assert.AreNotSame(originalFile1, copiedFile1);
+            Assert.AreNotSame(originalFile2, copiedFile2);
+            Assert.AreNotSame(originalFile1.Item, copiedFile1.Item);
+            Assert.AreNotSame(originalFile2.Item, copiedFile2.Item);
+        }
+
+        [TestMethod]
+        public void CopyDirectoryWithComplexStructure_CopiesCorrectlyAndEnsuresDifferentInstances()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/complex/dir1", true);
+            storage.MakeDirectory("/complex/dir2", true);
+            storage.MakeDirectory("/complex/dir1/subdir1", true);
+            var originalFile1 = new VirtualItem<BinaryData>("file1", new BinaryData(new byte[] { 1, 2, 3 }));
+            var originalFile2 = new VirtualItem<BinaryData>("file2", new BinaryData(new byte[] { 4, 5, 6 }));
+            storage.AddItem(originalFile1, "/complex/dir1");
+            storage.AddItem(originalFile2, "/complex/dir2");
+
+            storage.CopyNode("/complex", "/copiedComplex", true, false);
+
+            var copiedFile1 = (VirtualItem<BinaryData>)storage.GetNode("/copiedComplex/dir1/file1");
+            var copiedFile2 = (VirtualItem<BinaryData>)storage.GetNode("/copiedComplex/dir2/file2");
+
+            Assert.IsNotNull(originalFile1);
+            Assert.IsNotNull(copiedFile1);
+            Assert.IsNotNull(originalFile2);
+            Assert.IsNotNull(copiedFile2);
+            Assert.AreNotSame(originalFile1, copiedFile1);
+            Assert.AreNotSame(originalFile2, copiedFile2);
+            Assert.AreNotSame(originalFile1.Item, copiedFile1.Item);
+            Assert.AreNotSame(originalFile2.Item, copiedFile2.Item);
+        }
     }
 }
