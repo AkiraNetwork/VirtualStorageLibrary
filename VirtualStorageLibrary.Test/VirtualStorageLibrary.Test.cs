@@ -1484,5 +1484,111 @@ namespace VirtualStorageLibrary.Test
             }
         }
 
+        [TestMethod]
+        public void CopyFileToFile_OverwritesWhenAllowed()
+        {
+            var storage = new VirtualStorage();
+            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+
+            storage.CopyNode("/sourceFile", "/destinationFile", false, true);
+
+            var destinationItem = (VirtualItem<BinaryData>)storage.GetNode("/destinationFile");
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void CopyFileToFile_ThrowsWhenOverwriteNotAllowed()
+        {
+            var storage = new VirtualStorage();
+            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/sourceFile", "/destinationFile", false, false));
+        }
+
+        [TestMethod]
+        public void CopyFileToDirectory_CopiesFileToTargetDirectory()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/destination");
+            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+
+            storage.CopyNode("/sourceFile", "/destination/", false, false);
+
+            var destinationItem = (VirtualItem<BinaryData>)storage.GetNode("/destination/sourceFile");
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void CopyEmptyDirectoryToDirectory_CreatesTargetDirectory()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.MakeDirectory("/destinationDir");
+
+            storage.CopyNode("/sourceDir", "/destinationDir/newDir", false, false);
+
+            Assert.IsTrue(storage.DirectoryExists("/destinationDir/newDir"));
+        }
+
+        [TestMethod]
+        public void CopyNonEmptyDirectoryToDirectoryWithoutRecursive_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.MakeDirectory("/destinationDir");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/sourceDir", "/destinationDir/newDir", false, false));
+        }
+
+        [TestMethod]
+        public void CopyNonEmptyDirectoryToDirectoryWithRecursive_CopiesAllContents()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.MakeDirectory("/destinationDir");
+
+            storage.CopyNode("/sourceDir", "/destinationDir/newDir", true, false);
+
+            Assert.IsTrue(storage.DirectoryExists("/destinationDir/newDir"));
+            Assert.IsTrue(storage.ItemExists("/destinationDir/newDir/file"));
+        }
+
+        [TestMethod]
+        public void CopyDirectoryToFile_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/sourceDir", "/destinationFile", false, false));
+        }
+
+        [TestMethod]
+        public void CopyFileToNonExistentDirectory_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.CopyNode("/sourceFile", "/nonExistentDir/destinationFile", false, false));
+        }
+
+        [TestMethod]
+        public void CopyDirectoryToNonExistentDirectoryWithRecursive_CreatesAllDirectoriesAndCopiesContents()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+
+            storage.CopyNode("/sourceDir", "/destinationDir/newDir", true, false);
+
+            Assert.IsTrue(storage.DirectoryExists("/destinationDir/newDir"));
+            Assert.IsTrue(storage.ItemExists("/destinationDir/newDir/file"));
+        }
+
+
     }
 }

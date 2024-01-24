@@ -561,6 +561,15 @@
                 newNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
             }
 
+            if (destinationIsDirectory || recursive)
+            {
+                // コピー先ディレクトリが存在しない場合は作成
+                if (!DirectoryExists(targetDirectoryPath))
+                {
+                    MakeDirectory(targetDirectoryPath, true);  // 再帰的にディレクトリを作成
+                }
+            }
+            
             VirtualDirectory targetDirectory = GetDirectory(targetDirectoryPath);
 
             if (sourceNode is VirtualDirectory sourceDirectory)
