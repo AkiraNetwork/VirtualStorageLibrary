@@ -1361,7 +1361,7 @@ namespace VirtualStorageLibrary.Test
             var virtualStorage = new VirtualStorage();
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.EnumerateNodesRecursively("", true));
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.EnumerateNodesRecursively("", true).ToList());
         }
 
         [TestMethod]
@@ -1371,7 +1371,7 @@ namespace VirtualStorageLibrary.Test
             var virtualStorage = new VirtualStorage();
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.EnumerateNodesRecursively("relative/path", true));
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.EnumerateNodesRecursively("relative/path", true).ToList());
         }
         
         [TestMethod]
