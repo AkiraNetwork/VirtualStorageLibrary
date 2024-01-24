@@ -327,7 +327,7 @@
             // Check if the path exists
             if (!DirectoryExists(absolutePath))
             {
-                throw new DirectoryNotFoundException($"ディレクトリ '{absolutePath}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"ディレクトリ '{absolutePath}' は存在しません。");
             }
 
             // Change the current path
@@ -436,7 +436,7 @@
             }
             else
             {
-                throw new DirectoryNotFoundException($"ディレクトリ {absolutePath} は存在しません。");
+                throw new VirtualNodeNotFoundException($"ディレクトリ {absolutePath} は存在しません。");
             }
         }
 

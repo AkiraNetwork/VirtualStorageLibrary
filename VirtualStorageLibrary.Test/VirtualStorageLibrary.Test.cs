@@ -839,6 +839,42 @@ namespace VirtualStorageLibrary.Test
     public class VirtualStorageTests
     {
         [TestMethod]
+        public void ChangeDirectory_WithExistingDirectory_ChangesCurrentPath()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            string existingDirectory = "/path/to/existing/directory";
+            virtualStorage.MakeDirectory(existingDirectory, true);
+
+            // Act
+            virtualStorage.ChangeDirectory(existingDirectory);
+
+            // Assert
+            Assert.AreEqual(existingDirectory, virtualStorage.CurrentPath);
+        }
+
+        [TestMethod]
+        public void ChangeDirectory_WithNonExistentDirectory_ThrowsDirectoryNotFoundException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            string nonExistentDirectory = "/path/to/nonexistent/directory";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.ChangeDirectory(nonExistentDirectory));
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WhenPathIsEmpty_ThrowsArgumentException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act and Assert
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.ConvertToAbsolutePath(""));
+        }
+        
+        [TestMethod]
         public void ConvertToAbsolutePath_WhenCurrentPathIsRootAndPathDoesNotStartWithSlash_ReturnsAbsolutePath()
         {
             var virtualStorage = new VirtualStorage();
@@ -1054,6 +1090,63 @@ namespace VirtualStorageLibrary.Test
 
             // メソッドを実行し、例外を検証
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetNode("/NonExistentDirectory"));
+        }
+
+        [TestMethod]
+        public void GetDirectory_WhenDirectoryExists_ReturnsDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/test");
+            string path = "/test";
+
+            // Act
+            var directory = virtualStorage.GetDirectory(path);
+
+            // Assert
+            Assert.IsNotNull(directory);
+            Assert.AreEqual("test", directory.Name);
+        }
+
+        [TestMethod]
+        public void GetDirectory_WhenDirectoryDoesNotExist_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            string path = "/nonexistent";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.GetDirectory(path));
+        }
+
+        [TestMethod]
+        public void GetDirectory_WhenNodeIsNotDirectory_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            var file = new VirtualItem<BinaryData>("testfile", new BinaryData(new byte[] { 1, 2, 3 }));
+            virtualStorage.AddItem(file, "/");
+
+            string path = "/testfile";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.GetDirectory(path));
+        }
+        
+        [TestMethod]
+        public void GetDirectory_WhenPathIsRelative_ReturnsDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/test");
+            string path = "test";
+
+            // Act
+            var directory = virtualStorage.GetDirectory(path);
+
+            // Assert
+            Assert.IsNotNull(directory);
+            Assert.AreEqual("test", directory.Name);
         }
 
         [TestMethod]
