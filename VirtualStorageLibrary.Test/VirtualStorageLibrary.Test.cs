@@ -1287,6 +1287,74 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ItemExists_WhenIntermediateDirectoryDoesNotExist_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            bool result = virtualStorage.ItemExists("/nonexistent/testfile");
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void ItemExists_WhenItemExists_ReturnsTrue()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            var item = new VirtualItem<BinaryData>("testfile", new BinaryData(new byte[] { 1, 2, 3 }));
+            virtualStorage.AddItem(item, "/");
+
+            // Act
+            bool result = virtualStorage.ItemExists("/testfile");
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void ItemExists_WhenItemDoesNotExist_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            bool result = virtualStorage.ItemExists("/nonexistent");
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void ItemExists_WhenDirectoryExists_ReturnsTrue()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.MakeDirectory("/testdir");
+
+            // Act
+            bool result = virtualStorage.ItemExists("/testdir");
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void ItemExists_WhenDirectoryDoesNotExist_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            bool result = virtualStorage.ItemExists("/nonexistent");
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
         public void EnumerateNodesRecursively_ValidTest()
         {
             var vs = new VirtualStorage();
