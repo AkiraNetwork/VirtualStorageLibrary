@@ -423,8 +423,8 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(clonedDirectory);
             Assert.AreNotSame(originalDirectory, clonedDirectory);
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
-            Assert.AreEqual(originalDirectory.CreateDate, clonedDirectory.CreateDate);
-            Assert.AreEqual(originalDirectory.UpdateDate, clonedDirectory.UpdateDate);
+            Assert.AreEqual(originalDirectory.CreatedDate, clonedDirectory.CreatedDate);
+            Assert.AreEqual(originalDirectory.UpdatedDate, clonedDirectory.UpdatedDate);
             Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
 
             // 各ノードも適切にクローンされていることを検証

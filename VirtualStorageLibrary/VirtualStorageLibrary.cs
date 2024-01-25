@@ -149,14 +149,14 @@
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
     {
         public string Name { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public abstract VirtualNode DeepClone();
         protected VirtualNode(string name)
         {
             Name = name;
-            CreateDate = DateTime.Now;
-            UpdateDate = DateTime.Now;
+            CreatedDate = DateTime.Now;
+            UpdatedDate = DateTime.Now;
         }
     }
 
@@ -211,8 +211,8 @@
         {
             var clonedDirectory = new VirtualDirectory(this.Name)
             {
-                CreateDate = this.CreateDate,
-                UpdateDate = this.UpdateDate,
+                CreatedDate = this.CreatedDate,
+                UpdatedDate = this.UpdatedDate,
                 _nodes = new Dictionary<string, VirtualNode>()
             };
 
