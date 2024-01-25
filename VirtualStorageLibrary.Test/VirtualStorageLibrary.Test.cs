@@ -1150,59 +1150,6 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void RemoveDirectory_WhenDirectoryIsEmpty_RemovesDirectory()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory", true);
-
-            // Assert
-            Assert.IsTrue(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
-
-            // Act
-            virtualStorage.RemoveDirectory("ParentDirectory/ChildDirectory");
-
-            // Assert
-            Assert.IsFalse(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
-        }
-
-        [TestMethod]
-        public void RemoveDirectory_WhenDirectoryIsNotEmptyAndForceDeleteIsFalse_ThrowsInvalidOperationException()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory", true);
-            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory/GrandChildDirectory", true);
-
-            // Assert
-            Assert.IsTrue(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
-
-            // Act & Assert
-            Assert.ThrowsException<InvalidOperationException>(() =>
-            {
-                virtualStorage.RemoveDirectory("ParentDirectory/ChildDirectory");
-            });
-        }
-
-        [TestMethod]
-        public void RemoveDirectory_WhenDirectoryIsNotEmptyAndForceDeleteIsTrue_RemovesDirectory()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory", true);
-            virtualStorage.MakeDirectory("ParentDirectory/ChildDirectory/GrandChildDirectory", true);
-
-            // Assert
-            Assert.IsTrue(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
-
-            // Act
-            virtualStorage.RemoveDirectory("ParentDirectory/ChildDirectory", true);
-
-            // Assert
-            Assert.IsFalse(virtualStorage.DirectoryExists("ParentDirectory/ChildDirectory"));
-        }
-
-        [TestMethod]
         public void AddItem_AddsItemToRootDirectory_WhenPathIsDefault()
         {
             // Arrange
@@ -1248,42 +1195,6 @@ namespace VirtualStorageLibrary.Test
             {
                 storage.AddItem(item, "NonExistentDirectory");
             });
-        }
-
-        [TestMethod]
-        public void RemoveItem_RemovesItem_WhenItemExists()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            string path = "/path/to/existing";
-            string itemName = "TestItem";
-            string itemFullPath = VirtualPath.Combine(path, itemName);
-            virtualStorage.MakeDirectory(path, true);
-            var item = new VirtualItem<BinaryData>(itemName, new BinaryData(new byte[] { 1, 2, 3 }));
-            virtualStorage.AddItem(item, path);
-
-            // Assert
-            Assert.IsTrue(virtualStorage.ItemExists(itemFullPath));
-
-            // Act
-            virtualStorage.RemoveItem(itemFullPath);
-
-            // Assert
-            Assert.IsFalse(virtualStorage.ItemExists(itemFullPath));
-        }
-
-        [TestMethod]
-        public void RemoveItem_ThrowsException_WhenItemDoesNotExist()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            string path = "/path/to/existing";
-            string itemName = "TestItem";
-            string itemFullPath = VirtualPath.Combine(path, itemName);
-            virtualStorage.MakeDirectory(path, true);
-
-            // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.RemoveItem(itemFullPath));
         }
 
         [TestMethod]
@@ -1659,5 +1570,140 @@ namespace VirtualStorageLibrary.Test
             Assert.AreNotSame(originalFile1.Item, copiedFile1.Item);
             Assert.AreNotSame(originalFile2.Item, copiedFile2.Item);
         }
-    }
+
+        [TestMethod]
+        public void RemoveNode_ExistingItem_RemovesItem()
+        {
+            var storage = new VirtualStorage();
+            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+            storage.AddItem(item, "/");
+
+            storage.RemoveNode("/TestItem");
+
+            Assert.IsFalse(storage.ItemExists("/TestItem"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_NonExistingItem_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.RemoveNode("/NonExistingItem"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_ExistingEmptyDirectory_RemovesDirectory()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/TestDirectory");
+
+            storage.RemoveNode("/TestDirectory");
+
+            Assert.IsFalse(storage.DirectoryExists("/TestDirectory"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_NonExistingDirectory_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.RemoveNode("/NonExistingDirectory"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_ExistingNonEmptyDirectoryWithoutRecursive_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/TestDirectory");
+            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+            storage.AddItem(item, "/TestDirectory");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.RemoveNode("/TestDirectory"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_ExistingNonEmptyDirectoryWithRecursive_RemovesDirectoryAndContents()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/TestDirectory");
+            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+            storage.AddItem(item, "/TestDirectory");
+
+            storage.RemoveNode("/TestDirectory", true);
+
+            Assert.IsFalse(storage.DirectoryExists("/TestDirectory"));
+            Assert.IsFalse(storage.ItemExists("/TestDirectory/TestItem"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_DeepNestedDirectoryWithRecursive_RemovesAllNestedContents()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/Level1/Level2/Level3", true);
+            var item1 = new VirtualItem<BinaryData>("Item1", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item2 = new VirtualItem<BinaryData>("Item2", new BinaryData(new byte[] { 4, 5, 6 }));
+            storage.AddItem(item1, "/Level1/Level2/Level3");
+            storage.AddItem(item2, "/Level1/Level2");
+
+            storage.RemoveNode("/Level1", true);
+
+            Assert.IsFalse(storage.DirectoryExists("/Level1"));
+            Assert.IsFalse(storage.ItemExists("/Level1/Level2/Level3/Item1"));
+            Assert.IsFalse(storage.ItemExists("/Level1/Level2/Item2"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_DeepNestedDirectoryWithoutRecursive_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/Level1/Level2/Level3", true);
+            var item1 = new VirtualItem<BinaryData>("Item1", new BinaryData(new byte[] { 1, 2, 3 }));
+            storage.AddItem(item1, "/Level1/Level2/Level3");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.RemoveNode("/Level1"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_NestedDirectoryWithEmptySubdirectories_RecursiveRemoval()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/Level1/Level2/Level3", true);
+
+            storage.RemoveNode("/Level1", true);
+
+            Assert.IsFalse(storage.DirectoryExists("/Level1"));
+            Assert.IsFalse(storage.DirectoryExists("/Level1/Level2"));
+            Assert.IsFalse(storage.DirectoryExists("/Level1/Level2/Level3"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_RootDirectory_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                storage.RemoveNode("/");
+            });
+        }
+
+        [TestMethod]
+        public void RemoveNode_CurrentDirectoryDot_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                storage.RemoveNode(".");
+            });
+        }
+
+        [TestMethod]
+        public void RemoveNode_ParentDirectoryDotDot_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                storage.RemoveNode("..");
+            });
+        }
+   }
 }

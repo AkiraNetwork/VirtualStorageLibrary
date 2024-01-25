@@ -440,22 +440,6 @@
             }
         }
 
-        public void RemoveDirectory(string path, bool forceDelete = false)
-        {
-            string absolutePath = ConvertToAbsolutePath(path);
-            VirtualDirectory directory = (VirtualDirectory)GetNode(absolutePath);
-
-            if (!forceDelete && directory.Count > 0)
-            {
-                throw new InvalidOperationException("ディレクトリが空ではありません。削除するには強制削除フラグを設定してください。");
-            }
-
-            string parentPath = VirtualPath.GetParentPath(absolutePath);
-            VirtualDirectory parentDirectory = (VirtualDirectory)GetNode(parentPath);
-
-            parentDirectory.Remove(directory.Name);
-        }
-
         public void AddItem<T>(VirtualItem<T> item, string path = ".") where T : IDeepCloneable<T>
         {
             var absolutePath = ConvertToAbsolutePath(path);
@@ -464,17 +448,7 @@
             directory.Add(item);
         }
 
-        public void RemoveItem(string path)
-        {
-            var absolutePath = ConvertToAbsolutePath(path);
-            var parentPath = VirtualPath.GetParentPath(absolutePath);
-            var parentDirectory = (VirtualDirectory)GetNode(parentPath);
-            var itemName = VirtualPath.GetNodeName(absolutePath);
-
-            parentDirectory.Remove(itemName);
-        }
-
-        public bool ItemExists(string path)
+       public bool ItemExists(string path)
         {
             string absolutePath = ConvertToAbsolutePath(path);
             string[] nodeNameList = absolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
@@ -601,5 +575,48 @@
                 targetDirectory.Add(clonedNode, overwrite);
             }
         }
+
+        public void RemoveNode(string path, bool recursive = false)
+        {
+            string absolutePath = ConvertToAbsolutePath(path);
+
+            if (absolutePath == "/")
+            {
+                throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
+            }
+
+            VirtualNode node = GetNode(absolutePath);
+
+            // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
+            string parentPath = VirtualPath.GetParentPath(absolutePath);
+            VirtualDirectory parentDirectory = GetDirectory(parentPath);
+
+            if (node is VirtualDirectory directory)
+            {
+                if (!recursive && directory.Count > 0)
+                {
+                    throw new InvalidOperationException("ディレクトリが空ではなく、再帰フラグが設定されていません。");
+                }
+
+                // directory.Nodes コレクションのスナップショットを作成
+                var nodesSnapshot = directory.Nodes.ToList();
+
+                // スナップショットを反復処理して、各ノードを削除
+                foreach (var subNode in nodesSnapshot)
+                {
+                    string subPath = VirtualPath.Combine(absolutePath, subNode.Name);
+                    RemoveNode(subPath, recursive);
+                }
+
+                // ここで親ディレクトリからディレクトリを削除
+                parentDirectory.Remove(directory.Name);
+            }
+            else
+            {
+                // ここで親ディレクトリからアイテム（ノード）を削除
+                parentDirectory.Remove(node.Name);
+            }
+        }
+
     }
 }
