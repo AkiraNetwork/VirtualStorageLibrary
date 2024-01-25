@@ -956,7 +956,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.MakeDirectory("/test/directory", true);
 
             // Assert
-            Assert.IsTrue(virtualStorage.DirectoryExists("/test/directory"));
+            Assert.IsTrue(virtualStorage.NodeExists("/test/directory"));
         }
 
         [TestMethod]
@@ -979,7 +979,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.MakeDirectory("/test/directory/subdirectory", true);
 
             // Assert
-            Assert.IsTrue(virtualStorage.DirectoryExists("/test/directory/subdirectory"));
+            Assert.IsTrue(virtualStorage.NodeExists("/test/directory/subdirectory"));
         }
 
         [TestMethod]
@@ -991,61 +991,6 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             virtualStorage.MakeDirectory("/test/directory", true);
-        }
-
-        [TestMethod]
-        public void DirectoryExists_WithExistingDirectory_ReturnsTrue()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            virtualStorage.MakeDirectory("/test/directory", true);
-
-            // Act
-            bool result = virtualStorage.DirectoryExists("/test/directory");
-
-            // Assert
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void DirectoryExists_WithNonExistingDirectory_ReturnsFalse()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-
-            // Act
-            bool result = virtualStorage.DirectoryExists("/test/directory");
-
-            // Assert
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
-        public void DirectoryExists_WithNestedExistingDirectory_ReturnsTrue()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            virtualStorage.MakeDirectory("/test/directory/subdirectory", true);
-
-            // Act
-            bool result = virtualStorage.DirectoryExists("/test/directory/subdirectory");
-
-            // Assert
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void DirectoryExists_WithNestedNonExistingDirectory_ReturnsFalse()
-        {
-            // Arrange
-            var virtualStorage = new VirtualStorage();
-            virtualStorage.MakeDirectory("/test/directory", true);
-
-            // Act
-            bool result = virtualStorage.DirectoryExists("/test/directory/subdirectory");
-
-            // Assert
-            Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -1204,7 +1149,7 @@ namespace VirtualStorageLibrary.Test
             var virtualStorage = new VirtualStorage();
 
             // Act
-            bool result = virtualStorage.ItemExists("/nonexistent/testfile");
+            bool result = virtualStorage.NodeExists("/nonexistent/testfile");
 
             // Assert
             Assert.IsFalse(result);
@@ -1219,7 +1164,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddItem(item, "/");
 
             // Act
-            bool result = virtualStorage.ItemExists("/testfile");
+            bool result = virtualStorage.NodeExists("/testfile");
 
             // Assert
             Assert.IsTrue(result);
@@ -1232,7 +1177,7 @@ namespace VirtualStorageLibrary.Test
             var virtualStorage = new VirtualStorage();
 
             // Act
-            bool result = virtualStorage.ItemExists("/nonexistent");
+            bool result = virtualStorage.NodeExists("/nonexistent");
 
             // Assert
             Assert.IsFalse(result);
@@ -1246,7 +1191,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.MakeDirectory("/testdir");
 
             // Act
-            bool result = virtualStorage.ItemExists("/testdir");
+            bool result = virtualStorage.NodeExists("/testdir");
 
             // Assert
             Assert.IsTrue(result);
@@ -1259,7 +1204,7 @@ namespace VirtualStorageLibrary.Test
             var virtualStorage = new VirtualStorage();
 
             // Act
-            bool result = virtualStorage.ItemExists("/nonexistent");
+            bool result = virtualStorage.NodeExists("/nonexistent");
 
             // Assert
             Assert.IsFalse(result);
@@ -1440,7 +1385,7 @@ namespace VirtualStorageLibrary.Test
 
             storage.CopyNode("/sourceDir", "/destinationDir/newDir", false, false);
 
-            Assert.IsTrue(storage.DirectoryExists("/destinationDir/newDir"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir"));
         }
 
         [TestMethod]
@@ -1464,8 +1409,8 @@ namespace VirtualStorageLibrary.Test
 
             storage.CopyNode("/sourceDir", "/destinationDir/newDir", true, false);
 
-            Assert.IsTrue(storage.DirectoryExists("/destinationDir/newDir"));
-            Assert.IsTrue(storage.ItemExists("/destinationDir/newDir/file"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir/file"));
         }
 
         [TestMethod]
@@ -1496,8 +1441,8 @@ namespace VirtualStorageLibrary.Test
 
             storage.CopyNode("/sourceDir", "/destinationDir/newDir", true, false);
 
-            Assert.IsTrue(storage.DirectoryExists("/destinationDir/newDir"));
-            Assert.IsTrue(storage.ItemExists("/destinationDir/newDir/file"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir/file"));
         }
 
         [TestMethod]
@@ -1580,7 +1525,7 @@ namespace VirtualStorageLibrary.Test
 
             storage.RemoveNode("/TestItem");
 
-            Assert.IsFalse(storage.ItemExists("/TestItem"));
+            Assert.IsFalse(storage.NodeExists("/TestItem"));
         }
 
         [TestMethod]
@@ -1599,7 +1544,7 @@ namespace VirtualStorageLibrary.Test
 
             storage.RemoveNode("/TestDirectory");
 
-            Assert.IsFalse(storage.DirectoryExists("/TestDirectory"));
+            Assert.IsFalse(storage.NodeExists("/TestDirectory"));
         }
 
         [TestMethod]
@@ -1631,8 +1576,8 @@ namespace VirtualStorageLibrary.Test
 
             storage.RemoveNode("/TestDirectory", true);
 
-            Assert.IsFalse(storage.DirectoryExists("/TestDirectory"));
-            Assert.IsFalse(storage.ItemExists("/TestDirectory/TestItem"));
+            Assert.IsFalse(storage.NodeExists("/TestDirectory"));
+            Assert.IsFalse(storage.NodeExists("/TestDirectory/TestItem"));
         }
 
         [TestMethod]
@@ -1647,9 +1592,9 @@ namespace VirtualStorageLibrary.Test
 
             storage.RemoveNode("/Level1", true);
 
-            Assert.IsFalse(storage.DirectoryExists("/Level1"));
-            Assert.IsFalse(storage.ItemExists("/Level1/Level2/Level3/Item1"));
-            Assert.IsFalse(storage.ItemExists("/Level1/Level2/Item2"));
+            Assert.IsFalse(storage.NodeExists("/Level1"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2/Level3/Item1"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2/Item2"));
         }
 
         [TestMethod]
@@ -1671,9 +1616,9 @@ namespace VirtualStorageLibrary.Test
 
             storage.RemoveNode("/Level1", true);
 
-            Assert.IsFalse(storage.DirectoryExists("/Level1"));
-            Assert.IsFalse(storage.DirectoryExists("/Level1/Level2"));
-            Assert.IsFalse(storage.DirectoryExists("/Level1/Level2/Level3"));
+            Assert.IsFalse(storage.NodeExists("/Level1"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2/Level3"));
         }
 
         [TestMethod]
@@ -1705,5 +1650,137 @@ namespace VirtualStorageLibrary.Test
                 storage.RemoveNode("..");
             });
         }
-   }
+
+        [TestMethod]
+        public void TryGetNode_ReturnsNode_WhenNodeExists()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/existing/path";
+            storage.MakeDirectory(path, true);
+
+            // Act
+            var node = storage.TryGetNode(path);
+
+            // Assert
+            Assert.IsNotNull(node);
+        }
+
+        [TestMethod]
+        public void TryGetNode_ReturnsNull_WhenNodeDoesNotExist()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/non/existing/path";
+
+            // Act
+            var node = storage.TryGetNode(path);
+
+            // Assert
+            Assert.IsNull(node);
+        }
+
+        [TestMethod]
+        public void NodeExists_ReturnsTrue_WhenNodeExists()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/existing/path";
+            storage.MakeDirectory(path, true);
+
+            // Act
+            bool exists = storage.NodeExists(path);
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void NodeExists_ReturnsFalse_WhenNodeDoesNotExist()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/non/existing/path";
+
+            // Act
+            bool exists = storage.NodeExists(path);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_ReturnsTrue_WhenDirectoryExists()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/existing/path";
+            storage.MakeDirectory(path, true);
+
+            // Act
+            bool exists = storage.DirectoryExists(path);
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_ReturnsFalse_WhenDirectoryDoesNotExist()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/non/existing/path";
+
+            // Act
+            bool exists = storage.DirectoryExists(path);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+
+        [TestMethod]
+        public void ItemExists_ReturnsTrue_WhenItemExists()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/existing/path/item";
+            storage.MakeDirectory("/existing/path", true);
+            storage.AddItem(new VirtualItem<BinaryData>("item", new BinaryData() {1, 2, 3}), "/existing/path");
+
+            // Act
+            bool exists = storage.ItemExists(path);
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void ItemExists_ReturnsFalse_WhenItemDoesNotExist()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/non/existing/path/item";
+
+            // Act
+            bool exists = storage.ItemExists(path);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+
+        [TestMethod]
+        public void ItemExists_ReturnsFalse_WhenPathIsDirectory()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            string path = "/existing/path";
+            storage.MakeDirectory(path, true);
+
+            // Act
+            bool exists = storage.ItemExists(path);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+    }
 }

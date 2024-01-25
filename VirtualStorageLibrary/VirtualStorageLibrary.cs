@@ -325,7 +325,7 @@
             string absolutePath = ConvertToAbsolutePath(path);
 
             // Check if the path exists
-            if (!DirectoryExists(absolutePath))
+            if (!NodeExists(absolutePath))
             {
                 throw new VirtualNodeNotFoundException($"ディレクトリ '{absolutePath}' は存在しません。");
             }
@@ -348,26 +348,6 @@
 
             var combinedPath = VirtualPath.Combine(CurrentPath, relativePath);
             return VirtualPath.NormalizePath(combinedPath);
-        }
-
-        public bool DirectoryExists(string path)
-        {
-            string absolutePath = ConvertToAbsolutePath(path);
-            string[] nodeNameList = absolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
-            VirtualDirectory directory = _root;
-
-            foreach (var nodeName in nodeNameList)
-            {
-                if (directory.DirectoryExists(nodeName))
-                {
-                    directory = (VirtualDirectory)directory.Get(nodeName);
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         public void MakeDirectory(string path, bool createSubdirectories = false)
@@ -448,30 +428,6 @@
             directory.Add(item);
         }
 
-       public bool ItemExists(string path)
-        {
-            string absolutePath = ConvertToAbsolutePath(path);
-            string[] nodeNameList = absolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
-            VirtualDirectory directory = _root;
-
-            for (int i = 0; i < nodeNameList.Length - 1; i++)
-            {
-                var nodeName = nodeNameList[i];
-                if (directory.DirectoryExists(nodeName))
-                {
-                    directory = (VirtualDirectory)directory.Get(nodeName);
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            // 最後のノード名はアイテム名として扱います
-            var itemName = nodeNameList[nodeNameList.Length - 1];
-            return directory.NodeExists(itemName);
-        }
-
         private IEnumerable<T> EnumerateNodesRecursively<T>(string basePath, bool includeItems, Func<VirtualNode, string, T> selector)
         {
             if (basePath == "")
@@ -538,7 +494,7 @@
             if (destinationIsDirectory || recursive)
             {
                 // コピー先ディレクトリが存在しない場合は作成
-                if (!DirectoryExists(targetDirectoryPath))
+                if (!NodeExists(targetDirectoryPath))
                 {
                     MakeDirectory(targetDirectoryPath, true);  // 再帰的にディレクトリを作成
                 }
@@ -618,5 +574,38 @@
             }
         }
 
+        public VirtualNode? TryGetNode(string path)
+        {
+            string absolutePath = ConvertToAbsolutePath(path);
+            try
+            {
+                // GetNodeメソッドは、ノードが見つからない場合にnullを返すか、例外をスローするように実装されていると仮定
+                return GetNode(absolutePath);
+            }
+            catch (VirtualNodeNotFoundException)
+            {
+                return null; // ノードが存在しない場合はnullを返す
+            }
+        }
+
+        public bool NodeExists(string path)
+        {
+            var node = TryGetNode(path);
+            return node != null; // ノードがnullでなければ、存在すると判断
+        }
+
+        public bool DirectoryExists(string path)
+        {
+            var node = TryGetNode(path);
+            return node is VirtualDirectory; // ノードがVirtualDirectoryのインスタンスであれば、ディレクトリが存在すると判断
+        }
+
+        public bool ItemExists(string path)
+        {
+            var node = TryGetNode(path);
+            if (node == null) return false; // ノードがnullなら、アイテムは存在しない
+            var nodeType = node.GetType();
+            return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>); // ジェネリック型がVirtualItem<T>であるかチェック
+        }
     }
 }
