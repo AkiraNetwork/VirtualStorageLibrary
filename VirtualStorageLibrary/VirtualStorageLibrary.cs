@@ -604,5 +604,55 @@
             var nodeType = node.GetType();
             return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>); // ジェネリック型がVirtualItem<T>であるかチェック
         }
+
+        public void MoveNode(string sourcePath, string destinationPath, bool overwrite = false)
+        {
+            string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
+            string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+
+            if (!NodeExists(absoluteSourcePath))
+            {
+                throw new VirtualNodeNotFoundException($"移動元 '{absoluteSourcePath}' は存在しません。");
+            }
+
+            VirtualNode sourceNode = GetNode(absoluteSourcePath);
+            bool destinationExists = NodeExists(absoluteDestinationPath);
+            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath);
+
+            // 移動先がディレクトリで、そのディレクトリに同名のノードが存在する場合に例外をスロー
+            if (destinationIsDirectory && NodeExists(absoluteDestinationPath))
+            {
+                throw new InvalidOperationException($"移動先 '{absoluteDestinationPath}' には既に '{sourceNode.Name}' という名前のディレクトリが存在します。");
+            }
+            else if (destinationExists && !overwrite)
+            {
+                throw new InvalidOperationException($"移動先 '{absoluteDestinationPath}' には既にノードが存在します。");
+            }
+
+            string destinationDirPath = destinationIsDirectory ? absoluteDestinationPath : VirtualPath.GetDirectoryPath(absoluteDestinationPath);
+            if (!DirectoryExists(destinationDirPath))
+            {
+                throw new VirtualNodeNotFoundException($"移動先ディレクトリ '{destinationDirPath}' は存在しません。");
+            }
+
+            if (destinationExists && overwrite)
+            {
+                RemoveNode(absoluteDestinationPath, true); // 上書きの場合、既存のノードを削除
+            }
+
+            VirtualDirectory destinationDir = GetDirectory(destinationDirPath);
+            string sourceDirPath = VirtualPath.GetDirectoryPath(absoluteSourcePath);
+            VirtualDirectory sourceDir = GetDirectory(sourceDirPath);
+
+            sourceDir.Remove(sourceNode.Name, true); // 移動元のノードを削除
+
+            // 移動先がディレクトリでない場合、ノード名を更新
+            if (!destinationIsDirectory)
+            {
+                sourceNode.Name = VirtualPath.GetNodeName(absoluteDestinationPath);
+            }
+
+            destinationDir.Add(sourceNode, overwrite); // 移動先ディレクトリにノードを追加
+        }
     }
 }
