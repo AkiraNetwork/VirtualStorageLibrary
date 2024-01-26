@@ -1827,7 +1827,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.MakeDirectory("/sourceDir");
-            storage.MakeDirectory("/destinationDir");
+            storage.MakeDirectory("/destinationDir/newDir", true);
 
             storage.MoveNode("/sourceDir", "/destinationDir/newDir", false);
 
