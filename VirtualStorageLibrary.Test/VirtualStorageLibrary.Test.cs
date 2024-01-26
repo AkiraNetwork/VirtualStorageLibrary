@@ -1439,10 +1439,10 @@ namespace VirtualStorageLibrary.Test
             storage.MakeDirectory("/sourceDir");
             storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
 
-            storage.CopyNode("/sourceDir", "/destinationDir/newDir", true, false);
-
-            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir"));
-            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir/file"));
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                storage.CopyNode("/sourceDir", "/destinationDir/newDir", true, false);
+            });
         }
 
         [TestMethod]
@@ -1452,6 +1452,8 @@ namespace VirtualStorageLibrary.Test
             storage.MakeDirectory("/source/deep/nested/dir", true);
             var originalItem = new VirtualItem<BinaryData>("nestedFile", new BinaryData(new byte[] { 1, 2, 3 }));
             storage.AddItem(originalItem, "/source/deep/nested/dir");
+
+            storage.MakeDirectory("/destination", true);
 
             storage.CopyNode("/source/deep", "/destination/deepCopy", true, false);
 
