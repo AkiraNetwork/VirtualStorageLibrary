@@ -1883,6 +1883,47 @@ namespace VirtualStorageLibrary.Test
             Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/", "/destinationDir", false));
         }
 
+        [TestMethod]
+        public void MoveNode_OverwritesExistingNodeInDestinationWhenAllowed()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.MakeDirectory("/destinationDir");
+            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 4, 5, 6 })), "/destinationDir"); // 移動先に同名のファイルが存在
+
+            storage.MoveNode("/sourceDir/fileName", "/destinationDir", true); // 上書き許可で移動
+
+            Assert.IsFalse(storage.NodeExists("/sourceDir/fileName")); // 元のファイルが存在しないことを確認
+            Assert.IsTrue(storage.NodeExists("/destinationDir/fileName")); // 移動先にファイルが存在することを確認
+
+            var movedItem = (VirtualItem<BinaryData>)storage.GetNode("/destinationDir/fileName");
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, movedItem.Item.Data); // 移動先のファイルの中身が正しいことを確認
+        }
+
+        [TestMethod]
+        public void MoveNode_ThrowsWhenDestinationNodeExistsAndOverwriteIsFalse()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.MakeDirectory("/destinationDir");
+            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 4, 5, 6 })), "/destinationDir"); // 移動先に同名のファイルが存在
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir/fileName", "/destinationDir", false)); // 上書き禁止で例外を期待
+        }
+
+        [TestMethod]
+        public void MoveNode_ThrowsWhenDestinationDirectoryDoesNotExist()
+        {
+            var storage = new VirtualStorage();
+            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/"); // 移動元ファイル
+
+            // 移動先ディレクトリが存在しないため、VirtualNodeNotFoundExceptionを期待
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.MoveNode("/sourceFile", "/nonExistentDestinationDir", false));
+        }
+
+
 
     }
 }
