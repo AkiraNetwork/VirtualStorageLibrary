@@ -472,6 +472,7 @@
 
         public void CopyNode(string sourcePath, string destinationPath, bool recursive = false, bool overwrite = false)
         {
+            // TODO: コピー失敗時のロールバックをどうするか検討する。
             string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
             string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
@@ -610,39 +611,37 @@
             string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
             string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
-            // コピー元ノードが存在しない場合は例外をスロー
+            // 移動元の存在チェック
             if (!NodeExists(absoluteSourcePath))
             {
+                // 存在しない場合は例外をスロー
                 throw new VirtualNodeNotFoundException($"指定されたノード '{absoluteSourcePath}' は存在しません。");
             }
 
-            // コピー元ノードがルートディレクトリの場合は例外をスロー
+            // 移動元のルートディレクトリチェック
             if (absoluteSourcePath == "/")
             {
+                // ルートディレクトリの場合は例外をスロー
                 throw new InvalidOperationException("ルートディレクトリを移動することはできません。");
             }
 
+            // 移動元のディレクトリ存在チェック
             if (DirectoryExists(absoluteSourcePath))
             {
-                // コピー元ノードがディレクトリの場合
+                // ディレクトリの場合
+
+                // 移動先の種類チェック
                 if (DirectoryExists(absoluteDestinationPath))
                 {
-                    // コピー先ノードがディレクトリの場合
+                    // ディレクトリの場合
                     VirtualDirectory destinationDirectory = GetDirectory(absoluteDestinationPath);
                     VirtualDirectory sourceDirectory = GetDirectory(absoluteSourcePath);
+                    
+                    // 移動先ディレクトリの同名チェック
                     if (destinationDirectory.NodeExists(sourceDirectory.Name))
                     {
-                        // コピー先ディレクトリに同名のノードが存在する場合
-                        if (overwrite)
-                        {
-                            // 上書きフラグが設定されている場合は、コピー先ディレクトリから同名のノードを削除
-                            destinationDirectory.Remove(sourceDirectory.Name);
-                        }
-                        else
-                        {
-                            // 上書きフラグが設定されていない場合は例外をスロー
-                            throw new InvalidOperationException($"コピー先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceDirectory.Name}' が存在します。");
-                        }
+                        // 同名のディレクトリが存在する場合
+                        throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceDirectory.Name}' が存在します。");
                     }
                     destinationDirectory.Add(sourceDirectory);
                     VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteSourcePath));
@@ -650,38 +649,48 @@
                 }
                 else
                 {
+                    // ディレクトリでない、または存在しない場合
+
+                    // 移動先の存在チェック
                     if(!NodeExists(absoluteDestinationPath))
                     {
-                        // コピー先ノードが存在しない
+                        // 存在しない場合
                         throw new VirtualNodeNotFoundException($"指定されたノード '{absoluteDestinationPath}' は存在しません。");
                     }
                     else
                     {
-                        // コピー先ノードがアイテムの場合
-                        throw new InvalidOperationException($"コピー先ノード '{absoluteDestinationPath}' はアイテムです。");
+                        // 存在する場合（移動先ノードがアイテム）
+                        throw new InvalidOperationException($"移動先ノード '{absoluteDestinationPath}' はアイテムです。");
                     }
                 }
             }
             else
             {
-                // コピー元ノードがアイテムの場合
+                // アイテムの場合
+
+                // 移動先のディレクトリ存在チェック
                 if (DirectoryExists(absoluteDestinationPath))
                 {
-                    // コピー先ノードがディレクトリの場合
+                    // 存在する
+
                     VirtualDirectory destinationDirectory = GetDirectory(absoluteDestinationPath);
                     VirtualNode sourceNode = GetNode(absoluteSourcePath);
+
+                    // 移動先ディレクトリの同名チェック
                     if (destinationDirectory.NodeExists(sourceNode.Name))
                     {
-                        // コピー先ディレクトリに同名のノードが存在する場合
+                        // 同名のノードが存在する場合
+
+                        // 上書きチェック
                         if (overwrite)
                         {
-                            // 上書きフラグが設定されている場合は、コピー先ディレクトリから同名のノードを削除
+                            // trueの場合、同名のノードを削除
                             destinationDirectory.Remove(sourceNode.Name);
                         }
                         else
                         {
-                            // 上書きフラグが設定されていない場合は例外をスロー
-                            throw new InvalidOperationException($"コピー先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceNode.Name}' が存在します。");
+                            // falseの場合、例外をスロー
+                            throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceNode.Name}' が存在します。");
                         }
                     }
                     destinationDirectory.Add(sourceNode);
@@ -690,28 +699,45 @@
                 }
                 else
                 {
+                    // 存在しない
+
+                    // 移動先の存在チェック
                     if (!NodeExists(absoluteDestinationPath))
                     {
-                        // コピー先ノードが存在しない
+                        // 存在しない場合
                         throw new VirtualNodeNotFoundException($"指定されたノード '{absoluteDestinationPath}' は存在しません。");
                     }
                     else
                     {
-                        // コピー先ノードがアイテムの場合
-                        // コピー先ディレクトリに同名のノードが存在する場合
+                        // 存在する場合
+
                         VirtualDirectory destinationParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteDestinationPath));
+                        string destinationNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
-                        if (overwrite)
+
+                        // 移動先ディレクトリの同名チェック
+                        if (destinationParentDirectory.NodeExists(destinationNodeName))
                         {
-                            // 上書きフラグが設定されている場合は、コピー先ディレクトリから同名のノードを削除
-                            destinationParentDirectory.Remove(sourceNode.Name);
+                            // 同名のノードが存在する場合
+
+                            // 上書きチェック
+                            if (overwrite)
+                            {
+                                // trueの場合、同名のノードを削除
+                                destinationParentDirectory.Remove(destinationNodeName);
+                            }
+                            else
+                            {
+                                // falseの場合、例外をスロー
+                                throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{destinationNodeName}' が存在します。");
+                            }
                         }
-                        else
-                        {
-                            // 上書きフラグが設定されていない場合は例外をスロー
-                            throw new InvalidOperationException($"コピー先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceNode.Name}' が存在します。");
-                        }
+
+                        string oldNodeName = sourceNode.Name;
+                        sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
+                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteSourcePath));
+                        sourceParentDirectory.Remove(oldNodeName);
                     }
                 }
             }

@@ -1857,12 +1857,11 @@ namespace VirtualStorageLibrary.Test
         public void MoveNode_DirectoryWithSameNameExistsAtDestination_ThrowsExceptionRegardlessOfOverwriteFlag()
         {
             var storage = new VirtualStorage();
-            storage.MakeDirectory("/sourceDir");
-            storage.MakeDirectory("/destinationDir");
-            storage.MakeDirectory("/destinationDir/sourceDir");
+            storage.MakeDirectory("/sourceDir", true);
+            storage.MakeDirectory("/destinationDir/sourceDir", true);
 
-            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationDir/sourceDir", false));
-            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationDir/sourceDir", true));
+            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationDir", false));
+            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationDir", true));
         }
     }
 }
