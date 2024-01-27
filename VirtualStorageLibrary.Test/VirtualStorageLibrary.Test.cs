@@ -1863,5 +1863,26 @@ namespace VirtualStorageLibrary.Test
             Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationDir", false));
             Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationDir", true));
         }
+
+        [TestMethod]
+        public void MoveNode_DirectoryToFile_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationFile", false));
+        }
+
+        [TestMethod]
+        public void MoveNode_RootDirectory_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/destinationDir");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/", "/destinationDir", false));
+        }
+
+
     }
 }
