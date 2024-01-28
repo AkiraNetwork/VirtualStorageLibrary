@@ -1589,6 +1589,75 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void CopyNode_ValidTest()
+        {
+            var vs = new VirtualStorage();
+
+            vs.MakeDirectory("/Directory1", true);
+            vs.MakeDirectory("/Directory1/Directory1_1", true);
+            vs.MakeDirectory("/Directory1/Directory1_2", true);
+            vs.MakeDirectory("/Directory2", true);
+            vs.MakeDirectory("/Directory2/Directory2_1", true);
+            vs.MakeDirectory("/Directory2/Directory2_2", true);
+
+            var item_1 = new VirtualItem<BinaryData>("Item_1", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item_2 = new VirtualItem<BinaryData>("Item_2", new BinaryData(new byte[] { 1, 2, 3 }));
+            vs.AddItem(item_1, "/");
+            vs.AddItem(item_2, "/");
+
+            var item1a = new VirtualItem<BinaryData>("Item1a", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item1b = new VirtualItem<BinaryData>("Item1b", new BinaryData(new byte[] { 1, 2, 3 }));
+            vs.AddItem(item1a, "/Directory1");
+            vs.AddItem(item1b, "/Directory1");
+
+            var item1_1a = new VirtualItem<BinaryData>("Item1_1a", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item1_1b = new VirtualItem<BinaryData>("Item1_1b", new BinaryData(new byte[] { 1, 2, 3 }));
+            vs.AddItem(item1_1a, "/Directory1/Directory1_1");
+            vs.AddItem(item1_1b, "/Directory1/Directory1_1");
+
+            var item1_2a = new VirtualItem<BinaryData>("Item1_2a", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item1_2b = new VirtualItem<BinaryData>("Item1_2b", new BinaryData(new byte[] { 1, 2, 3 }));
+            vs.AddItem(item1_2a, "/Directory1/Directory1_2");
+            vs.AddItem(item1_2b, "/Directory1/Directory1_2");
+
+            var item2a = new VirtualItem<BinaryData>("Item2a", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item2b = new VirtualItem<BinaryData>("Item2b", new BinaryData(new byte[] { 1, 2, 3 }));
+            vs.AddItem(item2a, "/Directory2");
+            vs.AddItem(item2b, "/Directory2");
+
+            var item2_1a = new VirtualItem<BinaryData>("Item2_1a", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item2_1b = new VirtualItem<BinaryData>("Item2_1b", new BinaryData(new byte[] { 1, 2, 3 }));
+            vs.AddItem(item2_1a, "/Directory2/Directory2_1");
+            vs.AddItem(item2_1b, "/Directory2/Directory2_1");
+
+            var item2_2a = new VirtualItem<BinaryData>("Item2_2a", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item2_2b = new VirtualItem<BinaryData>("Item2_2b", new BinaryData(new byte[] { 1, 2, 3 }));
+            vs.AddItem(item2_2a, "/Directory2/Directory2_2");
+            vs.AddItem(item2_2b, "/Directory2/Directory2_2");
+
+            Assert.AreEqual(20, vs.EnumerateNodeNamesRecursively("/").Count());
+
+            Debug.WriteLine("コピー前:");
+            foreach (var nodeName in vs.EnumerateNodeNamesRecursively("/"))
+            {
+                Assert.IsNotNull(nodeName);
+                Debug.WriteLine(nodeName);
+            }
+
+            vs.MakeDirectory("/Destination", true);
+            vs.CopyNode("/Directory1", "/Destination", true, false);
+
+            Assert.AreEqual(30, vs.EnumerateNodeNamesRecursively("/").Count());
+
+            Debug.WriteLine("コピー後:");
+            foreach (var nodeName in vs.EnumerateNodeNamesRecursively("/"))
+            {
+                Assert.IsNotNull(nodeName);
+                Debug.WriteLine(nodeName);
+            }
+        }
+
+        [TestMethod]
         public void RemoveNode_ExistingItem_RemovesItem()
         {
             var storage = new VirtualStorage();
