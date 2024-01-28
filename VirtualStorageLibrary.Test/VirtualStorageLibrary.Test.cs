@@ -1519,6 +1519,76 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void CopyNode_EmptySourceAndDestination_ThrowsArgumentException()
+        {
+            var storage = new VirtualStorage();
+
+            // ArgumentException がスローされることを検証
+            Assert.ThrowsException<ArgumentException>(() => storage.CopyNode("", "", false, false));
+        }
+
+        [TestMethod]
+        public void CopyNode_SourceIsSubdirectoryOfDestination_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/parentDir", true);
+            storage.MakeDirectory("/parentDir/childDir", false);
+
+            // InvalidOperationException がスローされることを検証
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/parentDir", "/parentDir/childDir", true, false));
+        }
+
+        [TestMethod]
+        public void CopyNode_SourceIsSubdirectoryOfDestinationWithNonRecursive_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/parentDir", true);
+            storage.MakeDirectory("/parentDir/childDir", false);
+
+            // InvalidOperationException がスローされることを検証
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/parentDir", "/parentDir/childDir", false, false));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void CopyNode_RootDirectoryCopy_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            string sourcePath = "/";
+            string destinationPath = "/SomeOtherDirectory";
+
+            storage.CopyNode(sourcePath, destinationPath);
+        }
+
+        [TestMethod]
+        public void CopyNode_NonExistentSource_ThrowsVirtualNodeNotFoundException()
+        {
+            var storage = new VirtualStorage();
+
+            // 存在しないソースパスを指定
+            string nonExistentSource = "/nonExistentSource";
+            string destinationPath = "/destination";
+
+            storage.MakeDirectory(destinationPath);
+
+            // VirtualNodeNotFoundException がスローされることを検証
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.CopyNode(nonExistentSource, destinationPath));
+        }
+
+        [TestMethod]
+        public void CopyNode_SameSourceAndDestination_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+
+            // 同じソースとデスティネーションを指定
+            string path = "/file";
+
+            // InvalidOperationException がスローされることを検証
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode(path, path));
+        }
+
+        [TestMethod]
         public void RemoveNode_ExistingItem_RemovesItem()
         {
             var storage = new VirtualStorage();

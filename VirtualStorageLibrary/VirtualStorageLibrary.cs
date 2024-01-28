@@ -476,6 +476,30 @@
             string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
             string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
+            // ルートディレクトリのコピーを禁止
+            if (absoluteSourcePath == "/")
+            {
+                throw new InvalidOperationException("ルートディレクトリのコピーは禁止されています。");
+            }
+            
+            // 循環参照チェック
+            if (absoluteDestinationPath.StartsWith(absoluteSourcePath + "/") || absoluteSourcePath.StartsWith(absoluteDestinationPath + "/"))
+            {
+                throw new InvalidOperationException("コピー元またはコピー先が互いのサブディレクトリになっています。");
+            }
+
+            // コピー元とコピー先が同じ場合は例外をスロー
+            if (absoluteSourcePath == absoluteDestinationPath)
+            {
+                throw new InvalidOperationException("コピー元とコピー先が同じです。");
+            }
+
+            // コピー元ノードが存在しない場合は例外をスロー
+            if (!NodeExists(absoluteSourcePath))
+            {
+                throw new VirtualNodeNotFoundException($"コピー元ノード '{absoluteSourcePath}' は存在しません。");
+            }
+
             VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
             bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.EndsWith("/");
