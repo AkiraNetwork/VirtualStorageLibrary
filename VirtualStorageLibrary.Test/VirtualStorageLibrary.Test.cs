@@ -1528,26 +1528,33 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_SourceIsSubdirectoryOfDestination_ThrowsInvalidOperationException()
+        public void CopyNode_DestinationIsSubdirectoryOfSource_ThrowsInvalidOperationException()
         {
             var storage = new VirtualStorage();
-            storage.MakeDirectory("/parentDir", true);
-            storage.MakeDirectory("/parentDir/childDir", false);
+            storage.MakeDirectory("/parentDir/childDir", true);
+
+            // コピー先がコピー元のサブディレクトリである場合
+            string sourcePath = "/parentDir";
+            string destinationPath = "/parentDir/childDir";
 
             // InvalidOperationException がスローされることを検証
-            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/parentDir", "/parentDir/childDir", true, false));
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode(sourcePath, destinationPath));
         }
 
         [TestMethod]
-        public void CopyNode_SourceIsSubdirectoryOfDestinationWithNonRecursive_ThrowsInvalidOperationException()
+        public void CopyNode_SourceIsSubdirectoryOfDestination_ThrowsInvalidOperationException()
         {
             var storage = new VirtualStorage();
-            storage.MakeDirectory("/parentDir", true);
-            storage.MakeDirectory("/parentDir/childDir", false);
+            storage.MakeDirectory("/parentDir/childDir", true);
+
+            // コピー元がコピー先のサブディレクトリである場合
+            string sourcePath = "/parentDir/childDir";
+            string destinationPath = "/parentDir";
 
             // InvalidOperationException がスローされることを検証
-            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/parentDir", "/parentDir/childDir", false, false));
+            Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode(sourcePath, destinationPath));
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
@@ -2053,16 +2060,58 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void MoveNode_ThrowsWhenDestinationDirectoryDoesNotExist()
+        public void MoveNode_EmptyDirectory_MovesSuccessfully()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/"); // 移動元ファイル
+            storage.MakeDirectory("/emptyDir");
+            storage.MakeDirectory("/newDir/emptyDir", true);
+            storage.MoveNode("/emptyDir", "/newDir/emptyDir");
 
-            // 移動先ディレクトリが存在しないため、VirtualNodeNotFoundExceptionを期待
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.MoveNode("/sourceFile", "/nonExistentDestinationDir", false));
+            Assert.IsFalse(storage.NodeExists("/emptyDir"));
+            Assert.IsTrue(storage.NodeExists("/newDir/emptyDir/emptyDir"));
         }
 
+        [TestMethod]
+        public void MoveNode_MultiLevelDirectory_MovesSuccessfully()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir/subDir1/subDir2", true);
+            storage.MakeDirectory("/destinationDir");
+            storage.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
+            Assert.IsFalse(storage.NodeExists("/sourceDir"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/sourceDir/subDir1/subDir2"));
+        }
 
+        [TestMethod]
+        public void MoveNode_WithInvalidPath_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/validDir");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.MoveNode("/invalid?Path", "/validDir"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void MoveNode_DirectoryToFile_ThrowsException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/sourceDir");
+            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.MoveNode("/sourceDir", "/destinationFile");
+        }
+
+        [TestMethod]
+        public void MoveNode_WithinSameDirectory_RenamesNode()
+        {
+            var storage = new VirtualStorage();
+            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.MoveNode("/sourceFile", "/renamedFile");
+
+            Assert.IsFalse(storage.NodeExists("/sourceFile"));
+            Assert.IsTrue(storage.NodeExists("/renamedFile"));
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, ((VirtualItem<BinaryData>)storage.GetNode("/renamedFile")).Item.Data);
+        }
     }
 }
