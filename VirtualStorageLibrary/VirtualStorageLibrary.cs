@@ -638,7 +638,7 @@
             // 循環参照チェック
             if (absoluteDestinationPath.StartsWith(absoluteSourcePath + "/"))
             {
-                throw new InvalidOperationException("コピー先がコピー元のサブディレクトリになっています。");
+                throw new InvalidOperationException("移動先が移動元のサブディレクトリになっています。");
             }
 
             // 移動先と移動元が同じかどうかのチェック

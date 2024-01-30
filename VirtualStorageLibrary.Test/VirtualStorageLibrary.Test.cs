@@ -2113,5 +2113,36 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(storage.NodeExists("/renamedFile"));
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, ((VirtualItem<BinaryData>)storage.GetNode("/renamedFile")).Item.Data);
         }
+
+        // 循環参照チェックテスト
+        [TestMethod]
+        public void MoveNode_WhenDestinationIsSubdirectoryOfSource_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/parentDir/subDir", true);
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/parentDir", "/parentDir/subDir"));
+        }
+
+        // 移動先と移動元が同じかどうかのチェックテスト
+        [TestMethod]
+        public void MoveNode_WhenSourceAndDestinationAreSame_ThrowsInvalidOperationException()
+        {
+            var storage = new VirtualStorage();
+            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/file", "/file"));
+        }
+
+        // 移動先の親ディレクトリが存在しない場合のテスト
+        [TestMethod]
+        public void MoveNode_WhenDestinationParentDirectoryDoesNotExist_ThrowsVirtualNodeNotFoundException()
+        {
+            var storage = new VirtualStorage();
+            storage.MakeDirectory("/existingDir");
+            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/existingDir");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.MoveNode("/existingDir/file", "/nonExistentDir/file"));
+        }
     }
 }
