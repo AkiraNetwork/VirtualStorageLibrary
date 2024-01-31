@@ -1211,27 +1211,27 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void EnumerateNodesRecursively_WithEmptyPath_ThrowsArgumentException()
+        public void GetNodes_WithEmptyPath_ThrowsArgumentException()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.EnumerateNodesRecursively("", true).ToList());
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.GetNodes("", VirtualNodeType.All, true).ToList());
         }
 
         [TestMethod]
-        public void EnumerateNodesRecursively_WithNonAbsolutePath_ThrowsArgumentException()
+        public void GetNodes_WithNonAbsolutePath_ThrowsArgumentException()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.EnumerateNodesRecursively("relative/path", true).ToList());
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.GetNodes("relative/path", VirtualNodeType.All, true).ToList());
         }
         
         [TestMethod]
-        public void EnumerateNodesRecursively_ValidTest()
+        public void GetNodes_ValidTest()
         {
             var vs = new VirtualStorage();
 
@@ -1277,16 +1277,52 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(item2_2a, "/Directory2/Directory2_2");
             vs.AddItem(item2_2b, "/Directory2/Directory2_2");
 
-            Assert.AreEqual(20, vs.EnumerateNodesRecursively("/").Count());            
-            foreach (var node in vs.EnumerateNodesRecursively("/"))
+            Assert.AreEqual(20, vs.GetNodes("/", VirtualNodeType.All, true).Count());
+            Debug.WriteLine("\nAll nodes:");
+            foreach (var node in vs.GetNodes("/", VirtualNodeType.All, true))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
             }
+
+            Assert.AreEqual(6, vs.GetNodes("/", VirtualNodeType.Directory, true).Count());
+            Debug.WriteLine("\nDirectories:");
+            foreach (var node in vs.GetNodes("/", VirtualNodeType.Directory, true))
+            {
+                Assert.IsNotNull(node);
+                Debug.WriteLine(node.Name);
+            }
+
+            Assert.AreEqual(14, vs.GetNodes("/", VirtualNodeType.Item, true).Count());
+            Debug.WriteLine("\nItems:");
+            foreach (var node in vs.GetNodes("/", VirtualNodeType.Item, true))
+            {
+                Assert.IsNotNull(node);
+                Debug.WriteLine(node.Name);
+            }
+
+            vs.ChangeDirectory("/Directory1");
+            Assert.AreEqual(2, vs.GetNodes(VirtualNodeType.Directory, false).Count());
+            Debug.WriteLine("\nDirectories in /Directory1:");
+            foreach (var node in vs.GetNodes(VirtualNodeType.Directory, false))
+            {
+                Assert.IsNotNull(node);
+                Debug.WriteLine(node.Name);
+            }
+
+            vs.ChangeDirectory("/Directory1");
+            Assert.AreEqual(2, vs.GetNodes(VirtualNodeType.Item, false).Count());
+            Debug.WriteLine("\nItems in /Directory1:");
+            foreach (var node in vs.GetNodes(VirtualNodeType.Item, false))
+            {
+                Assert.IsNotNull(node);
+                Debug.WriteLine(node.Name);
+            }
+
         }
 
         [TestMethod]
-        public void EnumerateNodeNamesRecursively_ValidTest()
+        public void GetNodesWithPaths_ValidTest()
         {
             var vs = new VirtualStorage();
 
@@ -1332,8 +1368,43 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(item2_2a, "/Directory2/Directory2_2");
             vs.AddItem(item2_2b, "/Directory2/Directory2_2");
 
-            Assert.AreEqual(20, vs.EnumerateNodeNamesRecursively("/").Count());
-            foreach (var name in vs.EnumerateNodeNamesRecursively("/"))
+            Assert.AreEqual(20, vs.GetNodesWithPaths("/", VirtualNodeType.All, true).Count());
+            Debug.WriteLine("\nAll nodes:");
+            foreach (var name in vs.GetNodesWithPaths("/", VirtualNodeType.All, true))
+            {
+                Assert.IsNotNull(name);
+                Debug.WriteLine(name);
+            }
+
+            Assert.AreEqual(6, vs.GetNodesWithPaths("/", VirtualNodeType.Directory, true).Count());
+            Debug.WriteLine("\nDirectories:");
+            foreach (var name in vs.GetNodesWithPaths("/", VirtualNodeType.Directory, true))
+            {
+                Assert.IsNotNull(name);
+                Debug.WriteLine(name);
+            }
+
+            Assert.AreEqual(14, vs.GetNodesWithPaths("/", VirtualNodeType.Item, true).Count());
+            Debug.WriteLine("\nItems:");
+            foreach (var name in vs.GetNodesWithPaths("/", VirtualNodeType.Item, true))
+            {
+                Assert.IsNotNull(name);
+                Debug.WriteLine(name);
+            }
+
+            vs.ChangeDirectory("/Directory1");
+            Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualNodeType.Directory, false).Count());
+            Debug.WriteLine("\nDirectories in /Directory1:");
+            foreach (var name in vs.GetNodesWithPaths(VirtualNodeType.Directory, false))
+            {
+                Assert.IsNotNull(name);
+                Debug.WriteLine(name);
+            }
+
+            vs.ChangeDirectory("/Directory1");
+            Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualNodeType.Item, false).Count());
+            Debug.WriteLine("\nItems in /Directory1:");
+            foreach (var name in vs.GetNodesWithPaths(VirtualNodeType.Item, false))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -1642,10 +1713,10 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(item2_2a, "/Directory2/Directory2_2");
             vs.AddItem(item2_2b, "/Directory2/Directory2_2");
 
-            Assert.AreEqual(20, vs.EnumerateNodeNamesRecursively("/").Count());
+            Assert.AreEqual(20, vs.GetNodesWithPaths("/", VirtualNodeType.All, true).Count());
 
             Debug.WriteLine("コピー前:");
-            foreach (var nodeName in vs.EnumerateNodeNamesRecursively("/"))
+            foreach (var nodeName in vs.GetNodesWithPaths("/", VirtualNodeType.All, true))
             {
                 Assert.IsNotNull(nodeName);
                 Debug.WriteLine(nodeName);
@@ -1654,10 +1725,10 @@ namespace VirtualStorageLibrary.Test
             vs.MakeDirectory("/Destination", true);
             vs.CopyNode("/Directory1", "/Destination", true, false);
 
-            Assert.AreEqual(30, vs.EnumerateNodeNamesRecursively("/").Count());
+            Assert.AreEqual(30, vs.GetNodesWithPaths("/", VirtualNodeType.All, true).Count());
 
             Debug.WriteLine("コピー後:");
-            foreach (var nodeName in vs.EnumerateNodeNamesRecursively("/"))
+            foreach (var nodeName in vs.GetNodesWithPaths("/", VirtualNodeType.All, true))
             {
                 Assert.IsNotNull(nodeName);
                 Debug.WriteLine(nodeName);

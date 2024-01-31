@@ -1,5 +1,12 @@
 ﻿namespace VirtualStorageLibrary
 {
+    public enum VirtualNodeType
+    {
+        All,
+        Directory,
+        Item
+    }
+
     public class VirtualNodeNotFoundException : Exception
     {
         public VirtualNodeNotFoundException()
@@ -428,7 +435,7 @@
             directory.Add(item);
         }
 
-        private IEnumerable<T> EnumerateNodesRecursively<T>(string basePath, bool includeItems, Func<VirtualNode, string, T> selector)
+        private IEnumerable<T> GetNodesInternal<T>(string basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, string, T> selector)
         {
             if (basePath == "")
             {
@@ -445,29 +452,45 @@
             {
                 if (node is VirtualDirectory subdirectory)
                 {
-                    yield return selector(subdirectory, VirtualPath.Combine(basePath, subdirectory.Name));
-
-                    var subdirectoryPath = VirtualPath.Combine(basePath, subdirectory.Name);
-                    foreach (var subNode in EnumerateNodesRecursively(subdirectoryPath, includeItems, selector))
+                    if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Directory)
                     {
-                        yield return subNode;
+                        yield return selector(subdirectory, VirtualPath.Combine(basePath, subdirectory.Name));
+                    }
+
+                    if (recursive)
+                    {
+                        var subdirectoryPath = VirtualPath.Combine(basePath, subdirectory.Name);
+                        foreach (var subNode in GetNodesInternal(subdirectoryPath, nodeType, recursive, selector))
+                        {
+                            yield return subNode;
+                        }
                     }
                 }
-                else if (includeItems)
+                else if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Item)
                 {
                     yield return selector(node, VirtualPath.Combine(basePath, node.Name));
                 }
             }
         }
 
-        public IEnumerable<VirtualNode> EnumerateNodesRecursively(string basePath, bool includeItems = true)
+        public IEnumerable<VirtualNode> GetNodes(string basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
         {
-            return EnumerateNodesRecursively(basePath, includeItems, (node, path) => node);
+            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => node);
         }
 
-        public IEnumerable<string> EnumerateNodeNamesRecursively(string basePath, bool includeItems = true)
+        public IEnumerable<VirtualNode> GetNodes(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
         {
-            return EnumerateNodesRecursively(basePath, includeItems, (node, path) => path);
+            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => node);
+        }
+
+        public IEnumerable<string> GetNodesWithPaths(string basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        {
+            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => path);
+        }
+
+        public IEnumerable<string> GetNodesWithPaths(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        {
+            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => path);
         }
 
         public void CopyNode(string sourcePath, string destinationPath, bool recursive = false, bool overwrite = false)
