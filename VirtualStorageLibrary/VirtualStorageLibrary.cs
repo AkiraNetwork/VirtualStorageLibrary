@@ -493,8 +493,62 @@
             return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => path);
         }
 
+        private void CheckCopyPreconditions(string sourcePath, string destinationPath, bool overwrite, bool recursive)
+        {
+            string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
+            string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+
+            // コピー元の存在確認
+            if (!NodeExists(absoluteSourcePath))
+            {
+                throw new VirtualNodeNotFoundException($"コピー元ノード '{absoluteSourcePath}' は存在しません。");
+            }
+
+            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.EndsWith("/");
+            string targetDirectoryPath, newNodeName;
+            if (destinationIsDirectory)
+            {
+                targetDirectoryPath = absoluteDestinationPath;
+                newNodeName = VirtualPath.GetNodeName(absoluteSourcePath);
+            }
+            else
+            {
+                targetDirectoryPath = VirtualPath.GetParentPath(absoluteDestinationPath);
+                newNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
+            }
+
+            // コピー先ディレクトリが存在しない場合、新しいディレクトリとして扱う
+            if (!DirectoryExists(targetDirectoryPath))
+            {
+                return; // コピー先ディレクトリが存在しないので、それ以上のチェックは不要
+            }
+
+            VirtualDirectory targetDirectory = GetDirectory(targetDirectoryPath);
+
+            // コピー先に同名のノードが存在し、上書きが許可されていない場合、例外を投げる
+            if (targetDirectory.NodeExists(newNodeName) && !overwrite)
+            {
+                throw new InvalidOperationException($"コピー先ディレクトリ '{targetDirectoryPath}' に同名のノード '{newNodeName}' が存在します。上書きは許可されていません。");
+            }
+
+            // 再帰的なチェック（ディレクトリの場合のみ）
+            VirtualNode sourceNode = GetNode(absoluteSourcePath);
+            if (recursive && sourceNode is VirtualDirectory sourceDirectory)
+            {
+                foreach (var subNode in sourceDirectory.Nodes)
+                {
+                    string newSubSourcePath = VirtualPath.Combine(absoluteSourcePath, subNode.Name);
+                    string newSubDestinationPath = VirtualPath.Combine(absoluteDestinationPath, subNode.Name);
+                    CheckCopyPreconditions(newSubSourcePath, newSubDestinationPath, overwrite, true);
+                }
+            }
+        }
+
         public void CopyNode(string sourcePath, string destinationPath, bool recursive = false, bool overwrite = false)
         {
+            // コピー前の事前条件チェック
+            CheckCopyPreconditions(sourcePath, destinationPath, overwrite, recursive);
+
             // TODO: コピー失敗時のロールバックをどうするか検討する。
             string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
             string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);

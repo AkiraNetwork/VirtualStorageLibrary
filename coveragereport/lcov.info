@@ -1,5 +1,5 @@
 TN:
-SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:/workspaces/VirtualStorageLibrary/VirtualStorageLibrary/VirtualStorageLibrary.cs
 FN:194,get_Count()
 FN:196,get_NodeNames()
 FN:198,get_Nodes()
@@ -134,7 +134,7 @@ DA:315,1
 LH:77
 LF:77
 end_of_record
-SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:/workspaces/VirtualStorageLibrary/VirtualStorageLibrary/VirtualStorageLibrary.cs
 FN:172,get_Item()
 FN:180,DeepClone()
 FN:185,VirtualStorageLibrary.IDeepCloneable<VirtualStorageLibrary.VirtualItem<T>>.DeepClone()
@@ -161,7 +161,7 @@ DA:187,1
 LH:11
 LF:11
 end_of_record
-SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:/workspaces/VirtualStorageLibrary/VirtualStorageLibrary/VirtualStorageLibrary.cs
 FN:158,get_Name()
 FN:159,get_CreatedDate()
 FN:160,get_UpdatedDate()
@@ -186,7 +186,7 @@ DA:167,410
 LH:9
 LF:9
 end_of_record
-SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:/workspaces/VirtualStorageLibrary/VirtualStorageLibrary/VirtualStorageLibrary.cs
 FN:12,.ctor()
 FN:16,.ctor(System.String)
 FN:20,.ctor(System.String,System.Exception)
@@ -209,7 +209,7 @@ DA:22,1
 LH:9
 LF:9
 end_of_record
-SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:/workspaces/VirtualStorageLibrary/VirtualStorageLibrary/VirtualStorageLibrary.cs
 FN:33,NormalizePath(System.String)
 FN:71,GetDirectoryPath(System.String)
 FN:92,GetNodeName(System.String)
@@ -337,7 +337,7 @@ DA:153,65
 LH:76
 LF:76
 end_of_record
-SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:/workspaces/VirtualStorageLibrary/VirtualStorageLibrary/VirtualStorageLibrary.cs
 FN:322,get_CurrentPath()
 FN:331,ChangeDirectory(System.String)
 FN:345,ConvertToAbsolutePath(System.String)
