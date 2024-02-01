@@ -167,7 +167,7 @@
         }
     }
 
-    public class VirtualItem<T> : VirtualNode, IDeepCloneable<VirtualItem<T>> where T : IDeepCloneable<T>
+    public class VirtualItem<T> : VirtualNode, IDeepCloneable<VirtualItem<T>>
     {
         public T Item { get; set; }
 
@@ -178,7 +178,13 @@
 
         public override VirtualNode DeepClone()
         {
-            return new VirtualItem<T>(Name, Item.DeepClone());
+            T clonedItem = Item;
+            if (Item is IDeepCloneable<T> cloneableItem)
+            {
+                clonedItem = cloneableItem.DeepClone();
+            }
+
+            return new VirtualItem<T>(Name, clonedItem);
         }
 
         VirtualItem<T> IDeepCloneable<VirtualItem<T>>.DeepClone()
@@ -225,7 +231,12 @@
 
             foreach (var pair in this._nodes)
             {
-                clonedDirectory._nodes.Add(pair.Key, pair.Value.DeepClone());
+                VirtualNode clonedNode = pair.Value;
+                if (pair.Value is IDeepCloneable<VirtualNode> cloneableNode)
+                {
+                    clonedNode = cloneableNode.DeepClone();
+                }
+                clonedDirectory._nodes.Add(pair.Key, clonedNode);
             }
 
             return clonedDirectory;

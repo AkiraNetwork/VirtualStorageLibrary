@@ -2,6 +2,16 @@
 
 namespace VirtualStorageLibrary.Test
 {
+    public class SimpleData
+    {
+        public int Value { get; set; }
+
+        public SimpleData(int value)
+        {
+            Value = value;
+        }
+    }
+
     [TestClass]
     public class VirtualNodeNotFoundExceptionTest
     {
@@ -389,6 +399,26 @@ namespace VirtualStorageLibrary.Test
             Assert.AreNotSame(originalItem, clonedItem);
             CollectionAssert.AreEqual(originalItem.Item.Data, clonedItem.Item.Data);
             Assert.AreEqual(originalItem.Name, clonedItem.Name);
+            Assert.AreNotSame(originalItem.Item, clonedItem.Item);
+        }
+
+        [TestMethod]
+        public void DeepClone_WithNonDeepCloneableItem_ReturnsShallowCopyOfVirtualItem()
+        {
+            // Arrange
+            var originalItem = new VirtualItem<SimpleData>("item", new SimpleData(5));
+
+            // Act
+            var clonedItem = ((IDeepCloneable<VirtualItem<SimpleData>>)originalItem).DeepClone();
+
+            // Assert
+            Assert.IsNotNull(clonedItem);
+            Assert.AreNotSame(originalItem, clonedItem);
+            Assert.AreEqual(originalItem.Item.Value, clonedItem.Item.Value);
+            Assert.AreEqual(originalItem.Name, clonedItem.Name);
+
+            // SimpleDataインスタンスがシャローコピーされていることを確認
+            Assert.AreSame(originalItem.Item, clonedItem.Item);
         }
     }
 
@@ -474,6 +504,35 @@ namespace VirtualStorageLibrary.Test
             var clonedSubDirectory = (VirtualDirectory)clonedDirectory.Nodes.First();
             Assert.AreEqual(subDirectory.Name, clonedSubDirectory.Name);
             Assert.AreNotSame(subDirectory, clonedSubDirectory);
+        }
+
+        [TestMethod]
+        public void DeepClone_ReturnsDeepCopyOfVirtualDirectory_WithNonDeepCloneableItem()
+        {
+            // Arrange
+            var originalDirectory = new VirtualDirectory("original");
+            var nonCloneableItem = new SimpleData(10); // SimpleDataはIDeepCloneableを実装していない
+            var virtualItem = new VirtualItem<SimpleData>("item", nonCloneableItem);
+            originalDirectory.Add(virtualItem);
+
+            // Act
+            var clonedDirectory = ((IDeepCloneable<VirtualDirectory>)originalDirectory).DeepClone();
+
+            // Assert
+            Assert.IsNotNull(clonedDirectory);
+            Assert.AreNotSame(originalDirectory, clonedDirectory);
+            Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
+            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
+
+            var originalItem = originalDirectory.Get("item") as VirtualItem<SimpleData>;
+            var clonedItem = clonedDirectory.Get("item") as VirtualItem<SimpleData>;
+            Assert.IsNotNull(originalItem);
+            Assert.IsNotNull(clonedItem);
+            Assert.AreNotSame(originalItem, clonedItem);
+            Assert.AreEqual(originalItem.Name, clonedItem.Name);
+            
+            // SimpleDataインスタンスがシャローコピーされていることを確認
+            Assert.AreSame(originalItem.Item, clonedItem.Item);
         }
         
         [TestMethod]
