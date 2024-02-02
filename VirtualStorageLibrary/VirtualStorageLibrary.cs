@@ -293,6 +293,16 @@
             _nodes[key] = node;
         }
 
+        public void AddItem<T>(string name, T item, bool allowOverwrite = false)
+        {
+            Add(new VirtualItem<T>(name, item), allowOverwrite);
+        }
+
+        public void AddSymbolicLink(string name, string targetPath, bool allowOverwrite = false)
+        {
+            Add(new VirtualSymbolicLink(name, targetPath), allowOverwrite);
+        }
+
         public void AddDirectory(string name, bool allowOverwrite = false)
         {
             Add(new VirtualDirectory(name), allowOverwrite);
@@ -418,7 +428,7 @@
                     {
                         if (createSubdirectories || i == nodeNameList.Length - 1)
                         {
-                            directory.Add(new VirtualDirectory(nodeName));
+                            directory.AddDirectory(nodeName);
                         }
                         else
                         {

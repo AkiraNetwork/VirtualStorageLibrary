@@ -624,6 +624,81 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddItem_AddsNewItemSuccessfully()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            var itemData = new BinaryData(new byte[] { 1, 2, 3 });
+
+            directory.AddItem("TestItem", itemData, false);
+
+            Assert.IsTrue(directory.NodeExists("TestItem"));
+            var retrievedItem = directory.Get("TestItem") as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(itemData.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddItem_ThrowsWhenItemAlreadyExistsAndOverwriteIsFalse()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            var itemData = new BinaryData(new byte[] { 1, 2, 3 });
+            directory.AddItem("TestItem", itemData, false);
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                directory.AddItem("TestItem", new BinaryData(new byte[] { 4, 5, 6 }), false));
+        }
+
+        [TestMethod]
+        public void AddItem_OverwritesExistingItemWhenAllowed()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddItem("TestItem", new BinaryData(new byte[] { 1, 2, 3 }), false);
+
+            var newItemData = new BinaryData(new byte[] { 4, 5, 6 });
+            directory.AddItem("TestItem", newItemData, true);
+
+            var retrievedItem = directory.Get("TestItem") as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(newItemData.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddSymbolicLink_AddsNewLinkSuccessfully()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+
+            directory.AddSymbolicLink("TestLink", "/path/to/target", false);
+
+            Assert.IsTrue(directory.NodeExists("TestLink"));
+            var retrievedLink = directory.Get("TestLink") as VirtualSymbolicLink;
+            Assert.IsNotNull(retrievedLink);
+            Assert.AreEqual("/path/to/target", retrievedLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void AddSymbolicLink_ThrowsWhenLinkAlreadyExistsAndOverwriteIsFalse()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddSymbolicLink("TestLink", "/path/to/oldtarget", false);
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                directory.AddSymbolicLink("TestLink", "/path/to/newtarget", false));
+        }
+
+        [TestMethod]
+        public void AddSymbolicLink_OverwritesExistingLinkWhenAllowed()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddSymbolicLink("TestLink", "/path/to/oldtarget", false);
+
+            directory.AddSymbolicLink("TestLink", "/path/to/newtarget", true);
+
+            var retrievedLink = directory.Get("TestLink") as VirtualSymbolicLink;
+            Assert.IsNotNull(retrievedLink);
+            Assert.AreEqual("/path/to/newtarget", retrievedLink.TargetPath);
+        }
+
+        [TestMethod]
         public void AddDirectory_NewDirectory_AddsDirectoryCorrectly()
         {
             var parentDirectory = new VirtualDirectory("ParentDirectory");
