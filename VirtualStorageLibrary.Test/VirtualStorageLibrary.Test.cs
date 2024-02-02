@@ -1226,8 +1226,8 @@ namespace VirtualStorageLibrary.Test
             // テストデータの設定
             var vs = new VirtualStorage();
             vs.AddDirectory("/TestDirectory");
-            var item = new VirtualItem<BinaryData>("Item", new BinaryData([1, 2, 3]));
-            vs.AddItem(item, "/TestDirectory");
+            var item = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item", item, "/TestDirectory");
 
             // メソッドを実行
             var node = vs.GetNode("/TestDirectory/Item");
@@ -1296,8 +1296,8 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
-            var file = new VirtualItem<BinaryData>("testfile", new BinaryData(new byte[] { 1, 2, 3 }));
-            virtualStorage.AddItem(file, "/");
+            var file = new BinaryData([1, 2, 3]);
+            virtualStorage.AddItem("testfile", file, "/");
 
             string path = "/testfile";
 
@@ -1326,15 +1326,15 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var storage = new VirtualStorage();
-            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item = new BinaryData([1, 2, 3]);
 
             // Act
-            storage.AddItem(item);
+            storage.AddItem("TestItem", item);
 
             // Assert
             var rootDirectory = (VirtualDirectory)storage.GetNode(".");
             Assert.IsTrue(rootDirectory.NodeExists("TestItem"));
-            Assert.AreEqual(item, rootDirectory["TestItem"]);
+            CollectionAssert.AreEqual(item.Data, ((VirtualItem<BinaryData>)rootDirectory["TestItem"]).Item.Data);
         }
 
         [TestMethod]
@@ -1344,15 +1344,15 @@ namespace VirtualStorageLibrary.Test
             var storage = new VirtualStorage();
             var node = (VirtualDirectory)storage.GetNode(".");
             node.AddDirectory("TestDirectory");
-            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item = new BinaryData([1, 2, 3]);
 
             // Act
-            storage.AddItem(item, "TestDirectory");
+            storage.AddItem("TestItem", item, "TestDirectory");
 
             // Assert
             var testDirectory = (VirtualDirectory)storage.GetNode("TestDirectory");
             Assert.IsTrue(testDirectory.NodeExists("TestItem"));
-            Assert.AreEqual(item, testDirectory["TestItem"]);
+            CollectionAssert.AreEqual(item.Data, ((VirtualItem<BinaryData>)testDirectory["TestItem"]).Item.Data);
         }
 
         [TestMethod]
@@ -1360,12 +1360,12 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var storage = new VirtualStorage();
-            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
+            var item = new BinaryData([1, 2, 3]);
 
             // Act & Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                storage.AddItem(item, "NonExistentDirectory");
+                storage.AddItem("TestItem", item, "NonExistentDirectory");
             });
         }
 
@@ -1387,8 +1387,8 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
-            var item = new VirtualItem<BinaryData>("testfile", new BinaryData(new byte[] { 1, 2, 3 }));
-            virtualStorage.AddItem(item, "/");
+            var item = new BinaryData([1, 2, 3]);
+            virtualStorage.AddItem("testfile", item, "/");
 
             // Act
             bool result = virtualStorage.NodeExists("/testfile");
@@ -1469,40 +1469,40 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/Directory2/Directory2_1", true);
             vs.AddDirectory("/Directory2/Directory2_2", true);
 
-            var item_1 = new VirtualItem<BinaryData>("Item_1", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item_2 = new VirtualItem<BinaryData>("Item_2", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item_1, "/");
-            vs.AddItem(item_2, "/");
+            var item_1 = new BinaryData([1, 2, 3]);
+            var item_2 = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item_1", item_1, "/");
+            vs.AddItem("Item_2", item_2, "/");
 
-            var item1a = new VirtualItem<BinaryData>("Item1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1b = new VirtualItem<BinaryData>("Item1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1a, "/Directory1");
-            vs.AddItem(item1b, "/Directory1");
+            var item1a = new BinaryData([1, 2, 3]);
+            var item1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1a", item1a, "/Directory1");
+            vs.AddItem("Item1b", item1b, "/Directory1");
 
-            var item1_1a = new VirtualItem<BinaryData>("Item1_1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1_1b = new VirtualItem<BinaryData>("Item1_1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1_1a, "/Directory1/Directory1_1");
-            vs.AddItem(item1_1b, "/Directory1/Directory1_1");
+            var item1_1a = new BinaryData([1, 2, 3]);
+            var item1_1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1_1a", item1_1a, "/Directory1/Directory1_1");
+            vs.AddItem("Item1_1b", item1_1b, "/Directory1/Directory1_1");
 
-            var item1_2a = new VirtualItem<BinaryData>("Item1_2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1_2b = new VirtualItem<BinaryData>("Item1_2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1_2a, "/Directory1/Directory1_2");
-            vs.AddItem(item1_2b, "/Directory1/Directory1_2");
+            var item1_2a = new BinaryData([1, 2, 3]);
+            var item1_2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1_2a", item1_2a, "/Directory1/Directory1_2");
+            vs.AddItem("Item1_2b", item1_2b, "/Directory1/Directory1_2");
 
-            var item2a = new VirtualItem<BinaryData>("Item2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2b = new VirtualItem<BinaryData>("Item2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2a, "/Directory2");
-            vs.AddItem(item2b, "/Directory2");
+            var item2a = new BinaryData([1, 2, 3]);
+            var item2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2a", item2a, "/Directory2");
+            vs.AddItem("Item2b", item2b, "/Directory2");
 
-            var item2_1a = new VirtualItem<BinaryData>("Item2_1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2_1b = new VirtualItem<BinaryData>("Item2_1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2_1a, "/Directory2/Directory2_1");
-            vs.AddItem(item2_1b, "/Directory2/Directory2_1");
+            var item2_1a = new BinaryData([1, 2, 3]);
+            var item2_1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2_1a", item2_1a, "/Directory2/Directory2_1");
+            vs.AddItem("Item2_1b", item2_1b, "/Directory2/Directory2_1");
 
-            var item2_2a = new VirtualItem<BinaryData>("Item2_2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2_2b = new VirtualItem<BinaryData>("Item2_2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2_2a, "/Directory2/Directory2_2");
-            vs.AddItem(item2_2b, "/Directory2/Directory2_2");
+            var item2_2a = new BinaryData([1, 2, 3]);
+            var item2_2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2_2a", item2_2a, "/Directory2/Directory2_2");
+            vs.AddItem("Item2_2b", item2_2b, "/Directory2/Directory2_2");
 
             Assert.AreEqual(20, vs.GetNodes("/", VirtualNodeType.All, true).Count());
             Debug.WriteLine("\nAll nodes:");
@@ -1560,40 +1560,40 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/Directory2/Directory2_1", true);
             vs.AddDirectory("/Directory2/Directory2_2", true);
 
-            var item_1 = new VirtualItem<BinaryData>("Item_1", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item_2 = new VirtualItem<BinaryData>("Item_2", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item_1, "/");
-            vs.AddItem(item_2, "/");
+            var item_1 = new BinaryData([1, 2, 3]);
+            var item_2 = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item_1", item_1, "/");
+            vs.AddItem("Item_2", item_2, "/");
 
-            var item1a = new VirtualItem<BinaryData>("Item1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1b = new VirtualItem<BinaryData>("Item1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1a, "/Directory1");
-            vs.AddItem(item1b, "/Directory1");
+            var item1a = new BinaryData([1, 2, 3]);
+            var item1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1a", item1a, "/Directory1");
+            vs.AddItem("Item1b", item1b, "/Directory1");
 
-            var item1_1a = new VirtualItem<BinaryData>("Item1_1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1_1b = new VirtualItem<BinaryData>("Item1_1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1_1a, "/Directory1/Directory1_1");
-            vs.AddItem(item1_1b, "/Directory1/Directory1_1");
+            var item1_1a = new BinaryData([1, 2, 3]);
+            var item1_1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1_1a", item1_1a, "/Directory1/Directory1_1");
+            vs.AddItem("Item1_1b", item1_1b, "/Directory1/Directory1_1");
 
-            var item1_2a = new VirtualItem<BinaryData>("Item1_2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1_2b = new VirtualItem<BinaryData>("Item1_2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1_2a, "/Directory1/Directory1_2");
-            vs.AddItem(item1_2b, "/Directory1/Directory1_2");
+            var item1_2a = new BinaryData([1, 2, 3]);
+            var item1_2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1_2a", item1_2a, "/Directory1/Directory1_2");
+            vs.AddItem("Item1_2b", item1_2b, "/Directory1/Directory1_2");
 
-            var item2a = new VirtualItem<BinaryData>("Item2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2b = new VirtualItem<BinaryData>("Item2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2a, "/Directory2");
-            vs.AddItem(item2b, "/Directory2");
+            var item2a = new BinaryData([1, 2, 3]);
+            var item2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2a", item2a, "/Directory2");
+            vs.AddItem("Item2b", item2b, "/Directory2");
 
-            var item2_1a = new VirtualItem<BinaryData>("Item2_1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2_1b = new VirtualItem<BinaryData>("Item2_1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2_1a, "/Directory2/Directory2_1");
-            vs.AddItem(item2_1b, "/Directory2/Directory2_1");
+            var item2_1a = new BinaryData([1, 2, 3]);
+            var item2_1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2_1a", item2_1a, "/Directory2/Directory2_1");
+            vs.AddItem("Item2_1b", item2_1b, "/Directory2/Directory2_1");
 
-            var item2_2a = new VirtualItem<BinaryData>("Item2_2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2_2b = new VirtualItem<BinaryData>("Item2_2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2_2a, "/Directory2/Directory2_2");
-            vs.AddItem(item2_2b, "/Directory2/Directory2_2");
+            var item2_2a = new BinaryData([1, 2, 3]);
+            var item2_2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2_2a", item2_2a, "/Directory2/Directory2_2");
+            vs.AddItem("Item2_2b", item2_2b, "/Directory2/Directory2_2");
 
             Assert.AreEqual(20, vs.GetNodesWithPaths("/", VirtualNodeType.All, true).Count());
             Debug.WriteLine("\nAll nodes:");
@@ -1642,8 +1642,8 @@ namespace VirtualStorageLibrary.Test
         public void CopyFileToFile_OverwritesWhenAllowed()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
-            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+            storage.AddItem("sourceFile", new BinaryData([1, 2, 3]), "/");
+            storage.AddItem("destinationFile", new BinaryData([4, 5, 6]), "/");
 
             storage.CopyNode("/sourceFile", "/destinationFile", false, true);
 
@@ -1655,8 +1655,8 @@ namespace VirtualStorageLibrary.Test
         public void CopyFileToFile_ThrowsWhenOverwriteNotAllowed()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
-            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+            storage.AddItem("sourceFile", new BinaryData(new byte[] { 1, 2, 3 }), "/");
+            storage.AddItem("destinationFile", new BinaryData(new byte[] { 4, 5, 6 }), "/");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/sourceFile", "/destinationFile", false, false));
         }
@@ -1666,7 +1666,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/destination");
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem("sourceFile", new BinaryData(new byte[] { 1, 2, 3 }), "/");
 
             storage.CopyNode("/sourceFile", "/destination/", false, false);
 
@@ -1691,7 +1691,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.AddItem("file", new BinaryData(new byte[] { 1, 2, 3 }), "/sourceDir");
             storage.AddDirectory("/destinationDir");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/sourceDir", "/destinationDir/newDir", false, false));
@@ -1702,7 +1702,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.AddItem("file", new BinaryData(new byte[] { 1, 2, 3 }), "/sourceDir");
             storage.AddDirectory("/destinationDir");
 
             storage.CopyNode("/sourceDir", "/destinationDir/newDir", true, false);
@@ -1716,7 +1716,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+            storage.AddItem("destinationFile", new BinaryData(new byte[] { 4, 5, 6 }), "/");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode("/sourceDir", "/destinationFile", false, false));
         }
@@ -1725,7 +1725,7 @@ namespace VirtualStorageLibrary.Test
         public void CopyFileToNonExistentDirectory_ThrowsException()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem("sourceFile", new BinaryData(new byte[] { 1, 2, 3 }), "/");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.CopyNode("/sourceFile", "/nonExistentDir/destinationFile", false, false));
         }
@@ -1735,7 +1735,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.AddItem("file", new BinaryData(new byte[] { 1, 2, 3 }), "/sourceDir");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
@@ -1748,8 +1748,8 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/source/deep/nested/dir", true);
-            var originalItem = new VirtualItem<BinaryData>("nestedFile", new BinaryData(new byte[] { 1, 2, 3 }));
-            storage.AddItem(originalItem, "/source/deep/nested/dir");
+            var originalItem = new BinaryData(new byte[] { 1, 2, 3 });
+            storage.AddItem("nestedFile", originalItem, "/source/deep/nested/dir");
 
             storage.AddDirectory("/destination", true);
 
@@ -1759,8 +1759,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.IsNotNull(originalItem);
             Assert.IsNotNull(copiedItem);
-            Assert.AreNotSame(originalItem, copiedItem);
-            Assert.AreNotSame(originalItem.Item, copiedItem.Item);
+            Assert.AreNotSame(originalItem, copiedItem.Item);
         }
 
         [TestMethod]
@@ -1769,10 +1768,10 @@ namespace VirtualStorageLibrary.Test
             var storage = new VirtualStorage();
             storage.AddDirectory("/source/dir1/subdir1", true);
             storage.AddDirectory("/source/dir2/subdir2", true);
-            var originalFile1 = new VirtualItem<BinaryData>("file1", new BinaryData(new byte[] { 4, 5, 6 }));
-            var originalFile2 = new VirtualItem<BinaryData>("file2", new BinaryData(new byte[] { 7, 8, 9 }));
-            storage.AddItem(originalFile1, "/source/dir1/subdir1");
-            storage.AddItem(originalFile2, "/source/dir2/subdir2");
+            var originalFile1 = new BinaryData([4, 5, 6]);
+            var originalFile2 = new BinaryData([7, 8, 9]);
+            storage.AddItem("file1", originalFile1, "/source/dir1/subdir1");
+            storage.AddItem("file2", originalFile2, "/source/dir2/subdir2");
 
             storage.CopyNode("/source", "/destination", true, false);
 
@@ -1783,10 +1782,8 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(copiedFile1);
             Assert.IsNotNull(originalFile2);
             Assert.IsNotNull(copiedFile2);
-            Assert.AreNotSame(originalFile1, copiedFile1);
-            Assert.AreNotSame(originalFile2, copiedFile2);
-            Assert.AreNotSame(originalFile1.Item, copiedFile1.Item);
-            Assert.AreNotSame(originalFile2.Item, copiedFile2.Item);
+            Assert.AreNotSame(originalFile1, copiedFile1.Item);
+            Assert.AreNotSame(originalFile2, copiedFile2.Item);
         }
 
         [TestMethod]
@@ -1796,10 +1793,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory("/complex/dir1", true);
             storage.AddDirectory("/complex/dir2", true);
             storage.AddDirectory("/complex/dir1/subdir1", true);
-            var originalFile1 = new VirtualItem<BinaryData>("file1", new BinaryData(new byte[] { 1, 2, 3 }));
-            var originalFile2 = new VirtualItem<BinaryData>("file2", new BinaryData(new byte[] { 4, 5, 6 }));
-            storage.AddItem(originalFile1, "/complex/dir1");
-            storage.AddItem(originalFile2, "/complex/dir2");
+            var originalFile1 = new BinaryData([1, 2, 3]);
+            var originalFile2 = new BinaryData([4, 5, 6]);
+            storage.AddItem("file1", originalFile1, "/complex/dir1");
+            storage.AddItem("file2", originalFile2, "/complex/dir2");
 
             storage.CopyNode("/complex", "/copiedComplex", true, false);
 
@@ -1810,10 +1807,8 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(copiedFile1);
             Assert.IsNotNull(originalFile2);
             Assert.IsNotNull(copiedFile2);
-            Assert.AreNotSame(originalFile1, copiedFile1);
-            Assert.AreNotSame(originalFile2, copiedFile2);
-            Assert.AreNotSame(originalFile1.Item, copiedFile1.Item);
-            Assert.AreNotSame(originalFile2.Item, copiedFile2.Item);
+            Assert.AreNotSame(originalFile1, copiedFile1.Item);
+            Assert.AreNotSame(originalFile2, copiedFile2.Item);
         }
 
         [TestMethod]
@@ -1884,7 +1879,7 @@ namespace VirtualStorageLibrary.Test
         public void CopyNode_SameSourceAndDestination_ThrowsInvalidOperationException()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem("file", new BinaryData(new byte[] { 1, 2, 3 }), "/");
 
             // 同じソースとデスティネーションを指定
             string path = "/file";
@@ -1905,40 +1900,40 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/Directory2/Directory2_1", true);
             vs.AddDirectory("/Directory2/Directory2_2", true);
 
-            var item_1 = new VirtualItem<BinaryData>("Item_1", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item_2 = new VirtualItem<BinaryData>("Item_2", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item_1, "/");
-            vs.AddItem(item_2, "/");
+            var item_1 = new BinaryData([1, 2, 3]);
+            var item_2 = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item_1", item_1, "/");
+            vs.AddItem("Item_2", item_2, "/");
 
-            var item1a = new VirtualItem<BinaryData>("Item1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1b = new VirtualItem<BinaryData>("Item1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1a, "/Directory1");
-            vs.AddItem(item1b, "/Directory1");
+            var item1a = new BinaryData([1, 2, 3]);
+            var item1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1a", item1a, "/Directory1");
+            vs.AddItem("Item1b", item1b, "/Directory1");
 
-            var item1_1a = new VirtualItem<BinaryData>("Item1_1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1_1b = new VirtualItem<BinaryData>("Item1_1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1_1a, "/Directory1/Directory1_1");
-            vs.AddItem(item1_1b, "/Directory1/Directory1_1");
+            var item1_1a = new BinaryData([1, 2, 3]);
+            var item1_1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1_1a", item1_1a, "/Directory1/Directory1_1");
+            vs.AddItem("Item1_1b", item1_1b, "/Directory1/Directory1_1");
 
-            var item1_2a = new VirtualItem<BinaryData>("Item1_2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item1_2b = new VirtualItem<BinaryData>("Item1_2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item1_2a, "/Directory1/Directory1_2");
-            vs.AddItem(item1_2b, "/Directory1/Directory1_2");
+            var item1_2a = new BinaryData([1, 2, 3]);
+            var item1_2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item1_2a", item1_2a, "/Directory1/Directory1_2");
+            vs.AddItem("Item1_2b", item1_2b, "/Directory1/Directory1_2");
 
-            var item2a = new VirtualItem<BinaryData>("Item2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2b = new VirtualItem<BinaryData>("Item2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2a, "/Directory2");
-            vs.AddItem(item2b, "/Directory2");
+            var item2a = new BinaryData([1, 2, 3]);
+            var item2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2a", item2a, "/Directory2");
+            vs.AddItem("Item2b", item2b, "/Directory2");
 
-            var item2_1a = new VirtualItem<BinaryData>("Item2_1a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2_1b = new VirtualItem<BinaryData>("Item2_1b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2_1a, "/Directory2/Directory2_1");
-            vs.AddItem(item2_1b, "/Directory2/Directory2_1");
+            var item2_1a = new BinaryData([1, 2, 3]);
+            var item2_1b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2_1a", item2_1a, "/Directory2/Directory2_1");
+            vs.AddItem("Item2_1b", item2_1b, "/Directory2/Directory2_1");
 
-            var item2_2a = new VirtualItem<BinaryData>("Item2_2a", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2_2b = new VirtualItem<BinaryData>("Item2_2b", new BinaryData(new byte[] { 1, 2, 3 }));
-            vs.AddItem(item2_2a, "/Directory2/Directory2_2");
-            vs.AddItem(item2_2b, "/Directory2/Directory2_2");
+            var item2_2a = new BinaryData([1, 2, 3]);
+            var item2_2b = new BinaryData([1, 2, 3]);
+            vs.AddItem("Item2_2a", item2_2a, "/Directory2/Directory2_2");
+            vs.AddItem("Item2_2b", item2_2b, "/Directory2/Directory2_2");
 
             Assert.AreEqual(20, vs.GetNodesWithPaths("/", VirtualNodeType.All, true).Count());
 
@@ -1966,8 +1961,8 @@ namespace VirtualStorageLibrary.Test
         public void RemoveNode_ExistingItem_RemovesItem()
         {
             var storage = new VirtualStorage();
-            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
-            storage.AddItem(item, "/");
+            var item = new BinaryData([1, 2, 3]);
+            storage.AddItem("TestItem", item, "/");
 
             storage.RemoveNode("/TestItem");
 
@@ -2006,8 +2001,8 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/TestDirectory");
-            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
-            storage.AddItem(item, "/TestDirectory");
+            var item = new BinaryData([1, 2, 3]);
+            storage.AddItem("TestItem", item, "/TestDirectory");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.RemoveNode("/TestDirectory"));
         }
@@ -2017,8 +2012,8 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/TestDirectory");
-            var item = new VirtualItem<BinaryData>("TestItem", new BinaryData(new byte[] { 1, 2, 3 }));
-            storage.AddItem(item, "/TestDirectory");
+            var item = new BinaryData([1, 2, 3]);
+            storage.AddItem("TestItem", item, "/TestDirectory");
 
             storage.RemoveNode("/TestDirectory", true);
 
@@ -2031,10 +2026,10 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/Level1/Level2/Level3", true);
-            var item1 = new VirtualItem<BinaryData>("Item1", new BinaryData(new byte[] { 1, 2, 3 }));
-            var item2 = new VirtualItem<BinaryData>("Item2", new BinaryData(new byte[] { 4, 5, 6 }));
-            storage.AddItem(item1, "/Level1/Level2/Level3");
-            storage.AddItem(item2, "/Level1/Level2");
+            var item1 = new BinaryData([1, 2, 3]);
+            var item2 = new BinaryData([4, 5, 6]);
+            storage.AddItem("Item1", item1, "/Level1/Level2/Level3");
+            storage.AddItem("Item2", item2, "/Level1/Level2");
 
             storage.RemoveNode("/Level1", true);
 
@@ -2048,8 +2043,8 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/Level1/Level2/Level3", true);
-            var item1 = new VirtualItem<BinaryData>("Item1", new BinaryData(new byte[] { 1, 2, 3 }));
-            storage.AddItem(item1, "/Level1/Level2/Level3");
+            var item1 = new BinaryData([1, 2, 3]);
+            storage.AddItem("Item1", item1, "/Level1/Level2/Level3");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.RemoveNode("/Level1"));
         }
@@ -2191,7 +2186,7 @@ namespace VirtualStorageLibrary.Test
             var storage = new VirtualStorage();
             string path = "/existing/path/item";
             storage.AddDirectory("/existing/path", true);
-            storage.AddItem(new VirtualItem<BinaryData>("item", new BinaryData() {1, 2, 3}), "/existing/path");
+            storage.AddItem("item", new BinaryData([1, 2, 3]), "/existing/path");
 
             // Act
             bool exists = storage.ItemExists(path);
@@ -2233,8 +2228,8 @@ namespace VirtualStorageLibrary.Test
         public void MoveNode_FileToFile_OverwritesWhenAllowed()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
-            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+            storage.AddItem("sourceFile", new BinaryData([1, 2, 3]), "/");
+            storage.AddItem("destinationFile", new BinaryData([4, 5, 6]), "/");
 
             storage.MoveNode("/sourceFile", "/destinationFile", true);
 
@@ -2247,8 +2242,8 @@ namespace VirtualStorageLibrary.Test
         public void MoveNode_FileToFile_ThrowsWhenOverwriteNotAllowed()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
-            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+            storage.AddItem("sourceFile", new BinaryData([1, 2, 3]), "/");
+            storage.AddItem("destinationFile", new BinaryData([4, 5, 6]), "/");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceFile", "/destinationFile", false));
         }
@@ -2258,7 +2253,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/destination");
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem("sourceFile", new BinaryData([1, 2, 3]), "/");
 
             storage.MoveNode("/sourceFile", "/destination/", false);
 
@@ -2313,7 +2308,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 4, 5, 6 })), "/");
+            storage.AddItem("destinationFile", new BinaryData([4, 5, 6]), "/");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir", "/destinationFile", false));
         }
@@ -2332,9 +2327,9 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.AddItem("fileName", new BinaryData([1, 2, 3]), "/sourceDir");
             storage.AddDirectory("/destinationDir");
-            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 4, 5, 6 })), "/destinationDir"); // 移動先に同名のファイルが存在
+            storage.AddItem("fileName", new BinaryData([4, 5, 6]), "/destinationDir"); // 移動先に同名のファイルが存在
 
             storage.MoveNode("/sourceDir/fileName", "/destinationDir", true); // 上書き許可で移動
 
@@ -2350,9 +2345,9 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 1, 2, 3 })), "/sourceDir");
+            storage.AddItem("fileName", new BinaryData([1, 2, 3]), "/sourceDir");
             storage.AddDirectory("/destinationDir");
-            storage.AddItem(new VirtualItem<BinaryData>("fileName", new BinaryData(new byte[] { 4, 5, 6 })), "/destinationDir"); // 移動先に同名のファイルが存在
+            storage.AddItem("fileName", new BinaryData([4, 5, 6]), "/destinationDir"); // 移動先に同名のファイルが存在
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/sourceDir/fileName", "/destinationDir", false)); // 上書き禁止で例外を期待
         }
@@ -2396,7 +2391,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/sourceDir");
-            storage.AddItem(new VirtualItem<BinaryData>("destinationFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem("destinationFile", new BinaryData([1, 2, 3]), "/");
             storage.MoveNode("/sourceDir", "/destinationFile");
         }
 
@@ -2404,7 +2399,7 @@ namespace VirtualStorageLibrary.Test
         public void MoveNode_WithinSameDirectory_RenamesNode()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("sourceFile", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem("sourceFile", new BinaryData([1, 2, 3]), "/");
             storage.MoveNode("/sourceFile", "/renamedFile");
 
             Assert.IsFalse(storage.NodeExists("/sourceFile"));
@@ -2427,7 +2422,7 @@ namespace VirtualStorageLibrary.Test
         public void MoveNode_WhenSourceAndDestinationAreSame_ThrowsInvalidOperationException()
         {
             var storage = new VirtualStorage();
-            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/");
+            storage.AddItem("file", new BinaryData([1, 2, 3]), "/");
 
             Assert.ThrowsException<InvalidOperationException>(() => storage.MoveNode("/file", "/file"));
         }
@@ -2438,7 +2433,7 @@ namespace VirtualStorageLibrary.Test
         {
             var storage = new VirtualStorage();
             storage.AddDirectory("/existingDir");
-            storage.AddItem(new VirtualItem<BinaryData>("file", new BinaryData(new byte[] { 1, 2, 3 })), "/existingDir");
+            storage.AddItem("file", new BinaryData([1, 2, 3]), "/existingDir");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.MoveNode("/existingDir/file", "/nonExistentDir/file"));
         }

@@ -482,12 +482,13 @@
             }
         }
 
-        public void AddItem<T>(VirtualItem<T> item, string path = ".")
+        public void AddItem<T>(string name, T item, string path = ".")
         {
             var absolutePath = ConvertToAbsolutePath(path);
             var directory = (VirtualDirectory)GetNode(absolutePath);
+            var virtualItem = new VirtualItem<T>(name, item);
 
-            directory.Add(item);
+            directory.Add(virtualItem);
         }
 
         private IEnumerable<T> GetNodesInternal<T>(string basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, string, T> selector)
