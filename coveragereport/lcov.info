@@ -1,5 +1,5 @@
 TN:
-SF:C:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
 FN:234,get_Count()
 FN:236,get_NodeNames()
 FN:238,get_Nodes()
@@ -152,7 +152,7 @@ DA:370,1
 LH:87
 LF:87
 end_of_record
-SF:C:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
 FN:201,get_Item()
 FN:214,DeepClone()
 FN:225,VirtualStorageLibrary.IDeepCloneable<VirtualStorageLibrary.VirtualItem<T>>.DeepClone()
@@ -192,7 +192,7 @@ DA:227,2
 LH:16
 LF:20
 end_of_record
-SF:C:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
 FN:158,get_Name()
 FN:159,get_CreatedDate()
 FN:160,get_UpdatedDate()
@@ -225,7 +225,7 @@ DA:176,7
 LH:15
 LF:15
 end_of_record
-SF:C:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
 FN:12,.ctor()
 FN:16,.ctor(System.String)
 FN:20,.ctor(System.String,System.Exception)
@@ -248,7 +248,7 @@ DA:22,1
 LH:9
 LF:9
 end_of_record
-SF:C:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
 FN:33,NormalizePath(System.String)
 FN:71,GetDirectoryPath(System.String)
 FN:92,GetNodeName(System.String)
@@ -376,11 +376,11 @@ DA:153,124
 LH:76
 LF:76
 end_of_record
-SF:C:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
 FN:377,get_CurrentPath()
 FN:386,ChangeDirectory(System.String)
 FN:400,ConvertToAbsolutePath(System.String)
-FN:416,MakeDirectory(System.String,System.Boolean)
+FN:416,AddDirectory(System.String,System.Boolean)
 FN:445,GetNode(System.String)
 FN:471,GetDirectory(System.String)
 FN:486,AddItem(VirtualStorageLibrary.VirtualItem`1<T>,System.String)
@@ -401,7 +401,7 @@ FN:494,GetNodesInternal()
 FNDA:125,get_CurrentPath()
 FNDA:12,ChangeDirectory(System.String)
 FNDA:1748,ConvertToAbsolutePath(System.String)
-FNDA:87,MakeDirectory(System.String,System.Boolean)
+FNDA:87,AddDirectory(System.String,System.Boolean)
 FNDA:807,GetNode(System.String)
 FNDA:111,GetDirectory(System.String)
 FNDA:85,AddItem(VirtualStorageLibrary.VirtualItem`1<T>,System.String)
@@ -917,7 +917,7 @@ DA:931,7
 LH:357
 LF:357
 end_of_record
-SF:C:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
+SF:D:\workspace\VirtualStorageLibrary\VirtualStorageLibrary\VirtualStorageLibrary.cs
 FN:181,get_TargetPath()
 FN:194,DeepClone()
 FN:183,.ctor(System.String,System.String)

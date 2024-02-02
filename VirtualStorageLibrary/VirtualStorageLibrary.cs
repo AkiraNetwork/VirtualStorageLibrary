@@ -412,7 +412,7 @@
             return VirtualPath.NormalizePath(combinedPath);
         }
 
-        public void MakeDirectory(string path, bool createSubdirectories = false)
+        public void AddDirectory(string path, bool createSubdirectories = false)
         {
             string absolutePath = ConvertToAbsolutePath(path);
             string[] nodeNameList = absolutePath.Split('/');
