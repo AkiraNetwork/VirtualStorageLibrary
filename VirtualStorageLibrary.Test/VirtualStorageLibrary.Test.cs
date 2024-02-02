@@ -23,6 +23,25 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualItem_Constructor_SetsNameItemAndDates()
+        {
+            // Arrange
+            string name = "TestItem";
+            var item = new SimpleData(10);
+            DateTime createdDate = DateTime.Now;
+            DateTime updatedDate = DateTime.Now;
+
+            // Act
+            var virtualItem = new VirtualItem<SimpleData>(name, item, createdDate, updatedDate);
+
+            // Assert
+            Assert.AreEqual(name, virtualItem.Name);
+            Assert.AreEqual(item, virtualItem.Item);
+            Assert.AreEqual(createdDate, virtualItem.CreatedDate);
+            Assert.AreEqual(updatedDate, virtualItem.UpdatedDate);
+        }
+
+        [TestMethod]
         public void ConstructorWithMessage_CreatesInstanceWithMessage()
         {
             string message = "Test message";
