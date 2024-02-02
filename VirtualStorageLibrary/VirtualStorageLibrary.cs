@@ -412,6 +412,15 @@
             return VirtualPath.NormalizePath(combinedPath);
         }
 
+        public void AddItem<T>(string name, T item, string path = ".")
+        {
+            var absolutePath = ConvertToAbsolutePath(path);
+            var directory = (VirtualDirectory)GetNode(absolutePath);
+            var virtualItem = new VirtualItem<T>(name, item);
+
+            directory.Add(virtualItem);
+        }
+
         public void AddDirectory(string path, bool createSubdirectories = false)
         {
             string absolutePath = ConvertToAbsolutePath(path);
@@ -480,15 +489,6 @@
             {
                 throw new VirtualNodeNotFoundException($"ディレクトリ {absolutePath} は存在しません。");
             }
-        }
-
-        public void AddItem<T>(string name, T item, string path = ".")
-        {
-            var absolutePath = ConvertToAbsolutePath(path);
-            var directory = (VirtualDirectory)GetNode(absolutePath);
-            var virtualItem = new VirtualItem<T>(name, item);
-
-            directory.Add(virtualItem);
         }
 
         private IEnumerable<T> GetNodesInternal<T>(string basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, string, T> selector)
