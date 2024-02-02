@@ -156,14 +156,43 @@
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
     {
         public string Name { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime CreatedDate { get; private set; }
+        public DateTime UpdatedDate { get; private set; }
+
         public abstract VirtualNode DeepClone();
+
         protected VirtualNode(string name)
         {
             Name = name;
             CreatedDate = DateTime.Now;
             UpdatedDate = DateTime.Now;
+        }
+
+        protected VirtualNode(string name, DateTime createdDate, DateTime updatedDate)
+        {
+            Name = name;
+            CreatedDate = createdDate;
+            UpdatedDate = updatedDate;
+        }
+    }
+
+    public class VirtualSymbolicLink : VirtualNode
+    {
+        public string TargetPath { get; set; }
+
+        public VirtualSymbolicLink(string name, string targetPath) : base(name)
+        {
+            TargetPath = targetPath;
+        }
+
+        public VirtualSymbolicLink(string name, string targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        {
+            TargetPath = targetPath;
+        }
+
+        public override VirtualNode DeepClone()
+        {
+            return new VirtualSymbolicLink(Name, TargetPath, CreatedDate, UpdatedDate);
         }
     }
 
@@ -172,6 +201,11 @@
         public T Item { get; set; }
 
         public VirtualItem(string name, T item) : base(name)
+        {
+            Item = item;
+        }
+
+        public VirtualItem(string name, T item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             Item = item;
         }
@@ -220,14 +254,14 @@
             _nodes = new Dictionary<string, VirtualNode>();
         }
 
+        public VirtualDirectory(string name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        {
+            _nodes = new Dictionary<string, VirtualNode>();
+        }
+
         public override VirtualNode DeepClone()
         {
-            var clonedDirectory = new VirtualDirectory(this.Name)
-            {
-                CreatedDate = this.CreatedDate,
-                UpdatedDate = this.UpdatedDate,
-                _nodes = new Dictionary<string, VirtualNode>()
-            };
+            var clonedDirectory = new VirtualDirectory(Name, CreatedDate, UpdatedDate);
 
             foreach (var pair in this._nodes)
             {
