@@ -13,7 +13,7 @@ namespace VirtualStorageLibrary.Test
     }
 
     [TestClass]
-    public class VirtualNodeNotFoundExceptionTest
+    public class VirtualNodeTests
     {
         [TestMethod]
         public void DefaultConstructor_CreatesInstance()
@@ -342,6 +342,65 @@ namespace VirtualStorageLibrary.Test
     }
 
     [TestClass]
+    public class VirtualSymbolicLinkTests
+    {
+        [TestMethod]
+        public void VirtualSymbolicLink_Constructor_SetsNameAndTargetPath()
+        {
+            // Arrange
+            string name = "TestLink";
+            string targetPath = "/target/path";
+
+            // Act
+            var link = new VirtualSymbolicLink(name, targetPath);
+
+            // Assert
+            Assert.AreEqual(name, link.Name);
+            Assert.AreEqual(targetPath, link.TargetPath);
+        }
+
+        [TestMethod]
+        public void VirtualSymbolicLink_ConstructorWithDates_SetsNameTargetPathAndDates()
+        {
+            // Arrange
+            string name = "TestLink";
+            string targetPath = "/target/path";
+            DateTime createdDate = DateTime.Now;
+            DateTime updatedDate = DateTime.Now;
+
+            // Act
+            var link = new VirtualSymbolicLink(name, targetPath, createdDate, updatedDate);
+
+            // Assert
+            Assert.AreEqual(name, link.Name);
+            Assert.AreEqual(targetPath, link.TargetPath);
+            Assert.AreEqual(createdDate, link.CreatedDate);
+            Assert.AreEqual(updatedDate, link.UpdatedDate);
+        }
+
+        [TestMethod]
+        public void VirtualSymbolicLink_DeepClone_CreatesExactCopy()
+        {
+            // Arrange
+            string name = "TestLink";
+            string targetPath = "/target/path";
+            DateTime createdDate = DateTime.Now;
+            DateTime updatedDate = DateTime.Now;
+            var link = new VirtualSymbolicLink(name, targetPath, createdDate, updatedDate);
+
+            // Act
+            var clone = link.DeepClone() as VirtualSymbolicLink;
+
+            // Assert
+            Assert.IsNotNull(clone);
+            Assert.AreEqual(link.Name, clone.Name);
+            Assert.AreEqual(link.TargetPath, clone.TargetPath);
+            Assert.AreEqual(link.CreatedDate, clone.CreatedDate);
+            Assert.AreEqual(link.UpdatedDate, clone.UpdatedDate);
+        }
+    }
+
+    [TestClass]
     public class VirtualItemTest
     {
         [TestMethod]
@@ -636,6 +695,20 @@ namespace VirtualStorageLibrary.Test
             var retrievedItem = directory.Get("TestItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(itemData.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddItem_AddsNewItemSuccessfully_BySimpleData()
+        {
+            var directory = new VirtualDirectory("TestDirectory");
+            var itemData = new SimpleData(5);
+
+            directory.AddItem("TestItem", itemData, false);
+
+            Assert.IsTrue(directory.NodeExists("TestItem"));
+            var retrievedItem = directory.Get("TestItem") as VirtualItem<SimpleData>;
+            Assert.IsNotNull(retrievedItem);
+            Assert.AreEqual(itemData.Value, retrievedItem.Item.Value);
         }
 
         [TestMethod]

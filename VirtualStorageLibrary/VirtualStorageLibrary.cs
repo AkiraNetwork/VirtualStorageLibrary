@@ -482,7 +482,7 @@
             }
         }
 
-        public void AddItem<T>(VirtualItem<T> item, string path = ".") where T : IDeepCloneable<T>
+        public void AddItem<T>(VirtualItem<T> item, string path = ".")
         {
             var absolutePath = ConvertToAbsolutePath(path);
             var directory = (VirtualDirectory)GetNode(absolutePath);
