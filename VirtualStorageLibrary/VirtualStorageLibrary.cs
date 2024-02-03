@@ -412,13 +412,78 @@
             return VirtualPath.NormalizePath(combinedPath);
         }
 
-        public void AddItem<T>(string name, T item, string path = ".")
+        public void AddSymbolicLink(string linkPath, string targetPath, bool overwrite = false)
         {
-            var absolutePath = ConvertToAbsolutePath(path);
-            var directory = (VirtualDirectory)GetNode(absolutePath);
-            var virtualItem = new VirtualItem<T>(name, item);
+            var absoluteLinkPath = ConvertToAbsolutePath(linkPath);
 
-            directory.Add(virtualItem);
+            // シンボリックリンクの存在確認
+            bool linkExists = SymbolicLinkExists(absoluteLinkPath);
+            var node = TryGetNode(absoluteLinkPath);
+
+            // 上書きフラグがfalseで、リンクパスに既にノードが存在する場合はエラー
+            if (!overwrite && node != null)
+            {
+                throw new InvalidOperationException($"パス '{absoluteLinkPath}' は既にノードが存在しており、上書きは許可されていません。");
+            }
+
+            // 上書きフラグがtrueでも、存在するノードがシンボリックリンク以外の場合はエラー
+            if (overwrite && node != null && !linkExists)
+            {
+                throw new InvalidOperationException($"パス '{absoluteLinkPath}' には上書きできないノードが存在します（シンボリックリンク以外）。");
+            }
+
+            // シンボリックリンクの作成または上書き
+            var symbolicLink = new VirtualSymbolicLink(Path.GetFileName(absoluteLinkPath), targetPath);
+            var parentPath = VirtualPath.GetParentPath(absoluteLinkPath);
+            var parentNode = TryGetNode(parentPath) as VirtualDirectory;
+
+            if (parentNode == null)
+            {
+                throw new VirtualNodeNotFoundException($"親ディレクトリ '{parentPath}' が見つかりません。");
+            }
+
+            parentNode.Add(symbolicLink, overwrite);
+        }
+
+        public void AddItem<T>(string path, T item, bool overwrite = false)
+        {
+            // 絶対パスに変換
+            string absolutePath = ConvertToAbsolutePath(path);
+
+            // ディレクトリパスとアイテム名を分離
+            string directoryPath = VirtualPath.GetDirectoryPath(absolutePath);
+            string itemName = VirtualPath.GetNodeName(absolutePath);
+
+            // 対象ディレクトリの存在チェック
+            if (!DirectoryExists(directoryPath))
+            {
+                throw new VirtualNodeNotFoundException($"ディレクトリ '{directoryPath}' が見つかりません。");
+            }
+
+            // 対象ディレクトリを取得
+            VirtualDirectory directory = GetDirectory(directoryPath);
+
+            // 既存のアイテムの存在チェック
+            if (directory.NodeExists(itemName))
+            {
+                if (!overwrite)
+                {
+                    throw new InvalidOperationException($"アイテム '{itemName}' は既に存在します。上書きは許可されていません。");
+                }
+                else
+                {
+                    // 上書き対象がアイテムであることを確認
+                    if (!ItemExists(VirtualPath.Combine(directoryPath, itemName)))
+                    {
+                        throw new InvalidOperationException($"'{itemName}' はアイテム以外のノードです。アイテムの上書きはできません。");
+                    }
+                    // 既存アイテムの削除
+                    directory.Remove(itemName, true); // 強制削除
+                }
+            }
+
+            // 新しいアイテムを追加
+            directory.Add(new VirtualItem<T>(itemName, item), overwrite);
         }
 
         public void AddDirectory(string path, bool createSubdirectories = false)
