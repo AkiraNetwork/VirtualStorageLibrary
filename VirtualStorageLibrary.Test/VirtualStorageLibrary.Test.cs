@@ -1322,51 +1322,140 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void AddItem_AddsItemToRootDirectory_WhenPathIsDefault()
+        public void AddItem_AddsNewItemSuccessfully_WithBinaryData()
         {
-            // Arrange
-            var storage = new VirtualStorage();
-            var item = new BinaryData([1, 2, 3]);
+            var virtualStorage = new VirtualStorage();
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
+            string path = "/NewItem";
 
-            // Act
-            storage.AddItem("TestItem", item);
+            virtualStorage.AddItem(path, item);
 
-            // Assert
-            var rootDirectory = (VirtualDirectory)storage.GetNode(".");
-            Assert.IsTrue(rootDirectory.NodeExists("TestItem"));
-            CollectionAssert.AreEqual(item.Data, ((VirtualItem<BinaryData>)rootDirectory["TestItem"]).Item.Data);
+            Assert.IsTrue(virtualStorage.ItemExists(path));
+            var retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
         }
 
         [TestMethod]
-        public void AddItem_AddsItemToSpecifiedDirectory_WhenPathIsProvided()
+        public void AddItem_OverwritesExistingItemWhenAllowed_WithBinaryData()
         {
-            // Arrange
-            var storage = new VirtualStorage();
-            var node = (VirtualDirectory)storage.GetNode(".");
-            node.AddDirectory("TestDirectory");
-            var item = new BinaryData([1, 2, 3]);
+            var virtualStorage = new VirtualStorage();
+            var originalItem = new BinaryData(new byte[] { 1, 2, 3 });
+            var newItem = new BinaryData(new byte[] { 4, 5, 6 });
+            string path = "/ExistingItem";
+            virtualStorage.AddItem(path, originalItem);
 
-            // Act
-            storage.AddItem("/TestDirectory/TestItem", item);
+            virtualStorage.AddItem(path, newItem, true);
 
-            // Assert
-            var testDirectory = (VirtualDirectory)storage.GetNode("TestDirectory");
-            Assert.IsTrue(testDirectory.NodeExists("TestItem"));
-            CollectionAssert.AreEqual(item.Data, ((VirtualItem<BinaryData>)testDirectory["TestItem"]).Item.Data);
+            var retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(newItem.Data, retrievedItem.Item.Data);
         }
 
         [TestMethod]
-        public void AddItem_ThrowsException_WhenDirectoryDoesNotExist()
+        public void AddItem_ThrowsArgumentException_WhenPathIsEmpty_WithBinaryData()
         {
-            // Arrange
-            var storage = new VirtualStorage();
-            var item = new BinaryData([1, 2, 3]);
+            var virtualStorage = new VirtualStorage();
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
 
-            // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-            {
-                storage.AddItem("NonExistentDirectory/TestItem", item);
-            });
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.AddItem("", item));
+        }
+
+        [TestMethod]
+        public void AddItem_ThrowsVirtualNodeNotFoundException_WhenParentDirectoryDoesNotExist_WithBinaryData()
+        {
+            var virtualStorage = new VirtualStorage();
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
+            string path = "/NonExistentDirectory/Item";
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.AddItem(path, item));
+        }
+
+        [TestMethod]
+        public void AddItem_ThrowsInvalidOperationException_WhenOverwriteIsFalseAndItemExists_WithBinaryData()
+        {
+            var virtualStorage = new VirtualStorage();
+            var originalItem = new BinaryData(new byte[] { 1, 2, 3 });
+            string path = "/ExistingItem";
+            virtualStorage.AddItem(path, originalItem);
+
+            Assert.ThrowsException<InvalidOperationException>(() => virtualStorage.AddItem(path, new BinaryData(new byte[] { 4, 5, 6 }), false));
+        }
+
+        [TestMethod]
+        public void AddItem_AddsNewItemToCurrentDirectory_WithBinaryData()
+        {
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.ChangeDirectory("/"); // カレントディレクトリをルートに設定
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
+            string itemName = "NewItemInRoot";
+
+            virtualStorage.AddItem(itemName, item); // パスを指定せずにアイテム名のみを渡す
+
+            Assert.IsTrue(virtualStorage.ItemExists("/" + itemName)); // カレントディレクトリにアイテムが作成されていることを確認
+            var retrievedItem = virtualStorage.GetNode("/" + itemName) as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddItem_AddsNewItemUsingRelativePath_WithBinaryData_Corrected()
+        {
+            var virtualStorage = new VirtualStorage();
+            // 事前にディレクトリを作成
+            virtualStorage.AddDirectory("/existingDirectory", true); // 既存のディレクトリ
+            virtualStorage.AddDirectory("/existingDirectory/subDirectory", true); // 新しく作成するサブディレクトリ
+            virtualStorage.ChangeDirectory("/existingDirectory"); // カレントディレクトリを変更
+
+            var item = new BinaryData(new byte[] { 4, 5, 6 });
+            string relativePath = "subDirectory/NewItem"; // 相対パスで新しいアイテムを指定
+
+            // 相対パスを使用してアイテムを追加
+            virtualStorage.AddItem(relativePath, item, true);
+
+            string fullPath = "/existingDirectory/" + relativePath;
+            Assert.IsTrue(virtualStorage.ItemExists(fullPath)); // 相対パスで指定された位置にアイテムが作成されていることを確認
+            var retrievedItem = virtualStorage.GetNode(fullPath) as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddItem_AddsNewItemToSubdirectoryAsCurrentDirectory_WithBinaryData()
+        {
+            var virtualStorage = new VirtualStorage();
+            // サブディレクトリを作成し、カレントディレクトリに設定
+            virtualStorage.AddDirectory("/subdirectory", true);
+            virtualStorage.ChangeDirectory("/subdirectory");
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
+            string itemName = "NewItemInSubdirectory";
+
+            // カレントディレクトリにアイテムを追加（パスを指定せずにアイテム名のみを渡す）
+            virtualStorage.AddItem(itemName, item);
+
+            // サブディレクトリ内にアイテムが作成されていることを確認
+            Assert.IsTrue(virtualStorage.ItemExists("/subdirectory/" + itemName));
+            var retrievedItem = virtualStorage.GetNode("/subdirectory/" + itemName) as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddItem_ThrowsInvalidOperationException_WhenOverwriteTargetIsNotAnItem()
+        {
+            var virtualStorage = new VirtualStorage();
+            // テスト用のディレクトリを作成
+            virtualStorage.AddDirectory("/testDirectory", true);
+            // 同名のサブディレクトリを追加（アイテムの上書き対象として）
+            virtualStorage.AddDirectory("/testDirectory/itemName", true);
+
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
+            string itemName = "itemName";
+
+            // アイテム上書きを試みる（ただし、実際にはディレクトリが存在するため、アイテムではない）
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                virtualStorage.AddItem("/testDirectory/" + itemName, item, true),
+                "上書き対象がアイテムではなくディレクトリの場合、InvalidOperationExceptionが投げられるべきです。");
         }
 
         [TestMethod]
