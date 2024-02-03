@@ -756,6 +756,12 @@
             return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>); // ジェネリック型がVirtualItem<T>であるかチェック
         }
 
+        public bool SymbolicLinkExists(string path)
+        {
+            var node = TryGetNode(path);
+            return node is VirtualSymbolicLink;
+        }
+
         public void MoveNode(string sourcePath, string destinationPath, bool overwrite = false)
         {
             string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
