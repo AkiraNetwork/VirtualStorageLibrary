@@ -2548,5 +2548,20 @@ namespace VirtualStorageLibrary.Test
                 "既存のディレクトリ上にシンボリックリンクを追加しようとすると、上書きがtrueでもInvalidOperationExceptionが発生するべきです。");
         }
 
+        [TestMethod]
+        public void AddSymbolicLink_ThrowsVirtualNodeNotFoundException_WhenParentDirectoryDoesNotExist()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            string nonExistentParentDirectory = "/nonexistent/directory";
+            string symbolicLinkPath = $"{nonExistentParentDirectory}/link";
+            string targetPath = "/existing/target";
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+                virtualStorage.AddSymbolicLink(symbolicLinkPath, targetPath),
+                "親ディレクトリが存在しない場合、VirtualNodeNotFoundExceptionがスローされるべきです。");
+        }
+
     }
 }
