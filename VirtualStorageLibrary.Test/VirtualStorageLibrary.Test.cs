@@ -1174,6 +1174,81 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ConvertToAbsolutePath_WithBasePath_ConvertsRelativePathCorrectly()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory("/base/path", true); // 必要なディレクトリを作成
+            string? basePath = "/base/path";
+            string relativePath = "relative/to/base";
+
+            // Act
+            string result = virtualStorage.ConvertToAbsolutePath(relativePath, basePath);
+
+            // Assert
+            Assert.AreEqual("/base/path/relative/to/base", result);
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WithoutBasePath_UsesCurrentPath()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory("/current/path", true); // 必要なディレクトリを作成
+            virtualStorage.ChangeDirectory("/current/path");
+            string relativePath = "relative/path";
+
+            // Act
+            string result = virtualStorage.ConvertToAbsolutePath(relativePath, null);
+
+            // Assert
+            Assert.AreEqual("/current/path/relative/path", result);
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WithEmptyBasePath_ThrowsArgumentException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            string relativePath = "some/relative/path";
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.ConvertToAbsolutePath(relativePath, ""));
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WithNullBasePath_UsesCurrentPath()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory("/current/path", true); // 必要なディレクトリを作成
+            virtualStorage.ChangeDirectory("/current/path");
+            string relativePath = "relative/path";
+            string? basePath = null;
+
+            // Act
+            string result = virtualStorage.ConvertToAbsolutePath(relativePath, basePath);
+
+            // Assert
+            Assert.AreEqual("/current/path/relative/path", result);
+        }
+
+        [TestMethod]
+        public void ConvertToAbsolutePath_WithAbsolutePath_ReturnsOriginalPath()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory("/base/path", true); // 必要なディレクトリを作成
+            string absolutePath = "/absolute/path";
+
+            // Act
+            string result = virtualStorage.ConvertToAbsolutePath(absolutePath, "/base/path");
+
+            // Assert
+            Assert.AreEqual(absolutePath, result);
+        }
+
+        [TestMethod]
         public void AddDirectory_WithValidPath_CreatesDirectory()
         {
             // Arrange

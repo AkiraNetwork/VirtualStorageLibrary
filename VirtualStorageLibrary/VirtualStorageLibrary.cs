@@ -396,20 +396,36 @@
             CurrentPath = absolutePath;
         }
 
-        public string ConvertToAbsolutePath(string relativePath)
+        public string ConvertToAbsolutePath(string relativePath, string? basePath = null)
         {
             if (relativePath == "")
             {
-                throw new ArgumentException("パスが空です。");
+                throw new ArgumentException("relativePathが空です。", nameof(relativePath));
             }
 
+            // basePathが空文字列の場合もArgumentExceptionをスロー
+            if (basePath == "")
+            {
+                throw new ArgumentException("basePathが空です。", nameof(basePath));
+            }
+
+            // basePathがnullまたは空文字列でない場合はその値を使用し、そうでなければCurrentPathを使用
+            string effectiveBasePath = basePath ?? CurrentPath;
+
+            string absolutePath;
             if (relativePath.StartsWith("/"))
             {
-                return VirtualPath.NormalizePath(relativePath);
+                // relativePathが既に絶対パスである場合は、そのまま使用
+                absolutePath = VirtualPath.NormalizePath(relativePath);
+            }
+            else
+            {
+                // relativePathをeffectiveBasePathに基づいて絶対パスに変換
+                var combinedPath = VirtualPath.Combine(effectiveBasePath, relativePath);
+                absolutePath = VirtualPath.NormalizePath(combinedPath);
             }
 
-            var combinedPath = VirtualPath.Combine(CurrentPath, relativePath);
-            return VirtualPath.NormalizePath(combinedPath);
+            return absolutePath;
         }
 
         public void AddSymbolicLink(string linkPath, string targetPath, bool overwrite = false)
