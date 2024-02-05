@@ -498,6 +498,72 @@ namespace VirtualStorageLibrary.Test
             // SimpleDataインスタンスがシャローコピーされていることを確認
             Assert.AreSame(originalItem.Item, clonedItem.Item);
         }
+
+        [TestMethod]
+        public void ToString_ReturnsItemInformationWithInt()
+        {
+            int value = 10;
+            VirtualItem<int> item = new VirtualItem<int>("TestItem", value);
+
+            string result = item.ToString();
+            Debug.WriteLine(result);
+            
+            Assert.IsTrue(result.Contains("TestItem"));
+        }
+
+        [TestMethod]
+        public void ToString_ReturnsItemInformationWithBinaryDataOfLong()
+        {
+            BinaryData data = new BinaryData([0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F]);
+            VirtualItem<BinaryData> item = new VirtualItem<BinaryData>("TestItem", data);
+
+            string result = item.ToString();
+            Debug.WriteLine(result);
+
+            Assert.IsTrue(result.Contains("TestItem"));
+        }
+
+        [TestMethod]
+        public void ToString_ReturnsItemInformationWithBinaryDataOfShort()
+        {
+            BinaryData data = new BinaryData([0x01, 0x02, 0x03]);
+            VirtualItem<BinaryData> item = new VirtualItem<BinaryData>("TestItem", data);
+
+            string result = item.ToString();
+            Debug.WriteLine(result);
+
+            Assert.IsTrue(result.Contains("TestItem"));
+        }
+
+        [TestMethod]
+        public void ToString_ReturnsItemInformationWithSimpleData()
+        {
+            SimpleData data = new SimpleData(10);
+            VirtualItem<SimpleData> item = new VirtualItem<SimpleData>("TestItem", data);
+
+            string result = item.ToString();
+            Debug.WriteLine(result);
+
+            Assert.IsTrue(result.Contains("TestItem"));
+        }
+
+        struct SimpleStruct
+        {
+            public int Value { get; set; }
+        }
+
+        [TestMethod]
+        public void ToString_ReturnsItemInformationWithStruct()
+        {
+            SimpleStruct data = new SimpleStruct { Value = 10 };
+
+            VirtualItem<SimpleStruct> item = new VirtualItem<SimpleStruct>("TestItem", data);
+
+            string result = item.ToString();
+            Debug.WriteLine(result);
+
+            Assert.IsTrue(result.Contains("TestItem"));
+        }
     }
 
     [TestClass]

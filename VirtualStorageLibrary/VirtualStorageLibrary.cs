@@ -210,6 +210,20 @@
             Item = item;
         }
 
+        public override string ToString()
+        {
+            string itemInformation = $"Item: {Name}";
+
+            // C# 8.0のnull非許容参照型に対応
+            // Itemがnullではないことを確認し、ItemのToString()の結果を使用
+            if (Item != null && Item.GetType().ToString() != Item.ToString())
+            {
+                itemInformation += $", {Item.ToString()}";
+            }
+
+            return itemInformation;
+        }
+
         public override VirtualNode DeepClone()
         {
             T clonedItem = Item;

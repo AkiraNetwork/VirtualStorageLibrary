@@ -25,6 +25,29 @@ namespace VirtualStorageLibrary.Test
             _readOnlyDataCache = new(_data);
         }
 
+        public override string ToString()
+        {
+            const int maxDisplayLength = 4;
+            string hex = "[";
+            // ループをデータの長さと4の小さい方で回す
+            int loopLength = Math.Min(_data.Length, maxDisplayLength);
+            for (int i = 0; i < loopLength; i++)
+            {
+                hex += _data[i].ToString("X2");
+                if (i < loopLength - 1)
+                {
+                    hex += ", ";
+                }
+            }
+            if (_data.Length > maxDisplayLength)
+            {
+                hex += "...";
+            }
+            hex += "]";
+
+            return hex;
+        }
+
         public ReadOnlyCollection<byte> Data
         {
             get
