@@ -57,7 +57,7 @@ namespace VirtualStorageLibrary.Test
             }
         }
 
-        public int Count => _data.Length;
+        public int Length => _data.Length;
 
         public bool IsReadOnly => false;
 
