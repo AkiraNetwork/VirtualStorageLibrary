@@ -398,12 +398,19 @@
 
         public string ConvertToAbsolutePath(string relativePath, string? basePath = null)
         {
+            // relativePathが空文字列の場合、ArgumentExceptionをスロー
             if (relativePath == "")
             {
                 throw new ArgumentException("relativePathが空です。", nameof(relativePath));
             }
 
-            // basePathが空文字列の場合もArgumentExceptionをスロー
+            // relativePathが既に絶対パスである場合は、そのまま使用
+            if (relativePath.StartsWith("/"))
+            {
+                return VirtualPath.NormalizePath(relativePath);
+            }
+
+            // basePathが空文字列の場合、ArgumentExceptionをスロー
             if (basePath == "")
             {
                 throw new ArgumentException("basePathが空です。", nameof(basePath));
@@ -412,18 +419,9 @@
             // basePathがnullまたは空文字列でない場合はその値を使用し、そうでなければCurrentPathを使用
             string effectiveBasePath = basePath ?? CurrentPath;
 
-            string absolutePath;
-            if (relativePath.StartsWith("/"))
-            {
-                // relativePathが既に絶対パスである場合は、そのまま使用
-                absolutePath = VirtualPath.NormalizePath(relativePath);
-            }
-            else
-            {
-                // relativePathをeffectiveBasePathに基づいて絶対パスに変換
-                var combinedPath = VirtualPath.Combine(effectiveBasePath, relativePath);
-                absolutePath = VirtualPath.NormalizePath(combinedPath);
-            }
+            // relativePathをeffectiveBasePathに基づいて絶対パスに変換
+            var combinedPath = VirtualPath.Combine(effectiveBasePath, relativePath);
+            string absolutePath = VirtualPath.NormalizePath(combinedPath);
 
             return absolutePath;
         }
@@ -531,7 +529,7 @@
             }
         }
 
-        public VirtualNode GetNode(string path)
+        public VirtualNode GetNode(string path, bool followLinks = false)
         {
             string absolutePath = ConvertToAbsolutePath(path);
 
@@ -542,16 +540,42 @@
 
             string[] nodeNameList = absolutePath.Split('/');
             VirtualNode node = _root;
+            int index = 0;
+            string currentPath = ""; // 現在のパスを追跡
 
-            foreach (var nodeName in nodeNameList)
+            while (index < nodeNameList.Length)
             {
-                if (nodeName != "")
+                string nodeName = nodeNameList[index];
+                if (!string.IsNullOrEmpty(nodeName))
                 {
                     if (node is VirtualDirectory directory)
                     {
-                        node = directory.Get(nodeName);
+                        if (!directory.NodeExists(nodeName))
+                        {
+                            throw new VirtualNodeNotFoundException($"Node '{nodeName}' does not exist.");
+                        }
+                        node = directory[nodeName];
+                    }
+                    else
+                    {
+                        break; // ディレクトリでない場合、この時点で処理を終了
+                    }
+
+                    if (followLinks && node is VirtualSymbolicLink symlink)
+                    {
+                        string symlinkTargetPath = ConvertToAbsolutePath(symlink.TargetPath, currentPath); // 相対パスを絶対パスに変換
+                        string[] targetPathList = symlinkTargetPath.Split('/');
+                        nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToArray();
+                        index = -1; // indexをリセットし、次のループで0から開始
+                        node = _root; // シンボリックリンクの解析を_rootから再開
+                        currentPath = ""; // 現在のパスもリセット
+                    }
+                    else
+                    {
+                        currentPath = currentPath + "/" + nodeName; // 現在のパスを更新
                     }
                 }
+                index++;
             }
 
             return node;

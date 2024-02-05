@@ -1340,6 +1340,121 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void GetNode_FollowsSymbolicLink_WhenFollowLinksIsTrue()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory("/dir");
+            storage.AddItem("/dir/item", "TestItem");
+            storage.AddSymbolicLink("/link", "/dir/item");
+
+            // Act
+            var node = storage.GetNode("/link", true);
+
+            // Assert
+            Assert.IsInstanceOfType(node, typeof(VirtualItem<string>));
+            var item = node as VirtualItem<string>;
+            Assert.IsNotNull(item);
+            Assert.AreEqual("TestItem", item.Item);
+        }
+
+        [TestMethod]
+        public void GetNode_ReturnsSymbolicLink_WhenFollowLinksIsFalse()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory("/dir");
+            storage.AddItem("/dir/item", "TestItem");
+            storage.AddSymbolicLink("/link", "/dir/item");
+
+            // Act
+            var node = storage.GetNode("/link", false);
+
+            // Assert
+            Assert.IsInstanceOfType(node, typeof(VirtualSymbolicLink));
+            var link = node as VirtualSymbolicLink;
+            Assert.IsNotNull(link);
+            Assert.AreEqual("/dir/item", link.TargetPath);
+        }
+
+        [TestMethod]
+        public void GetNode_ThrowsWhenSymbolicLinkIsBroken()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddSymbolicLink("/brokenLink", "/nonexistent/item");
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.GetNode("/brokenLink", true));
+        }
+
+        [TestMethod]
+        public void GetNode_StopsAtNonDirectoryNode()
+        {
+            // Arrange: 仮想ストレージにディレクトリとアイテムをセットアップ
+            var storage = new VirtualStorage();
+            storage.AddDirectory("/dir");
+            storage.AddItem("/dir/item", "TestItem");
+            // /dir/item はディレクトリではない
+
+            // Act: ディレクトリではないノードの後ろに更にパスが続く場合の挙動をテスト
+            var resultNode = storage.GetNode("/dir/item/more", false);
+
+            // Assert: パスの解析は /dir/item で停止し、それ以降は無視されるべき
+            Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
+            var item = resultNode as VirtualItem<string>;
+            Assert.IsNotNull(item);
+            Assert.AreEqual("TestItem", item.Item);
+        }
+
+        [TestMethod]
+        public void GetNode_FollowsMultipleSymbolicLinksToReachAnItem()
+        {
+            // Arrange: 仮想ストレージと複数のディレクトリ、シンボリックリンクをセットアップ
+            var storage = new VirtualStorage();
+            storage.AddDirectory("/dir1");
+            storage.AddDirectory("/dir1/dir2");
+            storage.AddItem("/dir1/dir2/item", "FinalItem");
+
+            // 最初のシンボリックリンクを /dir1 に追加し、/dir1/dir2 を指す
+            storage.AddSymbolicLink("/dir1/link1", "/dir1/dir2");
+
+            // 2番目のシンボリックリンクを /dir1/dir2 に追加し、/dir1/dir2/item を指す
+            storage.AddSymbolicLink("/dir1/dir2/link2", "/dir1/dir2/item");
+
+            // Act: 複数のシンボリックリンクを透過的に辿る
+            var resultNode = storage.GetNode("/dir1/link1/link2", true);
+
+            // Assert: 結果が VirtualItem<string> 型で、期待したアイテムを持っていることを確認
+            Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
+            var item = resultNode as VirtualItem<string>;
+            Assert.IsNotNull(item);
+            Assert.AreEqual("FinalItem", item.Item);
+        }
+
+        [TestMethod]
+        public void GetNode_ResolvesRelativePathSymbolicLink()
+        {
+            // Arrange: 仮想ストレージとディレクトリ、アイテム、相対パスのシンボリックリンクをセットアップ
+            var storage = new VirtualStorage();
+            storage.AddDirectory("/dir1");
+            storage.AddDirectory("/dir1/dir2");
+            storage.AddItem("/dir1/dir2/item", "RelativeItem");
+
+            // 相対パスでシンボリックリンクを追加。ここでは、/dir1から/dir1/dir2への相対パスリンクを作成
+            storage.AddSymbolicLink("/dir1/relativeLink", "dir2/item");
+
+            // Act: 相対パスのシンボリックリンクを透過的に辿る
+            var resultNode = storage.GetNode("/dir1/relativeLink", true);
+
+            // Assert: 結果が VirtualItem<string> 型で、期待したアイテムを持っていることを確認
+            Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
+            var item = resultNode as VirtualItem<string>;
+            Assert.IsNotNull(item);
+            Assert.AreEqual("RelativeItem", item.Item);
+        }
+
+        [TestMethod]
         public void GetDirectory_WhenDirectoryExists_ReturnsDirectory()
         {
             // Arrange
