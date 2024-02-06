@@ -1553,6 +1553,66 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void GetNode_ResolvesSymbolicLinkWithCurrentDirectoryReference_Correctly()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory("/Test");
+            storage.ChangeDirectory("/Test");
+            storage.AddSymbolicLink("LinkToCurrent", ".");
+
+            // Act
+            var node = storage.GetNode("LinkToCurrent", true);
+
+            // Assert
+            Assert.IsTrue(node is VirtualDirectory);
+            var directory = node as VirtualDirectory;
+            Assert.AreEqual("Test", directory?.Name);
+        }
+
+        [TestMethod]
+        public void GetNode_ResolvesSymbolicLinkWithParentDirectoryReference_Correctly()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory("/Parent/Child", true);
+            storage.ChangeDirectory("/Parent/Child");
+            storage.AddSymbolicLink("LinkToParent", "..");
+
+            // Act
+            var node = storage.GetNode("LinkToParent", true);
+
+            // Assert
+            Assert.IsTrue(node is VirtualDirectory);
+            var directory = node as VirtualDirectory;
+            Assert.AreEqual("Parent", directory?.Name);
+        }
+
+        [TestMethod]
+        public void GetNode_ComplexSymbolicLinkIncludingDotAndDotDot()
+        {
+            // テスト用の仮想ストレージとディレクトリ構造を準備
+            var storage = new VirtualStorage();
+            // 複数レベルのサブディレクトリを一度に作成
+            storage.AddDirectory("/dir/subdir/anotherdir", true);
+            storage.AddDirectory("/dir/subdir/siblingdir", true); // 隣接するディレクトリを追加
+            storage.AddItem("/dir/subdir/siblingdir/item", "complex item in siblingdir");
+
+            // シンボリックリンクを作成
+            // "/dir/subdir/link" が "./anotherdir/../siblingdir/./item" を指し、隣接するディレクトリ内のアイテムへの複合的なパスを使用
+            storage.AddSymbolicLink("/dir/subdir/link", "./anotherdir/../siblingdir/./item");
+
+            // シンボリックリンクを通じてアイテムにアクセス
+            var resultNode = storage.GetNode("/dir/subdir/link", true);
+
+            // 検証：リンクを通じて正しいアイテムにアクセスできること
+            Assert.IsNotNull(resultNode);
+            Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
+            var item = resultNode as VirtualItem<string>;
+            Assert.AreEqual("complex item in siblingdir", item.Item);
+        }
+
+        [TestMethod]
         public void GetDirectory_WhenDirectoryExists_ReturnsDirectory()
         {
             // Arrange
