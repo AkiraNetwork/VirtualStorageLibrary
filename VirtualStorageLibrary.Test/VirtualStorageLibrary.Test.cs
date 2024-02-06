@@ -417,6 +417,21 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(link.CreatedDate, clone.CreatedDate);
             Assert.AreEqual(link.UpdatedDate, clone.UpdatedDate);
         }
+
+        [TestMethod]
+        public void VirtualSymbolicLink_ToString_ReturnsCorrectFormat()
+        {
+            // Arrange
+            var symbolicLink = new VirtualSymbolicLink("LinkToRoot", "/");
+
+            // Act
+            var result = symbolicLink.ToString();
+            Debug.WriteLine(result);
+            Console.WriteLine(result);
+
+            // Assert
+            Assert.AreEqual("Symbolic Link: LinkToRoot -> /", result);
+        }
     }
 
     [TestClass]
@@ -1125,6 +1140,23 @@ namespace VirtualStorageLibrary.Test
                 var node = directory["Node1"];
             });
             CollectionAssert.Contains(nodes.ToList(), directory["Node2"]);
+        }
+
+        [TestMethod]
+        public void VirtualDirectory_ToString_ReturnsCorrectFormat()
+        {
+            // Arrange
+            var directory = new VirtualDirectory("TestDirectory");
+            directory.AddDirectory("SubDirectory1");
+            directory.AddItem("Item1", "Some data");
+            directory.AddSymbolicLink("Link1", "/Item1", false);
+
+            // Act
+            var result = directory.ToString();
+            Debug.WriteLine(result);
+
+            // Assert
+            Assert.AreEqual("Directory: TestDirectory, Count: 3 (1 directories, 2 items)", result);
         }
     }
 

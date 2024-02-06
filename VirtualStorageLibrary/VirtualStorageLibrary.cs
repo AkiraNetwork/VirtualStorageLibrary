@@ -190,6 +190,12 @@
             TargetPath = targetPath;
         }
 
+        public override string ToString()
+        {
+            // シンボリックリンクの名前と、リンク先のパスを返します。
+            return $"Symbolic Link: {Name} -> {TargetPath}";
+        }
+
         public override VirtualNode DeepClone()
         {
             return new VirtualSymbolicLink(Name, TargetPath, CreatedDate, UpdatedDate);
@@ -247,6 +253,10 @@
 
         public int Count => _nodes.Count;
 
+        public int DirectoryCount => _nodes.Values.OfType<VirtualDirectory>().Count();
+
+        public int ItemCount => _nodes.Values.Count(n => !(n is VirtualDirectory));
+
         public IEnumerable<string> NodeNames => _nodes.Keys;
 
         public IEnumerable<VirtualNode> Nodes => _nodes.Values;
@@ -271,6 +281,11 @@
         public VirtualDirectory(string name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             _nodes = new Dictionary<string, VirtualNode>();
+        }
+
+        public override string ToString()
+        {
+            return $"Directory: {Name}, Count: {Count} ({DirectoryCount} directories, {ItemCount} items)";
         }
 
         public override VirtualNode DeepClone()
