@@ -1609,7 +1609,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(resultNode);
             Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
             var item = resultNode as VirtualItem<string>;
-            Assert.AreEqual("complex item in siblingdir", item.Item);
+            Assert.AreEqual("complex item in siblingdir", item?.Item);
         }
 
         [TestMethod]
