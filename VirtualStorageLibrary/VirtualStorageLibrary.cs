@@ -39,7 +39,7 @@
         T DeepClone();
     }
 
-    public static class VirtualPath
+    public static class VirtualPathOld
     {
         public static string NormalizePath(string path)
         {
@@ -459,7 +459,7 @@
             string effectiveBasePath = basePath ?? CurrentPath;
 
             // relativePathをeffectiveBasePathに基づいて絶対パスに変換
-            var absolutePath = VirtualPath.Combine(effectiveBasePath, relativePath);
+            var absolutePath = VirtualPathOld.Combine(effectiveBasePath, relativePath);
 
             return absolutePath;
         }
@@ -486,7 +486,7 @@
 
             // シンボリックリンクの作成または上書き
             var symbolicLink = new VirtualSymbolicLink(Path.GetFileName(absoluteLinkPath), targetPath);
-            var parentPath = VirtualPath.GetParentPath(absoluteLinkPath);
+            var parentPath = VirtualPathOld.GetParentPath(absoluteLinkPath);
             var parentNode = TryGetNode(parentPath) as VirtualDirectory;
 
             if (parentNode == null)
@@ -503,8 +503,8 @@
             string absolutePath = ConvertToAbsolutePath(path);
 
             // ディレクトリパスとアイテム名を分離
-            string directoryPath = VirtualPath.GetDirectoryPath(absolutePath);
-            string itemName = VirtualPath.GetNodeName(absolutePath);
+            string directoryPath = VirtualPathOld.GetDirectoryPath(absolutePath);
+            string itemName = VirtualPathOld.GetNodeName(absolutePath);
 
             // 対象ディレクトリの存在チェック
             if (!DirectoryExists(directoryPath))
@@ -525,7 +525,7 @@
                 else
                 {
                     // 上書き対象がアイテムであることを確認
-                    if (!ItemExists(VirtualPath.Combine(directoryPath, itemName)))
+                    if (!ItemExists(VirtualPathOld.Combine(directoryPath, itemName)))
                     {
                         throw new InvalidOperationException($"'{itemName}' はアイテム以外のノードです。アイテムの上書きはできません。");
                     }
@@ -672,12 +672,12 @@
                 {
                     if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Directory)
                     {
-                        yield return selector(subdirectory, VirtualPath.Combine(basePath, subdirectory.Name));
+                        yield return selector(subdirectory, VirtualPathOld.Combine(basePath, subdirectory.Name));
                     }
 
                     if (recursive)
                     {
-                        var subdirectoryPath = VirtualPath.Combine(basePath, subdirectory.Name);
+                        var subdirectoryPath = VirtualPathOld.Combine(basePath, subdirectory.Name);
                         foreach (var subNode in GetNodesInternal(subdirectoryPath, nodeType, recursive, selector))
                         {
                             yield return subNode;
@@ -686,7 +686,7 @@
                 }
                 else if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Item)
                 {
-                    yield return selector(node, VirtualPath.Combine(basePath, node.Name));
+                    yield return selector(node, VirtualPathOld.Combine(basePath, node.Name));
                 }
             }
         }
@@ -745,12 +745,12 @@
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = VirtualPath.GetNodeName(absoluteSourcePath);
+                newNodeName = VirtualPathOld.GetNodeName(absoluteSourcePath);
             }
             else
             {
-                targetDirectoryPath = VirtualPath.GetParentPath(absoluteDestinationPath);
-                newNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
+                targetDirectoryPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
+                newNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
             }
 
             // コピー先ディレクトリが存在しない場合、新しいディレクトリとして扱う
@@ -773,8 +773,8 @@
             {
                 foreach (var subNode in sourceDirectory.Nodes)
                 {
-                    string newSubSourcePath = VirtualPath.Combine(absoluteSourcePath, subNode.Name);
-                    string newSubDestinationPath = VirtualPath.Combine(absoluteDestinationPath, subNode.Name);
+                    string newSubSourcePath = VirtualPathOld.Combine(absoluteSourcePath, subNode.Name);
+                    string newSubDestinationPath = VirtualPathOld.Combine(absoluteDestinationPath, subNode.Name);
                     CheckCopyPreconditions(newSubSourcePath, newSubDestinationPath, overwrite, true);
                 }
             }
@@ -796,12 +796,12 @@
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = VirtualPath.GetNodeName(absoluteSourcePath);
+                newNodeName = VirtualPathOld.GetNodeName(absoluteSourcePath);
             }
             else
             {
-                targetDirectoryPath = VirtualPath.GetParentPath(absoluteDestinationPath);
-                newNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
+                targetDirectoryPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
+                newNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
             }
 
             // コピー先ディレクトリが存在しない場合は例外をスロー
@@ -827,9 +827,9 @@
                 {
                     foreach (var node in sourceDirectory.Nodes)
                     {
-                        string intermediatePath = VirtualPath.Combine(targetDirectoryPath, newNodeName);
-                        string newDestinationPath = VirtualPath.Combine(intermediatePath, node.Name);
-                        CopyNode(VirtualPath.Combine(absoluteSourcePath, node.Name), newDestinationPath, true, overwrite);
+                        string intermediatePath = VirtualPathOld.Combine(targetDirectoryPath, newNodeName);
+                        string newDestinationPath = VirtualPathOld.Combine(intermediatePath, node.Name);
+                        CopyNode(VirtualPathOld.Combine(absoluteSourcePath, node.Name), newDestinationPath, true, overwrite);
                     }
                 }
             }
@@ -854,7 +854,7 @@
             VirtualNode node = GetNode(absolutePath);
 
             // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
-            string parentPath = VirtualPath.GetParentPath(absolutePath);
+            string parentPath = VirtualPathOld.GetParentPath(absolutePath);
             VirtualDirectory parentDirectory = GetDirectory(parentPath);
 
             if (node is VirtualDirectory directory)
@@ -870,7 +870,7 @@
                 // スナップショットを反復処理して、各ノードを削除
                 foreach (var subNode in nodesSnapshot)
                 {
-                    string subPath = VirtualPath.Combine(absolutePath, subNode.Name);
+                    string subPath = VirtualPathOld.Combine(absolutePath, subNode.Name);
                     RemoveNode(subPath, recursive);
                 }
 
@@ -974,7 +974,7 @@
                         throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceDirectory.Name}' が存在します。");
                     }
                     destinationDirectory.Add(sourceDirectory);
-                    VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteSourcePath));
+                    VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
                     sourceParentDirectory.Remove(sourceDirectory.Name);
                 }
                 else
@@ -984,20 +984,20 @@
                     // 移動先の存在チェック
                     if (!NodeExists(absoluteDestinationPath))
                     {
-                        string destinationParentPath = VirtualPath.GetParentPath(absoluteDestinationPath);
+                        string destinationParentPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
                         if (!DirectoryExists(destinationParentPath))
                         {
                             // 移動先の親ディレクトリが存在しない場合
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        string destinationNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
+                        string destinationNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
                         VirtualDirectory sourceDirectory = GetDirectory(absoluteSourcePath);
 
                         string oldNodeName = sourceDirectory.Name;
                         sourceDirectory.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceDirectory);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteSourcePath));
+                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
                         sourceParentDirectory.Remove(oldNodeName);
                     }
                     else
@@ -1037,7 +1037,7 @@
                         }
                     }
                     destinationDirectory.Add(sourceNode);
-                    VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteSourcePath));
+                    VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
                     sourceParentDirectory.Remove(sourceNode.Name);
                 }
                 else
@@ -1047,28 +1047,28 @@
                     // 移動先の存在チェック
                     if (!NodeExists(absoluteDestinationPath))
                     {
-                        string destinationParentPath = VirtualPath.GetParentPath(absoluteDestinationPath);
+                        string destinationParentPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
                         if (!DirectoryExists(destinationParentPath))
                         {
                             // 移動先の親ディレクトリが存在しない場合
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        string destinationNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
+                        string destinationNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
                         string oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteSourcePath));
+                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
                         sourceParentDirectory.Remove(oldNodeName);
                     }
                     else
                     {
                         // 存在する場合
 
-                        VirtualDirectory destinationParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteDestinationPath));
-                        string destinationNodeName = VirtualPath.GetNodeName(absoluteDestinationPath);
+                        VirtualDirectory destinationParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteDestinationPath));
+                        string destinationNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
                         // 移動先ディレクトリの同名チェック
@@ -1092,7 +1092,7 @@
                         string oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPath.GetParentPath(absoluteSourcePath));
+                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
                         sourceParentDirectory.Remove(oldNodeName);
                     }
                 }
