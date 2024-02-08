@@ -144,8 +144,6 @@
 
         public static string GetParentPath(string path)
         {
-            path = NormalizePath(path);
-
             // パスの最後の '/' を取り除きます
             string trimmedPath = path.TrimEnd('/');
             // パスを '/' で分割します
@@ -448,7 +446,7 @@
             // relativePathが既に絶対パスである場合は、そのまま使用
             if (relativePath.StartsWith("/"))
             {
-                return VirtualPath.NormalizePath(relativePath);
+                return relativePath;
             }
 
             // basePathが空文字列の場合、ArgumentExceptionをスロー
@@ -461,8 +459,7 @@
             string effectiveBasePath = basePath ?? CurrentPath;
 
             // relativePathをeffectiveBasePathに基づいて絶対パスに変換
-            var combinedPath = VirtualPath.Combine(effectiveBasePath, relativePath);
-            string absolutePath = VirtualPath.NormalizePath(combinedPath);
+            var absolutePath = VirtualPath.Combine(effectiveBasePath, relativePath);
 
             return absolutePath;
         }
