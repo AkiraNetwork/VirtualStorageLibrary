@@ -1,4 +1,6 @@
-﻿namespace VirtualStorageLibrary
+﻿using System.Text;
+
+namespace VirtualStorageLibrary
 {
     public enum VirtualNodeType
     {
@@ -44,6 +46,8 @@
         private readonly string _path;
 
         public string Path => _path;
+
+        public override string ToString() => _path;
 
         public override int GetHashCode() => _path.GetHashCode();
 
@@ -129,17 +133,91 @@
                 return new VirtualPath(_path.Substring(0, lastSlashIndex));
             }
         }
+        
+        public VirtualPath GetNodeName()
+        {
+            if (_path == "/")
+            {
+                //　ルートの場合は、ルートディレクトリを示す '/' を返す
+                return new VirtualPath("/");
+            }
 
+            int lastSlashIndex = _path.LastIndexOf('/');
+            if (lastSlashIndex >= 0)
+            {
+                // フルパスから最後の '/' より後の部分を抜き出して返す
+                return new VirtualPath(_path.Substring(lastSlashIndex + 1));
+            }
+            else
+            {
+                // '/' が見つからない場合は、そのままのパスを返す
+                return this;
+            }
+        }
 
+        public VirtualPath Combine(params string[] paths)
+        {
+            // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
+            var newPathBuilder = new StringBuilder(_path);
 
+            foreach (var path in paths)
+            {
+                // 区切り文字"/"を無条件で追加
+                newPathBuilder.Append("/");
+                // 新しいパスコンポーネントを追加
+                newPathBuilder.Append(path);
+            }
 
+            // StringBuilderの内容を文字列に変換
+            var combinedPath = newPathBuilder.ToString();
 
+            // "/"がダブっている箇所を解消
+            var normalizedPath = combinedPath.Replace("//", "/");
 
+            // 結果が"/"だったら空文字列に変換
+            normalizedPath = (normalizedPath == "/")? string.Empty : normalizedPath;
 
+            // 末尾の "/" を取り除く
+            if (normalizedPath.EndsWith("/"))
+            {
+                normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
+            }
+
+            // 結合されたパスで新しいVirtualPathインスタンスを生成
+            return new VirtualPath(normalizedPath);
+        }
+
+        public VirtualPath GetParentPath()
+        {
+            // パスの最後の '/' を取り除きます
+            string trimmedPath = _path.TrimEnd('/');
+            // パスを '/' で分割します
+            string[] pathParts = trimmedPath.Split('/');
+            // 最後の部分を除去します
+            string[] parentPathParts = pathParts.Take(pathParts.Length - 1).ToArray();
+            // パスを再構築します
+            string parentPath = string.Join("/", parentPathParts);
+
+            // パスが空になった場合は、ルートを返します
+            if (string.IsNullOrEmpty(parentPath))
+            {
+                return new VirtualPath("/");
+            }
+
+            return new VirtualPath(parentPath);
+        }
+
+        public LinkedList<string> GetPartsLinkedList()
+        {
+            return new LinkedList<string>(_path.Split('/', StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        public List<string> GetPartsList()
+        {
+            return _path.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
 
     }
-
-
 
     public static class VirtualPathOld
     {
@@ -671,61 +749,78 @@
 
         public NodeResolutionResult GetNodeInternal(string path, bool followLinks)
         {
-            string absolutePath = ConvertToAbsolutePath(path);
+            LinkedList<VirtualNode> nodeLinkedList = new LinkedList<VirtualNode>();
+            VirtualPath absolutePath = new VirtualPath(ConvertToAbsolutePath(path));
 
-            if (absolutePath == "/")
+            if (absolutePath.Path == "/")
             {
                 return new NodeResolutionResult(_root, "/");
             }
 
-            string[] nodeNameList = absolutePath.Split('/');
-            VirtualNode node = _root;
+            List<string> nodeNameList = absolutePath.GetPartsList();
+            nodeLinkedList.AddLast(_root);
             int index = 0;
-            string currentPath = ""; // 現在のパスを追跡
-            string resolvedPath = "/"; // 解決後のフルパスを組み立てるための変数
+            VirtualPath currentPath = new VirtualPath(""); // 現在のパスを追跡
+            VirtualPath resolvedPath = new VirtualPath("/"); // 解決後のフルパスを組み立てるための変数
 
-            while (index < nodeNameList.Length)
+            while (index < nodeNameList.Count)
             {
                 string nodeName = nodeNameList[index];
-                if (!string.IsNullOrEmpty(nodeName))
+
+                if (nodeName == ".")
                 {
-                    if (node is VirtualDirectory directory)
+                    // 現在のディレクトリを示す場合、何もせず次のノードへ
+                }
+                else if (nodeName == "..")
+                {
+                    // 親ディレクトリを示す場合、現在のディレクトリを一つ上のディレクトリに変更
+                    currentPath = currentPath.GetParentPath();
+                    if (nodeLinkedList.Count > 1)
+                    {
+                        nodeLinkedList.RemoveLast();
+                    }
+                }
+                else
+                {
+                    if (nodeLinkedList.Last!.Value is VirtualDirectory directory)
                     {
                         if (!directory.NodeExists(nodeName))
                         {
                             throw new VirtualNodeNotFoundException($"Node '{nodeName}' does not exist.");
                         }
-                        node = directory[nodeName];
+                        nodeLinkedList.AddLast(directory[nodeName]);
                     }
                     else
                     {
                         break; // ディレクトリでない場合、この時点で処理を終了
                     }
 
-                    if (followLinks && node is VirtualSymbolicLink symlink)
+                    if (followLinks && nodeLinkedList.Last.Value is VirtualSymbolicLink symlink)
                     {
-                        string symlinkTargetPath = ConvertToAbsolutePath(symlink.TargetPath, currentPath); // 相対パスを絶対パスに変換
-                        string[] targetPathList = symlinkTargetPath.Split('/');
-                        nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToArray();
+                        VirtualPath symlinkTargetPath = new VirtualPath(ConvertToAbsolutePath(symlink.TargetPath, currentPath.Path));
+                        List<string> targetPathList = symlinkTargetPath.GetPartsList();
+                        nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToList();
                         index = -1; // indexをリセットし、次のループで0から開始
-                        node = _root; // シンボリックリンクの解析を_rootから再開
-                        currentPath = ""; // 現在のパスもリセット
+                        nodeLinkedList.Clear(); // ノードリストをリセット
+                        nodeLinkedList.AddLast(_root); // ルートノードを追加
+                        currentPath = new VirtualPath(""); // 現在のパスもリセット
                         resolvedPath = symlinkTargetPath; // 解決後のパスを更新
                     }
                     else
                     {
-                        currentPath = currentPath + "/" + nodeName; // 現在のパスを更新
-                        if (index == nodeNameList.Length - 1)
+                        currentPath = currentPath.Combine(nodeName);
+                        if (index == nodeNameList.Count - 1)
                         {
                             // ノードリストの最後の要素でシンボリックリンクでない場合、resolvedPathを更新
                             resolvedPath = currentPath;
                         }
                     }
                 }
+
                 index++;
             }
 
-            return new NodeResolutionResult(node, resolvedPath);
+            return new NodeResolutionResult(nodeLinkedList.Last!.Value, resolvedPath.Path);
         }
 
         public VirtualNode GetNode(string path, bool followLinks = false)

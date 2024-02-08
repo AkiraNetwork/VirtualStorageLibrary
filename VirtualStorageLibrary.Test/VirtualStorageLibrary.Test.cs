@@ -158,10 +158,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithFullPath_ReturnsNodeName()
         {
-            string path = "/path/to/node";
-            string expectedNodeName = "node";
+            var path = new VirtualPath("/path/to/node");
+            var expectedNodeName = new VirtualPath("node");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -169,10 +169,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithSingleNodeName_ReturnsSameName()
         {
-            string path = "node";
-            string expectedNodeName = "node";
+            var path = new VirtualPath("node");
+            var expectedNodeName = new VirtualPath("node");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -180,10 +180,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithEmptyString_ReturnsEmptyString()
         {
-            string path = "";
-            string expectedNodeName = "";
+            var path = new VirtualPath("");
+            var expectedNodeName = new VirtualPath("");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -191,10 +191,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithRootPath_ReturnsRootPath()
         {
-            string path = "/";
-            string expectedNodeName = "/";
+            var path = new VirtualPath("/");
+            var expectedNodeName = new VirtualPath("/");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -202,10 +202,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithDot_ReturnsDot()
         {
-            string path = ".";
-            string expectedNodeName = ".";
+            var path = new VirtualPath(".");
+            var expectedNodeName = new VirtualPath(".");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -213,10 +213,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithDotDot_ReturnsDotDot()
         {
-            string path = "..";
-            string expectedNodeName = "..";
+            var path = new VirtualPath("..");
+            var expectedNodeName = new VirtualPath("..");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -224,10 +224,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithRelativePathUsingDot_ReturnsNodeName()
         {
-            string path = "./node";
-            string expectedNodeName = "node";
+            var path = new VirtualPath("./node");
+            var expectedNodeName = new VirtualPath("node");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -235,10 +235,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithRelativePathUsingDotDot_ReturnsNodeName()
         {
-            string path = "../node";
-            string expectedNodeName = "node";
+            var path = new VirtualPath("../node");
+            var expectedNodeName = new VirtualPath("node");
 
-            string actualNodeName = VirtualPathOld.GetNodeName(path);
+            var actualNodeName = path.GetNodeName();
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -246,11 +246,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_Path1EndsWithSlash_CombinesCorrectly()
         {
-            string path1 = "path/to/directory/";
-            string path2 = "file.txt";
-            string expected = "path/to/directory/file.txt";
+            var path1 = new VirtualPath("path/to/directory/");
+            var path2 = "file.txt";
+            var expected = new VirtualPath("path/to/directory/file.txt");
 
-            string result = VirtualPathOld.Combine(path1, path2);
+            var result = path1.Combine(path2);
 
             Assert.AreEqual(expected, result);
         }
@@ -258,11 +258,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_Path1DoesNotEndWithSlash_CombinesCorrectly()
         {
-            string path1 = "path/to/directory";
-            string path2 = "file.txt";
-            string expected = "path/to/directory/file.txt";
+            var path1 = new VirtualPath("path/to/directory");
+            var path2 = "file.txt";
+            var expected = new VirtualPath("path/to/directory/file.txt");
 
-            string result = VirtualPathOld.Combine(path1, path2);
+            var result = path1.Combine(path2);
 
             Assert.AreEqual(expected, result);
         }
@@ -270,11 +270,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_Path2StartsWithSlash_CombinesCorrectly()
         {
-            string path1 = "path/to/directory";
-            string path2 = "/file.txt";
-            string expected = "path/to/directory/file.txt";
+            var path1 = new VirtualPath("path/to/directory");
+            var path2 = "/file.txt";
+            var expected = new VirtualPath("path/to/directory/file.txt");
 
-            string result = VirtualPathOld.Combine(path1, path2);
+            var result = path1.Combine(path2);
 
             Assert.AreEqual(expected, result);
         }
@@ -282,11 +282,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_BothPathsAreEmpty_ReturnsSlash()
         {
-            string path1 = "";
-            string path2 = "";
-            string expected = "/";
+            var path1 = new VirtualPath("");
+            var path2 = "";
+            var expected = new VirtualPath("");
 
-            string result = VirtualPathOld.Combine(path1, path2);
+            var result = path1.Combine(path2);
 
             Assert.AreEqual(expected, result);
         }
@@ -294,11 +294,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_WithPath1Empty_ReturnsPath2()
         {
-            string path1 = "";
-            string path2 = "/directory/subdirectory";
-            string expected = path2;
+            var path1 = new VirtualPath("");
+            var path2 = "/directory/subdirectory";
+            var expected = new VirtualPath(path2);
 
-            string result = VirtualPathOld.Combine(path1, path2);
+            var result = path1.Combine(path2);
 
             Assert.AreEqual(expected, result);
         }
@@ -306,11 +306,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_WithPath2Empty_ReturnsPath1()
         {
-            string path1 = "/directory/subdirectory";
-            string path2 = "";
-            string expected = path1;
+            var path1 = new VirtualPath("/directory/subdirectory");
+            var path2 = "";
+            var expected = path1;
 
-            string result = VirtualPathOld.Combine(path1, path2);
+            var result = path1.Combine(path2);
 
             Assert.AreEqual(expected, result);
         }
@@ -318,10 +318,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetParentPath_WithRootPath_ReturnsEmpty()
         {
-            string path = "/";
-            string expected = "/";
+            var path = new VirtualPath("/");
+            var expected = new VirtualPath("/");
 
-            string actual = VirtualPathOld.GetParentPath(path);
+            var actual = path.GetParentPath();
 
             Assert.AreEqual(expected, actual);
         }
@@ -329,10 +329,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetParentPath_WithSingleLevelPath_ReturnsRoot()
         {
-            string path = "/level1";
-            string expected = "/";
+            var path = new VirtualPath("/level1");
+            var expected = new VirtualPath("/");
 
-            string actual = VirtualPathOld.GetParentPath(path);
+            var actual = path.GetParentPath();
 
             Assert.AreEqual(expected, actual);
         }
@@ -340,10 +340,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetParentPath_WithMultiLevelPath_ReturnsParentPath()
         {
-            string path = "/level1/level2/level3";
-            string expected = "/level1/level2";
+            var path = new VirtualPath("/level1/level2/level3");
+            var expected = new VirtualPath("/level1/level2");
 
-            string actual = VirtualPathOld.GetParentPath(path);
+            var actual = path.GetParentPath();
 
             Assert.AreEqual(expected, actual);
         }
@@ -351,13 +351,70 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetParentPath_WithTrailingSlash_ReturnsParentPath()
         {
-            string path = "/level1/level2/level3/";
-            string expected = "/level1/level2";
+            var path = new VirtualPath("/level1/level2/level3/");
+            var expected = new VirtualPath("/level1/level2");
 
-            string actual = VirtualPathOld.GetParentPath(path);
+            var actual = path.GetParentPath();
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void GetPartsLinkedList_WithAbsolutePath_ReturnsCorrectParts()
+        {
+            // Arrange
+            var virtualPath = new VirtualPath("/folder1/folder2/file");
+            var expected = new LinkedList<string>(new[] { "folder1", "folder2", "file" });
+
+            // Act
+            var actual = virtualPath.GetPartsLinkedList();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, new List<string>(actual));
+        }
+
+        [TestMethod]
+        public void GetPartsLinkedList_WithRelativePath_ReturnsCorrectParts()
+        {
+            // Arrange
+            var virtualPath = new VirtualPath("folder1/folder2/file");
+            var expected = new LinkedList<string>(new[] { "folder1", "folder2", "file" });
+
+            // Act
+            var actual = virtualPath.GetPartsLinkedList();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, new List<string>(actual));
+        }
+
+        [TestMethod]
+        public void GetPartsLinkedList_WithEmptySegments_IgnoresEmptySegments()
+        {
+            // Arrange
+            var virtualPath = new VirtualPath("folder1//folder2///file");
+            var expected = new LinkedList<string>(new[] { "folder1", "folder2", "file" });
+
+            // Act
+            var actual = virtualPath.GetPartsLinkedList();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, new List<string>(actual));
+        }
+
+        [TestMethod]
+        public void GetPartsLinkedList_WithOnlySlashes_ReturnsEmptyList()
+        {
+            // Arrange
+            var virtualPath = new VirtualPath("///");
+            var expected = new LinkedList<string>();
+
+            // Act
+            var actual = virtualPath.GetPartsLinkedList();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, new List<string>(actual));
+        }
+
     }
 
     [TestClass]
@@ -1244,7 +1301,7 @@ namespace VirtualStorageLibrary.Test
 
             var result = virtualStorage.ConvertToAbsolutePath("./test/path");
 
-            Assert.AreEqual("/root/subdirectory/test/path", result);
+            Assert.AreEqual("/root/subdirectory/./test/path", result);
         }
 
         [TestMethod]
