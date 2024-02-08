@@ -1653,7 +1653,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir3");
             vs.AddItem("/dir3/item", "FinalItem");
             vs.AddSymbolicLink("/dir1/link1", "/dir2");
-            vs.AddSymbolicLink("/dir2", "/dir3");
+            vs.AddSymbolicLink("/dir2/link2", "/dir3");
 
             // メソッドを実行
             var resolvedPath = vs.GetLinkPath("/dir1/link1/link2/item");
