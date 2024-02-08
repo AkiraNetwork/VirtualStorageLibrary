@@ -1613,6 +1613,107 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void GetLinkPath_ReturnsResolvedPath_WhenPathIsSymbolicLink()
+        {
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/Documents");
+            vs.AddSymbolicLink("/LinkToDocuments", "/Documents");
+
+            // メソッドを実行
+            var resolvedPath = vs.GetLinkPath("/LinkToDocuments");
+
+            // 結果を検証
+            Assert.AreEqual("/Documents", resolvedPath);
+        }
+
+        [TestMethod]
+        public void GetLinkPath_ReturnsResolvedPath_WhenPathContainsTwoLinks()
+        {
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/FinalDestination");
+            vs.AddSymbolicLink("/FirstLink", "/SecondLink");
+            vs.AddSymbolicLink("/SecondLink", "/FinalDestination");
+
+            // メソッドを実行
+            var resolvedPath = vs.GetLinkPath("/FirstLink");
+
+            // 結果を検証
+            Assert.AreEqual("/FinalDestination", resolvedPath);
+        }
+
+        [TestMethod]
+        public void GetLinkPath_ReturnsResolvedPath_WhenPathSpansMultipleLinkLevels()
+        {
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddDirectory("/dir3");
+            vs.AddItem("/dir3/item", "FinalItem");
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
+            vs.AddSymbolicLink("/dir2", "/dir3");
+
+            // メソッドを実行
+            var resolvedPath = vs.GetLinkPath("/dir1/link1/link2/item");
+
+            // 結果を検証
+            Assert.AreEqual("/dir3/item", resolvedPath);
+        }
+
+        [TestMethod]
+        public void GetLinkPath_ReturnsResolvedPath_WhenPathIncludesSymbolicLink()
+        {
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1/dir2", true);
+            vs.AddItem("/dir1/dir2/item", "FinalItem");
+            vs.AddSymbolicLink("/dir1/linkToDir2", "/dir1/dir2");
+            vs.ChangeDirectory("/dir1");
+
+            // メソッドを実行
+            var resolvedPath = vs.GetLinkPath("linkToDir2/item");
+
+            // 結果を検証
+            Assert.AreEqual("/dir1/dir2/item", resolvedPath);
+        }
+
+        [TestMethod]
+        public void GetLinkPath_ResolvesPathCorrectly_WhenUsingDotWithSymbolicLink()
+        {
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1/subdir", true);
+            vs.AddItem("/dir1/subdir/item", "SubdirItem");
+            vs.AddSymbolicLink("/dir1/link", "/dir1/subdir");
+            vs.ChangeDirectory("/dir1");
+
+            // メソッドを実行
+            var resolvedPath = vs.GetLinkPath("./link/item");
+
+            // 結果を検証
+            Assert.AreEqual("/dir1/subdir/item", resolvedPath);
+        }
+
+        [TestMethod]
+        public void GetLinkPath_ResolvesPathCorrectly_WhenUsingDotDotInPathWithSymbolicLink()
+        {
+            // テストデータの設定
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1/dir2/dir3", true); // "/dir1/dir2/dir3"とその途中のディレクトリも作成
+            vs.AddItem("/dir1/item", "ItemInDir1"); // "/dir1"にアイテム"item"を追加
+            vs.AddSymbolicLink("/dir1/dir2/dir3/linkToDir2", "/dir1/dir2"); // "/dir1/dir2/dir3"に"/dir1/dir2"へのシンボリックリンク"linkToDir2"を作成
+            vs.ChangeDirectory("/dir1/dir2/dir3"); // 現在のディレクトリを"/dir1/dir2/dir3"に変更
+
+            // メソッドを実行
+            var resolvedPath = vs.GetLinkPath("linkToDir2/../item"); // "linkToDir2/../item"のパスを解決
+
+            // 結果を検証
+            Assert.AreEqual("/dir1/item", resolvedPath);
+        }
+
+        [TestMethod]
         public void GetDirectory_WhenDirectoryExists_ReturnsDirectory()
         {
             // Arrange

@@ -7,6 +7,18 @@
         Item
     }
 
+    public class NodeResolutionResult
+    {
+        public VirtualNode Node { get; set; }
+        public string ResolvedPath { get; set; }
+
+        public NodeResolutionResult(VirtualNode node, string resolvedPath)
+        {
+            Node = node;
+            ResolvedPath = resolvedPath;
+        }
+    }
+
     public class VirtualNodeNotFoundException : Exception
     {
         public VirtualNodeNotFoundException()
@@ -558,19 +570,20 @@
             }
         }
 
-        public VirtualNode GetNode(string path, bool followLinks = false)
+        public NodeResolutionResult GetNodeInternal(string path, bool followLinks)
         {
             string absolutePath = ConvertToAbsolutePath(path);
 
             if (absolutePath == "/")
             {
-                return _root;
+                return new NodeResolutionResult(_root, "/");
             }
 
             string[] nodeNameList = absolutePath.Split('/');
             VirtualNode node = _root;
             int index = 0;
             string currentPath = ""; // 現在のパスを追跡
+            string resolvedPath = "/"; // 解決後のフルパスを組み立てるための変数
 
             while (index < nodeNameList.Length)
             {
@@ -598,16 +611,34 @@
                         index = -1; // indexをリセットし、次のループで0から開始
                         node = _root; // シンボリックリンクの解析を_rootから再開
                         currentPath = ""; // 現在のパスもリセット
+                        resolvedPath = symlinkTargetPath; // 解決後のパスを更新
                     }
                     else
                     {
                         currentPath = currentPath + "/" + nodeName; // 現在のパスを更新
+                        if (index == nodeNameList.Length - 1)
+                        {
+                            // ノードリストの最後の要素でシンボリックリンクでない場合、resolvedPathを更新
+                            resolvedPath = currentPath;
+                        }
                     }
                 }
                 index++;
             }
 
-            return node;
+            return new NodeResolutionResult(node, resolvedPath);
+        }
+
+        public VirtualNode GetNode(string path, bool followLinks = false)
+        {
+            NodeResolutionResult nodeResolutionResult = GetNodeInternal(path, followLinks);
+            return nodeResolutionResult.Node;
+        }
+
+        public string GetLinkPath(string path)
+        {
+            NodeResolutionResult nodeResolutionResult = GetNodeInternal(path, true);
+            return nodeResolutionResult.ResolvedPath;
         }
 
         public VirtualDirectory GetDirectory(string path)
