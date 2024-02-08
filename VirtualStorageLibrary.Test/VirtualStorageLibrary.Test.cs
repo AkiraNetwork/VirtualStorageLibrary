@@ -70,10 +70,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void NormalizePath_WithAbsolutePath_ReturnsNormalizedPath()
         {
-            string path = "/path/to/../directory/./";
-            string expected = "/path/directory";
+            var path = new VirtualPath("/path/to/../directory/./");
+            var expected = new VirtualPath("/path/directory");
 
-            string result = VirtualPathOld.NormalizePath(path);
+            var result = path.NormalizePath();
 
             Assert.AreEqual(expected, result);
         }
@@ -81,10 +81,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void NormalizePath_WithRelativePath_ReturnsNormalizedPath()
         {
-            string path = "path/to/../directory/./";
-            string expected = "path/directory";
+            var path = new VirtualPath("path/to/../directory/./");
+            var expected = new VirtualPath("path/directory");
 
-            string result = VirtualPathOld.NormalizePath(path);
+            var result = path.NormalizePath();
 
             Assert.AreEqual(expected, result);
         }
@@ -92,26 +92,26 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void NormalizePath_WithEmptyPath_ThrowsArgumentException()
         {
-            string path = "";
+            var path = new VirtualPath("");
 
-            Assert.ThrowsException<ArgumentException>(() => VirtualPathOld.NormalizePath(path));
+            Assert.ThrowsException<ArgumentException>(() => path.NormalizePath());
         }
 
         [TestMethod]
         public void NormalizePath_WithInvalidPath_ThrowsInvalidOperationException()
         {
-            string path = "/../";
+            var path = new VirtualPath("/../");
 
-            Assert.ThrowsException<InvalidOperationException>(() => VirtualPathOld.NormalizePath(path));
+            Assert.ThrowsException<InvalidOperationException>(() => path.NormalizePath());
         }
 
         [TestMethod]
         public void NormalizePath_WithPathEndingWithParentDirectory_ReturnsNormalizedPath()
         {
-            string path = "aaa/../..";
-            string expected = "..";
+            var path = new VirtualPath("aaa/../..");
+            var expected = new VirtualPath("..");
 
-            string result = VirtualPathOld.NormalizePath(path);
+            var result = path.NormalizePath();
 
             Assert.AreEqual(expected, result);
         }
@@ -120,39 +120,39 @@ namespace VirtualStorageLibrary.Test
         public void GetDirectoryPath_ReturnsCorrectPath_ForAbsolutePath()
         {
             // テストデータ
-            string absolutePath = "/directory/subdirectory/file";
+            var absolutePath = new VirtualPath("/directory/subdirectory/file");
 
             // メソッドを実行
-            string result = VirtualPathOld.GetDirectoryPath(absolutePath);
+            var result = absolutePath.GetDirectoryPath();
 
             // 結果を検証
-            Assert.AreEqual("/directory/subdirectory", result);
+            Assert.AreEqual("/directory/subdirectory", result.Path);
         }
 
         [TestMethod]
         public void GetDirectoryPath_ReturnsRoot_ForRootPath()
         {
             // テストデータ
-            string rootPath = "/";
+            var rootPath = new VirtualPath("/");
 
             // メソッドを実行
-            string result = VirtualPathOld.GetDirectoryPath(rootPath);
+            var result = rootPath.GetDirectoryPath();
 
             // 結果を検証
-            Assert.AreEqual("/", result);
+            Assert.AreEqual("/", result.Path);
         }
 
         [TestMethod]
         public void GetDirectoryPath_ReturnsSamePath_ForRelativePath()
         {
             // テストデータ
-            string relativePath = "file";
+            var relativePath = new VirtualPath("file");
 
             // メソッドを実行
-            string result = VirtualPathOld.GetDirectoryPath(relativePath);
+            var result = relativePath.GetDirectoryPath();
 
             // 結果を検証
-            Assert.AreEqual("file", result);
+            Assert.AreEqual("file", result.Path);
         }
 
         [TestMethod]

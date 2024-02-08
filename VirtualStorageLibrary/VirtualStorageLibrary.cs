@@ -39,6 +39,108 @@
         T DeepClone();
     }
 
+    public class VirtualPath
+    {
+        private readonly string _path;
+
+        public string Path => _path;
+
+        public override int GetHashCode() => _path.GetHashCode();
+
+        public VirtualPath(string path)
+        {
+            _path = path;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is VirtualPath other)
+            {
+                return _path == other._path;
+            }
+            return false;
+        }
+
+        public VirtualPath NormalizePath()
+        {
+            if (_path == "")
+            {
+                throw new ArgumentException("パスが空です。");
+            }
+
+            var parts = new LinkedList<string>();
+            var isAbsolutePath = _path.StartsWith("/");
+            IList<string> partList = _path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var part in partList)
+            {
+                if (part == "..")
+                {
+                    if (parts.Count > 0 && parts.Last!.Value != "..")
+                    {
+                        parts.RemoveLast();
+                    }
+                    else if (!isAbsolutePath)
+                    {
+                        parts.AddLast("..");
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("パスがルートディレクトリより上への移動を試みています。無効なパス: " + _path);
+                    }
+                }
+                else if (part != ".")
+                {
+                    parts.AddLast(part);
+                }
+            }
+
+            var normalizedPath = String.Join("/", parts);
+            VirtualPath result;
+            if (isAbsolutePath)
+            {
+                result = new VirtualPath("/" + normalizedPath);
+            }
+            else
+            {
+                result = new VirtualPath(normalizedPath);
+            }
+
+            return result;
+        }
+
+        public VirtualPath GetDirectoryPath()
+        {
+            // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
+            if (!_path.StartsWith("/"))
+            {
+                return this;
+            }
+
+            int lastSlashIndex = _path.LastIndexOf('/');
+            // '/' が見つからない場合は、ルートディレクトリを示す '/' を返す
+            if (lastSlashIndex <= 0)
+            {
+                return new VirtualPath("/");
+            }
+            else
+            {
+                // フルパスから最後の '/' までの部分を抜き出して返す
+                return new VirtualPath(_path.Substring(0, lastSlashIndex));
+            }
+        }
+
+
+
+
+
+
+
+
+    }
+
+
+
     public static class VirtualPathOld
     {
         public static string NormalizePath(string path)
