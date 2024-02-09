@@ -12,9 +12,9 @@ namespace VirtualStorageLibrary
     public class NodeResolutionResult
     {
         public VirtualNode Node { get; set; }
-        public string ResolvedPath { get; set; }
+        public VirtualPath ResolvedPath { get; set; }
 
-        public NodeResolutionResult(VirtualNode node, string resolvedPath)
+        public NodeResolutionResult(VirtualNode node, VirtualPath resolvedPath)
         {
             Node = node;
             ResolvedPath = resolvedPath;
@@ -47,6 +47,8 @@ namespace VirtualStorageLibrary
 
         public string Path => _path;
 
+        public static VirtualPath Root => new VirtualPath("/");
+        
         public override string ToString() => _path;
 
         public bool IsEmpty => _path == "";
@@ -55,11 +57,22 @@ namespace VirtualStorageLibrary
 
         public bool IsAbsolute => _path.StartsWith("/");
 
+        public bool IsEndsWithSlash => _path.EndsWith("/");
+
+        public bool IsDot => _path == ".";
+
+        public bool IsDotDot => _path == "..";
+
         public override int GetHashCode() => _path.GetHashCode();
 
         public VirtualPath(string path)
         {
             _path = path;
+        }
+
+        public VirtualPath(IEnumerable<VirtualPath> parts)
+        {
+            _path = string.Join("/", parts.Select(p => p.Path));
         }
 
         public override bool Equals(object? obj)
@@ -69,6 +82,53 @@ namespace VirtualStorageLibrary
                 return _path == other._path;
             }
             return false;
+        }
+
+        public static bool operator ==(VirtualPath left, VirtualPath right)
+        {
+            return left._path == right._path;
+        }
+
+        public static bool operator !=(VirtualPath left, VirtualPath right)
+        {
+            return left._path != right._path;
+        }
+
+        public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
+        {
+            return path1.Combine(path2);
+        }
+
+        public VirtualPath TrimEndSlash()
+        {
+            if (_path.EndsWith('/'))
+            {
+                return new VirtualPath(_path.Substring(0, _path.Length - 1));
+            }
+            return this;
+        }
+
+        public VirtualPath AddEndSlash()
+        {
+            if (!_path.EndsWith('/'))
+            {
+                return new VirtualPath(_path + "/");
+            }
+            return this;
+        }
+
+        public VirtualPath AddStartSlash()
+        {
+            if (!_path.StartsWith('/'))
+            {
+                return new VirtualPath("/" + _path);
+            }
+            return this;
+        }
+
+        public bool StartsWith(VirtualPath path)
+        {
+            return _path.StartsWith(path.Path);
         }
 
         public VirtualPath NormalizePath()
@@ -161,7 +221,7 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public VirtualPath Combine(params string[] paths)
+        public VirtualPath Combine(params VirtualPath[] paths)
         {
             // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
             var newPathBuilder = new StringBuilder(_path);
@@ -171,7 +231,7 @@ namespace VirtualStorageLibrary
                 // 区切り文字"/"を無条件で追加
                 newPathBuilder.Append("/");
                 // 新しいパスコンポーネントを追加
-                newPathBuilder.Append(path);
+                newPathBuilder.Append(path.Path);
             }
 
             // StringBuilderの内容を文字列に変換
@@ -213,16 +273,21 @@ namespace VirtualStorageLibrary
             return new VirtualPath(parentPath);
         }
 
-        public LinkedList<string> GetPartsLinkedList()
+        public LinkedList<VirtualPath> GetPartsLinkedList()
         {
-            return new LinkedList<string>(_path.Split('/', StringSplitOptions.RemoveEmptyEntries));
+            LinkedList<VirtualPath> parts = new LinkedList<VirtualPath>();
+            foreach (var part in _path.Split('/', StringSplitOptions.RemoveEmptyEntries))
+            {
+                parts.AddLast(new VirtualPath(part));
+            }
+
+            return parts;
         }
 
-        public List<string> GetPartsList()
+        public List<VirtualPath> GetPartsList()
         {
-            return _path.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
+            return GetPartsLinkedList().ToList();
         }
-
     }
 
     public static class VirtualPathOld
@@ -328,21 +393,21 @@ namespace VirtualStorageLibrary
             return combinedPath;
         }
 
-        public static string GetParentPath(string path)
+        public static VirtualPath GetParentPath(VirtualPath path)
         {
             // パスの最後の '/' を取り除きます
-            string trimmedPath = path.TrimEnd('/');
+            VirtualPath trimmedPath = path.TrimEndSlash();
             // パスを '/' で分割します
-            string[] pathParts = trimmedPath.Split('/');
+            LinkedList<VirtualPath> pathParts = trimmedPath.GetPartsLinkedList();
             // 最後の部分を除去します
-            string[] parentPathParts = pathParts.Take(pathParts.Length - 1).ToArray();
+            pathParts.RemoveLast();
             // パスを再構築します
-            string parentPath = string.Join("/", parentPathParts);
+            VirtualPath parentPath = new VirtualPath(pathParts);
 
-            // パスが空になった場合は、ルートを返します
-            if (string.IsNullOrEmpty(parentPath))
+            // パスが絶対パスでない場合は、先頭に '/' を追加
+            if (path.IsAbsolute)
             {
-                return "/";
+                parentPath = parentPath.AddStartSlash();
             }
 
             return parentPath;
@@ -351,20 +416,20 @@ namespace VirtualStorageLibrary
 
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
     {
-        public string Name { get; set; }
+        public VirtualPath Name { get; set; }
         public DateTime CreatedDate { get; private set; }
         public DateTime UpdatedDate { get; private set; }
 
         public abstract VirtualNode DeepClone();
 
-        protected VirtualNode(string name)
+        protected VirtualNode(VirtualPath name)
         {
             Name = name;
             CreatedDate = DateTime.Now;
             UpdatedDate = DateTime.Now;
         }
 
-        protected VirtualNode(string name, DateTime createdDate, DateTime updatedDate)
+        protected VirtualNode(VirtualPath name, DateTime createdDate, DateTime updatedDate)
         {
             Name = name;
             CreatedDate = createdDate;
@@ -374,14 +439,14 @@ namespace VirtualStorageLibrary
 
     public class VirtualSymbolicLink : VirtualNode
     {
-        public string TargetPath { get; set; }
+        public VirtualPath TargetPath { get; set; }
 
-        public VirtualSymbolicLink(string name, string targetPath) : base(name)
+        public VirtualSymbolicLink(VirtualPath name, VirtualPath targetPath) : base(name)
         {
             TargetPath = targetPath;
         }
 
-        public VirtualSymbolicLink(string name, string targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualSymbolicLink(VirtualPath name, VirtualPath targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             TargetPath = targetPath;
         }
@@ -389,6 +454,7 @@ namespace VirtualStorageLibrary
         public override string ToString()
         {
             // シンボリックリンクの名前と、リンク先のパスを返します。
+            // TODO: NameとTargetPathのToString()を使用するように変更
             return $"Symbolic Link: {Name} -> {TargetPath}";
         }
 
@@ -402,12 +468,12 @@ namespace VirtualStorageLibrary
     {
         public T Item { get; set; }
 
-        public VirtualItem(string name, T item) : base(name)
+        public VirtualItem(VirtualPath name, T item) : base(name)
         {
             Item = item;
         }
 
-        public VirtualItem(string name, T item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualItem(VirtualPath name, T item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             Item = item;
         }
@@ -445,7 +511,7 @@ namespace VirtualStorageLibrary
 
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
-        private Dictionary<string, VirtualNode> _nodes;
+        private Dictionary<VirtualPath, VirtualNode> _nodes;
 
         public int Count => _nodes.Count;
 
@@ -453,13 +519,13 @@ namespace VirtualStorageLibrary
 
         public int ItemCount => _nodes.Values.Count(n => !(n is VirtualDirectory));
 
-        public IEnumerable<string> NodeNames => _nodes.Keys;
+        public IEnumerable<VirtualPath> NodeNames => _nodes.Keys;
 
         public IEnumerable<VirtualNode> Nodes => _nodes.Values;
 
-        public bool NodeExists(string name) => _nodes.ContainsKey(name);
+        public bool NodeExists(VirtualPath name) => _nodes.ContainsKey(name);
 
-        public bool DirectoryExists(string name)
+        public bool DirectoryExists(VirtualPath name)
         {
             if (!NodeExists(name))
             {
@@ -469,14 +535,14 @@ namespace VirtualStorageLibrary
             return _nodes[name] is VirtualDirectory;
         }
 
-        public VirtualDirectory(string name) : base(name)
+        public VirtualDirectory(VirtualPath name) : base(name)
         {
-            _nodes = new Dictionary<string, VirtualNode>();
+            _nodes = new Dictionary<VirtualPath, VirtualNode>();
         }
 
-        public VirtualDirectory(string name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualDirectory(VirtualPath name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
-            _nodes = new Dictionary<string, VirtualNode>();
+            _nodes = new Dictionary<VirtualPath, VirtualNode>();
         }
 
         public override string ToString()
@@ -508,7 +574,7 @@ namespace VirtualStorageLibrary
 
         public void Add(VirtualNode node, bool allowOverwrite = false)
         {
-            string key = node.Name;
+            VirtualPath key = node.Name;
 
             if (_nodes.ContainsKey(key) && !allowOverwrite)
             {
@@ -518,22 +584,22 @@ namespace VirtualStorageLibrary
             _nodes[key] = node;
         }
 
-        public void AddItem<T>(string name, T item, bool allowOverwrite = false)
+        public void AddItem<T>(VirtualPath name, T item, bool allowOverwrite = false)
         {
             Add(new VirtualItem<T>(name, item), allowOverwrite);
         }
 
-        public void AddSymbolicLink(string name, string targetPath, bool allowOverwrite = false)
+        public void AddSymbolicLink(VirtualPath name, VirtualPath targetPath, bool allowOverwrite = false)
         {
             Add(new VirtualSymbolicLink(name, targetPath), allowOverwrite);
         }
 
-        public void AddDirectory(string name, bool allowOverwrite = false)
+        public void AddDirectory(VirtualPath name, bool allowOverwrite = false)
         {
             Add(new VirtualDirectory(name), allowOverwrite);
         }
 
-        public VirtualNode this[string name]
+        public VirtualNode this[VirtualPath name]
         {
             get
             {
@@ -549,7 +615,7 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public void Remove(string name, bool forceRemove = false)
+        public void Remove(VirtualPath name, bool forceRemove = false)
         {
             if (!NodeExists(name))
             {
@@ -567,7 +633,7 @@ namespace VirtualStorageLibrary
             _nodes.Remove(name);
         }
 
-        public VirtualNode Get(string name)
+        public VirtualNode Get(VirtualPath name)
         {
             if (!NodeExists(name))
             {
@@ -576,7 +642,7 @@ namespace VirtualStorageLibrary
             return _nodes[name];
         }
 
-        public void Rename(string oldName, string newName)
+        public void Rename(VirtualPath oldName, VirtualPath newName)
         {
             if (!NodeExists(oldName))
             {
@@ -599,17 +665,17 @@ namespace VirtualStorageLibrary
     {
         private VirtualDirectory _root;
 
-        public string CurrentPath { get; private set; }
+        public VirtualPath CurrentPath { get; private set; }
 
         public VirtualStorage()
         {
-            _root = new VirtualDirectory("/");
-            CurrentPath = "/";
+            _root = new VirtualDirectory(new VirtualPath("/"));
+            CurrentPath = new VirtualPath("/");
         }
 
-        public void ChangeDirectory(string path)
+        public void ChangeDirectory(VirtualPath path)
         {
-            string absolutePath = ConvertToAbsolutePath(path);
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
 
             // Check if the path exists
             if (!NodeExists(absolutePath))
@@ -621,36 +687,35 @@ namespace VirtualStorageLibrary
             CurrentPath = absolutePath;
         }
 
-        public string ConvertToAbsolutePath(string relativePath, string? basePath = null)
+        public VirtualPath ConvertToAbsolutePath(VirtualPath virtualRelativePath, VirtualPath? basePath = null)
         {
-            VirtualPath virtualRelativePath = new VirtualPath(relativePath);
-            VirtualPath virtualBasePath = new VirtualPath(basePath ?? CurrentPath);
+            basePath ??= CurrentPath;
 
             // relativePathが空文字列の場合、ArgumentExceptionをスロー
             if (virtualRelativePath.IsEmpty)
             {
-                throw new ArgumentException("relativePathが空です。", nameof(relativePath));
+                throw new ArgumentException("relativePathが空です。", nameof(virtualRelativePath));
             }
 
             // relativePathが既に絶対パスである場合は、そのまま使用
             if (virtualRelativePath.IsAbsolute)
             {
-                return virtualRelativePath.Path;
+                return virtualRelativePath;
             }
 
             // basePathが空文字列の場合、ArgumentExceptionをスロー
-            if (virtualBasePath.IsEmpty)
+            if (basePath.IsEmpty)
             {
                 throw new ArgumentException("basePathが空です。", nameof(basePath));
             }
 
             // relativePathをeffectiveBasePathに基づいて絶対パスに変換
-            var absolutePath = virtualBasePath.Combine(relativePath);
+            var absolutePath = basePath.Combine(virtualRelativePath);
 
-            return absolutePath.Path;
+            return absolutePath;
         }
 
-        public void AddSymbolicLink(string linkPath, string targetPath, bool overwrite = false)
+        public void AddSymbolicLink(VirtualPath linkPath, VirtualPath targetPath, bool overwrite = false)
         {
             var absoluteLinkPath = ConvertToAbsolutePath(linkPath);
 
@@ -671,7 +736,7 @@ namespace VirtualStorageLibrary
             }
 
             // シンボリックリンクの作成または上書き
-            var symbolicLink = new VirtualSymbolicLink(Path.GetFileName(absoluteLinkPath), targetPath);
+            var symbolicLink = new VirtualSymbolicLink(absoluteLinkPath.GetNodeName(), targetPath);
             var parentPath = VirtualPathOld.GetParentPath(absoluteLinkPath);
             var parentNode = TryGetNode(parentPath) as VirtualDirectory;
 
@@ -683,14 +748,14 @@ namespace VirtualStorageLibrary
             parentNode.Add(symbolicLink, overwrite);
         }
 
-        public void AddItem<T>(string path, T item, bool overwrite = false)
+        public void AddItem<T>(VirtualPath path, T item, bool overwrite = false)
         {
             // 絶対パスに変換
-            string absolutePath = ConvertToAbsolutePath(path);
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
 
             // ディレクトリパスとアイテム名を分離
-            string directoryPath = VirtualPathOld.GetDirectoryPath(absolutePath);
-            string itemName = VirtualPathOld.GetNodeName(absolutePath);
+            VirtualPath directoryPath = absolutePath.GetDirectoryPath();
+            VirtualPath itemName = absolutePath.GetNodeName();
 
             // 対象ディレクトリの存在チェック
             if (!DirectoryExists(directoryPath))
@@ -711,7 +776,7 @@ namespace VirtualStorageLibrary
                 else
                 {
                     // 上書き対象がアイテムであることを確認
-                    if (!ItemExists(VirtualPathOld.Combine(directoryPath, itemName)))
+                    if (!ItemExists(directoryPath.Combine(itemName)))
                     {
                         throw new InvalidOperationException($"'{itemName}' はアイテム以外のノードです。アイテムの上書きはできません。");
                     }
@@ -724,63 +789,62 @@ namespace VirtualStorageLibrary
             directory.Add(new VirtualItem<T>(itemName, item), overwrite);
         }
 
-        public void AddDirectory(string path, bool createSubdirectories = false)
+        public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
         {
-            string absolutePath = ConvertToAbsolutePath(path);
-            string[] nodeNameList = absolutePath.Split('/');
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
+            List<VirtualPath> nodeNameList = absolutePath.GetPartsList();
             VirtualDirectory directory = _root;
 
-            for (int i = 0; i < nodeNameList.Length; i++)
+            for (int i = 0; i < nodeNameList.Count; i++)
             {
-                string nodeName = nodeNameList[i];
+                VirtualPath nodeName = nodeNameList[i];
 
-                if (nodeName != "")
+                if (!directory.DirectoryExists(nodeName))
                 {
-                    if (!directory.DirectoryExists(nodeName))
+                    if (createSubdirectories || i == nodeNameList.Count - 1)
                     {
-                        if (createSubdirectories || i == nodeNameList.Length - 1)
-                        {
-                            directory.AddDirectory(nodeName);
-                        }
-                        else
-                        {
-                            throw new Exception($"ディレクトリ {nodeName} は存在しません。");
-                        }
+                        directory.AddDirectory(nodeName);
                     }
-
-                    directory = (VirtualDirectory)directory.Get(nodeName);
+                    else
+                    {
+                        throw new Exception($"ディレクトリ {nodeName} は存在しません。");
+                    }
                 }
+
+                directory = (VirtualDirectory)directory.Get(nodeName);
             }
         }
 
-        public NodeResolutionResult GetNodeInternal(string path, bool followLinks)
+        public NodeResolutionResult GetNodeInternal(VirtualPath path, bool followLinks)
         {
-            LinkedList<VirtualNode> nodeLinkedList = new LinkedList<VirtualNode>();
-            VirtualPath absolutePath = new VirtualPath(ConvertToAbsolutePath(path));
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
 
-            if (absolutePath.Path == "/")
+            if (absolutePath.IsRoot)
             {
-                return new NodeResolutionResult(_root, "/");
+                return new NodeResolutionResult(_root, new VirtualPath("/"));
             }
 
-            List<string> nodeNameList = absolutePath.GetPartsList();
+            List<VirtualPath> nodeNameList = absolutePath.GetPartsList();
+
+            LinkedList<VirtualNode> nodeLinkedList = new LinkedList<VirtualNode>();
             nodeLinkedList.AddLast(_root);
             int index = 0;
-            VirtualPath currentPath = new VirtualPath(""); // 現在のパスを追跡
+
+            VirtualPath basePath = new VirtualPath(""); // 現在のベースパスを追跡
             VirtualPath resolvedPath = new VirtualPath("/"); // 解決後のフルパスを組み立てるための変数
 
             while (index < nodeNameList.Count)
             {
-                string nodeName = nodeNameList[index];
+                VirtualPath nodeName = nodeNameList[index];
 
-                if (nodeName == ".")
+                if (nodeName.IsDot)
                 {
                     // 現在のディレクトリを示す場合、何もせず次のノードへ
                 }
-                else if (nodeName == "..")
+                else if (nodeName.IsDotDot)
                 {
                     // 親ディレクトリを示す場合、現在のディレクトリを一つ上のディレクトリに変更
-                    currentPath = currentPath.GetParentPath();
+                    basePath = basePath.GetParentPath();
                     if (nodeLinkedList.Count > 1)
                     {
                         nodeLinkedList.RemoveLast();
@@ -803,22 +867,22 @@ namespace VirtualStorageLibrary
 
                     if (followLinks && nodeLinkedList.Last.Value is VirtualSymbolicLink symlink)
                     {
-                        VirtualPath symlinkTargetPath = new VirtualPath(ConvertToAbsolutePath(symlink.TargetPath, currentPath.Path));
-                        List<string> targetPathList = symlinkTargetPath.GetPartsList();
+                        VirtualPath symlinkTargetPath = ConvertToAbsolutePath(symlink.TargetPath, basePath);
+                        List<VirtualPath> targetPathList = symlinkTargetPath.GetPartsList();
                         nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToList();
                         index = -1; // indexをリセットし、次のループで0から開始
                         nodeLinkedList.Clear(); // ノードリストをリセット
                         nodeLinkedList.AddLast(_root); // ルートノードを追加
-                        currentPath = new VirtualPath(""); // 現在のパスもリセット
+                        basePath = new VirtualPath(""); // 現在のパスもリセット
                         resolvedPath = symlinkTargetPath; // 解決後のパスを更新
                     }
                     else
                     {
-                        currentPath = currentPath.Combine(nodeName);
+                        basePath = basePath.Combine(nodeName);
                         if (index == nodeNameList.Count - 1)
                         {
                             // ノードリストの最後の要素でシンボリックリンクでない場合、resolvedPathを更新
-                            resolvedPath = currentPath;
+                            resolvedPath = basePath;
                         }
                     }
                 }
@@ -826,24 +890,24 @@ namespace VirtualStorageLibrary
                 index++;
             }
 
-            return new NodeResolutionResult(nodeLinkedList.Last!.Value, resolvedPath.Path);
+            return new NodeResolutionResult(nodeLinkedList.Last!.Value, resolvedPath);
         }
 
-        public VirtualNode GetNode(string path, bool followLinks = false)
+        public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
             NodeResolutionResult nodeResolutionResult = GetNodeInternal(path, followLinks);
             return nodeResolutionResult.Node;
         }
 
-        public string GetLinkPath(string path)
+        public VirtualPath GetLinkPath(VirtualPath path)
         {
             NodeResolutionResult nodeResolutionResult = GetNodeInternal(path, true);
             return nodeResolutionResult.ResolvedPath;
         }
 
-        public VirtualDirectory GetDirectory(string path)
+        public VirtualDirectory GetDirectory(VirtualPath path)
         {
-            string absolutePath = ConvertToAbsolutePath(path);
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
             VirtualNode node = GetNode(absolutePath);
 
             if (node is VirtualDirectory directory)
@@ -856,13 +920,16 @@ namespace VirtualStorageLibrary
             }
         }
 
-        private IEnumerable<T> GetNodesInternal<T>(string basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, string, T> selector)
+        private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector)
         {
-            if (basePath == "")
+            // ベースパスが空の場合は例外をスロー
+            if (basePath.IsEmpty)
             {
                 throw new ArgumentException("パスが空です。");
             }
-            if (!basePath.StartsWith("/"))
+
+            // ベースパスが絶対パスでない場合は例外をスロー
+            if (!basePath.IsAbsolute)
             {
                 throw new ArgumentException($"絶対パスを指定してください。{basePath}");
             }
@@ -875,12 +942,12 @@ namespace VirtualStorageLibrary
                 {
                     if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Directory)
                     {
-                        yield return selector(subdirectory, VirtualPathOld.Combine(basePath, subdirectory.Name));
+                        yield return selector(subdirectory, basePath.Combine(subdirectory.Name));
                     }
 
                     if (recursive)
                     {
-                        var subdirectoryPath = VirtualPathOld.Combine(basePath, subdirectory.Name);
+                        var subdirectoryPath = basePath.Combine(subdirectory.Name);
                         foreach (var subNode in GetNodesInternal(subdirectoryPath, nodeType, recursive, selector))
                         {
                             yield return subNode;
@@ -889,12 +956,12 @@ namespace VirtualStorageLibrary
                 }
                 else if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Item)
                 {
-                    yield return selector(node, VirtualPathOld.Combine(basePath, node.Name));
+                    yield return selector(node, basePath.Combine(node.Name));
                 }
             }
         }
 
-        public IEnumerable<VirtualNode> GetNodes(string basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
         {
             return GetNodesInternal(basePath, nodeType, recursive, (node, path) => node);
         }
@@ -904,23 +971,23 @@ namespace VirtualStorageLibrary
             return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => node);
         }
 
-        public IEnumerable<string> GetNodesWithPaths(string basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
         {
             return GetNodesInternal(basePath, nodeType, recursive, (node, path) => path);
         }
 
-        public IEnumerable<string> GetNodesWithPaths(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
         {
             return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => path);
         }
 
-        private void CheckCopyPreconditions(string sourcePath, string destinationPath, bool overwrite, bool recursive)
+        private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
         {
-            string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
-            string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+            VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
+            VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
             // ルートディレクトリのコピーを禁止
-            if (absoluteSourcePath == "/")
+            if (absoluteSourcePath.IsRoot)
             {
                 throw new InvalidOperationException("ルートディレクトリのコピーは禁止されています。");
             }
@@ -938,22 +1005,22 @@ namespace VirtualStorageLibrary
             }
 
             // 循環参照チェック
-            if (absoluteDestinationPath.StartsWith(absoluteSourcePath + "/") || absoluteSourcePath.StartsWith(absoluteDestinationPath + "/"))
+            if (absoluteDestinationPath.StartsWith(absoluteSourcePath.AddEndSlash()) || absoluteSourcePath.StartsWith(absoluteDestinationPath.AddEndSlash()))
             {
                 throw new InvalidOperationException("コピー元またはコピー先が互いのサブディレクトリになっています。");
             }
 
-            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.EndsWith("/");
-            string targetDirectoryPath, newNodeName;
+            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.IsEndsWithSlash;
+            VirtualPath targetDirectoryPath, newNodeName;
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = VirtualPathOld.GetNodeName(absoluteSourcePath);
+                newNodeName = absoluteSourcePath.GetNodeName();
             }
             else
             {
                 targetDirectoryPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
-                newNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
+                newNodeName = absoluteDestinationPath.GetNodeName();
             }
 
             // コピー先ディレクトリが存在しない場合、新しいディレクトリとして扱う
@@ -976,35 +1043,35 @@ namespace VirtualStorageLibrary
             {
                 foreach (var subNode in sourceDirectory.Nodes)
                 {
-                    string newSubSourcePath = VirtualPathOld.Combine(absoluteSourcePath, subNode.Name);
-                    string newSubDestinationPath = VirtualPathOld.Combine(absoluteDestinationPath, subNode.Name);
+                    VirtualPath newSubSourcePath = absoluteSourcePath.Combine(subNode.Name);
+                    VirtualPath newSubDestinationPath = absoluteDestinationPath.Combine(subNode.Name);
                     CheckCopyPreconditions(newSubSourcePath, newSubDestinationPath, overwrite, true);
                 }
             }
         }
 
-        public void CopyNode(string sourcePath, string destinationPath, bool recursive = false, bool overwrite = false)
+        public void CopyNode(VirtualPath sourcePath, VirtualPath destinationPath, bool recursive = false, bool overwrite = false)
         {
             // コピー前の事前条件チェック
             CheckCopyPreconditions(sourcePath, destinationPath, overwrite, recursive);
 
-            string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
-            string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+            VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
+            VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
             VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
-            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.EndsWith("/");
+            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.IsEndsWithSlash;
 
-            string targetDirectoryPath, newNodeName;
+            VirtualPath targetDirectoryPath, newNodeName;
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = VirtualPathOld.GetNodeName(absoluteSourcePath);
+                newNodeName = absoluteSourcePath.GetNodeName();
             }
             else
             {
-                targetDirectoryPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
-                newNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
+                targetDirectoryPath = absoluteDestinationPath.GetParentPath();
+                newNodeName = absoluteDestinationPath.GetNodeName();
             }
 
             // コピー先ディレクトリが存在しない場合は例外をスロー
@@ -1030,9 +1097,9 @@ namespace VirtualStorageLibrary
                 {
                     foreach (var node in sourceDirectory.Nodes)
                     {
-                        string intermediatePath = VirtualPathOld.Combine(targetDirectoryPath, newNodeName);
-                        string newDestinationPath = VirtualPathOld.Combine(intermediatePath, node.Name);
-                        CopyNode(VirtualPathOld.Combine(absoluteSourcePath, node.Name), newDestinationPath, true, overwrite);
+                        VirtualPath intermediatePath = targetDirectoryPath.Combine(newNodeName);
+                        VirtualPath newDestinationPath = intermediatePath.Combine(node.Name);
+                        CopyNode(absoluteSourcePath.Combine(node.Name), newDestinationPath, true, overwrite);
                     }
                 }
             }
@@ -1045,9 +1112,10 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public void RemoveNode(string path, bool recursive = false)
+        public void RemoveNode(VirtualPath path, bool recursive = false)
         {
-            VirtualPath absolutePath = new VirtualPath(GetLinkPath(path));
+            // TODO: 絶対パスに変換後、ノーマライズする(1行で書くか書き方を検討する)
+            VirtualPath absolutePath = GetLinkPath(path);
             absolutePath = absolutePath.NormalizePath();
 
             if (absolutePath.IsRoot)
@@ -1055,11 +1123,11 @@ namespace VirtualStorageLibrary
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
-            VirtualNode node = GetNode(absolutePath.Path);
+            VirtualNode node = GetNode(absolutePath);
 
             // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
             VirtualPath parentPath = absolutePath.GetParentPath();
-            VirtualDirectory parentDirectory = GetDirectory(parentPath.Path);
+            VirtualDirectory parentDirectory = GetDirectory(parentPath);
 
             if (node is VirtualDirectory directory)
             {
@@ -1075,7 +1143,7 @@ namespace VirtualStorageLibrary
                 foreach (var subNode in nodesSnapshot)
                 {
                     VirtualPath subPath = absolutePath.Combine(subNode.Name);
-                    RemoveNode(subPath.Path, recursive);
+                    RemoveNode(subPath, recursive);
                 }
 
                 // ここで親ディレクトリからディレクトリを削除
@@ -1088,9 +1156,9 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public VirtualNode? TryGetNode(string path)
+        public VirtualNode? TryGetNode(VirtualPath path)
         {
-            string absolutePath = ConvertToAbsolutePath(path);
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
             try
             {
                 // GetNodeメソッドは、ノードが見つからない場合にnullを返すか、例外をスローするように実装されていると仮定
@@ -1102,19 +1170,19 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public bool NodeExists(string path)
+        public bool NodeExists(VirtualPath path)
         {
             var node = TryGetNode(path);
             return node != null; // ノードがnullでなければ、存在すると判断
         }
 
-        public bool DirectoryExists(string path)
+        public bool DirectoryExists(VirtualPath path)
         {
             var node = TryGetNode(path);
             return node is VirtualDirectory; // ノードがVirtualDirectoryのインスタンスであれば、ディレクトリが存在すると判断
         }
 
-        public bool ItemExists(string path)
+        public bool ItemExists(VirtualPath path)
         {
             var node = TryGetNode(path);
             if (node == null) return false; // ノードがnullなら、アイテムは存在しない
@@ -1122,19 +1190,19 @@ namespace VirtualStorageLibrary
             return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>); // ジェネリック型がVirtualItem<T>であるかチェック
         }
 
-        public bool SymbolicLinkExists(string path)
+        public bool SymbolicLinkExists(VirtualPath path)
         {
             var node = TryGetNode(path);
             return node is VirtualSymbolicLink;
         }
 
-        public void MoveNode(string sourcePath, string destinationPath, bool overwrite = false)
+        public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false)
         {
-            string absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
-            string absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+            VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
+            VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
             // 循環参照チェック
-            if (absoluteDestinationPath.StartsWith(absoluteSourcePath + "/"))
+            if (absoluteDestinationPath.StartsWith(new VirtualPath(absoluteSourcePath.Path + "/")))
             {
                 throw new InvalidOperationException("移動先が移動元のサブディレクトリになっています。");
             }
@@ -1153,7 +1221,7 @@ namespace VirtualStorageLibrary
             }
 
             // 移動元のルートディレクトリチェック
-            if (absoluteSourcePath == "/")
+            if (absoluteSourcePath.IsRoot)
             {
                 // ルートディレクトリの場合は例外をスロー
                 throw new InvalidOperationException("ルートディレクトリを移動することはできません。");
@@ -1188,17 +1256,17 @@ namespace VirtualStorageLibrary
                     // 移動先の存在チェック
                     if (!NodeExists(absoluteDestinationPath))
                     {
-                        string destinationParentPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
+                        VirtualPath destinationParentPath = absoluteDestinationPath.GetParentPath();
                         if (!DirectoryExists(destinationParentPath))
                         {
                             // 移動先の親ディレクトリが存在しない場合
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        string destinationNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
+                        VirtualPath destinationNodeName = absoluteDestinationPath.GetNodeName();
                         VirtualDirectory sourceDirectory = GetDirectory(absoluteSourcePath);
 
-                        string oldNodeName = sourceDirectory.Name;
+                        VirtualPath oldNodeName = sourceDirectory.Name;
                         sourceDirectory.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceDirectory);
                         VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
@@ -1251,17 +1319,17 @@ namespace VirtualStorageLibrary
                     // 移動先の存在チェック
                     if (!NodeExists(absoluteDestinationPath))
                     {
-                        string destinationParentPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
+                        VirtualPath destinationParentPath = absoluteDestinationPath.GetParentPath();
                         if (!DirectoryExists(destinationParentPath))
                         {
                             // 移動先の親ディレクトリが存在しない場合
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        string destinationNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
+                        VirtualPath destinationNodeName = absoluteDestinationPath.GetNodeName();
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
-                        string oldNodeName = sourceNode.Name;
+                        VirtualPath oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
                         VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
@@ -1272,7 +1340,7 @@ namespace VirtualStorageLibrary
                         // 存在する場合
 
                         VirtualDirectory destinationParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteDestinationPath));
-                        string destinationNodeName = VirtualPathOld.GetNodeName(absoluteDestinationPath);
+                        VirtualPath destinationNodeName = absoluteDestinationPath.GetNodeName();
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
                         // 移動先ディレクトリの同名チェック
@@ -1293,7 +1361,7 @@ namespace VirtualStorageLibrary
                             }
                         }
 
-                        string oldNodeName = sourceNode.Name;
+                        VirtualPath oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
                         VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
