@@ -290,130 +290,6 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public static class VirtualPathOld
-    {
-        public static string NormalizePath(string path)
-        {
-            if (path == "")
-            {
-                throw new ArgumentException("パスが空です。");
-            }
-
-            var parts = new LinkedList<string>();
-            var isAbsolutePath = path.StartsWith("/");
-            IList<string> partList = path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var part in partList)
-            {
-                if (part == "..")
-                {
-                    if (parts.Count > 0 && parts.Last!.Value != "..")
-                    {
-                        parts.RemoveLast();
-                    }
-                    else if (!isAbsolutePath)
-                    {
-                        parts.AddLast("..");
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("パスがルートディレクトリより上への移動を試みています。無効なパス: " + path);
-                    }
-                }
-                else if (part != ".")
-                {
-                    parts.AddLast(part);
-                }
-            }
-
-            var normalizedPath = String.Join("/", parts);
-            return isAbsolutePath ? "/" + normalizedPath : normalizedPath;
-        }
-
-        public static string GetDirectoryPath(string absolutePath)
-        {
-            // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
-            if (!absolutePath.StartsWith("/"))
-            {
-                return absolutePath;
-            }
-
-            int lastSlashIndex = absolutePath.LastIndexOf('/');
-            // '/' が見つからない場合は、ルートディレクトリを示す '/' を返す
-            if (lastSlashIndex <= 0)
-            {
-                return "/";
-            }
-            else
-            {
-                // フルパスから最後の '/' までの部分を抜き出して返す
-                return absolutePath.Substring(0, lastSlashIndex);
-            }
-        }
-
-        public static string GetNodeName(string absolutePath)
-        {
-            if (absolutePath == "/")
-            {
-                //　ルートの場合は、ルートディレクトリを示す '/' を返す
-                return "/";
-            }
-
-            int lastSlashIndex = absolutePath.LastIndexOf('/');
-            if (lastSlashIndex >= 0)
-            {
-                // フルパスから最後の '/' より後の部分を抜き出して返す
-                return absolutePath.Substring(lastSlashIndex + 1);
-            }
-            else
-            {
-                // '/' が見つからない場合は、そのままのパスを返す
-                return absolutePath;
-            }
-        }
-
-        public static string Combine(string path1, string path2)
-        {
-            if (string.IsNullOrEmpty(path1) && string.IsNullOrEmpty(path2))
-            {
-                return "/";
-            }
-
-            if (string.IsNullOrEmpty(path1))
-            {
-                return path2;
-            }
-
-            if (string.IsNullOrEmpty(path2))
-            {
-                return path1;
-            }
-
-            string combinedPath = path1.TrimEnd('/') + "/" + path2.TrimStart('/');
-            return combinedPath;
-        }
-
-        public static VirtualPath GetParentPath(VirtualPath path)
-        {
-            // パスの最後の '/' を取り除きます
-            VirtualPath trimmedPath = path.TrimEndSlash();
-            // パスを '/' で分割します
-            LinkedList<VirtualPath> pathParts = trimmedPath.GetPartsLinkedList();
-            // 最後の部分を除去します
-            pathParts.RemoveLast();
-            // パスを再構築します
-            VirtualPath parentPath = new VirtualPath(pathParts);
-
-            // パスが絶対パスでない場合は、先頭に '/' を追加
-            if (path.IsAbsolute)
-            {
-                parentPath = parentPath.AddStartSlash();
-            }
-
-            return parentPath;
-        }
-    }
-
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
     {
         public VirtualPath Name { get; set; }
@@ -737,7 +613,7 @@ namespace VirtualStorageLibrary
 
             // シンボリックリンクの作成または上書き
             var symbolicLink = new VirtualSymbolicLink(absoluteLinkPath.GetNodeName(), targetPath);
-            var parentPath = VirtualPathOld.GetParentPath(absoluteLinkPath);
+            var parentPath = absoluteLinkPath.GetParentPath();
             var parentNode = TryGetNode(parentPath) as VirtualDirectory;
 
             if (parentNode == null)
@@ -1019,7 +895,7 @@ namespace VirtualStorageLibrary
             }
             else
             {
-                targetDirectoryPath = VirtualPathOld.GetParentPath(absoluteDestinationPath);
+                targetDirectoryPath = absoluteDestinationPath.GetParentPath();
                 newNodeName = absoluteDestinationPath.GetNodeName();
             }
 
@@ -1246,7 +1122,7 @@ namespace VirtualStorageLibrary
                         throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceDirectory.Name}' が存在します。");
                     }
                     destinationDirectory.Add(sourceDirectory);
-                    VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
+                    VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
                     sourceParentDirectory.Remove(sourceDirectory.Name);
                 }
                 else
@@ -1269,7 +1145,7 @@ namespace VirtualStorageLibrary
                         VirtualPath oldNodeName = sourceDirectory.Name;
                         sourceDirectory.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceDirectory);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
+                        VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
                         sourceParentDirectory.Remove(oldNodeName);
                     }
                     else
@@ -1309,7 +1185,7 @@ namespace VirtualStorageLibrary
                         }
                     }
                     destinationDirectory.Add(sourceNode);
-                    VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
+                    VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
                     sourceParentDirectory.Remove(sourceNode.Name);
                 }
                 else
@@ -1332,14 +1208,14 @@ namespace VirtualStorageLibrary
                         VirtualPath oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
+                        VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
                         sourceParentDirectory.Remove(oldNodeName);
                     }
                     else
                     {
                         // 存在する場合
 
-                        VirtualDirectory destinationParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteDestinationPath));
+                        VirtualDirectory destinationParentDirectory = GetDirectory(absoluteDestinationPath.GetParentPath());
                         VirtualPath destinationNodeName = absoluteDestinationPath.GetNodeName();
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
@@ -1364,7 +1240,7 @@ namespace VirtualStorageLibrary
                         VirtualPath oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(VirtualPathOld.GetParentPath(absoluteSourcePath));
+                        VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
                         sourceParentDirectory.Remove(oldNodeName);
                     }
                 }
