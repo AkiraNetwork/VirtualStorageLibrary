@@ -1313,7 +1313,7 @@ namespace VirtualStorageLibrary.Test
 
             var result = virtualStorage.ConvertToAbsolutePath("../test/path");
 
-            Assert.AreEqual("/root/test/path", result);
+            Assert.AreEqual("/root/subdirectory/../test/path", result);
         }
 
         [TestMethod]
@@ -1325,7 +1325,7 @@ namespace VirtualStorageLibrary.Test
 
             var result = virtualStorage.ConvertToAbsolutePath("../../test/path");
 
-            Assert.AreEqual("/test/path", result);
+            Assert.AreEqual("/root/subdirectory/../../test/path", result);
         }
 
         [TestMethod]

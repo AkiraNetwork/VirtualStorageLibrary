@@ -49,6 +49,12 @@ namespace VirtualStorageLibrary
 
         public override string ToString() => _path;
 
+        public bool IsEmpty => _path == "";
+
+        public bool IsRoot => _path == "/";
+
+        public bool IsAbsolute => _path.StartsWith("/");
+
         public override int GetHashCode() => _path.GetHashCode();
 
         public VirtualPath(string path)
@@ -617,31 +623,31 @@ namespace VirtualStorageLibrary
 
         public string ConvertToAbsolutePath(string relativePath, string? basePath = null)
         {
+            VirtualPath virtualRelativePath = new VirtualPath(relativePath);
+            VirtualPath virtualBasePath = new VirtualPath(basePath ?? CurrentPath);
+
             // relativePathが空文字列の場合、ArgumentExceptionをスロー
-            if (relativePath == "")
+            if (virtualRelativePath.IsEmpty)
             {
                 throw new ArgumentException("relativePathが空です。", nameof(relativePath));
             }
 
             // relativePathが既に絶対パスである場合は、そのまま使用
-            if (relativePath.StartsWith("/"))
+            if (virtualRelativePath.IsAbsolute)
             {
-                return relativePath;
+                return virtualRelativePath.Path;
             }
 
             // basePathが空文字列の場合、ArgumentExceptionをスロー
-            if (basePath == "")
+            if (virtualBasePath.IsEmpty)
             {
                 throw new ArgumentException("basePathが空です。", nameof(basePath));
             }
 
-            // basePathがnullまたは空文字列でない場合はその値を使用し、そうでなければCurrentPathを使用
-            string effectiveBasePath = basePath ?? CurrentPath;
-
             // relativePathをeffectiveBasePathに基づいて絶対パスに変換
-            var absolutePath = VirtualPathOld.Combine(effectiveBasePath, relativePath);
+            var absolutePath = virtualBasePath.Combine(relativePath);
 
-            return absolutePath;
+            return absolutePath.Path;
         }
 
         public void AddSymbolicLink(string linkPath, string targetPath, bool overwrite = false)
@@ -1041,18 +1047,19 @@ namespace VirtualStorageLibrary
 
         public void RemoveNode(string path, bool recursive = false)
         {
-            string absolutePath = ConvertToAbsolutePath(path);
+            VirtualPath absolutePath = new VirtualPath(GetLinkPath(path));
+            absolutePath = absolutePath.NormalizePath();
 
-            if (absolutePath == "/")
+            if (absolutePath.IsRoot)
             {
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
-            VirtualNode node = GetNode(absolutePath);
+            VirtualNode node = GetNode(absolutePath.Path);
 
             // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
-            string parentPath = VirtualPathOld.GetParentPath(absolutePath);
-            VirtualDirectory parentDirectory = GetDirectory(parentPath);
+            VirtualPath parentPath = absolutePath.GetParentPath();
+            VirtualDirectory parentDirectory = GetDirectory(parentPath.Path);
 
             if (node is VirtualDirectory directory)
             {
@@ -1067,8 +1074,8 @@ namespace VirtualStorageLibrary
                 // スナップショットを反復処理して、各ノードを削除
                 foreach (var subNode in nodesSnapshot)
                 {
-                    string subPath = VirtualPathOld.Combine(absolutePath, subNode.Name);
-                    RemoveNode(subPath, recursive);
+                    VirtualPath subPath = absolutePath.Combine(subNode.Name);
+                    RemoveNode(subPath.Path, recursive);
                 }
 
                 // ここで親ディレクトリからディレクトリを削除
