@@ -48,10 +48,16 @@ namespace VirtualStorageLibrary
         public string Path => _path;
 
         public static VirtualPath Root => new VirtualPath("/");
-        
+
+        public static VirtualPath Empty => new VirtualPath(string.Empty);
+
+        public static VirtualPath Dot => new VirtualPath(".");
+
+        public static VirtualPath DotDot => new VirtualPath("..");
+
         public override string ToString() => _path;
 
-        public bool IsEmpty => _path == "";
+        public bool IsEmpty => _path == string.Empty;
 
         public bool IsRoot => _path == "/";
 
@@ -191,7 +197,7 @@ namespace VirtualStorageLibrary
             // '/' が見つからない場合は、ルートディレクトリを示す '/' を返す
             if (lastSlashIndex <= 0)
             {
-                return new VirtualPath("/");
+                return VirtualPath.Root;
             }
             else
             {
@@ -205,7 +211,7 @@ namespace VirtualStorageLibrary
             if (_path == "/")
             {
                 //　ルートの場合は、ルートディレクトリを示す '/' を返す
-                return new VirtualPath("/");
+                return VirtualPath.Root;
             }
 
             int lastSlashIndex = _path.LastIndexOf('/');
@@ -267,7 +273,7 @@ namespace VirtualStorageLibrary
             // パスが空になった場合は、ルートを返します
             if (string.IsNullOrEmpty(parentPath))
             {
-                return new VirtualPath("/");
+                return VirtualPath.Root;
             }
 
             return new VirtualPath(parentPath);
@@ -545,8 +551,8 @@ namespace VirtualStorageLibrary
 
         public VirtualStorage()
         {
-            _root = new VirtualDirectory(new VirtualPath("/"));
-            CurrentPath = new VirtualPath("/");
+            _root = new VirtualDirectory(VirtualPath.Root);
+            CurrentPath = VirtualPath.Root;
         }
 
         public void ChangeDirectory(VirtualPath path)
@@ -697,7 +703,7 @@ namespace VirtualStorageLibrary
 
             if (absolutePath.IsRoot)
             {
-                return new NodeResolutionResult(_root, new VirtualPath("/"));
+                return new NodeResolutionResult(_root, VirtualPath.Root);
             }
 
             List<VirtualPath> nodeNameList = absolutePath.GetPartsList();
@@ -706,8 +712,8 @@ namespace VirtualStorageLibrary
             nodeLinkedList.AddLast(_root);
             int index = 0;
 
-            VirtualPath basePath = new VirtualPath(""); // 現在のベースパスを追跡
-            VirtualPath resolvedPath = new VirtualPath("/"); // 解決後のフルパスを組み立てるための変数
+            VirtualPath basePath = VirtualPath.Empty; // 現在のベースパスを追跡
+            VirtualPath resolvedPath = VirtualPath.Root; // 解決後のフルパスを組み立てるための変数
 
             while (index < nodeNameList.Count)
             {
@@ -749,7 +755,7 @@ namespace VirtualStorageLibrary
                         index = -1; // indexをリセットし、次のループで0から開始
                         nodeLinkedList.Clear(); // ノードリストをリセット
                         nodeLinkedList.AddLast(_root); // ルートノードを追加
-                        basePath = new VirtualPath(""); // 現在のパスもリセット
+                        basePath = VirtualPath.Empty; // 現在のパスもリセット
                         resolvedPath = symlinkTargetPath; // 解決後のパスを更新
                     }
                     else
