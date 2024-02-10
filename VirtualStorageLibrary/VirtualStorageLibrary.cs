@@ -336,7 +336,6 @@ namespace VirtualStorageLibrary
         public override string ToString()
         {
             // シンボリックリンクの名前と、リンク先のパスを返します。
-            // TODO: NameとTargetPathのToString()を使用するように変更
             return $"Symbolic Link: {Name} -> {TargetPath}";
         }
 
@@ -592,7 +591,7 @@ namespace VirtualStorageLibrary
             }
 
             // relativePathをeffectiveBasePathに基づいて絶対パスに変換
-            var absolutePath = basePath.Combine(virtualRelativePath);
+            var absolutePath = basePath + virtualRelativePath;
 
             return absolutePath;
         }
@@ -658,7 +657,7 @@ namespace VirtualStorageLibrary
                 else
                 {
                     // 上書き対象がアイテムであることを確認
-                    if (!ItemExists(directoryPath.Combine(itemName)))
+                    if (!ItemExists(directoryPath + itemName))
                     {
                         throw new InvalidOperationException($"'{itemName}' はアイテム以外のノードです。アイテムの上書きはできません。");
                     }
@@ -760,7 +759,7 @@ namespace VirtualStorageLibrary
                     }
                     else
                     {
-                        basePath = basePath.Combine(nodeName);
+                        basePath = basePath + nodeName;
                         if (index == nodeNameList.Count - 1)
                         {
                             // ノードリストの最後の要素でシンボリックリンクでない場合、resolvedPathを更新
@@ -824,12 +823,12 @@ namespace VirtualStorageLibrary
                 {
                     if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Directory)
                     {
-                        yield return selector(subdirectory, basePath.Combine(subdirectory.Name));
+                        yield return selector(subdirectory, basePath + subdirectory.Name);
                     }
 
                     if (recursive)
                     {
-                        var subdirectoryPath = basePath.Combine(subdirectory.Name);
+                        var subdirectoryPath = basePath + subdirectory.Name;
                         foreach (var subNode in GetNodesInternal(subdirectoryPath, nodeType, recursive, selector))
                         {
                             yield return subNode;
@@ -838,7 +837,7 @@ namespace VirtualStorageLibrary
                 }
                 else if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Item)
                 {
-                    yield return selector(node, basePath.Combine(node.Name));
+                    yield return selector(node, basePath + node.Name);
                 }
             }
         }
@@ -925,8 +924,8 @@ namespace VirtualStorageLibrary
             {
                 foreach (var subNode in sourceDirectory.Nodes)
                 {
-                    VirtualPath newSubSourcePath = absoluteSourcePath.Combine(subNode.Name);
-                    VirtualPath newSubDestinationPath = absoluteDestinationPath.Combine(subNode.Name);
+                    VirtualPath newSubSourcePath = absoluteSourcePath + subNode.Name;
+                    VirtualPath newSubDestinationPath = absoluteDestinationPath + subNode.Name;
                     CheckCopyPreconditions(newSubSourcePath, newSubDestinationPath, overwrite, true);
                 }
             }
@@ -979,9 +978,9 @@ namespace VirtualStorageLibrary
                 {
                     foreach (var node in sourceDirectory.Nodes)
                     {
-                        VirtualPath intermediatePath = targetDirectoryPath.Combine(newNodeName);
-                        VirtualPath newDestinationPath = intermediatePath.Combine(node.Name);
-                        CopyNode(absoluteSourcePath.Combine(node.Name), newDestinationPath, true, overwrite);
+                        VirtualPath intermediatePath = targetDirectoryPath + newNodeName;
+                        VirtualPath newDestinationPath = intermediatePath + node.Name;
+                        CopyNode(absoluteSourcePath + node.Name, newDestinationPath, true, overwrite);
                     }
                 }
             }
@@ -1024,7 +1023,7 @@ namespace VirtualStorageLibrary
                 // スナップショットを反復処理して、各ノードを削除
                 foreach (var subNode in nodesSnapshot)
                 {
-                    VirtualPath subPath = absolutePath.Combine(subNode.Name);
+                    VirtualPath subPath = absolutePath + subNode.Name;
                     RemoveNode(subPath, recursive);
                 }
 
