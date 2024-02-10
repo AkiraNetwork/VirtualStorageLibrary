@@ -1748,7 +1748,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetLinkPath_ReturnsResolvedPath_WhenPathIsSymbolicLink()
+        public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathIsSymbolicLink()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
@@ -1756,14 +1756,14 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/LinkToDocuments"), new VirtualPath("/Documents"));
 
             // メソッドを実行
-            var resolvedPath = vs.GetLinkPath(new VirtualPath("/LinkToDocuments"));
+            var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("/LinkToDocuments"));
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/Documents"), resolvedPath);
         }
 
         [TestMethod]
-        public void GetLinkPath_ReturnsResolvedPath_WhenPathContainsTwoLinks()
+        public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathContainsTwoLinks()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
@@ -1772,14 +1772,14 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/SecondLink"), new VirtualPath("/FinalDestination"));
 
             // メソッドを実行
-            var resolvedPath = vs.GetLinkPath(new VirtualPath("/FirstLink"));
+            var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("/FirstLink"));
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/FinalDestination"), resolvedPath);
         }
 
         [TestMethod]
-        public void GetLinkPath_ReturnsResolvedPath_WhenPathSpansMultipleLinkLevels()
+        public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathSpansMultipleLinkLevels()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
@@ -1791,14 +1791,14 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir3"));
 
             // メソッドを実行
-            var resolvedPath = vs.GetLinkPath(new VirtualPath("/dir1/link1/link2/item"));
+            var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("/dir1/link1/link2/item"));
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/dir3/item"), resolvedPath);
         }
 
         [TestMethod]
-        public void GetLinkPath_ReturnsResolvedPath_WhenPathIncludesSymbolicLink()
+        public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathIncludesSymbolicLink()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
@@ -1808,14 +1808,14 @@ namespace VirtualStorageLibrary.Test
             vs.ChangeDirectory(new VirtualPath("/dir1"));
 
             // メソッドを実行
-            var resolvedPath = vs.GetLinkPath(new VirtualPath("linkToDir2/item"));
+            var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("linkToDir2/item"));
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/dir1/dir2/item"), resolvedPath);
         }
 
         [TestMethod]
-        public void GetLinkPath_ResolvesPathCorrectly_WhenUsingDotWithSymbolicLink()
+        public void ResolveLinkTarget_ResolvesPathCorrectly_WhenUsingDotWithSymbolicLink()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
@@ -1825,14 +1825,14 @@ namespace VirtualStorageLibrary.Test
             vs.ChangeDirectory(new VirtualPath("/dir1"));
 
             // メソッドを実行
-            var resolvedPath = vs.GetLinkPath(new VirtualPath("./link/item"));
+            var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("./link/item"));
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/dir1/subdir/item"), resolvedPath);
         }
 
         [TestMethod]
-        public void GetLinkPath_ResolvesPathCorrectly_WhenUsingDotDotInPathWithSymbolicLink()
+        public void ResolveLinkTarget_ResolvesPathCorrectly_WhenUsingDotDotInPathWithSymbolicLink()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
@@ -1842,7 +1842,7 @@ namespace VirtualStorageLibrary.Test
             vs.ChangeDirectory(new VirtualPath("/dir1/dir2/dir3"));
 
             // メソッドを実行
-            var resolvedPath = vs.GetLinkPath(new VirtualPath("linkToDir2/../item"));
+            var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("linkToDir2/../item"));
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/dir1/item"), resolvedPath);

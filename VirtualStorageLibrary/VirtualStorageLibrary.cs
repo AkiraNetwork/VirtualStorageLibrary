@@ -556,7 +556,7 @@ namespace VirtualStorageLibrary
 
         public void ChangeDirectory(VirtualPath path)
         {
-            VirtualPath resolvedPath = GetLinkPath(path);
+            VirtualPath resolvedPath = ResolveLinkTarget(path);
 
             // ディレクトリが存在しない場合は例外をスロー
             if (!DirectoryExists(resolvedPath))
@@ -777,7 +777,7 @@ namespace VirtualStorageLibrary
             return nodeResolutionResult.Node;
         }
 
-        public VirtualPath GetLinkPath(VirtualPath path)
+        public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
             NodeResolutionResult nodeResolutionResult = GetNodeInternal(path, true);
             return nodeResolutionResult.ResolvedPath;
@@ -993,7 +993,7 @@ namespace VirtualStorageLibrary
         public void RemoveNode(VirtualPath path, bool recursive = false)
         {
             // TODO: 絶対パスに変換後、ノーマライズする(1行で書くか書き方を検討する)
-            VirtualPath absolutePath = GetLinkPath(path);
+            VirtualPath absolutePath = ResolveLinkTarget(path);
             absolutePath = absolutePath.NormalizePath();
 
             if (absolutePath.IsRoot)
