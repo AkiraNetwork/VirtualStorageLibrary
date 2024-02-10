@@ -1259,6 +1259,72 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ChangeDirectory_WithSymbolicLink_ChangesCurrentPathToTargetDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            VirtualPath baseDirectoryPath = new VirtualPath("/path/to/");
+            VirtualPath targetDirectory = new VirtualPath("/real/target/directory");
+            VirtualPath symbolicLink = new VirtualPath("/path/to/symlink");
+            virtualStorage.AddDirectory(baseDirectoryPath, true); // ベースディレクトリを追加
+            virtualStorage.AddDirectory(targetDirectory, true); // 実際のターゲットディレクトリを追加
+            virtualStorage.AddSymbolicLink(symbolicLink, targetDirectory); // ベースディレクトリ内にシンボリックリンクを追加
+
+            // Act
+            virtualStorage.ChangeDirectory(symbolicLink); // シンボリックリンクを通じてディレクトリ変更を試みる
+
+            // Assert
+            Assert.AreEqual(symbolicLink, virtualStorage.CurrentPath); // シンボリックリンクのターゲットがカレントディレクトリになっているか検証
+        }
+
+        [TestMethod]
+        public void ChangeDirectory_WithDotDotInPath_NormalizesPathAndChangesCurrentPath()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            VirtualPath baseDirectory = new VirtualPath("/path/to");
+            VirtualPath subDirectory = new VirtualPath("/path/to/subdirectory");
+            virtualStorage.AddDirectory(baseDirectory, true); // ベースディレクトリを追加
+            virtualStorage.AddDirectory(subDirectory, true); // サブディレクトリを追加
+
+            // サブディレクトリに移動し、そこから親ディレクトリに戻るパスを設定
+            VirtualPath pathToChange = new VirtualPath("/path/to/subdirectory/../");
+
+            // Act
+            virtualStorage.ChangeDirectory(pathToChange);
+
+            // Assert
+            Assert.AreEqual(baseDirectory, virtualStorage.CurrentPath); // カレントディレクトリがベースディレクトリに正しく変更されたか検証
+        }
+
+        [TestMethod]
+        public void ChangeDirectory_WithPathIncludingSymbolicLinkAndDotDot_NormalizesAndResolvesPathCorrectly()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            VirtualPath baseDirectory = new VirtualPath("/path/to");
+            VirtualPath symbolicLinkPath = new VirtualPath("/path/to/link");
+            VirtualPath targetDirectory = new VirtualPath("/real/target/directory");
+            // ベースディレクトリとターゲットディレクトリを追加
+            virtualStorage.AddDirectory(baseDirectory, true);
+            virtualStorage.AddDirectory(targetDirectory, true);
+            // サブディレクトリとしてシンボリックリンクを追加
+            virtualStorage.AddSymbolicLink(symbolicLinkPath, targetDirectory);
+
+            // シンボリックリンクを経由し、さらに".."を使って親ディレクトリに戻るパスを設定
+            VirtualPath pathToChange = new VirtualPath("/path/to/link/../..");
+
+            // Act
+            virtualStorage.ChangeDirectory(pathToChange);
+
+            // Assert
+            // シンボリックリンクを解決後、".."によりさらに上のディレクトリに移動するため、
+            // 最終的なカレントディレクトリが/pathになることを期待
+            VirtualPath expectedPath = new VirtualPath("/path");
+            Assert.AreEqual(expectedPath, virtualStorage.CurrentPath);
+        }
+
+        [TestMethod]
         public void ConvertToAbsolutePath_WhenPathIsEmpty_ThrowsArgumentException()
         {
             // Arrange

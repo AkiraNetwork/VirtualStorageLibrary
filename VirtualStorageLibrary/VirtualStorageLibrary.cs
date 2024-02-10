@@ -556,16 +556,16 @@ namespace VirtualStorageLibrary
 
         public void ChangeDirectory(VirtualPath path)
         {
-            VirtualPath absolutePath = ConvertToAbsolutePath(path);
+            VirtualPath resolvedPath = GetLinkPath(path);
 
-            // Check if the path exists
-            if (!NodeExists(absolutePath))
+            // ディレクトリが存在しない場合は例外をスロー
+            if (!DirectoryExists(resolvedPath))
             {
-                throw new VirtualNodeNotFoundException($"ディレクトリ '{absolutePath}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"ディレクトリ '{path}' は存在しません。");
             }
 
-            // Change the current path
-            CurrentPath = absolutePath;
+            // カレントパスを変更
+            CurrentPath = path.NormalizePath();
         }
 
         public VirtualPath ConvertToAbsolutePath(VirtualPath virtualRelativePath, VirtualPath? basePath = null)
@@ -726,6 +726,7 @@ namespace VirtualStorageLibrary
                 {
                     // 親ディレクトリを示す場合、現在のディレクトリを一つ上のディレクトリに変更
                     basePath = basePath.GetParentPath();
+                    resolvedPath = basePath;
                     if (nodeLinkedList.Count > 1)
                     {
                         nodeLinkedList.RemoveLast();
@@ -760,11 +761,7 @@ namespace VirtualStorageLibrary
                     else
                     {
                         basePath = basePath + nodeName;
-                        if (index == nodeNameList.Count - 1)
-                        {
-                            // ノードリストの最後の要素でシンボリックリンクでない場合、resolvedPathを更新
-                            resolvedPath = basePath;
-                        }
+                        resolvedPath = basePath;
                     }
                 }
 
