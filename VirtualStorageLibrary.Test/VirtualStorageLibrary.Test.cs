@@ -1482,29 +1482,34 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        // ディレクトリの追加が正常に行われることを確認
         public void AddDirectory_WithValidPath_CreatesDirectory()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
 
             // Act
-            virtualStorage.AddDirectory(new VirtualPath("/test/directory"), true);
+            virtualStorage.AddDirectory(new VirtualPath("/test"));
+            virtualStorage.AddDirectory(new VirtualPath("/test/directory"));
 
             // Assert
             Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/directory")));
         }
 
         [TestMethod]
+        // ネストされたディレクトリを作成する場合、createSubdirectories が false の場合、例外がスローされることを確認
         public void AddDirectory_WithNestedPathAndCreateSubdirectoriesFalse_ThrowsException()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
 
             // Act & Assert
-            Assert.ThrowsException<Exception>(() => virtualStorage.AddDirectory(new VirtualPath("/test/directory"), false));
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
+                virtualStorage.AddDirectory(new VirtualPath("/test/directory"), false));
         }
 
         [TestMethod]
+        // ネストされたディレクトリを作成する場合、createSubdirectories が true の場合、ディレクトリが作成されることを確認
         public void AddDirectory_WithNestedPathAndCreateSubdirectoriesTrue_CreatesDirectories()
         {
             // Arrange
@@ -1518,7 +1523,8 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void AddDirectory_WithExistingDirectory_DoesNotThrowException()
+        // 既存のディレクトリに対して createSubdirectories が true の場合、例外がスローされないことを確認
+        public void AddDirectory_WithExistingDirectoryAndCreateSubdirectoriesTrue_DoesNotThrowException()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
@@ -1526,6 +1532,19 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             virtualStorage.AddDirectory(new VirtualPath("/test/directory"), true);
+        }
+
+        [TestMethod]
+        // 既存のディレクトリに対して createSubdirectories が false の場合、例外がスローされることを確認
+        public void AddDirectory_WithExistingDirectoryAndCreateSubdirectoriesFalse_ThrowException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/test/directory"), true);
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() => 
+                virtualStorage.AddDirectory(new VirtualPath("/test/directory"), false));
         }
 
         [TestMethod]

@@ -673,27 +673,102 @@ namespace VirtualStorageLibrary
         public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
         {
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
-            List<VirtualPath> nodeNameList = absolutePath.GetPartsList();
-            VirtualDirectory directory = _root;
 
-            for (int i = 0; i < nodeNameList.Count; i++)
+            if (absolutePath.IsRoot)
             {
-                VirtualPath nodeName = nodeNameList[i];
+                throw new InvalidOperationException("ルートディレクトリは既に存在します。");
+            }
 
-                if (!directory.DirectoryExists(nodeName))
+            List<VirtualPath> nodeNameList = absolutePath.GetPartsList();
+
+            LinkedList<VirtualNode> nodeLinkedList = new LinkedList<VirtualNode>();
+            nodeLinkedList.AddLast(_root);
+            int index = 0;
+
+            VirtualPath basePath = VirtualPath.Empty; // 現在のベースパスを追跡
+            VirtualPath resolvedPath = VirtualPath.Root; // 解決後のフルパスを組み立てるための変数
+
+            VirtualDirectory parentDirectory = _root;
+
+            while (index < nodeNameList.Count)
+            {
+                VirtualPath nodeName = nodeNameList[index];
+
+                if (nodeName.IsDot)
                 {
-                    if (createSubdirectories || i == nodeNameList.Count - 1)
+                    // 現在のディレクトリを示す場合、何もせず次のノードへ
+                }
+                else if (nodeName.IsDotDot)
+                {
+                    // 親ディレクトリを示す場合、現在のディレクトリを一つ上のディレクトリに変更
+                    basePath = basePath.GetParentPath();
+                    resolvedPath = basePath;
+                    if (nodeLinkedList.Count > 1)
                     {
-                        directory.AddDirectory(nodeName);
+                        nodeLinkedList.RemoveLast();
+                        if (nodeLinkedList.Count > 1)
+                        {
+                            parentDirectory = (VirtualDirectory)nodeLinkedList.Last!.Value;
+                        }
+                        else
+                        {
+                            parentDirectory = _root;
+                        }
+                    }
+                }
+                else
+                {
+                    if (nodeLinkedList.Last!.Value is VirtualDirectory directory)
+                    {
+                        if (!directory.NodeExists(nodeName))
+                        {
+                            if (createSubdirectories || index == nodeNameList.Count - 1)
+                            {
+                                directory.AddDirectory(nodeName);
+                            }
+                            else
+                            {
+                                throw new VirtualNodeNotFoundException($"ディレクトリ '{nodeName}' が見つかりません。");
+                            }
+                        }
+                        else
+                        {
+                            if (!createSubdirectories && index == nodeNameList.Count - 1)
+                            {
+                                throw new InvalidOperationException($"ディレクトリ '{nodeName}' は既に存在します。");
+                            }
+                        }
+                        nodeLinkedList.AddLast(directory[nodeName]);
+                        parentDirectory = (VirtualDirectory)nodeLinkedList.Last.Value;
                     }
                     else
                     {
-                        throw new Exception($"ディレクトリ {nodeName} は存在しません。");
+                        throw new VirtualNodeNotFoundException($"ノード '{nodeName}' はディレクトリではありません。");
+                    }
+
+                    if (nodeLinkedList.Last.Value is VirtualSymbolicLink symlink)
+                    {
+                        VirtualPath symlinkTargetPath = ConvertToAbsolutePath(symlink.TargetPath, basePath);
+                        List<VirtualPath> targetPathList = symlinkTargetPath.GetPartsList();
+                        nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToList();
+                        index = -1; // indexをリセットし、次のループで0から開始
+                        nodeLinkedList.Clear(); // ノードリストをリセット
+                        nodeLinkedList.AddLast(_root); // ルートノードを追加
+                        basePath = VirtualPath.Empty; // 現在のパスもリセット
+                        resolvedPath = symlinkTargetPath; // 解決後のパスを更新
+                        parentDirectory = _root;
+                    }
+                    else
+                    {
+                        basePath = basePath + nodeName;
+                        resolvedPath = basePath;
                     }
                 }
 
-                directory = (VirtualDirectory)directory.Get(nodeName);
+                index++;
             }
+
+            return;
         }
 
         public NodeResolutionResult GetNodeInternal(VirtualPath path, bool followLinks)
