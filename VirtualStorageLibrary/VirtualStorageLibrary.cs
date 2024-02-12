@@ -688,8 +688,6 @@ namespace VirtualStorageLibrary
             VirtualPath basePath = VirtualPath.Empty; // 現在のベースパスを追跡
             VirtualPath resolvedPath = VirtualPath.Root; // 解決後のフルパスを組み立てるための変数
 
-            VirtualDirectory parentDirectory = _root;
-
             while (index < nodeNameList.Count)
             {
                 VirtualPath nodeName = nodeNameList[index];
@@ -706,14 +704,6 @@ namespace VirtualStorageLibrary
                     if (nodeLinkedList.Count > 1)
                     {
                         nodeLinkedList.RemoveLast();
-                        if (nodeLinkedList.Count > 1)
-                        {
-                            parentDirectory = (VirtualDirectory)nodeLinkedList.Last!.Value;
-                        }
-                        else
-                        {
-                            parentDirectory = _root;
-                        }
                     }
                 }
                 else
@@ -739,7 +729,6 @@ namespace VirtualStorageLibrary
                             }
                         }
                         nodeLinkedList.AddLast(directory[nodeName]);
-                        parentDirectory = (VirtualDirectory)nodeLinkedList.Last.Value;
                     }
                     else
                     {
@@ -756,7 +745,6 @@ namespace VirtualStorageLibrary
                         nodeLinkedList.AddLast(_root); // ルートノードを追加
                         basePath = VirtualPath.Empty; // 現在のパスもリセット
                         resolvedPath = symlinkTargetPath; // 解決後のパスを更新
-                        parentDirectory = _root;
                     }
                     else
                     {

@@ -1548,6 +1548,102 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddDirectory_AttemptToAddRootDirectory_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                virtualStorage.AddDirectory(new VirtualPath("/")));
+        }
+
+        [TestMethod]
+        public void AddDirectory_ThroughSymbolicLink_CreatesDirectoryAtResolvedPath()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/test"), true);
+            virtualStorage.AddSymbolicLink(new VirtualPath("/link"), new VirtualPath("/test"), true);
+
+            // Act
+            virtualStorage.AddDirectory(new VirtualPath("/link/directory"), true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/directory")));
+        }
+
+        [TestMethod]
+        public void AddDirectory_WithRelativePath_CreatesDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/test"), true);
+            virtualStorage.ChangeDirectory(new VirtualPath("/test"));
+
+            // Act
+            virtualStorage.AddDirectory(new VirtualPath("directory"), true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/directory")));
+        }
+
+        [TestMethod]
+        public void AddDirectory_ExistingSubdirectoriesWithCreateSubdirectoriesTrue_DoesNotAffectExistingSubdirectories()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/test/subdirectory"), true);
+
+            // Act
+            virtualStorage.AddDirectory(new VirtualPath("/test/newDirectory"), true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/subdirectory")));
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/newDirectory")));
+        }
+
+        [TestMethod]
+        public void AddDirectory_MultipleLevelsOfDirectoriesWithCreateSubdirectoriesFalse_ThrowsException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+                virtualStorage.AddDirectory(new VirtualPath("/test/subdirectory/anotherDirectory"), false));
+        }
+
+        [TestMethod]
+        public void AddDirectory_WithPathIncludingDotDot_CreatesDirectoryCorrectly()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/test"), true);
+            virtualStorage.AddDirectory(new VirtualPath("/test/subdirectory"), true);
+
+            // Act
+            virtualStorage.AddDirectory(new VirtualPath("/test/subdirectory/../anotherDirectory"), true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/anotherDirectory")));
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/subdirectory")));
+        }
+
+        [TestMethod]
+        public void AddDirectory_WithPathNormalization_CreatesDirectoryAtNormalizedPath()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+
+            // Act
+            virtualStorage.AddDirectory(new VirtualPath("/test/../test2"), true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test2")));
+        }
+
+        [TestMethod]
         public void GetNode_ReturnsCorrectNode_WhenNodeIsItem()
         {
             // テストデータの設定
