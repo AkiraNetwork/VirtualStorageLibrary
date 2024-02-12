@@ -686,7 +686,6 @@ namespace VirtualStorageLibrary
             int index = 0;
 
             VirtualPath basePath = VirtualPath.Empty; // 現在のベースパスを追跡
-            VirtualPath resolvedPath = VirtualPath.Root; // 解決後のフルパスを組み立てるための変数
 
             while (index < nodeNameList.Count)
             {
@@ -700,7 +699,6 @@ namespace VirtualStorageLibrary
                 {
                     // 親ディレクトリを示す場合、現在のディレクトリを一つ上のディレクトリに変更
                     basePath = basePath.GetParentPath();
-                    resolvedPath = basePath;
                     if (nodeLinkedList.Count > 1)
                     {
                         nodeLinkedList.RemoveLast();
@@ -723,9 +721,20 @@ namespace VirtualStorageLibrary
                         }
                         else
                         {
-                            if (!createSubdirectories && index == nodeNameList.Count - 1)
+                            if (index == nodeNameList.Count - 1)
                             {
-                                throw new InvalidOperationException($"ディレクトリ '{nodeName}' は既に存在します。");
+                                VirtualNode node = directory.Get(nodeName);
+                                if (node is VirtualDirectory)
+                                {
+                                    if (!createSubdirectories)
+                                    {
+                                        throw new InvalidOperationException($"同じ名前のディレクトリ '{nodeName}' か既に存在します。");
+                                    }
+                                }
+                                else
+                                {
+                                    throw new InvalidOperationException($"同じ名前のノード '{nodeName}' か既に存在します。");
+                                }
                             }
                         }
                         nodeLinkedList.AddLast(directory[nodeName]);
@@ -744,12 +753,10 @@ namespace VirtualStorageLibrary
                         nodeLinkedList.Clear(); // ノードリストをリセット
                         nodeLinkedList.AddLast(_root); // ルートノードを追加
                         basePath = VirtualPath.Empty; // 現在のパスもリセット
-                        resolvedPath = symlinkTargetPath; // 解決後のパスを更新
                     }
                     else
                     {
                         basePath = basePath + nodeName;
-                        resolvedPath = basePath;
                     }
                 }
 

@@ -1676,6 +1676,38 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddDirectory_ThrowsException_WhenSymbolicLinkExistsWithSameName()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            // 基本ディレクトリを作成
+            virtualStorage.AddDirectory(new VirtualPath("/base"));
+            // "/base"ディレクトリにシンボリックリンク"/base/link"を作成
+            virtualStorage.AddSymbolicLink(new VirtualPath("/base/link"), new VirtualPath("/target"));
+
+            // Act & Assert
+            // "/base/link"にディレクトリを作成しようとすると、例外が発生することを確認
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                virtualStorage.AddDirectory(new VirtualPath("/base/link"), true));
+        }
+
+        [TestMethod]
+        public void AddDirectory_ThrowsException_WhenItemExistsWithSameName()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            // 基本ディレクトリを作成
+            virtualStorage.AddDirectory(new VirtualPath("/base"), true);
+            // "/base"ディレクトリにアイテム"/base/item"を作成（この例では、アイテムを作成するメソッドを仮定）
+            virtualStorage.AddItem(new VirtualPath("/base/item"), "Some content", true);
+
+            // Act & Assert
+            // "/base/item"にディレクトリを作成しようとすると、例外が発生することを確認
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                virtualStorage.AddDirectory(new VirtualPath("/base/item"), true), "Expected VirtualNodeNotFoundException when trying to create a directory where an item exists with the same name.");
+        }
+
+        [TestMethod]
         public void GetNode_ReturnsCorrectNode_WhenNodeIsItem()
         {
             // テストデータの設定
