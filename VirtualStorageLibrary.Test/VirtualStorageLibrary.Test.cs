@@ -1615,6 +1615,22 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddDirectory_WithCurrentDirectoryDot_CreatesDirectoryCorrectly()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/test"), true); // 初期ディレクトリを作成
+
+            // Act
+            // 現在のディレクトリ（"/test"）に対して"."を使用して、さらにサブディレクトリを作成
+            virtualStorage.AddDirectory(new VirtualPath("/test/./subdirectory"), true);
+
+            // Assert
+            // "/test/subdirectory" が正しく作成されたことを確認
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test/subdirectory")));
+        }
+
+        [TestMethod]
         public void AddDirectory_WithPathIncludingDotDot_CreatesDirectoryCorrectly()
         {
             // Arrange
@@ -1641,6 +1657,22 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/test2")));
+        }
+
+        [TestMethod]
+        public void AddDirectory_AttemptToAddDirectoryUnderNonDirectoryNode_ThrowsException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            // "/dir1"ディレクトリを作成
+            virtualStorage.AddDirectory(new VirtualPath("/dir1"), true);
+            // "/dir1"内にアイテム（非ディレクトリ）"item"を作成
+            virtualStorage.AddItem(new VirtualPath("/dir1/item"), "Dummy content", true);
+
+            // Act & Assert
+            // "/dir1/item"がディレクトリではないノードの下に"dir2"ディレクトリを追加しようとすると例外がスローされることを確認
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+                virtualStorage.AddDirectory(new VirtualPath("/dir1/item/dir2"), true));
         }
 
         [TestMethod]
