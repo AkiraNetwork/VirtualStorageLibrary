@@ -3006,6 +3006,62 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void NodeExists_ReturnsTrue_WhenSymbolicLinkExistsAndFollowLinksIsTrue()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            VirtualPath directoryPath = new VirtualPath("/existing/directory");
+            VirtualPath linkDirectoryPath = new VirtualPath("/link/to");
+            VirtualPath linkPath = linkDirectoryPath + new VirtualPath("directory");
+            storage.AddDirectory(directoryPath, true); // 実際のディレクトリを追加
+            storage.AddDirectory(linkDirectoryPath, true); // シンボリックリンクの親ディレクトリを追加
+            storage.AddSymbolicLink(linkPath, directoryPath); // シンボリックリンクを追加
+
+            // Act
+            bool exists = storage.NodeExists(linkPath, true); // シンボリックリンクの追跡を有効に
+
+            // Assert
+            Assert.IsTrue(exists); // シンボリックリンクを追跡し、実際のディレクトリが存在することを確認
+        }
+
+        [TestMethod]
+        public void NodeExists_ReturnsTrue_WhenSymbolicLinkExistsAndFollowLinksIsFalse()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            VirtualPath directoryPath = new VirtualPath("/existing/directory");
+            VirtualPath linkDirectoryPath = new VirtualPath("/link/to");
+            VirtualPath linkPath = linkDirectoryPath + new VirtualPath("directory");
+            storage.AddDirectory(directoryPath, true); // 実際のディレクトリを追加
+            storage.AddDirectory(linkDirectoryPath, true); // シンボリックリンクの親ディレクトリを追加
+            storage.AddSymbolicLink(linkPath, directoryPath); // シンボリックリンクを追加
+
+            // Act
+            bool exists = storage.NodeExists(linkPath, false); // シンボリックリンクの追跡を無効に
+
+            // Assert
+            Assert.IsTrue(exists); // シンボリックリンク自体の存在を確認
+        }
+
+        [TestMethod]
+        public void NodeExists_ReturnsFalse_WhenTargetOfSymbolicLinkDoesNotExistAndFollowLinksIsTrue()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            VirtualPath nonExistentTargetPath = new VirtualPath("/nonexistent/target");
+            VirtualPath linkDirectoryPath = new VirtualPath("/link/to");
+            VirtualPath linkPath = linkDirectoryPath + new VirtualPath("nonexistent");
+            storage.AddDirectory(linkDirectoryPath, true); // シンボリックリンクの親ディレクトリを追加
+            storage.AddSymbolicLink(linkPath, nonExistentTargetPath); // 存在しないターゲットへのシンボリックリンクを追加
+
+            // Act
+            bool exists = storage.NodeExists(linkPath, true); // シンボリックリンクの追跡を有効に
+
+            // Assert
+            Assert.IsFalse(exists); // シンボリックリンクのターゲットが存在しないため、falseを返す
+        }
+
+        [TestMethod]
         public void DirectoryExists_ReturnsTrue_WhenDirectoryExists()
         {
             // Arrange

@@ -1098,13 +1098,13 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public VirtualNode? TryGetNode(VirtualPath path)
+        public VirtualNode? TryGetNode(VirtualPath path, bool followLinks = false)
         {
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
             try
             {
                 // GetNodeメソッドは、ノードが見つからない場合にnullを返すか、例外をスローするように実装されていると仮定
-                return GetNode(absolutePath);
+                return GetNode(absolutePath, followLinks);
             }
             catch (VirtualNodeNotFoundException)
             {
@@ -1112,9 +1112,10 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public bool NodeExists(VirtualPath path)
+        public bool NodeExists(VirtualPath path, bool followLinks = false)
         {
-            var node = TryGetNode(path);
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
+            var node = TryGetNode(absolutePath, followLinks);
             return node != null; // ノードがnullでなければ、存在すると判断
         }
 
