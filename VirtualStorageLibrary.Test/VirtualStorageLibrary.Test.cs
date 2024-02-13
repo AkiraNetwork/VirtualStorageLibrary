@@ -2222,6 +2222,75 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddItem_ThroughSymbolicLink_AddsItemToTargetDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/actualDirectory"), true);
+            virtualStorage.AddSymbolicLink(new VirtualPath("/symbolicLink"), new VirtualPath("/actualDirectory"));
+            var binaryData = new BinaryData(new byte[] { 1, 2, 3 });
+
+            // Act
+            virtualStorage.AddItem(new VirtualPath("/symbolicLink/newItem"), binaryData);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.ItemExists(new VirtualPath("/actualDirectory/newItem")));
+            var retrievedItem = virtualStorage.GetNode(new VirtualPath("/actualDirectory/newItem")) as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddItem_ThroughNestedSymbolicLink_AddsItemToFinalTargetDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/level1/level2/targetDirectory"), true);
+            virtualStorage.AddSymbolicLink(new VirtualPath("/linkToLevel1"), new VirtualPath("/level1"));
+            virtualStorage.AddSymbolicLink(new VirtualPath("/level1/linkToLevel2"), new VirtualPath("/level1/level2"));
+            var binaryData = new BinaryData(new byte[] { 4, 5, 6 });
+
+            // Act
+            virtualStorage.AddItem(new VirtualPath("/linkToLevel1/linkToLevel2/targetDirectory/newItem"), binaryData);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.ItemExists(new VirtualPath("/level1/level2/targetDirectory/newItem")));
+            var retrievedItem = virtualStorage.GetNode(new VirtualPath("/level1/level2/targetDirectory/newItem")) as VirtualItem<BinaryData>;
+            Assert.IsNotNull(retrievedItem);
+            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.Item.Data);
+        }
+
+        [TestMethod]
+        public void AddItem_ToNonExistentTargetViaSymbolicLink_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddSymbolicLink(new VirtualPath("/linkToNowhere"), new VirtualPath("/nonExistentTarget"));
+            var binaryData = new BinaryData(new byte[] { 7, 8, 9 });
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+                virtualStorage.AddItem(new VirtualPath("/linkToNowhere/newItem"), binaryData));
+        }
+
+        [TestMethod]
+        public void AddItem_ThroughSymbolicLinkWithNonExistentIntermediateTarget_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/existingDirectory"), true);
+            // 中間のターゲットが存在しないシンボリックリンクを作成
+            virtualStorage.AddSymbolicLink(new VirtualPath("/existingDirectory/nonExistentLink"), new VirtualPath("/nonExistentIntermediateTarget"));
+            // 最終的なパスの組み立て
+            VirtualPath pathToItem = new VirtualPath("/existingDirectory/nonExistentLink/finalItem");
+            var binaryData = new BinaryData(new byte[] { 10, 11, 12 });
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+                virtualStorage.AddItem(pathToItem, binaryData), "中間のシンボリックリンクのターゲットが存在しない場合、VirtualNodeNotFoundExceptionがスローされるべきです。");
+        }
+
+        [TestMethod]
         public void ItemExists_WhenIntermediateDirectoryDoesNotExist_ReturnsFalse()
         {
             // Arrange

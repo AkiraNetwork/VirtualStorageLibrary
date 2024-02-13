@@ -638,14 +638,8 @@ namespace VirtualStorageLibrary
             VirtualPath directoryPath = absolutePath.GetDirectoryPath();
             VirtualPath itemName = absolutePath.GetNodeName();
 
-            // 対象ディレクトリの存在チェック
-            if (!DirectoryExists(directoryPath))
-            {
-                throw new VirtualNodeNotFoundException($"ディレクトリ '{directoryPath}' が見つかりません。");
-            }
-
             // 対象ディレクトリを取得
-            VirtualDirectory directory = GetDirectory(directoryPath);
+            VirtualDirectory directory = GetDirectory(directoryPath, true);
 
             // 既存のアイテムの存在チェック
             if (directory.NodeExists(itemName))
@@ -853,10 +847,10 @@ namespace VirtualStorageLibrary
             return nodeResolutionResult.ResolvedPath;
         }
 
-        public VirtualDirectory GetDirectory(VirtualPath path)
+        public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
         {
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
-            VirtualNode node = GetNode(absolutePath);
+            VirtualNode node = GetNode(absolutePath, followLinks);
 
             if (node is VirtualDirectory directory)
             {
