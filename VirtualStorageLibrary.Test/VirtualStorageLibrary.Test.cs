@@ -1227,6 +1227,186 @@ namespace VirtualStorageLibrary.Test
             // Assert
             Assert.AreEqual("Directory: TestDirectory, Count: 3 (1 directories, 2 items)", result);
         }
+
+        [TestMethod]
+        public void ItemExists_WithExistingItem_ReturnsTrue()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var itemPath = new VirtualPath("TestItem");
+            var itemData = new BinaryData(new byte[] { 1, 2, 3 });
+            directory.AddItem(itemPath, itemData, false);
+
+            // Act
+            var exists = directory.ItemExists(itemPath);
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void ItemExists_WithNonExistingItem_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var nonExistingItemPath = new VirtualPath("NonExistingItem");
+
+            // Act
+            var exists = directory.ItemExists(nonExistingItemPath);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+
+        [TestMethod]
+        public void ItemExists_WithExistingDirectory_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var subDirectoryPath = new VirtualPath("SubDirectory");
+            directory.AddDirectory(subDirectoryPath);
+
+            // Act
+            var exists = directory.ItemExists(subDirectoryPath);
+
+            // Assert
+            Assert.IsFalse(exists); // ディレクトリはアイテムではないため、falseを返すべき
+        }
+
+        [TestMethod]
+        public void ItemExists_WithExistingSymbolicLink_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var linkPath = new VirtualPath("TestLink");
+            directory.AddSymbolicLink(linkPath, new VirtualPath("/path/to/target"), false);
+
+            // Act
+            var exists = directory.ItemExists(linkPath);
+
+            // Assert
+            Assert.IsFalse(exists); // シンボリックリンクはアイテムとして扱わず、falseを返す
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithExistingDirectory_ReturnsTrue()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var subDirectoryPath = new VirtualPath("SubDirectory");
+            directory.AddDirectory(subDirectoryPath);
+
+            // Act
+            var exists = directory.DirectoryExists(subDirectoryPath);
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithNonExistingDirectory_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var nonExistingDirectoryPath = new VirtualPath("NonExistingDirectory");
+
+            // Act
+            var exists = directory.DirectoryExists(nonExistingDirectoryPath);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithExistingItem_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var itemPath = new VirtualPath("TestItem");
+            var itemData = new BinaryData(new byte[] { 1, 2, 3 });
+            directory.AddItem(itemPath, itemData, false);
+
+            // Act
+            var exists = directory.DirectoryExists(itemPath);
+
+            // Assert
+            Assert.IsFalse(exists); // アイテムはディレクトリではないため、falseを返すべき
+        }
+
+        [TestMethod]
+        public void DirectoryExists_WithExistingSymbolicLink_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var linkPath = new VirtualPath("TestLink");
+            directory.AddSymbolicLink(linkPath, new VirtualPath("/path/to/target"), false);
+
+            // Act
+            var exists = directory.DirectoryExists(linkPath);
+
+            // Assert
+            Assert.IsFalse(exists); // シンボリックリンクはディレクトリとして扱わず、falseを返す
+        }
+
+        [TestMethod]
+        public void SymbolicLinkExists_WithExistingSymbolicLink_ReturnsTrue()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var linkPath = new VirtualPath("TestLink");
+            directory.AddSymbolicLink(linkPath, new VirtualPath("/path/to/target"), false);
+
+            // Act
+            var exists = directory.SymbolicLinkExists(linkPath);
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkExists_WithNonExistingSymbolicLink_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var nonExistingLinkPath = new VirtualPath("NonExistingLink");
+
+            // Act
+            var exists = directory.SymbolicLinkExists(nonExistingLinkPath);
+
+            // Assert
+            Assert.IsFalse(exists);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkExists_WithExistingDirectory_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var subDirectoryPath = new VirtualPath("SubDirectory");
+            directory.AddDirectory(subDirectoryPath);
+
+            // Act
+            var exists = directory.SymbolicLinkExists(subDirectoryPath);
+
+            // Assert
+            Assert.IsFalse(exists); // ディレクトリはシンボリックリンクではないため、falseを返すべき
+        }
+
+        [TestMethod]
+        public void SymbolicLinkExists_WithExistingItem_ReturnsFalse()
+        {
+            // Arrange
+            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
+            var itemPath = new VirtualPath("TestItem");
+            var itemData = new BinaryData(new byte[] { 1, 2, 3 });
+            directory.AddItem(itemPath, itemData, false);
+
+            // Act
+            var exists = directory.SymbolicLinkExists(itemPath);
+
+            // Assert
+            Assert.IsFalse(exists); // アイテムはシンボリックリンクではないため、falseを返すべき
+        }
     }
 
     [TestClass]

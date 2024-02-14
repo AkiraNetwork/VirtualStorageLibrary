@@ -414,6 +414,20 @@ namespace VirtualStorageLibrary
 
         public bool NodeExists(VirtualPath name) => _nodes.ContainsKey(name);
 
+        public bool ItemExists(VirtualPath name)
+        {
+            // NodeExistsを使用してノードの存在を確認
+            if (!NodeExists(name))
+            {
+                return false; // ノードが存在しない場合はfalseを返す
+            }
+
+            var node = _nodes[name];
+            var nodeType = node.GetType();
+            // ノードの型がジェネリックであり、かつそのジェネリック型定義がVirtualItem<>であるかチェック
+            return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>);
+        }
+
         public bool DirectoryExists(VirtualPath name)
         {
             if (!NodeExists(name))
@@ -422,6 +436,17 @@ namespace VirtualStorageLibrary
             }
 
             return _nodes[name] is VirtualDirectory;
+        }
+
+        public bool SymbolicLinkExists(VirtualPath name)
+        {
+            if (!NodeExists(name))
+            {
+                return false;
+            }
+
+            var node = _nodes[name];
+            return node is VirtualSymbolicLink;
         }
 
         public VirtualDirectory(VirtualPath name) : base(name)
