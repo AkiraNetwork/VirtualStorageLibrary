@@ -1178,7 +1178,8 @@ namespace VirtualStorageLibrary
 
         public bool ItemExists(VirtualPath path, bool followLinks = false)
         {
-            var node = TryGetNode(path, followLinks);
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
+            var node = TryGetNode(absolutePath, followLinks);
             if (node == null) return false;
             var nodeType = node.GetType();
             return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>);
