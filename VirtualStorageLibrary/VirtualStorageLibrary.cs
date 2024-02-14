@@ -1172,11 +1172,8 @@ namespace VirtualStorageLibrary
             }
 
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
-            VirtualPath parentPath = absolutePath.GetParentPath();
-            VirtualPath nodeName = absolutePath.GetNodeName();
-            VirtualDirectory? parentDirectory = TryGetDirectory(parentPath, followLinks);
-
-            return parentDirectory?.DirectoryExists(nodeName) ?? false;
+            VirtualDirectory? directory = TryGetDirectory(absolutePath, followLinks);
+            return directory != null;
         }
 
         public bool ItemExists(VirtualPath path, bool followLinks = false)
