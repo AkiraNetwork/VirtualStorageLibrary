@@ -2539,6 +2539,67 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ItemExists_WithSymbolicLinkToItemAndFollowLinksIsTrue_ReturnsTrue()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
+            virtualStorage.AddItem(new VirtualPath("/actualitem"), item);
+            virtualStorage.AddSymbolicLink(new VirtualPath("/linktoitem"), new VirtualPath("/actualitem"));
+
+            // Act
+            bool result = virtualStorage.ItemExists(new VirtualPath("/linktoitem"), true);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void ItemExists_WithSymbolicLinkToItemAndFollowLinksIsFalse_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            var item = new BinaryData(new byte[] { 1, 2, 3 });
+            virtualStorage.AddItem(new VirtualPath("/actualitem"), item);
+            virtualStorage.AddSymbolicLink(new VirtualPath("/linktoitem"), new VirtualPath("/actualitem"));
+
+            // Act
+            bool result = virtualStorage.ItemExists(new VirtualPath("/linktoitem"), false);
+
+            // Assert
+            Assert.IsFalse(result); // シンボリックリンク自体はアイテムとしてカウントしない
+        }
+
+        [TestMethod]
+        public void ItemExists_WithSymbolicLinkToNonexistentItemAndFollowLinksIsTrue_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddSymbolicLink(new VirtualPath("/linktononexistent"), new VirtualPath("/nonexistentitem"));
+
+            // Act
+            bool result = virtualStorage.ItemExists(new VirtualPath("/linktononexistent"), true);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void ItemExists_WithSymbolicLinkToPointingToDirectoryAndFollowLinksIsTrue_ReturnsFalse()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            virtualStorage.AddDirectory(new VirtualPath("/targetdir"));
+            virtualStorage.AddSymbolicLink(new VirtualPath("/linktodir"), new VirtualPath("/targetdir"));
+
+            // Act
+            bool result = virtualStorage.ItemExists(new VirtualPath("/linktodir"), true);
+
+            // Assert
+            Assert.IsFalse(result); // ディレクトリを指すシンボリックリンクはアイテムとしてカウントしない
+        }
+
+        [TestMethod]
         public void GetNodes_WithEmptyPath_ThrowsArgumentException()
         {
             // Arrange

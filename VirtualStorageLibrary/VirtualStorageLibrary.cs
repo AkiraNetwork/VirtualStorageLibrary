@@ -1179,12 +1179,12 @@ namespace VirtualStorageLibrary
             return parentDirectory?.DirectoryExists(nodeName) ?? false;
         }
 
-        public bool ItemExists(VirtualPath path)
+        public bool ItemExists(VirtualPath path, bool followLinks = false)
         {
-            var node = TryGetNode(path);
-            if (node == null) return false; // ノードがnullなら、アイテムは存在しない
+            var node = TryGetNode(path, followLinks);
+            if (node == null) return false;
             var nodeType = node.GetType();
-            return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>); // ジェネリック型がVirtualItem<T>であるかチェック
+            return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>);
         }
 
         public bool SymbolicLinkExists(VirtualPath path)
