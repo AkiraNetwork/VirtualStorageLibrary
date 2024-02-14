@@ -214,16 +214,24 @@ namespace VirtualStorageLibrary
                 return VirtualPath.Root;
             }
 
-            int lastSlashIndex = _path.LastIndexOf('/');
-            if (lastSlashIndex >= 0)
+            StringBuilder path = new StringBuilder(_path);
+
+            if (path.Length > 0 && path[^1] == '/')
             {
-                // フルパスから最後の '/' より後の部分を抜き出して返す
-                return new VirtualPath(_path.Substring(lastSlashIndex + 1));
+                // 末尾の '/' を取り除く
+                path.Remove(path.Length - 1, 1);
+            }
+
+            int lastSlashIndex = path.ToString().LastIndexOf('/');
+            if (lastSlashIndex < 0)
+            {
+                // '/' が見つからない場合は、そのままの文字列を返す
+                return new VirtualPath(path.ToString());
             }
             else
             {
-                // '/' が見つからない場合は、そのままのパスを返す
-                return this;
+                // 最後の '/' 以降の部分を抜き出して返す
+                return new VirtualPath(path.ToString().Substring(lastSlashIndex + 1));
             }
         }
 
@@ -862,6 +870,18 @@ namespace VirtualStorageLibrary
             }
         }
 
+        public VirtualDirectory? TryGetDirectory(VirtualPath path, bool followLinks = false)
+        {
+            try
+            {
+                return GetDirectory(path, followLinks);
+            }
+            catch (VirtualNodeNotFoundException)
+            {
+                return null;
+            }
+        }
+
         private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector)
         {
             // ベースパスが空の場合は例外をスロー
@@ -1119,10 +1139,19 @@ namespace VirtualStorageLibrary
             return node != null; // ノードがnullでなければ、存在すると判断
         }
 
-        public bool DirectoryExists(VirtualPath path)
+        public bool DirectoryExists(VirtualPath path, bool followLinks = false)
         {
-            var node = TryGetNode(path);
-            return node is VirtualDirectory; // ノードがVirtualDirectoryのインスタンスであれば、ディレクトリが存在すると判断
+            if (path.IsRoot)
+            {
+                return true; // ルートディレクトリは常に存在する
+            }
+
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
+            VirtualPath parentPath = absolutePath.GetParentPath();
+            VirtualPath nodeName = absolutePath.GetNodeName();
+            VirtualDirectory? parentDirectory = TryGetDirectory(parentPath, followLinks);
+
+            return parentDirectory?.DirectoryExists(nodeName) ?? false;
         }
 
         public bool ItemExists(VirtualPath path)
