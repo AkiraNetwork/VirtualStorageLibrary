@@ -427,6 +427,47 @@ namespace VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Equals_WithSamePath_ReturnsTrue()
+        {
+            // Arrange
+            var path1 = new VirtualPath("/path/to/resource");
+            var path2 = new VirtualPath("/path/to/resource");
+
+            // Act
+            bool result = path1.Equals(path2);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void Equals_WithDifferentPath_ReturnsFalse()
+        {
+            // Arrange
+            var path1 = new VirtualPath("/path/to/resource");
+            var path2 = new VirtualPath("/path/to/another/resource");
+
+            // Act
+            bool result = path1.Equals(path2);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void Equals_WithNull_ReturnsFalse()
+        {
+            // Arrange
+            var path1 = new VirtualPath("/path/to/resource");
+            VirtualPath? path2 = null;
+
+            // Act
+            bool result = path1.Equals(path2);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
     }
 
     [TestClass]

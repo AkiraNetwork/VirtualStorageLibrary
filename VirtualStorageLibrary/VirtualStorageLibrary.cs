@@ -41,7 +41,7 @@ namespace VirtualStorageLibrary
         T DeepClone();
     }
 
-    public class VirtualPath
+    public class VirtualPath : IEquatable<VirtualPath>
     {
         private readonly string _path;
 
@@ -88,6 +88,11 @@ namespace VirtualStorageLibrary
                 return _path == other._path;
             }
             return false;
+        }
+
+        public bool Equals(VirtualPath? other)
+        {
+            return _path == other?._path;
         }
 
         public static bool operator ==(VirtualPath left, VirtualPath right)
