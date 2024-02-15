@@ -47,13 +47,13 @@ namespace VirtualStorageLibrary
 
         public string Path => _path;
 
-        public static VirtualPath Root => new VirtualPath("/");
+        public static VirtualPath Root => new("/");
 
-        public static VirtualPath Empty => new VirtualPath(string.Empty);
+        public static VirtualPath Empty => new(string.Empty);
 
-        public static VirtualPath Dot => new VirtualPath(".");
+        public static VirtualPath Dot => new(".");
 
-        public static VirtualPath DotDot => new VirtualPath("..");
+        public static VirtualPath DotDot => new("..");
 
         public override string ToString() => _path;
 
@@ -61,9 +61,9 @@ namespace VirtualStorageLibrary
 
         public bool IsRoot => _path == "/";
 
-        public bool IsAbsolute => _path.StartsWith("/");
+        public bool IsAbsolute => _path.StartsWith('/');
 
-        public bool IsEndsWithSlash => _path.EndsWith("/");
+        public bool IsEndsWithSlash => _path.EndsWith('/');
 
         public bool IsDot => _path == ".";
 
@@ -78,7 +78,7 @@ namespace VirtualStorageLibrary
 
         public VirtualPath(IEnumerable<VirtualPath> parts)
         {
-            _path = string.Join("/", parts.Select(p => p.Path));
+            _path = string.Join('/', parts.Select(p => p.Path));
         }
 
         public override bool Equals(object? obj)
@@ -123,7 +123,7 @@ namespace VirtualStorageLibrary
         {
             if (!_path.EndsWith('/'))
             {
-                return new VirtualPath(_path + "/");
+                return new VirtualPath(_path + '/');
             }
             return this;
         }
@@ -132,7 +132,7 @@ namespace VirtualStorageLibrary
         {
             if (!_path.StartsWith('/'))
             {
-                return new VirtualPath("/" + _path);
+                return new VirtualPath('/' + _path);
             }
             return this;
         }
@@ -150,8 +150,8 @@ namespace VirtualStorageLibrary
             }
 
             var parts = new LinkedList<string>();
-            var isAbsolutePath = _path.StartsWith("/");
-            IList<string> partList = _path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            var isAbsolutePath = _path.StartsWith('/');
+            IList<string> partList = _path.Split('/', StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var part in partList)
             {
@@ -176,11 +176,11 @@ namespace VirtualStorageLibrary
                 }
             }
 
-            var normalizedPath = String.Join("/", parts);
+            var normalizedPath = String.Join('/', parts);
             VirtualPath result;
             if (isAbsolutePath)
             {
-                result = new VirtualPath("/" + normalizedPath);
+                result = new VirtualPath('/' + normalizedPath);
             }
             else
             {
@@ -193,7 +193,7 @@ namespace VirtualStorageLibrary
         public VirtualPath GetDirectoryPath()
         {
             // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
-            if (!_path.StartsWith("/"))
+            if (!_path.StartsWith('/'))
             {
                 return this;
             }
@@ -248,7 +248,7 @@ namespace VirtualStorageLibrary
             foreach (var path in paths)
             {
                 // 区切り文字"/"を無条件で追加
-                newPathBuilder.Append("/");
+                newPathBuilder.Append('/');
                 // 新しいパスコンポーネントを追加
                 newPathBuilder.Append(path.Path);
             }
@@ -263,7 +263,7 @@ namespace VirtualStorageLibrary
             normalizedPath = (normalizedPath == "/")? string.Empty : normalizedPath;
 
             // 末尾の "/" を取り除く
-            if (normalizedPath.EndsWith("/"))
+            if (normalizedPath.EndsWith('/'))
             {
                 normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
             }
@@ -281,7 +281,7 @@ namespace VirtualStorageLibrary
             // 最後の部分を除去します
             string[] parentPathParts = pathParts.Take(pathParts.Length - 1).ToArray();
             // パスを再構築します
-            string parentPath = string.Join("/", parentPathParts);
+            string parentPath = string.Join('/', parentPathParts);
 
             // パスが空になった場合は、ルートを返します
             if (string.IsNullOrEmpty(parentPath))
@@ -294,7 +294,7 @@ namespace VirtualStorageLibrary
 
         public LinkedList<VirtualPath> GetPartsLinkedList()
         {
-            LinkedList<VirtualPath> parts = new LinkedList<VirtualPath>();
+            LinkedList<VirtualPath> parts = new();
             foreach (var part in _path.Split('/', StringSplitOptions.RemoveEmptyEntries))
             {
                 parts.AddLast(new VirtualPath(part));
@@ -1238,7 +1238,7 @@ namespace VirtualStorageLibrary
             VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
             // 循環参照チェック
-            if (absoluteDestinationPath.StartsWith(new VirtualPath(absoluteSourcePath.Path + "/")))
+            if (absoluteDestinationPath.StartsWith(new VirtualPath(absoluteSourcePath.Path + '/')))
             {
                 throw new InvalidOperationException("移動先が移動元のサブディレクトリになっています。");
             }
