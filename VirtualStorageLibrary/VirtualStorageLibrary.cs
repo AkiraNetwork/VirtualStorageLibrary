@@ -664,7 +664,7 @@ namespace VirtualStorageLibrary
             VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true);
             if (directory == null)
             {
-                throw new InvalidOperationException($"ディレクトリ '{directoryPath}' が存在しません。");
+                throw new VirtualNodeNotFoundException($"ディレクトリ '{directoryPath}' が存在しません。");
             }
 
             // 既存のノードの存在チェック
