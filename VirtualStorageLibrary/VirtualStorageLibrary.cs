@@ -332,6 +332,28 @@ namespace VirtualStorageLibrary
         }
     }
 
+    public static class VirtualNodeExtensions
+    {
+        public static bool IsItem(this VirtualNode node)
+        {
+            // nodeの型がVirtualItem<>に基づいているかどうかをチェック
+            var nodeType = node.GetType();
+            while (nodeType != null)
+            {
+                if (nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>))
+                {
+                    return true;
+                }
+                nodeType = nodeType.BaseType;
+            }
+            return false;
+        }
+
+        public static bool IsDirectory(this VirtualNode node) => node is VirtualDirectory;
+        
+        public static bool IsSymbolicLink(this VirtualNode node) => node is VirtualSymbolicLink;
+    }
+
     public class VirtualSymbolicLink : VirtualNode
     {
         public VirtualPath TargetPath { get; set; }
@@ -636,35 +658,41 @@ namespace VirtualStorageLibrary
 
         public void AddSymbolicLink(VirtualPath linkPath, VirtualPath targetPath, bool overwrite = false)
         {
-            var absoluteLinkPath = ConvertToAbsolutePath(linkPath);
+            // linkPathを絶対パスに変換
+            VirtualPath absoluteLinkPath = ConvertToAbsolutePath(linkPath);
 
-            // シンボリックリンクの存在確認
-            bool linkExists = SymbolicLinkExists(absoluteLinkPath);
-            var node = TryGetNode(absoluteLinkPath);
+            // directoryPath（ディレクトリパス）とlinkName（リンク名）を分離
+            VirtualPath directoryPath = absoluteLinkPath.GetDirectoryPath();
+            VirtualPath linkName = absoluteLinkPath.GetNodeName();
 
-            // 上書きフラグがfalseで、リンクパスに既にノードが存在する場合はエラー
-            if (!overwrite && node != null)
+            // 対象ディレクトリを安全に取得
+            VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true);
+            if (directory == null)
             {
-                throw new InvalidOperationException($"パス '{absoluteLinkPath}' は既にノードが存在しており、上書きは許可されていません。");
+                throw new VirtualNodeNotFoundException($"ディレクトリ '{directoryPath}' が存在しません。");
             }
 
-            // 上書きフラグがtrueでも、存在するノードがシンボリックリンク以外の場合はエラー
-            if (overwrite && node != null && !linkExists)
+            // 既存のノードの存在チェック
+            if (directory.NodeExists(linkName))
             {
-                throw new InvalidOperationException($"パス '{absoluteLinkPath}' には上書きできないノードが存在します（シンボリックリンク以外）。");
+                if (!overwrite)
+                {
+                    throw new InvalidOperationException($"ノード '{linkName}' は既に存在します。上書きは許可されていません。");
+                }
+                else
+                {
+                    // 既存のノードがシンボリックリンクであるかどうかチェック
+                    if (!directory.SymbolicLinkExists(linkName))
+                    {
+                        throw new InvalidOperationException($"既存のノード '{linkName}' はシンボリックリンクではありません。シンボリックリンクのみ上書き可能です。");
+                    }
+                    // 既存のシンボリックリンクを削除（上書きフラグがtrueの場合）
+                    directory.Remove(linkName, true);
+                }
             }
 
-            // シンボリックリンクの作成または上書き
-            var symbolicLink = new VirtualSymbolicLink(absoluteLinkPath.GetNodeName(), targetPath);
-            var parentPath = absoluteLinkPath.GetParentPath();
-            var parentNode = TryGetNode(parentPath) as VirtualDirectory;
-
-            if (parentNode == null)
-            {
-                throw new VirtualNodeNotFoundException($"親ディレクトリ '{parentPath}' が見つかりません。");
-            }
-
-            parentNode.Add(symbolicLink, overwrite);
+            // 新しいシンボリックリンクを追加
+            directory.Add(new VirtualSymbolicLink(linkName, targetPath), true);
         }
 
         public void AddItem<T>(VirtualPath path, T item, bool overwrite = false)
@@ -1192,8 +1220,16 @@ namespace VirtualStorageLibrary
 
         public bool SymbolicLinkExists(VirtualPath path)
         {
-            var node = TryGetNode(path);
-            return node is VirtualSymbolicLink;
+            var absolutePath = ConvertToAbsolutePath(path);
+            var parentDirectoryPath = absolutePath.GetParentPath();
+            var directory = TryGetDirectory(parentDirectoryPath, true);
+
+            if (directory != null)
+            {
+                var nodeName = absolutePath.GetNodeName();
+                return directory.SymbolicLinkExists(nodeName);
+            }
+            return false;
         }
 
         public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false)
