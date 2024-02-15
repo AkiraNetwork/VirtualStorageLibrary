@@ -3634,6 +3634,23 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void SymbolicLinkExists_WhenParentDirectoryIsALinkAndLinkExists_ReturnsTrue()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory(new VirtualPath("/realParent"));
+            storage.AddSymbolicLink(new VirtualPath("/linkedParent"), new VirtualPath("/realParent"));
+            storage.AddDirectory(new VirtualPath("/realParent/testDir"));
+            storage.AddSymbolicLink(new VirtualPath("/linkedParent/myLink"), new VirtualPath("/realParent/testDir"));
+
+            // Act
+            bool exists = storage.SymbolicLinkExists(new VirtualPath("/linkedParent/myLink"));
+
+            // Assert
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
         public void AddSymbolicLink_WhenLinkIsNew_AddsSuccessfully()
         {
             // Arrange

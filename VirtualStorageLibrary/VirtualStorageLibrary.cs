@@ -1187,8 +1187,16 @@ namespace VirtualStorageLibrary
 
         public bool SymbolicLinkExists(VirtualPath path)
         {
-            var node = TryGetNode(path);
-            return node is VirtualSymbolicLink;
+            var absolutePath = ConvertToAbsolutePath(path);
+            var parentDirectoryPath = absolutePath.GetParentPath();
+            var directory = TryGetDirectory(parentDirectoryPath, true);
+
+            if (directory != null)
+            {
+                var nodeName = absolutePath.GetNodeName();
+                return directory.SymbolicLinkExists(nodeName);
+            }
+            return false;
         }
 
         public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false)
