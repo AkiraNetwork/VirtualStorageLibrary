@@ -839,12 +839,21 @@ namespace VirtualStorageLibrary
 
             List<VirtualPath> nodeNameList = absolutePath.GetPartsList();
 
-            LinkedList<VirtualNode> nodeLinkedList = new LinkedList<VirtualNode>();
-            nodeLinkedList.AddLast(_root);
-            int index = 0;
+            int index;
+            VirtualPath basePath;
+            LinkedList<VirtualNode> nodeLinkedList = new();
 
-            VirtualPath basePath = VirtualPath.Empty; // 現在のベースパスを追跡
-            VirtualPath resolvedPath = VirtualPath.Root; // 解決後のフルパスを組み立てるための変数
+            void reset()
+            {
+                index = 0;
+                nodeLinkedList.Clear();
+                nodeLinkedList.AddLast(_root);
+                basePath = VirtualPath.Empty;
+            }
+
+            reset();
+
+            VirtualPath resolvedPath = VirtualPath.Root;
 
             while (index < nodeNameList.Count)
             {
@@ -852,11 +861,9 @@ namespace VirtualStorageLibrary
 
                 if (nodeName.IsDot)
                 {
-                    // 現在のディレクトリを示す場合、何もせず次のノードへ
                 }
                 else if (nodeName.IsDotDot)
                 {
-                    // 親ディレクトリを示す場合、現在のディレクトリを一つ上のディレクトリに変更
                     basePath = basePath.GetParentPath();
                     resolvedPath = basePath;
                     if (nodeLinkedList.Count > 1)
@@ -876,19 +883,18 @@ namespace VirtualStorageLibrary
                     }
                     else
                     {
-                        break; // ディレクトリでない場合、この時点で処理を終了
+                        break;
                     }
 
-                    if (followLinks && nodeLinkedList.Last.Value is VirtualSymbolicLink symlink)
+                    if (followLinks && nodeLinkedList.Last.Value is VirtualSymbolicLink link)
                     {
-                        VirtualPath symlinkTargetPath = ConvertToAbsolutePath(symlink.TargetPath, basePath);
-                        List<VirtualPath> targetPathList = symlinkTargetPath.GetPartsList();
+                        VirtualPath linkTargetPath = ConvertToAbsolutePath(link.TargetPath, basePath);
+                        List<VirtualPath> targetPathList = linkTargetPath.GetPartsList();
                         nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToList();
-                        index = -1; // indexをリセットし、次のループで0から開始
-                        nodeLinkedList.Clear(); // ノードリストをリセット
-                        nodeLinkedList.AddLast(_root); // ルートノードを追加
-                        basePath = VirtualPath.Empty; // 現在のパスもリセット
-                        resolvedPath = symlinkTargetPath; // 解決後のパスを更新
+                        resolvedPath = linkTargetPath;
+
+                        reset();
+                        continue;
                     }
                     else
                     {
