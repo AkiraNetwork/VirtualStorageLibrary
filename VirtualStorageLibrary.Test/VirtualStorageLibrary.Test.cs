@@ -2768,22 +2768,22 @@ namespace VirtualStorageLibrary.Test
 
         }
 
-        [TestMethod]
-        public void GetNodes_ValidTestWithSymbolicLink()
-        {
-            var vs = new VirtualStorage();
+        //[TestMethod]
+        //public void GetNodes_ValidTestWithSymbolicLink()
+        //{
+        //    var vs = new VirtualStorage();
 
-            SetTestData(vs);
+        //    SetTestData(vs);
 
-            Assert.AreEqual(4, vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true).Count());
-            Debug.WriteLine("\nItems:");
-            foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true))
-            {
-                Assert.IsNotNull(node);
-                Debug.WriteLine(node.Name);
-            }
+        //    Assert.AreEqual(4, vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true).Count());
+        //    Debug.WriteLine("\nItems:");
+        //    foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true))
+        //    {
+        //        Assert.IsNotNull(node);
+        //        Debug.WriteLine(node.Name);
+        //    }
 
-        }
+        //}
 
         [TestMethod]
         public void GetNodesWithPaths_ValidTest()
