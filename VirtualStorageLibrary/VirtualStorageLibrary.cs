@@ -828,6 +828,83 @@ namespace VirtualStorageLibrary
             return;
         }
 
+        public NodeResolutionResult WalkPathWithAction(VirtualPath startPath, VirtualPath endPath, bool followLinks)
+        {
+            VirtualPath startAbsolutePath = ConvertToAbsolutePath(startPath);
+            VirtualPath endAbsolutePath = ConvertToAbsolutePath(endPath);
+            
+            List<VirtualPath> nodeNameList = endAbsolutePath.GetPartsList();
+            
+            int index;
+            VirtualPath basePath;
+            LinkedList<VirtualNode> nodeLinkedList = new();
+
+            void reset()
+            {
+                index = 0;
+                nodeLinkedList.Clear();
+                nodeLinkedList.AddLast(_root); // TODO: ここで検索開始ノードを指定する予定
+                basePath = VirtualPath.Empty;
+            }
+
+            reset();
+
+            VirtualPath resolvedPath = VirtualPath.Root;
+
+            while (index < nodeNameList.Count)
+            {
+                VirtualPath nodeName = nodeNameList[index];
+
+                if (nodeName.IsDot)
+                {
+                }
+                else if (nodeName.IsDotDot)
+                {
+                    basePath = basePath.GetParentPath();
+                    resolvedPath = basePath;
+                    if (nodeLinkedList.Count > 1)
+                    {
+                        nodeLinkedList.RemoveLast();
+                    }
+                }
+                else
+                {
+                    if (nodeLinkedList.Last!.Value is VirtualDirectory directory)
+                    {
+                        if (!directory.NodeExists(nodeName))
+                        {
+                            throw new VirtualNodeNotFoundException($"Node '{nodeName}' does not exist.");
+                        }
+                        nodeLinkedList.AddLast(directory[nodeName]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                    if (followLinks && nodeLinkedList.Last.Value is VirtualSymbolicLink link)
+                    {
+                        VirtualPath linkTargetPath = ConvertToAbsolutePath(link.TargetPath, basePath);
+                        List<VirtualPath> targetPathList = linkTargetPath.GetPartsList();
+                        nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToList();
+                        resolvedPath = linkTargetPath;
+
+                        reset();
+                        continue;
+                    }
+                    else
+                    {
+                        basePath = basePath + nodeName;
+                        resolvedPath = basePath;
+                    }
+                }
+
+                index++;
+            }
+
+            return new NodeResolutionResult(nodeLinkedList.Last!.Value, resolvedPath);
+        }
+
         public NodeResolutionResult GetNodeInternal(VirtualPath path, bool followLinks)
         {
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
