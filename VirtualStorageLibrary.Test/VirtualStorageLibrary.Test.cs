@@ -2675,6 +2675,8 @@ namespace VirtualStorageLibrary.Test
             var item_2 = new BinaryData([1, 2, 3]);
             vs.AddItem(new VirtualPath("/Item_1"), item_1);
             vs.AddItem(new VirtualPath("/Item_2"), item_2);
+            vs.AddSymbolicLink(new VirtualPath("/LinkToItem_1"), new VirtualPath("/Item_1"));
+            vs.AddSymbolicLink(new VirtualPath("/LinkToItem_2"), new VirtualPath("/Item_2"));
 
             var item1a = new BinaryData([1, 2, 3]);
             var item1b = new BinaryData([1, 2, 3]);
@@ -2714,7 +2716,7 @@ namespace VirtualStorageLibrary.Test
 
             SetTestData(vs);
 
-            Assert.AreEqual(20, vs.GetNodes(VirtualPath.Root, VirtualNodeType.All, true).Count());
+            Assert.AreEqual(22, vs.GetNodes(VirtualPath.Root, VirtualNodeType.All, true).Count());
             Debug.WriteLine("\nAll nodes:");
             foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.All, true))
             {
@@ -2733,6 +2735,14 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(14, vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, true).Count());
             Debug.WriteLine("\nItems:");
             foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, true))
+            {
+                Assert.IsNotNull(node);
+                Debug.WriteLine(node.Name);
+            }
+
+            Assert.AreEqual(2, vs.GetNodes(VirtualPath.Root, VirtualNodeType.SymbolicLink, true).Count());
+            Debug.WriteLine("\nSymbolicLink:");
+            foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.SymbolicLink, true))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
@@ -2765,7 +2775,7 @@ namespace VirtualStorageLibrary.Test
 
             SetTestData(vs);
 
-            Assert.AreEqual(20, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true).Count());
+            Assert.AreEqual(22, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true).Count());
             Debug.WriteLine("\nAll nodes:");
             foreach (var name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true))
             {
@@ -2784,6 +2794,14 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(14, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.Item, true).Count());
             Debug.WriteLine("\nItems:");
             foreach (var name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.Item, true))
+            {
+                Assert.IsNotNull(name);
+                Debug.WriteLine(name);
+            }
+
+            Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.SymbolicLink, true).Count());
+            Debug.WriteLine("\nSymbolicLink:");
+            foreach (var name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.SymbolicLink, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -3069,7 +3087,7 @@ namespace VirtualStorageLibrary.Test
 
             SetTestData(vs);
 
-            Assert.AreEqual(20, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true).Count());
+            Assert.AreEqual(22, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true).Count());
 
             Debug.WriteLine("コピー前:");
             foreach (var nodeName in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true))
@@ -3081,7 +3099,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/Destination"), true);
             vs.CopyNode(new VirtualPath("/Directory1"), new VirtualPath("/Destination"), true, false);
 
-            Assert.AreEqual(30, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true).Count());
+            Assert.AreEqual(32, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true).Count());
 
             Debug.WriteLine("コピー後:");
             foreach (var nodeName in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeType.All, true))

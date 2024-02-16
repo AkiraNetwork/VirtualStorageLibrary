@@ -942,7 +942,7 @@ namespace VirtualStorageLibrary
             }
         }
 
-        private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector)
+        private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector, bool followLinks)
         {
             // ベースパスが空の場合は例外をスロー
             if (basePath.IsEmpty)
@@ -960,8 +960,9 @@ namespace VirtualStorageLibrary
 
             foreach (var node in directory.Nodes)
             {
-                if (node is VirtualDirectory subdirectory)
+                if (node.IsDirectory())
                 {
+                    VirtualDirectory subdirectory = (VirtualDirectory)node;
                     if ((nodeType & VirtualNodeType.Directory) == VirtualNodeType.Directory)
                     {
                         yield return selector(subdirectory, basePath + subdirectory.Name);
@@ -970,37 +971,47 @@ namespace VirtualStorageLibrary
                     if (recursive)
                     {
                         var subdirectoryPath = basePath + subdirectory.Name;
-                        foreach (var subNode in GetNodesInternal(subdirectoryPath, nodeType, recursive, selector))
+                        foreach (var subNode in GetNodesInternal(subdirectoryPath, nodeType, recursive, selector, followLinks))
                         {
                             yield return subNode;
                         }
                     }
                 }
-                else if ((nodeType & VirtualNodeType.Item) == VirtualNodeType.Item || (nodeType & VirtualNodeType.SymbolicLink) == VirtualNodeType.SymbolicLink)
+                else if(node.IsItem())
                 {
-                    yield return selector(node, basePath + node.Name);
-                }   
+                    if ((nodeType & VirtualNodeType.Item) == VirtualNodeType.Item)
+                    {
+                        yield return selector(node, basePath + node.Name);
+                    }
+                }
+                else if (node.IsSymbolicLink())
+                {
+                    if ((nodeType & VirtualNodeType.SymbolicLink) == VirtualNodeType.SymbolicLink)
+                    {
+                        yield return selector(node, basePath + node.Name);
+                    }
+                }
             }
         }
 
-        public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => node);
+            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => node, followLinks);
         }
 
-        public IEnumerable<VirtualNode> GetNodes(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        public IEnumerable<VirtualNode> GetNodes(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => node);
+            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => node, followLinks);
         }
 
-        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => path);
+            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => path, followLinks);
         }
 
-        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false)
+        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => path);
+            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => path, followLinks);
         }
 
         private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
