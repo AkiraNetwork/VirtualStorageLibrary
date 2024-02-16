@@ -2675,8 +2675,8 @@ namespace VirtualStorageLibrary.Test
             var item_2 = new BinaryData([1, 2, 3]);
             vs.AddItem(new VirtualPath("/Item_1"), item_1);
             vs.AddItem(new VirtualPath("/Item_2"), item_2);
-            vs.AddSymbolicLink(new VirtualPath("/LinkToItem_1"), new VirtualPath("/Item_1"));
-            vs.AddSymbolicLink(new VirtualPath("/LinkToItem_2"), new VirtualPath("/Item_2"));
+            vs.AddSymbolicLink(new VirtualPath("/LinkToItem1a"), new VirtualPath("/Directory1/Item1a"));
+            vs.AddSymbolicLink(new VirtualPath("/LinkToItem2a"), new VirtualPath("/Directory1/Item1b"));
 
             var item1a = new BinaryData([1, 2, 3]);
             var item1b = new BinaryData([1, 2, 3]);
@@ -2761,6 +2761,23 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(2, vs.GetNodes(VirtualNodeType.Item, false).Count());
             Debug.WriteLine("\nItems in /Directory1:");
             foreach (var node in vs.GetNodes(VirtualNodeType.Item, false))
+            {
+                Assert.IsNotNull(node);
+                Debug.WriteLine(node.Name);
+            }
+
+        }
+
+        [TestMethod]
+        public void GetNodes_ValidTestWithSymbolicLink()
+        {
+            var vs = new VirtualStorage();
+
+            SetTestData(vs);
+
+            Assert.AreEqual(4, vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true).Count());
+            Debug.WriteLine("\nItems:");
+            foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);

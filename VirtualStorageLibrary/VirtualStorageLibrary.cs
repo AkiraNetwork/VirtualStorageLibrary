@@ -956,7 +956,7 @@ namespace VirtualStorageLibrary
                 throw new ArgumentException($"絶対パスを指定してください。{basePath}");
             }
 
-            var directory = (VirtualDirectory)GetNode(basePath);
+            var directory = (VirtualDirectory)GetNode(basePath, followLinks);
 
             foreach (var node in directory.Nodes)
             {
