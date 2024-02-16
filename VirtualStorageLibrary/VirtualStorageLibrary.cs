@@ -4,9 +4,11 @@ namespace VirtualStorageLibrary
 {
     public enum VirtualNodeType
     {
-        All,
-        Directory,
-        Item
+        Non = 0x00,
+        Item = 0x01,
+        Directory = 0x02,
+        SymbolicLink = 0x04,
+        All = Item | Directory | SymbolicLink
     }
 
     public class NodeResolutionResult
@@ -960,7 +962,7 @@ namespace VirtualStorageLibrary
             {
                 if (node is VirtualDirectory subdirectory)
                 {
-                    if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Directory)
+                    if ((nodeType & VirtualNodeType.Directory) == VirtualNodeType.Directory)
                     {
                         yield return selector(subdirectory, basePath + subdirectory.Name);
                     }
@@ -974,10 +976,10 @@ namespace VirtualStorageLibrary
                         }
                     }
                 }
-                else if (nodeType == VirtualNodeType.All || nodeType == VirtualNodeType.Item)
+                else if ((nodeType & VirtualNodeType.Item) == VirtualNodeType.Item || (nodeType & VirtualNodeType.SymbolicLink) == VirtualNodeType.SymbolicLink)
                 {
                     yield return selector(node, basePath + node.Name);
-                }
+                }   
             }
         }
 
