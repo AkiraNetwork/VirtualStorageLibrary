@@ -11,8 +11,8 @@ namespace VirtualStorageLibrary
 
     public class NodeResolutionResult
     {
-        public VirtualNode Node { get; set; }
-        public VirtualPath ResolvedPath { get; set; }
+        public VirtualNode Node { get; }
+        public VirtualPath ResolvedPath { get; }
 
         public NodeResolutionResult(VirtualNode node, VirtualPath resolvedPath)
         {
