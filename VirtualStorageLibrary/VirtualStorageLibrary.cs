@@ -2,6 +2,8 @@
 
 namespace VirtualStorageLibrary
 {
+    public delegate void NodeAction(VirtualPath path, VirtualNode node);
+
     public enum VirtualNodeType
     {
         Non = 0x00,
@@ -828,12 +830,11 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        public NodeResolutionResult WalkPathWithAction(VirtualPath startPath, VirtualPath endPath, bool followLinks)
+        public void WalkPathWithAction(VirtualPath targetPath, NodeAction action, bool followLinks)
         {
-            VirtualPath startAbsolutePath = ConvertToAbsolutePath(startPath);
-            VirtualPath endAbsolutePath = ConvertToAbsolutePath(endPath);
+            VirtualPath targetAbsolutePath = ConvertToAbsolutePath(targetPath);
             
-            List<VirtualPath> nodeNameList = endAbsolutePath.GetPartsList();
+            List<VirtualPath> nodeNameList = targetAbsolutePath.GetPartsList();
             
             int index;
             VirtualPath basePath;
@@ -843,7 +844,7 @@ namespace VirtualStorageLibrary
             {
                 index = 0;
                 nodeLinkedList.Clear();
-                nodeLinkedList.AddLast(_root); // TODO: ここで検索開始ノードを指定する予定
+                nodeLinkedList.AddLast(_root);
                 basePath = VirtualPath.Empty;
             }
 
@@ -902,7 +903,7 @@ namespace VirtualStorageLibrary
                 index++;
             }
 
-            return new NodeResolutionResult(nodeLinkedList.Last!.Value, resolvedPath);
+            return;
         }
 
         public NodeResolutionResult GetNodeInternal(VirtualPath path, bool followLinks)
