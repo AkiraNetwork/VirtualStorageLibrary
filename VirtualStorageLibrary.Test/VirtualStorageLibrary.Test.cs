@@ -3821,6 +3821,22 @@ namespace VirtualStorageLibrary.Test
                 virtualStorage.AddSymbolicLink(symbolicLinkPath, targetPath),
                 "親ディレクトリが存在しない場合、VirtualNodeNotFoundExceptionがスローされるべきです。");
         }
+
+        [TestMethod]
+        public void WalkPathWithAction_Test()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            string path = "/dir1/dir2";
+            vs.AddDirectory(new VirtualPath(path), true);
+
+            VirtualPath targetPath = new VirtualPath(path);
+            vs.WalkPathWithAction(targetPath, action, true);
+        }
+
+        private void action(VirtualPath path, VirtualNode node)
+        {
+            Debug.WriteLine($"Path: {path}, Node: {node}");
+        }
     }
 
     [TestClass]

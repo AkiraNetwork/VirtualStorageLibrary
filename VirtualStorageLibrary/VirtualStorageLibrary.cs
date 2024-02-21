@@ -832,77 +832,49 @@ namespace VirtualStorageLibrary
 
         public void WalkPathWithAction(VirtualPath targetPath, NodeAction action, bool followLinks)
         {
-            VirtualPath targetAbsolutePath = ConvertToAbsolutePath(targetPath);
-            
-            List<VirtualPath> nodeNameList = targetAbsolutePath.GetPartsList();
-            
-            int index;
-            VirtualPath basePath;
-            LinkedList<VirtualNode> nodeLinkedList = new();
+            List<VirtualPath> pathList = targetPath.GetPartsList();
+            WalkPathWithActionInternal(pathList, 0, VirtualPath.Root, _root, action);
+        }
 
-            void reset()
+        public void WalkPathWithActionInternal(List<VirtualPath> pathList, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, NodeAction action)
+        {
+            VirtualPath traversalNodeName = pathList[traversalIndex];
+
+            // 探索ノードが存在しない場合は終了
+            if (!traversalDirectory.NodeExists(traversalNodeName))
             {
-                index = 0;
-                nodeLinkedList.Clear();
-                nodeLinkedList.AddLast(_root);
-                basePath = VirtualPath.Empty;
+                return;
             }
 
-            reset();
+            // 探索ノードを取得
+            VirtualNode node = traversalDirectory[traversalNodeName];
 
-            VirtualPath resolvedPath = VirtualPath.Root;
-
-            while (index < nodeNameList.Count)
+            if (node.IsDirectory())
             {
-                VirtualPath nodeName = nodeNameList[index];
+                // 探索パスを更新
+                traversalPath = traversalPath + traversalNodeName;
 
-                if (nodeName.IsDot)
-                {
-                }
-                else if (nodeName.IsDotDot)
-                {
-                    basePath = basePath.GetParentPath();
-                    resolvedPath = basePath;
-                    if (nodeLinkedList.Count > 1)
-                    {
-                        nodeLinkedList.RemoveLast();
-                    }
-                }
-                else
-                {
-                    if (nodeLinkedList.Last!.Value is VirtualDirectory directory)
-                    {
-                        if (!directory.NodeExists(nodeName))
-                        {
-                            throw new VirtualNodeNotFoundException($"Node '{nodeName}' does not exist.");
-                        }
-                        nodeLinkedList.AddLast(directory[nodeName]);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                // 次の探索ノード名を取得
+                traversalIndex++;
+                traversalNodeName = pathList[traversalIndex];
 
-                    if (followLinks && nodeLinkedList.Last.Value is VirtualSymbolicLink link)
-                    {
-                        VirtualPath linkTargetPath = ConvertToAbsolutePath(link.TargetPath, basePath);
-                        List<VirtualPath> targetPathList = linkTargetPath.GetPartsList();
-                        nodeNameList = targetPathList.Concat(nodeNameList.Skip(index + 1)).ToList();
-                        resolvedPath = linkTargetPath;
+                // 探索ディレクトリを取得
+                traversalDirectory = (VirtualDirectory)node;
 
-                        reset();
-                        continue;
-                    }
-                    else
-                    {
-                        basePath = basePath + nodeName;
-                        resolvedPath = basePath;
-                    }
-                }
-
-                index++;
+                // 再帰的に探索
+                WalkPathWithActionInternal(pathList, traversalIndex, traversalPath, traversalDirectory, action);
             }
+            else if (node.IsItem())
+            {
 
+            }
+            else if (node.IsSymbolicLink())
+            {
+                VirtualSymbolicLink link = (VirtualSymbolicLink)node;
+                VirtualPath linkTargetPath = link.TargetPath;
+
+                // TODO: シンボリックリンクの再帰的な処理を実装
+            }
             return;
         }
 
