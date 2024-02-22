@@ -117,7 +117,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetDirectoryPath_ReturnsCorrectPath_ForAbsolutePath()
+        public void DirectoryPath_ReturnsCorrectPath_ForAbsolutePath()
         {
             // テストデータ
             var absolutePath = new VirtualPath("/directory/subdirectory/file");
@@ -136,7 +136,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetDirectoryPath_ReturnsRoot_ForRootPath()
+        public void DirectoryPath_ReturnsRoot_ForRootPath()
         {
             // テストデータ
             var rootPath = VirtualPath.Root;
@@ -149,7 +149,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetDirectoryPath_ReturnsSamePath_ForRelativePath()
+        public void DirectoryPath_ReturnsSamePath_ForRelativePath()
         {
             // テストデータ
             var relativePath = new VirtualPath("file");
@@ -162,7 +162,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithFullPath_ReturnsNodeName()
+        public void NodeName_WithFullPath_ReturnsNodeName()
         {
             // テストデータ
             var path = new VirtualPath("/path/to/node");
@@ -182,7 +182,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithSingleNodeName_ReturnsSameName()
+        public void NodeName_WithSingleNodeName_ReturnsSameName()
         {
             var path = new VirtualPath("node");
             var expectedNodeName = new VirtualPath("node");
@@ -193,7 +193,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithEmptyString_ReturnsEmptyString()
+        public void NodeName_WithEmptyString_ReturnsEmptyString()
         {
             var path = VirtualPath.Empty;
             var expectedNodeName = VirtualPath.Empty;
@@ -204,7 +204,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithRootPath_ReturnsRootPath()
+        public void NodeName_WithRootPath_ReturnsRootPath()
         {
             var path = VirtualPath.Root;
             var expectedNodeName = VirtualPath.Empty;
@@ -215,7 +215,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithDot_ReturnsDot()
+        public void NodeName_WithDot_ReturnsDot()
         {
             var path = VirtualPath.Dot;
             var expectedNodeName = VirtualPath.Dot;
@@ -226,7 +226,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithDotDot_ReturnsDotDot()
+        public void NodeName_WithDotDot_ReturnsDotDot()
         {
             var path = VirtualPath.DotDot;
             var expectedNodeName = VirtualPath.DotDot;
@@ -237,7 +237,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithRelativePathUsingDot_ReturnsNodeName()
+        public void NodeName_WithRelativePathUsingDot_ReturnsNodeName()
         {
             var path = new VirtualPath("./node");
             var expectedNodeName = new VirtualPath("node");
@@ -248,7 +248,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeName_WithRelativePathUsingDotDot_ReturnsNodeName()
+        public void NodeName_WithRelativePathUsingDotDot_ReturnsNodeName()
         {
             var path = new VirtualPath("../node");
             var expectedNodeName = new VirtualPath("node");
