@@ -123,7 +123,7 @@ namespace VirtualStorageLibrary.Test
             var absolutePath = new VirtualPath("/directory/subdirectory/file");
 
             // メソッドを実行
-            var result = absolutePath.GetDirectoryPath();
+            var result = absolutePath.DirectoryPath;
 
             // 結果を検証
             Assert.AreEqual("/directory/subdirectory", result.Path);
@@ -136,7 +136,7 @@ namespace VirtualStorageLibrary.Test
             var rootPath = VirtualPath.Root;
 
             // メソッドを実行
-            var result = rootPath.GetDirectoryPath();
+            var result = rootPath.DirectoryPath;
 
             // 結果を検証
             Assert.AreEqual("/", result.Path);
@@ -149,7 +149,7 @@ namespace VirtualStorageLibrary.Test
             var relativePath = new VirtualPath("file");
 
             // メソッドを実行
-            var result = relativePath.GetDirectoryPath();
+            var result = relativePath.DirectoryPath;
 
             // 結果を検証
             Assert.AreEqual("file", result.Path);
@@ -161,7 +161,7 @@ namespace VirtualStorageLibrary.Test
             var path = new VirtualPath("/path/to/node");
             var expectedNodeName = new VirtualPath("node");
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -172,7 +172,7 @@ namespace VirtualStorageLibrary.Test
             var path = new VirtualPath("node");
             var expectedNodeName = new VirtualPath("node");
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -183,7 +183,7 @@ namespace VirtualStorageLibrary.Test
             var path = VirtualPath.Empty;
             var expectedNodeName = VirtualPath.Empty;
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -192,9 +192,9 @@ namespace VirtualStorageLibrary.Test
         public void GetNodeName_WithRootPath_ReturnsRootPath()
         {
             var path = VirtualPath.Root;
-            var expectedNodeName = VirtualPath.Root;
+            var expectedNodeName = VirtualPath.Empty;
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -205,7 +205,7 @@ namespace VirtualStorageLibrary.Test
             var path = VirtualPath.Dot;
             var expectedNodeName = VirtualPath.Dot;
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -216,7 +216,7 @@ namespace VirtualStorageLibrary.Test
             var path = VirtualPath.DotDot;
             var expectedNodeName = VirtualPath.DotDot;
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -227,7 +227,7 @@ namespace VirtualStorageLibrary.Test
             var path = new VirtualPath("./node");
             var expectedNodeName = new VirtualPath("node");
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -238,7 +238,7 @@ namespace VirtualStorageLibrary.Test
             var path = new VirtualPath("../node");
             var expectedNodeName = new VirtualPath("node");
 
-            var actualNodeName = path.GetNodeName();
+            var actualNodeName = path.NodeName;
 
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
@@ -3823,19 +3823,31 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Test()
+        public void WalkPathWithAction_Directory()
         {
             VirtualStorage vs = new VirtualStorage();
-            string path = "/dir1/dir2";
-            vs.AddDirectory(new VirtualPath(path), true);
+            VirtualPath path = new VirtualPath("/dir1/dir2");
+            vs.AddDirectory(path, true);
 
-            VirtualPath targetPath = new VirtualPath(path);
+            VirtualPath targetPath = path;
             vs.WalkPathWithAction(targetPath, action, true);
         }
 
-        private void action(VirtualPath path, VirtualNode node)
+        [TestMethod]
+        public void WalkPathWithAction_Item()
         {
-            Debug.WriteLine($"Path: {path}, Node: {node}");
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath path = new VirtualPath("/dir1/item");
+            vs.AddDirectory(path.DirectoryPath, true);
+            vs.AddItem(path, new BinaryData[1, 2, 3]);
+
+            VirtualPath targetPath = path;
+            vs.WalkPathWithAction(targetPath, action, true);
+        }
+
+        private void action(VirtualPath path, VirtualNode node, bool isEnd)
+        {
+            Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");
         }
     }
 

@@ -2,7 +2,7 @@
 
 namespace VirtualStorageLibrary
 {
-    public delegate void NodeAction(VirtualPath path, VirtualNode node);
+    public delegate void NodeAction(VirtualPath path, VirtualNode node, bool isEnd);
 
     public enum VirtualNodeType
     {
@@ -49,7 +49,35 @@ namespace VirtualStorageLibrary
     {
         private readonly string _path;
 
+        private string? _directoryPath = null;
+
+        private string? _nodeName = null;
+
         public string Path => _path;
+
+        public VirtualPath DirectoryPath
+        {
+            get
+            {
+                if (_directoryPath == null)
+                {
+                    _directoryPath = GetDirectoryPath();
+                }
+                return new VirtualPath(_directoryPath);
+            }
+        }
+
+        public VirtualPath NodeName
+        {
+            get
+            {
+                if (_nodeName == null)
+                {
+                    _nodeName = GetNodeName();
+                }
+                return new VirtualPath(_nodeName);
+            }
+        }
 
         public static VirtualPath Root => new("/");
 
@@ -194,33 +222,33 @@ namespace VirtualStorageLibrary
             return result;
         }
 
-        public VirtualPath GetDirectoryPath()
+        private string GetDirectoryPath()
         {
             // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
             if (!_path.StartsWith('/'))
             {
-                return this;
+                return _path;
             }
 
             int lastSlashIndex = _path.LastIndexOf('/');
-            // '/' が見つからない場合は、ルートディレクトリを示す '/' を返す
+            // '/' が見つからない場合は、ルートディレクトリを示す "/" を返す
             if (lastSlashIndex <= 0)
             {
-                return VirtualPath.Root;
+                return "/";
             }
             else
             {
                 // フルパスから最後の '/' までの部分を抜き出して返す
-                return new VirtualPath(_path.Substring(0, lastSlashIndex));
+                return _path.Substring(0, lastSlashIndex);
             }
         }
         
-        public VirtualPath GetNodeName()
+        private string GetNodeName()
         {
             if (_path == "/")
             {
-                //　ルートの場合は、ルートディレクトリを示す '/' を返す
-                return VirtualPath.Root;
+                //　ルートの場合は、空文字列を返す
+                return string.Empty;
             }
 
             StringBuilder path = new StringBuilder(_path);
@@ -235,12 +263,12 @@ namespace VirtualStorageLibrary
             if (lastSlashIndex < 0)
             {
                 // '/' が見つからない場合は、そのままの文字列を返す
-                return new VirtualPath(path.ToString());
+                return _path;
             }
             else
             {
                 // 最後の '/' 以降の部分を抜き出して返す
-                return new VirtualPath(path.ToString().Substring(lastSlashIndex + 1));
+                return path.ToString().Substring(lastSlashIndex + 1);
             }
         }
 
@@ -666,8 +694,8 @@ namespace VirtualStorageLibrary
             VirtualPath absoluteLinkPath = ConvertToAbsolutePath(linkPath);
 
             // directoryPath（ディレクトリパス）とlinkName（リンク名）を分離
-            VirtualPath directoryPath = absoluteLinkPath.GetDirectoryPath();
-            VirtualPath linkName = absoluteLinkPath.GetNodeName();
+            VirtualPath directoryPath = absoluteLinkPath.DirectoryPath;
+            VirtualPath linkName = absoluteLinkPath.NodeName;
 
             // 対象ディレクトリを安全に取得
             VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true);
@@ -705,8 +733,8 @@ namespace VirtualStorageLibrary
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
 
             // ディレクトリパスとアイテム名を分離
-            VirtualPath directoryPath = absolutePath.GetDirectoryPath();
-            VirtualPath itemName = absolutePath.GetNodeName();
+            VirtualPath directoryPath = absolutePath.DirectoryPath;
+            VirtualPath itemName = absolutePath.NodeName;
 
             // 対象ディレクトリを取得
             VirtualDirectory directory = GetDirectory(directoryPath, true);
@@ -849,13 +877,26 @@ namespace VirtualStorageLibrary
             // 探索ノードを取得
             VirtualNode node = traversalDirectory[traversalNodeName];
 
+            // 探索パスを更新
+            traversalPath = traversalPath + traversalNodeName;
+
             if (node.IsDirectory())
             {
-                // 探索パスを更新
-                traversalPath = traversalPath + traversalNodeName;
+                // 次のノードへ
+                traversalIndex++;
+                
+                // 最後のノードに到達したかチェック
+                if (pathList.Count <= traversalIndex)
+                {
+                    // 末端のノードを通知
+                    action(traversalPath, node, true);
+                    return;
+                }
+
+                // 途中のノードを通知
+                action(traversalPath, node, false);
 
                 // 次の探索ノード名を取得
-                traversalIndex++;
                 traversalNodeName = pathList[traversalIndex];
 
                 // 探索ディレクトリを取得
@@ -866,7 +907,8 @@ namespace VirtualStorageLibrary
             }
             else if (node.IsItem())
             {
-
+                // 末端のノードを通知
+                action(traversalPath, node, true);
             }
             else if (node.IsSymbolicLink())
             {
@@ -1104,12 +1146,12 @@ namespace VirtualStorageLibrary
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = absoluteSourcePath.GetNodeName();
+                newNodeName = absoluteSourcePath.NodeName;
             }
             else
             {
                 targetDirectoryPath = absoluteDestinationPath.GetParentPath();
-                newNodeName = absoluteDestinationPath.GetNodeName();
+                newNodeName = absoluteDestinationPath.NodeName;
             }
 
             // コピー先ディレクトリが存在しない場合、新しいディレクトリとして扱う
@@ -1155,12 +1197,12 @@ namespace VirtualStorageLibrary
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = absoluteSourcePath.GetNodeName();
+                newNodeName = absoluteSourcePath.NodeName;
             }
             else
             {
                 targetDirectoryPath = absoluteDestinationPath.GetParentPath();
-                newNodeName = absoluteDestinationPath.GetNodeName();
+                newNodeName = absoluteDestinationPath.NodeName;
             }
 
             // コピー先ディレクトリが存在しない場合は例外をスロー
@@ -1295,7 +1337,7 @@ namespace VirtualStorageLibrary
 
             if (directory != null)
             {
-                var nodeName = absolutePath.GetNodeName();
+                var nodeName = absolutePath.NodeName;
                 return directory.SymbolicLinkExists(nodeName);
             }
             return false;
@@ -1368,7 +1410,7 @@ namespace VirtualStorageLibrary
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        VirtualPath destinationNodeName = absoluteDestinationPath.GetNodeName();
+                        VirtualPath destinationNodeName = absoluteDestinationPath.NodeName;
                         VirtualDirectory sourceDirectory = GetDirectory(absoluteSourcePath);
 
                         VirtualPath oldNodeName = sourceDirectory.Name;
@@ -1431,7 +1473,7 @@ namespace VirtualStorageLibrary
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        VirtualPath destinationNodeName = absoluteDestinationPath.GetNodeName();
+                        VirtualPath destinationNodeName = absoluteDestinationPath.NodeName;
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
                         VirtualPath oldNodeName = sourceNode.Name;
@@ -1445,7 +1487,7 @@ namespace VirtualStorageLibrary
                         // 存在する場合
 
                         VirtualDirectory destinationParentDirectory = GetDirectory(absoluteDestinationPath.GetParentPath());
-                        VirtualPath destinationNodeName = absoluteDestinationPath.GetNodeName();
+                        VirtualPath destinationNodeName = absoluteDestinationPath.NodeName;
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
                         // 移動先ディレクトリの同名チェック
