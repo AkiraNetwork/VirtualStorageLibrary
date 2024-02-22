@@ -55,16 +55,16 @@ namespace VirtualStorageLibrary
 
         public string Path => _path;
 
+        private List<VirtualPath>? _partsList = null;
+
         public VirtualPath DirectoryPath
         {
             get
             {
-                if (_directoryPath != null)
+                if (_directoryPath == null)
                 {
-                    return _directoryPath;
+                    _directoryPath = new VirtualPath(GetDirectoryPath());
                 }
-                string path = GetDirectoryPath();
-                _directoryPath = new VirtualPath(path);
                 return _directoryPath;
             }
         }
@@ -73,13 +73,23 @@ namespace VirtualStorageLibrary
         {
             get
             {
-                if (_nodeName != null)
+                if (_nodeName == null)
                 {
-                    return _nodeName;
+                    _nodeName = new VirtualPath(GetNodeName());
                 }
-                string name = GetNodeName();
-                _nodeName = new VirtualPath(name);
                 return _nodeName;
+            }
+        }
+
+        public List<VirtualPath> PartsList
+        {
+            get
+            {
+                if (_partsList == null)
+                {
+                    _partsList = GetPartsList();
+                }
+                return _partsList;
             }
         }
 

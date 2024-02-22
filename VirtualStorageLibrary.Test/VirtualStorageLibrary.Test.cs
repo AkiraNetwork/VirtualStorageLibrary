@@ -483,6 +483,45 @@ namespace VirtualStorageLibrary.Test
             // Assert
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void PartsList_WithAbsolutePath_ReturnsCorrectComponents()
+        {
+            // テストデータ
+            var path = new VirtualPath("/path/to/directory/file");
+            var expected = new List<VirtualPath>
+        {
+            new VirtualPath("path"),
+            new VirtualPath("to"),
+            new VirtualPath("directory"),
+            new VirtualPath("file")
+        };
+
+            // メソッドを実行
+            var result = path.PartsList;
+
+            // 結果を検証
+            Assert.AreEqual(expected.Count, result.Count, "The number of parts should match.");
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], result[i], $"The part at index {i} should match.");
+            }
+        }
+
+        [TestMethod]
+        public void PartsList_CachedAfterFirstAccess_DoesNotRegenerateList()
+        {
+            // テストデータ
+            var path = new VirtualPath("/path/to/directory/file");
+
+            // 最初のアクセスでリストを生成
+            var firstAccessResult = path.PartsList;
+            // 2回目のアクセス
+            var secondAccessResult = path.PartsList;
+
+            // キャッシュされたオブジェクトが再利用されているか検証
+            Assert.AreSame(firstAccessResult, secondAccessResult, "The PartsList should be cached and reused on subsequent accesses.");
+        }
     }
 
     [TestClass]
