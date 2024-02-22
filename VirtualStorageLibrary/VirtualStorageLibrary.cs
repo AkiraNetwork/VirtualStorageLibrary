@@ -49,9 +49,9 @@ namespace VirtualStorageLibrary
     {
         private readonly string _path;
 
-        private string? _directoryPath = null;
+        private VirtualPath? _directoryPath = null;
 
-        private string? _nodeName = null;
+        private VirtualPath? _nodeName = null;
 
         public string Path => _path;
 
@@ -59,11 +59,13 @@ namespace VirtualStorageLibrary
         {
             get
             {
-                if (_directoryPath == null)
+                if (_directoryPath != null)
                 {
-                    _directoryPath = GetDirectoryPath();
+                    return _directoryPath;
                 }
-                return new VirtualPath(_directoryPath);
+                string path = GetDirectoryPath();
+                _directoryPath = new VirtualPath(path);
+                return _directoryPath;
             }
         }
 
@@ -71,11 +73,13 @@ namespace VirtualStorageLibrary
         {
             get
             {
-                if (_nodeName == null)
+                if (_nodeName != null)
                 {
-                    _nodeName = GetNodeName();
+                    return _nodeName;
                 }
-                return new VirtualPath(_nodeName);
+                string name = GetNodeName();
+                _nodeName = new VirtualPath(name);
+                return _nodeName;
             }
         }
 
@@ -127,14 +131,27 @@ namespace VirtualStorageLibrary
             return _path == other?._path;
         }
 
-        public static bool operator ==(VirtualPath left, VirtualPath right)
+        public static bool operator ==(VirtualPath? left, VirtualPath? right)
         {
+            // 両方が null の場合は true
+            if (object.ReferenceEquals(left, null) && object.ReferenceEquals(right, null))
+            {
+                return true;
+            }
+
+            // 一方が null の場合は false
+            if (object.ReferenceEquals(left, null) || object.ReferenceEquals(right, null))
+            {
+                return false;
+            }
+
+            // 実際のパスの比較
             return left._path == right._path;
         }
 
-        public static bool operator !=(VirtualPath left, VirtualPath right)
+        public static bool operator !=(VirtualPath? left, VirtualPath? right)
         {
-            return left._path != right._path;
+            return !(left == right);
         }
 
         public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)

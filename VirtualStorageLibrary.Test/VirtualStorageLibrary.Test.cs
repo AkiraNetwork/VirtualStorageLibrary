@@ -122,8 +122,14 @@ namespace VirtualStorageLibrary.Test
             // テストデータ
             var absolutePath = new VirtualPath("/directory/subdirectory/file");
 
-            // メソッドを実行
+            // メソッドを実行(キャッシュなし)
             var result = absolutePath.DirectoryPath;
+
+            // 結果を検証
+            Assert.AreEqual("/directory/subdirectory", result.Path);
+
+            // メソッドを実行(キャッシュあり)
+            result = absolutePath.DirectoryPath;
 
             // 結果を検証
             Assert.AreEqual("/directory/subdirectory", result.Path);
@@ -158,11 +164,20 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeName_WithFullPath_ReturnsNodeName()
         {
+            // テストデータ
             var path = new VirtualPath("/path/to/node");
             var expectedNodeName = new VirtualPath("node");
 
+            // メソッドを実行(キャッシュなし)
             var actualNodeName = path.NodeName;
 
+            // 結果を検証
+            Assert.AreEqual(expectedNodeName, actualNodeName);
+
+            // メソッドを実行(キャッシュあり)
+            actualNodeName = path.NodeName;
+
+            // 結果を検証
             Assert.AreEqual(expectedNodeName, actualNodeName);
         }
 
