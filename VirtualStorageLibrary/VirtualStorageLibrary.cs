@@ -43,10 +43,12 @@ namespace VirtualStorageLibrary
     public class VirtualReroutePathException : Exception
     {
         public VirtualPath ReroutedPath { get; }
+        public VirtualPath TraversalPath { get; }
 
-        public VirtualReroutePathException(VirtualPath reroutedPath)
+        public VirtualReroutePathException(VirtualPath reroutedPath, VirtualPath traversalPath)
         {
             ReroutedPath = reroutedPath;
+            TraversalPath = traversalPath;
         }
     }
 
@@ -919,26 +921,28 @@ namespace VirtualStorageLibrary
                 return;
             }
 
+            VirtualPath traversalPath = VirtualPath.Root;
             bool isRerouted = false;
             do
             {
                 try
                 {
                     // パスを辿りながらアクションを実行
-                    WalkPathWithActionInternal(targetPath, 0, VirtualPath.Root, _root, action);
+                    WalkPathWithActionInternal(targetPath, 0, traversalPath, _root, action, followLinks);
                     isRerouted = false;
                 }
                 catch (VirtualReroutePathException exception)
                 {
                     // パスがリルートされた場合は、リルートされたパスで再試行
                     targetPath = exception.ReroutedPath;
+                    traversalPath = exception.TraversalPath;
                     isRerouted = true;
                 }
             }
             while (isRerouted);
         }
 
-        private void WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, NodeAction action)
+        private void WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, NodeAction action, bool followLinks)
         {
             VirtualPath traversalNodeName = targetPath.PartsList[traversalIndex];
 
@@ -977,7 +981,7 @@ namespace VirtualStorageLibrary
                 traversalDirectory = (VirtualDirectory)node;
 
                 // 再帰的に探索
-                WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action);
+                WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action, followLinks);
             }
             else if (node.IsItem())
             {
@@ -986,10 +990,24 @@ namespace VirtualStorageLibrary
             }
             else if (node.IsSymbolicLink())
             {
+                if (!followLinks)
+                {
+                    // シンボリックリンクを通知
+                    action(traversalPath, node, true);
+                    return;
+                }
+
                 VirtualSymbolicLink link = (VirtualSymbolicLink)node;
                 VirtualPath linkTargetPath = link.TargetPath;
 
-                // TODO: シンボリックリンクの再帰的な処理を実装
+                // CombineFromIndexを使用して、linkTargetPathと未探索のパス部分を結合
+                VirtualPath reroutedPath = linkTargetPath.CombineFromIndex(targetPath, traversalIndex + 1);
+
+                // シンボリックリンクを通知
+                action(traversalPath, node, true);
+
+                // 結合したパスでリルート例外を投げる
+                throw new VirtualReroutePathException(reroutedPath, traversalPath);
             }
             return;
         }

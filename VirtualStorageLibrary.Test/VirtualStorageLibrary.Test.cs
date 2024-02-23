@@ -4011,6 +4011,19 @@ namespace VirtualStorageLibrary.Test
             vs.WalkPathWithAction(targetPath, action, true);
         }
 
+        [TestMethod]
+        public void WalkPathWithAction_SymbolicLink1()
+        {
+            VirtualPath targetPath = new VirtualPath("/dir1/link1/item");
+            VirtualStorage vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddDirectory(new VirtualPath("/dir2"), true);
+            vs.AddItem(new VirtualPath("/dir2/item"), new BinaryData[1, 2, 3]);
+            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
+
+            vs.WalkPathWithAction(targetPath, action, true);
+        }
+
         private void action(VirtualPath path, VirtualNode node, bool isEnd)
         {
             Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");
