@@ -522,6 +522,86 @@ namespace VirtualStorageLibrary.Test
             // キャッシュされたオブジェクトが再利用されているか検証
             Assert.AreSame(firstAccessResult, secondAccessResult, "The PartsList should be cached and reused on subsequent accesses.");
         }
+
+        [TestMethod]
+        public void CombineFromIndex_WithValidIndex_CombinesCorrectly()
+        {
+            // Arrange
+            var basePath = new VirtualPath("/base/path");
+            var additionalPath = new VirtualPath("/to/combine");
+            var expected = new VirtualPath("/base/path/to/combine");
+            var startIndex = 0; // 最初から結合
+
+            // Act
+            var result = basePath.CombineFromIndex(additionalPath, startIndex);
+
+            // Assert
+            Assert.AreEqual(expected, result, "The paths should be combined correctly from the specified index.");
+        }
+
+        [TestMethod]
+        public void CombineFromIndex_WithIndexInMiddle_CombinesRemainingParts()
+        {
+            // Arrange
+            var basePath = new VirtualPath("/base/path");
+            var additionalPath = new VirtualPath("/ignored/part/to/combine");
+            var expected = new VirtualPath("/base/path/to/combine");
+            var startIndex = 2; // "ignored"と"part"を無視して、"to"から結合
+
+            // Act
+            var result = basePath.CombineFromIndex(additionalPath, startIndex);
+
+            // Assert
+            Assert.AreEqual(expected, result, "The paths should be combined correctly starting from the middle index.");
+        }
+
+        [TestMethod]
+        public void CombineFromIndex_WithIndexBeyondLength_ReturnsBasePath()
+        {
+            // Arrange
+            var basePath = new VirtualPath("/base/path");
+            var additionalPath = new VirtualPath("/will/not/be/added");
+            var expected = new VirtualPath("/base/path");
+            var startIndex = 10; // additionalPathの長さを超えるインデックス
+
+            // Act
+            var result = basePath.CombineFromIndex(additionalPath, startIndex);
+
+            // Assert
+            Assert.AreEqual(expected, result, "The result should be the base path if the start index is beyond the length of additional path.");
+        }
+
+        [TestMethod]
+        public void CombineFromIndex_WithEmptyAdditionalPath_ReturnsBasePath()
+        {
+            // Arrange
+            var basePath = new VirtualPath("/base/path");
+            var additionalPath = VirtualPath.Empty;
+            var expected = new VirtualPath("/base/path");
+            var startIndex = 0;
+
+            // Act
+            var result = basePath.CombineFromIndex(additionalPath, startIndex);
+
+            // Assert
+            Assert.AreEqual(expected, result, "The result should be the base path if the additional path is empty.");
+        }
+
+        [TestMethod]
+        public void CombineFromIndex_WithEmptyBasePath_CombinesFromIndex()
+        {
+            // Arrange
+            var basePath = VirtualPath.Empty;
+            var additionalPath = new VirtualPath("/to/combine");
+            var expected = new VirtualPath("/to/combine");
+            var startIndex = 0; // Even with an empty base path, additional path should be considered.
+
+            // Act
+            var result = basePath.CombineFromIndex(additionalPath, startIndex);
+
+            // Assert
+            Assert.AreEqual(expected, result, "The result should be the additional path starting from the index, even with an empty base path.");
+        }
     }
 
     [TestClass]

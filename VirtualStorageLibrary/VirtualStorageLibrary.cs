@@ -361,6 +361,21 @@ namespace VirtualStorageLibrary
             return new VirtualPath(parentPath);
         }
 
+        public VirtualPath CombineFromIndex(VirtualPath path, int index)
+        {
+            // 指定されたインデックスからのパスのパーツを取得
+            var partsFromIndex = path.PartsList.Skip(index).ToList();
+
+            // 現在のパス（this）と指定されたインデックスからのパーツを結合
+            VirtualPath combinedPath = this;
+            foreach (var part in partsFromIndex)
+            {
+                combinedPath = combinedPath + part;
+            }
+
+            return combinedPath;
+        }
+
         public LinkedList<VirtualPath> GetPartsLinkedList()
         {
             LinkedList<VirtualPath> parts = new();
