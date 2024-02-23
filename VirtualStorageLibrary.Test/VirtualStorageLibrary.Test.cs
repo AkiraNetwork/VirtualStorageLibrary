@@ -3877,7 +3877,28 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Directory()
+        public void WalkPathWithAction_Root()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath path = new VirtualPath("/");
+
+            VirtualPath targetPath = path;
+            vs.WalkPathWithAction(targetPath, action, true);
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_Directory1()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath path = new VirtualPath("/dir1");
+            vs.AddDirectory(path, true);
+
+            VirtualPath targetPath = path;
+            vs.WalkPathWithAction(targetPath, action, true);
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_Directory2()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1/dir2");
@@ -3888,7 +3909,18 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Item()
+        public void WalkPathWithAction_Item1()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath path = new VirtualPath("/item");
+            vs.AddItem(path, new BinaryData[1, 2, 3]);
+
+            VirtualPath targetPath = path;
+            vs.WalkPathWithAction(targetPath, action, true);
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_Item2()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1/item");
