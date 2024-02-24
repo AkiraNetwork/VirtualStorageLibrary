@@ -921,6 +921,7 @@ namespace VirtualStorageLibrary
                 return;
             }
 
+            VirtualPath routePath = targetPath;
             VirtualPath traversalPath = VirtualPath.Root;
             bool isRerouted = false;
             do
@@ -928,13 +929,13 @@ namespace VirtualStorageLibrary
                 try
                 {
                     // パスを辿りながらアクションを実行
-                    WalkPathWithActionInternal(targetPath, 0, traversalPath, _root, action, followLinks);
+                    WalkPathWithActionInternal(routePath, 0, traversalPath, _root, targetPath, action, followLinks);
                     isRerouted = false;
                 }
                 catch (VirtualReroutePathException exception)
                 {
                     // パスがリルートされた場合は、リルートされたパスで再試行
-                    targetPath = exception.ReroutedPath;
+                    routePath = exception.ReroutedPath;
                     traversalPath = exception.TraversalPath;
                     isRerouted = true;
                 }
@@ -942,9 +943,9 @@ namespace VirtualStorageLibrary
             while (isRerouted);
         }
 
-        private void WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, NodeAction action, bool followLinks)
+        private void WalkPathWithActionInternal(VirtualPath routePath, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, VirtualPath targetPath, NodeAction action, bool followLinks)
         {
-            VirtualPath traversalNodeName = targetPath.PartsList[traversalIndex];
+            VirtualPath traversalNodeName = routePath.PartsList[traversalIndex];
 
             // 探索ノードが存在しない場合は終了
             if (!traversalDirectory.NodeExists(traversalNodeName))
@@ -964,7 +965,7 @@ namespace VirtualStorageLibrary
                 traversalIndex++;
                 
                 // 最後のノードに到達したかチェック
-                if (targetPath.PartsList.Count <= traversalIndex)
+                if (routePath.PartsList.Count <= traversalIndex)
                 {
                     // 末端のノードを通知
                     action(traversalPath, node, true);
@@ -975,13 +976,13 @@ namespace VirtualStorageLibrary
                 action(traversalPath, node, false);
 
                 // 次の探索ノード名を取得
-                traversalNodeName = targetPath.PartsList[traversalIndex];
+                traversalNodeName = routePath.PartsList[traversalIndex];
 
                 // 探索ディレクトリを取得
                 traversalDirectory = (VirtualDirectory)node;
 
                 // 再帰的に探索
-                WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action, followLinks);
+                WalkPathWithActionInternal(routePath, traversalIndex, traversalPath, traversalDirectory, targetPath, action, followLinks);
             }
             else if (node.IsItem())
             {
@@ -1001,7 +1002,7 @@ namespace VirtualStorageLibrary
                 VirtualPath linkTargetPath = link.TargetPath;
 
                 // CombineFromIndexを使用して、linkTargetPathと未探索のパス部分を結合
-                VirtualPath reroutedPath = linkTargetPath.CombineFromIndex(targetPath, traversalIndex + 1);
+                VirtualPath reroutedPath = linkTargetPath.CombineFromIndex(routePath, traversalIndex + 1);
 
                 // シンボリックリンクを通知
                 action(traversalPath, node, true);
