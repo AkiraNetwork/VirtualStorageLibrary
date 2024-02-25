@@ -207,7 +207,7 @@ namespace VirtualStorageLibrary.Test
         public void NodeName_WithRootPath_ReturnsRootPath()
         {
             var path = VirtualPath.Root;
-            var expectedNodeName = VirtualPath.Empty;
+            var expectedNodeName = VirtualPath.Root;
 
             var actualNodeName = path.NodeName;
 
@@ -1581,6 +1581,76 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsFalse(exists); // アイテムはシンボリックリンクではないため、falseを返すべき
+        }
+    }
+
+    [TestClass]
+    public class VirtualNodeExtensionsTests
+    {
+        [TestMethod]
+        public void IsItem_GivenVirtualItemInstance_ReturnsTrue()
+        {
+            // Arrange
+            VirtualNode node = new VirtualItem<string>(new VirtualPath("/item"), "value");
+
+            // Act & Assert
+            Assert.IsTrue(node.IsItem());
+        }
+
+        [TestMethod]
+        public void IsDirectory_GivenVirtualDirectoryInstance_ReturnsTrue()
+        {
+            // Arrange
+            VirtualNode node = new VirtualDirectory(new VirtualPath("/directory"));
+
+            // Act & Assert
+            Assert.IsTrue(node.IsDirectory());
+        }
+
+        [TestMethod]
+        public void IsSymbolicLink_GivenVirtualSymbolicLinkInstance_ReturnsTrue()
+        {
+            // Arrange
+            VirtualNode node = new VirtualSymbolicLink(new VirtualPath("/link"), new VirtualPath("/target"));
+
+            // Act & Assert
+            Assert.IsTrue(node.IsSymbolicLink());
+        }
+
+        [TestMethod]
+        public void IsItem_GivenNonItemInstance_ReturnsFalse()
+        {
+            // Arrange
+            VirtualNode node1 = new VirtualDirectory(new VirtualPath("/directory"));
+            VirtualNode node2 = new VirtualSymbolicLink(new VirtualPath("/link"), new VirtualPath("/target"));
+
+            // Act & Assert
+            Assert.IsFalse(node1.IsItem());
+            Assert.IsFalse(node2.IsItem());
+        }
+
+        [TestMethod]
+        public void IsDirectory_GivenNonDirectoryInstance_ReturnsFalse()
+        {
+            // Arrange
+            VirtualNode node1 = new VirtualItem<string>(new VirtualPath("/item"), "value");
+            VirtualNode node2 = new VirtualSymbolicLink(new VirtualPath("/link"), new VirtualPath("/target"));
+
+            // Act & Assert
+            Assert.IsFalse(node1.IsDirectory());
+            Assert.IsFalse(node2.IsDirectory());
+        }
+
+        [TestMethod]
+        public void IsSymbolicLink_GivenNonLinkInstance_ReturnsFalse()
+        {
+            // Arrange
+            VirtualNode node1 = new VirtualItem<string>(new VirtualPath("/item"), "value");
+            VirtualNode node2 = new VirtualDirectory(new VirtualPath("/directory"));
+
+            // Act & Assert
+            Assert.IsFalse(node1.IsSymbolicLink());
+            Assert.IsFalse(node2.IsSymbolicLink());
         }
     }
 
@@ -3961,9 +4031,13 @@ namespace VirtualStorageLibrary.Test
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/");
-
             VirtualPath targetPath = path;
-            vs.WalkPathWithAction(targetPath, action, true);
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(targetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
         [TestMethod]
@@ -3972,9 +4046,13 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1");
             vs.AddDirectory(path, true);
-
             VirtualPath targetPath = path;
-            vs.WalkPathWithAction(targetPath, action, true);
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(targetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
         [TestMethod]
@@ -3983,9 +4061,13 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1/dir2");
             vs.AddDirectory(path, true);
-
             VirtualPath targetPath = path;
-            vs.WalkPathWithAction(targetPath, action, true);
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(targetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
         [TestMethod]
@@ -3994,9 +4076,13 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/item");
             vs.AddItem(path, new BinaryData[1, 2, 3]);
-
             VirtualPath targetPath = path;
-            vs.WalkPathWithAction(targetPath, action, true);
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(targetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
         [TestMethod]
@@ -4006,9 +4092,13 @@ namespace VirtualStorageLibrary.Test
             VirtualPath path = new VirtualPath("/dir1/item");
             vs.AddDirectory(path.DirectoryPath, true);
             vs.AddItem(path, new BinaryData[1, 2, 3]);
-
             VirtualPath targetPath = path;
-            vs.WalkPathWithAction(targetPath, action, true);
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(targetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
         [TestMethod]
@@ -4021,82 +4111,16 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(new VirtualPath("/dir2/item"), new BinaryData[1, 2, 3]);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
 
-            vs.WalkPathWithAction(targetPath, action, true);
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(targetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
-        private void action(VirtualPath path, VirtualNode node, bool isEnd)
+        private void action(VirtualPath path, VirtualNode? node, bool isEnd)
         {
             Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");
-        }
-    }
-
-    [TestClass]
-    public class VirtualNodeExtensionsTests
-    {
-        [TestMethod]
-        public void IsItem_GivenVirtualItemInstance_ReturnsTrue()
-        {
-            // Arrange
-            VirtualNode node = new VirtualItem<string>(new VirtualPath("/item"), "value");
-
-            // Act & Assert
-            Assert.IsTrue(node.IsItem());
-        }
-
-        [TestMethod]
-        public void IsDirectory_GivenVirtualDirectoryInstance_ReturnsTrue()
-        {
-            // Arrange
-            VirtualNode node = new VirtualDirectory(new VirtualPath("/directory"));
-
-            // Act & Assert
-            Assert.IsTrue(node.IsDirectory());
-        }
-
-        [TestMethod]
-        public void IsSymbolicLink_GivenVirtualSymbolicLinkInstance_ReturnsTrue()
-        {
-            // Arrange
-            VirtualNode node = new VirtualSymbolicLink(new VirtualPath("/link"), new VirtualPath("/target"));
-
-            // Act & Assert
-            Assert.IsTrue(node.IsSymbolicLink());
-        }
-
-        [TestMethod]
-        public void IsItem_GivenNonItemInstance_ReturnsFalse()
-        {
-            // Arrange
-            VirtualNode node1 = new VirtualDirectory(new VirtualPath("/directory"));
-            VirtualNode node2 = new VirtualSymbolicLink(new VirtualPath("/link"), new VirtualPath("/target"));
-
-            // Act & Assert
-            Assert.IsFalse(node1.IsItem());
-            Assert.IsFalse(node2.IsItem());
-        }
-
-        [TestMethod]
-        public void IsDirectory_GivenNonDirectoryInstance_ReturnsFalse()
-        {
-            // Arrange
-            VirtualNode node1 = new VirtualItem<string>(new VirtualPath("/item"), "value");
-            VirtualNode node2 = new VirtualSymbolicLink(new VirtualPath("/link"), new VirtualPath("/target"));
-
-            // Act & Assert
-            Assert.IsFalse(node1.IsDirectory());
-            Assert.IsFalse(node2.IsDirectory());
-        }
-
-        [TestMethod]
-        public void IsSymbolicLink_GivenNonLinkInstance_ReturnsFalse()
-        {
-            // Arrange
-            VirtualNode node1 = new VirtualItem<string>(new VirtualPath("/item"), "value");
-            VirtualNode node2 = new VirtualDirectory(new VirtualPath("/directory"));
-
-            // Act & Assert
-            Assert.IsFalse(node1.IsSymbolicLink());
-            Assert.IsFalse(node2.IsSymbolicLink());
         }
     }
 }

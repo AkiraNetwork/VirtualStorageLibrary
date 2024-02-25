@@ -2,7 +2,7 @@
 
 namespace VirtualStorageLibrary
 {
-    public delegate void NodeAction(VirtualPath path, VirtualNode node, bool isEnd);
+    public delegate void NodeAction(VirtualPath path, VirtualNode? node, bool isEnd);
 
     public enum VirtualNodeType
     {
@@ -286,8 +286,8 @@ namespace VirtualStorageLibrary
         {
             if (_path == "/")
             {
-                //　ルートの場合は、空文字列を返す
-                return string.Empty;
+                // ルートディレクトリの場合は、そのままの文字列を返す
+                return "/";
             }
 
             StringBuilder path = new StringBuilder(_path);
@@ -912,49 +912,31 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        public void WalkPathWithAction(VirtualPath targetPath, NodeAction action, bool followLinks)
+        public VirtualNode? WalkPathWithAction(VirtualPath targetPath, NodeAction? action, bool followLinks)
+        {
+            VirtualNode? node = WalkPathWithActionInternal(targetPath, 0, VirtualPath.Root, _root, action, followLinks);
+            return node;
+        }
+
+        private VirtualNode? WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (targetPath.IsRoot)
             {
-                action(VirtualPath.Root, _root, true);
-                return;
+                action?.Invoke(VirtualPath.Root, _root, true);
+                return _root;
             }
 
-            VirtualPath routedPath = targetPath;
-            VirtualPath traversalPath = VirtualPath.Root;
-            bool isRerouted = false;
-            do
-            {
-                try
-                {
-                    // パスを辿りながらアクションを実行
-                    WalkPathWithActionInternal(routedPath, 0, traversalPath, _root, targetPath, action, followLinks);
-                    isRerouted = false;
-                }
-                catch (VirtualReroutePathException exception)
-                {
-                    // パスがリルートされた場合は、リルートされたパスで再試行
-                    routedPath = exception.ReroutedPath;
-                    traversalPath = exception.TraversalPath;
-                    isRerouted = true;
-                }
-            }
-            while (isRerouted);
-        }
-
-        private void WalkPathWithActionInternal(VirtualPath routedPath, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, VirtualPath targetPath, NodeAction action, bool followLinks)
-        {
-            VirtualPath traversalNodeName = routedPath.PartsList[traversalIndex];
+            VirtualPath traversalNodeName = targetPath.PartsList[traversalIndex];
 
             // 探索ノードが存在しない場合は終了
             if (!traversalDirectory.NodeExists(traversalNodeName))
             {
-                return;
+                return null;
             }
 
             // 探索ノードを取得
-            VirtualNode node = traversalDirectory[traversalNodeName];
+            VirtualNode? node = traversalDirectory[traversalNodeName];
 
             // 探索パスを更新
             traversalPath = traversalPath + traversalNodeName;
@@ -965,52 +947,64 @@ namespace VirtualStorageLibrary
                 traversalIndex++;
                 
                 // 最後のノードに到達したかチェック
-                if (routedPath.PartsList.Count <= traversalIndex)
+                if (targetPath.PartsList.Count <= traversalIndex)
                 {
                     // 末端のノードを通知
-                    action(traversalPath, node, true);
-                    return;
+                    action?.Invoke(traversalPath, node, true);
+                    return node;
                 }
 
                 // 途中のノードを通知
-                action(traversalPath, node, false);
+                action?.Invoke(traversalPath, node, false);
 
                 // 次の探索ノード名を取得
-                traversalNodeName = routedPath.PartsList[traversalIndex];
+                traversalNodeName = targetPath.PartsList[traversalIndex];
 
                 // 探索ディレクトリを取得
                 traversalDirectory = (VirtualDirectory)node;
 
                 // 再帰的に探索
-                WalkPathWithActionInternal(routedPath, traversalIndex, traversalPath, traversalDirectory, targetPath, action, followLinks);
+                node = WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action, followLinks);
             }
             else if (node.IsItem())
             {
                 // 末端のノードを通知
-                action(traversalPath, node, true);
+                action?.Invoke(traversalPath, node, true);
+                return node;
             }
             else if (node.IsSymbolicLink())
             {
+                // 次のノードへ
+                traversalIndex++;
+
                 if (!followLinks)
                 {
                     // シンボリックリンクを通知
-                    action(traversalPath, node, true);
-                    return;
+                    action?.Invoke(traversalPath, node, true);
+                    return node;
                 }
 
                 VirtualSymbolicLink link = (VirtualSymbolicLink)node;
                 VirtualPath linkTargetPath = link.TargetPath;
 
-                // CombineFromIndexを使用して、linkTargetPathと未探索のパス部分を結合
-                VirtualPath reroutedPath = linkTargetPath.CombineFromIndex(routedPath, traversalIndex + 1);
+                node = WalkPathWithAction(linkTargetPath, null, followLinks);
 
                 // シンボリックリンクを通知
-                action(traversalPath, node, true);
+                action?.Invoke(traversalPath, node, true);
 
-                // 結合したパスでリルート例外を投げる
-                throw new VirtualReroutePathException(reroutedPath, traversalPath);
+                if (node != null && node.IsDirectory())
+                {
+                    // 探索ディレクトリを取得
+                    traversalDirectory = (VirtualDirectory)node;
+
+                    // 再帰的に探索
+                    node = WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action, followLinks);
+                }
+
+                return node;
             }
-            return;
+
+            return node;
         }
 
         public NodeResolutionResult GetNodeInternal(VirtualPath path, bool followLinks)
