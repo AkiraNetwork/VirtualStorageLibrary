@@ -420,20 +420,7 @@ namespace VirtualStorageLibrary
 
     public static class VirtualNodeExtensions
     {
-        public static bool IsItem(this VirtualNode node)
-        {
-            // nodeの型がVirtualItem<>に基づいているかどうかをチェック
-            var nodeType = node.GetType();
-            while (nodeType != null)
-            {
-                if (nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>))
-                {
-                    return true;
-                }
-                nodeType = nodeType.BaseType;
-            }
-            return false;
-        }
+        public static bool IsItem(this VirtualNode node) => node is VirtualItem;
 
         public static bool IsDirectory(this VirtualNode node) => node is VirtualDirectory;
         
@@ -466,7 +453,28 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public class VirtualItem<T> : VirtualNode, IDeepCloneable<VirtualItem<T>>
+    public class VirtualItem : VirtualNode, IDeepCloneable<VirtualItem>
+    {
+        public VirtualItem(VirtualPath name) : base(name)
+        {
+        }
+
+        public VirtualItem(VirtualPath name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        {
+        }
+
+        public override VirtualNode DeepClone()
+        {
+            throw new NotImplementedException();
+        }
+
+        VirtualItem IDeepCloneable<VirtualItem>.DeepClone()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class VirtualItem<T> : VirtualItem, IDeepCloneable<VirtualItem<T>>
     {
         public T Item { get; set; }
 
