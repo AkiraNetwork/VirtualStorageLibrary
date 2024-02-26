@@ -4118,6 +4118,80 @@ namespace VirtualStorageLibrary.Test
             Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
+        [TestMethod]
+        public void WalkPathWithAction_SymbolicLink2()
+        {
+            VirtualPath targetPath = new VirtualPath("/dir1/link1/dir3");
+            VirtualStorage vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddDirectory(new VirtualPath("/dir2"), true);
+            vs.AddDirectory(new VirtualPath("/dir2/dir3"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(targetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_SymbolicLink3()
+        {
+            VirtualPath targetPath = new VirtualPath("/dir1/link1");
+            VirtualPath linkTargetPath = new VirtualPath("/dir2");
+            VirtualStorage vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddDirectory(new VirtualPath("/dir2"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), linkTargetPath);
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual(linkTargetPath.NodeName, node?.Name);
+            Debug.WriteLine($"NodeName: {node?.Name}");
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_NonExistentPath()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath targetPath = new VirtualPath("/nonexistent");
+
+            VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+            Assert.IsNull(node);
+            Debug.WriteLine($"NodeName: {node?.Name}");
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_CircularSymbolicLink()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
+            vs.AddDirectory(new VirtualPath("/dir2"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir1"));
+
+            VirtualNode? node = vs.WalkPathWithAction(new VirtualPath("/dir1/link1/link2/link1"), action, true);
+
+            Assert.IsNotNull(node);
+            Debug.WriteLine($"NodeName: {node?.Name}");
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_SymbolicLinkToNonExistentPath()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/nonexistent"));
+
+            VirtualNode? node = vs.WalkPathWithAction(new VirtualPath("/dir1/link1"), action, true);
+
+            Assert.IsNull(node);
+            Debug.WriteLine($"NodeName: {node?.Name}");
+        }
+
         private void action(VirtualPath path, VirtualNode? node, bool isEnd)
         {
             Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");

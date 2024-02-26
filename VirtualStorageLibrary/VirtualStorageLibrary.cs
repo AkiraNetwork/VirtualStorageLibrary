@@ -982,9 +982,6 @@ namespace VirtualStorageLibrary
             }
             else if (node.IsSymbolicLink())
             {
-                // 次のノードへ
-                traversalIndex++;
-
                 if (!followLinks)
                 {
                     // シンボリックリンクを通知
@@ -1004,6 +1001,16 @@ namespace VirtualStorageLibrary
                 {
                     // 探索ディレクトリを取得
                     traversalDirectory = (VirtualDirectory)node;
+
+                    // 次のノードへ
+                    traversalIndex++;
+
+                    // 最後のノードに到達したかチェック
+                    if (targetPath.PartsList.Count <= traversalIndex)
+                    {
+                        // 末端のノードを通知
+                        return node;
+                    }
 
                     // 再帰的に探索
                     node = WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action, followLinks);
