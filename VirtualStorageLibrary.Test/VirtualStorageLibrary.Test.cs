@@ -4253,6 +4253,20 @@ namespace VirtualStorageLibrary.Test
             Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
+        //[TestMethod]
+        //public void WalkPathWithAction_DotDot1()
+        //{
+        //    VirtualStorage vs = new VirtualStorage();
+        //    vs.AddDirectory(new VirtualPath("/dir1/dir2"), true);
+        //    vs.AddDirectory(new VirtualPath("/dir1/dir3"), true);
+        //    VirtualPath targetPath = new VirtualPath("/dir1/dir2/../dir3");
+
+        //    VirtualNode? node = vs.WalkPathWithAction(targetPath, action, true);
+
+        //    Assert.IsNotNull(node);
+        //    Assert.AreEqual(targetPath.NodeName, node?.Name);
+        //    Debug.WriteLine($"NodeName: {node?.Name}");
+        //}
 
         private void action(VirtualPath path, VirtualNode? node, bool isEnd)
         {

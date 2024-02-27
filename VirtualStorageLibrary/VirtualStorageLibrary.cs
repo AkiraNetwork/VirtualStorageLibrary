@@ -966,9 +966,6 @@ namespace VirtualStorageLibrary
                 // 途中のノードを通知
                 action?.Invoke(traversalPath, node, false);
 
-                // 次の探索ノード名を取得
-                traversalNodeName = targetPath.PartsList[traversalIndex];
-
                 // 探索ディレクトリを取得
                 traversalDirectory = (VirtualDirectory)node;
 
