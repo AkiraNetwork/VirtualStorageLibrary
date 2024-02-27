@@ -950,11 +950,11 @@ namespace VirtualStorageLibrary
             // 探索パスを更新
             traversalPath = traversalPath + traversalNodeName;
 
+            // 次のノードへ
+            traversalIndex++;
+
             if (node.IsDirectory())
             {
-                // 次のノードへ
-                traversalIndex++;
-                
                 // 最後のノードに到達したかチェック
                 if (targetPath.PartsList.Count <= traversalIndex)
                 {
@@ -979,7 +979,14 @@ namespace VirtualStorageLibrary
             {
                 // 末端のノードを通知
                 action?.Invoke(traversalPath, node, true);
-                return node;
+
+                // 最後のノードに到達したかチェック
+                if (targetPath.PartsList.Count <= traversalIndex)
+                {
+                    return node;
+                }
+
+                return null;
             }
             else if (node.IsSymbolicLink())
             {
@@ -1002,9 +1009,6 @@ namespace VirtualStorageLibrary
                 {
                     // 探索ディレクトリを取得
                     traversalDirectory = (VirtualDirectory)node;
-
-                    // 次のノードへ
-                    traversalIndex++;
 
                     // 最後のノードに到達したかチェック
                     if (targetPath.PartsList.Count <= traversalIndex)
