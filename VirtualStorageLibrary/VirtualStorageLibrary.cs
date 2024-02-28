@@ -923,6 +923,7 @@ namespace VirtualStorageLibrary
         public VirtualNode? WalkPathWithAction(VirtualPath targetPath, NodeAction? action, bool followLinks)
         {
             targetPath = ConvertToAbsolutePath(targetPath);
+            targetPath = targetPath.NormalizePath();
             VirtualNode? node = WalkPathWithActionInternal(targetPath, 0, VirtualPath.Root, _root, action, followLinks);
             return node;
         }
