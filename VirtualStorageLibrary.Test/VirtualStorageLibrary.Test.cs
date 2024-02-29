@@ -90,19 +90,20 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void NormalizePath_WithEmptyPath_ThrowsArgumentException()
+        public void NormalizePath_WithEmptyPath()
         {
             var path = VirtualPath.Empty;
 
-            Assert.ThrowsException<ArgumentException>(() => path.NormalizePath());
+            Assert.AreEqual(VirtualPath.Empty, path.NormalizePath());
         }
 
         [TestMethod]
         public void NormalizePath_WithInvalidPath_ThrowsInvalidOperationException()
         {
-            var path = new VirtualPath("/../");
-
-            Assert.ThrowsException<InvalidOperationException>(() => path.NormalizePath());
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                var path = new VirtualPath("/../");
+            });
         }
 
         [TestMethod]

@@ -69,6 +69,9 @@ namespace VirtualStorageLibrary
 
         private List<VirtualPath>? _partsList = null;
 
+        public bool EnableNormalization { get; set; } = true;
+
+
         public VirtualPath DirectoryPath
         {
             get
@@ -132,11 +135,21 @@ namespace VirtualStorageLibrary
         public VirtualPath(string path)
         {
             _path = path;
+
+            if (EnableNormalization)
+            {
+                _path = NormalizePath(_path);
+            }
         }
 
         public VirtualPath(IEnumerable<VirtualPath> parts)
         {
             _path = string.Join('/', parts.Select(p => p.Path));
+
+            if (EnableNormalization)
+            {
+                _path = NormalizePath(_path);
+            }
         }
 
         public override bool Equals(object? obj)
@@ -215,14 +228,24 @@ namespace VirtualStorageLibrary
 
         public VirtualPath NormalizePath()
         {
-            if (_path == "")
+            // string型でパスを正規化する静的メソッドを呼び出す。
+            string normalizedPathString = NormalizePath(_path);
+
+            // 正規化されたパス文字列を使用して新しいVirtualPathインスタンスを作成し、返す。
+            return new VirtualPath(normalizedPathString);
+        }
+
+        public static string NormalizePath(string path)
+        {
+            // パスが空文字列、または "/" の場合はそのまま返す
+            if (path == string.Empty || path == "/")
             {
-                throw new ArgumentException("パスが空です。");
+                return path;
             }
 
             var parts = new LinkedList<string>();
-            var isAbsolutePath = _path.StartsWith('/');
-            IList<string> partList = _path.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            var isAbsolutePath = path.StartsWith('/');
+            IList<string> partList = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var part in partList)
             {
@@ -238,7 +261,7 @@ namespace VirtualStorageLibrary
                     }
                     else
                     {
-                        throw new InvalidOperationException("パスがルートディレクトリより上への移動を試みています。無効なパス: " + _path);
+                        throw new InvalidOperationException("パスがルートディレクトリより上への移動を試みています。無効なパス: " + path);
                     }
                 }
                 else if (part != ".")
@@ -247,18 +270,19 @@ namespace VirtualStorageLibrary
                 }
             }
 
-            var normalizedPath = String.Join('/', parts);
-            VirtualPath result;
+            var normalizedPath = string.Join('/', parts);
             if (isAbsolutePath)
             {
-                result = new VirtualPath('/' + normalizedPath);
-            }
-            else
-            {
-                result = new VirtualPath(normalizedPath);
+                normalizedPath = '/' + normalizedPath;
             }
 
-            return result;
+            // 末尾の "/" を取り除く
+            if (normalizedPath.EndsWith('/'))
+            {
+                normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
+            }
+
+            return normalizedPath;
         }
 
         private string GetDirectoryPath()
