@@ -135,21 +135,11 @@ namespace VirtualStorageLibrary
         public VirtualPath(string path)
         {
             _path = path;
-
-            if (EnableNormalization)
-            {
-                _path = NormalizePath(_path);
-            }
         }
 
         public VirtualPath(IEnumerable<VirtualPath> parts)
         {
             _path = string.Join('/', parts.Select(p => p.Path));
-
-            if (EnableNormalization)
-            {
-                _path = NormalizePath(_path);
-            }
         }
 
         public override bool Equals(object? obj)
@@ -337,15 +327,29 @@ namespace VirtualStorageLibrary
 
         public VirtualPath Combine(params VirtualPath[] paths)
         {
+            string[] currentPathArray = [_path];
+            string[] pathStrings = paths.Select(p => p.Path).ToArray();
+            string[] allPaths = currentPathArray.Concat(pathStrings).ToArray();
+            string combinedPathString = Combine(allPaths);
+
+            return new VirtualPath(combinedPathString);
+        }
+
+        public string Combine(params string[] paths)
+        {
             // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
-            var newPathBuilder = new StringBuilder(_path);
+            var newPathBuilder = new StringBuilder();
 
             foreach (var path in paths)
             {
-                // 区切り文字"/"を無条件で追加
-                newPathBuilder.Append('/');
+                // 2番目以降のパスの場合だけ、区切り文字"/"を追加
+                if (newPathBuilder.Length > 0)
+                {
+                    newPathBuilder.Append('/');
+                }
+
                 // 新しいパスコンポーネントを追加
-                newPathBuilder.Append(path.Path);
+                newPathBuilder.Append(path);
             }
 
             // StringBuilderの内容を文字列に変換
@@ -355,7 +359,7 @@ namespace VirtualStorageLibrary
             var normalizedPath = combinedPath.Replace("//", "/");
 
             // 結果が"/"だったら空文字列に変換
-            normalizedPath = (normalizedPath == "/")? string.Empty : normalizedPath;
+            normalizedPath = (normalizedPath == "/") ? string.Empty : normalizedPath;
 
             // 末尾の "/" を取り除く
             if (normalizedPath.EndsWith('/'))
@@ -363,8 +367,8 @@ namespace VirtualStorageLibrary
                 normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
             }
 
-            // 結合されたパスで新しいVirtualPathインスタンスを生成
-            return new VirtualPath(normalizedPath);
+            // 結合された文字列を返却
+            return normalizedPath;
         }
 
         public VirtualPath GetParentPath()
@@ -385,21 +389,6 @@ namespace VirtualStorageLibrary
             }
 
             return new VirtualPath(parentPath);
-        }
-
-        public VirtualPath CombineFromIndex(VirtualPath path, int index)
-        {
-            // 指定されたインデックスからのパスのパーツを取得
-            var partsFromIndex = path.PartsList.Skip(index).ToList();
-
-            // 現在のパス（this）と指定されたインデックスからのパーツを結合
-            VirtualPath combinedPath = this;
-            foreach (var part in partsFromIndex)
-            {
-                combinedPath = combinedPath + part;
-            }
-
-            return combinedPath;
         }
 
         public LinkedList<VirtualPath> GetPartsLinkedList()
@@ -734,7 +723,7 @@ namespace VirtualStorageLibrary
 
         public void ChangeDirectory(VirtualPath path)
         {
-            VirtualPath resolvedPath = ResolveLinkTarget(path);
+            VirtualPath resolvedPath = path;
 
             // ディレクトリが存在しない場合は例外をスロー
             if (!DirectoryExists(resolvedPath))
