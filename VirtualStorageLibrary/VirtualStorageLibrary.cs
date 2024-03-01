@@ -949,7 +949,7 @@ namespace VirtualStorageLibrary
             return result;
         }
 
-        private NodeResolutionResult? WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks)
+        private NodeResolutionResult? WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath resolvedPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (targetPath.IsRoot)
