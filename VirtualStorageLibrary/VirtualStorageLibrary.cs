@@ -267,7 +267,7 @@ namespace VirtualStorageLibrary
             }
 
             // 末尾の "/" を取り除く
-            if (normalizedPath.EndsWith('/'))
+            if (normalizedPath.Length > 1 && normalizedPath.EndsWith('/'))
             {
                 normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
             }
