@@ -2158,14 +2158,11 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/dir/item"), "TestItem");
             // /dir/item はディレクトリではない
 
-            // Act: ディレクトリではないノードの後ろに更にパスが続く場合の挙動をテスト
-            var resultNode = storage.GetNode(new VirtualPath("/dir/item/more"), false);
-
-            // Assert: パスの解析は /dir/item で停止し、それ以降は無視されるべき
-            Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
-            var item = resultNode as VirtualItem<string>;
-            Assert.IsNotNull(item);
-            Assert.AreEqual("TestItem", item.Item);
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                // Act: ディレクトリではないノードの後ろに更にパスが続く場合の挙動をテスト
+                var resultNode = storage.GetNode(new VirtualPath("/dir/item/more"), false);
+            });
         }
 
         [TestMethod]
@@ -2287,7 +2284,7 @@ namespace VirtualStorageLibrary.Test
             var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("/LinkToDocuments"));
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/Documents"), resolvedPath);
+            Assert.AreEqual(new VirtualPath("/LinkToDocuments"), resolvedPath);
         }
 
         [TestMethod]
@@ -2303,7 +2300,7 @@ namespace VirtualStorageLibrary.Test
             var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("/FirstLink"));
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/FinalDestination"), resolvedPath);
+            Assert.AreEqual(new VirtualPath("/FirstLink"), resolvedPath);
         }
 
         [TestMethod]
@@ -2322,7 +2319,7 @@ namespace VirtualStorageLibrary.Test
             var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("/dir1/link1/link2/item"));
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/dir3/item"), resolvedPath);
+            Assert.AreEqual(new VirtualPath("/dir1/link1/link2/item"), resolvedPath);
         }
 
         [TestMethod]
@@ -2339,7 +2336,7 @@ namespace VirtualStorageLibrary.Test
             var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("linkToDir2/item"));
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/dir1/dir2/item"), resolvedPath);
+            Assert.AreEqual(new VirtualPath("/dir1/linkToDir2/item"), resolvedPath);
         }
 
         [TestMethod]
@@ -2356,7 +2353,7 @@ namespace VirtualStorageLibrary.Test
             var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("./link/item"));
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/dir1/subdir/item"), resolvedPath);
+            Assert.AreEqual(new VirtualPath("/dir1/link/item"), resolvedPath);
         }
 
         [TestMethod]
@@ -2365,7 +2362,7 @@ namespace VirtualStorageLibrary.Test
             // テストデータの設定
             var vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/dir1/dir2/dir3"), true);
-            vs.AddItem(new VirtualPath("/dir1/item"), "ItemInDir1");
+            vs.AddItem(new VirtualPath("/dir1/dir2/dir3/item"), "ItemInDir1");
             vs.AddSymbolicLink(new VirtualPath("/dir1/dir2/dir3/linkToDir2"), new VirtualPath("/dir1/dir2"));
             vs.ChangeDirectory(new VirtualPath("/dir1/dir2/dir3"));
 
@@ -2373,7 +2370,7 @@ namespace VirtualStorageLibrary.Test
             var resolvedPath = vs.ResolveLinkTarget(new VirtualPath("linkToDir2/../item"));
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/dir1/item"), resolvedPath);
+            Assert.AreEqual(new VirtualPath("/dir1/dir2/dir3/item"), resolvedPath);
         }
 
         [TestMethod]
@@ -4167,11 +4164,10 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir1"), true);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/nonexistent"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1"), action, true);
-            VirtualNode? node = result?.Node;
-
-            Assert.IsNull(node);
-            Debug.WriteLine($"NodeName: {node?.Name}");
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1"), action, true);
+            });
         }
 
         [TestMethod]

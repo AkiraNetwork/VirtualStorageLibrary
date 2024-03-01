@@ -16,12 +16,12 @@ namespace VirtualStorageLibrary
     public class NodeResolutionResult
     {
         public VirtualNode? Node { get; }
-        public VirtualPath ResolvedPath { get; }
+        public VirtualPath TraversalPath { get; }
 
-        public NodeResolutionResult(VirtualNode? node, VirtualPath resolvedPath)
+        public NodeResolutionResult(VirtualNode? node, VirtualPath traversalPath)
         {
             Node = node;
-            ResolvedPath = resolvedPath;
+            TraversalPath = traversalPath;
         }
     }
 
@@ -723,16 +723,15 @@ namespace VirtualStorageLibrary
 
         public void ChangeDirectory(VirtualPath path)
         {
-            VirtualPath resolvedPath = path;
-
-            // ディレクトリが存在しない場合は例外をスロー
-            if (!DirectoryExists(resolvedPath))
+            NodeResolutionResult? result = WalkPathWithAction(path, null, true);
+            if (result?.Node == null)
             {
-                throw new VirtualNodeNotFoundException($"ディレクトリ '{path}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"ディレクトリ '{result?.TraversalPath}' が見つかりません。");
             }
 
-            // カレントパスを変更
-            CurrentPath = path.NormalizePath();
+            CurrentPath = result.TraversalPath;
+
+            return;
         }
 
         public VirtualPath ConvertToAbsolutePath(VirtualPath virtualRelativePath, VirtualPath? basePath = null)
@@ -938,6 +937,15 @@ namespace VirtualStorageLibrary
             targetPath = ConvertToAbsolutePath(targetPath);
             targetPath = targetPath.NormalizePath();
             NodeResolutionResult? result = WalkPathWithActionInternal(targetPath, 0, VirtualPath.Root, _root, action, followLinks);
+
+            if (action == null)
+            {
+                if (result?.Node == null)
+                {
+                    throw new VirtualNodeNotFoundException($"ノード '{result?.TraversalPath}' が見つかりません。");
+                }
+            }
+
             return result;
         }
 
@@ -955,7 +963,7 @@ namespace VirtualStorageLibrary
             // 探索ノードが存在しない場合は終了
             if (!traversalDirectory.NodeExists(traversalNodeName))
             {
-                return null;
+                return new NodeResolutionResult(null, traversalPath);
             }
 
             NodeResolutionResult? result;
@@ -988,6 +996,7 @@ namespace VirtualStorageLibrary
                 // 再帰的に探索
                 result = WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action, followLinks);
                 node = result?.Node;
+                traversalPath = result?.TraversalPath ?? traversalPath;
             }
             else if (node.IsItem())
             {
@@ -1000,7 +1009,7 @@ namespace VirtualStorageLibrary
                     return new NodeResolutionResult(node, traversalPath);
                 }
 
-                return null;
+                return new NodeResolutionResult(null, traversalPath);
             }
             else if (node.IsSymbolicLink())
             {
@@ -1038,6 +1047,7 @@ namespace VirtualStorageLibrary
                     // 再帰的に探索
                     result = WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, traversalDirectory, action, followLinks);
                     node = result?.Node;
+                    traversalPath = result?.TraversalPath ?? traversalPath;
                 }
 
                 return new NodeResolutionResult(node, traversalPath);
@@ -1132,7 +1142,7 @@ namespace VirtualStorageLibrary
             NodeResolutionResult? result = WalkPathWithAction(path, null, followLinks);
             if (result?.Node == null)
             {
-                throw new VirtualNodeNotFoundException($"Node '{path}' does not exist.");
+                throw new VirtualNodeNotFoundException($"ディレクトリ '{result?.TraversalPath}' が見つかりません。");
             }
 
             return result.Node;
@@ -1146,7 +1156,7 @@ namespace VirtualStorageLibrary
                 throw new VirtualNodeNotFoundException($"Node '{path}' does not exist.");
             }
 
-            return result.ResolvedPath;
+            return result.TraversalPath;
         }
 
         public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
@@ -1382,7 +1392,7 @@ namespace VirtualStorageLibrary
         public void RemoveNode(VirtualPath path, bool recursive = false)
         {
             // TODO: 絶対パスに変換後、ノーマライズする(1行で書くか書き方を検討する)
-            VirtualPath absolutePath = ResolveLinkTarget(path);
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
             absolutePath = absolutePath.NormalizePath();
 
             if (absolutePath.IsRoot)
@@ -1390,7 +1400,7 @@ namespace VirtualStorageLibrary
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
-            VirtualNode node = GetNode(absolutePath);
+            VirtualNode node = GetNode(absolutePath, true);
 
             // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
             VirtualPath parentPath = absolutePath.GetParentPath();
