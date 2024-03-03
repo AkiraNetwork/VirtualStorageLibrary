@@ -956,7 +956,7 @@ namespace VirtualStorageLibrary
         {
             targetPath = ConvertToAbsolutePath(targetPath);
             targetPath = targetPath.NormalizePath();
-            NodeResolutionResult? result = WalkPathWithActionInternal(targetPath, 0, VirtualPath.Root, VirtualPath.Root, _root, action, followLinks);
+            NodeResolutionResult? result = WalkPathWithActionInternal(targetPath, 0, VirtualPath.Root, null, _root, action, followLinks);
 
             if (action == null)
             {
@@ -969,7 +969,7 @@ namespace VirtualStorageLibrary
             return result;
         }
 
-        private NodeResolutionResult? WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath resolvedPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks)
+        private NodeResolutionResult? WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (targetPath.IsRoot)
@@ -983,6 +983,8 @@ namespace VirtualStorageLibrary
             // 探索ノードが存在しない場合は終了
             if (!traversalDirectory.NodeExists(traversalNodeName))
             {
+                resolvedPath ??= traversalPath;
+                action?.Invoke(VirtualPath.Root, _root, true);
                 return new NodeResolutionResult(null, traversalPath, traversalPath);
             }
 
@@ -1004,6 +1006,7 @@ namespace VirtualStorageLibrary
                 {
                     // 末端のノードを通知
                     action?.Invoke(traversalPath, node, true);
+                    resolvedPath ??= traversalPath;
                     return new NodeResolutionResult(node, traversalPath, resolvedPath);
                 }
 
@@ -1027,9 +1030,11 @@ namespace VirtualStorageLibrary
                 // 最後のノードに到達したかチェック
                 if (targetPath.PartsList.Count <= traversalIndex)
                 {
+                    resolvedPath ??= traversalPath;
                     return new NodeResolutionResult(node, traversalPath, resolvedPath);
                 }
 
+                resolvedPath ??= traversalPath;
                 return new NodeResolutionResult(null, traversalPath, resolvedPath);
             }
             else if (node.IsSymbolicLink())
@@ -1038,6 +1043,7 @@ namespace VirtualStorageLibrary
                 {
                     // シンボリックリンクを通知
                     action?.Invoke(traversalPath, node, true);
+                    resolvedPath ??= traversalPath;
                     return new NodeResolutionResult(node, traversalPath, resolvedPath);
                 }
 
@@ -1048,11 +1054,13 @@ namespace VirtualStorageLibrary
                 linkTargetPath = ConvertToAbsolutePath(linkTargetPath, parentTraversalPath);
 
                 //result = WalkPathWithAction(linkTargetPath, null, followLinks);
-                result = WalkPathWithActionInternal(linkTargetPath, 0, VirtualPath.Root, VirtualPath.Root, _root, null, true);
+                result = WalkPathWithActionInternal(linkTargetPath, 0, VirtualPath.Root, null, _root, null, true);
 
                 node = result?.Node;
                 //traversalPath = result?.TraversalPath ?? traversalPath;
-                resolvedPath = linkTargetPath.CombineFromIndex(targetPath, traversalIndex);
+
+                // 解決済みのパスに未探索のパスを追加
+                resolvedPath = result?.ResolvedPath.CombineFromIndex(targetPath, traversalIndex);
 
                 // シンボリックリンクを通知
                 action?.Invoke(traversalPath, node, true);
@@ -1066,6 +1074,7 @@ namespace VirtualStorageLibrary
                     if (targetPath.PartsList.Count <= traversalIndex)
                     {
                         // 末端のノードを通知
+                        resolvedPath ??= traversalPath;
                         return new NodeResolutionResult(node, traversalPath, resolvedPath);
                     }
 
@@ -1076,9 +1085,11 @@ namespace VirtualStorageLibrary
                     resolvedPath = result?.ResolvedPath ?? resolvedPath;
                 }
 
+                resolvedPath ??= traversalPath;
                 return new NodeResolutionResult(node, traversalPath, resolvedPath);
             }
 
+            resolvedPath ??= traversalPath;
             return new NodeResolutionResult(node, traversalPath, resolvedPath);
         }
 
