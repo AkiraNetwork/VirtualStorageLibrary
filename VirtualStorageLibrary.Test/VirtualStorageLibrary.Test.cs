@@ -2254,13 +2254,13 @@ namespace VirtualStorageLibrary.Test
             // テスト用の仮想ストレージとディレクトリ構造を準備
             var storage = new VirtualStorage();
             // 複数レベルのサブディレクトリを一度に作成
-            storage.AddDirectory(new VirtualPath("/dir/subdir/anotherdir"), true);
-            storage.AddDirectory(new VirtualPath("/dir/subdir/siblingdir"), true); // 隣接するディレクトリを追加
-            storage.AddItem(new VirtualPath("/dir/subdir/siblingdir/item"), "complex item in siblingdir");
+            storage.AddDirectory(new VirtualPath("/dir/subdir/dir1"), true);
+            storage.AddDirectory(new VirtualPath("/dir/subdir/dir2"), true); // 隣接するディレクトリを追加
+            storage.AddItem(new VirtualPath("/dir/subdir/dir2/item"), "complex item in dir2");
 
             // シンボリックリンクを作成
-            // "/dir/subdir/link" が "./anotherdir/../siblingdir/./item" を指し、隣接するディレクトリ内のアイテムへの複合的なパスを使用
-            storage.AddSymbolicLink(new VirtualPath("/dir/subdir/link"), new VirtualPath("./anotherdir/../siblingdir/./item"));
+            // "/dir/subdir/link" が "./dir1/../dir2/./item" を指し、隣接するディレクトリ内のアイテムへの複合的なパスを使用
+            storage.AddSymbolicLink(new VirtualPath("/dir/subdir/link"), new VirtualPath("./dir1/../dir2/./item"));
 
             // シンボリックリンクを通じてアイテムにアクセス
             var resultNode = storage.GetNode(new VirtualPath("/dir/subdir/link"), true);
@@ -2269,7 +2269,8 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(resultNode);
             Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
             var item = resultNode as VirtualItem<string>;
-            Assert.AreEqual("complex item in siblingdir", item?.Item);
+            Assert.AreEqual("complex item in dir2", item?.Item);
+            Assert.AreEqual(resultNode.Name, new VirtualPath("item"));
         }
 
         [TestMethod]
@@ -3960,7 +3961,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath path = new VirtualPath("/");
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -3976,7 +3977,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -3992,7 +3993,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4008,7 +4009,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4025,7 +4026,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4043,7 +4044,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(new VirtualPath("/dir2/item"), new BinaryData[1, 2, 3]);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4061,7 +4062,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2/dir3"), true);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4079,7 +4080,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2"), true);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), linkTargetPath);
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4093,11 +4094,23 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new VirtualStorage();
             VirtualPath targetPath = new VirtualPath("/nonexistent");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
             Debug.WriteLine($"NodeName: {node?.Name}");
+        }
+
+        [TestMethod]
+        public void WalkPathWithAction_NonExistentPathWithExceptionEnabled()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath targetPath = new VirtualPath("/nonexistent");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, true);
+            });
         }
 
         [TestMethod]
@@ -4109,7 +4122,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = new VirtualPath("/dir1/item/dir2");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
@@ -4124,7 +4137,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(path.DirectoryPath, true);
             VirtualPath targetPath = new VirtualPath("/dir1/dir2/dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
@@ -4140,7 +4153,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
             VirtualPath targetPath = new VirtualPath("/dir1/link1/dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
@@ -4156,7 +4169,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2"), true);
             vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir1"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1/link2/link1"), action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1/link2/link1"), action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4172,7 +4185,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1"), action, true);
+                NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1"), action, true, true);
             });
         }
 
@@ -4186,7 +4199,7 @@ namespace VirtualStorageLibrary.Test
 
             vs.ChangeDirectory(new VirtualPath("/dir1"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4202,7 +4215,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir1/dir3"), true);
             VirtualPath targetPath = new VirtualPath("/dir1/dir2/../dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4220,7 +4233,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir1/dir3"), true);
             VirtualPath targetPath = new VirtualPath("/dir1/link1/../dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true);
+            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4242,7 +4255,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir3"));
 
             // メソッドを実行
-            var result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1/link2/item"), action, true);
+            var result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1/link2/item"), action, true, false);
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/dir1/link1/link2/item"), result?.TraversalPath);
