@@ -4107,10 +4107,11 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new VirtualStorage();
             VirtualPath targetPath = new VirtualPath("/nonexistent");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, true);
             });
+            Debug.WriteLine($"ExceptionMessage: {exception.Message}");
         }
 
         [TestMethod]

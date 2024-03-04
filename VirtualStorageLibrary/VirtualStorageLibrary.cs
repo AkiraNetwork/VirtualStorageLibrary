@@ -954,7 +954,7 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        public NodeResolutionResult? WalkPathWithAction(VirtualPath targetPath, NodeAction? action, bool followLinks, bool exceptionEnabled)
+        public NodeResolutionResult WalkPathWithAction(VirtualPath targetPath, NodeAction? action, bool followLinks, bool exceptionEnabled)
         {
             targetPath = ConvertToAbsolutePath(targetPath);
             targetPath = targetPath.NormalizePath();
@@ -971,7 +971,7 @@ namespace VirtualStorageLibrary
             return result;
         }
 
-        private NodeResolutionResult? WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks, bool exceptionEnabled)
+        private NodeResolutionResult WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks, bool exceptionEnabled)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (targetPath.IsRoot)
@@ -991,7 +991,7 @@ namespace VirtualStorageLibrary
                 // 例外が有効な場合は例外をスロー
                 if (exceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException($"ノード '{traversalPath}' が見つかりません。");
+                    throw new VirtualNodeNotFoundException($"ノード '{traversalPath + traversalNodeName}' が見つかりません。");
                 }
                 return new NodeResolutionResult(null, traversalPath, traversalPath);
             }
@@ -1107,25 +1107,13 @@ namespace VirtualStorageLibrary
 
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
-            NodeResolutionResult? result = WalkPathWithAction(path, null, followLinks, true);
-            if (result?.Node == null)
-            {
-                // TODO: WalkPathWithAction内で例外がスローされる為、ここには到達しない可能性があるから確認要
-                throw new VirtualNodeNotFoundException($"ディレクトリ '{result?.TraversalPath}' が見つかりません。");
-            }
-
-            return result.Node;
+            NodeResolutionResult result = WalkPathWithAction(path, null, followLinks, true);
+            return result.Node!;
         }
 
         public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
-            NodeResolutionResult? result = WalkPathWithAction(path, null, true, true);
-            if (result?.Node == null)
-            {
-                // TODO: WalkPathWithAction内で例外がスローされる為、ここには到達しない可能性があるから確認要
-                throw new VirtualNodeNotFoundException($"Node '{path}' does not exist.");
-            }
-
+            NodeResolutionResult result = WalkPathWithAction(path, null, true, true);
             return result.ResolvedPath;
         }
 
