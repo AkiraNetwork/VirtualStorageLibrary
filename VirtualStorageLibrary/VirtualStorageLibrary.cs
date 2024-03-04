@@ -743,7 +743,7 @@ namespace VirtualStorageLibrary
 
         public void ChangeDirectory(VirtualPath path)
         {
-            NodeResolutionResult? result = WalkPathWithAction(path, null, true, true);
+            NodeResolutionResult? result = WalkPathToTarget(path, null, true, true);
             if (result?.Node == null)
             {
                 // TODO: WalkPathWithAction内で例外がスローされる為、ここには到達しない可能性があるから確認要
@@ -954,11 +954,11 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        public NodeResolutionResult WalkPathWithAction(VirtualPath targetPath, NodeAction? action, bool followLinks, bool exceptionEnabled)
+        public NodeResolutionResult WalkPathToTarget(VirtualPath targetPath, NodeAction? action, bool followLinks, bool exceptionEnabled)
         {
             targetPath = ConvertToAbsolutePath(targetPath);
             targetPath = targetPath.NormalizePath();
-            NodeResolutionResult? result = WalkPathWithActionInternal(targetPath, 0, VirtualPath.Root, null, _root, action, followLinks, exceptionEnabled);
+            NodeResolutionResult? result = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, action, followLinks, exceptionEnabled);
 
             if (action == null)
             {
@@ -971,7 +971,7 @@ namespace VirtualStorageLibrary
             return result;
         }
 
-        private NodeResolutionResult WalkPathWithActionInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks, bool exceptionEnabled)
+        private NodeResolutionResult WalkPathToTargetInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NodeAction? action, bool followLinks, bool exceptionEnabled)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (targetPath.IsRoot)
@@ -1025,7 +1025,7 @@ namespace VirtualStorageLibrary
                 traversalDirectory = (VirtualDirectory)node;
 
                 // 再帰的に探索
-                result = WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, action, followLinks, exceptionEnabled);
+                result = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, action, followLinks, exceptionEnabled);
                 node = result?.Node;
                 traversalPath = result?.TraversalPath ?? traversalPath;
                 resolvedPath = result?.ResolvedPath ?? resolvedPath;
@@ -1065,8 +1065,8 @@ namespace VirtualStorageLibrary
                 // リンク先のパスを正規化する
                 linkTargetPath = linkTargetPath.NormalizePath();
 
-                //result = WalkPathWithAction(linkTargetPath, null, followLinks);
-                result = WalkPathWithActionInternal(linkTargetPath, 0, VirtualPath.Root, null, _root, null, true, exceptionEnabled);
+                //result = WalkPathToTarget(linkTargetPath, null, followLinks);
+                result = WalkPathToTargetInternal(linkTargetPath, 0, VirtualPath.Root, null, _root, null, true, exceptionEnabled);
 
                 node = result?.Node;
                 //traversalPath = result?.TraversalPath ?? traversalPath;
@@ -1091,7 +1091,7 @@ namespace VirtualStorageLibrary
                     }
 
                     // 再帰的に探索
-                    result = WalkPathWithActionInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, action, followLinks, exceptionEnabled);
+                    result = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, action, followLinks, exceptionEnabled);
                     node = result?.Node;
                     traversalPath = result?.TraversalPath ?? traversalPath;
                     resolvedPath = result?.ResolvedPath ?? resolvedPath;
@@ -1107,13 +1107,13 @@ namespace VirtualStorageLibrary
 
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
-            NodeResolutionResult result = WalkPathWithAction(path, null, followLinks, true);
+            NodeResolutionResult result = WalkPathToTarget(path, null, followLinks, true);
             return result.Node!;
         }
 
         public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
-            NodeResolutionResult result = WalkPathWithAction(path, null, true, true);
+            NodeResolutionResult result = WalkPathToTarget(path, null, true, true);
             return result.ResolvedPath;
         }
 

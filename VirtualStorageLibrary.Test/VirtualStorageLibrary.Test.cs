@@ -3955,13 +3955,13 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Root()
+        public void WalkPathToTarget_Root()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/");
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -3970,14 +3970,14 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Directory1()
+        public void WalkPathToTarget_Directory1()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1");
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -3986,14 +3986,14 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Directory2()
+        public void WalkPathToTarget_Directory2()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1/dir2");
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4002,14 +4002,14 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Item1()
+        public void WalkPathToTarget_Item1()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/item");
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4018,7 +4018,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_Item2()
+        public void WalkPathToTarget_Item2()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1/item");
@@ -4026,7 +4026,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = path;
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4035,7 +4035,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_SymbolicLink1()
+        public void WalkPathToTarget_SymbolicLink1()
         {
             VirtualPath targetPath = new VirtualPath("/dir1/link1/item");
             VirtualStorage vs = new VirtualStorage();
@@ -4044,7 +4044,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(new VirtualPath("/dir2/item"), new BinaryData[1, 2, 3]);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4053,7 +4053,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_SymbolicLink2()
+        public void WalkPathToTarget_SymbolicLink2()
         {
             VirtualPath targetPath = new VirtualPath("/dir1/link1/dir3");
             VirtualStorage vs = new VirtualStorage();
@@ -4062,7 +4062,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2/dir3"), true);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4071,7 +4071,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_SymbolicLink3()
+        public void WalkPathToTarget_SymbolicLink3()
         {
             VirtualPath targetPath = new VirtualPath("/dir1/link1");
             VirtualPath linkTargetPath = new VirtualPath("/dir2");
@@ -4080,7 +4080,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2"), true);
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), linkTargetPath);
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4089,12 +4089,12 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_NonExistentPath()
+        public void WalkPathToTarget_NonExistentPath()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath targetPath = new VirtualPath("/nonexistent");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
@@ -4102,20 +4102,20 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_NonExistentPathWithExceptionEnabled()
+        public void WalkPathToTarget_NonExistentPathWithExceptionEnabled()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath targetPath = new VirtualPath("/nonexistent");
 
             var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, true);
+                NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, true);
             });
             Debug.WriteLine($"ExceptionMessage: {exception.Message}");
         }
 
         [TestMethod]
-        public void WalkPathWithAction_NonExistentPath2()
+        public void WalkPathToTarget_NonExistentPath2()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1/item");
@@ -4123,7 +4123,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = new VirtualPath("/dir1/item/dir2");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
@@ -4131,14 +4131,14 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_NonExistentPath3()
+        public void WalkPathToTarget_NonExistentPath3()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("/dir1/dir2");
             vs.AddDirectory(path.DirectoryPath, true);
             VirtualPath targetPath = new VirtualPath("/dir1/dir2/dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
@@ -4146,7 +4146,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_NonExistentPath4()
+        public void WalkPathToTarget_NonExistentPath4()
         {
             VirtualStorage vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/dir1"), true);
@@ -4154,7 +4154,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
             VirtualPath targetPath = new VirtualPath("/dir1/link1/dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNull(node);
@@ -4162,7 +4162,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_CircularSymbolicLink()
+        public void WalkPathToTarget_CircularSymbolicLink()
         {
             VirtualStorage vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/dir1"), true);
@@ -4170,7 +4170,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2"), true);
             vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir1"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1/link2/link1"), action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(new VirtualPath("/dir1/link1/link2/link1"), action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4178,7 +4178,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_SymbolicLinkToNonExistentPath()
+        public void WalkPathToTarget_SymbolicLinkToNonExistentPath()
         {
             VirtualStorage vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/dir1"), true);
@@ -4186,12 +4186,12 @@ namespace VirtualStorageLibrary.Test
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                NodeResolutionResult? result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1"), action, true, true);
+                NodeResolutionResult? result = vs.WalkPathToTarget(new VirtualPath("/dir1/link1"), action, true, true);
             });
         }
 
         [TestMethod]
-        public void WalkPathWithAction_RelativePath()
+        public void WalkPathToTarget_RelativePath()
         {
             VirtualStorage vs = new VirtualStorage();
             VirtualPath path = new VirtualPath("dir2");
@@ -4200,7 +4200,7 @@ namespace VirtualStorageLibrary.Test
 
             vs.ChangeDirectory(new VirtualPath("/dir1"));
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4209,14 +4209,14 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_DirAndDotDot()
+        public void WalkPathToTarget_DirAndDotDot()
         {
             VirtualStorage vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/dir1/dir2"), true);
             vs.AddDirectory(new VirtualPath("/dir1/dir3"), true);
             VirtualPath targetPath = new VirtualPath("/dir1/dir2/../dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4225,7 +4225,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void WalkPathWithAction_LinkAndDotDot()
+        public void WalkPathToTarget_LinkAndDotDot()
         {
             VirtualStorage vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/dir1"), true);
@@ -4234,7 +4234,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir1/dir3"), true);
             VirtualPath targetPath = new VirtualPath("/dir1/link1/../dir3");
 
-            NodeResolutionResult? result = vs.WalkPathWithAction(targetPath, action, true, false);
+            NodeResolutionResult? result = vs.WalkPathToTarget(targetPath, action, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4244,7 +4244,7 @@ namespace VirtualStorageLibrary.Test
 
 
         [TestMethod]
-        public void WalkPathWithAction_MultipleLink()
+        public void WalkPathToTarget_MultipleLink()
         {
             // テストデータの設定
             var vs = new VirtualStorage();
@@ -4256,7 +4256,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir3"));
 
             // メソッドを実行
-            var result = vs.WalkPathWithAction(new VirtualPath("/dir1/link1/link2/item"), action, true, false);
+            var result = vs.WalkPathToTarget(new VirtualPath("/dir1/link1/link2/item"), action, true, false);
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/dir1/link1/link2/item"), result?.TraversalPath);
