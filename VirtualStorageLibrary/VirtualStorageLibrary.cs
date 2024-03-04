@@ -1065,7 +1065,7 @@ namespace VirtualStorageLibrary
                 // リンク先のパスを正規化する
                 linkTargetPath = linkTargetPath.NormalizePath();
 
-                //result = WalkPathToTarget(linkTargetPath, null, followLinks);
+                // シンボリックリンクのリンク先パスを再帰的に探索
                 result = WalkPathToTargetInternal(linkTargetPath, 0, VirtualPath.Root, null, _root, null, true, exceptionEnabled);
 
                 node = result?.Node;
