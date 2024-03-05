@@ -66,19 +66,28 @@ namespace VirtualStorageLibrary
     {
         private readonly string _path;
 
-        private VirtualPath? _directoryPath = null;
+        private VirtualPath? _directoryPath;
 
-        private VirtualPath? _nodeName = null;
+        private VirtualPath? _nodeName;
 
         public string Path => _path;
 
-        private List<VirtualPath>? _partsList = null;
+        private List<VirtualPath>? _partsList;
 
-        public bool EnableNormalization { get; set; } = true;
+        private bool _enableNormalization;
 
+        public bool EnableNormalization
+        {
+            [DebuggerStepThrough]
+            get => _enableNormalization;
+
+            [DebuggerStepThrough]
+            set => _enableNormalization = value;
+        }
 
         public VirtualPath DirectoryPath
         {
+            [DebuggerStepThrough]
             get
             {
                 if (_directoryPath == null)
@@ -91,6 +100,7 @@ namespace VirtualStorageLibrary
 
         public VirtualPath NodeName
         {
+            [DebuggerStepThrough]
             get
             {
                 if (_nodeName == null)
@@ -103,6 +113,7 @@ namespace VirtualStorageLibrary
 
         public List<VirtualPath> PartsList
         {
+            [DebuggerStepThrough]
             get
             {
                 if (_partsList == null)
@@ -113,42 +124,87 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public static VirtualPath Root => new("/");
+        public static VirtualPath Root
+        {
+            [DebuggerStepThrough]
+            get => new("/");
+        }
 
-        public static VirtualPath Empty => new(string.Empty);
+        public static VirtualPath Empty
+        {
+            [DebuggerStepThrough]
+            get => new(string.Empty);
+        }
 
-        public static VirtualPath Dot => new(".");
+        public static VirtualPath Dot
+        {
+            [DebuggerStepThrough]
+            get => new(".");
+        }
 
-        public static VirtualPath DotDot => new("..");
+        public static VirtualPath DotDot
+        {
+            [DebuggerStepThrough]
+            get => new("..");
+        }
 
+        [DebuggerStepThrough]
         public override string ToString() => _path;
 
-        public bool IsEmpty => _path == string.Empty;
+        public bool IsEmpty
+        {
+            [DebuggerStepThrough]
+            get => _path == string.Empty;
+        }
 
-        public bool IsRoot => _path == "/";
+        public bool IsRoot
+        {
+            [DebuggerStepThrough]
+            get => _path == "/";
+        }
 
-        public bool IsAbsolute => _path.StartsWith('/');
+        public bool IsAbsolute
+        {
+            [DebuggerStepThrough]
+            get => _path.StartsWith('/');
+        }
 
-        public bool IsEndsWithSlash => _path.EndsWith('/');
+        public bool IsEndsWithSlash
+        {
+            [DebuggerStepThrough]
+            get => _path.EndsWith('/');
+        }
 
-        public bool IsDot => _path == ".";
+        public bool IsDot
+        {
+            [DebuggerStepThrough]
+            get => _path == ".";
+        }
 
-        public bool IsDotDot => _path == "..";
+        public bool IsDotDot
+        {
+            [DebuggerStepThrough]
+            get => _path == "..";
+        }
 
+        [DebuggerStepThrough]
         public override int GetHashCode() => _path.GetHashCode();
 
         [DebuggerStepThrough]
         public VirtualPath(string path)
         {
             _path = path;
+            _enableNormalization = true;
         }
 
         [DebuggerStepThrough]
         public VirtualPath(IEnumerable<VirtualPath> parts)
         {
             _path = string.Join('/', parts.Select(p => p.Path));
+            _enableNormalization = true;
         }
 
+        [DebuggerStepThrough]
         public override bool Equals(object? obj)
         {
             if (obj is VirtualPath other)
@@ -158,11 +214,13 @@ namespace VirtualStorageLibrary
             return false;
         }
 
+        [DebuggerStepThrough]
         public bool Equals(VirtualPath? other)
         {
             return _path == other?._path;
         }
 
+        [DebuggerStepThrough]
         public static bool operator ==(VirtualPath? left, VirtualPath? right)
         {
             // 両方が null の場合は true
@@ -181,16 +239,19 @@ namespace VirtualStorageLibrary
             return left._path == right._path;
         }
 
+        [DebuggerStepThrough]
         public static bool operator !=(VirtualPath? left, VirtualPath? right)
         {
             return !(left == right);
         }
 
+        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
         {
             return path1.Combine(path2);
         }
 
+        [DebuggerStepThrough]
         public VirtualPath TrimEndSlash()
         {
             if (_path.EndsWith('/'))
@@ -200,6 +261,7 @@ namespace VirtualStorageLibrary
             return this;
         }
 
+        [DebuggerStepThrough]
         public VirtualPath AddEndSlash()
         {
             if (!_path.EndsWith('/'))
@@ -209,6 +271,7 @@ namespace VirtualStorageLibrary
             return this;
         }
 
+        [DebuggerStepThrough]
         public VirtualPath AddStartSlash()
         {
             if (!_path.StartsWith('/'))
@@ -218,11 +281,13 @@ namespace VirtualStorageLibrary
             return this;
         }
 
+        [DebuggerStepThrough]
         public bool StartsWith(VirtualPath path)
         {
             return _path.StartsWith(path.Path);
         }
 
+        [DebuggerStepThrough]
         public VirtualPath NormalizePath()
         {
             // string型でパスを正規化する静的メソッドを呼び出す。
@@ -232,6 +297,7 @@ namespace VirtualStorageLibrary
             return new VirtualPath(normalizedPathString);
         }
 
+        [DebuggerStepThrough]
         public static string NormalizePath(string path)
         {
             // パスが空文字列、または "/" の場合はそのまま返す
@@ -282,6 +348,7 @@ namespace VirtualStorageLibrary
             return normalizedPath;
         }
 
+        [DebuggerStepThrough]
         private string GetDirectoryPath()
         {
             // パスが '/' で始まっていない場合、それは相対パスなのでそのまま返す
@@ -302,7 +369,8 @@ namespace VirtualStorageLibrary
                 return _path.Substring(0, lastSlashIndex);
             }
         }
-        
+
+        [DebuggerStepThrough]
         private string GetNodeName()
         {
             if (_path == "/")
@@ -332,6 +400,7 @@ namespace VirtualStorageLibrary
             }
         }
 
+        [DebuggerStepThrough]
         public VirtualPath Combine(params VirtualPath[] paths)
         {
             string[] currentPathArray = [_path];
@@ -342,6 +411,7 @@ namespace VirtualStorageLibrary
             return new VirtualPath(combinedPathString);
         }
 
+        [DebuggerStepThrough]
         public string Combine(params string[] paths)
         {
             // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
@@ -378,6 +448,8 @@ namespace VirtualStorageLibrary
             return normalizedPath;
         }
 
+        [DebuggerStepThrough]
+        // TODO: このメソッドいる? DirectoryPathとNodeNameを使えばいいのでは?
         public VirtualPath GetParentPath()
         {
             // パスの最後の '/' を取り除きます
@@ -398,6 +470,7 @@ namespace VirtualStorageLibrary
             return new VirtualPath(parentPath);
         }
 
+        [DebuggerStepThrough]
         public LinkedList<VirtualPath> GetPartsLinkedList()
         {
             LinkedList<VirtualPath> parts = new();
@@ -409,11 +482,13 @@ namespace VirtualStorageLibrary
             return parts;
         }
 
+        [DebuggerStepThrough]
         public List<VirtualPath> GetPartsList()
         {
             return GetPartsLinkedList().ToList();
         }
 
+        [DebuggerStepThrough]
         public VirtualPath CombineFromIndex(VirtualPath path, int index)
         {
             // 指定されたインデックスからのパスのパーツを取得
