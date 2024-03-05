@@ -976,6 +976,13 @@ namespace VirtualStorageLibrary
                 }
 
                 resolvedPath ??= traversalPath;
+
+                // 例外が有効な場合は例外をスロー
+                if (exceptionEnabled)
+                {
+                    throw new VirtualNodeNotFoundException($"ノード '{targetPath}' まで到達できません。ノード '{traversalPath}' はアイテムです。");
+                }
+
                 return new NodeResolutionResult(null, traversalPath, resolvedPath);
             }
             else if (node.IsSymbolicLink())
