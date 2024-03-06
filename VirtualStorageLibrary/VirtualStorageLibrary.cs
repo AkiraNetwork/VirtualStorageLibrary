@@ -760,19 +760,11 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public void Remove(VirtualPath name, bool forceRemove = false)
+        public void Remove(VirtualPath name)
         {
             if (!NodeExists(name))
             {
-                if (!forceRemove)
-                {
-                    throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
-                }
-                else
-                {
-                    // forceRemoveがtrueの場合、ノードが存在しなくても正常終了
-                    return;
-                }
+                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
             }
 
             _nodes.Remove(name);
@@ -892,7 +884,7 @@ namespace VirtualStorageLibrary
                         throw new InvalidOperationException($"既存のノード '{linkName}' はシンボリックリンクではありません。シンボリックリンクのみ上書き可能です。");
                     }
                     // 既存のシンボリックリンクを削除（上書きフラグがtrueの場合）
-                    directory.Remove(linkName, true);
+                    directory.Remove(linkName);
                 }
             }
 
@@ -927,7 +919,7 @@ namespace VirtualStorageLibrary
                         throw new InvalidOperationException($"'{itemName}' はアイテム以外のノードです。アイテムの上書きはできません。");
                     }
                     // 既存アイテムの削除
-                    directory.Remove(itemName, true); // 強制削除
+                    directory.Remove(itemName);
                 }
             }
 

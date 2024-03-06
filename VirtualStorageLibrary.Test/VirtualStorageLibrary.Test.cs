@@ -1122,15 +1122,6 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Remove_NonExistentNodeWithForce_DoesNotThrow()
-        {
-            var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
-
-            // 例外がスローされないことを確認
-            directory.Remove(new VirtualPath("NonExistentNode"), forceRemove: true);
-        }
-
-        [TestMethod]
         public void Remove_ExistingNode_RemovesNode()
         {
             var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
