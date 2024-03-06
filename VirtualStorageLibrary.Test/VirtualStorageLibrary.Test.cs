@@ -1872,7 +1872,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        // 既存のディレクトリに対して createSubdirectories が true の場合、例外がスローされないことを確認
+        // 既存のディレクトリに対して createSubdirectories が true の場合でも同じパスにディレクトリを追加しようとすると例外がスローされることを確認
         public void AddDirectory_WithExistingDirectoryAndCreateSubdirectoriesTrue_DoesNotThrowException()
         {
             // Arrange
@@ -1880,7 +1880,11 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddDirectory(new VirtualPath("/test/directory"), true);
 
             // Act & Assert
-            virtualStorage.AddDirectory(new VirtualPath("/test/directory"), true);
+            var exception = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                virtualStorage.AddDirectory(new VirtualPath("/test/directory"), true);
+            });
+            Debug.WriteLine(exception.Message);
         }
 
         [TestMethod]
@@ -2020,8 +2024,28 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             // "/dir1/item"がディレクトリではないノードの下に"dir2"ディレクトリを追加しようとすると例外がスローされることを確認
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 virtualStorage.AddDirectory(new VirtualPath("/dir1/item/dir2"), true));
+            Debug.WriteLine(exception.Message);
+        }
+
+        [TestMethod]
+        public void AddDirectory_AttemptToAddDirectoryUnderNonDirectoryNode_ThrowsException2()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            // "/dir1"ディレクトリを作成
+            virtualStorage.AddDirectory(new VirtualPath("/dir1"), true);
+            virtualStorage.AddDirectory(new VirtualPath("/dir2"), true);
+            // "/dir1"内にアイテム（非ディレクトリ）"item"を作成
+            virtualStorage.AddSymbolicLink(new VirtualPath("/dir1/linkToDir2"), new VirtualPath("/dir2"));
+
+            // Act
+            // "/dir1/linkToDir2"がリンクの場合、
+            virtualStorage.AddDirectory(new VirtualPath("/dir1/linkToDir2/dir3"), true);
+
+            // Assert
+            Assert.IsTrue(virtualStorage.NodeExists(new VirtualPath("/dir2/dir3")));
         }
 
         [TestMethod]

@@ -944,13 +944,31 @@ namespace VirtualStorageLibrary
                 throw new InvalidOperationException("ルートディレクトリは既に存在します。");
             }
 
+            VirtualPath directoryPath = path.DirectoryPath;
+            VirtualPath newDirectory = path.NodeName;
+            NodeResolutionResult result;
+
             if (createSubdirectories)
             {
-                WalkPathToTarget(path, null, createDirectory, true, true);
+                result = WalkPathToTarget(directoryPath, null, createDirectory, true, true);
             }
             else
             {
-                WalkPathToTarget(path, null, null, true, true);
+                result = WalkPathToTarget(directoryPath, null, null, true, true);
+            }
+
+            if (result.Node is VirtualDirectory directory)
+            {
+                if (directory.NodeExists(newDirectory))
+                {
+                    throw new InvalidOperationException($"ディレクトリ '{newDirectory}' は既に存在します。");
+                }
+
+                directory.AddDirectory(newDirectory);
+            }
+            else
+            {
+                throw new VirtualNodeNotFoundException($"ノード '{directoryPath}' はディレクトリではありません。");
             }
 
             return;
