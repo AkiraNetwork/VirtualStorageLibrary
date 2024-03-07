@@ -813,11 +813,6 @@ namespace VirtualStorageLibrary
         public void ChangeDirectory(VirtualPath path)
         {
             NodeResolutionResult? result = WalkPathToTarget(path, null, null, true, true);
-            if (result?.Node == null)
-            {
-                // TODO: WalkPathWithAction内で例外がスローされる為、ここには到達しない可能性があるから確認要
-                throw new VirtualNodeNotFoundException($"ディレクトリ '{result?.TraversalPath}' が見つかりません。");
-            }
 
             CurrentPath = result.TraversalPath;
 
