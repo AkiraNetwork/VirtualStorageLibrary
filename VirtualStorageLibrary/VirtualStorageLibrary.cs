@@ -812,8 +812,8 @@ namespace VirtualStorageLibrary
 
         public void ChangeDirectory(VirtualPath path)
         {
+            path = ConvertToAbsolutePath(path).NormalizePath();
             NodeResolutionResult? result = WalkPathToTarget(path, null, null, true, true);
-
             CurrentPath = result.TraversalPath;
 
             return;
@@ -847,15 +847,14 @@ namespace VirtualStorageLibrary
             return absolutePath;
         }
 
-        public void AddSymbolicLink(VirtualPath linkPath, VirtualPath targetPath, bool overwrite = false)
+        public void AddSymbolicLink(VirtualPath path, VirtualPath targetPath, bool overwrite = false)
         {
             // linkPathを絶対パスに変換し正規化も行う
-            VirtualPath absoluteLinkPath = ConvertToAbsolutePath(linkPath);
-            absoluteLinkPath = absoluteLinkPath.NormalizePath();
+            path = ConvertToAbsolutePath(path).NormalizePath();
 
             // directoryPath（ディレクトリパス）とlinkName（リンク名）を分離
-            VirtualPath directoryPath = absoluteLinkPath.DirectoryPath;
-            VirtualPath linkName = absoluteLinkPath.NodeName;
+            VirtualPath directoryPath = path.DirectoryPath;
+            VirtualPath linkName = path.NodeName;
 
             // 対象ディレクトリを安全に取得
             VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true);
@@ -890,11 +889,11 @@ namespace VirtualStorageLibrary
         public void AddItem<T>(VirtualPath path, T item, bool overwrite = false)
         {
             // 絶対パスに変換
-            VirtualPath absolutePath = ConvertToAbsolutePath(path);
+            path = ConvertToAbsolutePath(path).NormalizePath();
 
             // ディレクトリパスとアイテム名を分離
-            VirtualPath directoryPath = absolutePath.DirectoryPath;
-            VirtualPath itemName = absolutePath.NodeName;
+            VirtualPath directoryPath = path.DirectoryPath;
+            VirtualPath itemName = path.NodeName;
 
             // 対象ディレクトリを取得
             VirtualDirectory directory = GetDirectory(directoryPath, true);
@@ -937,7 +936,7 @@ namespace VirtualStorageLibrary
 
             if (createSubdirectories)
             {
-                result = WalkPathToTarget(directoryPath, null, createDirectory, true, true);
+                result = WalkPathToTarget(directoryPath, null, CreateDirectory, true, true);
             }
             else
             {
@@ -961,10 +960,9 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        private bool createDirectory(VirtualDirectory directory, VirtualPath nodeName)
+        private bool CreateDirectory(VirtualDirectory directory, VirtualPath nodeName)
         {
             VirtualDirectory newDirectory = new VirtualDirectory(nodeName);
-
             directory.Add(newDirectory);
 
             return true;
@@ -972,8 +970,7 @@ namespace VirtualStorageLibrary
 
         public NodeResolutionResult WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
         {
-            targetPath = ConvertToAbsolutePath(targetPath);
-            targetPath = targetPath.NormalizePath();
+            targetPath = ConvertToAbsolutePath(targetPath).NormalizePath();
             NodeResolutionResult? result = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, notifyNode, actionNode, followLinks, exceptionEnabled);
 
             return result;
@@ -1127,20 +1124,22 @@ namespace VirtualStorageLibrary
 
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
+            path = ConvertToAbsolutePath(path).NormalizePath();
             NodeResolutionResult result = WalkPathToTarget(path, null, null, followLinks, true);
             return result.Node!;
         }
 
         public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
+            path = ConvertToAbsolutePath(path).NormalizePath();
             NodeResolutionResult result = WalkPathToTarget(path, null, null, true, true);
             return result.ResolvedPath;
         }
 
         public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
         {
-            VirtualPath absolutePath = ConvertToAbsolutePath(path);
-            VirtualNode node = GetNode(absolutePath, followLinks);
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            VirtualNode node = GetNode(path, followLinks);
 
             if (node is VirtualDirectory directory)
             {
@@ -1148,7 +1147,7 @@ namespace VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException($"ディレクトリ {absolutePath} は存在しません。");
+                throw new VirtualNodeNotFoundException($"ディレクトリ {path} は存在しません。");
             }
         }
 
@@ -1369,19 +1368,17 @@ namespace VirtualStorageLibrary
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
         {
-            // TODO: 絶対パスに変換後、ノーマライズする(1行で書くか書き方を検討する)
-            VirtualPath absolutePath = ConvertToAbsolutePath(path);
-            absolutePath = absolutePath.NormalizePath();
+            path = ConvertToAbsolutePath(path).NormalizePath();
 
-            if (absolutePath.IsRoot)
+            if (path.IsRoot)
             {
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
-            VirtualNode node = GetNode(absolutePath, true);
+            VirtualNode node = GetNode(path, true);
 
             // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
-            VirtualPath parentPath = absolutePath.GetParentPath();
+            VirtualPath parentPath = path.GetParentPath();
             VirtualDirectory parentDirectory = GetDirectory(parentPath);
 
             if (node is VirtualDirectory directory)
@@ -1397,7 +1394,7 @@ namespace VirtualStorageLibrary
                 // スナップショットを反復処理して、各ノードを削除
                 foreach (var subNode in nodesSnapshot)
                 {
-                    VirtualPath subPath = absolutePath + subNode.Name;
+                    VirtualPath subPath = path + subNode.Name;
                     RemoveNode(subPath, recursive);
                 }
 
