@@ -792,29 +792,6 @@ namespace VirtualStorageLibrary
                 throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
             }
 
-            VirtualNode node = _nodes[name];
-
-            if (node.IsDirectory())
-            {
-                VirtualDirectory directory = (VirtualDirectory)node;
-                if (directory.Count > 0)
-                {
-                    throw new InvalidOperationException($"ディレクトリ '{name}' にはノードが含まれています。");
-                }
-            }
-            else if (node.IsItem())
-            {
-                VirtualItem item = (VirtualItem)node;
-                if (item is IDisposable disposableItem)
-                {
-                    disposableItem.Dispose();
-                }
-            }
-            else if (node.IsSymbolicLink())
-            {
-                 // シンボリックリンクの場合は事前チェックはなし
-            }
-
             _nodes.Remove(name);
         }
 
