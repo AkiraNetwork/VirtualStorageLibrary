@@ -1147,6 +1147,67 @@ namespace VirtualStorageLibrary
             return new NodeResolutionResult(node, traversalPath, resolvedPath);
         }
 
+        public IEnumerable<NodeResolutionResult> WalkPathTree(VirtualPath path, bool followLinks = false)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            return WalkPathTreeInternal(path, _root, followLinks);
+        }
+
+        private IEnumerable<NodeResolutionResult> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, bool followLinks)
+        {
+            // ノードの種類に応じて処理を分岐
+            if (baseNode is VirtualDirectory directory)
+            {
+                // ディレクトリを通知
+                yield return new NodeResolutionResult(directory, basePath, basePath);
+
+                // ディレクトリ内のノードを再帰的に探索
+                foreach (var node in directory.Nodes)
+                {
+                    VirtualPath nodePath = basePath + node.Name;
+                    foreach (var result in WalkPathTreeInternal(nodePath, node, followLinks))
+                    {
+                        yield return result;
+                    }
+                }
+            }
+            else if (baseNode is VirtualItem item)
+            {
+                // アイテムを通知
+                yield return new NodeResolutionResult(item, basePath, basePath);
+            }
+            else if (baseNode is VirtualSymbolicLink link)
+            {
+                if (followLinks)
+                {
+                    VirtualPath linkTargetPath = link.TargetPath;
+
+                    // シンボリックリンクのリンク先パスを絶対パスに変換
+                    linkTargetPath = ConvertToAbsolutePath(linkTargetPath, basePath).NormalizePath();
+
+                    // リンク先のノードを取得
+                    VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
+
+                    // シンボリックリンクを通知
+                    yield return new NodeResolutionResult(linkTargetNode, basePath, basePath);
+
+                    // もしリンク先がディレクトリであれば、再帰的に探索
+                    if (linkTargetNode is VirtualDirectory linkTargetDirectory)
+                    {
+                        foreach (var result in WalkPathTreeInternal(linkTargetPath, linkTargetDirectory, followLinks))
+                        {
+                            yield return result;
+                        }
+                    }
+                }
+                else
+                {
+                    // シンボリックリンクを通知
+                    yield return new NodeResolutionResult(link, basePath, basePath);
+                }
+            }
+        }
+
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();

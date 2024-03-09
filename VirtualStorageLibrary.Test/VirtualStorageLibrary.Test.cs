@@ -4319,5 +4319,23 @@ namespace VirtualStorageLibrary.Test
 
             return true;
         }
+
+        [TestMethod]
+        public void WalkPathTree_Test1()
+        {
+            var vs = new VirtualStorage();
+            vs.AddItem(new VirtualPath("/item1"), "test");
+            vs.AddSymbolicLink(new VirtualPath("/link1"), new VirtualPath("/item1"));
+            vs.AddSymbolicLink(new VirtualPath("/link2"), new VirtualPath("/link1"));
+            vs.AddDirectory(new VirtualPath("/dir1/dir2/dir3"), true);
+            vs.AddItem(new VirtualPath("/dir1/dir2/item2"), "test");
+            vs.AddItem(new VirtualPath("/dir1/dir2/dir3/item3"), "test");
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine($"Path: {item.TraversalPath}, Node: {item.Node}");
+            }
+        }
     }
 }
