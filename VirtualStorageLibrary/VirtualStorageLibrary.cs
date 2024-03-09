@@ -16,17 +16,34 @@ namespace VirtualStorageLibrary
         All = Item | Directory | SymbolicLink
     }
 
-    public class NodeResolutionResult
+    public class NodeInformation
     {
-        public VirtualNode? Node { get; }
-        public VirtualPath TraversalPath { get; }
-        public VirtualPath ResolvedPath { get; }
+        public VirtualNode? Node { [DebuggerStepThrough] get; }
+        public VirtualPath TraversalPath { [DebuggerStepThrough] get; }
+        public VirtualPath? ResolvedPath { [DebuggerStepThrough] get; }
 
-        public NodeResolutionResult(VirtualNode? node, VirtualPath traversalPath, VirtualPath resolvedPath)
+        [DebuggerStepThrough]
+        public NodeInformation(VirtualNode? node, VirtualPath traversalPath, VirtualPath? resolvedPath = null)
         {
             Node = node;
             TraversalPath = traversalPath;
             ResolvedPath = resolvedPath;
+        }
+
+        [DebuggerStepThrough]
+        public override string ToString()
+        {
+            string nodeInformation;
+            if (ResolvedPath == null)
+            {
+                nodeInformation = $"NodeName: {Node?.Name}, TraversalPath: {TraversalPath}";
+            }
+            else
+            {
+                nodeInformation = $"NodeName: {Node?.Name}, TraversalPath: {TraversalPath}, ResolvedPath: {ResolvedPath}";
+            }
+
+            return nodeInformation;
         }
     }
 
@@ -838,7 +855,7 @@ namespace VirtualStorageLibrary
         public void ChangeDirectory(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            NodeResolutionResult? result = WalkPathToTarget(path, null, null, true, true);
+            NodeInformation? result = WalkPathToTarget(path, null, null, true, true);
             CurrentPath = result.TraversalPath;
 
             return;
@@ -957,7 +974,7 @@ namespace VirtualStorageLibrary
 
             VirtualPath directoryPath = path.DirectoryPath;
             VirtualPath newDirectory = path.NodeName;
-            NodeResolutionResult result;
+            NodeInformation result;
 
             if (createSubdirectories)
             {
@@ -993,21 +1010,21 @@ namespace VirtualStorageLibrary
             return true;
         }
 
-        public NodeResolutionResult WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
+        public NodeInformation WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
         {
             targetPath = ConvertToAbsolutePath(targetPath).NormalizePath();
-            NodeResolutionResult? result = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, notifyNode, actionNode, followLinks, exceptionEnabled);
+            NodeInformation? result = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, notifyNode, actionNode, followLinks, exceptionEnabled);
 
             return result;
         }
 
-        private NodeResolutionResult WalkPathToTargetInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
+        private NodeInformation WalkPathToTargetInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (targetPath.IsRoot)
             {
                 notifyNode?.Invoke(VirtualPath.Root, _root, true);
-                return new NodeResolutionResult(_root, VirtualPath.Root, VirtualPath.Root);
+                return new NodeInformation(_root, VirtualPath.Root, VirtualPath.Root);
             }
 
             VirtualPath traversalNodeName = targetPath.PartsList[traversalIndex];
@@ -1028,10 +1045,10 @@ namespace VirtualStorageLibrary
                     throw new VirtualNodeNotFoundException($"ノード '{traversalPath + traversalNodeName}' が見つかりません。");
                 }
 
-                return new NodeResolutionResult(null, traversalPath, traversalPath);
+                return new NodeInformation(null, traversalPath, traversalPath);
             }
 
-            NodeResolutionResult? result;
+            NodeInformation? result;
 
             // 探索ノードを取得
             VirtualNode? node = traversalDirectory[traversalNodeName];
@@ -1050,7 +1067,7 @@ namespace VirtualStorageLibrary
                     // 末端のノードを通知
                     notifyNode?.Invoke(traversalPath, node, true);
                     resolvedPath ??= traversalPath;
-                    return new NodeResolutionResult(node, traversalPath, resolvedPath);
+                    return new NodeInformation(node, traversalPath, resolvedPath);
                 }
 
                 // 途中のノードを通知
@@ -1074,7 +1091,7 @@ namespace VirtualStorageLibrary
                 if (targetPath.PartsList.Count <= traversalIndex)
                 {
                     resolvedPath ??= traversalPath;
-                    return new NodeResolutionResult(node, traversalPath, resolvedPath);
+                    return new NodeInformation(node, traversalPath, resolvedPath);
                 }
 
                 resolvedPath ??= traversalPath;
@@ -1085,7 +1102,7 @@ namespace VirtualStorageLibrary
                     throw new VirtualNodeNotFoundException($"ノード '{targetPath}' まで到達できません。ノード '{traversalPath}' はアイテムです。");
                 }
 
-                return new NodeResolutionResult(null, traversalPath, resolvedPath);
+                return new NodeInformation(null, traversalPath, resolvedPath);
             }
             else if (node.IsSymbolicLink())
             {
@@ -1094,7 +1111,7 @@ namespace VirtualStorageLibrary
                     // シンボリックリンクを通知
                     notifyNode?.Invoke(traversalPath, node, true);
                     resolvedPath ??= traversalPath;
-                    return new NodeResolutionResult(node, traversalPath, resolvedPath);
+                    return new NodeInformation(node, traversalPath, resolvedPath);
                 }
 
                 VirtualSymbolicLink link = (VirtualSymbolicLink)node;
@@ -1114,7 +1131,7 @@ namespace VirtualStorageLibrary
                 //traversalPath = result?.TraversalPath ?? traversalPath;
 
                 // 解決済みのパスに未探索のパスを追加
-                resolvedPath = result?.ResolvedPath.CombineFromIndex(targetPath, traversalIndex);
+                resolvedPath = result?.ResolvedPath!.CombineFromIndex(targetPath, traversalIndex);
 
                 // シンボリックリンクを通知
                 notifyNode?.Invoke(traversalPath, node, true);
@@ -1129,7 +1146,7 @@ namespace VirtualStorageLibrary
                     {
                         // 末端のノードを通知
                         resolvedPath ??= traversalPath;
-                        return new NodeResolutionResult(node, traversalPath, resolvedPath);
+                        return new NodeInformation(node, traversalPath, resolvedPath);
                     }
 
                     // 再帰的に探索
@@ -1140,26 +1157,28 @@ namespace VirtualStorageLibrary
                 }
 
                 resolvedPath ??= traversalPath;
-                return new NodeResolutionResult(node, traversalPath, resolvedPath);
+                return new NodeInformation(node, traversalPath, resolvedPath);
             }
 
             resolvedPath ??= traversalPath;
-            return new NodeResolutionResult(node, traversalPath, resolvedPath);
+            return new NodeInformation(node, traversalPath, resolvedPath);
         }
 
-        public IEnumerable<NodeResolutionResult> WalkPathTree(VirtualPath path, bool followLinks = false)
+        public IEnumerable<NodeInformation> WalkPathTree(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            return WalkPathTreeInternal(path, _root, followLinks);
+            VirtualNode node = GetNode(path, followLinks);
+
+            return WalkPathTreeInternal(path, node, followLinks);
         }
 
-        private IEnumerable<NodeResolutionResult> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, bool followLinks)
+        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, bool followLinks)
         {
             // ノードの種類に応じて処理を分岐
             if (baseNode is VirtualDirectory directory)
             {
                 // ディレクトリを通知
-                yield return new NodeResolutionResult(directory, basePath, basePath);
+                yield return new NodeInformation(directory, basePath);
 
                 // ディレクトリ内のノードを再帰的に探索
                 foreach (var node in directory.Nodes)
@@ -1174,7 +1193,7 @@ namespace VirtualStorageLibrary
             else if (baseNode is VirtualItem item)
             {
                 // アイテムを通知
-                yield return new NodeResolutionResult(item, basePath, basePath);
+                yield return new NodeInformation(item, basePath);
             }
             else if (baseNode is VirtualSymbolicLink link)
             {
@@ -1189,7 +1208,7 @@ namespace VirtualStorageLibrary
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
                     // シンボリックリンクを通知
-                    yield return new NodeResolutionResult(linkTargetNode, basePath, basePath);
+                    yield return new NodeInformation(linkTargetNode, basePath, linkTargetPath);
 
                     // もしリンク先がディレクトリであれば、再帰的に探索
                     if (linkTargetNode is VirtualDirectory linkTargetDirectory)
@@ -1203,7 +1222,7 @@ namespace VirtualStorageLibrary
                 else
                 {
                     // シンボリックリンクを通知
-                    yield return new NodeResolutionResult(link, basePath, basePath);
+                    yield return new NodeInformation(link, basePath);
                 }
             }
         }
@@ -1211,15 +1230,15 @@ namespace VirtualStorageLibrary
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            NodeResolutionResult result = WalkPathToTarget(path, null, null, followLinks, true);
+            NodeInformation result = WalkPathToTarget(path, null, null, followLinks, true);
             return result.Node!;
         }
 
         public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            NodeResolutionResult result = WalkPathToTarget(path, null, null, true, true);
-            return result.ResolvedPath;
+            NodeInformation result = WalkPathToTarget(path, null, null, true, true);
+            return result.ResolvedPath!;
         }
 
         public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
