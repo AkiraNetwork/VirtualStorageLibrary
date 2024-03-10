@@ -4327,14 +4327,265 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir1"), true);
             vs.AddItem(new VirtualPath("/dir1/item1"), "test");
             vs.AddItem(new VirtualPath("/dir1/item2"), "test");
-            vs.AddSymbolicLink(new VirtualPath("/dir1A"), new VirtualPath("/dir1"));
-            //vs.AddSymbolicLink(new VirtualPath("/dir1B"), new VirtualPath("/dir1A"));
 
             var result = vs.WalkPathTree(new VirtualPath("/"), true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
             }
+
+            Assert.AreEqual(4, result.Count());
+
+            string tree = vs.GenerateTextBasedTreeStructure(new VirtualPath("/"), true);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void WalkPathTree_EmptyDirectory_ShouldReturnOnlyDirectory()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/emptyDir"), true);
+
+            var result = vs.WalkPathTree(new VirtualPath("/emptyDir"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(1, result.Count()); // 空のディレクトリ自身のみが結果として返されるべき
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/emptyDir"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_DirectoryWithItems_ShouldReturnItems()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dirWithItems"), true);
+            vs.AddItem(new VirtualPath("/dirWithItems/item1"), "content1");
+            vs.AddItem(new VirtualPath("/dirWithItems/item2"), "content2");
+
+            var result = vs.WalkPathTree(new VirtualPath("/dirWithItems"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(3, result.Count()); // ディレクトリと2つのアイテムが含まれる
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dirWithItems/item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dirWithItems/item2"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_DirectoryWithSymbolicLink_ShouldFollowLinkIfRequested()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/sourceDir"), true);
+            vs.AddItem(new VirtualPath("/sourceDir/item"), "content");
+            vs.AddSymbolicLink(new VirtualPath("/linkToSourceDir"), new VirtualPath("/sourceDir"));
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/linkToSourceDir/item"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_EmptyDirectory_ReturnsOnlyRoot()
+        {
+            var vs = new VirtualStorage();
+            var result = vs.WalkPathTree(VirtualPath.Root, true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(1, result.Count());
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_SingleItemDirectory_IncludesItem()
+        {
+            var vs = new VirtualStorage();
+            vs.AddItem(new VirtualPath("/item1"), "test");
+
+            var result = vs.WalkPathTree(VirtualPath.Root, true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(2, result.Count()); // ルートディレクトリとアイテム
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/item1"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_DirectoryWithSymbolicLink_IncludesLinkAndTarget()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/linkToDir1"), new VirtualPath("/dir1"));
+
+            var result = vs.WalkPathTree(VirtualPath.Root, true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(3, result.Count()); // ルートディレクトリ、dir1、およびシンボリックリンク
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/linkToDir1"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_DeepNestedDirectories_ReturnsAllNodes()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1/dir2/dir3"), true);
+            vs.AddItem(new VirtualPath("/dir1/dir2/dir3/item1"), "test");
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(5, result.Count()); // ルートディレクトリ、dir1、dir2、dir3、およびitem1
+        }
+
+        [TestMethod]
+        public void WalkPathTree_MultipleSymbolicLinks_IncludesLinksAndTargets()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/linkToDir1"), new VirtualPath("/dir1"));
+            vs.AddSymbolicLink(new VirtualPath("/linkToLink1"), new VirtualPath("/linkToDir1"));
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(4, result.Count()); // ルートディレクトリ、dir1、linkToDir1、およびlinkToLink1
+        }
+
+        [TestMethod]
+        public void WalkPathTree_DirectoryWithManyItems_ReturnsAllItems()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            for (int i = 1; i <= 100; i++)
+            {
+                vs.AddItem(new VirtualPath($"/dir1/item{i}"), $"test{i}");
+            }
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir1"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.AreEqual(101, result.Count()); // dir1 および 100個のアイテム
+        }
+
+        [TestMethod]
+        public void WalkPathTree_WithNonexistentPathSymbolicLink_ThrowsExceptionAndOutputsMessage()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir1/emptyLink"), new VirtualPath("/nonexistent"));
+
+            var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                var result = vs.WalkPathTree(new VirtualPath("/"), true);
+                foreach (var item in result)
+                {
+                    Debug.WriteLine(item.ToString());
+                }
+            });
+
+            Debug.WriteLine($"例外が捕捉されました: {exception.Message}");
+        }
+
+        [TestMethod]
+        public void WalkPathTree_ShallowNestedDirectories_ExecutesWithoutErrorAndOutputsTree()
+        {
+            var vs = new VirtualStorage();
+            var basePath = "/deep";
+            var depth = 100; // 最大1900くらいまでOK
+            for (int i = 1; i <= depth; i++)
+            {
+                basePath = $"{basePath}/dir{i}";
+                vs.AddDirectory(new VirtualPath(basePath), true);
+            }
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
+            }
+
+            // 期待される結果の数をルートディレクトリ + /deep + depth(3)のディレクトリ = 5に更新
+            Assert.AreEqual(depth + 2, result.Count()); // ルートディレクトリ + /deep + 3階層のディレクトリ
+            Debug.WriteLine($"深さ{depth}のディレクトリ構造が正常に走査されました。");
+        }
+
+        [TestMethod]
+        public void WalkPathTree_MultipleEmptyDirectories_ReturnsAllDirectoriesAndOutputsTree()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/empty1/empty2/empty3"), true);
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
+            }
+
+            Assert.AreEqual(4, result.Count()); // ルートディレクトリ + 各空ディレクトリ
+            Debug.WriteLine("複数レベルの空ディレクトリが正常に走査されました。");
+        }
+
+        [TestMethod]
+        public void WalkPathTree_MultipleSymbolicLinksInSamePath()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/targetDir"), true); // ターゲットディレクトリ
+            vs.AddDirectory(new VirtualPath("/dir"), true); // シンボリックリンクのための親ディレクトリ
+            vs.AddSymbolicLink(new VirtualPath("/dir/symLink1"), new VirtualPath("/targetDir"));
+            vs.AddSymbolicLink(new VirtualPath("/dir/symLink2"), new VirtualPath("/targetDir"));
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            // `/dir/symLink1` と `/dir/symLink2` の存在を確認
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/dir/symLink1")));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/dir/symLink2")));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_SymbolicLinkPointsToAnotherSymbolicLink()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/targetDir"), true); // ターゲットディレクトリ
+            vs.AddSymbolicLink(new VirtualPath("/symLink"), new VirtualPath("/targetDir"));
+            vs.AddSymbolicLink(new VirtualPath("/linkToLink"), new VirtualPath("/symLink"));
+
+            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item);
+            }
+
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/symLink")));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/linkToLink")));
         }
     }
 }

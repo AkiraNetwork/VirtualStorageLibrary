@@ -1207,16 +1207,10 @@ namespace VirtualStorageLibrary
                     // リンク先のノードを取得
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
-                    // シンボリックリンクを通知
-                    yield return new NodeInformation(linkTargetNode, basePath, linkTargetPath);
-
-                    // もしリンク先がディレクトリであれば、再帰的に探索
-                    if (linkTargetNode is VirtualDirectory linkTargetDirectory)
+                    // リンク先のノードに対して再帰的に探索
+                    foreach (var result in WalkPathTreeInternal(basePath, linkTargetNode, followLinks))
                     {
-                        foreach (var result in WalkPathTreeInternal(linkTargetPath, linkTargetDirectory, followLinks))
-                        {
-                            yield return result;
-                        }
+                        yield return result;
                     }
                 }
                 else
@@ -1743,5 +1737,37 @@ namespace VirtualStorageLibrary
                 }
             }
         }
+
+        public string GenerateTextBasedTreeStructure(VirtualPath path, bool followLinks = false)
+        {
+            var nodeInfos = WalkPathTree(path, followLinks).ToList();
+            StringBuilder treeBuilder = new StringBuilder();
+            var baseDepth = path.PartsList.Count;
+
+            foreach (var nodeInfo in nodeInfos)
+            {
+                var currentDepth = nodeInfo.TraversalPath.PartsList.Count - baseDepth;
+                var indent = new String(' ', Math.Max(0, currentDepth * 4 - 2));
+
+                bool isLastNode = !nodeInfos.Any(ni => ni.TraversalPath.PartsList.Count > nodeInfo.TraversalPath.PartsList.Count);
+                string connector = isLastNode ? "`-- " : "|-- ";
+
+                string nodeName = nodeInfo.Node?.Name.Path ?? "";
+                // 末尾が既に"/"であるか、nodeNameが空（ルートディレクトリ）の場合は、"/"を追加しない
+                if (nodeInfo.Node is VirtualDirectory && nodeName != "/" && !nodeName.EndsWith("/"))
+                {
+                    nodeName += "/";
+                }
+                else if (nodeInfo.Node is VirtualSymbolicLink)
+                {
+                    nodeName += " -> " + (nodeInfo.Node as VirtualSymbolicLink)?.TargetPath.Path;
+                }
+
+                treeBuilder.AppendLine($"{indent}{connector}{nodeName}");
+            }
+
+            return treeBuilder.ToString().TrimEnd();
+        }
+
     }
 }
