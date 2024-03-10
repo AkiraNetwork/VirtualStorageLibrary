@@ -1742,28 +1742,38 @@ namespace VirtualStorageLibrary
         {
             var nodeInfos = WalkPathTree(path, followLinks).ToList();
             StringBuilder treeBuilder = new StringBuilder();
-            var baseDepth = path.PartsList.Count;
 
-            foreach (var nodeInfo in nodeInfos)
+            if (!nodeInfos.Any())
             {
-                var currentDepth = nodeInfo.TraversalPath.PartsList.Count - baseDepth;
-                var indent = new String(' ', Math.Max(0, currentDepth * 4 - 2));
+                return "/";
+            }
 
-                bool isLastNode = !nodeInfos.Any(ni => ni.TraversalPath.PartsList.Count > nodeInfo.TraversalPath.PartsList.Count);
-                string connector = isLastNode ? "`-- " : "|-- ";
+            for (int i = 0; i < nodeInfos.Count; i++)
+            {
+                var nodeInfo = nodeInfos[i];
+                var depth = nodeInfo.TraversalPath.PartsList.Count - path.PartsList.Count;
+                var indent = new String(' ', depth * 2); // より深いノードのためにスペースを2倍にする
 
+                bool isLastNode = i == nodeInfos.Count - 1 || nodeInfos[i + 1].TraversalPath.PartsList.Count <= nodeInfo.TraversalPath.PartsList.Count;
+                string prefix = isLastNode ? "`-" : "|-";
+
+                // ノードがディレクトリの場合、その名前を表示。ルートの場合は特別扱い
                 string nodeName = nodeInfo.Node?.Name.Path ?? "";
-                // 末尾が既に"/"であるか、nodeNameが空（ルートディレクトリ）の場合は、"/"を追加しない
-                if (nodeInfo.Node is VirtualDirectory && nodeName != "/" && !nodeName.EndsWith("/"))
+                if (nodeInfo.Node is VirtualDirectory && !nodeName.EndsWith("/"))
                 {
-                    nodeName += "/";
-                }
-                else if (nodeInfo.Node is VirtualSymbolicLink)
-                {
-                    nodeName += " -> " + (nodeInfo.Node as VirtualSymbolicLink)?.TargetPath.Path;
+                    // 末尾が"/"でないディレクトリに対して"/"を追加するのを防ぐ
+                    nodeName += nodeName != "/" ? "" : "/";
                 }
 
-                treeBuilder.AppendLine($"{indent}{connector}{nodeName}");
+                // ルートノードの場合
+                if (depth == 0)
+                {
+                    treeBuilder.AppendLine("/");
+                }
+                else
+                {
+                    treeBuilder.AppendLine($"{indent}{prefix}{nodeName}");
+                }
             }
 
             return treeBuilder.ToString().TrimEnd();
