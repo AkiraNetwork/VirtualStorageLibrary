@@ -1743,41 +1743,54 @@ namespace VirtualStorageLibrary
             var nodeInfos = WalkPathTree(path, followLinks).ToList();
             StringBuilder treeBuilder = new StringBuilder();
 
-            if (!nodeInfos.Any())
-            {
-                return "/";
-            }
+            bool isRootNodePrinted = false; // ルートノードが出力されたかを追跡する変数
 
             for (int i = 0; i < nodeInfos.Count; i++)
             {
                 var nodeInfo = nodeInfos[i];
-                var depth = nodeInfo.TraversalPath.PartsList.Count - path.PartsList.Count;
-                var indent = new String(' ', depth * 2); // より深いノードのためにスペースを2倍にする
+                var currentDepth = nodeInfo.TraversalPath.PartsList.Count - path.PartsList.Count;
 
-                bool isLastNode = i == nodeInfos.Count - 1 || nodeInfos[i + 1].TraversalPath.PartsList.Count <= nodeInfo.TraversalPath.PartsList.Count;
-                string prefix = isLastNode ? "`-" : "|-";
+                // インデントの作成
+                var indent = new StringBuilder();
+                for (int depth = 1; depth < currentDepth; depth++)
+                {
+                    indent.Append(depth == currentDepth - 1 ? "     " : "│   ");
+                }
 
-                // ノードがディレクトリの場合、その名前を表示。ルートの場合は特別扱い
+                // 最後のノードかどうかを判断
+                bool isLastNode = i == nodeInfos.Count - 1 || nodeInfos[i + 1].TraversalPath.PartsList.Count - path.PartsList.Count != currentDepth;
+
+                // インデントに接続記号を追加
+                if (currentDepth > 0)
+                {
+                    indent.Append(isLastNode ? "└── " : "├── ");
+                }
+
+                // ノード名の設定
                 string nodeName = nodeInfo.Node?.Name.Path ?? "";
                 if (nodeInfo.Node is VirtualDirectory && !nodeName.EndsWith("/"))
                 {
-                    // 末尾が"/"でないディレクトリに対して"/"を追加するのを防ぐ
-                    nodeName += nodeName != "/" ? "" : "/";
+                    nodeName += "/";
                 }
 
-                // ルートノードの場合
-                if (depth == 0)
+                // ツリーにノードを追加
+                if (currentDepth == 0)
                 {
-                    treeBuilder.AppendLine("/");
+                    // ルートノードの場合
+                    if (!isRootNodePrinted)
+                    {
+                        treeBuilder.AppendLine(nodeName);
+                        isRootNodePrinted = true;
+                    }
                 }
                 else
                 {
-                    treeBuilder.AppendLine($"{indent}{prefix}{nodeName}");
+                    // ルートノード以外の場合
+                    treeBuilder.AppendLine($"{indent}{nodeName}");
                 }
             }
 
             return treeBuilder.ToString().TrimEnd();
         }
-
     }
 }
