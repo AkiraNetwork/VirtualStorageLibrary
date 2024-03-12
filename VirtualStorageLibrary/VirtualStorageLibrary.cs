@@ -1754,7 +1754,7 @@ namespace VirtualStorageLibrary
                 var indent = new StringBuilder();
                 for (int depth = 1; depth < currentDepth; depth++)
                 {
-                    indent.Append(depth == currentDepth - 1 ? "     " : "│   ");
+                    indent.Append(depth == currentDepth - 1 ? "   " : "│ ");
                 }
 
                 // 最後のノードかどうかを判断
@@ -1763,7 +1763,7 @@ namespace VirtualStorageLibrary
                 // インデントに接続記号を追加
                 if (currentDepth > 0)
                 {
-                    indent.Append(isLastNode ? "└── " : "├── ");
+                    indent.Append(isLastNode ? "└ " : "├ ");
                 }
 
                 // ノード名の設定

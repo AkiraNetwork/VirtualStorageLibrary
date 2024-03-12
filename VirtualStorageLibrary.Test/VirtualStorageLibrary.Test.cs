@@ -4330,6 +4330,8 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2"), true);
             vs.AddItem(new VirtualPath("/dir2/item3"), "test");
             vs.AddItem(new VirtualPath("/dir2/item4"), "test");
+            vs.AddItem(new VirtualPath("/item5"), "test");
+            vs.AddItem(new VirtualPath("/item6"), "test");
 
             var result = vs.WalkPathTree(new VirtualPath("/"), true);
             foreach (var item in result)
