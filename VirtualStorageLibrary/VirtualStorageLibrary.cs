@@ -79,7 +79,7 @@ namespace VirtualStorageLibrary
         T DeepClone();
     }
 
-    public class VirtualPath : IEquatable<VirtualPath>
+    public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>
     {
         private readonly string _path;
 
@@ -519,6 +519,16 @@ namespace VirtualStorageLibrary
             }
 
             return combinedPath;
+        }
+
+        public int CompareTo(VirtualPath? other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+
+            return string.Compare(_path, other._path, StringComparison.Ordinal);
         }
     }
 

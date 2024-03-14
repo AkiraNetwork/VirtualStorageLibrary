@@ -526,6 +526,29 @@ namespace VirtualStorageLibrary.Test
             Assert.AreSame(firstAccessResult, secondAccessResult, "The PartsList should be cached and reused on subsequent accesses.");
         }
 
+        [TestMethod]
+        public void CompareTo_ReturnsNegative_WhenPathIsLexicographicallyBeforeOther()
+        {
+            var path1 = new VirtualPath("a/b");
+            var path2 = new VirtualPath("b/a");
+            Assert.IsTrue(path1.CompareTo(path2) < 0, "path1 should be lexicographically before path2");
+        }
+
+        [TestMethod]
+        public void CompareTo_ReturnsZero_WhenPathsAreEqual()
+        {
+            var path1 = new VirtualPath("same/path");
+            var path2 = new VirtualPath("same/path");
+            Assert.AreEqual(0, path1.CompareTo(path2), "Paths that are equal should return 0");
+        }
+
+        [TestMethod]
+        public void CompareTo_ReturnsPositive_WhenPathIsLexicographicallyAfterOther()
+        {
+            var path1 = new VirtualPath("c/d");
+            var path2 = new VirtualPath("a/b");
+            Assert.IsTrue(path1.CompareTo(path2) > 0, "path1 should be lexicographically after path2");
+        }
     }
 
     [TestClass]
