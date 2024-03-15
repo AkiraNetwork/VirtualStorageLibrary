@@ -681,9 +681,30 @@ namespace VirtualStorageLibrary
         }
     }
 
+    public class VirtualNodeDictionary : Dictionary<VirtualPath, VirtualNode>
+    {
+        private List<VirtualNode> _sortedNodeListByName;
+
+        public VirtualNodeDictionary() : base()
+        {
+            _sortedNodeListByName = new();
+        }
+
+        public new void Add(VirtualPath key, VirtualNode value)
+        {
+            base.Add(key, value);
+            UpdateSortedList();
+        }
+
+        private void UpdateSortedList()
+        {
+            _sortedNodeListByName = Values.OrderBy(node => node.Name).ToList();
+        }
+    }
+
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
-        private Dictionary<VirtualPath, VirtualNode> _nodes;
+        private VirtualNodeDictionary _nodes;
 
         public int Count => _nodes.Count;
 
@@ -734,12 +755,12 @@ namespace VirtualStorageLibrary
 
         public VirtualDirectory(VirtualPath name) : base(name)
         {
-            _nodes = new Dictionary<VirtualPath, VirtualNode>();
+            _nodes = new();
         }
 
         public VirtualDirectory(VirtualPath name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
-            _nodes = new Dictionary<VirtualPath, VirtualNode>();
+            _nodes = new();
         }
 
         public override string ToString()
