@@ -681,30 +681,90 @@ namespace VirtualStorageLibrary
         }
     }
 
+    public enum VirtualSortProperty
+    {
+        Name,
+        CreatedDate,
+        UpdatedDate
+    }
+
+    public enum VirtualSortOrder
+    {
+        Ascending,
+        Descending
+    }
+
+    public enum VirtualGroupOrder
+    {
+        ItemFirst,
+        DirectoryFirst
+    }
+
+    public class VirtualNodeDisplayOptions
+    {
+        [DebuggerNonUserCode]
+        public VirtualSortProperty SortBy { get; set; }
+
+        [DebuggerNonUserCode]
+        public VirtualSortOrder Order { get; set; }
+
+        [DebuggerNonUserCode]
+        public VirtualGroupOrder GroupBy { get; set; }
+
+        [DebuggerNonUserCode]
+        public VirtualNodeDisplayOptions(
+            VirtualSortProperty sortBy = VirtualSortProperty.Name,
+            VirtualSortOrder order = VirtualSortOrder.Ascending,
+            VirtualGroupOrder groupBy = VirtualGroupOrder.DirectoryFirst)
+        {
+            SortBy = sortBy;
+            Order = order;
+            GroupBy = groupBy;
+        }
+    }
+
     public class VirtualNodeDictionary : Dictionary<VirtualPath, VirtualNode>
     {
-        private List<VirtualNode> _sortedNodeListByName;
+        private VirtualNodeDisplayOptions _options = new();
 
-        public VirtualNodeDictionary() : base()
-        {
-            _sortedNodeListByName = new();
-        }
+        public VirtualNodeDisplayOptions Options { get => _options; set => _options = value; }
 
-        public new void Add(VirtualPath key, VirtualNode value)
+        public IEnumerable<VirtualNode> GetNodeList()
         {
-            base.Add(key, value);
-            UpdateSortedList();
-        }
+            // グループ化とソートの適用
+            var query = this.Values.AsEnumerable();
 
-        private void UpdateSortedList()
-        {
-            _sortedNodeListByName = Values.OrderBy(node => node.Name).ToList();
+            // ディレクトリとアイテムを区別してソートする
+            var sortedQuery = query
+                .OrderBy(node => node is VirtualDirectory ? 0 : 1); // ディレクトリを先に
+
+            // ソートの適用
+            switch (_options.SortBy)
+            {
+                case VirtualSortProperty.Name:
+                    sortedQuery = _options.Order == VirtualSortOrder.Ascending ?
+                        sortedQuery.ThenBy(node => node.Name.Path) :
+                        sortedQuery.ThenByDescending(node => node.Name.Path);
+                    break;
+                case VirtualSortProperty.CreatedDate:
+                    sortedQuery = _options.Order == VirtualSortOrder.Ascending ?
+                        sortedQuery.ThenBy(node => node.CreatedDate) :
+                        sortedQuery.ThenByDescending(node => node.CreatedDate);
+                    break;
+                case VirtualSortProperty.UpdatedDate:
+                    sortedQuery = _options.Order == VirtualSortOrder.Ascending ?
+                        sortedQuery.ThenBy(node => node.UpdatedDate) :
+                        sortedQuery.ThenByDescending(node => node.UpdatedDate);
+                    break;
+            }
+
+            return sortedQuery;
         }
     }
 
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
-        private VirtualNodeDictionary _nodes;
+        private VirtualNodeDictionary _nodes = new();
 
         public int Count => _nodes.Count;
 
@@ -714,7 +774,13 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualPath> NodeNames => _nodes.Keys;
 
-        public IEnumerable<VirtualNode> Nodes => _nodes.Values;
+        //public IEnumerable<VirtualNode> Nodes => _nodes.Values;
+
+        public IEnumerable<VirtualNode> Nodes => _nodes.GetNodeList();
+
+        public IEnumerable<VirtualNode> GetNodeList() => _nodes.GetNodeList();
+
+        public VirtualNodeDisplayOptions Options { get => _nodes.Options; set => _nodes.Options = value; }
 
         public bool NodeExists(VirtualPath name) => _nodes.ContainsKey(name);
 
