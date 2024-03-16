@@ -777,8 +777,6 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualPath> NodeNames => _nodes.Keys;
 
-        //public IEnumerable<VirtualNode> Nodes => _nodes.Values;
-
         public IEnumerable<VirtualNode> Nodes => _nodes.GetNodeList();
 
         public IEnumerable<VirtualNode> GetNodeList() => _nodes.GetNodeList();
@@ -1026,6 +1024,40 @@ namespace VirtualStorageLibrary
 
             // 新しいシンボリックリンクを追加 (ターゲットパスは何も手を加えずにそのまま保存)
             directory.Add(new VirtualSymbolicLink(linkName, targetPath), true);
+        }
+
+        // pathで指定されたディレクトリにitemを追加
+        // pathがディレクトリでない場合は例外をスロー
+        // pathにアイテム名が含まれない事を前提とする
+        public void AddItem<T>(VirtualPath path, VirtualItem<T> item, bool overwrite = false)
+        {
+            // 絶対パスに変換
+            path = ConvertToAbsolutePath(path).NormalizePath();
+
+            // 対象ディレクトリを取得
+            VirtualDirectory directory = GetDirectory(path, true);
+
+            // 既存のアイテムの存在チェック
+            if (directory.NodeExists(item.Name))
+            {
+                if (!overwrite)
+                {
+                    throw new InvalidOperationException($"アイテム '{item.Name}' は既に存在します。上書きは許可されていません。");
+                }
+                else
+                {
+                    // 上書き対象がアイテムであることを確認
+                    if (!ItemExists(path + item.Name))
+                    {
+                        throw new InvalidOperationException($"'{item.Name}' はアイテム以外のノードです。アイテムの上書きはできません。");
+                    }
+                    // 既存アイテムの削除
+                    directory.Remove(item.Name);
+                }
+            }
+
+            // 新しいアイテムを追加
+            directory.Add(item, overwrite);
         }
 
         public void AddItem<T>(VirtualPath path, T item, bool overwrite = false)

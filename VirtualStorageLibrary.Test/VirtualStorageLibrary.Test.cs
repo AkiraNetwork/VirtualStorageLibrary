@@ -2795,6 +2795,91 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddItem_WithVirtualItem_ShouldAddItemToDirectory()
+        {
+            var storage = new VirtualStorage();
+            var path = new VirtualPath("/dir");
+            storage.AddDirectory(path);
+            var item = new VirtualItem<string>(new VirtualPath("item"), "test");
+
+            storage.AddItem(path, item);
+
+            Assert.IsTrue(storage.ItemExists(path + item.Name));
+        }
+
+        [TestMethod]
+        public void AddItem_WithVirtualItem_WithOverwrite_ShouldThrowExceptionIfItemExists()
+        {
+            var storage = new VirtualStorage();
+            var directoryPath = new VirtualPath("/dir");
+            storage.AddDirectory(directoryPath);
+            var existingItemPath = new VirtualPath("existingItem");
+            var existingItem = new VirtualItem<string>(existingItemPath, "existing value");
+            var newItem = new VirtualItem<string>(existingItemPath, "new value");
+
+            storage.AddItem(directoryPath, existingItem, false);
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.AddItem(directoryPath, newItem, false));
+        }
+
+        [TestMethod]
+        public void AddItem_WithOverwrite_ShouldOverwriteExistingItem()
+        {
+            var storage = new VirtualStorage();
+            var directoryPath = new VirtualPath("/dir");
+            storage.AddDirectory(directoryPath);
+            var itemPath = new VirtualPath("item");
+            var originalItem = new VirtualItem<string>(itemPath, "original value");
+            var newItem = new VirtualItem<string>(itemPath, "new value");
+
+            storage.AddItem(directoryPath, originalItem, false);
+            storage.AddItem(directoryPath, newItem, true);
+
+            Assert.IsTrue(storage.ItemExists(directoryPath + newItem.Name));
+        }
+
+        [TestMethod]
+        public void AddItem_ToNonExistingDirectory_ShouldThrowVirtualNodeNotFoundException()
+        {
+            var storage = new VirtualStorage();
+            var directoryPath = new VirtualPath("/nonExistingDir");
+            var itemPath = new VirtualPath("item");
+            var item = new VirtualItem<string>(itemPath, "value");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.AddItem(directoryPath, item, false));
+        }
+
+        [TestMethod]
+        public void AddItem_ToLocationPointedBySymbolicLink_ShouldThrowException()
+        {
+            var storage = new VirtualStorage();
+            var directoryPath = new VirtualPath("/dir");
+            storage.AddDirectory(directoryPath);
+            var linkPath = new VirtualPath("/link");
+            var targetPath = new VirtualPath("/nonExistingTargetDir");
+            storage.AddSymbolicLink(linkPath, targetPath);
+
+            var itemPath = new VirtualPath("item");
+            var item = new VirtualItem<string>(itemPath, "value");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.AddItem(linkPath, item, false));
+        }
+
+        [TestMethod]
+        public void AddItem_ToLocationPointedBySymbolicLink_ShouldAddItemSuccessfully()
+        {
+            var storage = new VirtualStorage();
+            var actualDirectoryPath = new VirtualPath("/actualDir");
+            storage.AddDirectory(actualDirectoryPath);
+            var symbolicLinkPath = new VirtualPath("/symbolicLink");
+            storage.AddSymbolicLink(symbolicLinkPath, actualDirectoryPath);
+            var itemName = new VirtualPath("newItem");
+            var item = new VirtualItem<string>(itemName, "itemValue");
+            storage.AddItem(symbolicLinkPath, item);
+            Assert.IsTrue(storage.ItemExists(actualDirectoryPath + itemName));
+        }
+
+        [TestMethod]
         public void ItemExists_WhenIntermediateDirectoryDoesNotExist_ReturnsFalse()
         {
             // Arrange
