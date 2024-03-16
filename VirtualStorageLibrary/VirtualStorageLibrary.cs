@@ -555,15 +555,6 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public static class VirtualNodeExtensions
-    {
-        public static bool IsItem(this VirtualNode node) => node is VirtualItem;
-
-        public static bool IsDirectory(this VirtualNode node) => node is VirtualDirectory;
-        
-        public static bool IsSymbolicLink(this VirtualNode node) => node is VirtualSymbolicLink;
-    }
-
     public class VirtualSymbolicLink : VirtualNode
     {
         public VirtualPath TargetPath { get; set; }
@@ -590,25 +581,13 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public class VirtualItem : VirtualNode, IDeepCloneable<VirtualItem>
+    public abstract class VirtualItem : VirtualNode
     {
-        public VirtualItem(VirtualPath name) : base(name)
-        {
-        }
+        protected VirtualItem(VirtualPath name) : base(name) { }
 
-        public VirtualItem(VirtualPath name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
-        {
-        }
+        protected VirtualItem(VirtualPath name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate) { }
 
-        public override VirtualNode DeepClone()
-        {
-            throw new NotImplementedException();
-        }
-
-        VirtualItem IDeepCloneable<VirtualItem>.DeepClone()
-        {
-            throw new NotImplementedException();
-        }
+        public override abstract VirtualNode DeepClone();
     }
 
     public class VirtualItem<T> : VirtualItem, IDeepCloneable<VirtualItem<T>>, IDisposable
@@ -1180,7 +1159,7 @@ namespace VirtualStorageLibrary
             // 次のノードへ
             traversalIndex++;
 
-            if (node.IsDirectory())
+            if (node is VirtualDirectory)
             {
                 // 最後のノードに到達したかチェック
                 if (targetPath.PartsList.Count <= traversalIndex)
@@ -1203,7 +1182,7 @@ namespace VirtualStorageLibrary
                 traversalPath = result?.TraversalPath ?? traversalPath;
                 resolvedPath = result?.ResolvedPath ?? resolvedPath;
             }
-            else if (node.IsItem())
+            else if (node is VirtualItem)
             {
                 // 末端のノードを通知
                 notifyNode?.Invoke(traversalPath, node, true);
@@ -1225,7 +1204,7 @@ namespace VirtualStorageLibrary
 
                 return new NodeInformation(null, traversalPath, resolvedPath);
             }
-            else if (node.IsSymbolicLink())
+            else if (node is VirtualSymbolicLink link)
             {
                 if (!followLinks)
                 {
@@ -1235,7 +1214,6 @@ namespace VirtualStorageLibrary
                     return new NodeInformation(node, traversalPath, resolvedPath);
                 }
 
-                VirtualSymbolicLink link = (VirtualSymbolicLink)node;
                 VirtualPath linkTargetPath = link.TargetPath;
                 VirtualPath parentTraversalPath = traversalPath.DirectoryPath;
 
@@ -1257,7 +1235,7 @@ namespace VirtualStorageLibrary
                 // シンボリックリンクを通知
                 notifyNode?.Invoke(traversalPath, node, true);
 
-                if (node != null && node.IsDirectory())
+                if (node != null && (node is VirtualDirectory))
                 {
                     // 探索ディレクトリを取得
                     traversalDirectory = (VirtualDirectory)node;
@@ -1313,6 +1291,7 @@ namespace VirtualStorageLibrary
             }
             else if (baseNode is VirtualItem item)
             {
+                // TODO: VirtualItem<T>で返さないとまずいか調べる
                 // アイテムを通知
                 yield return new NodeInformation(item, basePath);
             }
@@ -1401,9 +1380,8 @@ namespace VirtualStorageLibrary
 
             foreach (var node in directory.Nodes)
             {
-                if (node.IsDirectory())
+                if (node is VirtualDirectory subdirectory)
                 {
-                    VirtualDirectory subdirectory = (VirtualDirectory)node;
                     if ((nodeType & VirtualNodeType.Directory) == VirtualNodeType.Directory)
                     {
                         yield return selector(subdirectory, basePath + subdirectory.Name);
@@ -1418,14 +1396,14 @@ namespace VirtualStorageLibrary
                         }
                     }
                 }
-                else if(node.IsItem())
+                else if(node is VirtualItem)
                 {
                     if ((nodeType & VirtualNodeType.Item) == VirtualNodeType.Item)
                     {
                         yield return selector(node, basePath + node.Name);
                     }
                 }
-                else if (node.IsSymbolicLink())
+                else if (node is VirtualSymbolicLink)
                 {
                     if ((nodeType & VirtualNodeType.SymbolicLink) == VirtualNodeType.SymbolicLink)
                     {
