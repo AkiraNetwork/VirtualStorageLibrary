@@ -1593,9 +1593,14 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeList_CreatedDateAscDir()
         {
-            // TODO: 作成途中。
             // Arrange
             var storage = new VirtualStorage();
+            var item1 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]),
+                DateTime.Now, DateTime.Now);
+            var item2 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]),
+                DateTime.Now.AddDays(1), DateTime.Now.AddDays(1));
+
+            // TODO: item1、item2をAddする
             storage.AddDirectory(new VirtualPath("/dir2"));
             storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
             storage.AddDirectory(new VirtualPath("/dir1"));
