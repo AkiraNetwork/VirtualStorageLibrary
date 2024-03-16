@@ -36,7 +36,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.AreEqual(name, virtualItem.Name);
-            Assert.AreEqual(item, virtualItem.Item);
+            Assert.AreEqual(item, virtualItem.ItemData);
             Assert.AreEqual(createdDate, virtualItem.CreatedDate);
             Assert.AreEqual(updatedDate, virtualItem.UpdatedDate);
         }
@@ -644,8 +644,8 @@ namespace VirtualStorageLibrary.Test
             // オブジェクトが正しく作成されたか検証
             Assert.IsNotNull(virtualItem);
             Assert.AreEqual(name, virtualItem.Name);
-            Assert.AreEqual(binaryData, virtualItem.Item);
-            CollectionAssert.AreEqual(virtualItem.Item.Data, testData);
+            Assert.AreEqual(binaryData, virtualItem.ItemData);
+            CollectionAssert.AreEqual(virtualItem.ItemData.Data, testData);
         }
 
         [TestMethod]
@@ -662,11 +662,11 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(clonedItem);
             Assert.AreNotSame(originalItem, clonedItem);
             Assert.AreEqual(originalItem.Name, clonedItem.Name);
-            Assert.AreNotSame(originalItem.Item, clonedItem.Item);
+            Assert.AreNotSame(originalItem.ItemData, clonedItem.ItemData);
 
             // BinaryData の Data プロパティが適切にクローンされていることを検証
-            CollectionAssert.AreEqual(originalItem.Item.Data, clonedItem.Item.Data);
-            Assert.AreNotSame(originalItem.Item.Data, clonedItem.Item.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData.Data, clonedItem.ItemData.Data);
+            Assert.AreNotSame(originalItem.ItemData.Data, clonedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -681,9 +681,9 @@ namespace VirtualStorageLibrary.Test
             // Assert
             Assert.IsNotNull(clonedItem);
             Assert.AreNotSame(originalItem, clonedItem);
-            CollectionAssert.AreEqual(originalItem.Item.Data, clonedItem.Item.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData.Data, clonedItem.ItemData.Data);
             Assert.AreEqual(originalItem.Name, clonedItem.Name);
-            Assert.AreNotSame(originalItem.Item, clonedItem.Item);
+            Assert.AreNotSame(originalItem.ItemData, clonedItem.ItemData);
         }
 
         [TestMethod]
@@ -698,11 +698,11 @@ namespace VirtualStorageLibrary.Test
             // Assert
             Assert.IsNotNull(clonedItem);
             Assert.AreNotSame(originalItem, clonedItem);
-            Assert.AreEqual(originalItem.Item.Value, clonedItem.Item.Value);
+            Assert.AreEqual(originalItem.ItemData.Value, clonedItem.ItemData.Value);
             Assert.AreEqual(originalItem.Name, clonedItem.Name);
 
             // SimpleDataインスタンスがシャローコピーされていることを確認
-            Assert.AreSame(originalItem.Item, clonedItem.Item);
+            Assert.AreSame(originalItem.ItemData, clonedItem.ItemData);
         }
 
         [TestMethod]
@@ -883,7 +883,7 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(originalItem.Name, clonedItem.Name);
             
             // SimpleDataインスタンスがシャローコピーされていることを確認
-            Assert.AreSame(originalItem.Item, clonedItem.Item);
+            Assert.AreSame(originalItem.ItemData, clonedItem.ItemData);
         }
         
         [TestMethod]
@@ -897,7 +897,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.IsTrue(directory.NodeExists(new VirtualPath("NewItem")));
             Assert.AreEqual(newNode, directory[new VirtualPath("NewItem")]);
-            CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory[new VirtualPath("NewItem")]).Item).Data);
+            CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory[new VirtualPath("NewItem")]).ItemData).Data);
         }
 
         [TestMethod]
@@ -930,7 +930,7 @@ namespace VirtualStorageLibrary.Test
             directory.Add(newNode, allowOverwrite: true);
 
             Assert.AreEqual(newNode, directory[new VirtualPath("OriginalItem")]);
-            CollectionAssert.AreEqual(newTestData, ((BinaryData)((VirtualItem<BinaryData>)directory[new VirtualPath("OriginalItem")]).Item).Data);
+            CollectionAssert.AreEqual(newTestData, ((BinaryData)((VirtualItem<BinaryData>)directory[new VirtualPath("OriginalItem")]).ItemData).Data);
         }
 
         [TestMethod]
@@ -985,7 +985,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(directory.NodeExists(new VirtualPath("TestItem")));
             var retrievedItem = directory.Get(new VirtualPath("TestItem")) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(itemData.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(itemData.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -999,7 +999,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(directory.NodeExists(new VirtualPath("TestItem")));
             var retrievedItem = directory.Get(new VirtualPath("TestItem")) as VirtualItem<SimpleData>;
             Assert.IsNotNull(retrievedItem);
-            Assert.AreEqual(itemData.Value, retrievedItem.Item.Value);
+            Assert.AreEqual(itemData.Value, retrievedItem.ItemData.Value);
         }
 
         [TestMethod]
@@ -1024,7 +1024,7 @@ namespace VirtualStorageLibrary.Test
 
             var retrievedItem = directory.Get(new VirtualPath("TestItem")) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(newItemData.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(newItemData.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -1102,10 +1102,10 @@ namespace VirtualStorageLibrary.Test
         public void Indexer_ValidKey_ReturnsNode()
         {
             var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
-            var node = new VirtualItem<BinaryData>(new VirtualPath("Item"), new BinaryData());
+            var node = new VirtualItem<BinaryData>(new VirtualPath("ItemData"), new BinaryData());
             directory.Add(node);
 
-            var result = directory[new VirtualPath("Item")];
+            var result = directory[new VirtualPath("ItemData")];
 
             Assert.AreEqual(node, result);
         }
@@ -1329,16 +1329,13 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var directory = new VirtualDirectory(new VirtualPath("TestDirectory"));
-            directory.AddDirectory(new VirtualPath("SubDirectory1"));
-            directory.AddItem(new VirtualPath("Item1"), "Some data");
-            directory.AddSymbolicLink(new VirtualPath("Link1"), new VirtualPath("/Item1"), false);
 
             // Act
             var result = directory.ToString();
             Debug.WriteLine(result);
 
             // Assert
-            Assert.AreEqual("Directory: TestDirectory, Count: 3 (1 directories, 2 items)", result);
+            Assert.IsTrue(result.Contains("TestDirectory"));
         }
 
         [TestMethod]
@@ -1595,20 +1592,16 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var storage = new VirtualStorage();
-            var item1 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]),
-                DateTime.Now, DateTime.Now);
-            var item2 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]),
-                DateTime.Now.AddDays(1), DateTime.Now.AddDays(1));
-
-            // TODO: item1、item2をAddする
-            storage.AddDirectory(new VirtualPath("/dir2"));
-            storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
+            var item1 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]), DateTime.Now, DateTime.Now);
+            var item2 = new VirtualItem<BinaryData>(new VirtualPath("item2"), new BinaryData([1, 2, 3]), DateTime.Now.AddDays(1), DateTime.Now.AddDays(1));
             storage.AddDirectory(new VirtualPath("/dir1"));
-            storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/"), item1);
+            storage.AddItem(new VirtualPath("/"), item2);
 
             var options = new VirtualNodeDisplayOptions
             {
-                SortBy = VirtualSortProperty.Name,
+                SortBy = VirtualSortProperty.CreatedDate,
                 Order = VirtualSortOrder.Ascending,
                 GroupBy = VirtualGroupOrder.DirectoryFirst
             };
@@ -1623,13 +1616,51 @@ namespace VirtualStorageLibrary.Test
             // Assert
             foreach (var node in nodes)
             {
-                Debug.WriteLine(node.Name.NodeName);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(4, nodes.Count);
             Assert.AreEqual(new VirtualPath("dir1"), nodes[0].Name.NodeName);
             Assert.AreEqual(new VirtualPath("dir2"), nodes[1].Name.NodeName);
             Assert.AreEqual(new VirtualPath("item1"), nodes[2].Name.NodeName);
             Assert.AreEqual(new VirtualPath("item2"), nodes[3].Name.NodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeList_CreatedDateDesDir()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            var item1 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]));
+            var item2 = new VirtualItem<BinaryData>(new VirtualPath("item2"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir1"));
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/"), item1);
+            storage.AddItem(new VirtualPath("/"), item2);
+
+            var options = new VirtualNodeDisplayOptions
+            {
+                SortBy = VirtualSortProperty.CreatedDate,
+                Order = VirtualSortOrder.Descending,
+                GroupBy = VirtualGroupOrder.DirectoryFirst
+            };
+
+            // テスト対象のディレクトリを取得
+            var directory = storage.GetDirectory(new VirtualPath("/"));
+            directory.Options = options;
+
+            // Act
+            var nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (var node in nodes)
+            {
+                Debug.WriteLine(node);
+            }
+            Assert.AreEqual(4, nodes.Count);
+            Assert.AreEqual(new VirtualPath("dir2"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir1"), nodes[1].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[2].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[3].Name.NodeName);
         }
 
         [TestMethod]
@@ -2214,14 +2245,14 @@ namespace VirtualStorageLibrary.Test
             var vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/TestDirectory"));
             var item = new BinaryData([1, 2, 3]);
-            vs.AddItem(new VirtualPath("/TestDirectory/Item"), item);
+            vs.AddItem(new VirtualPath("/TestDirectory/ItemData"), item);
 
             // メソッドを実行
-            var node = vs.GetNode(new VirtualPath("/TestDirectory/Item"));
+            var node = vs.GetNode(new VirtualPath("/TestDirectory/ItemData"));
 
             // 結果を検証
             Assert.IsNotNull(node);
-            Assert.AreEqual(new VirtualPath("Item"), node.Name);
+            Assert.AreEqual(new VirtualPath("ItemData"), node.Name);
             Assert.IsInstanceOfType(node, typeof(VirtualItem<BinaryData>));
         }
 
@@ -2267,7 +2298,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsInstanceOfType(node, typeof(VirtualItem<string>));
             var item = node as VirtualItem<string>;
             Assert.IsNotNull(item);
-            Assert.AreEqual("TestItem", item.Item);
+            Assert.AreEqual("TestItem", item.ItemData);
         }
 
         [TestMethod]
@@ -2338,7 +2369,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
             var item = resultNode as VirtualItem<string>;
             Assert.IsNotNull(item);
-            Assert.AreEqual("FinalItem", item.Item);
+            Assert.AreEqual("FinalItem", item.ItemData);
         }
 
         [TestMethod]
@@ -2360,7 +2391,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
             var item = resultNode as VirtualItem<string>;
             Assert.IsNotNull(item);
-            Assert.AreEqual("RelativeItem", item.Item);
+            Assert.AreEqual("RelativeItem", item.ItemData);
         }
 
         [TestMethod]
@@ -2420,7 +2451,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(resultNode);
             Assert.IsInstanceOfType(resultNode, typeof(VirtualItem<string>));
             var item = resultNode as VirtualItem<string>;
-            Assert.AreEqual("complex item in dir2", item?.Item);
+            Assert.AreEqual("complex item in dir2", item?.ItemData);
             Assert.AreEqual(resultNode.Name, new VirtualPath("item"));
         }
 
@@ -2600,7 +2631,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(path));
             var retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -2616,7 +2647,7 @@ namespace VirtualStorageLibrary.Test
 
             var retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(newItem.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(newItem.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -2633,7 +2664,7 @@ namespace VirtualStorageLibrary.Test
         {
             var virtualStorage = new VirtualStorage();
             var item = new BinaryData(new byte[] { 1, 2, 3 });
-            VirtualPath path = new VirtualPath("/NonExistentDirectory/Item");
+            VirtualPath path = new VirtualPath("/NonExistentDirectory/ItemData");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.AddItem(path, item));
         }
@@ -2662,7 +2693,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(itemName.AddStartSlash())); // カレントディレクトリにアイテムが作成されていることを確認
             var retrievedItem = virtualStorage.GetNode(itemName.AddStartSlash()) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -2684,7 +2715,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(fullPath)); // 相対パスで指定された位置にアイテムが作成されていることを確認
             var retrievedItem = virtualStorage.GetNode(fullPath) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -2704,7 +2735,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(new VirtualPath("/subdirectory/") + itemName));
             var retrievedItem = virtualStorage.GetNode(new VirtualPath("/subdirectory/") + itemName) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -2741,7 +2772,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(new VirtualPath("/actualDirectory/newItem")));
             var retrievedItem = virtualStorage.GetNode(new VirtualPath("/actualDirectory/newItem")) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -2761,7 +2792,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(new VirtualPath("/level1/level2/targetDirectory/newItem")));
             var retrievedItem = virtualStorage.GetNode(new VirtualPath("/level1/level2/targetDirectory/newItem")) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.Item.Data);
+            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -3143,9 +3174,9 @@ namespace VirtualStorageLibrary.Test
 
         //    SetTestData(vs);
 
-        //    Assert.AreEqual(4, vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true).Count());
+        //    Assert.AreEqual(4, vs.GetNodes(VirtualPath.Root, VirtualNodeType.ItemData, false, true).Count());
         //    Debug.WriteLine("\nItems:");
-        //    foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.Item, false, true))
+        //    foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeType.ItemData, false, true))
         //    {
         //        Assert.IsNotNull(node);
         //        Debug.WriteLine(node.Name);
@@ -3221,7 +3252,7 @@ namespace VirtualStorageLibrary.Test
             storage.CopyNode(new VirtualPath("/sourceFile"), new VirtualPath("/destinationFile"), false, true);
 
             var destinationItem = (VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/destinationFile"));
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.Item.Data);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -3245,7 +3276,7 @@ namespace VirtualStorageLibrary.Test
             storage.CopyNode(new VirtualPath("/sourceFile"), new VirtualPath("/destination/"), false, false);
 
             var destinationItem = (VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/destination/sourceFile"));
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.Item.Data);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -3336,7 +3367,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.IsNotNull(originalItem);
             Assert.IsNotNull(copiedItem);
-            Assert.AreNotSame(originalItem, copiedItem.Item);
+            Assert.AreNotSame(originalItem, copiedItem.ItemData);
         }
 
         [TestMethod]
@@ -3359,8 +3390,8 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(copiedFile1);
             Assert.IsNotNull(originalFile2);
             Assert.IsNotNull(copiedFile2);
-            Assert.AreNotSame(originalFile1, copiedFile1.Item);
-            Assert.AreNotSame(originalFile2, copiedFile2.Item);
+            Assert.AreNotSame(originalFile1, copiedFile1.ItemData);
+            Assert.AreNotSame(originalFile2, copiedFile2.ItemData);
         }
 
         [TestMethod]
@@ -3384,8 +3415,8 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(copiedFile1);
             Assert.IsNotNull(originalFile2);
             Assert.IsNotNull(copiedFile2);
-            Assert.AreNotSame(originalFile1, copiedFile1.Item);
-            Assert.AreNotSame(originalFile2, copiedFile2.Item);
+            Assert.AreNotSame(originalFile1, copiedFile1.ItemData);
+            Assert.AreNotSame(originalFile2, copiedFile2.ItemData);
         }
 
         [TestMethod]
@@ -3831,7 +3862,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceFile")));
             var destinationItem = (VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/destinationFile"));
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.Item.Data);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.ItemData.Data);
         }
 
         [TestMethod]
@@ -3940,7 +3971,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(storage.NodeExists(new VirtualPath("/destinationDir/fileName"))); // 移動先にファイルが存在することを確認
 
             var movedItem = (VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/destinationDir/fileName"));
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, movedItem.Item.Data); // 移動先のファイルの中身が正しいことを確認
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, movedItem.ItemData.Data); // 移動先のファイルの中身が正しいことを確認
         }
 
         [TestMethod]
@@ -4010,7 +4041,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceFile")));
             Assert.IsTrue(storage.NodeExists(new VirtualPath("/renamedFile")));
 
-            var result = ((VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/renamedFile"))).Item.Data;
+            var result = ((VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/renamedFile"))).ItemData.Data;
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, result);
         }
 

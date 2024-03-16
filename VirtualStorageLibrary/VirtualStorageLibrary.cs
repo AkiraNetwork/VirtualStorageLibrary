@@ -592,40 +592,45 @@ namespace VirtualStorageLibrary
 
     public class VirtualItem<T> : VirtualItem, IDeepCloneable<VirtualItem<T>>, IDisposable
     {
-        public T Item { get; set; }
+        public T ItemData { get; set; }
 
         private bool disposed;
 
         public VirtualItem(VirtualPath name, T item) : base(name)
         {
-            Item = item;
+            ItemData = item;
             disposed = false;
         }
 
         public VirtualItem(VirtualPath name, T item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
-            Item = item;
+            ItemData = item;
             disposed = false;
         }
 
         public override string ToString()
         {
-            string itemInformation = $"Item: {Name}";
+            string itemInformation = $"ItemData: {Name}";
 
             // C# 8.0のnull非許容参照型に対応
             // Itemがnullではないことを確認し、ItemのToString()の結果を使用
-            if (Item != null && Item.GetType().ToString() != Item.ToString())
+            if (ItemData != null && ItemData.GetType().ToString() != ItemData.ToString())
             {
-                itemInformation += $", {Item.ToString()}";
+                itemInformation += $", {ItemData.ToString()}";
             }
+
+            // CreatedDateとUpdatedDateを追加
+            string createdDateFormatted = CreatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
+            string updatedDateFormatted = UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
+            itemInformation += $", CreatedDate: {createdDateFormatted}, UpdatedDate: {updatedDateFormatted}";
 
             return itemInformation;
         }
 
         public override VirtualNode DeepClone()
         {
-            T clonedItem = Item;
-            if (Item is IDeepCloneable<T> cloneableItem)
+            T clonedItem = ItemData;
+            if (ItemData is IDeepCloneable<T> cloneableItem)
             {
                 clonedItem = cloneableItem.DeepClone();
             }
@@ -651,7 +656,7 @@ namespace VirtualStorageLibrary
                 if (disposing)
                 {
                     // TがIDisposableを実装していればDisposeを呼び出す
-                    (Item as IDisposable)?.Dispose();
+                    (ItemData as IDisposable)?.Dispose();
                 }
 
                 // VirtualItem<T>はアンマネージドリソースを扱ってないので、ここでは何もしない
@@ -832,7 +837,14 @@ namespace VirtualStorageLibrary
 
         public override string ToString()
         {
-            return $"Directory: {Name}, Count: {Count} ({DirectoryCount} directories, {ItemCount} items)";
+            string directoryInformation = $"Directory: {Name}";
+
+            // CreatedDateとUpdatedDateを追加
+            string createdDateFormatted = CreatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
+            string updatedDateFormatted = UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
+            directoryInformation += $", CreatedDate: {createdDateFormatted}, UpdatedDate: {updatedDateFormatted}";
+
+            return directoryInformation;
         }
 
         public override VirtualNode DeepClone()
@@ -1026,9 +1038,6 @@ namespace VirtualStorageLibrary
             directory.Add(new VirtualSymbolicLink(linkName, targetPath), true);
         }
 
-        // pathで指定されたディレクトリにitemを追加
-        // pathがディレクトリでない場合は例外をスロー
-        // pathにアイテム名が含まれない事を前提とする
         public void AddItem<T>(VirtualPath path, VirtualItem<T> item, bool overwrite = false)
         {
             // 絶対パスに変換
@@ -1060,7 +1069,7 @@ namespace VirtualStorageLibrary
             directory.Add(item, overwrite);
         }
 
-        public void AddItem<T>(VirtualPath path, T item, bool overwrite = false)
+        public void AddItem<T>(VirtualPath path, T data, bool overwrite = false)
         {
             // 絶対パスに変換
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -1069,30 +1078,11 @@ namespace VirtualStorageLibrary
             VirtualPath directoryPath = path.DirectoryPath;
             VirtualPath itemName = path.NodeName;
 
-            // 対象ディレクトリを取得
-            VirtualDirectory directory = GetDirectory(directoryPath, true);
+            // アイテムを作成
+            VirtualItem<T> item = new VirtualItem<T>(itemName, data);
 
-            // 既存のアイテムの存在チェック
-            if (directory.NodeExists(itemName))
-            {
-                if (!overwrite)
-                {
-                    throw new InvalidOperationException($"アイテム '{itemName}' は既に存在します。上書きは許可されていません。");
-                }
-                else
-                {
-                    // 上書き対象がアイテムであることを確認
-                    if (!ItemExists(directoryPath + itemName))
-                    {
-                        throw new InvalidOperationException($"'{itemName}' はアイテム以外のノードです。アイテムの上書きはできません。");
-                    }
-                    // 既存アイテムの削除
-                    directory.Remove(itemName);
-                }
-            }
-
-            // 新しいアイテムを追加
-            directory.Add(new VirtualItem<T>(itemName, item), overwrite);
+            // AddItemメソッドを呼び出し
+            AddItem(directoryPath, item, overwrite);
         }
 
         public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
