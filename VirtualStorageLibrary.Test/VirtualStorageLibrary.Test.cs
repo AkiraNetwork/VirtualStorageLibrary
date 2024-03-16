@@ -1596,7 +1596,7 @@ namespace VirtualStorageLibrary.Test
     public class VirtualNodeDictionaryTests
     {
         [TestMethod]
-        public void GetNodeList_WithSortOptions_ReturnsSortedNodeList()
+        public void GetNodeList_DefaultOption()
         {
             // Arrange
             var storage = new VirtualStorage();
@@ -1606,10 +1606,39 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
+            // テスト対象のディレクトリを取得
+            var directory = storage.GetDirectory(new VirtualPath("/"));
+
+            // Act
+            var nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (var node in nodes)
+            {
+                Debug.WriteLine(node.Name.NodeName);
+            }
+            Assert.AreEqual(4, nodes.Count);
+            Assert.AreEqual(new VirtualPath("dir1"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir2"), nodes[1].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[2].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[3].Name.NodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeList_NameAscDir()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir1"));
+            storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
+
             var options = new VirtualNodeDisplayOptions
             {
                 SortBy = VirtualSortProperty.Name,
-                Order = VirtualSortOrder.Ascending
+                Order = VirtualSortOrder.Ascending,
+                GroupBy = VirtualGroupOrder.DirectoryFirst
             };
 
             // テスト対象のディレクトリを取得
@@ -1629,6 +1658,115 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(new VirtualPath("dir2"), nodes[1].Name.NodeName);
             Assert.AreEqual(new VirtualPath("item1"), nodes[2].Name.NodeName);
             Assert.AreEqual(new VirtualPath("item2"), nodes[3].Name.NodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeList_CreatedDateAscDir()
+        {
+            // TODO: 作成途中。
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir1"));
+            storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
+
+            var options = new VirtualNodeDisplayOptions
+            {
+                SortBy = VirtualSortProperty.Name,
+                Order = VirtualSortOrder.Ascending,
+                GroupBy = VirtualGroupOrder.DirectoryFirst
+            };
+
+            // テスト対象のディレクトリを取得
+            var directory = storage.GetDirectory(new VirtualPath("/"));
+            directory.Options = options;
+
+            // Act
+            var nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (var node in nodes)
+            {
+                Debug.WriteLine(node.Name.NodeName);
+            }
+            Assert.AreEqual(4, nodes.Count);
+            Assert.AreEqual(new VirtualPath("dir1"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir2"), nodes[1].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[2].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[3].Name.NodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeList_NameDesDir()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir1"));
+            storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
+
+            var options = new VirtualNodeDisplayOptions
+            {
+                SortBy = VirtualSortProperty.Name,
+                Order = VirtualSortOrder.Descending,
+                GroupBy = VirtualGroupOrder.DirectoryFirst
+            };
+
+            // テスト対象のディレクトリを取得
+            var directory = storage.GetDirectory(new VirtualPath("/"));
+            directory.Options = options;
+
+            // Act
+            var nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (var node in nodes)
+            {
+                Debug.WriteLine(node.Name.NodeName);
+            }
+            Assert.AreEqual(4, nodes.Count);
+            Assert.AreEqual(new VirtualPath("dir2"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir1"), nodes[1].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[2].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[3].Name.NodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeList_NameAscItem()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir1"));
+            storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
+
+            var options = new VirtualNodeDisplayOptions
+            {
+                SortBy = VirtualSortProperty.Name,
+                Order = VirtualSortOrder.Ascending,
+                GroupBy = VirtualGroupOrder.ItemFirst
+            };
+
+            // テスト対象のディレクトリを取得
+            var directory = storage.GetDirectory(new VirtualPath("/"));
+            directory.Options = options;
+
+            // Act
+            var nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (var node in nodes)
+            {
+                Debug.WriteLine(node.Name.NodeName);
+            }
+            Assert.AreEqual(4, nodes.Count);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[1].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir1"), nodes[2].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir2"), nodes[3].Name.NodeName);
         }
     }
 

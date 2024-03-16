@@ -702,16 +702,34 @@ namespace VirtualStorageLibrary
 
     public class VirtualNodeDisplayOptions
     {
-        [DebuggerNonUserCode]
-        public VirtualSortProperty SortBy { get; set; }
+        public VirtualSortProperty SortBy
+        { 
+            [DebuggerStepThrough]
+            get;
 
-        [DebuggerNonUserCode]
-        public VirtualSortOrder Order { get; set; }
+            [DebuggerStepThrough]
+            set;
+        }
 
-        [DebuggerNonUserCode]
-        public VirtualGroupOrder GroupBy { get; set; }
+        public VirtualSortOrder Order
+        { 
+            [DebuggerStepThrough]
+            get;
 
-        [DebuggerNonUserCode]
+            [DebuggerStepThrough]
+            set;
+        }
+
+        public VirtualGroupOrder GroupBy
+        {
+            [DebuggerStepThrough]
+            get;
+
+            [DebuggerStepThrough]
+            set;
+        }
+
+        [DebuggerStepThrough]
         public VirtualNodeDisplayOptions(
             VirtualSortProperty sortBy = VirtualSortProperty.Name,
             VirtualSortOrder order = VirtualSortOrder.Ascending,
@@ -731,34 +749,40 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodeList()
         {
-            // グループ化とソートの適用
             var query = this.Values.AsEnumerable();
 
-            // ディレクトリとアイテムを区別してソートする
-            var sortedQuery = query
-                .OrderBy(node => node is VirtualDirectory ? 0 : 1); // ディレクトリを先に
+            // _options.GroupByに基づいて、ディレクトリとアイテムのグループ化順序を決定
+            IOrderedEnumerable<VirtualNode> groupedQuery;
+            if (_options.GroupBy == VirtualGroupOrder.DirectoryFirst)
+            {
+                groupedQuery = query.OrderBy(node => node is VirtualDirectory ? 0 : 1);
+            }
+            else
+            {
+                groupedQuery = query.OrderBy(node => node is VirtualDirectory ? 1 : 0);
+            }
 
             // ソートの適用
             switch (_options.SortBy)
             {
                 case VirtualSortProperty.Name:
-                    sortedQuery = _options.Order == VirtualSortOrder.Ascending ?
-                        sortedQuery.ThenBy(node => node.Name.Path) :
-                        sortedQuery.ThenByDescending(node => node.Name.Path);
+                    groupedQuery = _options.Order == VirtualSortOrder.Ascending ?
+                        groupedQuery.ThenBy(node => node.Name.Path) :
+                        groupedQuery.ThenByDescending(node => node.Name.Path);
                     break;
                 case VirtualSortProperty.CreatedDate:
-                    sortedQuery = _options.Order == VirtualSortOrder.Ascending ?
-                        sortedQuery.ThenBy(node => node.CreatedDate) :
-                        sortedQuery.ThenByDescending(node => node.CreatedDate);
+                    groupedQuery = _options.Order == VirtualSortOrder.Ascending ?
+                        groupedQuery.ThenBy(node => node.CreatedDate) :
+                        groupedQuery.ThenByDescending(node => node.CreatedDate);
                     break;
                 case VirtualSortProperty.UpdatedDate:
-                    sortedQuery = _options.Order == VirtualSortOrder.Ascending ?
-                        sortedQuery.ThenBy(node => node.UpdatedDate) :
-                        sortedQuery.ThenByDescending(node => node.UpdatedDate);
+                    groupedQuery = _options.Order == VirtualSortOrder.Ascending ?
+                        groupedQuery.ThenBy(node => node.UpdatedDate) :
+                        groupedQuery.ThenByDescending(node => node.UpdatedDate);
                     break;
             }
 
-            return sortedQuery;
+            return groupedQuery;
         }
     }
 
