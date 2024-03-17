@@ -776,9 +776,11 @@ namespace VirtualStorageLibrary
 
         public int Count => _nodes.Count;
 
-        public int DirectoryCount => _nodes.Values.OfType<VirtualDirectory>().Count();
+        public int DirectoryCount => _nodes.Values.Count(n => n is VirtualDirectory);
 
-        public int ItemCount => _nodes.Values.Count(n => !(n is VirtualDirectory));
+        public int ItemCount => _nodes.Values.Count(n => n is VirtualItem);
+
+        public int SymbolicLinkCount => _nodes.Values.Count(n => n is VirtualSymbolicLink);
 
         public IEnumerable<VirtualPath> NodeNames => _nodes.Keys;
 
@@ -953,6 +955,8 @@ namespace VirtualStorageLibrary
     public class VirtualStorage
     {
         private VirtualDirectory _root;
+
+        public VirtualDirectory Root => _root;
 
         public VirtualPath CurrentPath { get; private set; }
 

@@ -817,6 +817,36 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void DirectoryCount_WithMultipleDirectories_ReturnsCorrectCount()
+        {
+            var storage = new VirtualStorage();
+            storage.Root.AddDirectory(new VirtualPath("dir1"));
+            storage.Root.AddDirectory(new VirtualPath("dir2"));
+
+            Assert.AreEqual(2, storage.Root.DirectoryCount, "ルートディレクトリ内のディレクトリ数が正しくありません。");
+        }
+
+        [TestMethod]
+        public void ItemCount_WithMultipleItems_ReturnsCorrectCount()
+        {
+            var storage = new VirtualStorage();
+            storage.Root.AddItem(new VirtualPath("item1"), new object());
+            storage.Root.AddItem(new VirtualPath("item2"), new object());
+
+            Assert.AreEqual(2, storage.Root.ItemCount, "ルートディレクトリ内のアイテム数が正しくありません。");
+        }
+
+        [TestMethod]
+        public void SymbolicLinkCount_WithMultipleSymbolicLinks_ReturnsCorrectCount()
+        {
+            var storage = new VirtualStorage();
+            storage.Root.Add(new VirtualSymbolicLink(new VirtualPath("link1"), new VirtualPath("/path/to/target1")));
+            storage.Root.Add(new VirtualSymbolicLink(new VirtualPath("link2"), new VirtualPath("/path/to/target2")));
+
+            Assert.AreEqual(2, storage.Root.SymbolicLinkCount, "ルートディレクトリ内のシンボリックリンク数が正しくありません。");
+        }
+
+        [TestMethod]
         public void DeepClone_ReturnsDeepCopyOfVirtualDirectory()
         {
             // Arrange
@@ -1592,8 +1622,8 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             var storage = new VirtualStorage();
-            var item1 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]), DateTime.Now, DateTime.Now);
-            var item2 = new VirtualItem<BinaryData>(new VirtualPath("item2"), new BinaryData([1, 2, 3]), DateTime.Now.AddDays(1), DateTime.Now.AddDays(1));
+            var item1 = new VirtualItem<BinaryData>(new VirtualPath("item1"), new BinaryData([1, 2, 3]));
+            var item2 = new VirtualItem<BinaryData>(new VirtualPath("item2"), new BinaryData([1, 2, 3]));
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddDirectory(new VirtualPath("/dir2"));
             storage.AddItem(new VirtualPath("/"), item1);
