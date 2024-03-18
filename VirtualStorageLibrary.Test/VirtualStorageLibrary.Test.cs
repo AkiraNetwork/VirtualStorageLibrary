@@ -4629,8 +4629,8 @@ namespace VirtualStorageLibrary.Test
             Debug.WriteLine("------");
             Debug.WriteLine("/");
             Debug.WriteLine("├dir1");
-            Debug.WriteLine("｜├item1");
-            Debug.WriteLine("｜└item2");
+            Debug.WriteLine("│├item1");
+            Debug.WriteLine("│└item2");
             Debug.WriteLine("└dir2");
             Debug.WriteLine("  ├item3");
             Debug.WriteLine("  └item4");
