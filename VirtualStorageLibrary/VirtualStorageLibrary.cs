@@ -20,17 +20,17 @@ namespace VirtualStorageLibrary
     {
         public VirtualNode? Node { [DebuggerStepThrough] get; }
         public VirtualPath TraversalPath { [DebuggerStepThrough] get; }
-        public VirtualNode? ParentNode { [DebuggerStepThrough] get; }
+        public VirtualDirectory? ParentDirectory { [DebuggerStepThrough] get; }
         public int Depth { [DebuggerStepThrough] get; }
         public int Index { [DebuggerStepThrough] get; }
         public VirtualPath? ResolvedPath { [DebuggerStepThrough] get; }
 
         [DebuggerStepThrough]
-        public NodeInformation(VirtualNode? node, VirtualPath traversalPath, VirtualNode? parentNode = null, int depth = 0, int index = 0, VirtualPath? resolvedPath = null)
+        public NodeInformation(VirtualNode? node, VirtualPath traversalPath, VirtualDirectory? parentNode = null, int depth = 0, int index = 0, VirtualPath? resolvedPath = null)
         {
             Node = node;
             TraversalPath = traversalPath;
-            ParentNode = parentNode;
+            ParentDirectory = parentNode;
             Depth = depth;
             Index = index;
             ResolvedPath = resolvedPath;
@@ -43,7 +43,7 @@ namespace VirtualStorageLibrary
             {
                 $"NodeName: {Node?.Name}",
                 $"TraversalPath: {TraversalPath}",
-                $"ParentNode: {ParentNode?.Name}",
+                $"ParentDirectory: {ParentDirectory?.Name}",
                 $"Depth: {Depth}",
                 $"Index: {Index}"
             };
@@ -1307,20 +1307,20 @@ namespace VirtualStorageLibrary
             return WalkPathTreeInternal(path, node, null, 0, 0, followLinks);
         }
 
-        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, VirtualNode? parentNode, int currentDepth, int currentIndex, bool followLinks)
+        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int currentDepth, int currentIndex, bool followLinks)
         {
             // ノードの種類に応じて処理を分岐
             if (baseNode is VirtualDirectory directory)
             {
                 // ディレクトリを通知
-                yield return new NodeInformation(directory, basePath, parentNode, currentDepth, currentIndex);
+                yield return new NodeInformation(directory, basePath, parentDirectory, currentDepth, currentIndex);
 
                 // ディレクトリ内のノードを再帰的に探索
                 int index = 0;
                 foreach (var node in directory.Nodes)
                 {
                     VirtualPath nodePath = basePath + node.Name;
-                    foreach (var result in WalkPathTreeInternal(nodePath, node, baseNode, currentDepth + 1, index, followLinks))
+                    foreach (var result in WalkPathTreeInternal(nodePath, node, directory, currentDepth + 1, index, followLinks))
                     {
                         yield return result;
                     }
@@ -1331,7 +1331,7 @@ namespace VirtualStorageLibrary
             {
                 // TODO: VirtualItem<T>で返さないとまずいか調べる
                 // アイテムを通知
-                yield return new NodeInformation(item, basePath, parentNode, currentDepth, currentIndex);
+                yield return new NodeInformation(item, basePath, parentDirectory, currentDepth, currentIndex);
             }
             else if (baseNode is VirtualSymbolicLink link)
             {
@@ -1346,7 +1346,7 @@ namespace VirtualStorageLibrary
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    foreach (var result in WalkPathTreeInternal(basePath, linkTargetNode, parentNode, currentDepth, currentIndex, followLinks))
+                    foreach (var result in WalkPathTreeInternal(basePath, linkTargetNode, parentDirectory, currentDepth, currentIndex, followLinks))
                     {
                         yield return result;
                     }
@@ -1354,7 +1354,7 @@ namespace VirtualStorageLibrary
                 else
                 {
                     // シンボリックリンクを通知
-                    yield return new NodeInformation(link, basePath, parentNode, currentDepth, currentIndex);
+                    yield return new NodeInformation(link, basePath, parentDirectory, currentDepth, currentIndex);
                 }
             }
         }
@@ -1903,7 +1903,7 @@ namespace VirtualStorageLibrary
                 }
 
                 var lineStart = isLastNode ? "└" : "├";
-                treeBuilder.AppendLine($"{prefix}{lineStart} {node.Node?.Name}");
+                treeBuilder.AppendLine($"{prefix}{lineStart} {node?.Node?.Name}");
 
                 // シンボリックリンクの表示は、ここでは省略
             }
