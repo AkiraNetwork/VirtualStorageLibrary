@@ -1900,7 +1900,7 @@ namespace VirtualStorageLibrary
                 }
 
                 // 現在のノードがその階層で最後のノードかどうかを判断
-                bool isLastNode = !nodes.Any(n => n.Depth == node.Depth && n.Index > node.Index);
+                bool isLastNode = node.ParentDirectory?.Count == node.Index + 1;
                 depthLastNode[node.Depth] = isLastNode;
 
                 var prefix = prefixBuilder.ToString();
