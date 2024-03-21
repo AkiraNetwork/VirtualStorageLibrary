@@ -1875,40 +1875,39 @@ namespace VirtualStorageLibrary
             }
         }
 
+        // 仮想ストレージのツリー構造をテキストベースで作成し返却する
+        // 返却するテストは以下の出力の形式とする。
+        // 例: もし、/dir1/dir2/item1, /dir1/dir2/item2, /dir1/item3 が存在し、/dir1がpathで指定された場合
+        // 出力:
+        // /dir1
+        // ├dir2
+        // │ ├item1
+        // │ └item2
+        // └item3
         public string GenerateTextBasedTreeStructure(VirtualPath path, bool followLinks = false)
         {
-            var nodeInfos = WalkPathTree(path, followLinks).ToList();
-            StringBuilder treeBuilder = new StringBuilder();
+            var builder = new StringBuilder();
+            var nodes = WalkPathTree(path, followLinks).ToList(); // ノード情報のリストを取得
+            var depthLastNode = new Dictionary<int, bool>(); // 各深さで最後のノードかどうかを保持
 
-            // 各深さにおける最後のノードのインデックスを保持する辞書
-            var depthLastIndex = new Dictionary<int, int>();
-            foreach (var node in nodeInfos)
+            foreach (var node in nodes)
             {
-                depthLastIndex[node.Depth] = node.Index;
-            }
-
-            for (int i = 0; i < nodeInfos.Count; i++)
-            {
-                var node = nodeInfos[i];
-                var isLastNode = depthLastIndex[node.Depth] == node.Index;
-                var prefix = new String(' ', node.Depth * 2); // 基本インデント
-
-                // 縦罫線の追加
-                for (int depth = 1; depth <= node.Depth; depth++)
+                // 深さに応じたインデントの生成
+                StringBuilder prefixBuilder = new StringBuilder();
+                for (int i = 0; i < node.Depth; i++)
                 {
-                    if (depthLastIndex.ContainsKey(depth - 1) && node.Index < depthLastIndex[depth - 1])
-                    {
-                        prefix = prefix.Substring(0, depth * 2 - 2) + "│" + prefix.Substring(depth * 2);
-                    }
+                    prefixBuilder.Append(depthLastNode.ContainsKey(i) && depthLastNode[i] ? "  " : "│");
                 }
 
-                var lineStart = isLastNode ? "└" : "├";
-                treeBuilder.AppendLine($"{prefix}{lineStart} {node?.Node?.Name}");
+                // 現在のノードがその階層で最後のノードかどうかを判断
+                bool isLastNode = !nodes.Any(n => n.Depth == node.Depth && n.Index > node.Index);
+                depthLastNode[node.Depth] = isLastNode;
 
-                // シンボリックリンクの表示は、ここでは省略
+                var prefix = prefixBuilder.ToString();
+                builder.AppendLine($"{prefix}{(isLastNode ? "└" : "├")}{node.Node?.Name}");
             }
 
-            return treeBuilder.ToString();
+            return builder.ToString();
         }
     }
 }

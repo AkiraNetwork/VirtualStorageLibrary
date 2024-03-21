@@ -4612,11 +4612,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir2"), true);
             vs.AddItem(new VirtualPath("/dir2/item3"), "test");
             vs.AddItem(new VirtualPath("/dir2/item4"), "test");
-            vs.AddItem(new VirtualPath("/item5"), "test");
-            vs.AddItem(new VirtualPath("/item6"), "test");
-            vs.AddSymbolicLink(new VirtualPath("/link-item5"), new VirtualPath("/item5"));
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link-item1"), new VirtualPath("/dir1/item1"));
-            vs.AddSymbolicLink(new VirtualPath("/link-dir1"), new VirtualPath("/dir1"));
+            vs.AddItem(new VirtualPath("/dir2/item5"), "test");
 
             var result = vs.WalkPathTree(new VirtualPath("/"), true);
             foreach (var item in result)
@@ -4628,15 +4624,6 @@ namespace VirtualStorageLibrary.Test
 
             string tree = vs.GenerateTextBasedTreeStructure(new VirtualPath("/"), true);
             Debug.WriteLine(tree);
-
-            Debug.WriteLine("------");
-            Debug.WriteLine("/");
-            Debug.WriteLine("├dir1");
-            Debug.WriteLine("│├item1");
-            Debug.WriteLine("│└item2");
-            Debug.WriteLine("└dir2");
-            Debug.WriteLine("  ├item3");
-            Debug.WriteLine("  └item4");
         }
 
         [TestMethod]
