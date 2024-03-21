@@ -4606,13 +4606,21 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathTree_Test1()
         {
             var vs = new VirtualStorage();
+            vs.AddItem(new VirtualPath("/item0"), "test");
             vs.AddDirectory(new VirtualPath("/dir1"), true);
             vs.AddItem(new VirtualPath("/dir1/item1"), "test");
             vs.AddItem(new VirtualPath("/dir1/item2"), "test");
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddItem(new VirtualPath("/dir2/item3"), "test");
-            vs.AddItem(new VirtualPath("/dir2/item4"), "test");
-            vs.AddItem(new VirtualPath("/dir2/item5"), "test");
+            vs.AddDirectory(new VirtualPath("/dir2/sub"), true);
+            vs.AddItem(new VirtualPath("/dir2/sub/item3"), "test");
+            vs.AddItem(new VirtualPath("/dir2/sub/item4"), "test");
+            vs.AddItem(new VirtualPath("/dir2/sub/item5"), "test");
+            vs.AddItem(new VirtualPath("/item6"), "test");
+            vs.AddItem(new VirtualPath("/item8"), "test");
+            vs.AddSymbolicLink(new VirtualPath("/item7"), new VirtualPath("/dir1"));
+            vs.AddDirectory(new VirtualPath("/all-dir"), true);
+            vs.AddSymbolicLink(new VirtualPath("/all-dir/item1"), new VirtualPath("/dir1/item1"));
+            vs.AddSymbolicLink(new VirtualPath("/all-dir/item2"), new VirtualPath("/dir1/item2"));
+
 
             var result = vs.WalkPathTree(new VirtualPath("/"), true);
             foreach (var item in result)

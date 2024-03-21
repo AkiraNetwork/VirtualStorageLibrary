@@ -1879,35 +1879,81 @@ namespace VirtualStorageLibrary
         // 返却するテストは以下の出力の形式とする。
         // 例: もし、/dir1/dir2/item1, /dir1/dir2/item2, /dir1/item3 が存在し、/dir1がpathで指定された場合
         // 出力:
-        // /dir1
-        // ├dir2
-        // │ ├item1
-        // │ └item2
-        // └item3
+        // /
+        // ├dir1
+        // │├item1
+        // │└item2
+        // └dir2
+        // 　├item3
+        // 　├item4
+        // 　└item5
         public string GenerateTextBasedTreeStructure(VirtualPath path, bool followLinks = false)
         {
-            var builder = new StringBuilder();
-            var nodes = WalkPathTree(path, followLinks).ToList(); // ノード情報のリストを取得
-            var depthLastNode = new Dictionary<int, bool>(); // 各深さで最後のノードかどうかを保持
+            const char FullWidthSpaceChar = '\u3000';
+            StringBuilder tree = new StringBuilder();
 
-            foreach (var node in nodes)
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            IEnumerable<NodeInformation> nodeInfos = WalkPathTree(path, true);
+            StringBuilder line = new();
+            string previous = string.Empty;
+
+            foreach (var nodeInfo in nodeInfos)
             {
-                // 深さに応じたインデントの生成
-                StringBuilder prefixBuilder = new StringBuilder();
-                for (int i = 0; i < node.Depth; i++)
+                VirtualNode? node = nodeInfo.Node;
+                string nodeName = nodeInfo.TraversalPath.NodeName.ToString();
+                int depth = nodeInfo.Depth;
+                int count = nodeInfo.ParentDirectory?.Count ?? 0;
+                int index = nodeInfo.Index;
+
+                line.Clear();
+
+                if (depth > 0)
                 {
-                    prefixBuilder.Append(depthLastNode.ContainsKey(i) && depthLastNode[i] ? "  " : "│");
+                    for (int i = 0; i < depth - 1; i++)
+                    {
+                        if (i < previous.Length)
+                        {
+                            switch (previous[i])
+                            {
+                                case FullWidthSpaceChar:
+                                    line.Append(FullWidthSpaceChar);
+                                    break;
+                                case '│':
+                                    line.Append("│");
+                                    break;
+                                case '└':
+                                    line.Append(FullWidthSpaceChar);
+                                    break;
+                                case '├':
+                                    line.Append("│");
+                                    break;
+                                default:
+                                    line.Append(FullWidthSpaceChar);
+                                    break;
+                            }
+                        }
+                        else
+                        { 
+                            line.Append(FullWidthSpaceChar);
+                        }
+                    }
+
+                    if (index == count - 1)
+                    {
+                        line.Append("└");
+                    }
+                    else
+                    {
+                        line.Append("├");
+                    }
                 }
 
-                // 現在のノードがその階層で最後のノードかどうかを判断
-                bool isLastNode = node.ParentDirectory?.Count == node.Index + 1;
-                depthLastNode[node.Depth] = isLastNode;
+                line.Append(nodeName);
+                previous = line.ToString();
+                tree.AppendLine(line.ToString());
+            }   
 
-                var prefix = prefixBuilder.ToString();
-                builder.AppendLine($"{prefix}{(isLastNode ? "└" : "├")}{node.Node?.Name}");
-            }
-
-            return builder.ToString();
+            return tree.ToString();
         }
     }
 }
