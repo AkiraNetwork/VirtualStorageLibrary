@@ -7,7 +7,7 @@ namespace VirtualStorageLibrary
 
     public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualPath nodeName);
 
-    public enum VirtualNodeType
+    public enum VirtualNodeTypeFilter
     {
         Non = 0x00,
         Item = 0x01,
@@ -1400,7 +1400,7 @@ namespace VirtualStorageLibrary
             }
         }
 
-        private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeType nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector, bool followLinks)
+        private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeTypeFilter nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector, bool followLinks)
         {
             // ベースパスが空の場合は例外をスロー
             if (basePath.IsEmpty)
@@ -1420,7 +1420,7 @@ namespace VirtualStorageLibrary
             {
                 if (node is VirtualDirectory subdirectory)
                 {
-                    if ((nodeType & VirtualNodeType.Directory) == VirtualNodeType.Directory)
+                    if ((nodeType & VirtualNodeTypeFilter.Directory) == VirtualNodeTypeFilter.Directory)
                     {
                         yield return selector(subdirectory, basePath + subdirectory.Name);
                     }
@@ -1436,14 +1436,14 @@ namespace VirtualStorageLibrary
                 }
                 else if(node is VirtualItem)
                 {
-                    if ((nodeType & VirtualNodeType.Item) == VirtualNodeType.Item)
+                    if ((nodeType & VirtualNodeTypeFilter.Item) == VirtualNodeTypeFilter.Item)
                     {
                         yield return selector(node, basePath + node.Name);
                     }
                 }
                 else if (node is VirtualSymbolicLink)
                 {
-                    if ((nodeType & VirtualNodeType.SymbolicLink) == VirtualNodeType.SymbolicLink)
+                    if ((nodeType & VirtualNodeTypeFilter.SymbolicLink) == VirtualNodeTypeFilter.SymbolicLink)
                     {
                         yield return selector(node, basePath + node.Name);
                     }
@@ -1451,22 +1451,22 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
+        public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             return GetNodesInternal(basePath, nodeType, recursive, (node, path) => node, followLinks);
         }
 
-        public IEnumerable<VirtualNode> GetNodes(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
+        public IEnumerable<VirtualNode> GetNodes(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => node, followLinks);
         }
 
-        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
+        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             return GetNodesInternal(basePath, nodeType, recursive, (node, path) => path, followLinks);
         }
 
-        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeType nodeType = VirtualNodeType.All, bool recursive = false, bool followLinks = false)
+        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => path, followLinks);
         }
