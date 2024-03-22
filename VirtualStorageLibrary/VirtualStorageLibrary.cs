@@ -7,6 +7,13 @@ namespace VirtualStorageLibrary
 
     public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualPath nodeName);
 
+    public enum VirtualNodeType
+    {
+        Item,
+        Directory,
+        SymbolicLink
+    }
+
     public enum VirtualNodeTypeFilter
     {
         Non = 0x00,
@@ -1406,6 +1413,29 @@ namespace VirtualStorageLibrary
             catch (VirtualNodeNotFoundException)
             {
                 return null;
+            }
+        }
+
+        public VirtualNodeType GetNodeType(VirtualPath path, bool followLinks = false)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            VirtualNode node = GetNode(path, followLinks);
+
+            if (node is VirtualDirectory)
+            {
+                return VirtualNodeType.Directory;
+            }
+            else if (node is VirtualItem)
+            {
+                return VirtualNodeType.Item;
+            }
+            else if (node is VirtualSymbolicLink)
+            {
+                return VirtualNodeType.SymbolicLink;
+            }
+            else
+            {
+                throw new InvalidOperationException("未知のノード型です。");
             }
         }
 

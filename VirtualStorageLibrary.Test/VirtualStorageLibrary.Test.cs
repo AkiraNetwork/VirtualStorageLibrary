@@ -5005,5 +5005,51 @@ namespace VirtualStorageLibrary.Test
             // シンボリックリンクのみをフィルタリングし、ディレクトリにシンボリックリンクがない場合、結果は空であることを期待する
             Assert.AreEqual(0, result.Count);
         }
+
+        [TestMethod]
+        public void GetNodeType_ShouldReturnDirectoryForDirectoryPath()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+
+            var result = vs.GetNodeType(new VirtualPath("/dir1"));
+
+            Assert.AreEqual(VirtualNodeType.Directory, result);
+        }
+
+        [TestMethod]
+        public void GetNodeType_ShouldReturnItemForItemPath()
+        {
+            var vs = new VirtualStorage();
+            vs.AddItem(new VirtualPath("/item1"), "content1");
+
+            var result = vs.GetNodeType(new VirtualPath("/item1"));
+
+            Assert.AreEqual(VirtualNodeType.Item, result);
+        }
+
+        [TestMethod]
+        public void GetNodeType_ShouldReturnSymbolicLinkForLinkPathWithoutFollowing()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/link1"), new VirtualPath("/dir1"));
+
+            var result = vs.GetNodeType(new VirtualPath("/link1"), false);
+
+            Assert.AreEqual(VirtualNodeType.SymbolicLink, result);
+        }
+
+        [TestMethod]
+        public void GetNodeType_ShouldReturnDirectoryForLinkPathWhenFollowing()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/link1"), new VirtualPath("/dir1"));
+
+            var result = vs.GetNodeType(new VirtualPath("/link1"), true);
+
+            Assert.AreEqual(VirtualNodeType.Directory, result);
+        }
     }
 }
