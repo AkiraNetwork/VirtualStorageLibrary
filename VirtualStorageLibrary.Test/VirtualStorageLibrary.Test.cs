@@ -4881,5 +4881,129 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/symLink")));
             Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/linkToLink")));
         }
+
+        [TestMethod]
+        public void WalkPathTree_ShouldReturnOnlyItemsInDir1()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddItem(new VirtualPath("/dir1/item1"), "content1");
+            vs.AddItem(new VirtualPath("/dir1/item2"), "content2");
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir1"), VirtualNodeTypeFilter.Item, true).ToList();
+
+            // ディレクトリ自体は含まれないため、アイテムの数だけを期待する
+            Assert.AreEqual(2, result.Count); // 正しいアイテム数を確認
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/item2"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_ShouldReturnOnlyDirectoriesInDir2IncludingDirItself()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir2/subdir1"), true);
+            vs.AddDirectory(new VirtualPath("/dir2/subdir2"), true);
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir2"), VirtualNodeTypeFilter.Directory, true).ToList();
+
+            // ディレクトリ自体も含む
+            Assert.AreEqual(3, result.Count);
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir2"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir2/subdir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir2/subdir2"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_ShouldReturnDirectoriesAndItemsIncludingDirItself()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir3"), true);
+            vs.AddItem(new VirtualPath("/dir3/item1"), "content1");
+            vs.AddDirectory(new VirtualPath("/dir3/subdir1"), true);
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir3"), VirtualNodeTypeFilter.Directory | VirtualNodeTypeFilter.Item, false).ToList();
+
+            // ディレクトリ自体を含むため、期待される数はノード数+1
+            Assert.AreEqual(3, result.Count);
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3/item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3/subdir1"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_ShouldReturnAllTypesIncludingDirItself()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir4"), true);
+            vs.AddItem(new VirtualPath("/dir4/item1"), "content1");
+            vs.AddDirectory(new VirtualPath("/dir4/subdir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir4/link1"), new VirtualPath("/dir4/item1"));
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir4"), VirtualNodeTypeFilter.All, true).ToList();
+
+            // ディレクトリ自体も含む
+            Assert.AreEqual(4, result.Count);
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4/item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4/subdir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4/link1"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_WithNoFilter_ShouldNotReturnAnyNodes()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir2"), true);
+            vs.AddItem(new VirtualPath("/dir2/item1"), "content1");
+            vs.AddDirectory(new VirtualPath("/dir2/subdir1"), true);
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir2"), VirtualNodeTypeFilter.Non, true).ToList();
+
+            Assert.AreEqual(0, result.Count); // フィルター未適用の場合、ノードは返されない
+        }
+
+        [TestMethod]
+        public void WalkPathTree_WithDirectoryFilterButNoDirectories_ShouldReturnEmptyList()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir3"), true);
+            vs.AddItem(new VirtualPath("/dir3/item1"), "content1");
+            vs.AddItem(new VirtualPath("/dir3/item2"), "content2");
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir3"), VirtualNodeTypeFilter.Directory, true).ToList();
+
+            Assert.AreEqual(1, result.Count); // ディレクトリが存在しない場合でも、指定したディレクトリ自体は結果に含まれる
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_ShouldReturnOnlySymbolicLinksInDir1()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/item1"));
+            vs.AddSymbolicLink(new VirtualPath("/dir1/link2"), new VirtualPath("/item2"));
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir1"), VirtualNodeTypeFilter.SymbolicLink, false).ToList();
+
+            // シンボリックリンクのみをフィルタリングするため、シンボリックリンクの数だけを期待する
+            Assert.AreEqual(2, result.Count); // シンボリックリンクの正しい数を確認
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/link1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/link2"));
+        }
+
+        [TestMethod]
+        public void WalkPathTree_ShouldReturnNoNodesWhenFilterDoesNotMatch()
+        {
+            var vs = new VirtualStorage();
+            vs.AddDirectory(new VirtualPath("/dir3"), true);
+            vs.AddItem(new VirtualPath("/dir3/item1"), "content1");
+
+            var result = vs.WalkPathTree(new VirtualPath("/dir3"), VirtualNodeTypeFilter.SymbolicLink, true).ToList();
+
+            // シンボリックリンクのみをフィルタリングし、ディレクトリにシンボリックリンクがない場合、結果は空であることを期待する
+            Assert.AreEqual(0, result.Count);
+        }
     }
 }

@@ -1312,8 +1312,11 @@ namespace VirtualStorageLibrary
             // ノードの種類に応じて処理を分岐
             if (baseNode is VirtualDirectory directory)
             {
-                // ディレクトリを通知
-                yield return new NodeInformation(directory, basePath, parentDirectory, currentDepth, currentIndex);
+                if (filter.HasFlag(VirtualNodeTypeFilter.Directory))
+                {
+                    // ディレクトリを通知
+                    yield return new NodeInformation(directory, basePath, parentDirectory, currentDepth, currentIndex);
+                }
 
                 // ディレクトリ内のノードを再帰的に探索
                 int index = 0;
@@ -1329,9 +1332,12 @@ namespace VirtualStorageLibrary
             }
             else if (baseNode is VirtualItem item)
             {
-                // TODO: VirtualItem<T>で返さないとまずいか調べる
-                // アイテムを通知
-                yield return new NodeInformation(item, basePath, parentDirectory, currentDepth, currentIndex);
+                if (filter.HasFlag(VirtualNodeTypeFilter.Item))
+                {
+                    // TODO: VirtualItem<T>で返さないとまずいか調べる
+                    // アイテムを通知
+                    yield return new NodeInformation(item, basePath, parentDirectory, currentDepth, currentIndex);
+                }
             }
             else if (baseNode is VirtualSymbolicLink link)
             {
@@ -1353,8 +1359,11 @@ namespace VirtualStorageLibrary
                 }
                 else
                 {
-                    // シンボリックリンクを通知
-                    yield return new NodeInformation(link, basePath, parentDirectory, currentDepth, currentIndex);
+                    if (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink))
+                    {
+                        // シンボリックリンクを通知
+                        yield return new NodeInformation(link, basePath, parentDirectory, currentDepth, currentIndex);
+                    }
                 }
             }
         }
