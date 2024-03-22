@@ -4622,7 +4622,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/all-dir/item2"), new VirtualPath("/dir1/item2"));
 
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4640,7 +4640,7 @@ namespace VirtualStorageLibrary.Test
             var vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/emptyDir"), true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/emptyDir"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/emptyDir"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4658,7 +4658,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(new VirtualPath("/dirWithItems/item1"), "content1");
             vs.AddItem(new VirtualPath("/dirWithItems/item2"), "content2");
 
-            var result = vs.WalkPathTree(new VirtualPath("/dirWithItems"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/dirWithItems"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4677,7 +4677,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(new VirtualPath("/sourceDir/item"), "content");
             vs.AddSymbolicLink(new VirtualPath("/linkToSourceDir"), new VirtualPath("/sourceDir"));
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4690,7 +4690,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathTree_EmptyDirectory_ReturnsOnlyRoot()
         {
             var vs = new VirtualStorage();
-            var result = vs.WalkPathTree(VirtualPath.Root, true);
+            var result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4706,7 +4706,7 @@ namespace VirtualStorageLibrary.Test
             var vs = new VirtualStorage();
             vs.AddItem(new VirtualPath("/item1"), "test");
 
-            var result = vs.WalkPathTree(VirtualPath.Root, true);
+            var result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4723,7 +4723,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir1"), true);
             vs.AddSymbolicLink(new VirtualPath("/linkToDir1"), new VirtualPath("/dir1"));
 
-            var result = vs.WalkPathTree(VirtualPath.Root, true);
+            var result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4741,7 +4741,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory(new VirtualPath("/dir1/dir2/dir3"), true);
             vs.AddItem(new VirtualPath("/dir1/dir2/dir3/item1"), "test");
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4758,7 +4758,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/linkToDir1"), new VirtualPath("/dir1"));
             vs.AddSymbolicLink(new VirtualPath("/linkToLink1"), new VirtualPath("/linkToDir1"));
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4777,7 +4777,7 @@ namespace VirtualStorageLibrary.Test
                 vs.AddItem(new VirtualPath($"/dir1/item{i}"), $"test{i}");
             }
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir1"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/dir1"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4795,7 +4795,7 @@ namespace VirtualStorageLibrary.Test
 
             var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                var result = vs.WalkPathTree(new VirtualPath("/"), true);
+                var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
                 foreach (var item in result)
                 {
                     Debug.WriteLine(item.ToString());
@@ -4817,7 +4817,7 @@ namespace VirtualStorageLibrary.Test
                 vs.AddDirectory(new VirtualPath(basePath), true);
             }
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
@@ -4834,7 +4834,7 @@ namespace VirtualStorageLibrary.Test
             var vs = new VirtualStorage();
             vs.AddDirectory(new VirtualPath("/empty1/empty2/empty3"), true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
@@ -4853,7 +4853,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/dir/symLink1"), new VirtualPath("/targetDir"));
             vs.AddSymbolicLink(new VirtualPath("/dir/symLink2"), new VirtualPath("/targetDir"));
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);
@@ -4872,7 +4872,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink(new VirtualPath("/symLink"), new VirtualPath("/targetDir"));
             vs.AddSymbolicLink(new VirtualPath("/linkToLink"), new VirtualPath("/symLink"));
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), true);
+            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
             foreach (var item in result)
             {
                 Debug.WriteLine(item);

@@ -1299,15 +1299,15 @@ namespace VirtualStorageLibrary
             return new NodeInformation(node, traversalPath, null, 0, 0, resolvedPath);
         }
 
-        public IEnumerable<NodeInformation> WalkPathTree(VirtualPath path, bool followLinks = false)
+        public IEnumerable<NodeInformation> WalkPathTree(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualNode node = GetNode(path, followLinks);
 
-            return WalkPathTreeInternal(path, node, null, 0, 0, followLinks);
+            return WalkPathTreeInternal(path, node, null, 0, 0, filter, followLinks);
         }
 
-        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int currentDepth, int currentIndex, bool followLinks)
+        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int currentDepth, int currentIndex, VirtualNodeTypeFilter filter, bool followLinks)
         {
             // ノードの種類に応じて処理を分岐
             if (baseNode is VirtualDirectory directory)
@@ -1320,7 +1320,7 @@ namespace VirtualStorageLibrary
                 foreach (var node in directory.Nodes)
                 {
                     VirtualPath nodePath = basePath + node.Name;
-                    foreach (var result in WalkPathTreeInternal(nodePath, node, directory, currentDepth + 1, index, followLinks))
+                    foreach (var result in WalkPathTreeInternal(nodePath, node, directory, currentDepth + 1, index, filter, followLinks))
                     {
                         yield return result;
                     }
@@ -1346,7 +1346,7 @@ namespace VirtualStorageLibrary
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    foreach (var result in WalkPathTreeInternal(basePath, linkTargetNode, parentDirectory, currentDepth, currentIndex, followLinks))
+                    foreach (var result in WalkPathTreeInternal(basePath, linkTargetNode, parentDirectory, currentDepth, currentIndex, filter, followLinks))
                     {
                         yield return result;
                     }
@@ -1893,7 +1893,7 @@ namespace VirtualStorageLibrary
             StringBuilder tree = new StringBuilder();
 
             path = ConvertToAbsolutePath(path).NormalizePath();
-            IEnumerable<NodeInformation> nodeInfos = WalkPathTree(path, true);
+            IEnumerable<NodeInformation> nodeInfos = WalkPathTree(path, VirtualNodeTypeFilter.All, true);
             StringBuilder line = new();
             string previous = string.Empty;
 
