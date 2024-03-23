@@ -9,6 +9,7 @@ namespace VirtualStorageLibrary
 
     public enum VirtualNodeType
     {
+        None,
         Item,
         Directory,
         SymbolicLink
@@ -576,6 +577,8 @@ namespace VirtualStorageLibrary
     {
         public VirtualPath TargetPath { get; set; }
 
+        public VirtualNodeType TargetNodeType { get; set; }
+
         public VirtualSymbolicLink(VirtualPath name, VirtualPath targetPath) : base(name)
         {
             TargetPath = targetPath;
@@ -977,10 +980,56 @@ namespace VirtualStorageLibrary
 
         public VirtualPath CurrentPath { get; private set; }
 
+        private Dictionary<VirtualPath, List<VirtualPath>> _linkDictionary;
+
         public VirtualStorage()
         {
             _root = new VirtualDirectory(VirtualPath.Root);
             CurrentPath = VirtualPath.Root;
+            _linkDictionary = new();
+        }
+
+        public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
+        {
+            if (!targetPath.IsAbsolute)
+            {
+                throw new ArgumentException("リンク先のパスは絶対パスである必要があります。", nameof(targetPath));
+            }
+
+            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
+
+            if (!_linkDictionary.ContainsKey(targetPath))
+            {
+                _linkDictionary[targetPath] = new List<VirtualPath>();
+            }
+
+            _linkDictionary[targetPath].Add(linkPath);
+
+            VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
+            symbolicLink.TargetNodeType = GetNodeType(targetPath, true);
+        }
+
+        public void RemoveLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
+        {
+            if (!targetPath.IsAbsolute)
+            {
+                throw new ArgumentException("リンク先のパスは絶対パスである必要があります。", nameof(targetPath));
+            }
+
+            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
+
+            if (_linkDictionary.ContainsKey(targetPath))
+            {
+                _linkDictionary[targetPath].Remove(linkPath);
+
+                if (_linkDictionary[targetPath].Count == 0)
+                {
+                    _linkDictionary.Remove(targetPath);
+                }
+
+                VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
+                symbolicLink.TargetNodeType = VirtualNodeType.None;
+            }
         }
 
         public void ChangeDirectory(VirtualPath path)
