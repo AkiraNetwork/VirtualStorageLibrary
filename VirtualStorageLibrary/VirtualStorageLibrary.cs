@@ -989,6 +989,19 @@ namespace VirtualStorageLibrary
             _linkDictionary = new();
         }
 
+        public void UpdateLinkTargetNodeTypes(VirtualPath targetPath)
+        {
+            if (_linkDictionary.ContainsKey(targetPath))
+            {
+                VirtualNodeType targetType = GetNodeType(targetPath, true);
+                foreach (VirtualPath linkPath in _linkDictionary[targetPath])
+                {
+                    VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
+                    symbolicLink.TargetNodeType = targetType;
+                }
+            }
+        }
+
         public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
         {
             if (!targetPath.IsAbsolute)
@@ -1074,7 +1087,7 @@ namespace VirtualStorageLibrary
             // linkPathを絶対パスに変換し正規化も行う
             path = ConvertToAbsolutePath(path).NormalizePath();
 
-            // directoryPath（ディレクトリパス）とlinkName（リンク名）を分離
+            // directoryPath（ディレクトリパス）と linkName（リンク名）を分離
             VirtualPath directoryPath = path.DirectoryPath;
             VirtualPath linkName = path.NodeName;
 
@@ -1099,13 +1112,23 @@ namespace VirtualStorageLibrary
                     {
                         throw new InvalidOperationException($"既存のノード '{linkName}' はシンボリックリンクではありません。シンボリックリンクのみ上書き可能です。");
                     }
-                    // 既存のシンボリックリンクを削除（上書きフラグがtrueの場合）
+                    // 既存のシンボリックリンクを削除（上書きフラグが true の場合）
                     directory.Remove(linkName);
                 }
             }
 
             // 新しいシンボリックリンクを追加 (ターゲットパスは何も手を加えずにそのまま保存)
             directory.Add(new VirtualSymbolicLink(linkName, targetPath), true);
+
+            // targetPathを絶対パスに変換して正規化する必要がある。その際、シンボリックリンクを作成したディレクトリパスを基準とする
+            VirtualPath absoluteTargetPath = ConvertToAbsolutePath(targetPath, directoryPath).NormalizePath();
+
+            // リンク辞書にリンク情報を追加
+            AddLinkToDictionary(absoluteTargetPath, path);
+
+            // TODO: 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+
+            // TODO: シンボリックリンクがシンボリックリンクへリンクしていたらどうするか検討する
         }
 
         public void AddItem<T>(VirtualPath path, VirtualItem<T> item, bool overwrite = false)
@@ -1137,6 +1160,9 @@ namespace VirtualStorageLibrary
 
             // 新しいアイテムを追加
             directory.Add(item, overwrite);
+
+            // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+            UpdateLinkTargetNodeTypes(path + item.Name);
         }
 
         public void AddItem<T>(VirtualPath path, T data, bool overwrite = false)
@@ -1170,7 +1196,7 @@ namespace VirtualStorageLibrary
 
             if (createSubdirectories)
             {
-                result = WalkPathToTarget(directoryPath, null, CreateDirectory, true, true);
+                result = WalkPathToTarget(directoryPath, null, CreateIntermediateDirectory, true, true);
             }
             else
             {
@@ -1184,7 +1210,11 @@ namespace VirtualStorageLibrary
                     throw new InvalidOperationException($"ディレクトリ '{newDirectory}' は既に存在します。");
                 }
 
+                // 新しいディレクトリを追加
                 directory.AddDirectory(newDirectory);
+
+                // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+                UpdateLinkTargetNodeTypes(path);
             }
             else
             {
@@ -1194,10 +1224,15 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        private bool CreateDirectory(VirtualDirectory directory, VirtualPath nodeName)
+        private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualPath nodeName)
         {
             VirtualDirectory newDirectory = new VirtualDirectory(nodeName);
+
+            // 中間ディレクトリを追加
             directory.Add(newDirectory);
+
+            // 中間ディレクトリがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+            UpdateLinkTargetNodeTypes(directory.Name + nodeName);
 
             return true;
         }
