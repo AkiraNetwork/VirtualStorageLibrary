@@ -1503,7 +1503,7 @@ namespace VirtualStorageLibrary
         public VirtualNodeType GetNodeType(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualNode node = GetNode(path, followLinks);
+            VirtualNode? node = TryGetNode(path, followLinks);
 
             if (node is VirtualDirectory)
             {
@@ -1517,10 +1517,8 @@ namespace VirtualStorageLibrary
             {
                 return VirtualNodeType.SymbolicLink;
             }
-            else
-            {
-                throw new InvalidOperationException("未知のノード型です。");
-            }
+
+            return VirtualNodeType.None;
         }
 
         private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeTypeFilter nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector, bool followLinks)
