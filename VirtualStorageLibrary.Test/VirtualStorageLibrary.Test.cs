@@ -1594,8 +1594,9 @@ namespace VirtualStorageLibrary.Test
             var options = new VirtualNodeDisplayOptions
             {
                 SortBy = VirtualSortProperty.Name,
-                Order = VirtualSortOrder.Ascending,
-                GroupBy = VirtualGroupOrder.DirectoryFirst
+                OrderBy = VirtualSortOrder.Ascending,
+                GroupByType = true,
+                GroupSortOrder = VirtualSortOrder.Ascending
             };
 
             // テスト対象のディレクトリを取得
@@ -1632,8 +1633,9 @@ namespace VirtualStorageLibrary.Test
             var options = new VirtualNodeDisplayOptions
             {
                 SortBy = VirtualSortProperty.CreatedDate,
-                Order = VirtualSortOrder.Ascending,
-                GroupBy = VirtualGroupOrder.DirectoryFirst
+                OrderBy = VirtualSortOrder.Ascending,
+                GroupByType = true,
+                GroupSortOrder = VirtualSortOrder.Ascending
             };
 
             // テスト対象のディレクトリを取得
@@ -1670,8 +1672,9 @@ namespace VirtualStorageLibrary.Test
             var options = new VirtualNodeDisplayOptions
             {
                 SortBy = VirtualSortProperty.CreatedDate,
-                Order = VirtualSortOrder.Descending,
-                GroupBy = VirtualGroupOrder.DirectoryFirst
+                OrderBy = VirtualSortOrder.Descending,
+                GroupByType = true,
+                GroupSortOrder = VirtualSortOrder.Ascending
             };
 
             // テスト対象のディレクトリを取得
@@ -1706,8 +1709,9 @@ namespace VirtualStorageLibrary.Test
             var options = new VirtualNodeDisplayOptions
             {
                 SortBy = VirtualSortProperty.Name,
-                Order = VirtualSortOrder.Descending,
-                GroupBy = VirtualGroupOrder.DirectoryFirst
+                OrderBy = VirtualSortOrder.Descending,
+                GroupByType = true,
+                GroupSortOrder = VirtualSortOrder.Ascending
             };
 
             // テスト対象のディレクトリを取得
@@ -1742,8 +1746,9 @@ namespace VirtualStorageLibrary.Test
             var options = new VirtualNodeDisplayOptions
             {
                 SortBy = VirtualSortProperty.Name,
-                Order = VirtualSortOrder.Ascending,
-                GroupBy = VirtualGroupOrder.ItemFirst
+                OrderBy = VirtualSortOrder.Ascending,
+                GroupByType = true,
+                GroupSortOrder = VirtualSortOrder.Ascending
             };
 
             // テスト対象のディレクトリを取得
@@ -1759,10 +1764,10 @@ namespace VirtualStorageLibrary.Test
                 Debug.WriteLine(node.Name.NodeName);
             }
             Assert.AreEqual(4, nodes.Count);
-            Assert.AreEqual(new VirtualPath("item1"), nodes[0].Name.NodeName);
-            Assert.AreEqual(new VirtualPath("item2"), nodes[1].Name.NodeName);
-            Assert.AreEqual(new VirtualPath("dir1"), nodes[2].Name.NodeName);
-            Assert.AreEqual(new VirtualPath("dir2"), nodes[3].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir1"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir2"), nodes[1].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[2].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[3].Name.NodeName);
         }
     }
 

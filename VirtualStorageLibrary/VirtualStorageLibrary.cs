@@ -9,10 +9,10 @@ namespace VirtualStorageLibrary
 
     public enum VirtualNodeType
     {
-        None,
-        Item,
         Directory,
-        SymbolicLink
+        Item,
+        SymbolicLink,
+        None
     }
 
     public enum VirtualNodeTypeFilter
@@ -556,6 +556,8 @@ namespace VirtualStorageLibrary
         public DateTime CreatedDate { get; private set; }
         public DateTime UpdatedDate { get; private set; }
 
+        public abstract VirtualNodeType NodeType { get; }
+
         public abstract VirtualNode DeepClone();
 
         protected VirtualNode(VirtualPath name)
@@ -578,6 +580,8 @@ namespace VirtualStorageLibrary
         public VirtualPath TargetPath { get; set; }
 
         public VirtualNodeType TargetNodeType { get; set; }
+
+        public override VirtualNodeType NodeType => VirtualNodeType.SymbolicLink;
 
         public VirtualSymbolicLink(VirtualPath name, VirtualPath targetPath) : base(name)
         {
@@ -615,6 +619,8 @@ namespace VirtualStorageLibrary
         public T ItemData { get; set; }
 
         private bool disposed;
+
+        public override VirtualNodeType NodeType => VirtualNodeType.Item;
 
         public VirtualItem(VirtualPath name, T item) : base(name)
         {
@@ -698,14 +704,9 @@ namespace VirtualStorageLibrary
         Descending
     }
 
-    public enum VirtualGroupOrder
-    {
-        ItemFirst,
-        DirectoryFirst
-    }
-
     public class VirtualNodeDisplayOptions
     {
+        // ソート対象プロパティ
         public VirtualSortProperty SortBy
         { 
             [DebuggerStepThrough]
@@ -715,7 +716,8 @@ namespace VirtualStorageLibrary
             set;
         }
 
-        public VirtualSortOrder Order
+        // プロパティのソート順序
+        public VirtualSortOrder OrderBy
         { 
             [DebuggerStepThrough]
             get;
@@ -724,7 +726,18 @@ namespace VirtualStorageLibrary
             set;
         }
 
-        public VirtualGroupOrder GroupBy
+        // グループ化するかどうか
+        public bool GroupByType
+        {
+            [DebuggerStepThrough]
+            get;
+
+            [DebuggerStepThrough]
+            set;
+        }
+
+        // グループのソート順序
+        public VirtualSortOrder GroupSortOrder
         {
             [DebuggerStepThrough]
             get;
@@ -737,11 +750,13 @@ namespace VirtualStorageLibrary
         public VirtualNodeDisplayOptions(
             VirtualSortProperty sortBy = VirtualSortProperty.Name,
             VirtualSortOrder order = VirtualSortOrder.Ascending,
-            VirtualGroupOrder groupBy = VirtualGroupOrder.DirectoryFirst)
+            bool groupByType = true,
+            VirtualSortOrder groupSortOrder = VirtualSortOrder.Ascending)
         {
             SortBy = sortBy;
-            Order = order;
-            GroupBy = groupBy;
+            OrderBy = order;
+            GroupByType = groupByType;
+            GroupSortOrder = groupSortOrder;
         }
     }
 
@@ -753,46 +768,56 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodeList()
         {
+            // まず、基本となるノードの列挙を取得します。
             var query = this.Values.AsEnumerable();
 
-            // _options.GroupByに基づいて、ディレクトリとアイテムのグループ化順序を決定
-            IOrderedEnumerable<VirtualNode> groupedQuery;
-            if (_options.GroupBy == VirtualGroupOrder.DirectoryFirst)
+            // タイプに基づいてグループ化する必要がある場合
+            IOrderedEnumerable<VirtualNode> orderedQuery;
+            if (_options.GroupByType)
             {
-                groupedQuery = query.OrderBy(node => node is VirtualDirectory ? 0 : 1);
+                // グループ化のソート順序を考慮して、ノードタイプに基づいてソートします。
+                orderedQuery = _options.GroupSortOrder == VirtualSortOrder.Ascending
+                    ? query.OrderBy(node => node.NodeType)
+                    : query.OrderByDescending(node => node.NodeType);
             }
             else
             {
-                groupedQuery = query.OrderBy(node => node is VirtualDirectory ? 1 : 0);
+                // GroupByTypeがfalseの場合、デフォルトのソートを適用します（例: 名前）。
+                // この部分は、必要に応じて適切なデフォルト条件を設定してください。
+                orderedQuery = query.OrderBy(node => node.Name);
             }
 
-            // ソートの適用
+            // タイプに基づく初期ソート後、指定されたプロパティでさらにソートします。
             switch (_options.SortBy)
             {
                 case VirtualSortProperty.Name:
-                    groupedQuery = _options.Order == VirtualSortOrder.Ascending ?
-                        groupedQuery.ThenBy(node => node.Name.Path) :
-                        groupedQuery.ThenByDescending(node => node.Name.Path);
+                    orderedQuery = _options.OrderBy == VirtualSortOrder.Ascending
+                        ? orderedQuery.ThenBy(node => node.Name)
+                        : orderedQuery.ThenByDescending(node => node.Name);
                     break;
                 case VirtualSortProperty.CreatedDate:
-                    groupedQuery = _options.Order == VirtualSortOrder.Ascending ?
-                        groupedQuery.ThenBy(node => node.CreatedDate) :
-                        groupedQuery.ThenByDescending(node => node.CreatedDate);
+                    orderedQuery = _options.OrderBy == VirtualSortOrder.Ascending
+                        ? orderedQuery.ThenBy(node => node.CreatedDate)
+                        : orderedQuery.ThenByDescending(node => node.CreatedDate);
                     break;
                 case VirtualSortProperty.UpdatedDate:
-                    groupedQuery = _options.Order == VirtualSortOrder.Ascending ?
-                        groupedQuery.ThenBy(node => node.UpdatedDate) :
-                        groupedQuery.ThenByDescending(node => node.UpdatedDate);
+                    orderedQuery = _options.OrderBy == VirtualSortOrder.Ascending
+                        ? orderedQuery.ThenBy(node => node.UpdatedDate)
+                        : orderedQuery.ThenByDescending(node => node.UpdatedDate);
                     break;
+                    // 他のソート基準がある場合は、ここに追加してください。
             }
 
-            return groupedQuery;
+            // 最終的にソートされたクエリを返します。
+            return orderedQuery;
         }
     }
 
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
         private VirtualNodeDictionary _nodes = new();
+
+        public override VirtualNodeType NodeType => VirtualNodeType.Directory;
 
         public int Count => _nodes.Count;
 
