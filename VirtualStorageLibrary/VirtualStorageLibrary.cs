@@ -3,6 +3,15 @@ using System.Text;
 
 namespace VirtualStorageLibrary
 {
+    public class VirtualStorageSettings
+    {
+        private static VirtualStorageSettings? _settings = new VirtualStorageSettings();
+
+        public VirtualStorageSettings? Settings => _settings;
+
+        private VirtualStorageSettings() { }
+    }
+
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
 
     public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualPath nodeName);
