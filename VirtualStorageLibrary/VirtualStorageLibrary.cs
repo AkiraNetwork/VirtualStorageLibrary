@@ -725,7 +725,7 @@ namespace VirtualStorageLibrary
         Descending
     }
 
-    public class VirtualNodeDisplayOptions
+    public class VirtualNodeDictionaryOptions
     {
         // ソート対象プロパティ
         public VirtualSortProperty SortBy
@@ -768,7 +768,7 @@ namespace VirtualStorageLibrary
         }
 
         [DebuggerStepThrough]
-        public VirtualNodeDisplayOptions(
+        public VirtualNodeDictionaryOptions(
             VirtualSortProperty sortBy = VirtualSortProperty.Name,
             VirtualSortOrder order = VirtualSortOrder.Ascending,
             bool groupByType = true,
@@ -783,9 +783,9 @@ namespace VirtualStorageLibrary
 
     public class VirtualNodeDictionary : Dictionary<VirtualPath, VirtualNode>
     {
-        private VirtualNodeDisplayOptions _options = new();
+        private VirtualNodeDictionaryOptions _options = new();
 
-        public VirtualNodeDisplayOptions Options { get => _options; set => _options = value; }
+        public VirtualNodeDictionaryOptions Options { get => _options; set => _options = value; }
 
         public IEnumerable<VirtualNode> GetNodeList()
         {
@@ -854,7 +854,7 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodeList() => _nodes.GetNodeList();
 
-        public VirtualNodeDisplayOptions Options { get => _nodes.Options; set => _nodes.Options = value; }
+        public VirtualNodeDictionaryOptions Options { get => _nodes.Options; set => _nodes.Options = value; }
 
         public bool NodeExists(VirtualPath name) => _nodes.ContainsKey(name);
 

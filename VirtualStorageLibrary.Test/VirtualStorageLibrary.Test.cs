@@ -1611,7 +1611,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
-            var options = new VirtualNodeDisplayOptions
+            var options = new VirtualNodeDictionaryOptions
             {
                 SortBy = VirtualSortProperty.Name,
                 OrderBy = VirtualSortOrder.Ascending,
@@ -1650,7 +1650,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/"), item1);
             storage.AddItem(new VirtualPath("/"), item2);
 
-            var options = new VirtualNodeDisplayOptions
+            var options = new VirtualNodeDictionaryOptions
             {
                 SortBy = VirtualSortProperty.CreatedDate,
                 OrderBy = VirtualSortOrder.Ascending,
@@ -1689,7 +1689,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/"), item1);
             storage.AddItem(new VirtualPath("/"), item2);
 
-            var options = new VirtualNodeDisplayOptions
+            var options = new VirtualNodeDictionaryOptions
             {
                 SortBy = VirtualSortProperty.CreatedDate,
                 OrderBy = VirtualSortOrder.Descending,
@@ -1726,7 +1726,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
-            var options = new VirtualNodeDisplayOptions
+            var options = new VirtualNodeDictionaryOptions
             {
                 SortBy = VirtualSortProperty.Name,
                 OrderBy = VirtualSortOrder.Descending,
@@ -1763,7 +1763,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
-            var options = new VirtualNodeDisplayOptions
+            var options = new VirtualNodeDictionaryOptions
             {
                 SortBy = VirtualSortProperty.Name,
                 OrderBy = VirtualSortOrder.Ascending,

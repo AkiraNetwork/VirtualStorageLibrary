@@ -1,5 +1,5 @@
 ﻿<values>
+  <value name="VS.TelemetryApi.ChannelsDisposeLatency" type="int">2</value>
+  <value name="VS.TelemetryApi.TotalDisposeLatency" type="int">30</value>
   <value name="VS.TelemetryApi.DroppedEventsDuringDisposing" type="int">0</value>
-  <value name="VS.TelemetryApi.ChannelsDisposeLatency" type="int">11</value>
-  <value name="VS.TelemetryApi.TotalDisposeLatency" type="int">54</value>
 </values>
