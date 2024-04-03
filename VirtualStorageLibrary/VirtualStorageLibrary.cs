@@ -5,13 +5,33 @@ namespace VirtualStorageLibrary
 {
     public class VirtualStorageSettings
     {
-        private static VirtualStorageSettings _settings = new VirtualStorageSettings();
+        private static VirtualStorageSettings? _settings = null;
 
-        public static VirtualStorageSettings Settings => _settings;
+        public static VirtualStorageSettings Settings
+        {
+            get
+            {
+                if (_settings == null)
+                {
+                    _settings = new VirtualStorageSettings();
+                }
+                return _settings;
+            }
+        }
 
         private VirtualStorageSettings() { }
 
         public bool EnableNormalization { get; set; } = true;
+
+        public VirtualPath PathSeparator { get; set; } = "/";
+
+        public VirtualSortProperty DefaultSortBy { get; set; } = VirtualSortProperty.Name;
+
+        public VirtualSortOrder DefaultOrderBy { get; set; } = VirtualSortOrder.Ascending;
+
+        public bool DefaultGroupByType { get; set; } = true;
+
+        public VirtualSortOrder DefaultGroupSortOrder { get; set; } = VirtualSortOrder.Ascending;
     }
 
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
@@ -246,7 +266,7 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public override int GetHashCode() => _path.GetHashCode();
 
-        [DebuggerStepThrough]
+        //[DebuggerStepThrough]
         public VirtualPath(string path)
         {
             _path = path;
@@ -768,11 +788,20 @@ namespace VirtualStorageLibrary
         }
 
         [DebuggerStepThrough]
+        public VirtualNodeDictionaryOptions()
+        {
+            SortBy = VirtualStorageSettings.Settings.DefaultSortBy;
+            OrderBy = VirtualStorageSettings.Settings.DefaultOrderBy;
+            GroupByType = VirtualStorageSettings.Settings.DefaultGroupByType;
+            GroupSortOrder = VirtualStorageSettings.Settings.DefaultGroupSortOrder;
+        }
+
+        [DebuggerStepThrough]
         public VirtualNodeDictionaryOptions(
-            VirtualSortProperty sortBy = VirtualSortProperty.Name,
-            VirtualSortOrder order = VirtualSortOrder.Ascending,
-            bool groupByType = true,
-            VirtualSortOrder groupSortOrder = VirtualSortOrder.Ascending)
+            VirtualSortProperty sortBy,
+            VirtualSortOrder order,
+            bool groupByType,
+            VirtualSortOrder groupSortOrder)
         {
             SortBy = sortBy;
             OrderBy = order;
