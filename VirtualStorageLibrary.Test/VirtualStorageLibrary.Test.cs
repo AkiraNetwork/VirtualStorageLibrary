@@ -68,6 +68,26 @@ namespace VirtualStorageLibrary.Test
     public class VirtualPathTest
     {
         [TestMethod]
+        public void ImplicitConversion_FromString_CreatesVirtualPath()
+        {
+            string path = "/test/path";
+            VirtualPath virtualPath = path;
+
+            Assert.AreEqual(path, virtualPath.Path);
+        }
+
+        [TestMethod]
+        public void ImplicitConversion_ToString_ReturnsPath()
+        {
+            string path = "/test/path";
+            VirtualPath virtualPath = new VirtualPath(path);
+
+            string result = virtualPath;
+
+            Assert.AreEqual(path, result);
+        }
+        
+        [TestMethod]
         public void NormalizePath_WithAbsolutePath_ReturnsNormalizedPath()
         {
             var path = new VirtualPath("/path/to/../directory/./");

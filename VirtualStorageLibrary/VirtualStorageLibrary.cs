@@ -118,6 +118,16 @@ namespace VirtualStorageLibrary
 
         private List<VirtualPath>? _partsList;
 
+        public static implicit operator VirtualPath(string path)
+        {
+            return new VirtualPath(path);
+        }
+
+        public static implicit operator string(VirtualPath virtualPath)
+        {
+            return virtualPath._path;
+        }
+
         private bool _enableNormalization;
 
         public bool EnableNormalization
