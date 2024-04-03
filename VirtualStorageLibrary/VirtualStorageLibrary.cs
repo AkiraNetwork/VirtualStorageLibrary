@@ -5,25 +5,13 @@ namespace VirtualStorageLibrary
 {
     public class VirtualStorageSettings
     {
-        private static VirtualStorageSettings? _settings = null;
+        private static VirtualStorageSettings _settings = new VirtualStorageSettings();
 
-        public static VirtualStorageSettings Settings
-        {
-            get
-            {
-                if (_settings == null)
-                {
-                    _settings = new VirtualStorageSettings();
-                }
-                return _settings;
-            }
-        }
+        public static VirtualStorageSettings Settings => _settings;
 
         private VirtualStorageSettings() { }
 
-        public bool EnableNormalization { get; set; } = true;
-
-        public VirtualPath PathSeparator { get; set; } = "/";
+        public char PathSeparator { get; set; } = '/';
 
         public VirtualSortProperty DefaultSortBy { get; set; } = VirtualSortProperty.Name;
 
@@ -150,17 +138,6 @@ namespace VirtualStorageLibrary
             return virtualPath._path;
         }
 
-        private bool _enableNormalization;
-
-        public bool EnableNormalization
-        {
-            [DebuggerStepThrough]
-            get => _enableNormalization;
-
-            [DebuggerStepThrough]
-            set => _enableNormalization = value;
-        }
-
         public VirtualPath DirectoryPath
         {
             [DebuggerStepThrough]
@@ -203,7 +180,7 @@ namespace VirtualStorageLibrary
         public static VirtualPath Root
         {
             [DebuggerStepThrough]
-            get => new("/");
+            get => VirtualStorageSettings.Settings.PathSeparator.ToString();
         }
 
         public static VirtualPath Empty
@@ -236,13 +213,13 @@ namespace VirtualStorageLibrary
         public bool IsRoot
         {
             [DebuggerStepThrough]
-            get => _path == "/";
+            get => _path == VirtualStorageSettings.Settings.PathSeparator.ToString();
         }
 
         public bool IsAbsolute
         {
             [DebuggerStepThrough]
-            get => _path.StartsWith('/');
+            get => _path.StartsWith(VirtualStorageSettings.Settings.PathSeparator);
         }
 
         public bool IsEndsWithSlash
@@ -270,14 +247,12 @@ namespace VirtualStorageLibrary
         public VirtualPath(string path)
         {
             _path = path;
-            _enableNormalization = VirtualStorageSettings.Settings.EnableNormalization;
         }
 
         [DebuggerStepThrough]
         public VirtualPath(IEnumerable<VirtualPath> parts)
         {
             _path = string.Join('/', parts.Select(p => p.Path));
-            _enableNormalization = VirtualStorageSettings.Settings.EnableNormalization;
         }
 
         [DebuggerStepThrough]
@@ -376,7 +351,7 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public static string NormalizePath(string path)
         {
-            // パスが空文字列、または "/" の場合はそのまま返す
+            // パスが空文字列、または PathSeparator の場合はそのまま返す
             if (path == string.Empty || path == "/")
             {
                 return path;
