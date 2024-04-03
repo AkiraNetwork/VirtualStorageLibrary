@@ -11,6 +11,8 @@ namespace VirtualStorageLibrary
 
         private VirtualStorageSettings() { }
 
+        public static void Reset() => _settings = new VirtualStorageSettings();
+
         public char PathSeparator { get; set; } = '/';
 
         public VirtualSortProperty DefaultSortBy { get; set; } = VirtualSortProperty.Name;
@@ -305,7 +307,8 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public VirtualPath TrimEndSlash()
         {
-            if (_path.EndsWith(VirtualStorageSettings.Settings.PathSeparator))
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+            if (_path.EndsWith(pathSeparator))
             {
                 return new VirtualPath(_path.Substring(0, _path.Length - 1));
             }
@@ -315,9 +318,10 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public VirtualPath AddEndSlash()
         {
-            if (!_path.EndsWith(VirtualStorageSettings.Settings.PathSeparator))
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+            if (!_path.EndsWith(pathSeparator))
             {
-                return new VirtualPath(_path + VirtualStorageSettings.Settings.PathSeparator);
+                return new VirtualPath(_path + pathSeparator);
             }
             return this;
         }
@@ -325,9 +329,10 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public VirtualPath AddStartSlash()
         {
-            if (!_path.StartsWith(VirtualStorageSettings.Settings.PathSeparator))
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+            if (!_path.StartsWith(pathSeparator))
             {
-                return new VirtualPath(VirtualStorageSettings.Settings.PathSeparator + _path);
+                return new VirtualPath(pathSeparator + _path);
             }
             return this;
         }
@@ -351,15 +356,17 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public static string NormalizePath(string path)
         {
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
             // パスが空文字列、または PathSeparator の場合はそのまま返す
-            if (path == string.Empty || path == VirtualStorageSettings.Settings.PathSeparator.ToString())
+            if (path == string.Empty || path == pathSeparator.ToString())
             {
                 return path;
             }
 
             var parts = new LinkedList<string>();
-            var isAbsolutePath = path.StartsWith(VirtualStorageSettings.Settings.PathSeparator);
-            IList<string> partList = path.Split(VirtualStorageSettings.Settings.PathSeparator, StringSplitOptions.RemoveEmptyEntries);
+            var isAbsolutePath = path.StartsWith(pathSeparator);
+            IList<string> partList = path.Split(pathSeparator, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var part in partList)
             {
@@ -384,14 +391,14 @@ namespace VirtualStorageLibrary
                 }
             }
 
-            var normalizedPath = string.Join(VirtualStorageSettings.Settings.PathSeparator, parts);
+            var normalizedPath = string.Join(pathSeparator, parts);
             if (isAbsolutePath)
             {
-                normalizedPath = VirtualStorageSettings.Settings.PathSeparator + normalizedPath;
+                normalizedPath = pathSeparator + normalizedPath;
             }
 
             // 末尾の PathSeparator を取り除く
-            if (normalizedPath.Length > 1 && normalizedPath.EndsWith(VirtualStorageSettings.Settings.PathSeparator))
+            if (normalizedPath.Length > 1 && normalizedPath.EndsWith(pathSeparator))
             {
                 normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
             }
@@ -402,17 +409,20 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         private string GetDirectoryPath()
         {
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
             // パスが PathSeparator で始まっていない場合、それは相対パスなのでそのまま返す
-            if (!_path.StartsWith(VirtualStorageSettings.Settings.PathSeparator))
+            if (!_path.StartsWith(pathSeparator))
             {
                 return _path;
             }
 
-            int lastSlashIndex = _path.LastIndexOf(VirtualStorageSettings.Settings.PathSeparator);
+            int lastSlashIndex = _path.LastIndexOf(pathSeparator);
+
             // PathSeparator が見つからない場合は、ルートディレクトリを示す PathSeparator を返す
             if (lastSlashIndex <= 0)
             {
-                return VirtualStorageSettings.Settings.PathSeparator.ToString();
+                return pathSeparator.ToString();
             }
             else
             {
@@ -424,21 +434,23 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         private string GetNodeName()
         {
-            if (_path == VirtualStorageSettings.Settings.PathSeparator.ToString())
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
+            if (_path == pathSeparator.ToString())
             {
                 // ルートディレクトリの場合は、そのままの文字列を返す
-                return VirtualStorageSettings.Settings.PathSeparator.ToString();
+                return pathSeparator.ToString();
             }
 
             StringBuilder path = new StringBuilder(_path);
 
-            if (path.Length > 0 && path[^1] == VirtualStorageSettings.Settings.PathSeparator)
+            if (path.Length > 0 && path[^1] == pathSeparator)
             {
                 // 末尾の PathSeparator を取り除く
                 path.Remove(path.Length - 1, 1);
             }
 
-            int lastSlashIndex = path.ToString().LastIndexOf(VirtualStorageSettings.Settings.PathSeparator);
+            int lastSlashIndex = path.ToString().LastIndexOf(pathSeparator);
             if (lastSlashIndex < 0)
             {
                 // PathSeparator が見つからない場合は、そのままの文字列を返す
@@ -465,6 +477,8 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public string Combine(params string[] paths)
         {
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
             // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
             var newPathBuilder = new StringBuilder();
 
@@ -473,7 +487,7 @@ namespace VirtualStorageLibrary
                 // 2番目以降のパスの場合だけ、PathSeparator を追加
                 if (newPathBuilder.Length > 0)
                 {
-                    newPathBuilder.Append(VirtualStorageSettings.Settings.PathSeparator);
+                    newPathBuilder.Append(pathSeparator);
                 }
 
                 // 新しいパスコンポーネントを追加
@@ -485,14 +499,14 @@ namespace VirtualStorageLibrary
 
             // PathSeparator がダブっている箇所を解消
             var normalizedPath = combinedPath.Replace(
-                VirtualStorageSettings.Settings.PathSeparator.ToString() + VirtualStorageSettings.Settings.PathSeparator.ToString(),
-                VirtualStorageSettings.Settings.PathSeparator.ToString());
+                pathSeparator.ToString() + pathSeparator.ToString(),
+                pathSeparator.ToString());
 
             // 結果が PathSeparator だったら空文字列に変換
-            normalizedPath = (normalizedPath == VirtualStorageSettings.Settings.PathSeparator.ToString()) ? string.Empty : normalizedPath;
+            normalizedPath = (normalizedPath == pathSeparator.ToString()) ? string.Empty : normalizedPath;
 
             // 末尾の PathSeparator を取り除く
-            if (normalizedPath.EndsWith(VirtualStorageSettings.Settings.PathSeparator))
+            if (normalizedPath.EndsWith(pathSeparator))
             {
                 normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
             }
@@ -505,14 +519,16 @@ namespace VirtualStorageLibrary
         // TODO: このメソッドいる? DirectoryPathとNodeNameを使えばいいのでは?
         public VirtualPath GetParentPath()
         {
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
             // パスの最後の PathSeparator を取り除きます
-            string trimmedPath = _path.TrimEnd(VirtualStorageSettings.Settings.PathSeparator);
+            string trimmedPath = _path.TrimEnd(pathSeparator);
             // パスを PathSeparator で分割します
-            string[] pathParts = trimmedPath.Split(VirtualStorageSettings.Settings.PathSeparator);
+            string[] pathParts = trimmedPath.Split(pathSeparator);
             // 最後の部分を除去します
             string[] parentPathParts = pathParts.Take(pathParts.Length - 1).ToArray();
             // パスを再構築します
-            string parentPath = string.Join(VirtualStorageSettings.Settings.PathSeparator, parentPathParts);
+            string parentPath = string.Join(pathSeparator, parentPathParts);
 
             // パスが空になった場合は、ルートを返します
             if (string.IsNullOrEmpty(parentPath))
@@ -526,8 +542,10 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public LinkedList<VirtualPath> GetPartsLinkedList()
         {
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
             LinkedList<VirtualPath> parts = new();
-            foreach (var part in _path.Split(VirtualStorageSettings.Settings.PathSeparator, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var part in _path.Split(pathSeparator, StringSplitOptions.RemoveEmptyEntries))
             {
                 parts.AddLast(new VirtualPath(part));
             }
@@ -1875,11 +1893,13 @@ namespace VirtualStorageLibrary
 
         public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false)
         {
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
             VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
             VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
 
             // 循環参照チェック
-            if (absoluteDestinationPath.StartsWith(new VirtualPath(absoluteSourcePath.Path + VirtualStorageSettings.Settings.PathSeparator)))
+            if (absoluteDestinationPath.StartsWith(new VirtualPath(absoluteSourcePath.Path + pathSeparator)))
             {
                 throw new InvalidOperationException("移動先が移動元のサブディレクトリになっています。");
             }
