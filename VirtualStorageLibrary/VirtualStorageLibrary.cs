@@ -5,11 +5,13 @@ namespace VirtualStorageLibrary
 {
     public class VirtualStorageSettings
     {
-        private static VirtualStorageSettings? _settings = new VirtualStorageSettings();
+        private static VirtualStorageSettings _settings = new VirtualStorageSettings();
 
-        public VirtualStorageSettings? Settings => _settings;
+        public static VirtualStorageSettings Settings => _settings;
 
         private VirtualStorageSettings() { }
+
+        public bool EnableNormalization { get; set; } = true;
     }
 
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
@@ -248,14 +250,14 @@ namespace VirtualStorageLibrary
         public VirtualPath(string path)
         {
             _path = path;
-            _enableNormalization = true;
+            _enableNormalization = VirtualStorageSettings.Settings.EnableNormalization;
         }
 
         [DebuggerStepThrough]
         public VirtualPath(IEnumerable<VirtualPath> parts)
         {
             _path = string.Join('/', parts.Select(p => p.Path));
-            _enableNormalization = true;
+            _enableNormalization = VirtualStorageSettings.Settings.EnableNormalization;
         }
 
         [DebuggerStepThrough]
