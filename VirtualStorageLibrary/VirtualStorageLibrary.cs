@@ -16,9 +16,9 @@ namespace VirtualStorageLibrary
 
         public char PathSeparator { get; set; } = '/';
 
-        public GroupCondition<VirtualNode, VirtualNodeType>? DefaultNodeGroupCondition { get; set; } = new (node => node.NodeType, true);
+        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = new (node => node.NodeType, true);
 
-        public List<SortCondition<VirtualNode>>? DefaultNodeSortConditions { get; set; } = new()
+        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = new()
         {
             new (node => node.Name, true)
         };
@@ -118,7 +118,7 @@ namespace VirtualStorageLibrary
         T DeepClone();
     }
 
-    public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>
+    public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>, IComparable
     {
         private readonly string _path;
 
@@ -584,6 +584,21 @@ namespace VirtualStorageLibrary
 
             return string.Compare(_path, other._path, StringComparison.Ordinal);
         }
+
+        public int CompareTo(object? obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+
+            if (!(obj is VirtualPath))
+            {
+                throw new ArgumentException("Object is not a VirtualPath");
+            }
+            
+            return CompareTo((VirtualPath)obj);
+        }
     }
 
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
@@ -746,10 +761,6 @@ namespace VirtualStorageLibrary
 
         public override VirtualNodeType NodeType => VirtualNodeType.Directory;
 
-        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = null;
-
-        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = null;
-
         public int Count => _nodes.Count;
 
         public int DirectoryCount => _nodes.Values.Count(n => n is VirtualDirectory);
@@ -760,7 +771,7 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualPath> NodeNames => _nodes.Keys;
 
-        public IEnumerable<VirtualNode> Nodes => GetNodeList(NodeGroupCondition, NodeSortConditions);
+        public IEnumerable<VirtualNode> Nodes => GetNodeList();
 
         public bool NodeExists(VirtualPath name) => _nodes.ContainsKey(name);
 
@@ -843,10 +854,11 @@ namespace VirtualStorageLibrary
             return (VirtualDirectory)DeepClone();
         }
 
-        public IEnumerable<VirtualNode> GetNodeList(
-            GroupCondition<VirtualNode, object>? nodeGroupCondition,
-            List<SortCondition<VirtualNode>>? nodeSortConditions)
+        public IEnumerable<VirtualNode> GetNodeList()
         {
+            GroupCondition<VirtualNode, object>? nodeGroupCondition = VirtualStorageSettings.Settings.NodeGroupCondition;
+            List<SortCondition<VirtualNode>>? nodeSortConditions = VirtualStorageSettings.Settings.NodeSortConditions;
+
             IEnumerable<VirtualNode> nodes = _nodes.Values;
             return nodes.GroupAndSort(nodeGroupCondition, nodeSortConditions);
         }
@@ -939,10 +951,6 @@ namespace VirtualStorageLibrary
         public VirtualDirectory Root => _root;
 
         public VirtualPath CurrentPath { get; private set; }
-
-        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = null;
-
-        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = null;
 
         private Dictionary<VirtualPath, List<VirtualPath>> _linkDictionary;
 

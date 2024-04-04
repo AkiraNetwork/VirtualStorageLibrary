@@ -1611,17 +1611,15 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
-            var options = new VirtualNodeDictionaryOptions
+            // 条件を設定
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
-                SortBy = VirtualSortProperty.Name,
-                OrderBy = VirtualSortOrder.Ascending,
-                GroupByType = true,
-                GroupSortOrder = VirtualSortOrder.Ascending
+                new (node => node.Name, true)
             };
 
             // テスト対象のディレクトリを取得
             var directory = storage.GetDirectory(new VirtualPath("/"));
-            directory.Options = options;
 
             // Act
             var nodes = directory.GetNodeList().ToList();
@@ -1650,17 +1648,15 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/"), item1);
             storage.AddItem(new VirtualPath("/"), item2);
 
-            var options = new VirtualNodeDictionaryOptions
+            // 条件を設定
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
-                SortBy = VirtualSortProperty.CreatedDate,
-                OrderBy = VirtualSortOrder.Ascending,
-                GroupByType = true,
-                GroupSortOrder = VirtualSortOrder.Ascending
+                new (node => node.CreatedDate, true)
             };
 
             // テスト対象のディレクトリを取得
             var directory = storage.GetDirectory(new VirtualPath("/"));
-            directory.Options = options;
 
             // Act
             var nodes = directory.GetNodeList().ToList();
@@ -1689,17 +1685,15 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/"), item1);
             storage.AddItem(new VirtualPath("/"), item2);
 
-            var options = new VirtualNodeDictionaryOptions
+            // 条件を設定
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
-                SortBy = VirtualSortProperty.CreatedDate,
-                OrderBy = VirtualSortOrder.Descending,
-                GroupByType = true,
-                GroupSortOrder = VirtualSortOrder.Ascending
+                new (node => node.CreatedDate, false)
             };
 
             // テスト対象のディレクトリを取得
             var directory = storage.GetDirectory(new VirtualPath("/"));
-            directory.Options = options;
 
             // Act
             var nodes = directory.GetNodeList().ToList();
@@ -1726,17 +1720,15 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
-            var options = new VirtualNodeDictionaryOptions
+            // 条件を設定
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
-                SortBy = VirtualSortProperty.Name,
-                OrderBy = VirtualSortOrder.Descending,
-                GroupByType = true,
-                GroupSortOrder = VirtualSortOrder.Ascending
+                new (node => node.Name, false)
             };
 
             // テスト対象のディレクトリを取得
             var directory = storage.GetDirectory(new VirtualPath("/"));
-            directory.Options = options;
 
             // Act
             var nodes = directory.GetNodeList().ToList();
@@ -1763,17 +1755,15 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory(new VirtualPath("/dir1"));
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
-            var options = new VirtualNodeDictionaryOptions
+            // 条件を設定
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
-                SortBy = VirtualSortProperty.Name,
-                OrderBy = VirtualSortOrder.Ascending,
-                GroupByType = true,
-                GroupSortOrder = VirtualSortOrder.Ascending
+                new (node => node.Name, true)
             };
 
             // テスト対象のディレクトリを取得
             var directory = storage.GetDirectory(new VirtualPath("/"));
-            directory.Options = options;
 
             // Act
             var nodes = directory.GetNodeList().ToList();
