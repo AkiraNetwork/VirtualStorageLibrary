@@ -1567,11 +1567,7 @@ namespace VirtualStorageLibrary.Test
             // Assert
             Assert.IsFalse(exists); // アイテムはシンボリックリンクではないため、falseを返すべき
         }
-    }
 
-    [TestClass]
-    public class VirtualNodeDictionaryTests
-    {
         [TestMethod]
         public void GetNodeList_DefaultOption()
         {
