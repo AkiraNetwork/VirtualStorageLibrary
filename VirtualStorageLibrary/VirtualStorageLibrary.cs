@@ -742,19 +742,6 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public enum VirtualSortProperty
-    {
-        Name,
-        CreatedDate,
-        UpdatedDate
-    }
-
-    public enum VirtualSortOrder
-    {
-        Ascending,
-        Descending
-    }
-
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
         private Dictionary<VirtualPath, VirtualNode> _nodes = new();
