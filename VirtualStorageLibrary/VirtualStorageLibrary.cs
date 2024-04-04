@@ -16,13 +16,12 @@ namespace VirtualStorageLibrary
 
         public char PathSeparator { get; set; } = '/';
 
-        public VirtualSortProperty DefaultSortBy { get; set; } = VirtualSortProperty.Name;
+        public GroupCondition<VirtualNode, VirtualNodeType>? DefaultNodeGroupCondition { get; set; } = new (node => node.NodeType, true);
 
-        public VirtualSortOrder DefaultOrderBy { get; set; } = VirtualSortOrder.Ascending;
-
-        public bool DefaultGroupByType { get; set; } = true;
-
-        public VirtualSortOrder DefaultGroupSortOrder { get; set; } = VirtualSortOrder.Ascending;
+        public List<SortCondition<VirtualNode>>? DefaultNodeSortConditions { get; set; } = new()
+        {
+            new (node => node.Name, true)
+        };
     }
 
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
@@ -741,129 +740,15 @@ namespace VirtualStorageLibrary
         Descending
     }
 
-    public class VirtualNodeDictionaryOptions
-    {
-        // ソート対象プロパティ
-        public VirtualSortProperty SortBy
-        { 
-            [DebuggerStepThrough]
-            get;
-
-            [DebuggerStepThrough]
-            set;
-        }
-
-        // プロパティのソート順序
-        public VirtualSortOrder OrderBy
-        { 
-            [DebuggerStepThrough]
-            get;
-
-            [DebuggerStepThrough]
-            set;
-        }
-
-        // グループ化するかどうか
-        public bool GroupByType
-        {
-            [DebuggerStepThrough]
-            get;
-
-            [DebuggerStepThrough]
-            set;
-        }
-
-        // グループのソート順序
-        public VirtualSortOrder GroupSortOrder
-        {
-            [DebuggerStepThrough]
-            get;
-
-            [DebuggerStepThrough]
-            set;
-        }
-
-        [DebuggerStepThrough]
-        public VirtualNodeDictionaryOptions()
-        {
-            SortBy = VirtualStorageSettings.Settings.DefaultSortBy;
-            OrderBy = VirtualStorageSettings.Settings.DefaultOrderBy;
-            GroupByType = VirtualStorageSettings.Settings.DefaultGroupByType;
-            GroupSortOrder = VirtualStorageSettings.Settings.DefaultGroupSortOrder;
-        }
-
-        [DebuggerStepThrough]
-        public VirtualNodeDictionaryOptions(
-            VirtualSortProperty sortBy,
-            VirtualSortOrder order,
-            bool groupByType,
-            VirtualSortOrder groupSortOrder)
-        {
-            SortBy = sortBy;
-            OrderBy = order;
-            GroupByType = groupByType;
-            GroupSortOrder = groupSortOrder;
-        }
-    }
-
-    public class VirtualNodeDictionary : Dictionary<VirtualPath, VirtualNode>
-    {
-        private VirtualNodeDictionaryOptions _options = new();
-
-        public VirtualNodeDictionaryOptions Options { get => _options; set => _options = value; }
-
-        public IEnumerable<VirtualNode> GetNodeList()
-        {
-            // まず、基本となるノードの列挙を取得します。
-            var query = this.Values.AsEnumerable();
-
-            // タイプに基づいてグループ化する必要がある場合
-            IOrderedEnumerable<VirtualNode> orderedQuery;
-            if (_options.GroupByType)
-            {
-                // グループ化のソート順序を考慮して、ノードタイプに基づいてソートします。
-                orderedQuery = _options.GroupSortOrder == VirtualSortOrder.Ascending
-                    ? query.OrderBy(node => node.NodeType)
-                    : query.OrderByDescending(node => node.NodeType);
-            }
-            else
-            {
-                // GroupByTypeがfalseの場合、デフォルトのソートを適用します（例: 名前）。
-                // この部分は、必要に応じて適切なデフォルト条件を設定してください。
-                orderedQuery = query.OrderBy(node => node.Name);
-            }
-
-            // タイプに基づく初期ソート後、指定されたプロパティでさらにソートします。
-            switch (_options.SortBy)
-            {
-                case VirtualSortProperty.Name:
-                    orderedQuery = _options.OrderBy == VirtualSortOrder.Ascending
-                        ? orderedQuery.ThenBy(node => node.Name)
-                        : orderedQuery.ThenByDescending(node => node.Name);
-                    break;
-                case VirtualSortProperty.CreatedDate:
-                    orderedQuery = _options.OrderBy == VirtualSortOrder.Ascending
-                        ? orderedQuery.ThenBy(node => node.CreatedDate)
-                        : orderedQuery.ThenByDescending(node => node.CreatedDate);
-                    break;
-                case VirtualSortProperty.UpdatedDate:
-                    orderedQuery = _options.OrderBy == VirtualSortOrder.Ascending
-                        ? orderedQuery.ThenBy(node => node.UpdatedDate)
-                        : orderedQuery.ThenByDescending(node => node.UpdatedDate);
-                    break;
-                    // 他のソート基準がある場合は、ここに追加してください。
-            }
-
-            // 最終的にソートされたクエリを返します。
-            return orderedQuery;
-        }
-    }
-
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
-        private VirtualNodeDictionary _nodes = new();
+        private Dictionary<VirtualPath, VirtualNode> _nodes = new();
 
         public override VirtualNodeType NodeType => VirtualNodeType.Directory;
+
+        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = null;
+
+        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = null;
 
         public int Count => _nodes.Count;
 
@@ -875,11 +760,7 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualPath> NodeNames => _nodes.Keys;
 
-        public IEnumerable<VirtualNode> Nodes => _nodes.GetNodeList();
-
-        public IEnumerable<VirtualNode> GetNodeList() => _nodes.GetNodeList();
-
-        public VirtualNodeDictionaryOptions Options { get => _nodes.Options; set => _nodes.Options = value; }
+        public IEnumerable<VirtualNode> Nodes => GetNodeList(NodeGroupCondition, NodeSortConditions);
 
         public bool NodeExists(VirtualPath name) => _nodes.ContainsKey(name);
 
@@ -960,6 +841,14 @@ namespace VirtualStorageLibrary
         VirtualDirectory IDeepCloneable<VirtualDirectory>.DeepClone()
         {
             return (VirtualDirectory)DeepClone();
+        }
+
+        public IEnumerable<VirtualNode> GetNodeList(
+            GroupCondition<VirtualNode, object>? nodeGroupCondition,
+            List<SortCondition<VirtualNode>>? nodeSortConditions)
+        {
+            IEnumerable<VirtualNode> nodes = _nodes.Values;
+            return nodes.GroupAndSort(nodeGroupCondition, nodeSortConditions);
         }
 
         public void Add(VirtualNode node, bool allowOverwrite = false)
@@ -1050,6 +939,10 @@ namespace VirtualStorageLibrary
         public VirtualDirectory Root => _root;
 
         public VirtualPath CurrentPath { get; private set; }
+
+        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = null;
+
+        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = null;
 
         private Dictionary<VirtualPath, List<VirtualPath>> _linkDictionary;
 
