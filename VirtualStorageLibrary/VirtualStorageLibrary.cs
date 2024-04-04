@@ -22,6 +22,8 @@ namespace VirtualStorageLibrary
         {
             new (node => node.Name, true)
         };
+
+        public VirtualNodeTypeFilter NodeTypeFilter { get; set; } = VirtualNodeTypeFilter.All;
     }
 
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
@@ -38,7 +40,7 @@ namespace VirtualStorageLibrary
 
     public enum VirtualNodeTypeFilter
     {
-        Non = 0x00,
+        None = 0x00,
         Item = 0x01,
         Directory = 0x02,
         SymbolicLink = 0x04,
@@ -843,10 +845,26 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodeList()
         {
+            VirtualNodeTypeFilter nodeTypeFilter = VirtualStorageSettings.Settings.NodeTypeFilter;
             GroupCondition<VirtualNode, object>? nodeGroupCondition = VirtualStorageSettings.Settings.NodeGroupCondition;
             List<SortCondition<VirtualNode>>? nodeSortConditions = VirtualStorageSettings.Settings.NodeSortConditions;
 
             IEnumerable<VirtualNode> nodes = _nodes.Values;
+
+            switch (nodeTypeFilter)
+            {
+                case VirtualNodeTypeFilter.None:
+                    return Enumerable.Empty<VirtualNode>();
+                case VirtualNodeTypeFilter.All:
+                    break;
+                default:
+                    nodes = _nodes.Values.Where(node =>
+                    (nodeTypeFilter.HasFlag(VirtualNodeTypeFilter.Directory) && node is VirtualDirectory) ||
+                    (nodeTypeFilter.HasFlag(VirtualNodeTypeFilter.Item) && node is VirtualItem) ||
+                    (nodeTypeFilter.HasFlag(VirtualNodeTypeFilter.SymbolicLink) && node is VirtualSymbolicLink));
+                    break;
+            }
+
             return nodes.GroupAndSort(nodeGroupCondition, nodeSortConditions);
         }
 

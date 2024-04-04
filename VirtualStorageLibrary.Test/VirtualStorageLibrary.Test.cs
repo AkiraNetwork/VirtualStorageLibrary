@@ -1598,7 +1598,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameAscDir()
+        public void GetNodeList_NameAscAndTypeAsc()
         {
             // Arrange
             var storage = new VirtualStorage();
@@ -1608,6 +1608,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
             // 条件を設定
+            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
             VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
             VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
@@ -1633,7 +1634,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_CreatedDateAscDir()
+        public void GetNodeList_CreatedDateAscAndTypeAsc()
         {
             // Arrange
             var storage = new VirtualStorage();
@@ -1645,6 +1646,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/"), item2);
 
             // 条件を設定
+            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
             VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
             VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
@@ -1670,7 +1672,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_CreatedDateDesDir()
+        public void GetNodeList_CreatedDateDesAndTypeAsc()
         {
             // Arrange
             var storage = new VirtualStorage();
@@ -1682,6 +1684,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/"), item2);
 
             // 条件を設定
+            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
             VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
             VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
@@ -1707,7 +1710,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameDesDir()
+        public void GetNodeList_NameDesAndTypeAsc()
         {
             // Arrange
             var storage = new VirtualStorage();
@@ -1717,6 +1720,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
             // 条件を設定
+            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
             VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
             VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
@@ -1742,7 +1746,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameAscItem()
+        public void GetNodeList_NameAscAndTypeDes()
         {
             // Arrange
             var storage = new VirtualStorage();
@@ -1752,7 +1756,8 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, false);
             VirtualStorageSettings.Settings.NodeSortConditions = new()
             {
                 new (node => node.Name, true)
@@ -1770,10 +1775,78 @@ namespace VirtualStorageLibrary.Test
                 Debug.WriteLine(node.Name.NodeName);
             }
             Assert.AreEqual(4, nodes.Count);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[1].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir1"), nodes[2].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("dir2"), nodes[3].Name.NodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeList_NameAscAndTypeDesWithOnlyDir()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir1"));
+            storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
+
+            // 条件を設定
+            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.Directory;
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            {
+                new (node => node.Name, true)
+            };
+
+            // テスト対象のディレクトリを取得
+            var directory = storage.GetDirectory(new VirtualPath("/"));
+
+            // Act
+            var nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (var node in nodes)
+            {
+                Debug.WriteLine(node.Name.NodeName);
+            }
+            Assert.AreEqual(2, nodes.Count);
             Assert.AreEqual(new VirtualPath("dir1"), nodes[0].Name.NodeName);
             Assert.AreEqual(new VirtualPath("dir2"), nodes[1].Name.NodeName);
-            Assert.AreEqual(new VirtualPath("item1"), nodes[2].Name.NodeName);
-            Assert.AreEqual(new VirtualPath("item2"), nodes[3].Name.NodeName);
+        }
+
+        [TestMethod]
+        public void GetNodeList_NameAscAndTypeDesWithOnlyItem()
+        {
+            // Arrange
+            var storage = new VirtualStorage();
+            storage.AddDirectory(new VirtualPath("/dir2"));
+            storage.AddItem(new VirtualPath("/item2"), new BinaryData([1, 2, 3]));
+            storage.AddDirectory(new VirtualPath("/dir1"));
+            storage.AddItem(new VirtualPath("/item1"), new BinaryData([1, 2, 3]));
+
+            // 条件を設定
+            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.Item;
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            {
+                new (node => node.Name, true)
+            };
+
+            // テスト対象のディレクトリを取得
+            var directory = storage.GetDirectory(new VirtualPath("/"));
+
+            // Act
+            var nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (var node in nodes)
+            {
+                Debug.WriteLine(node.Name.NodeName);
+            }
+            Assert.AreEqual(2, nodes.Count);
+            Assert.AreEqual(new VirtualPath("item1"), nodes[0].Name.NodeName);
+            Assert.AreEqual(new VirtualPath("item2"), nodes[1].Name.NodeName);
         }
     }
 
@@ -4969,7 +5042,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem(new VirtualPath("/dir2/item1"), "content1");
             vs.AddDirectory(new VirtualPath("/dir2/subdir1"), true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir2"), VirtualNodeTypeFilter.Non, true).ToList();
+            var result = vs.WalkPathTree(new VirtualPath("/dir2"), VirtualNodeTypeFilter.None, true).ToList();
 
             Assert.AreEqual(0, result.Count); // フィルター未適用の場合、ノードは返されない
         }
