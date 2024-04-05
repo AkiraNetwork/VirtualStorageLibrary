@@ -108,6 +108,94 @@ namespace VirtualStorageLibrary
         T DeepClone();
     }
 
+    public class VirtualNodeName : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable
+    {
+        private readonly string _name;
+
+        public string Name => _name;
+
+        public VirtualNodeName(string name)
+        {
+            _name = name;
+        }
+
+        public static implicit operator VirtualNodeName(string name)
+        {
+            return new VirtualNodeName(name);
+        }
+
+        public static implicit operator string(VirtualNodeName nodeName)
+        {
+            return nodeName._name;
+        }
+
+        public bool Equals(VirtualNodeName? other)
+        {
+            return _name == other?._name;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is VirtualNodeName other)
+            {
+                return _name == other._name;
+            }
+            return false;
+        }
+
+        public override int GetHashCode() => _name.GetHashCode();
+
+        public int CompareTo(VirtualNodeName? other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+
+            return string.Compare(_name, other._name, StringComparison.Ordinal);
+        }
+
+        public int CompareTo(object? obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+
+            if (!(obj is VirtualNodeName))
+            {
+                throw new ArgumentException("Object is not a VirtualNodeName");
+            }
+
+            return CompareTo((VirtualNodeName)obj);
+        }
+
+        public static bool operator ==(VirtualNodeName? left, VirtualNodeName? right)
+        {
+            // 両方が null の場合は true
+            if (object.ReferenceEquals(left, null) && object.ReferenceEquals(right, null))
+            {
+                return true;
+            }
+
+            // 一方が null の場合は false
+            if (object.ReferenceEquals(left, null) || object.ReferenceEquals(right, null))
+            {
+                return false;
+            }
+
+            // 実際のノード名の比較
+            return left._name == right._name;
+        }
+
+        public static bool operator !=(VirtualNodeName? left, VirtualNodeName? right)
+        {
+            return !(left == right);
+        }
+
+
+    }
+
     public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>, IComparable
     {
         private readonly string _path;
@@ -292,6 +380,15 @@ namespace VirtualStorageLibrary
         public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
         {
             return path1.Combine(path2);
+        }
+
+        [DebuggerStepThrough]
+        public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
+        {
+            char pathSeperator = VirtualStorageSettings.Settings.PathSeparator;
+            VirtualPath trimmedPath = path.TrimEndSlash();
+            string fullPath = trimmedPath._path + pathSeperator + nodeName.Name;
+            return new VirtualPath(fullPath);
         }
 
         [DebuggerStepThrough]
