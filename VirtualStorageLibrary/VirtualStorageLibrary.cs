@@ -103,18 +103,6 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public class VirtualReroutePathException : Exception
-    {
-        public VirtualPath ReroutedPath { get; }
-        public VirtualPath TraversalPath { get; }
-
-        public VirtualReroutePathException(VirtualPath reroutedPath, VirtualPath traversalPath)
-        {
-            ReroutedPath = reroutedPath;
-            TraversalPath = traversalPath;
-        }
-    }
-
     public interface IDeepCloneable<T>
     {
         T DeepClone();
