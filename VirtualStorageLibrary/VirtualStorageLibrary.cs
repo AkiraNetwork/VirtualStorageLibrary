@@ -28,7 +28,7 @@ namespace VirtualStorageLibrary
 
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
 
-    public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualPath nodeName);
+    public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualNodeName nodeName);
 
     public enum VirtualNodeType
     {
@@ -202,11 +202,11 @@ namespace VirtualStorageLibrary
 
         private VirtualPath? _directoryPath;
 
-        private VirtualPath? _nodeName;
+        private VirtualNodeName? _nodeName;
 
         public string Path => _path;
 
-        private List<VirtualPath>? _partsList;
+        private List<VirtualNodeName>? _partsList;
 
         public static implicit operator VirtualPath(string path)
         {
@@ -231,20 +231,20 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public VirtualPath NodeName
+        public VirtualNodeName NodeName
         {
             [DebuggerStepThrough]
             get
             {
                 if (_nodeName == null)
                 {
-                    _nodeName = new VirtualPath(GetNodeName());
+                    _nodeName = GetNodeName();
                 }
                 return _nodeName;
             }
         }
 
-        public List<VirtualPath> PartsList
+        public List<VirtualNodeName> PartsList
         {
             [DebuggerStepThrough]
             get
@@ -257,7 +257,7 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public static VirtualPath Root
+        public static string Root
         {
             [DebuggerStepThrough]
             get => VirtualStorageSettings.Settings.PathSeparator.ToString();
@@ -519,14 +519,14 @@ namespace VirtualStorageLibrary
         }
 
         [DebuggerStepThrough]
-        private string GetNodeName()
+        private VirtualNodeName GetNodeName()
         {
             char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
 
             if (_path == pathSeparator.ToString())
             {
                 // ルートディレクトリの場合は、そのままの文字列を返す
-                return pathSeparator.ToString();
+                return new VirtualNodeName(pathSeparator.ToString());
             }
 
             StringBuilder path = new StringBuilder(_path);
@@ -541,12 +541,12 @@ namespace VirtualStorageLibrary
             if (lastSlashIndex < 0)
             {
                 // PathSeparator が見つからない場合は、そのままの文字列を返す
-                return _path;
+                return new VirtualNodeName(_path);
             }
             else
             {
                 // 最後の PathSeparator 以降の部分を抜き出して返す
-                return path.ToString().Substring(lastSlashIndex + 1);
+                return new VirtualNodeName(path.ToString().Substring(lastSlashIndex + 1));
             }
         }
 
@@ -627,21 +627,21 @@ namespace VirtualStorageLibrary
         }
 
         [DebuggerStepThrough]
-        public LinkedList<VirtualPath> GetPartsLinkedList()
+        public LinkedList<VirtualNodeName> GetPartsLinkedList()
         {
             char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
 
-            LinkedList<VirtualPath> parts = new();
+            LinkedList<VirtualNodeName> parts = new();
             foreach (var part in _path.Split(pathSeparator, StringSplitOptions.RemoveEmptyEntries))
             {
-                parts.AddLast(new VirtualPath(part));
+                parts.AddLast(new VirtualNodeName(part));
             }
 
             return parts;
         }
 
         [DebuggerStepThrough]
-        public List<VirtualPath> GetPartsList()
+        public List<VirtualNodeName> GetPartsList()
         {
             return GetPartsLinkedList().ToList();
         }
@@ -690,7 +690,7 @@ namespace VirtualStorageLibrary
 
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
     {
-        public VirtualPath Name { get; set; }
+        public VirtualNodeName Name { get; set; }
         public DateTime CreatedDate { get; private set; }
         public DateTime UpdatedDate { get; private set; }
 
@@ -698,14 +698,14 @@ namespace VirtualStorageLibrary
 
         public abstract VirtualNode DeepClone();
 
-        protected VirtualNode(VirtualPath name)
+        protected VirtualNode(VirtualNodeName name)
         {
             Name = name;
             CreatedDate = DateTime.Now;
             UpdatedDate = DateTime.Now;
         }
 
-        protected VirtualNode(VirtualPath name, DateTime createdDate, DateTime updatedDate)
+        protected VirtualNode(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)
         {
             Name = name;
             CreatedDate = createdDate;
@@ -721,12 +721,12 @@ namespace VirtualStorageLibrary
 
         public override VirtualNodeType NodeType => VirtualNodeType.SymbolicLink;
 
-        public VirtualSymbolicLink(VirtualPath name, VirtualPath targetPath) : base(name)
+        public VirtualSymbolicLink(VirtualNodeName name, VirtualPath targetPath) : base(name)
         {
             TargetPath = targetPath;
         }
 
-        public VirtualSymbolicLink(VirtualPath name, VirtualPath targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualSymbolicLink(VirtualNodeName name, VirtualPath targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             TargetPath = targetPath;
         }
@@ -745,9 +745,9 @@ namespace VirtualStorageLibrary
 
     public abstract class VirtualItem : VirtualNode
     {
-        protected VirtualItem(VirtualPath name) : base(name) { }
+        protected VirtualItem(VirtualNodeName name) : base(name) { }
 
-        protected VirtualItem(VirtualPath name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate) { }
+        protected VirtualItem(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate) { }
 
         public override abstract VirtualNode DeepClone();
     }
@@ -760,13 +760,13 @@ namespace VirtualStorageLibrary
 
         public override VirtualNodeType NodeType => VirtualNodeType.Item;
 
-        public VirtualItem(VirtualPath name, T item) : base(name)
+        public VirtualItem(VirtualNodeName name, T item) : base(name)
         {
             ItemData = item;
             disposed = false;
         }
 
-        public VirtualItem(VirtualPath name, T item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualItem(VirtualNodeName name, T item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             ItemData = item;
             disposed = false;
@@ -831,7 +831,7 @@ namespace VirtualStorageLibrary
 
     public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
     {
-        private Dictionary<VirtualPath, VirtualNode> _nodes = new();
+        private Dictionary<VirtualNodeName, VirtualNode> _nodes = new();
 
         public override VirtualNodeType NodeType => VirtualNodeType.Directory;
 
@@ -843,13 +843,13 @@ namespace VirtualStorageLibrary
 
         public int SymbolicLinkCount => _nodes.Values.Count(n => n is VirtualSymbolicLink);
 
-        public IEnumerable<VirtualPath> NodeNames => _nodes.Keys;
+        public IEnumerable<VirtualNodeName> NodeNames => _nodes.Keys;
 
         public IEnumerable<VirtualNode> Nodes => GetNodeList();
 
-        public bool NodeExists(VirtualPath name) => _nodes.ContainsKey(name);
+        public bool NodeExists(VirtualNodeName name) => _nodes.ContainsKey(name);
 
-        public bool ItemExists(VirtualPath name)
+        public bool ItemExists(VirtualNodeName name)
         {
             // NodeExistsを使用してノードの存在を確認
             if (!NodeExists(name))
@@ -863,7 +863,7 @@ namespace VirtualStorageLibrary
             return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>);
         }
 
-        public bool DirectoryExists(VirtualPath name)
+        public bool DirectoryExists(VirtualNodeName name)
         {
             if (!NodeExists(name))
             {
@@ -873,7 +873,7 @@ namespace VirtualStorageLibrary
             return _nodes[name] is VirtualDirectory;
         }
 
-        public bool SymbolicLinkExists(VirtualPath name)
+        public bool SymbolicLinkExists(VirtualNodeName name)
         {
             if (!NodeExists(name))
             {
@@ -884,12 +884,12 @@ namespace VirtualStorageLibrary
             return node is VirtualSymbolicLink;
         }
 
-        public VirtualDirectory(VirtualPath name) : base(name)
+        public VirtualDirectory(VirtualNodeName name) : base(name)
         {
             _nodes = new();
         }
 
-        public VirtualDirectory(VirtualPath name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             _nodes = new();
         }
@@ -955,7 +955,7 @@ namespace VirtualStorageLibrary
 
         public void Add(VirtualNode node, bool allowOverwrite = false)
         {
-            VirtualPath key = node.Name;
+            VirtualNodeName key = node.Name;
 
             if (_nodes.ContainsKey(key) && !allowOverwrite)
             {
@@ -965,22 +965,22 @@ namespace VirtualStorageLibrary
             _nodes[key] = node;
         }
 
-        public void AddItem<T>(VirtualPath name, T item, bool allowOverwrite = false)
+        public void AddItem<T>(VirtualNodeName name, T item, bool allowOverwrite = false)
         {
             Add(new VirtualItem<T>(name, item), allowOverwrite);
         }
 
-        public void AddSymbolicLink(VirtualPath name, VirtualPath targetPath, bool allowOverwrite = false)
+        public void AddSymbolicLink(VirtualNodeName name, VirtualPath targetPath, bool allowOverwrite = false)
         {
             Add(new VirtualSymbolicLink(name, targetPath), allowOverwrite);
         }
 
-        public void AddDirectory(VirtualPath name, bool allowOverwrite = false)
+        public void AddDirectory(VirtualNodeName name, bool allowOverwrite = false)
         {
             Add(new VirtualDirectory(name), allowOverwrite);
         }
 
-        public VirtualNode this[VirtualPath name]
+        public VirtualNode this[VirtualNodeName name]
         {
             get
             {
@@ -996,7 +996,7 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public void Remove(VirtualPath name)
+        public void Remove(VirtualNodeName name)
         {
             if (!NodeExists(name))
             {
@@ -1006,7 +1006,7 @@ namespace VirtualStorageLibrary
             _nodes.Remove(name);
         }
 
-        public VirtualNode Get(VirtualPath name)
+        public VirtualNode Get(VirtualNodeName name)
         {
             if (!NodeExists(name))
             {
@@ -1015,7 +1015,7 @@ namespace VirtualStorageLibrary
             return _nodes[name];
         }
 
-        public void Rename(VirtualPath oldName, VirtualPath newName)
+        public void Rename(VirtualNodeName oldName, VirtualNodeName newName)
         {
             if (!NodeExists(oldName))
             {
@@ -1151,7 +1151,7 @@ namespace VirtualStorageLibrary
 
             // directoryPath（ディレクトリパス）と linkName（リンク名）を分離
             VirtualPath directoryPath = path.DirectoryPath;
-            VirtualPath linkName = path.NodeName;
+            VirtualNodeName linkName = path.NodeName;
 
             // 対象ディレクトリを安全に取得
             VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true);
@@ -1234,7 +1234,7 @@ namespace VirtualStorageLibrary
 
             // ディレクトリパスとアイテム名を分離
             VirtualPath directoryPath = path.DirectoryPath;
-            VirtualPath itemName = path.NodeName;
+            VirtualNodeName itemName = path.NodeName;
 
             // アイテムを作成
             VirtualItem<T> item = new VirtualItem<T>(itemName, data);
@@ -1253,7 +1253,7 @@ namespace VirtualStorageLibrary
             }
 
             VirtualPath directoryPath = path.DirectoryPath;
-            VirtualPath newDirectory = path.NodeName;
+            VirtualNodeName newDirectory = path.NodeName;
             NodeInformation result;
 
             if (createSubdirectories)
@@ -1286,7 +1286,7 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualPath nodeName)
+        private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName)
         {
             VirtualDirectory newDirectory = new VirtualDirectory(nodeName);
 
@@ -1316,7 +1316,7 @@ namespace VirtualStorageLibrary
                 return new NodeInformation(_root, VirtualPath.Root, null, 0, 0, VirtualPath.Root);
             }
 
-            VirtualPath traversalNodeName = targetPath.PartsList[traversalIndex];
+            VirtualNodeName traversalNodeName = targetPath.PartsList[traversalIndex];
 
             while (!traversalDirectory.NodeExists(traversalNodeName))
             {
