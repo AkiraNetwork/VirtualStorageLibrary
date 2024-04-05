@@ -114,6 +114,24 @@ namespace VirtualStorageLibrary
 
         public string Name => _name;
 
+        public static VirtualNodeName Empty
+        {
+            [DebuggerStepThrough]
+            get => new(string.Empty);
+        }
+
+        public static VirtualNodeName Dot
+        {
+            [DebuggerStepThrough]
+            get => new(".");
+        }
+
+        public static VirtualNodeName DotDot
+        {
+            [DebuggerStepThrough]
+            get => new("..");
+        }
+
         public VirtualNodeName(string name)
         {
             _name = name;
@@ -330,9 +348,9 @@ namespace VirtualStorageLibrary
         }
 
         [DebuggerStepThrough]
-        public VirtualPath(IEnumerable<VirtualPath> parts)
+        public VirtualPath(IEnumerable<VirtualNodeName> parts)
         {
-            _path = string.Join(VirtualStorageSettings.Settings.PathSeparator, parts.Select(p => p.Path));
+            _path = string.Join(VirtualStorageSettings.Settings.PathSeparator, parts.Select(node => node.Name));
         }
 
         [DebuggerStepThrough]
@@ -550,6 +568,7 @@ namespace VirtualStorageLibrary
             }
         }
 
+        // TODO: VirtualNodeNameを使ってCombineするように変更するかも
         [DebuggerStepThrough]
         public VirtualPath Combine(params VirtualPath[] paths)
         {
@@ -561,6 +580,7 @@ namespace VirtualStorageLibrary
             return new VirtualPath(combinedPathString);
         }
 
+        // TODO: VirtualNodeNameを使ってCombineするように変更するかも
         [DebuggerStepThrough]
         public string Combine(params string[] paths)
         {
@@ -1475,8 +1495,8 @@ namespace VirtualStorageLibrary
                 int index = 0;
                 foreach (var node in directory.Nodes)
                 {
-                    VirtualPath nodePath = basePath + node.Name;
-                    foreach (var result in WalkPathTreeInternal(nodePath, node, directory, currentDepth + 1, index, filter, followLinks))
+                    VirtualPath path = basePath + node.Name;
+                    foreach (var result in WalkPathTreeInternal(path, node, directory, currentDepth + 1, index, filter, followLinks))
                     {
                         yield return result;
                     }
@@ -1684,7 +1704,10 @@ namespace VirtualStorageLibrary
             }
 
             bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.IsEndsWithSlash;
-            VirtualPath targetDirectoryPath, newNodeName;
+
+            VirtualPath targetDirectoryPath;
+            VirtualNodeName newNodeName;
+
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
@@ -1735,7 +1758,9 @@ namespace VirtualStorageLibrary
 
             bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.IsEndsWithSlash;
 
-            VirtualPath targetDirectoryPath, newNodeName;
+            VirtualPath targetDirectoryPath;
+            VirtualNodeName newNodeName;
+
             if (destinationIsDirectory)
             {
                 targetDirectoryPath = absoluteDestinationPath;
@@ -1952,10 +1977,10 @@ namespace VirtualStorageLibrary
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        VirtualPath destinationNodeName = absoluteDestinationPath.NodeName;
+                        VirtualNodeName destinationNodeName = absoluteDestinationPath.NodeName;
                         VirtualDirectory sourceDirectory = GetDirectory(absoluteSourcePath);
 
-                        VirtualPath oldNodeName = sourceDirectory.Name;
+                        VirtualNodeName oldNodeName = sourceDirectory.Name;
                         sourceDirectory.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceDirectory);
                         VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
@@ -2015,10 +2040,10 @@ namespace VirtualStorageLibrary
                             throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
                         }
                         VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        VirtualPath destinationNodeName = absoluteDestinationPath.NodeName;
+                        VirtualNodeName destinationNodeName = absoluteDestinationPath.NodeName;
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
-                        VirtualPath oldNodeName = sourceNode.Name;
+                        VirtualNodeName oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
                         VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
@@ -2029,7 +2054,7 @@ namespace VirtualStorageLibrary
                         // 存在する場合
 
                         VirtualDirectory destinationParentDirectory = GetDirectory(absoluteDestinationPath.GetParentPath());
-                        VirtualPath destinationNodeName = absoluteDestinationPath.NodeName;
+                        VirtualNodeName destinationNodeName = absoluteDestinationPath.NodeName;
                         VirtualNode sourceNode = GetNode(absoluteSourcePath);
 
                         // 移動先ディレクトリの同名チェック
@@ -2050,7 +2075,7 @@ namespace VirtualStorageLibrary
                             }
                         }
 
-                        VirtualPath oldNodeName = sourceNode.Name;
+                        VirtualNodeName oldNodeName = sourceNode.Name;
                         sourceNode.Name = destinationNodeName;
                         destinationParentDirectory.Add(sourceNode);
                         VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
@@ -2085,7 +2110,7 @@ namespace VirtualStorageLibrary
             foreach (var nodeInfo in nodeInfos)
             {
                 VirtualNode? node = nodeInfo.Node;
-                string nodeName = nodeInfo.TraversalPath.NodeName.ToString();
+                string nodeName = nodeInfo.TraversalPath.NodeName;
                 int depth = nodeInfo.Depth;
                 int count = nodeInfo.ParentDirectory?.Count ?? 0;
                 int index = nodeInfo.Index;
