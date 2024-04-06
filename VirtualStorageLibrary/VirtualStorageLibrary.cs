@@ -132,6 +132,8 @@ namespace VirtualStorageLibrary
             get => new("..");
         }
 
+        public override string ToString() => _name;
+
         public VirtualNodeName(string name)
         {
             _name = name;
