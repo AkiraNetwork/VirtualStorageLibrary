@@ -18,7 +18,7 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void DefaultConstructor_CreatesInstance()
         {
-            var exception = new VirtualNodeNotFoundException();
+            VirtualNodeNotFoundException exception = new();
             Assert.IsNotNull(exception);
         }
 
@@ -27,12 +27,12 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualNodeName name = "TestItem";
-            var item = new SimpleData(10);
+            SimpleData item = new(10);
             DateTime createdDate = DateTime.Now;
             DateTime updatedDate = DateTime.Now;
 
             // Act
-            var virtualItem = new VirtualItem<SimpleData>(name, item, createdDate, updatedDate);
+            VirtualItem<SimpleData> virtualItem = new(name, item, createdDate, updatedDate);
 
             // Assert
             Assert.AreEqual(name, virtualItem.Name);
@@ -45,7 +45,7 @@ namespace VirtualStorageLibrary.Test
         public void ConstructorWithMessage_CreatesInstanceWithMessage()
         {
             string message = "Test message";
-            var exception = new VirtualNodeNotFoundException(message);
+            VirtualNodeNotFoundException exception = new(message);
 
             Assert.IsNotNull(exception);
             Assert.AreEqual(message, exception.Message);
@@ -55,8 +55,8 @@ namespace VirtualStorageLibrary.Test
         public void ConstructorWithMessageAndInnerException_CreatesInstanceWithMessageAndInnerException()
         {
             string message = "Test message";
-            var innerException = new Exception("Inner exception");
-            var exception = new VirtualNodeNotFoundException(message, innerException);
+            Exception innerException = new("Inner exception");
+            VirtualNodeNotFoundException exception = new(message, innerException);
 
             Assert.IsNotNull(exception);
             Assert.AreEqual(message, exception.Message);
@@ -300,7 +300,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath path2 = VirtualPath.Empty;
             VirtualPath expected = VirtualPath.Empty;
 
-            var result = path1.Combine(path2);
+            VirtualPath result = path1.Combine(path2);
 
             Assert.AreEqual(expected, result);
         }
@@ -367,7 +367,7 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualPath virtualPath = "/folder1/folder2/file";
-            LinkedList<VirtualPath> expected = new(["folder1", "folder2", "file"]);
+            LinkedList<VirtualNodeName> expected = new(["folder1", "folder2", "file"]);
 
             // Act
             LinkedList<VirtualNodeName> actual = virtualPath.GetPartsLinkedList();
@@ -380,8 +380,8 @@ namespace VirtualStorageLibrary.Test
         public void GetPartsLinkedList_WithRelativePath_ReturnsCorrectParts()
         {
             // Arrange
-            VirtualPath virtualPath = new VirtualPath("folder1/folder2/file");
-            LinkedList<VirtualPath> expected = new(["folder1", "folder2", "file"]);
+            VirtualPath virtualPath = "folder1/folder2/file";
+            LinkedList<VirtualNodeName> expected = new(["folder1", "folder2", "file"]);
 
             // Act
             LinkedList<VirtualNodeName> actual = virtualPath.GetPartsLinkedList();
@@ -395,7 +395,7 @@ namespace VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualPath virtualPath = "folder1//folder2///file";
-            LinkedList<VirtualPath> expected = new(["folder1", "folder2", "file"]);
+            LinkedList<VirtualNodeName> expected = new(["folder1", "folder2", "file"]);
 
             // Act
             LinkedList<VirtualNodeName> actual = virtualPath.GetPartsLinkedList();
@@ -482,7 +482,7 @@ namespace VirtualStorageLibrary.Test
         public void PartsList_CachedAfterFirstAccess_DoesNotRegenerateList()
         {
             // テストデータ
-            VirtualPath path = new VirtualPath("/path/to/directory/file");
+            VirtualPath path = "/path/to/directory/file";
 
             // 最初のアクセスでリストを生成
             List<VirtualNodeName> firstAccessResult = path.PartsList;
@@ -530,7 +530,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath targetPath = "/target/path";
 
             // Act
-            var link = new VirtualSymbolicLink(nodeName, targetPath);
+            VirtualSymbolicLink link = new(nodeName, targetPath);
 
             // Assert
             Assert.AreEqual(nodeName, link.Name);
@@ -547,7 +547,7 @@ namespace VirtualStorageLibrary.Test
             DateTime updatedDate = DateTime.Now;
 
             // Act
-            var link = new VirtualSymbolicLink(name, targetPath, createdDate, updatedDate);
+            VirtualSymbolicLink link = new(name, targetPath, createdDate, updatedDate);
 
             // Assert
             Assert.AreEqual(name, link.Name);
@@ -564,10 +564,10 @@ namespace VirtualStorageLibrary.Test
             VirtualPath targetPath = "/target/path";
             DateTime createdDate = DateTime.Now;
             DateTime updatedDate = DateTime.Now;
-            var link = new VirtualSymbolicLink(name, targetPath, createdDate, updatedDate);
+            VirtualSymbolicLink link = new(name, targetPath, createdDate, updatedDate);
 
             // Act
-            var clone = link.DeepClone() as VirtualSymbolicLink;
+            VirtualSymbolicLink? clone = link.DeepClone() as VirtualSymbolicLink;
 
             // Assert
             Assert.IsNotNull(clone);
@@ -766,7 +766,7 @@ namespace VirtualStorageLibrary.Test
             originalDirectory.AddDirectory("Node2");
 
             // DeepClone メソッドを使用してクローンを作成
-            var clonedDirectory = originalDirectory.DeepClone() as VirtualDirectory;
+            VirtualDirectory? clonedDirectory = originalDirectory.DeepClone() as VirtualDirectory;
 
             // クローンが正しく作成されたか検証
             Assert.IsNotNull(clonedDirectory);
@@ -777,7 +777,7 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
 
             // 各ノードも適切にクローンされていることを検証
-            foreach (var name in originalDirectory.NodeNames)
+            foreach (VirtualNodeName name in originalDirectory.NodeNames)
             {
                 Assert.AreNotSame(originalDirectory[name], clonedDirectory[name]);
                 Assert.AreEqual(originalDirectory[name].Name, clonedDirectory[name].Name);
@@ -850,7 +850,7 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
             Assert.AreNotSame(originalDirectory.Nodes.First(), clonedDirectory.Nodes.First());
 
-            var clonedSubDirectory = (VirtualDirectory)clonedDirectory.Nodes.First();
+            VirtualDirectory clonedSubDirectory = (VirtualDirectory)clonedDirectory.Nodes.First();
             Assert.AreEqual(subDirectory.Name, clonedSubDirectory.Name);
             Assert.AreNotSame(subDirectory, clonedSubDirectory);
         }
@@ -873,8 +873,8 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
             Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
 
-            var originalItem = originalDirectory.Get("item") as VirtualItem<SimpleData>;
-            var clonedItem = clonedDirectory.Get("item") as VirtualItem<SimpleData>;
+            VirtualItem<SimpleData>? originalItem = originalDirectory.Get("item") as VirtualItem<SimpleData>;
+            VirtualItem<SimpleData>? clonedItem = clonedDirectory.Get("item") as VirtualItem<SimpleData>;
             Assert.IsNotNull(originalItem);
             Assert.IsNotNull(clonedItem);
             Assert.AreNotSame(originalItem, clonedItem);
@@ -981,7 +981,7 @@ namespace VirtualStorageLibrary.Test
             directory.AddItem("TestItem", itemData, false);
 
             Assert.IsTrue(directory.NodeExists("TestItem"));
-            var retrievedItem = directory.Get("TestItem") as VirtualItem<BinaryData>;
+            VirtualItem<BinaryData>? retrievedItem = directory.Get("TestItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(itemData.Data, retrievedItem.ItemData.Data);
         }
@@ -1347,7 +1347,7 @@ namespace VirtualStorageLibrary.Test
             directory.AddItem(nodeName, itemData, false);
 
             // Act
-            var exists = directory.ItemExists(nodeName);
+            bool exists = directory.ItemExists(nodeName);
 
             // Assert
             Assert.IsTrue(exists);
@@ -1536,7 +1536,7 @@ namespace VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node.Name);
             }
@@ -1566,13 +1566,13 @@ namespace VirtualStorageLibrary.Test
             };
 
             // テスト対象のディレクトリを取得
-            var directory = storage.GetDirectory("/");
+            VirtualDirectory directory = storage.GetDirectory("/");
 
             // Act
-            var nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node.Name);
             }
@@ -1610,7 +1610,7 @@ namespace VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node);
             }
@@ -1648,7 +1648,7 @@ namespace VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node);
             }
@@ -1684,7 +1684,7 @@ namespace VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node.Name);
             }
@@ -1720,7 +1720,7 @@ namespace VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node.Name);
             }
@@ -1756,7 +1756,7 @@ namespace VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node.Name);
             }
@@ -1790,7 +1790,7 @@ namespace VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (var node in nodes)
+            foreach (VirtualNode node in nodes)
             {
                 Debug.WriteLine(node.Name);
             }
@@ -1938,7 +1938,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddDirectory("/root/subdirectory", true);
             virtualStorage.ChangeDirectory("/root/subdirectory");
 
-            var result = virtualStorage.ConvertToAbsolutePath("test/path");
+            VirtualPath result = virtualStorage.ConvertToAbsolutePath("test/path");
 
             Assert.AreEqual(new VirtualPath("/root/subdirectory/test/path"), result);
         }
@@ -1950,7 +1950,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddDirectory("/root/subdirectory", true);
             virtualStorage.ChangeDirectory("/root/subdirectory");
 
-            var result = virtualStorage.ConvertToAbsolutePath("./test/path");
+            VirtualPath result = virtualStorage.ConvertToAbsolutePath("./test/path");
 
             Assert.AreEqual(new VirtualPath("/root/subdirectory/./test/path"), result);
         }
@@ -1962,7 +1962,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddDirectory("/root/subdirectory", true);
             virtualStorage.ChangeDirectory("/root/subdirectory");
 
-            var result = virtualStorage.ConvertToAbsolutePath("../test/path");
+            VirtualPath result = virtualStorage.ConvertToAbsolutePath("../test/path");
 
             Assert.AreEqual(new VirtualPath("/root/subdirectory/../test/path"), result);
         }
@@ -1974,7 +1974,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddDirectory("/root/subdirectory", true);
             virtualStorage.ChangeDirectory("/root/subdirectory");
 
-            var result = virtualStorage.ConvertToAbsolutePath("../../test/path");
+            VirtualPath result = virtualStorage.ConvertToAbsolutePath("../../test/path");
 
             Assert.AreEqual(new VirtualPath("/root/subdirectory/../../test/path"), result);
         }
@@ -2248,7 +2248,7 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             // "/dir1/item"がディレクトリではないノードの下に"dir2"ディレクトリを追加しようとすると例外がスローされることを確認
-            var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 virtualStorage.AddDirectory("/dir1/item/dir2", true));
             Debug.WriteLine(exception.Message);
         }
@@ -2410,7 +2410,7 @@ namespace VirtualStorageLibrary.Test
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 // Act: ディレクトリではないノードの後ろに更にパスが続く場合の挙動をテスト
-                var resultNode = storage.GetNode("/dir/item/more", false);
+                VirtualNode resultNode = storage.GetNode("/dir/item/more", false);
             });
         }
 
@@ -2471,7 +2471,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddSymbolicLink("LinkToCurrent", VirtualPath.Dot);
 
             // Act
-            var node = storage.GetNode("LinkToCurrent", true);
+            VirtualNode node = storage.GetNode("LinkToCurrent", true);
 
             // Assert
             Assert.IsTrue(node is VirtualDirectory);
@@ -2697,7 +2697,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddItem(path, item);
 
             Assert.IsTrue(virtualStorage.ItemExists(path));
-            var retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
+            VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
         }
@@ -2803,7 +2803,7 @@ namespace VirtualStorageLibrary.Test
 
             // サブディレクトリ内にアイテムが作成されていることを確認
             Assert.IsTrue(virtualStorage.ItemExists("/subdirectory/" + itemName));
-            var retrievedItem = virtualStorage.GetNode("/subdirectory/" + itemName) as VirtualItem<BinaryData>;
+            VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/subdirectory/" + itemName) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
         }
@@ -2842,7 +2842,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsTrue(virtualStorage.ItemExists("/actualDirectory/newItem"));
-            var retrievedItem = virtualStorage.GetNode("/actualDirectory/newItem") as VirtualItem<BinaryData>;
+            VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/actualDirectory/newItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData.Data);
         }
@@ -2862,7 +2862,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsTrue(virtualStorage.ItemExists("/level1/level2/targetDirectory/newItem"));
-            var retrievedItem = virtualStorage.GetNode("/level1/level2/targetDirectory/newItem") as VirtualItem<BinaryData>;
+            VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/level1/level2/targetDirectory/newItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData.Data);
         }
@@ -3186,13 +3186,13 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodes_ValidTest()
         {
-            var vs = new VirtualStorage();
+            VirtualStorage vs = new();
 
             SetTestData(vs);
 
             Assert.AreEqual(22, vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
             Debug.WriteLine("\nAll nodes:");
-            foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
+            foreach (VirtualNode node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
@@ -3200,7 +3200,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.AreEqual(6, vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true).Count());
             Debug.WriteLine("\nDirectories:");
-            foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true))
+            foreach (VirtualNode node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
@@ -3208,7 +3208,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.AreEqual(14, vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.Item, true).Count());
             Debug.WriteLine("\nItems:");
-            foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.Item, true))
+            foreach (VirtualNode node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.Item, true))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
@@ -3216,7 +3216,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.AreEqual(2, vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true).Count());
             Debug.WriteLine("\nSymbolicLink:");
-            foreach (var node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true))
+            foreach (VirtualNode node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
@@ -3225,7 +3225,7 @@ namespace VirtualStorageLibrary.Test
             vs.ChangeDirectory("/Directory1");
             Assert.AreEqual(2, vs.GetNodes(VirtualNodeTypeFilter.Directory, false).Count());
             Debug.WriteLine("\nDirectories in /Directory1:");
-            foreach (var node in vs.GetNodes(VirtualNodeTypeFilter.Directory, false))
+            foreach (VirtualNode node in vs.GetNodes(VirtualNodeTypeFilter.Directory, false))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
@@ -3234,7 +3234,7 @@ namespace VirtualStorageLibrary.Test
             vs.ChangeDirectory("/Directory1");
             Assert.AreEqual(2, vs.GetNodes(VirtualNodeTypeFilter.Item, false).Count());
             Debug.WriteLine("\nItems in /Directory1:");
-            foreach (var node in vs.GetNodes(VirtualNodeTypeFilter.Item, false))
+            foreach (VirtualNode node in vs.GetNodes(VirtualNodeTypeFilter.Item, false))
             {
                 Assert.IsNotNull(node);
                 Debug.WriteLine(node.Name);
@@ -3263,13 +3263,13 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodesWithPaths_ValidTest()
         {
-            var vs = new VirtualStorage();
+            VirtualStorage vs = new();
 
             SetTestData(vs);
 
             Assert.AreEqual(22, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
             Debug.WriteLine("\nAll nodes:");
-            foreach (var name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
+            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -3277,7 +3277,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.AreEqual(6, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true).Count());
             Debug.WriteLine("\nDirectories:");
-            foreach (var name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true))
+            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -3285,7 +3285,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.AreEqual(14, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Item, true).Count());
             Debug.WriteLine("\nItems:");
-            foreach (var name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Item, true))
+            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Item, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -3293,7 +3293,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true).Count());
             Debug.WriteLine("\nSymbolicLink:");
-            foreach (var name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true))
+            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -3302,7 +3302,7 @@ namespace VirtualStorageLibrary.Test
             vs.ChangeDirectory("/Directory1");
             Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualNodeTypeFilter.Directory, false).Count());
             Debug.WriteLine("\nDirectories in /Directory1:");
-            foreach (var name in vs.GetNodesWithPaths(VirtualNodeTypeFilter.Directory, false))
+            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualNodeTypeFilter.Directory, false))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -3311,7 +3311,7 @@ namespace VirtualStorageLibrary.Test
             vs.ChangeDirectory("/Directory1");
             Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualNodeTypeFilter.Item, false).Count());
             Debug.WriteLine("\nItems in /Directory1:");
-            foreach (var name in vs.GetNodesWithPaths(VirtualNodeTypeFilter.Item, false))
+            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualNodeTypeFilter.Item, false))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
@@ -3546,11 +3546,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void CopyNode_NonExistentSource_ThrowsVirtualNodeNotFoundException()
         {
-            var storage = new VirtualStorage();
+            VirtualStorage storage = new();
 
             // 存在しないソースパスを指定
-            VirtualPath nonExistentSource = new VirtualPath("/nonExistentSource");
-            VirtualPath destinationPath = new VirtualPath("/destination");
+            VirtualPath nonExistentSource = "/nonExistentSource";
+            VirtualPath destinationPath = "/destination";
 
             storage.AddDirectory(destinationPath);
 
@@ -3561,11 +3561,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void CopyNode_SameSourceAndDestination_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
-            storage.AddItem(new VirtualPath("/file"), new BinaryData(new byte[] { 1, 2, 3 }));
+            VirtualStorage storage = new();
+            storage.AddItem("/file", new BinaryData([1, 2, 3]));
 
             // 同じソースとデスティネーションを指定
-            VirtualPath path = new VirtualPath("/file");
+            VirtualPath path = "/file";
 
             // InvalidOperationException がスローされることを検証
             Assert.ThrowsException<InvalidOperationException>(() => storage.CopyNode(path, path));
@@ -3574,26 +3574,26 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void CopyNode_ValidTest()
         {
-            var vs = new VirtualStorage();
+            VirtualStorage vs = new();
 
             SetTestData(vs);
 
             Assert.AreEqual(22, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
 
             Debug.WriteLine("コピー前:");
-            foreach (var nodeName in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
+            foreach (VirtualPath nodeName in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
             {
                 Assert.IsNotNull(nodeName);
                 Debug.WriteLine(nodeName);
             }
 
-            vs.AddDirectory(new VirtualPath("/Destination"), true);
-            vs.CopyNode(new VirtualPath("/Directory1"), new VirtualPath("/Destination"), true, false);
+            vs.AddDirectory("/Destination", true);
+            vs.CopyNode("/Directory1", "/Destination", true, false);
 
             Assert.AreEqual(32, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
 
             Debug.WriteLine("コピー後:");
-            foreach (var nodeName in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
+            foreach (VirtualPath nodeName in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
             {
                 Assert.IsNotNull(nodeName);
                 Debug.WriteLine(nodeName);
@@ -3603,115 +3603,115 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void RemoveNode_ExistingItem_RemovesItem()
         {
-            var storage = new VirtualStorage();
-            var item = new BinaryData([1, 2, 3]);
-            storage.AddItem(new VirtualPath("/TestItem"), item);
+            VirtualStorage storage = new();
+            BinaryData item = [1, 2, 3];
+            storage.AddItem("/TestItem", item);
 
-            storage.RemoveNode(new VirtualPath("/TestItem"));
+            storage.RemoveNode("/TestItem");
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/TestItem")));
+            Assert.IsFalse(storage.NodeExists("/TestItem"));
         }
 
         [TestMethod]
         public void RemoveNode_NonExistingItem_ThrowsException()
         {
-            var storage = new VirtualStorage();
+            VirtualStorage storage = new();
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.RemoveNode(new VirtualPath("/NonExistingItem")));
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.RemoveNode("/NonExistingItem"));
         }
 
         [TestMethod]
         public void RemoveNode_ExistingEmptyDirectory_RemovesDirectory()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/TestDirectory"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/TestDirectory");
 
-            storage.RemoveNode(new VirtualPath("/TestDirectory"));
+            storage.RemoveNode("/TestDirectory");
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/TestDirectory")));
+            Assert.IsFalse(storage.NodeExists("/TestDirectory"));
         }
 
         [TestMethod]
         public void RemoveNode_NonExistingDirectory_ThrowsException()
         {
-            var storage = new VirtualStorage();
+            VirtualStorage storage = new();
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
-                storage.RemoveNode(new VirtualPath("/NonExistingDirectory")));
+                storage.RemoveNode("/NonExistingDirectory"));
         }
 
         [TestMethod]
         public void RemoveNode_ExistingNonEmptyDirectoryWithoutRecursive_ThrowsException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/TestDirectory"));
-            var item = new BinaryData([1, 2, 3]);
-            storage.AddItem(new VirtualPath("/TestDirectory/TestItem"), item);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/TestDirectory");
+            BinaryData item = [1, 2, 3];
+            storage.AddItem("/TestDirectory/TestItem", item);
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.RemoveNode(new VirtualPath("/TestDirectory")));
+                storage.RemoveNode("/TestDirectory"));
         }
 
         [TestMethod]
         public void RemoveNode_ExistingNonEmptyDirectoryWithRecursive_RemovesDirectoryAndContents()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/TestDirectory"));
-            var item = new BinaryData([1, 2, 3]);
-            storage.AddItem(new VirtualPath("/TestDirectory/TestItem"), item);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/TestDirectory");
+            BinaryData item = [1, 2, 3];
+            storage.AddItem("/TestDirectory/TestItem", item);
 
-            storage.RemoveNode(new VirtualPath("/TestDirectory"), true);
+            storage.RemoveNode("/TestDirectory", true);
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/TestDirectory")));
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/TestDirectory/TestItem")));
+            Assert.IsFalse(storage.NodeExists("/TestDirectory"));
+            Assert.IsFalse(storage.NodeExists("/TestDirectory/TestItem"));
         }
 
         [TestMethod]
         public void RemoveNode_DeepNestedDirectoryWithRecursive_RemovesAllNestedContents()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/Level1/Level2/Level3"), true);
-            var item1 = new BinaryData([1, 2, 3]);
-            var item2 = new BinaryData([4, 5, 6]);
-            storage.AddItem(new VirtualPath("/Level1/Level2/Level3/Item1"), item1);
-            storage.AddItem(new VirtualPath("/Level1/Level2/Item2"), item2);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/Level1/Level2/Level3", true);
+            BinaryData item1 = [1, 2, 3];
+            BinaryData item2 = [4, 5, 6];
+            storage.AddItem("/Level1/Level2/Level3/Item1", item1);
+            storage.AddItem("/Level1/Level2/Item2", item2);
 
-            storage.RemoveNode(new VirtualPath("/Level1"), true);
+            storage.RemoveNode("/Level1", true);
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/Level1")));
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/Level1/Level2/Level3/Item1")));
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/Level1/Level2/Item2")));
+            Assert.IsFalse(storage.NodeExists("/Level1"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2/Level3/Item1"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2/Item2"));
         }
 
         [TestMethod]
         public void RemoveNode_DeepNestedDirectoryWithoutRecursive_ThrowsException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/Level1/Level2/Level3"), true);
-            var item1 = new BinaryData([1, 2, 3]);
-            storage.AddItem(new VirtualPath("/Level1/Level2/Level3/Item1"), item1);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/Level1/Level2/Level3", true);
+            BinaryData item1 = [1, 2, 3];
+            storage.AddItem("/Level1/Level2/Level3/Item1", item1);
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.RemoveNode(new VirtualPath("/Level1")));
+                storage.RemoveNode("/Level1"));
         }
 
         [TestMethod]
         public void RemoveNode_NestedDirectoryWithEmptySubdirectories_RecursiveRemoval()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/Level1/Level2/Level3"), true);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/Level1/Level2/Level3", true);
 
-            storage.RemoveNode(new VirtualPath("/Level1"), true);
+            storage.RemoveNode("/Level1", true);
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/Level1")));
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/Level1/Level2")));
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/Level1/Level2/Level3")));
+            Assert.IsFalse(storage.NodeExists("/Level1"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2"));
+            Assert.IsFalse(storage.NodeExists("/Level1/Level2/Level3"));
         }
 
         [TestMethod]
         public void RemoveNode_RootDirectory_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
+            VirtualStorage storage = new();
             Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 storage.RemoveNode(VirtualPath.Root);
@@ -3721,7 +3721,7 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void RemoveNode_CurrentDirectoryDot_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
+            VirtualStorage storage = new();
             Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 storage.RemoveNode(VirtualPath.Dot);
@@ -3731,7 +3731,7 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void RemoveNode_ParentDirectoryDotDot_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
+            VirtualStorage storage = new();
             Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 storage.RemoveNode(VirtualPath.DotDot);
@@ -3742,12 +3742,12 @@ namespace VirtualStorageLibrary.Test
         public void TryGetNode_ReturnsNode_WhenNodeExists()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/existing/path");
+            VirtualStorage storage = new();
+            VirtualPath path = "/existing/path";
             storage.AddDirectory(path, true);
 
             // Act
-            var node = storage.TryGetNode(path);
+            VirtualNode? node = storage.TryGetNode(path);
 
             // Assert
             Assert.IsNotNull(node);
@@ -3757,11 +3757,11 @@ namespace VirtualStorageLibrary.Test
         public void TryGetNode_ReturnsNull_WhenNodeDoesNotExist()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/non/existing/path");
+            VirtualStorage storage = new();
+            VirtualPath path = "/non/existing/path";
 
             // Act
-            var node = storage.TryGetNode(path);
+            VirtualNode? node = storage.TryGetNode(path);
 
             // Assert
             Assert.IsNull(node);
@@ -3771,8 +3771,8 @@ namespace VirtualStorageLibrary.Test
         public void NodeExists_ReturnsTrue_WhenNodeExists()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/existing/path");
+            VirtualStorage storage = new();
+            VirtualPath path = "/existing/path";
             storage.AddDirectory(path, true);
 
             // Act
@@ -3786,8 +3786,8 @@ namespace VirtualStorageLibrary.Test
         public void NodeExists_ReturnsFalse_WhenNodeDoesNotExist()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/non/existing/path");
+            VirtualStorage storage = new();
+            VirtualPath path = "/non/existing/path";
 
             // Act
             bool exists = storage.NodeExists(path);
@@ -3800,10 +3800,10 @@ namespace VirtualStorageLibrary.Test
         public void NodeExists_ReturnsTrue_WhenSymbolicLinkExistsAndFollowLinksIsTrue()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath directoryPath = new VirtualPath("/existing/directory");
-            VirtualPath linkDirectoryPath = new VirtualPath("/link/to");
-            VirtualPath linkPath = linkDirectoryPath + new VirtualPath("directory");
+            VirtualStorage storage = new();
+            VirtualPath directoryPath = "/existing/directory";
+            VirtualPath linkDirectoryPath = "/link/to";
+            VirtualPath linkPath = linkDirectoryPath + "directory";
             storage.AddDirectory(directoryPath, true); // 実際のディレクトリを追加
             storage.AddDirectory(linkDirectoryPath, true); // シンボリックリンクの親ディレクトリを追加
             storage.AddSymbolicLink(linkPath, directoryPath); // シンボリックリンクを追加
@@ -3819,10 +3819,10 @@ namespace VirtualStorageLibrary.Test
         public void NodeExists_ReturnsTrue_WhenSymbolicLinkExistsAndFollowLinksIsFalse()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath directoryPath = new VirtualPath("/existing/directory");
-            VirtualPath linkDirectoryPath = new VirtualPath("/link/to");
-            VirtualPath linkPath = linkDirectoryPath + new VirtualPath("directory");
+            VirtualStorage storage = new();
+            VirtualPath directoryPath = "/existing/directory";
+            VirtualPath linkDirectoryPath = "/link/to";
+            VirtualPath linkPath = linkDirectoryPath + "directory";
             storage.AddDirectory(directoryPath, true); // 実際のディレクトリを追加
             storage.AddDirectory(linkDirectoryPath, true); // シンボリックリンクの親ディレクトリを追加
             storage.AddSymbolicLink(linkPath, directoryPath); // シンボリックリンクを追加
@@ -3838,10 +3838,10 @@ namespace VirtualStorageLibrary.Test
         public void NodeExists_ReturnsFalse_WhenTargetOfSymbolicLinkDoesNotExistAndFollowLinksIsTrue()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath nonExistentTargetPath = new VirtualPath("/nonexistent/target");
-            VirtualPath linkDirectoryPath = new VirtualPath("/link/to");
-            VirtualPath linkPath = linkDirectoryPath + new VirtualPath("nonexistent");
+            VirtualStorage storage = new();
+            VirtualPath nonExistentTargetPath = "/nonexistent/target";
+            VirtualPath linkDirectoryPath = "/link/to";
+            VirtualPath linkPath = linkDirectoryPath + "nonexistent";
             storage.AddDirectory(linkDirectoryPath, true); // シンボリックリンクの親ディレクトリを追加
             storage.AddSymbolicLink(linkPath, nonExistentTargetPath); // 存在しないターゲットへのシンボリックリンクを追加
 
@@ -3856,8 +3856,8 @@ namespace VirtualStorageLibrary.Test
         public void DirectoryExists_ReturnsTrue_WhenDirectoryExists()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/existing/path");
+            VirtualStorage storage = new();
+            VirtualPath path = "/existing/path";
             storage.AddDirectory(path, true);
 
             // Act
@@ -3871,8 +3871,8 @@ namespace VirtualStorageLibrary.Test
         public void DirectoryExists_ReturnsFalse_WhenDirectoryDoesNotExist()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/non/existing/path");
+            VirtualStorage storage = new();
+            VirtualPath path = "/non/existing/path";
 
             // Act
             bool exists = storage.DirectoryExists(path);
@@ -3885,10 +3885,10 @@ namespace VirtualStorageLibrary.Test
         public void ItemExists_ReturnsTrue_WhenItemExists()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/existing/path/item");
-            storage.AddDirectory(new VirtualPath("/existing/path"), true);
-            storage.AddItem(new VirtualPath("/existing/path/item"), new BinaryData([1, 2, 3]));
+            VirtualStorage storage = new();
+            VirtualPath path = "/existing/path/item";
+            storage.AddDirectory("/existing/path", true);
+            storage.AddItem("/existing/path/item", new BinaryData([1, 2, 3]));
 
             // Act
             bool exists = storage.ItemExists(path);
@@ -3901,8 +3901,8 @@ namespace VirtualStorageLibrary.Test
         public void ItemExists_ReturnsFalse_WhenItemDoesNotExist()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/non/existing/path/item");
+            VirtualStorage storage = new();
+            VirtualPath path = "/non/existing/path/item";
 
             // Act
             bool exists = storage.ItemExists(path);
@@ -3915,8 +3915,8 @@ namespace VirtualStorageLibrary.Test
         public void ItemExists_ReturnsFalse_WhenPathIsDirectory()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/existing/path");
+            VirtualStorage storage = new();
+            VirtualPath path = "/existing/path";
             storage.AddDirectory(path, true);
 
             // Act
@@ -3929,194 +3929,194 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void MoveNode_FileToFile_OverwritesWhenAllowed()
         {
-            var storage = new VirtualStorage();
-            storage.AddItem(new VirtualPath("/sourceFile"), new BinaryData([1, 2, 3]));
-            storage.AddItem(new VirtualPath("/destinationFile"), new BinaryData([4, 5, 6]));
+            VirtualStorage storage = new();
+            storage.AddItem("/sourceFile", new BinaryData([1, 2, 3]));
+            storage.AddItem("/destinationFile", new BinaryData([4, 5, 6]));
 
-            storage.MoveNode(new VirtualPath("/sourceFile"), new VirtualPath("/destinationFile"), true);
+            storage.MoveNode("/sourceFile", "/destinationFile", true);
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceFile")));
-            var destinationItem = (VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/destinationFile"));
+            Assert.IsFalse(storage.NodeExists("/sourceFile"));
+            VirtualItem<BinaryData> destinationItem = (VirtualItem<BinaryData>)storage.GetNode("/destinationFile");
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.ItemData.Data);
         }
 
         [TestMethod]
         public void MoveNode_FileToFile_ThrowsWhenOverwriteNotAllowed()
         {
-            var storage = new VirtualStorage();
-            storage.AddItem(new VirtualPath("/sourceFile"), new BinaryData([1, 2, 3]));
-            storage.AddItem(new VirtualPath("/destinationFile"), new BinaryData([4, 5, 6]));
+            VirtualStorage storage = new();
+            storage.AddItem("/sourceFile", new BinaryData([1, 2, 3]));
+            storage.AddItem("/destinationFile", new BinaryData([4, 5, 6]));
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(new VirtualPath("/sourceFile"), new VirtualPath("/destinationFile"), false));
+                storage.MoveNode("/sourceFile", "/destinationFile", false));
         }
 
         [TestMethod]
         public void MoveNode_FileToDirectory_MovesFileToTargetDirectory()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/destination"));
-            storage.AddItem(new VirtualPath("/sourceFile"), new BinaryData([1, 2, 3]));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/destination");
+            storage.AddItem("/sourceFile", new BinaryData([1, 2, 3]));
 
-            storage.MoveNode(new VirtualPath("/sourceFile"), new VirtualPath("/destination/"), false);
+            storage.MoveNode("/sourceFile", "/destination/", false);
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceFile")));
-            Assert.IsTrue(storage.NodeExists(new VirtualPath("/destination/sourceFile")));
+            Assert.IsFalse(storage.NodeExists("/sourceFile"));
+            Assert.IsTrue(storage.NodeExists("/destination/sourceFile"));
         }
 
         [TestMethod]
         public void MoveNode_DirectoryToDirectory_MovesDirectoryToTargetDirectory()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir"));
-            storage.AddDirectory(new VirtualPath("/destinationDir/newDir"), true);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir");
+            storage.AddDirectory("/destinationDir/newDir", true);
 
-            storage.MoveNode(new VirtualPath("/sourceDir"), new VirtualPath("/destinationDir/newDir"), false);
+            storage.MoveNode("/sourceDir", "/destinationDir/newDir", false);
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceDir")));
-            Assert.IsTrue(storage.NodeExists(new VirtualPath("/destinationDir/newDir")));
+            Assert.IsFalse(storage.NodeExists("/sourceDir"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/newDir"));
         }
 
         [TestMethod]
         public void MoveNode_WhenSourceDoesNotExist_ThrowsVirtualNodeNotFoundException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/destinationDir"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/destinationDir");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
-                storage.MoveNode(new VirtualPath("/nonExistentSource"), new VirtualPath("/destinationDir"), false));
+                storage.MoveNode("/nonExistentSource", "/destinationDir", false));
         }
 
         [TestMethod]
         public void MoveNode_WhenDestinationIsInvalid_ThrowsException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
-                storage.MoveNode(new VirtualPath("/sourceDir"), new VirtualPath("/nonExistentDestination/newDir"), false));
+                storage.MoveNode("/sourceDir", "/nonExistentDestination/newDir", false));
         }
 
         [TestMethod]
         public void MoveNode_DirectoryWithSameNameExistsAtDestination_ThrowsExceptionRegardlessOfOverwriteFlag()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir"), true);
-            storage.AddDirectory(new VirtualPath("/destinationDir/sourceDir"), true);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir", true);
+            storage.AddDirectory("/destinationDir/sourceDir", true);
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(new VirtualPath("/sourceDir"), new VirtualPath("/destinationDir"), false));
+                storage.MoveNode("/sourceDir", "/destinationDir", false));
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(new VirtualPath("/sourceDir"), new VirtualPath("/destinationDir"), true));
+                storage.MoveNode("/sourceDir", "/destinationDir", true));
         }
 
         [TestMethod]
         public void MoveNode_DirectoryToFile_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir"));
-            storage.AddItem(new VirtualPath("/destinationFile"), new BinaryData([4, 5, 6]));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir");
+            storage.AddItem("/destinationFile", new BinaryData([4, 5, 6]));
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(new VirtualPath("/sourceDir"), new VirtualPath("/destinationFile"), false));
+                storage.MoveNode("/sourceDir", "/destinationFile", false));
         }
 
         [TestMethod]
         public void MoveNode_RootDirectory_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/destinationDir"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/destinationDir");
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(VirtualPath.Root, new VirtualPath("/destinationDir"), false));
+                storage.MoveNode(VirtualPath.Root, "/destinationDir", false));
         }
 
         [TestMethod]
         public void MoveNode_OverwritesExistingNodeInDestinationWhenAllowed()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir"));
-            storage.AddItem(new VirtualPath("/sourceDir/fileName"), new BinaryData([1, 2, 3]));
-            storage.AddDirectory(new VirtualPath("/destinationDir"));
-            storage.AddItem(new VirtualPath("/destinationDir/fileName"), new BinaryData([4, 5, 6])); // 移動先に同名のファイルが存在
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir");
+            storage.AddItem("/sourceDir/fileName", new BinaryData([1, 2, 3]));
+            storage.AddDirectory("/destinationDir");
+            storage.AddItem("/destinationDir/fileName", new BinaryData([4, 5, 6])); // 移動先に同名のファイルが存在
 
-            storage.MoveNode(new VirtualPath("/sourceDir/fileName"), new VirtualPath("/destinationDir"), true); // 上書き許可で移動
+            storage.MoveNode("/sourceDir/fileName", "/destinationDir", true); // 上書き許可で移動
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceDir/fileName"))); // 元のファイルが存在しないことを確認
-            Assert.IsTrue(storage.NodeExists(new VirtualPath("/destinationDir/fileName"))); // 移動先にファイルが存在することを確認
+            Assert.IsFalse(storage.NodeExists("/sourceDir/fileName")); // 元のファイルが存在しないことを確認
+            Assert.IsTrue(storage.NodeExists("/destinationDir/fileName")); // 移動先にファイルが存在することを確認
 
-            var movedItem = (VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/destinationDir/fileName"));
+            VirtualItem<BinaryData> movedItem = (VirtualItem<BinaryData>)storage.GetNode("/destinationDir/fileName");
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, movedItem.ItemData.Data); // 移動先のファイルの中身が正しいことを確認
         }
 
         [TestMethod]
         public void MoveNode_ThrowsWhenDestinationNodeExistsAndOverwriteIsFalse()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir"));
-            storage.AddItem(new VirtualPath("/sourceDir/fileName"), new BinaryData([1, 2, 3]));
-            storage.AddDirectory(new VirtualPath("/destinationDir"));
-            storage.AddItem(new VirtualPath("/destinationDir/fileName"), new BinaryData([4, 5, 6])); // 移動先に同名のファイルが存在
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir");
+            storage.AddItem("/sourceDir/fileName", new BinaryData([1, 2, 3]));
+            storage.AddDirectory("/destinationDir");
+            storage.AddItem("/destinationDir/fileName", new BinaryData([4, 5, 6])); // 移動先に同名のファイルが存在
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(new VirtualPath("/sourceDir/fileName"), new VirtualPath("/destinationDir"), false)); // 上書き禁止で例外を期待
+                storage.MoveNode("/sourceDir/fileName", "/destinationDir", false)); // 上書き禁止で例外を期待
         }
 
         [TestMethod]
         public void MoveNode_EmptyDirectory_MovesSuccessfully()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/emptyDir"));
-            storage.AddDirectory(new VirtualPath("/newDir/emptyDir"), true);
-            storage.MoveNode(new VirtualPath("/emptyDir"), new VirtualPath("/newDir/emptyDir"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/emptyDir");
+            storage.AddDirectory("/newDir/emptyDir", true);
+            storage.MoveNode("/emptyDir", "/newDir/emptyDir");
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/emptyDir")));
-            Assert.IsTrue(storage.NodeExists(new VirtualPath("/newDir/emptyDir/emptyDir")));
+            Assert.IsFalse(storage.NodeExists("/emptyDir"));
+            Assert.IsTrue(storage.NodeExists("/newDir/emptyDir/emptyDir"));
         }
 
         [TestMethod]
         public void MoveNode_MultiLevelDirectory_MovesSuccessfully()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir/subDir1/subDir2"), true);
-            storage.AddDirectory(new VirtualPath("/destinationDir"));
-            storage.MoveNode(new VirtualPath("/sourceDir"), new VirtualPath("/destinationDir/sourceDir"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir/subDir1/subDir2", true);
+            storage.AddDirectory("/destinationDir");
+            storage.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceDir")));
-            Assert.IsTrue(storage.NodeExists(new VirtualPath("/destinationDir/sourceDir/subDir1/subDir2")));
+            Assert.IsFalse(storage.NodeExists("/sourceDir"));
+            Assert.IsTrue(storage.NodeExists("/destinationDir/sourceDir/subDir1/subDir2"));
         }
 
         [TestMethod]
         public void MoveNode_WithInvalidPath_ThrowsException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/validDir"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/validDir");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
-                storage.MoveNode(new VirtualPath("/invalid?Path"), new VirtualPath("/validDir")));
+                storage.MoveNode("/invalid?Path", "/validDir"));
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void MoveNode_DirectoryToFile_ThrowsException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/sourceDir"));
-            storage.AddItem(new VirtualPath("/destinationFile"), new BinaryData([1, 2, 3]));
-            storage.MoveNode(new VirtualPath("/sourceDir"), new VirtualPath("/destinationFile"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/sourceDir");
+            storage.AddItem("/destinationFile", new BinaryData([1, 2, 3]));
+            storage.MoveNode("/sourceDir", "/destinationFile");
         }
 
         [TestMethod]
         public void MoveNode_WithinSameDirectory_RenamesNode()
         {
-            var storage = new VirtualStorage();
-            storage.AddItem(new VirtualPath("/sourceFile"), new BinaryData([1, 2, 3]));
-            storage.MoveNode(new VirtualPath("/sourceFile"), new VirtualPath("/renamedFile"));
+            VirtualStorage storage = new();
+            storage.AddItem("/sourceFile", new BinaryData([1, 2, 3]));
+            storage.MoveNode("/sourceFile", "/renamedFile");
 
-            Assert.IsFalse(storage.NodeExists(new VirtualPath("/sourceFile")));
-            Assert.IsTrue(storage.NodeExists(new VirtualPath("/renamedFile")));
+            Assert.IsFalse(storage.NodeExists("/sourceFile"));
+            Assert.IsTrue(storage.NodeExists("/renamedFile"));
 
-            var result = ((VirtualItem<BinaryData>)storage.GetNode(new VirtualPath("/renamedFile"))).ItemData.Data;
+            byte[] result = ((VirtualItem<BinaryData>)storage.GetNode("/renamedFile")).ItemData.Data;
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, result);
         }
 
@@ -4124,46 +4124,46 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void MoveNode_WhenDestinationIsSubdirectoryOfSource_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/parentDir/subDir"), true);
+            VirtualStorage storage = new();
+            storage.AddDirectory("/parentDir/subDir", true);
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(new VirtualPath("/parentDir"), new VirtualPath("/parentDir/subDir")));
+                storage.MoveNode("/parentDir", "/parentDir/subDir"));
         }
 
         // 移動先と移動元が同じかどうかのチェックテスト
         [TestMethod]
         public void MoveNode_WhenSourceAndDestinationAreSame_ThrowsInvalidOperationException()
         {
-            var storage = new VirtualStorage();
-            storage.AddItem(new VirtualPath("/file"), new BinaryData([1, 2, 3]));
+            VirtualStorage storage = new();
+            storage.AddItem("/file", new BinaryData([1, 2, 3]));
 
             Assert.ThrowsException<InvalidOperationException>(() => 
-                storage.MoveNode(new VirtualPath("/file"), new VirtualPath("/file")));
+                storage.MoveNode("/file", "/file"));
         }
 
         // 移動先の親ディレクトリが存在しない場合のテスト
         [TestMethod]
         public void MoveNode_WhenDestinationParentDirectoryDoesNotExist_ThrowsVirtualNodeNotFoundException()
         {
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/existingDir"));
-            storage.AddItem(new VirtualPath("/existingDir/file"), new BinaryData([1, 2, 3]));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/existingDir");
+            storage.AddItem("/existingDir/file", new BinaryData([1, 2, 3]));
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
-                storage.MoveNode(new VirtualPath("/existingDir/file"), new VirtualPath("/nonExistentDir/file")));
+                storage.MoveNode("/existingDir/file", "/nonExistentDir/file"));
         }
 
         [TestMethod]
         public void SymbolicLinkExists_WhenLinkExists_ReturnsTrue()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/test"));
-            storage.AddSymbolicLink(new VirtualPath("/test/link"), new VirtualPath("/target/path"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
+            storage.AddSymbolicLink("/test/link", "/target/path");
 
             // Act
-            bool exists = storage.SymbolicLinkExists(new VirtualPath("/test/link"));
+            bool exists = storage.SymbolicLinkExists("/test/link");
 
             // Assert
             Assert.IsTrue(exists);
@@ -4173,11 +4173,11 @@ namespace VirtualStorageLibrary.Test
         public void SymbolicLinkExists_WhenLinkDoesNotExist_ReturnsFalse()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/test"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
 
             // Act
-            bool exists = storage.SymbolicLinkExists(new VirtualPath("/test/nonexistentLink"));
+            bool exists = storage.SymbolicLinkExists("/test/nonexistentLink");
 
             // Assert
             Assert.IsFalse(exists);
@@ -4187,14 +4187,14 @@ namespace VirtualStorageLibrary.Test
         public void SymbolicLinkExists_WhenParentDirectoryIsALinkAndLinkExists_ReturnsTrue()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/realParent"));
-            storage.AddSymbolicLink(new VirtualPath("/linkedParent"), new VirtualPath("/realParent"));
-            storage.AddDirectory(new VirtualPath("/realParent/testDir"));
-            storage.AddSymbolicLink(new VirtualPath("/linkedParent/myLink"), new VirtualPath("/realParent/testDir"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/realParent");
+            storage.AddSymbolicLink("/linkedParent", "/realParent");
+            storage.AddDirectory("/realParent/testDir");
+            storage.AddSymbolicLink("/linkedParent/myLink", "/realParent/testDir");
 
             // Act
-            bool exists = storage.SymbolicLinkExists(new VirtualPath("/linkedParent/myLink"));
+            bool exists = storage.SymbolicLinkExists("/linkedParent/myLink");
 
             // Assert
             Assert.IsTrue(exists);
@@ -4204,15 +4204,15 @@ namespace VirtualStorageLibrary.Test
         public void AddSymbolicLink_WhenLinkIsNew_AddsSuccessfully()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/test"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
 
             // Act
-            storage.AddSymbolicLink(new VirtualPath("/test/newLink"), new VirtualPath("/target/path"));
+            storage.AddSymbolicLink("/test/newLink", "/target/path");
 
             // Assert
-            Assert.IsTrue(storage.SymbolicLinkExists(new VirtualPath("/test/newLink")));
-            var link = storage.GetNode(new VirtualPath("/test/newLink")) as VirtualSymbolicLink;
+            Assert.IsTrue(storage.SymbolicLinkExists("/test/newLink"));
+            VirtualSymbolicLink? link = storage.GetNode("/test/newLink") as VirtualSymbolicLink;
             Assert.IsNotNull(link);
             Assert.AreEqual(new VirtualPath("/target/path"), link.TargetPath);
         }
@@ -4221,28 +4221,28 @@ namespace VirtualStorageLibrary.Test
         public void AddSymbolicLink_WhenOverwriteIsFalseAndLinkExists_ThrowsInvalidOperationException()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/test"));
-            storage.AddSymbolicLink(new VirtualPath("/test/existingLink"), new VirtualPath("/old/target/path"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
+            storage.AddSymbolicLink("/test/existingLink", "/old/target/path");
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
-                storage.AddSymbolicLink(new VirtualPath("/test/existingLink"), new VirtualPath("/new/target/path"), overwrite: false));
+                storage.AddSymbolicLink("/test/existingLink", "/new/target/path", overwrite: false));
         }
 
         [TestMethod]
         public void AddSymbolicLink_WhenOverwriteIsTrueAndLinkExists_OverwritesLink()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            storage.AddDirectory(new VirtualPath("/test"));
-            storage.AddSymbolicLink(new VirtualPath("/test/existingLink"), new VirtualPath("/old/target/path"));
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
+            storage.AddSymbolicLink("/test/existingLink", "/old/target/path");
 
             // Act
-            storage.AddSymbolicLink(new VirtualPath("/test/existingLink"), new VirtualPath("/new/target/path"), overwrite: true);
+            storage.AddSymbolicLink("/test/existingLink", "/new/target/path", overwrite: true);
 
             // Assert
-            var link = storage.GetNode(new VirtualPath("/test/existingLink")) as VirtualSymbolicLink;
+            VirtualSymbolicLink? link = storage.GetNode("/test/existingLink") as VirtualSymbolicLink;
             Assert.IsNotNull(link);
             Assert.AreEqual(new VirtualPath("/new/target/path"), link.TargetPath);
         }
@@ -4251,17 +4251,17 @@ namespace VirtualStorageLibrary.Test
         public void AddSymbolicLink_OverwriteTrue_LinkOverExistingItem_ThrowsInvalidOperationException()
         {
             // Arrange
-            var storage = new VirtualStorage();
-            var itemData = new BinaryData(new byte[] { 1, 2, 3 });
+            VirtualStorage storage = new();
+            BinaryData itemData = [1, 2, 3];
 
-            storage.AddDirectory(new VirtualPath("/test"));
-            storage.AddItem(new VirtualPath("/test/existingItem"), itemData); // 既存のアイテムを追加
+            storage.AddDirectory("/test");
+            storage.AddItem("/test/existingItem", itemData); // 既存のアイテムを追加
 
-            storage.AddDirectory(new VirtualPath("/new/target/path"), true); // シンボリックリンクのターゲットとなるディレクトリを追加
+            storage.AddDirectory("/new/target/path", true); // シンボリックリンクのターゲットとなるディレクトリを追加
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
-                storage.AddSymbolicLink(new VirtualPath("/test/existingItem"), new VirtualPath("/new/target/path"), true),
+                storage.AddSymbolicLink("/test/existingItem", "/new/target/path", true),
                 "既存のアイテム上にシンボリックリンクを追加しようとすると、上書きがtrueでもInvalidOperationExceptionが発生するべきです。");
         }
 
@@ -4269,15 +4269,15 @@ namespace VirtualStorageLibrary.Test
         public void AddSymbolicLink_OverwriteTrue_LinkOverExistingDirectory_ThrowsInvalidOperationException()
         {
             // Arrange
-            var storage = new VirtualStorage();
+            VirtualStorage storage = new();
 
-            storage.AddDirectory(new VirtualPath("/test/existingDirectory"), true); // 既存のディレクトリを追加
+            storage.AddDirectory("/test/existingDirectory", true); // 既存のディレクトリを追加
 
-            storage.AddDirectory(new VirtualPath("/new/target/path"), true); // シンボリックリンクのターゲットとなるディレクトリを追加
+            storage.AddDirectory("/new/target/path", true); // シンボリックリンクのターゲットとなるディレクトリを追加
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
-                storage.AddSymbolicLink(new VirtualPath("/test/existingDirectory"), new VirtualPath("/new/target/path"), true),
+                storage.AddSymbolicLink("/test/existingDirectory", "/new/target/path", true),
                 "既存のディレクトリ上にシンボリックリンクを追加しようとすると、上書きがtrueでもInvalidOperationExceptionが発生するべきです。");
         }
 
@@ -4285,10 +4285,10 @@ namespace VirtualStorageLibrary.Test
         public void AddSymbolicLink_ThrowsVirtualNodeNotFoundException_WhenParentDirectoryDoesNotExist()
         {
             // Arrange
-            var virtualStorage = new VirtualStorage();
-            VirtualPath nonExistentParentDirectory = new VirtualPath("/nonexistent/directory");
-            VirtualPath symbolicLinkPath = nonExistentParentDirectory + new VirtualPath("link");
-            VirtualPath targetPath = new VirtualPath("/existing/target");
+            VirtualStorage virtualStorage = new();
+            VirtualPath nonExistentParentDirectory = "/nonexistent/directory";
+            VirtualPath symbolicLinkPath = nonExistentParentDirectory + "link";
+            VirtualPath targetPath = "/existing/target";
 
             // Act & Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
@@ -4300,7 +4300,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_Root()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/");
+            VirtualPath path = "/";
             VirtualPath targetPath = path;
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
@@ -4315,7 +4315,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_Directory1()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/dir1");
+            VirtualPath path = "/dir1";
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path;
 
@@ -4331,7 +4331,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_Directory2()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/dir1/dir2");
+            VirtualPath path = "/dir1/dir2";
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path;
 
@@ -4347,7 +4347,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_Item1()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/item");
+            VirtualPath path = "/item";
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = path;
 
@@ -4363,7 +4363,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_Item2()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/dir1/item");
+            VirtualPath path = "/dir1/item";
             vs.AddDirectory(path.DirectoryPath, true);
             vs.AddItem(path, new BinaryData[1, 2, 3]);
             VirtualPath targetPath = path;
@@ -4379,12 +4379,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathToTarget_SymbolicLink1()
         {
-            VirtualPath targetPath = new VirtualPath("/dir1/link1/item");
+            VirtualPath targetPath = "/dir1/link1/item";
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddItem(new VirtualPath("/dir2/item"), new BinaryData[1, 2, 3]);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
+            vs.AddDirectory("/dir1", true);
+            vs.AddDirectory("/dir2", true);
+            vs.AddItem("/dir2/item", new BinaryData[1, 2, 3]);
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4397,12 +4397,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathToTarget_SymbolicLink2()
         {
-            VirtualPath targetPath = new VirtualPath("/dir1/link1/dir3");
+            VirtualPath targetPath = "/dir1/link1/dir3";
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddDirectory(new VirtualPath("/dir2/dir3"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
+            vs.AddDirectory("/dir1", true);
+            vs.AddDirectory("/dir2", true);
+            vs.AddDirectory("/dir2/dir3", true);
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4415,12 +4415,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathToTarget_SymbolicLink3()
         {
-            VirtualPath targetPath = new VirtualPath("/dir1/link1");
-            VirtualPath linkTargetPath = new VirtualPath("/dir2");
+            VirtualPath targetPath = "/dir1/link1";
+            VirtualPath linkTargetPath = "/dir2";
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), linkTargetPath);
+            vs.AddDirectory("/dir1", true);
+            vs.AddDirectory("/dir2", true);
+            vs.AddSymbolicLink("/dir1/link1", linkTargetPath);
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4434,7 +4434,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_NonExistentPath()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath targetPath = new VirtualPath("/nonexistent");
+            VirtualPath targetPath = "/nonexistent";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4446,10 +4446,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathToTarget_NonExistentPathWithExceptionEnabled()
         {
-            VirtualStorage vs = new VirtualStorage();
-            VirtualPath targetPath = new VirtualPath("/nonexistent");
+            VirtualStorage vs = new();
+            VirtualPath targetPath = "/nonexistent";
 
-            var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, true);
             });
@@ -4460,10 +4460,10 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_NonExistentPath2()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/dir1/item");
+            VirtualPath path = "/dir1/item";
             vs.AddDirectory(path.DirectoryPath, true);
             vs.AddItem(path, new BinaryData[1, 2, 3]);
-            VirtualPath targetPath = new VirtualPath("/dir1/item/dir2");
+            VirtualPath targetPath = "/dir1/item/dir2";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4476,9 +4476,9 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_NonExistentPath3()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("/dir1/dir2");
+            VirtualPath path = "/dir1/dir2";
             vs.AddDirectory(path.DirectoryPath, true);
-            VirtualPath targetPath = new VirtualPath("/dir1/dir2/dir3");
+            VirtualPath targetPath = "/dir1/dir2/dir3";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4491,10 +4491,10 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_NonExistentPath4()
         {
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
-            VirtualPath targetPath = new VirtualPath("/dir1/link1/dir3");
+            vs.AddDirectory("/dir1", true);
+            vs.AddDirectory("/dir2", true);
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
+            VirtualPath targetPath = "/dir1/link1/dir3";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4507,12 +4507,12 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_CircularSymbolicLink()
         {
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir1"));
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
+            vs.AddDirectory("/dir2", true);
+            vs.AddSymbolicLink("/dir2/link2", "/dir1");
 
-            NodeInformation? result = vs.WalkPathToTarget(new VirtualPath("/dir1/link1/link2/link1"), notifyNode, null, true, false);
+            NodeInformation? result = vs.WalkPathToTarget("/dir1/link1/link2/link1", notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
 
             Assert.IsNotNull(node);
@@ -4523,12 +4523,12 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_SymbolicLinkToNonExistentPath()
         {
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/nonexistent"));
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/dir1/link1", "/nonexistent");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                NodeInformation? result = vs.WalkPathToTarget(new VirtualPath("/dir1/link1"), notifyNode, null, true, true);
+                NodeInformation? result = vs.WalkPathToTarget("/dir1/link1", notifyNode, null, true, true);
             });
         }
 
@@ -4536,11 +4536,11 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_RelativePath()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath path = new VirtualPath("dir2");
-            vs.AddDirectory(new VirtualPath("/dir1/dir2"), true);
+            VirtualPath path = "dir2";
+            vs.AddDirectory("/dir1/dir2", true);
             VirtualPath targetPath = path;
 
-            vs.ChangeDirectory(new VirtualPath("/dir1"));
+            vs.ChangeDirectory("/dir1");
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4554,9 +4554,9 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_DirAndDotDot()
         {
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1/dir2"), true);
-            vs.AddDirectory(new VirtualPath("/dir1/dir3"), true);
-            VirtualPath targetPath = new VirtualPath("/dir1/dir2/../dir3");
+            vs.AddDirectory("/dir1/dir2", true);
+            vs.AddDirectory("/dir1/dir3", true);
+            VirtualPath targetPath = "/dir1/dir2/../dir3";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4570,11 +4570,11 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_LinkAndDotDot()
         {
             VirtualStorage vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
-            vs.AddDirectory(new VirtualPath("/dir1/dir3"), true);
-            VirtualPath targetPath = new VirtualPath("/dir1/link1/../dir3");
+            vs.AddDirectory("/dir1", true);
+            vs.AddDirectory("/dir2", true);
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
+            vs.AddDirectory("/dir1/dir3", true);
+            VirtualPath targetPath = "/dir1/link1/../dir3";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, null, true, false);
             VirtualNode? node = result?.Node;
@@ -4589,16 +4589,16 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_MultipleLink()
         {
             // テストデータの設定
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"));
-            vs.AddDirectory(new VirtualPath("/dir2"));
-            vs.AddDirectory(new VirtualPath("/dir3"));
-            vs.AddItem(new VirtualPath("/dir3/item"), "FinalItem");
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/dir2"));
-            vs.AddSymbolicLink(new VirtualPath("/dir2/link2"), new VirtualPath("/dir3"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddDirectory("/dir3");
+            vs.AddItem("/dir3/item", "FinalItem");
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
+            vs.AddSymbolicLink("/dir2/link2", "/dir3");
 
             // メソッドを実行
-            var result = vs.WalkPathToTarget(new VirtualPath("/dir1/link1/link2/item"), notifyNode, null, true, false);
+            NodeInformation? result = vs.WalkPathToTarget("/dir1/link1/link2/item", notifyNode, null, true, false);
 
             // 結果を検証
             Assert.AreEqual(new VirtualPath("/dir1/link1/link2/item"), result?.TraversalPath);
@@ -4609,7 +4609,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_NonExistentPathAndCreatePath()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath targetPath = new VirtualPath("/dir1");
+            VirtualPath targetPath = "/dir1";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, actionNode, true, false);
             VirtualNode? node = result?.Node;
@@ -4623,7 +4623,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathToTarget_NonExistentPathAndCreatePath2()
         {
             VirtualStorage vs = new VirtualStorage();
-            VirtualPath targetPath = new VirtualPath("/dir1/dir2");
+            VirtualPath targetPath = "/dir1/dir2";
 
             NodeInformation? result = vs.WalkPathToTarget(targetPath, notifyNode, actionNode, true, false);
             VirtualNode? node = result?.Node;
@@ -4638,7 +4638,7 @@ namespace VirtualStorageLibrary.Test
             Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");
         }
 
-        private bool actionNode(VirtualDirectory directory, VirtualPath nodeName)
+        private bool actionNode(VirtualDirectory directory, VirtualNodeName nodeName)
         {
             VirtualDirectory newDirectory = new VirtualDirectory(nodeName);
 
@@ -4650,43 +4650,43 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_Test1()
         {
-            var vs = new VirtualStorage();
-            vs.AddItem(new VirtualPath("/item0"), "test");
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddItem(new VirtualPath("/dir1/item1"), "test");
-            vs.AddItem(new VirtualPath("/dir1/item2"), "test");
-            vs.AddDirectory(new VirtualPath("/dir2/sub"), true);
-            vs.AddItem(new VirtualPath("/dir2/sub/item3"), "test");
-            vs.AddItem(new VirtualPath("/dir2/sub/item4"), "test");
-            vs.AddItem(new VirtualPath("/dir2/sub/item5"), "test");
-            vs.AddItem(new VirtualPath("/item6"), "test");
-            vs.AddItem(new VirtualPath("/item8"), "test");
-            vs.AddSymbolicLink(new VirtualPath("/item7"), new VirtualPath("/dir1"));
-            vs.AddDirectory(new VirtualPath("/all-dir"), true);
-            vs.AddSymbolicLink(new VirtualPath("/all-dir/item1"), new VirtualPath("/dir1/item1"));
-            vs.AddSymbolicLink(new VirtualPath("/all-dir/item2"), new VirtualPath("/dir1/item2"));
+            VirtualStorage vs = new();
+            vs.AddItem("/item0", "test");
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", "test");
+            vs.AddItem("/dir1/item2", "test");
+            vs.AddDirectory("/dir2/sub", true);
+            vs.AddItem("/dir2/sub/item3", "test");
+            vs.AddItem("/dir2/sub/item4", "test");
+            vs.AddItem("/dir2/sub/item5", "test");
+            vs.AddItem("/item6", "test");
+            vs.AddItem("/item8", "test");
+            vs.AddSymbolicLink("/item7", "/dir1");
+            vs.AddDirectory("/all-dir", true);
+            vs.AddSymbolicLink("/all-dir/item1", "/dir1/item1");
+            vs.AddSymbolicLink("/all-dir/item2", "/dir1/item2");
 
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
 
             //Assert.AreEqual(4, result.Count());
 
-            string tree = vs.GenerateTextBasedTreeStructure(new VirtualPath("/"), true);
+            string tree = vs.GenerateTextBasedTreeStructure("/", true);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
         public void WalkPathTree_EmptyDirectory_ShouldReturnOnlyDirectory()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/emptyDir"), true);
+            VirtualStorage vs = new();
+            vs.AddDirectory("/emptyDir", true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/emptyDir"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/emptyDir", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4698,13 +4698,13 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_DirectoryWithItems_ShouldReturnItems()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dirWithItems"), true);
-            vs.AddItem(new VirtualPath("/dirWithItems/item1"), "content1");
-            vs.AddItem(new VirtualPath("/dirWithItems/item2"), "content2");
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dirWithItems", true);
+            vs.AddItem("/dirWithItems/item1", "content1");
+            vs.AddItem("/dirWithItems/item2", "content2");
 
-            var result = vs.WalkPathTree(new VirtualPath("/dirWithItems"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/dirWithItems", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4717,13 +4717,13 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_DirectoryWithSymbolicLink_ShouldFollowLinkIfRequested()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/sourceDir"), true);
-            vs.AddItem(new VirtualPath("/sourceDir/item"), "content");
-            vs.AddSymbolicLink(new VirtualPath("/linkToSourceDir"), new VirtualPath("/sourceDir"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddItem("/sourceDir/item", "content");
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4734,9 +4734,9 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_EmptyDirectory_ReturnsOnlyRoot()
         {
-            var vs = new VirtualStorage();
-            var result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            VirtualStorage vs = new();
+            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4748,11 +4748,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_SingleItemDirectory_IncludesItem()
         {
-            var vs = new VirtualStorage();
-            vs.AddItem(new VirtualPath("/item1"), "test");
+            VirtualStorage vs = new();
+            vs.AddItem("/item1", "test");
 
-            var result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4764,12 +4764,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_DirectoryWithSymbolicLink_IncludesLinkAndTarget()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/linkToDir1"), new VirtualPath("/dir1"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/linkToDir1", "/dir1");
 
-            var result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4782,12 +4782,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_DeepNestedDirectories_ReturnsAllNodes()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1/dir2/dir3"), true);
-            vs.AddItem(new VirtualPath("/dir1/dir2/dir3/item1"), "test");
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddItem("/dir1/dir2/dir3/item1", "test");
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4798,13 +4798,13 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_MultipleSymbolicLinks_IncludesLinksAndTargets()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/linkToDir1"), new VirtualPath("/dir1"));
-            vs.AddSymbolicLink(new VirtualPath("/linkToLink1"), new VirtualPath("/linkToDir1"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/linkToDir1", "/dir1");
+            vs.AddSymbolicLink("/linkToLink1", "/linkToDir1");
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4815,15 +4815,15 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_DirectoryWithManyItems_ReturnsAllItems()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
             for (int i = 1; i <= 100; i++)
             {
                 vs.AddItem(new VirtualPath($"/dir1/item{i}"), $"test{i}");
             }
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir1"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4834,14 +4834,14 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_WithNonexistentPathSymbolicLink_ThrowsExceptionAndOutputsMessage()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/emptyLink"), new VirtualPath("/nonexistent"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/dir1/emptyLink", "/nonexistent");
 
-            var exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-                foreach (var item in result)
+                IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+                foreach (NodeInformation item in result)
                 {
                     Debug.WriteLine(item.ToString());
                 }
@@ -4853,17 +4853,17 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_ShallowNestedDirectories_ExecutesWithoutErrorAndOutputsTree()
         {
-            var vs = new VirtualStorage();
-            var basePath = "/deep";
-            var depth = 100; // 最大1900くらいまでOK
+            VirtualStorage vs = new();
+            string basePath = "/deep";
+            int depth = 100; // 最大1900くらいまでOK
             for (int i = 1; i <= depth; i++)
             {
                 basePath = $"{basePath}/dir{i}";
                 vs.AddDirectory(new VirtualPath(basePath), true);
             }
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
             }
@@ -4876,11 +4876,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_MultipleEmptyDirectories_ReturnsAllDirectoriesAndOutputsTree()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/empty1/empty2/empty3"), true);
+            VirtualStorage vs = new();
+            vs.AddDirectory("/empty1/empty2/empty3", true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
             }
@@ -4892,14 +4892,14 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_MultipleSymbolicLinksInSamePath()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/targetDir"), true); // ターゲットディレクトリ
-            vs.AddDirectory(new VirtualPath("/dir"), true); // シンボリックリンクのための親ディレクトリ
-            vs.AddSymbolicLink(new VirtualPath("/dir/symLink1"), new VirtualPath("/targetDir"));
-            vs.AddSymbolicLink(new VirtualPath("/dir/symLink2"), new VirtualPath("/targetDir"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/targetDir", true); // ターゲットディレクトリ
+            vs.AddDirectory("/dir", true); // シンボリックリンクのための親ディレクトリ
+            vs.AddSymbolicLink("/dir/symLink1", "/targetDir");
+            vs.AddSymbolicLink("/dir/symLink2", "/targetDir");
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4912,13 +4912,13 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_SymbolicLinkPointsToAnotherSymbolicLink()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/targetDir"), true); // ターゲットディレクトリ
-            vs.AddSymbolicLink(new VirtualPath("/symLink"), new VirtualPath("/targetDir"));
-            vs.AddSymbolicLink(new VirtualPath("/linkToLink"), new VirtualPath("/symLink"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/targetDir", true); // ターゲットディレクトリ
+            vs.AddSymbolicLink("/symLink", "/targetDir");
+            vs.AddSymbolicLink("/linkToLink", "/symLink");
 
-            var result = vs.WalkPathTree(new VirtualPath("/"), VirtualNodeTypeFilter.All, true);
-            foreach (var item in result)
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
@@ -4930,12 +4930,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_ShouldReturnOnlyItemsInDir1()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddItem(new VirtualPath("/dir1/item1"), "content1");
-            vs.AddItem(new VirtualPath("/dir1/item2"), "content2");
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", "content1");
+            vs.AddItem("/dir1/item2", "content2");
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir1"), VirtualNodeTypeFilter.Item, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.Item, true).ToList();
 
             // ディレクトリ自体は含まれないため、アイテムの数だけを期待する
             Assert.AreEqual(2, result.Count); // 正しいアイテム数を確認
@@ -4946,11 +4946,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_ShouldReturnOnlyDirectoriesInDir2IncludingDirItself()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir2/subdir1"), true);
-            vs.AddDirectory(new VirtualPath("/dir2/subdir2"), true);
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir2/subdir1", true);
+            vs.AddDirectory("/dir2/subdir2", true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir2"), VirtualNodeTypeFilter.Directory, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir2", VirtualNodeTypeFilter.Directory, true).ToList();
 
             // ディレクトリ自体も含む
             Assert.AreEqual(3, result.Count);
@@ -4962,12 +4962,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_ShouldReturnDirectoriesAndItemsIncludingDirItself()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir3"), true);
-            vs.AddItem(new VirtualPath("/dir3/item1"), "content1");
-            vs.AddDirectory(new VirtualPath("/dir3/subdir1"), true);
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir3", true);
+            vs.AddItem("/dir3/item1", "content1");
+            vs.AddDirectory("/dir3/subdir1", true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir3"), VirtualNodeTypeFilter.Directory | VirtualNodeTypeFilter.Item, false).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory | VirtualNodeTypeFilter.Item, false).ToList();
 
             // ディレクトリ自体を含むため、期待される数はノード数+1
             Assert.AreEqual(3, result.Count);
@@ -4979,13 +4979,13 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_ShouldReturnAllTypesIncludingDirItself()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir4"), true);
-            vs.AddItem(new VirtualPath("/dir4/item1"), "content1");
-            vs.AddDirectory(new VirtualPath("/dir4/subdir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir4/link1"), new VirtualPath("/dir4/item1"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir4", true);
+            vs.AddItem("/dir4/item1", "content1");
+            vs.AddDirectory("/dir4/subdir1", true);
+            vs.AddSymbolicLink("/dir4/link1", "/dir4/item1");
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir4"), VirtualNodeTypeFilter.All, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir4", VirtualNodeTypeFilter.All, true).ToList();
 
             // ディレクトリ自体も含む
             Assert.AreEqual(4, result.Count);
@@ -4998,12 +4998,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_WithNoFilter_ShouldNotReturnAnyNodes()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir2"), true);
-            vs.AddItem(new VirtualPath("/dir2/item1"), "content1");
-            vs.AddDirectory(new VirtualPath("/dir2/subdir1"), true);
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir2", true);
+            vs.AddItem("/dir2/item1", "content1");
+            vs.AddDirectory("/dir2/subdir1", true);
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir2"), VirtualNodeTypeFilter.None, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir2", VirtualNodeTypeFilter.None, true).ToList();
 
             Assert.AreEqual(0, result.Count); // フィルター未適用の場合、ノードは返されない
         }
@@ -5011,12 +5011,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_WithDirectoryFilterButNoDirectories_ShouldReturnEmptyList()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir3"), true);
-            vs.AddItem(new VirtualPath("/dir3/item1"), "content1");
-            vs.AddItem(new VirtualPath("/dir3/item2"), "content2");
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir3", true);
+            vs.AddItem("/dir3/item1", "content1");
+            vs.AddItem("/dir3/item2", "content2");
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir3"), VirtualNodeTypeFilter.Directory, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory, true).ToList();
 
             Assert.AreEqual(1, result.Count); // ディレクトリが存在しない場合でも、指定したディレクトリ自体は結果に含まれる
             Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3"));
@@ -5025,12 +5025,12 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_ShouldReturnOnlySymbolicLinksInDir1()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link1"), new VirtualPath("/item1"));
-            vs.AddSymbolicLink(new VirtualPath("/dir1/link2"), new VirtualPath("/item2"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/dir1/link1", "/item1");
+            vs.AddSymbolicLink("/dir1/link2", "/item2");
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir1"), VirtualNodeTypeFilter.SymbolicLink, false).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.SymbolicLink, false).ToList();
 
             // シンボリックリンクのみをフィルタリングするため、シンボリックリンクの数だけを期待する
             Assert.AreEqual(2, result.Count); // シンボリックリンクの正しい数を確認
@@ -5041,11 +5041,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_ShouldReturnNoNodesWhenFilterDoesNotMatch()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir3"), true);
-            vs.AddItem(new VirtualPath("/dir3/item1"), "content1");
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir3", true);
+            vs.AddItem("/dir3/item1", "content1");
 
-            var result = vs.WalkPathTree(new VirtualPath("/dir3"), VirtualNodeTypeFilter.SymbolicLink, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.SymbolicLink, true).ToList();
 
             // シンボリックリンクのみをフィルタリングし、ディレクトリにシンボリックリンクがない場合、結果は空であることを期待する
             Assert.AreEqual(0, result.Count);
@@ -5054,10 +5054,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeType_ShouldReturnDirectoryForDirectoryPath()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
 
-            var result = vs.GetNodeType(new VirtualPath("/dir1"));
+            VirtualNodeType result = vs.GetNodeType("/dir1");
 
             Assert.AreEqual(VirtualNodeType.Directory, result);
         }
@@ -5065,10 +5065,10 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeType_ShouldReturnItemForItemPath()
         {
-            var vs = new VirtualStorage();
-            vs.AddItem(new VirtualPath("/item1"), "content1");
+            VirtualStorage vs = new();
+            vs.AddItem("/item1", "content1");
 
-            var result = vs.GetNodeType(new VirtualPath("/item1"));
+            VirtualNodeType result = vs.GetNodeType("/item1");
 
             Assert.AreEqual(VirtualNodeType.Item, result);
         }
@@ -5076,11 +5076,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeType_ShouldReturnSymbolicLinkForLinkPathWithoutFollowing()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/link1"), new VirtualPath("/dir1"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/link1", "/dir1");
 
-            var result = vs.GetNodeType(new VirtualPath("/link1"), false);
+            VirtualNodeType result = vs.GetNodeType("/link1", false);
 
             Assert.AreEqual(VirtualNodeType.SymbolicLink, result);
         }
@@ -5088,11 +5088,11 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetNodeType_ShouldReturnDirectoryForLinkPathWhenFollowing()
         {
-            var vs = new VirtualStorage();
-            vs.AddDirectory(new VirtualPath("/dir1"), true);
-            vs.AddSymbolicLink(new VirtualPath("/link1"), new VirtualPath("/dir1"));
+            VirtualStorage vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/link1", "/dir1");
 
-            var result = vs.GetNodeType(new VirtualPath("/link1"), true);
+            VirtualNodeType result = vs.GetNodeType("/link1", true);
 
             Assert.AreEqual(VirtualNodeType.Directory, result);
         }

@@ -7,12 +7,10 @@ namespace VirtualStorageLibrary.Test
         : IDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>, IEquatable<BinaryData>
     {
         private byte[] _data;
-        private ReadOnlyCollection<byte> _readOnlyDataCache;
 
         public BinaryData()
         {
             _data = [];
-            _readOnlyDataCache = new(_data);
         }
 
         public BinaryData(IEnumerable<byte> data)
@@ -22,7 +20,6 @@ namespace VirtualStorageLibrary.Test
                 throw new ArgumentNullException(nameof(data), "dataはnullにできません。");
             }
             _data = data.ToArray();
-            _readOnlyDataCache = new(_data);
         }
 
         public override string ToString()
@@ -48,17 +45,7 @@ namespace VirtualStorageLibrary.Test
             return hex;
         }
 
-        public ReadOnlyCollection<byte> Data
-        {
-            get
-            {
-                if (_readOnlyDataCache == null)
-                {
-                    _readOnlyDataCache = new(_data);
-                }
-                return _readOnlyDataCache;
-            }
-        }
+        public byte[] Data => _data;
 
         public byte this[int index]
         {
@@ -97,7 +84,6 @@ namespace VirtualStorageLibrary.Test
         public void Clear()
         {
             _data = [];
-            _readOnlyDataCache = new(_data);
         }
 
         public bool Contains(byte item) => _data.Contains(item);

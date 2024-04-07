@@ -6,13 +6,13 @@ namespace VirtualStorageLibrary
 {
     public class VirtualStorageSettings
     {
-        private static VirtualStorageSettings _settings = new VirtualStorageSettings();
+        private static VirtualStorageSettings _settings = new();
 
         public static VirtualStorageSettings Settings => _settings;
 
         private VirtualStorageSettings() { }
 
-        public static void Reset() => _settings = new VirtualStorageSettings();
+        public static void Reset() => _settings = new();
 
         public char PathSeparator { get; set; } = '/';
 
@@ -70,7 +70,7 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public override string ToString()
         {
-            var parts = new List<string>
+            List<string> parts = new()
             {
                 $"NodeName: {Node?.Name}",
                 $"TraversalPath: {TraversalPath}",
@@ -405,10 +405,42 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
         {
-            char pathSeperator = VirtualStorageSettings.Settings.PathSeparator;
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
             VirtualPath trimmedPath = path.TrimEndSlash();
-            string fullPath = trimmedPath._path + pathSeperator + nodeName.Name;
+            string fullPath = trimmedPath._path + pathSeparator + nodeName.Name;
             return new VirtualPath(fullPath);
+        }
+
+        [DebuggerStepThrough]
+        public static VirtualPath operator +(VirtualPath path, string str)
+        {
+            // パスセパレーターを取得
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
+            // 末尾がパスセパレータでない場合は追加
+            if (!path.Path.EndsWith(pathSeparator))
+            {
+                str = pathSeparator + str;
+            }
+
+            // 新しいパスを生成して返す
+            return new VirtualPath(path.Path + str);
+        }
+
+        [DebuggerStepThrough]
+        public static VirtualPath operator +(string str, VirtualPath path)
+        {
+            // パスセパレーターを取得
+            char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
+
+            // 末尾がパスセパレータでない場合は追加
+            if (!str.EndsWith(pathSeparator))
+            {
+                str += pathSeparator;
+            }
+
+            // 新しいパスを生成して返す
+            return new VirtualPath(str + path.Path);
         }
 
         [DebuggerStepThrough]
@@ -471,8 +503,8 @@ namespace VirtualStorageLibrary
                 return path;
             }
 
-            var parts = new LinkedList<string>();
-            var isAbsolutePath = path.StartsWith(pathSeparator);
+            LinkedList<string> parts = new();
+            bool isAbsolutePath = path.StartsWith(pathSeparator);
             IList<string> partList = path.Split(pathSeparator, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var part in partList)
@@ -549,7 +581,7 @@ namespace VirtualStorageLibrary
                 return new VirtualNodeName(pathSeparator.ToString());
             }
 
-            StringBuilder path = new StringBuilder(_path);
+            StringBuilder path = new(_path);
 
             if (path.Length > 0 && path[^1] == pathSeparator)
             {
@@ -589,7 +621,7 @@ namespace VirtualStorageLibrary
             char pathSeparator = VirtualStorageSettings.Settings.PathSeparator;
 
             // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
-            var newPathBuilder = new StringBuilder();
+            StringBuilder newPathBuilder = new();
 
             foreach (var path in paths)
             {
@@ -930,7 +962,7 @@ namespace VirtualStorageLibrary
 
         public override VirtualNode DeepClone()
         {
-            var clonedDirectory = new VirtualDirectory(Name, CreatedDate, UpdatedDate);
+            VirtualDirectory clonedDirectory = new(Name, CreatedDate, UpdatedDate);
 
             foreach (var pair in this._nodes)
             {
@@ -1097,7 +1129,7 @@ namespace VirtualStorageLibrary
 
             if (!_linkDictionary.ContainsKey(targetPath))
             {
-                _linkDictionary[targetPath] = new List<VirtualPath>();
+                _linkDictionary[targetPath] = new();
             }
 
             _linkDictionary[targetPath].Add(linkPath);
@@ -1201,8 +1233,11 @@ namespace VirtualStorageLibrary
                 }
             }
 
-            // 新しいシンボリックリンクを追加 (ターゲットパスは何も手を加えずにそのまま保存)
-            directory.Add(new VirtualSymbolicLink(linkName, targetPath), true);
+            // シンボリックリンクを作成
+            VirtualSymbolicLink symbolicLink = new(linkName, targetPath);
+            
+            // 新しいシンボリックリンクを追加
+            directory.Add(symbolicLink);
 
             // targetPathを絶対パスに変換して正規化する必要がある。その際、シンボリックリンクを作成したディレクトリパスを基準とする
             VirtualPath absoluteTargetPath = ConvertToAbsolutePath(targetPath, directoryPath).NormalizePath();
@@ -1259,7 +1294,7 @@ namespace VirtualStorageLibrary
             VirtualNodeName itemName = path.NodeName;
 
             // アイテムを作成
-            VirtualItem<T> item = new VirtualItem<T>(itemName, data);
+            VirtualItem<T> item = new(itemName, data);
 
             // AddItemメソッドを呼び出し
             AddItem(directoryPath, item, overwrite);
@@ -1791,7 +1826,7 @@ namespace VirtualStorageLibrary
                 }
 
                 // 再帰的なディレクトリコピーまたは空のディレクトリコピー
-                VirtualDirectory newDirectory = new VirtualDirectory(newNodeName);
+                VirtualDirectory newDirectory = new(newNodeName);
                 targetDirectory.Add(newDirectory, overwrite);
                 if (recursive)
                 {
@@ -2102,7 +2137,7 @@ namespace VirtualStorageLibrary
         public string GenerateTextBasedTreeStructure(VirtualPath path, bool followLinks = false)
         {
             const char FullWidthSpaceChar = '\u3000';
-            StringBuilder tree = new StringBuilder();
+            StringBuilder tree = new();
 
             path = ConvertToAbsolutePath(path).NormalizePath();
             IEnumerable<NodeInformation> nodeInfos = WalkPathTree(path, VirtualNodeTypeFilter.All, true);
