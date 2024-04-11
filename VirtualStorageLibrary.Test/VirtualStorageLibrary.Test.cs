@@ -4667,7 +4667,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/all-dir/item2", "/dir1/item2");
 
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4685,7 +4685,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new();
             vs.AddDirectory("/emptyDir", true);
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/emptyDir", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/emptyDir", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4703,7 +4703,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/dirWithItems/item1", "content1");
             vs.AddItem("/dirWithItems/item2", "content2");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/dirWithItems", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/dirWithItems", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4722,7 +4722,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/sourceDir/item", "content");
             vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4735,7 +4735,7 @@ namespace VirtualStorageLibrary.Test
         public void WalkPathTree_EmptyDirectory_ReturnsOnlyRoot()
         {
             VirtualStorage vs = new();
-            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4751,7 +4751,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new();
             vs.AddItem("/item1", "test");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4768,7 +4768,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1", true);
             vs.AddSymbolicLink("/linkToDir1", "/dir1");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree(VirtualPath.Root, VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4786,13 +4786,13 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1/dir2/dir3", true);
             vs.AddItem("/dir1/dir2/dir3/item1", "test");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
 
-            Assert.AreEqual(5, result.Count()); // ルートディレクトリ、dir1、dir2、dir3、およびitem1
+            Assert.AreEqual(5, result.Count()); // ルートディレクトリ、dir1、dir2、dir3、および item1
         }
 
         [TestMethod]
@@ -4803,13 +4803,13 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/linkToDir1", "/dir1");
             vs.AddSymbolicLink("/linkToLink1", "/linkToDir1");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
             }
 
-            Assert.AreEqual(4, result.Count()); // ルートディレクトリ、dir1、linkToDir1、およびlinkToLink1
+            Assert.AreEqual(4, result.Count()); // ルートディレクトリ、dir1、linkToDir1、および linkToLink1
         }
 
         [TestMethod]
@@ -4822,7 +4822,7 @@ namespace VirtualStorageLibrary.Test
                 vs.AddItem($"/dir1/item{i}", $"test{i}");
             }
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4840,7 +4840,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+                IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
                 foreach (NodeInformation item in result)
                 {
                     Debug.WriteLine(item.ToString());
@@ -4862,7 +4862,7 @@ namespace VirtualStorageLibrary.Test
                 vs.AddDirectory(basePath, true);
             }
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
@@ -4879,7 +4879,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage vs = new();
             vs.AddDirectory("/empty1/empty2/empty3", true);
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine($"ノード名: {item.TraversalPath}, 解決済みパス: {item.ResolvedPath}");
@@ -4898,7 +4898,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/dir/symLink1", "/targetDir");
             vs.AddSymbolicLink("/dir/symLink2", "/targetDir");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4917,7 +4917,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/symLink", "/targetDir");
             vs.AddSymbolicLink("/linkToLink", "/symLink");
 
-            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
+            IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
             foreach (NodeInformation item in result)
             {
                 Debug.WriteLine(item);
@@ -4935,7 +4935,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", "content1");
             vs.AddItem("/dir1/item2", "content2");
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.Item, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.Item, true, true).ToList();
 
             // ディレクトリ自体は含まれないため、アイテムの数だけを期待する
             Assert.AreEqual(2, result.Count); // 正しいアイテム数を確認
@@ -4950,7 +4950,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir2/subdir1", true);
             vs.AddDirectory("/dir2/subdir2", true);
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir2", VirtualNodeTypeFilter.Directory, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir2", VirtualNodeTypeFilter.Directory, true, true).ToList();
 
             // ディレクトリ自体も含む
             Assert.AreEqual(3, result.Count);
@@ -4967,7 +4967,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/dir3/item1", "content1");
             vs.AddDirectory("/dir3/subdir1", true);
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory | VirtualNodeTypeFilter.Item, false).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory | VirtualNodeTypeFilter.Item, true, false).ToList();
 
             // ディレクトリ自体を含むため、期待される数はノード数+1
             Assert.AreEqual(3, result.Count);
@@ -4985,7 +4985,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir4/subdir1", true);
             vs.AddSymbolicLink("/dir4/link1", "/dir4/item1");
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir4", VirtualNodeTypeFilter.All, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir4", VirtualNodeTypeFilter.All, true, true).ToList();
 
             // ディレクトリ自体も含む
             Assert.AreEqual(4, result.Count);
@@ -5003,7 +5003,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/dir2/item1", "content1");
             vs.AddDirectory("/dir2/subdir1", true);
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir2", VirtualNodeTypeFilter.None, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir2", VirtualNodeTypeFilter.None, true, true).ToList();
 
             Assert.AreEqual(0, result.Count); // フィルター未適用の場合、ノードは返されない
         }
@@ -5016,7 +5016,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/dir3/item1", "content1");
             vs.AddItem("/dir3/item2", "content2");
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory, true, true).ToList();
 
             Assert.AreEqual(1, result.Count); // ディレクトリが存在しない場合でも、指定したディレクトリ自体は結果に含まれる
             Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3"));
@@ -5030,7 +5030,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/dir1/link1", "/item1");
             vs.AddSymbolicLink("/dir1/link2", "/item2");
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.SymbolicLink, false).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.SymbolicLink, true, false).ToList();
 
             // シンボリックリンクのみをフィルタリングするため、シンボリックリンクの数だけを期待する
             Assert.AreEqual(2, result.Count); // シンボリックリンクの正しい数を確認
@@ -5045,10 +5045,56 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir3", true);
             vs.AddItem("/dir3/item1", "content1");
 
-            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.SymbolicLink, true).ToList();
+            List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.SymbolicLink, true, true).ToList();
 
             // シンボリックリンクのみをフィルタリングし、ディレクトリにシンボリックリンクがない場合、結果は空であることを期待する
             Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod]
+        public void WalkPathTree_DirectoryWithDeepNestingAndRecursiveFalse_ShouldReturnImmediateChildrenOnly()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            // 複数階層のディレクトリとアイテムを追加
+            vs.AddDirectory("/testDir", true);
+            vs.AddItem("/testDir/item1", "content1");
+            vs.AddDirectory("/testDir/subDir1", true);
+            vs.AddItem("/testDir/subDir1/item2", "content2");
+            vs.AddDirectory("/testDir/subDir1/subSubDir1", true);
+            vs.AddItem("/testDir/subDir1/subSubDir1/item3", "content3");
+
+            // 再帰なしで走査
+            List<NodeInformation> result = vs.WalkPathTree("/testDir", VirtualNodeTypeFilter.All, false, false).ToList();
+
+            // 直下のアイテムとサブディレクトリのみが返されることを確認
+            Assert.AreEqual(3, result.Count());
+            Assert.IsTrue(result[0].TraversalPath == "/testDir");
+            Assert.IsTrue(result[1].TraversalPath == "/testDir/subDir1");
+            Assert.IsTrue(result[2].TraversalPath == "/testDir/item1");
+        }
+
+        [TestMethod]
+        public void WalkPathTree_StartFromSubdirectoryWithRecursiveFalse_ShouldReturnOrderedImmediateChildrenOnly()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            // 深い階層のディレクトリとアイテムを追加
+            vs.AddDirectory("/testDir", true);
+            vs.AddItem("/testDir/item1", "content1");
+            vs.AddDirectory("/testDir/subDir1", true);
+            vs.AddItem("/testDir/subDir1/item2", "content2");
+            vs.AddDirectory("/testDir/subDir1/subSubDir1", true);
+            vs.AddItem("/testDir/subDir1/subSubDir1/item3", "content3");
+            vs.AddDirectory("/testDir/subDir1/subSubDir1/subSubSubDir1", true);
+            vs.AddItem("/testDir/subDir1/subSubDir1/subSubSubDir1/item4", "content4");
+
+            // 再帰なしで/testDir/subDir1から走査を開始
+            List<NodeInformation> result = vs.WalkPathTree("/testDir/subDir1", VirtualNodeTypeFilter.All, false, false).ToList();
+
+            // 結果の順番と内容を検証
+            Assert.AreEqual(3, result.Count, "Should return the starting directory and its immediate children only.");
+            Assert.IsTrue(result[0].TraversalPath.ToString() == "/testDir/subDir1");
+            Assert.IsTrue(result[1].TraversalPath.ToString() == "/testDir/subDir1/subSubDir1");
+            Assert.IsTrue(result[2].TraversalPath.ToString() == "/testDir/subDir1/item2");
         }
 
         [TestMethod]
