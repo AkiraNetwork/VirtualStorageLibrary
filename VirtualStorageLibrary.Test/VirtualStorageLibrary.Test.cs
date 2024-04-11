@@ -1035,7 +1035,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(directory.NodeExists("TestLink"));
             VirtualSymbolicLink? retrievedLink = directory.Get("TestLink") as VirtualSymbolicLink;
             Assert.IsNotNull(retrievedLink);
-            Assert.AreEqual(new VirtualPath("/path/to/target"), retrievedLink.TargetPath);
+            Assert.IsTrue(retrievedLink.TargetPath == "/path/to/target");
         }
 
         [TestMethod]
@@ -1058,7 +1058,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualSymbolicLink? retrievedLink = directory.Get("TestLink") as VirtualSymbolicLink;
             Assert.IsNotNull(retrievedLink);
-            Assert.AreEqual(new VirtualPath("/path/to/new-target"), retrievedLink.TargetPath);
+            Assert.IsTrue(retrievedLink.TargetPath == "/path/to/new-target");
         }
 
         [TestMethod]
@@ -1893,7 +1893,7 @@ namespace VirtualStorageLibrary.Test
             // Assert
             // シンボリックリンクを解決後、".."によりさらに上のディレクトリに移動するため、
             // 最終的なカレントディレクトリが/pathになることを期待
-            VirtualPath expectedPath = new VirtualPath("/path");
+            VirtualPath expectedPath = "/path";
             Assert.AreEqual(expectedPath, virtualStorage.CurrentPath);
         }
 
@@ -1916,7 +1916,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("TestDirectory");
 
-            Assert.AreEqual(new VirtualPath("/TestDirectory"), result);
+            Assert.IsTrue(result == "/TestDirectory");
         }
 
         [TestMethod]
@@ -1928,7 +1928,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("/test/path");
 
-            Assert.AreEqual(new VirtualPath("/test/path"), result);
+            Assert.IsTrue(result == "/test/path");
         }
 
         [TestMethod]
@@ -1940,7 +1940,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("test/path");
 
-            Assert.AreEqual(new VirtualPath("/root/subdirectory/test/path"), result);
+            Assert.IsTrue(result == "/root/subdirectory/test/path");
         }
 
         [TestMethod]
@@ -1952,7 +1952,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("./test/path");
 
-            Assert.AreEqual(new VirtualPath("/root/subdirectory/./test/path"), result);
+            Assert.IsTrue(result == "/root/subdirectory/./test/path");
         }
 
         [TestMethod]
@@ -1964,7 +1964,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("../test/path");
 
-            Assert.AreEqual(new VirtualPath("/root/subdirectory/../test/path"), result);
+            Assert.IsTrue(result == "/root/subdirectory/../test/path");
         }
 
         [TestMethod]
@@ -1976,7 +1976,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("../../test/path");
 
-            Assert.AreEqual(new VirtualPath("/root/subdirectory/../../test/path"), result);
+            Assert.IsTrue(result == "/root/subdirectory/../../test/path");
         }
 
         [TestMethod]
@@ -1992,7 +1992,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath result = virtualStorage.ConvertToAbsolutePath(relativePath, basePath);
 
             // Assert
-            Assert.AreEqual(new VirtualPath("/base/path/relative/to/base"), result);
+            Assert.IsTrue(result == "/base/path/relative/to/base");
         }
 
         [TestMethod]
@@ -2008,7 +2008,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath result = virtualStorage.ConvertToAbsolutePath(relativePath, null);
 
             // Assert
-            Assert.AreEqual(new VirtualPath("/current/path/relative/path"), result);
+            Assert.IsTrue(result == "/current/path/relative/path");
         }
 
         [TestMethod]
@@ -2036,7 +2036,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath result = virtualStorage.ConvertToAbsolutePath(relativePath, basePath);
 
             // Assert
-            Assert.AreEqual(new VirtualPath("/current/path/relative/path"), result);
+            Assert.IsTrue(result == "/current/path/relative/path");
         }
 
         [TestMethod]
@@ -2078,7 +2078,7 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
-                virtualStorage.AddDirectory(new VirtualPath("/test/directory"), false));
+                virtualStorage.AddDirectory("/test/directory", false));
         }
 
         [TestMethod]
@@ -2106,7 +2106,7 @@ namespace VirtualStorageLibrary.Test
             // Act & Assert
             InvalidOperationException exception = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                virtualStorage.AddDirectory(new VirtualPath("/test/directory"), true);
+                virtualStorage.AddDirectory("/test/directory", true);
             });
             Debug.WriteLine(exception.Message);
         }
@@ -2121,7 +2121,7 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() => 
-                virtualStorage.AddDirectory(new VirtualPath("/test/directory"), false));
+                virtualStorage.AddDirectory("/test/directory", false));
         }
 
         [TestMethod]
@@ -2132,7 +2132,7 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
-                virtualStorage.AddDirectory(new VirtualPath("/")));
+                virtualStorage.AddDirectory("/"));
         }
 
         [TestMethod]
@@ -2384,7 +2384,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsInstanceOfType(node, typeof(VirtualSymbolicLink));
             VirtualSymbolicLink? link = node as VirtualSymbolicLink;
             Assert.IsNotNull(link);
-            Assert.AreEqual(new VirtualPath("/dir/item"), link.TargetPath);
+            Assert.IsTrue(link.TargetPath == "/dir/item");
         }
 
         [TestMethod]
@@ -2536,7 +2536,7 @@ namespace VirtualStorageLibrary.Test
 
             // 結果を検証
             // TODO:これは期待通り。
-            Assert.AreEqual(new VirtualPath("/Documents"), resolvedPath);
+            Assert.IsTrue(resolvedPath == "/Documents");
         }
 
         [TestMethod]
@@ -2553,7 +2553,7 @@ namespace VirtualStorageLibrary.Test
 
             // 結果を検証
             // TODO:これはできれば/FinalDestinationになってほしい。
-            Assert.AreEqual(new VirtualPath("/FinalDestination"), resolvedPath);
+            Assert.IsTrue(resolvedPath == "/FinalDestination");
         }
 
         [TestMethod]
@@ -2571,7 +2571,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath resolvedPath = vs.ResolveLinkTarget("linkToDir2/../item");
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/dir1/dir2/dir3/item"), resolvedPath);
+            Assert.IsTrue(resolvedPath == "/dir1/dir2/dir3/item");
         }
 
         [TestMethod]
@@ -2591,7 +2591,7 @@ namespace VirtualStorageLibrary.Test
 
             // 結果を検証
             // TODO:これは期待通り。
-            Assert.AreEqual(new VirtualPath("/dir3/item"), resolvedPath);
+            Assert.IsTrue(resolvedPath == "/dir3/item");
         }
 
         [TestMethod]
@@ -2609,7 +2609,7 @@ namespace VirtualStorageLibrary.Test
 
             // 結果を検証
             // TODO:これは期待通り。
-            Assert.AreEqual(new VirtualPath("/dir1/dir2/item"), resolvedPath);
+            Assert.IsTrue(resolvedPath == "/dir1/dir2/item");
         }
 
         [TestMethod]
@@ -2627,7 +2627,7 @@ namespace VirtualStorageLibrary.Test
 
             // 結果を検証
             // TODO:これは期待通り。
-            Assert.AreEqual(new VirtualPath("/dir1/subdir/item"), resolvedPath);
+            Assert.IsTrue(resolvedPath == "/dir1/subdir/item");
         }
 
         [TestMethod]
@@ -4214,7 +4214,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(storage.SymbolicLinkExists("/test/newLink"));
             VirtualSymbolicLink? link = storage.GetNode("/test/newLink") as VirtualSymbolicLink;
             Assert.IsNotNull(link);
-            Assert.AreEqual(new VirtualPath("/target/path"), link.TargetPath);
+            Assert.IsTrue(link.TargetPath == "/target/path");
         }
 
         [TestMethod]
@@ -4244,7 +4244,7 @@ namespace VirtualStorageLibrary.Test
             // Assert
             VirtualSymbolicLink? link = storage.GetNode("/test/existingLink") as VirtualSymbolicLink;
             Assert.IsNotNull(link);
-            Assert.AreEqual(new VirtualPath("/new/target/path"), link.TargetPath);
+            Assert.IsTrue(link.TargetPath == "/new/target/path");
         }
 
         [TestMethod]
@@ -4601,8 +4601,8 @@ namespace VirtualStorageLibrary.Test
             NodeInformation? result = vs.WalkPathToTarget("/dir1/link1/link2/item", notifyNode, null, true, false);
 
             // 結果を検証
-            Assert.AreEqual(new VirtualPath("/dir1/link1/link2/item"), result?.TraversalPath);
-            Assert.AreEqual(new VirtualPath("/dir3/item"), result?.ResolvedPath);
+            Assert.IsTrue(result?.TraversalPath == "/dir1/link1/link2/item");
+            Assert.IsTrue(result?.ResolvedPath == "/dir3/item");
         }
 
         [TestMethod]
@@ -4819,7 +4819,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1", true);
             for (int i = 1; i <= 100; i++)
             {
-                vs.AddItem(new VirtualPath($"/dir1/item{i}"), $"test{i}");
+                vs.AddItem($"/dir1/item{i}", $"test{i}");
             }
 
             IEnumerable<NodeInformation> result = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.All, true);
@@ -4859,7 +4859,7 @@ namespace VirtualStorageLibrary.Test
             for (int i = 1; i <= depth; i++)
             {
                 basePath = $"{basePath}/dir{i}";
-                vs.AddDirectory(new VirtualPath(basePath), true);
+                vs.AddDirectory(basePath, true);
             }
 
             IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true);
