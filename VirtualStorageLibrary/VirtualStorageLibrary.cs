@@ -1696,22 +1696,30 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => node, followLinks);
+            IEnumerable<NodeInformation> nodeInformation = WalkPathTree(basePath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualNode> nodes = nodeInformation.Select(info => info.Node!);
+            return nodes;
         }
 
         public IEnumerable<VirtualNode> GetNodes(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => node, followLinks);
+            IEnumerable<NodeInformation> nodeInformation = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualNode> nodes = nodeInformation.Select(info => info.Node!);
+            return nodes;
         }
 
         public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(basePath, nodeType, recursive, (node, path) => path, followLinks);
+            IEnumerable<NodeInformation> nodeInformation = WalkPathTree(basePath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualPath> paths = nodeInformation.Select(info => info.TraversalPath);
+            return paths;
         }
 
         public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            return GetNodesInternal(CurrentPath, nodeType, recursive, (node, path) => path, followLinks);
+            IEnumerable<NodeInformation> nodeInformation = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualPath> paths = nodeInformation.Select(info => info.TraversalPath);
+            return paths;
         }
 
         private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
