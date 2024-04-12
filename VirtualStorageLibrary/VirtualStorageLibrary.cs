@@ -2199,17 +2199,21 @@ namespace VirtualStorageLibrary
         // 　├item3
         // 　├item4
         // 　└item5
-        public string GenerateTextBasedTreeStructure(VirtualPath path, bool followLinks = false)
+        public string GenerateTextBasedTreeStructure(VirtualPath basePath, bool recursive = true, bool followLinks = true)
         {
             const char FullWidthSpaceChar = '\u3000';
             StringBuilder tree = new();
 
-            path = ConvertToAbsolutePath(path).NormalizePath();
-            IEnumerable<NodeInformation> nodeInfos = WalkPathTree(path, VirtualNodeTypeFilter.All, true);
+            basePath = ConvertToAbsolutePath(basePath).NormalizePath();
+            IEnumerable<NodeInformation> nodeInfos = WalkPathTree(basePath, VirtualNodeTypeFilter.All, recursive, followLinks);
             StringBuilder line = new();
             string previous = string.Empty;
 
-            foreach (var nodeInfo in nodeInfos)
+            NodeInformation baseNodeInfo = nodeInfos.First();
+            VirtualPath baseAbsolutePath = (basePath + baseNodeInfo.TraversalPath).NormalizePath();
+            tree.AppendLine(baseAbsolutePath.NodeName);
+
+            foreach (var nodeInfo in nodeInfos.Skip(1))
             {
                 VirtualNode? node = nodeInfo.Node;
                 string nodeName = nodeInfo.TraversalPath.NodeName;
@@ -2260,7 +2264,18 @@ namespace VirtualStorageLibrary
                     }
                 }
 
-                line.Append(nodeName);
+                if (node is VirtualDirectory)
+                {
+                    line.Append(nodeName + VirtualStorageSettings.Settings.PathSeparator);
+                }
+                else if (node is VirtualSymbolicLink link)
+                {
+                    line.Append(nodeName + " -> " + (string)link.TargetPath);
+                }
+                else
+                {
+                    line.Append(nodeName);
+                }
                 previous = line.ToString();
                 tree.AppendLine(line.ToString());
             }   

@@ -4712,6 +4712,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/all-dir", true);
             vs.AddSymbolicLink("/all-dir/item1", "/dir1/item1");
             vs.AddSymbolicLink("/all-dir/item2", "/dir1/item2");
+            vs.AddSymbolicLink("/all-dir/sub", "/dir2/sub");
 
 
             IEnumerable<NodeInformation> result = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
@@ -4722,7 +4723,7 @@ namespace VirtualStorageLibrary.Test
 
             //Assert.AreEqual(4, result.Count());
 
-            string tree = vs.GenerateTextBasedTreeStructure("/", true);
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
             Debug.WriteLine(tree);
         }
 
