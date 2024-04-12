@@ -5190,5 +5190,116 @@ namespace VirtualStorageLibrary.Test
 
             Assert.AreEqual(VirtualNodeType.Directory, result);
         }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_RecursiveWithLinksFromRoot()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_RecursiveNoLinksFromRoot()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_NonRecursiveWithLinksFromRoot()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/", false, true);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_NonRecursiveNoLinksFromRoot()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/", false, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_NonExistentPathWithLinks()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                string tree = vs.GenerateTextBasedTreeStructure("/nonexistent", true, true);
+            });
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_RecursiveWithLinksFromSubDirectory()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/dir1", true, true);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_NonRecursiveWithLinksFromSubDirectory()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/dir1", false, true);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_BasePathIsItem()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/item1", true, true);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_LinkToItem_NoFollow()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/link-to-item", true, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_LinkToItem_Follow()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/link-to-item", true, true);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_LinkToDirectory_NoFollow()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/link-to-dir", true, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void GenerateTextBasedTreeStructure_LinkToDirectory_Follow()
+        {
+            VirtualStorage vs = SetupVirtualStorage();
+            string tree = vs.GenerateTextBasedTreeStructure("/link-to-dir", true, true);
+            Debug.WriteLine(tree);
+        }
+
+        private VirtualStorage SetupVirtualStorage()
+        {
+            VirtualStorage vs = new();
+            vs.AddItem("/item1", "test");
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item2", "test");
+            vs.AddDirectory("/dir1/subdir1", true);
+            vs.AddItem("/dir1/subdir1/item3", "test");
+            vs.AddSymbolicLink("/link-to-item", "/item1");
+            vs.AddSymbolicLink("/link-to-dir", "/dir1");
+            return vs;
+        }
     }
 }

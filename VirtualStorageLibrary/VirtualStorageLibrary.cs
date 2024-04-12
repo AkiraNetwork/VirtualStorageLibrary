@@ -2189,13 +2189,13 @@ namespace VirtualStorageLibrary
 
         // 仮想ストレージのツリー構造をテキストベースで作成し返却する
         // 返却するテストは以下の出力の形式とする。
-        // 例: もし、/dir1/dir2/item1, /dir1/dir2/item2, /dir1/item3 が存在し、/dir1がpathで指定された場合
+        // 例: もし、/dir1/dir2/item1, /dir1/dir2/item2, /dir1/item3 が存在し、/dir1が basePath で指定された場合
         // 出力:
         // /
-        // ├dir1
+        // ├dir1/
         // │├item1
         // │└item2
-        // └dir2
+        // └dir2/
         // 　├item3
         // 　├item4
         // 　└item5
@@ -2210,8 +2210,31 @@ namespace VirtualStorageLibrary
             string previous = string.Empty;
 
             NodeInformation baseNodeInfo = nodeInfos.First();
+            VirtualNode baseNode = baseNodeInfo.Node!;
             VirtualPath baseAbsolutePath = (basePath + baseNodeInfo.TraversalPath).NormalizePath();
-            tree.AppendLine(baseAbsolutePath.NodeName);
+            if (baseNode is VirtualDirectory)
+            {
+                string baseNodeName;
+                if (baseAbsolutePath == VirtualPath.Root)
+                {
+                    baseNodeName = baseAbsolutePath.NodeName;
+                }
+                else
+                {
+                    baseNodeName = baseAbsolutePath.NodeName + VirtualStorageSettings.Settings.PathSeparator;
+                }
+                tree.AppendLine(baseNodeName);
+            }
+            else if (baseNode is VirtualItem)
+            {
+                tree.AppendLine(baseAbsolutePath.NodeName);
+            }
+            else if (baseNode is VirtualSymbolicLink link)
+            {
+                string baseNodeName;
+                baseNodeName = (string)baseAbsolutePath.NodeName + " -> " + (string)link.TargetPath;
+                tree.AppendLine(baseNodeName);
+            }
 
             foreach (var nodeInfo in nodeInfos.Skip(1))
             {
