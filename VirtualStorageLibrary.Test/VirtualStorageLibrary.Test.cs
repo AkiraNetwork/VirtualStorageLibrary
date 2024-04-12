@@ -517,6 +517,71 @@ namespace VirtualStorageLibrary.Test
             VirtualPath path2 = "a/b";
             Assert.IsTrue(path1.CompareTo(path2) > 0, "path1 should be lexicographically after path2");
         }
+
+        [TestMethod]
+        public void GetRelativePath_BasePathEqualToPath_ReturnsDot()
+        {
+            // テストデータ
+            VirtualPath basePath = "/path/to/directory";
+            VirtualPath path = "/path/to/directory";
+
+            // メソッドを実行
+            VirtualPath result = path.GetRelativePath(basePath);
+
+            // 結果を検証
+            Assert.AreEqual(VirtualPath.Dot, result, "相対パスが'.'であるべきです。");
+        }
+
+        [TestMethod]
+        public void GetRelativePath_WithPathSubdirectoryOfBasePath_ReturnsRelativePath()
+        {
+            VirtualPath basePath = "/path/to";
+            VirtualPath path = "/path/to/directory/file";
+
+            VirtualPath result = path.GetRelativePath(basePath);
+
+            Assert.AreEqual("directory/file", result.Path);
+        }
+
+        [TestMethod]
+        public void GetRelativePath_WithBasePathSubdirectoryOfPath_ReturnsRelativePathUsingDotDot()
+        {
+            VirtualPath basePath = "/path/to/directory/file";
+            VirtualPath path = "/path/to";
+
+            VirtualPath result = path.GetRelativePath(basePath);
+
+            Assert.AreEqual("../..", result.Path);
+        }
+
+        [TestMethod]
+        public void GetRelativePath_WithNonOverlappingPaths_ThrowsInvalidOperationException()
+        {
+            VirtualPath basePath = "/base/path";
+            VirtualPath path = "/different/path";
+
+            VirtualPath result = path.GetRelativePath(basePath);
+
+            Assert.AreEqual(path.Path, result.Path);
+        }
+
+        [TestMethod]
+        public void GetRelativePath_WithEmptyBasePathAndAbsoluteCurrentPath_ThrowsInvalidOperationException()
+        {
+            VirtualPath basePath = VirtualPath.Empty;
+            VirtualPath path = "/path/to/directory";
+
+            Assert.ThrowsException<InvalidOperationException>(() => path.GetRelativePath(basePath));
+        }
+
+        [TestMethod]
+        public void GetRelativePath_WithAbsolutePathAndRelativeBasePath_ThrowsInvalidOperationException()
+        {
+            VirtualPath basePath = "relative/path";
+            VirtualPath path = "/absolute/path";
+
+            Assert.ThrowsException<InvalidOperationException>(() => path.GetRelativePath(basePath));
+        }
     }
 
     [TestClass]

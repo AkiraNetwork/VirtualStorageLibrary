@@ -740,6 +740,54 @@ namespace VirtualStorageLibrary
             
             return CompareTo((VirtualPath)obj);
         }
+
+        public VirtualPath GetRelativePath(VirtualPath basePath)
+        {
+            // このパスが絶対パスでない場合は例外をスロー
+            if (!IsAbsolute)
+            {
+                throw new InvalidOperationException("このパスは絶対パスではありません: " + _path);
+            }
+
+            // ベースパスが絶対パスでない場合も例外をスロー
+            if (!basePath.IsAbsolute)
+            {
+                throw new InvalidOperationException("ベースパスは絶対パスでなければなりません: " + basePath.Path);
+            }
+
+            // 両方のパスが等しい場合は"."を返却
+            if (_path == basePath.Path)
+            {
+                return VirtualPath.Dot;
+            }
+
+            var baseParts = basePath.PartsList;
+            var targetParts = PartsList;
+            int minLength = Math.Min(baseParts.Count, targetParts.Count);
+
+            int commonLength = 0;
+            for (int i = 0; i < minLength; i++)
+            {
+                if (baseParts[i].Name != targetParts[i].Name)
+                    break;
+
+                commonLength++;
+            }
+
+            // ベースパスとターゲットパスに共通の部分がない場合
+            if (commonLength == 0)
+            {
+                return new VirtualPath(_path);  // 絶対パスをそのまま返却
+            }
+
+            // ベースパスの残りの部分に対して ".." を追加
+            IEnumerable<string> relativePath = Enumerable.Repeat("..", baseParts.Count - commonLength);
+
+            // ターゲットパスの非共通部分を追加
+            relativePath = relativePath.Concat(targetParts.Skip(commonLength).Select(p => p.Name));
+
+            return new VirtualPath(string.Join(VirtualStorageSettings.Settings.PathSeparator, relativePath));
+        }
     }
 
     public abstract class VirtualNode : IDeepCloneable<VirtualNode>
