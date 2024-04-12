@@ -761,6 +761,12 @@ namespace VirtualStorageLibrary
                 return VirtualPath.Dot;
             }
 
+            // ベースパスがルートの場合、先頭のスラッシュを除去して返す
+            if (basePath.Path == VirtualPath.Root)
+            {
+                return new VirtualPath(_path.TrimStart('/'));
+            }
+
             var baseParts = basePath.PartsList;
             var targetParts = PartsList;
             int minLength = Math.Min(baseParts.Count, targetParts.Count);
@@ -1573,7 +1579,7 @@ namespace VirtualStorageLibrary
                 if (filter.HasFlag(VirtualNodeTypeFilter.Directory))
                 {
                     // ディレクトリを通知
-                    yield return new NodeInformation(directory, currentPath, parentDirectory, currentDepth, currentIndex);
+                    yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
                 }
 
                 if (recursive || 0 == currentDepth)
@@ -1597,7 +1603,7 @@ namespace VirtualStorageLibrary
                 {
                     // TODO: VirtualItem<T>で返さないとまずいか調べる
                     // アイテムを通知
-                    yield return new NodeInformation(item, currentPath, parentDirectory, currentDepth, currentIndex);
+                    yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
                 }
             }
             else if (baseNode is VirtualSymbolicLink link)
@@ -1623,7 +1629,7 @@ namespace VirtualStorageLibrary
                     if (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink))
                     {
                         // シンボリックリンクを通知
-                        yield return new NodeInformation(link, currentPath, parentDirectory, currentDepth, currentIndex);
+                        yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
                     }
                 }
             }

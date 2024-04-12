@@ -4739,7 +4739,7 @@ namespace VirtualStorageLibrary.Test
             }
 
             Assert.AreEqual(1, result.Count()); // 空のディレクトリ自身のみが結果として返されるべき
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/emptyDir"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "."));
         }
 
         [TestMethod]
@@ -4757,8 +4757,8 @@ namespace VirtualStorageLibrary.Test
             }
 
             Assert.AreEqual(3, result.Count()); // ディレクトリと2つのアイテムが含まれる
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dirWithItems/item1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dirWithItems/item2"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "item2"));
         }
 
         [TestMethod]
@@ -4775,7 +4775,7 @@ namespace VirtualStorageLibrary.Test
                 Debug.WriteLine(item);
             }
 
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/linkToSourceDir/item"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "linkToSourceDir/item"));
         }
 
         [TestMethod]
@@ -4789,7 +4789,7 @@ namespace VirtualStorageLibrary.Test
             }
 
             Assert.AreEqual(1, result.Count());
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "."));
         }
 
         [TestMethod]
@@ -4805,7 +4805,7 @@ namespace VirtualStorageLibrary.Test
             }
 
             Assert.AreEqual(2, result.Count()); // ルートディレクトリとアイテム
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "item1"));
         }
 
         [TestMethod]
@@ -4822,8 +4822,8 @@ namespace VirtualStorageLibrary.Test
             }
 
             Assert.AreEqual(3, result.Count()); // ルートディレクトリ、dir1、およびシンボリックリンク
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/linkToDir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "dir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "linkToDir1"));
         }
 
         [TestMethod]
@@ -4952,8 +4952,8 @@ namespace VirtualStorageLibrary.Test
             }
 
             // `/dir/symLink1` と `/dir/symLink2` の存在を確認
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/dir/symLink1")));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/dir/symLink2")));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("dir/symLink1")));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("dir/symLink2")));
         }
 
         [TestMethod]
@@ -4970,8 +4970,8 @@ namespace VirtualStorageLibrary.Test
                 Debug.WriteLine(item);
             }
 
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/symLink")));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("/linkToLink")));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("symLink")));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString().Equals("linkToLink")));
         }
 
         [TestMethod]
@@ -4986,8 +4986,8 @@ namespace VirtualStorageLibrary.Test
 
             // ディレクトリ自体は含まれないため、アイテムの数だけを期待する
             Assert.AreEqual(2, result.Count); // 正しいアイテム数を確認
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/item1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/item2"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "item2"));
         }
 
         [TestMethod]
@@ -5001,9 +5001,9 @@ namespace VirtualStorageLibrary.Test
 
             // ディレクトリ自体も含む
             Assert.AreEqual(3, result.Count);
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir2"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir2/subdir1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir2/subdir2"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "."));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "subdir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "subdir2"));
         }
 
         [TestMethod]
@@ -5018,9 +5018,9 @@ namespace VirtualStorageLibrary.Test
 
             // ディレクトリ自体を含むため、期待される数はノード数+1
             Assert.AreEqual(3, result.Count);
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3/item1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3/subdir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "."));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "subdir1"));
         }
 
         [TestMethod]
@@ -5036,10 +5036,10 @@ namespace VirtualStorageLibrary.Test
 
             // ディレクトリ自体も含む
             Assert.AreEqual(4, result.Count);
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4/item1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4/subdir1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir4/link1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "."));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "item1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "subdir1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "link1"));
         }
 
         [TestMethod]
@@ -5066,7 +5066,7 @@ namespace VirtualStorageLibrary.Test
             List<NodeInformation> result = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory, true, true).ToList();
 
             Assert.AreEqual(1, result.Count); // ディレクトリが存在しない場合でも、指定したディレクトリ自体は結果に含まれる
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir3"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "."));
         }
 
         [TestMethod]
@@ -5081,8 +5081,8 @@ namespace VirtualStorageLibrary.Test
 
             // シンボリックリンクのみをフィルタリングするため、シンボリックリンクの数だけを期待する
             Assert.AreEqual(2, result.Count); // シンボリックリンクの正しい数を確認
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/link1"));
-            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "/dir1/link2"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "link1"));
+            Assert.IsTrue(result.Any(r => r.TraversalPath.ToString() == "link2"));
         }
 
         [TestMethod]
@@ -5115,9 +5115,9 @@ namespace VirtualStorageLibrary.Test
 
             // 直下のアイテムとサブディレクトリのみが返されることを確認
             Assert.AreEqual(3, result.Count());
-            Assert.IsTrue(result[0].TraversalPath == "/testDir");
-            Assert.IsTrue(result[1].TraversalPath == "/testDir/subDir1");
-            Assert.IsTrue(result[2].TraversalPath == "/testDir/item1");
+            Assert.IsTrue(result[0].TraversalPath == ".");
+            Assert.IsTrue(result[1].TraversalPath == "subDir1");
+            Assert.IsTrue(result[2].TraversalPath == "item1");
         }
 
         [TestMethod]
@@ -5139,9 +5139,9 @@ namespace VirtualStorageLibrary.Test
 
             // 結果の順番と内容を検証
             Assert.AreEqual(3, result.Count, "Should return the starting directory and its immediate children only.");
-            Assert.IsTrue(result[0].TraversalPath.ToString() == "/testDir/subDir1");
-            Assert.IsTrue(result[1].TraversalPath.ToString() == "/testDir/subDir1/subSubDir1");
-            Assert.IsTrue(result[2].TraversalPath.ToString() == "/testDir/subDir1/item2");
+            Assert.IsTrue(result[0].TraversalPath.ToString() == ".");
+            Assert.IsTrue(result[1].TraversalPath.ToString() == "subSubDir1");
+            Assert.IsTrue(result[2].TraversalPath.ToString() == "item2");
         }
 
         [TestMethod]
