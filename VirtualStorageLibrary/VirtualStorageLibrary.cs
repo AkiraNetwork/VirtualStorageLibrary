@@ -1557,15 +1557,15 @@ namespace VirtualStorageLibrary
             return new NodeInformation(node, traversalPath, null, 0, 0, resolvedPath);
         }
 
-        public IEnumerable<NodeInformation> WalkPathTree(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool recursive = true, bool followLinks = false)
+        public IEnumerable<NodeInformation> WalkPathTree(VirtualPath basePath, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool recursive = true, bool followLinks = false)
         {
-            path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualNode node = GetNode(path, followLinks);
+            basePath = ConvertToAbsolutePath(basePath).NormalizePath();
+            VirtualNode node = GetNode(basePath, followLinks);
 
-            return WalkPathTreeInternal(path, node, null, 0, 0, filter, recursive, followLinks);
+            return WalkPathTreeInternal(basePath, basePath, node, null, 0, 0, filter, recursive, followLinks);
         }
 
-        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int currentDepth, int currentIndex, VirtualNodeTypeFilter filter, bool recursive, bool followLinks)
+        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualPath currentPath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int currentDepth, int currentIndex, VirtualNodeTypeFilter filter, bool recursive, bool followLinks)
         {
             // ノードの種類に応じて処理を分岐
             if (baseNode is VirtualDirectory directory)
@@ -1573,7 +1573,7 @@ namespace VirtualStorageLibrary
                 if (filter.HasFlag(VirtualNodeTypeFilter.Directory))
                 {
                     // ディレクトリを通知
-                    yield return new NodeInformation(directory, basePath, parentDirectory, currentDepth, currentIndex);
+                    yield return new NodeInformation(directory, currentPath, parentDirectory, currentDepth, currentIndex);
                 }
 
                 if (recursive || 0 == currentDepth)
@@ -1582,8 +1582,8 @@ namespace VirtualStorageLibrary
                     int index = 0;
                     foreach (var node in directory.Nodes)
                     {
-                        VirtualPath path = basePath + node.Name;
-                        foreach (var result in WalkPathTreeInternal(path, node, directory, currentDepth + 1, index, filter, recursive, followLinks))
+                        VirtualPath path = currentPath + node.Name;
+                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, currentDepth + 1, index, filter, recursive, followLinks))
                         {
                             yield return result;
                         }
@@ -1597,7 +1597,7 @@ namespace VirtualStorageLibrary
                 {
                     // TODO: VirtualItem<T>で返さないとまずいか調べる
                     // アイテムを通知
-                    yield return new NodeInformation(item, basePath, parentDirectory, currentDepth, currentIndex);
+                    yield return new NodeInformation(item, currentPath, parentDirectory, currentDepth, currentIndex);
                 }
             }
             else if (baseNode is VirtualSymbolicLink link)
@@ -1607,13 +1607,13 @@ namespace VirtualStorageLibrary
                     VirtualPath linkTargetPath = link.TargetPath;
 
                     // シンボリックリンクのリンク先パスを絶対パスに変換
-                    linkTargetPath = ConvertToAbsolutePath(linkTargetPath, basePath).NormalizePath();
+                    linkTargetPath = ConvertToAbsolutePath(linkTargetPath, currentPath).NormalizePath();
 
                     // リンク先のノードを取得
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    foreach (var result in WalkPathTreeInternal(basePath, linkTargetNode, parentDirectory, currentDepth, currentIndex, filter, recursive, followLinks))
+                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, currentDepth, currentIndex, filter, recursive, followLinks))
                     {
                         yield return result;
                     }
@@ -1623,7 +1623,7 @@ namespace VirtualStorageLibrary
                     if (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink))
                     {
                         // シンボリックリンクを通知
-                        yield return new NodeInformation(link, basePath, parentDirectory, currentDepth, currentIndex);
+                        yield return new NodeInformation(link, currentPath, parentDirectory, currentDepth, currentIndex);
                     }
                 }
             }
