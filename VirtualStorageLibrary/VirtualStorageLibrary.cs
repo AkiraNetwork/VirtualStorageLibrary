@@ -1674,57 +1674,6 @@ namespace VirtualStorageLibrary
             return VirtualNodeType.None;
         }
 
-        private IEnumerable<T> GetNodesInternal<T>(VirtualPath basePath, VirtualNodeTypeFilter nodeType, bool recursive, Func<VirtualNode, VirtualPath, T> selector, bool followLinks)
-        {
-            // ベースパスが空の場合は例外をスロー
-            if (basePath.IsEmpty)
-            {
-                throw new ArgumentException("パスが空です。");
-            }
-
-            // ベースパスが絶対パスでない場合は例外をスロー
-            if (!basePath.IsAbsolute)
-            {
-                throw new ArgumentException($"絶対パスを指定してください。{basePath}");
-            }
-
-            var directory = (VirtualDirectory)GetNode(basePath, followLinks);
-
-            foreach (var node in directory.Nodes)
-            {
-                if (node is VirtualDirectory subdirectory)
-                {
-                    if ((nodeType & VirtualNodeTypeFilter.Directory) == VirtualNodeTypeFilter.Directory)
-                    {
-                        yield return selector(subdirectory, basePath + subdirectory.Name);
-                    }
-
-                    if (recursive)
-                    {
-                        var subdirectoryPath = basePath + subdirectory.Name;
-                        foreach (var subNode in GetNodesInternal(subdirectoryPath, nodeType, recursive, selector, followLinks))
-                        {
-                            yield return subNode;
-                        }
-                    }
-                }
-                else if(node is VirtualItem)
-                {
-                    if ((nodeType & VirtualNodeTypeFilter.Item) == VirtualNodeTypeFilter.Item)
-                    {
-                        yield return selector(node, basePath + node.Name);
-                    }
-                }
-                else if (node is VirtualSymbolicLink)
-                {
-                    if ((nodeType & VirtualNodeTypeFilter.SymbolicLink) == VirtualNodeTypeFilter.SymbolicLink)
-                    {
-                        yield return selector(node, basePath + node.Name);
-                    }
-                }
-            }
-        }
-
         public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             IEnumerable<NodeInformation> nodeInformation = WalkPathTree(basePath, nodeType, recursive, followLinks);
