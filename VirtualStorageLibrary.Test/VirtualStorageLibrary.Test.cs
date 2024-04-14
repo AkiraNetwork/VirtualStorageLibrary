@@ -112,9 +112,9 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void NormalizePath_WithEmptyPath()
         {
-            VirtualPath path = VirtualPath.Empty;
+            VirtualPath path = string.Empty;
 
-            Assert.AreEqual(VirtualPath.Empty, path.NormalizePath());
+            Assert.AreEqual(string.Empty, path.NormalizePath().ToString());
         }
 
         [TestMethod]
@@ -205,7 +205,7 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void NodeName_WithEmptyString_ReturnsEmptyString()
         {
-            VirtualPath path = VirtualPath.Empty;
+            VirtualPath path = string.Empty;
             VirtualNodeName expectedNodeName = VirtualNodeName.Empty;
 
             VirtualNodeName actualNodeName = path.NodeName;
@@ -296,9 +296,9 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_BothPathsAreEmpty_ReturnsSlash()
         {
-            VirtualPath path1 = VirtualPath.Empty;
-            VirtualPath path2 = VirtualPath.Empty;
-            VirtualPath expected = VirtualPath.Empty;
+            VirtualPath path1 = string.Empty;
+            VirtualPath path2 = string.Empty;
+            VirtualPath expected = string.Empty;
 
             VirtualPath result = path1.Combine(path2);
 
@@ -308,7 +308,7 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void Combine_WithPath1Empty_ReturnsPath2()
         {
-            VirtualPath path1 = VirtualPath.Empty;
+            VirtualPath path1 = string.Empty;
             VirtualPath path2 = "/directory/subdirectory";
             VirtualPath expected = path2;
 
@@ -321,7 +321,7 @@ namespace VirtualStorageLibrary.Test
         public void Combine_WithPath2Empty_ReturnsPath1()
         {
             VirtualPath path1 = "/directory/subdirectory";
-            VirtualPath path2 = VirtualPath.Empty;
+            VirtualPath path2 = string.Empty;
             VirtualPath expected = path1;
 
             VirtualPath result = path1.Combine(path2);
@@ -529,7 +529,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath result = path.GetRelativePath(basePath);
 
             // 結果を検証
-            Assert.AreEqual(VirtualPath.Dot, result, "相対パスが'.'であるべきです。");
+            Assert.AreEqual(VirtualPath.Dot, result.ToString(), "相対パスが'.'であるべきです。");
         }
 
         [TestMethod]
@@ -568,7 +568,7 @@ namespace VirtualStorageLibrary.Test
         [TestMethod]
         public void GetRelativePath_WithEmptyBasePathAndAbsoluteCurrentPath_ThrowsInvalidOperationException()
         {
-            VirtualPath basePath = VirtualPath.Empty;
+            VirtualPath basePath = string.Empty;
             VirtualPath path = "/path/to/directory";
 
             Assert.ThrowsException<InvalidOperationException>(() => path.GetRelativePath(basePath));
@@ -1969,7 +1969,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage virtualStorage = new();
 
             // Act and Assert
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.ConvertToAbsolutePath(VirtualPath.Empty));
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.ConvertToAbsolutePath(string.Empty));
         }
         
         [TestMethod]
@@ -2084,7 +2084,7 @@ namespace VirtualStorageLibrary.Test
             VirtualPath relativePath = "some/relative/path";
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.ConvertToAbsolutePath(relativePath, VirtualPath.Empty));
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.ConvertToAbsolutePath(relativePath, string.Empty));
         }
 
         [TestMethod]
@@ -2789,7 +2789,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage virtualStorage = new();
             BinaryData item = [1, 2, 3];
 
-            Assert.ThrowsException<ArgumentException>(() => virtualStorage.AddItem(VirtualPath.Empty, item));
+            Assert.ThrowsException<ArgumentException>(() => virtualStorage.AddItem(string.Empty, item));
         }
 
         [TestMethod]
@@ -3351,7 +3351,7 @@ namespace VirtualStorageLibrary.Test
 
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() =>
-                virtualStorage.GetNodes(VirtualPath.Empty, VirtualNodeTypeFilter.All, true).ToList());
+                virtualStorage.GetNodes(string.Empty, VirtualNodeTypeFilter.All, true).ToList());
         }
 
         [TestMethod]
@@ -3548,7 +3548,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage storage = new();
 
             // ArgumentException がスローされることを検証
-            Assert.ThrowsException<ArgumentException>(() => storage.CopyNode(VirtualPath.Empty, VirtualPath.Empty, false, false));
+            Assert.ThrowsException<ArgumentException>(() => storage.CopyNode(string.Empty, string.Empty, false, false));
         }
 
         [TestMethod]

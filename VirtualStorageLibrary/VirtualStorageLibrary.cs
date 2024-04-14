@@ -16,6 +16,12 @@ namespace VirtualStorageLibrary
 
         public char PathSeparator { get; set; } = '/';
 
+        public string Root { get; set; } = "/";
+        
+        public string Dot { get; set; } = ".";
+
+        public string DotDot { get; set; } = "..";
+
         public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = new (node => node.NodeType, true);
 
         public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = new()
@@ -224,6 +230,12 @@ namespace VirtualStorageLibrary
 
         private VirtualNodeName? _nodeName;
 
+        private static readonly string _root;
+        
+        private static readonly string _dot;
+
+        private static readonly string _dotDot;
+
         public string Path => _path;
 
         private List<VirtualNodeName>? _partsList;
@@ -283,28 +295,22 @@ namespace VirtualStorageLibrary
             get => VirtualStorageSettings.Settings.PathSeparator;
         }
         
-        public static VirtualPath Root
+        public static string Root
         {
             [DebuggerStepThrough]
-            get => new(Separator.ToString());
+            get => _root;
         }
 
-        public static VirtualPath Empty
+        public static string Dot
         {
             [DebuggerStepThrough]
-            get => new(string.Empty);
+            get => _dot;
         }
 
-        public static VirtualPath Dot
+        public static string DotDot
         {
             [DebuggerStepThrough]
-            get => new(".");
-        }
-
-        public static VirtualPath DotDot
-        {
-            [DebuggerStepThrough]
-            get => new("..");
+            get => _dotDot;
         }
 
         [DebuggerStepThrough]
@@ -337,13 +343,13 @@ namespace VirtualStorageLibrary
         public bool IsDot
         {
             [DebuggerStepThrough]
-            get => _path == ".";
+            get => _path == Dot;
         }
 
         public bool IsDotDot
         {
             [DebuggerStepThrough]
-            get => _path == "..";
+            get => _path == DotDot;
         }
 
         [DebuggerStepThrough]
@@ -359,6 +365,13 @@ namespace VirtualStorageLibrary
         public VirtualPath(IEnumerable<VirtualNodeName> parts)
         {
             _path = string.Join(Separator, parts.Select(node => node.Name));
+        }
+
+        static VirtualPath()
+        {
+            _root = VirtualStorageSettings.Settings.Root;
+            _dot = VirtualStorageSettings.Settings.Dot;
+            _dotDot = VirtualStorageSettings.Settings.DotDot;
         }
 
         [DebuggerStepThrough]
@@ -1138,7 +1151,7 @@ namespace VirtualStorageLibrary
 
         public VirtualStorage()
         {
-            _root = new VirtualDirectory(VirtualPath.Root.NodeName);
+            _root = new VirtualDirectory(VirtualPath.Root);
             CurrentPath = VirtualPath.Root;
             _linkDictionary = new();
         }
