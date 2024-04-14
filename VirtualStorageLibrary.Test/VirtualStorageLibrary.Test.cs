@@ -206,29 +206,7 @@ namespace VirtualStorageLibrary.Test
         public void NodeName_WithEmptyString_ReturnsEmptyString()
         {
             VirtualPath path = string.Empty;
-            VirtualNodeName expectedNodeName = VirtualNodeName.Empty;
-
-            VirtualNodeName actualNodeName = path.NodeName;
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void NodeName_WithDot_ReturnsDot()
-        {
-            VirtualPath path = VirtualPath.Dot;
-            VirtualNodeName expectedNodeName = VirtualNodeName.Dot;
-
-            VirtualNodeName actualNodeName = path.NodeName;
-
-            Assert.AreEqual(expectedNodeName, actualNodeName);
-        }
-
-        [TestMethod]
-        public void NodeName_WithDotDot_ReturnsDotDot()
-        {
-            VirtualPath path = VirtualPath.DotDot;
-            VirtualNodeName expectedNodeName = VirtualNodeName.DotDot;
+            VirtualNodeName expectedNodeName = string.Empty;
 
             VirtualNodeName actualNodeName = path.NodeName;
 

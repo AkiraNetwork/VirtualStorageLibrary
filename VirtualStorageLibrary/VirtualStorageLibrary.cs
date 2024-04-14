@@ -120,24 +120,6 @@ namespace VirtualStorageLibrary
 
         public string Name => _name;
 
-        public static VirtualNodeName Empty
-        {
-            [DebuggerStepThrough]
-            get => new(string.Empty);
-        }
-
-        public static VirtualNodeName Dot
-        {
-            [DebuggerStepThrough]
-            get => new(".");
-        }
-
-        public static VirtualNodeName DotDot
-        {
-            [DebuggerStepThrough]
-            get => new("..");
-        }
-
         public override string ToString() => _name;
 
         public VirtualNodeName(string name)
@@ -218,8 +200,6 @@ namespace VirtualStorageLibrary
         {
             return !(left == right);
         }
-
-
     }
 
     public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>, IComparable
