@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace VirtualStorageLibrary
 {
@@ -16,11 +17,13 @@ namespace VirtualStorageLibrary
 
         public char PathSeparator { get; set; } = '/';
 
-        public string Root { get; set; } = "/";
+        public string PathRoot { get; set; } = "/";
         
-        public string Dot { get; set; } = ".";
+        public string PathDot { get; set; } = ".";
 
-        public string DotDot { get; set; } = "..";
+        public string PathDotDot { get; set; } = "..";
+
+        public PatternMatcher? PatternMatcher { get; set; } = VirtualStorage.PowerShellMatch;
 
         public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = new (node => node.NodeType, true);
 
@@ -35,6 +38,8 @@ namespace VirtualStorageLibrary
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
 
     public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualNodeName nodeName);
+
+    public delegate bool PatternMatcher(VirtualNodeName nodeName, string pattern);
 
     public enum VirtualNodeType
     {
@@ -349,9 +354,9 @@ namespace VirtualStorageLibrary
 
         static VirtualPath()
         {
-            _root = VirtualStorageSettings.Settings.Root;
-            _dot = VirtualStorageSettings.Settings.Dot;
-            _dotDot = VirtualStorageSettings.Settings.DotDot;
+            _root = VirtualStorageSettings.Settings.PathRoot;
+            _dot = VirtualStorageSettings.Settings.PathDot;
+            _dotDot = VirtualStorageSettings.Settings.PathDotDot;
         }
 
         [DebuggerStepThrough]
@@ -1540,23 +1545,68 @@ namespace VirtualStorageLibrary
             return new NodeInformation(node, traversalPath, null, 0, 0, resolvedPath);
         }
 
-        public IEnumerable<NodeInformation> WalkPathTree(VirtualPath basePath, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool recursive = true, bool followLinks = false)
+        public IEnumerable<NodeInformation> WalkPathTree(
+            VirtualPath basePath,
+            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
+            bool recursive = true,
+            bool followLinks = true)
         {
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
             VirtualNode node = GetNode(basePath, followLinks);
 
-            return WalkPathTreeInternal(basePath, basePath, node, null, 0, 0, filter, recursive, followLinks);
+            return WalkPathTreeInternal(basePath, basePath, node, null, 0, 0, filter, recursive, followLinks, null);
         }
 
-        private IEnumerable<NodeInformation> WalkPathTreeInternal(VirtualPath basePath, VirtualPath currentPath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int currentDepth, int currentIndex, VirtualNodeTypeFilter filter, bool recursive, bool followLinks)
+        public IEnumerable<NodeInformation> ResolvePathTree(
+            VirtualPath path,
+            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All)
         {
+            VirtualPath basePath = VirtualPath.Root;
+            VirtualNode node = GetNode(basePath, true);
+
+            List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
+
+            List<NodeInformation> nodeInformation = WalkPathTreeInternal(basePath, basePath, node, null, 0, 0, filter, true, true, patternList).ToList();
+
+            foreach (NodeInformation info in nodeInformation)
+            {
+                Debug.WriteLine(info.ResolvedPath!);
+                yield return info;
+            }
+        }
+
+        private IEnumerable<NodeInformation> WalkPathTreeInternal(
+            VirtualPath basePath,
+            VirtualPath currentPath,
+            VirtualNode baseNode,
+            VirtualDirectory? parentDirectory,
+            int currentDepth,
+            int currentIndex,
+            VirtualNodeTypeFilter filter,
+            bool recursive,
+            bool followLinks,
+            List<string>? patternList)
+        {
+            PatternMatcher? patternMatcher = VirtualStorageSettings.Settings.PatternMatcher ?? null;
+
             // ノードの種類に応じて処理を分岐
             if (baseNode is VirtualDirectory directory)
             {
                 if (filter.HasFlag(VirtualNodeTypeFilter.Directory))
                 {
-                    // ディレクトリを通知
-                    yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                    if (patternMatcher != null && patternList != null)
+                    {
+                        if (patternMatcher(baseNode.Name, patternList[currentDepth]))
+                        {
+                            // ディレクトリを通知
+                            yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                        }
+                    }
+                    else
+                    {
+                        // ディレクトリを通知
+                        yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                    }
                 }
 
                 if (recursive || 0 == currentDepth)
@@ -1566,7 +1616,7 @@ namespace VirtualStorageLibrary
                     foreach (var node in directory.Nodes)
                     {
                         VirtualPath path = currentPath + node.Name;
-                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, currentDepth + 1, index, filter, recursive, followLinks))
+                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, currentDepth + 1, index, filter, recursive, followLinks, patternList))
                         {
                             yield return result;
                         }
@@ -1578,9 +1628,19 @@ namespace VirtualStorageLibrary
             {
                 if (filter.HasFlag(VirtualNodeTypeFilter.Item))
                 {
-                    // TODO: VirtualItem<T>で返さないとまずいか調べる
-                    // アイテムを通知
-                    yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                    if (patternMatcher != null && patternList != null)
+                    {
+                        if (patternMatcher(baseNode.Name, patternList[currentDepth]))
+                        {
+                            // アイテムを通知
+                            yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                        }
+                    }
+                    else
+                    {
+                        // アイテムを通知
+                        yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                    }
                 }
             }
             else if (baseNode is VirtualSymbolicLink link)
@@ -1596,7 +1656,7 @@ namespace VirtualStorageLibrary
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, currentDepth, currentIndex, filter, recursive, followLinks))
+                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, currentDepth, currentIndex, filter, recursive, followLinks, patternList))
                     {
                         yield return result;
                     }
@@ -1605,8 +1665,19 @@ namespace VirtualStorageLibrary
                 {
                     if (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink))
                     {
-                        // シンボリックリンクを通知
-                        yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                        if (patternMatcher != null && patternList != null)
+                        {
+                            if (patternMatcher(baseNode.Name, patternList[currentDepth]))
+                            {
+                                // シンボリックリンクを通知
+                                yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                            }
+                        }
+                        else
+                        {
+                            // シンボリックリンクを通知
+                            yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                        }
                     }
                 }
             }
@@ -1701,6 +1772,42 @@ namespace VirtualStorageLibrary
             IEnumerable<VirtualPath> paths = nodeInformation.Select(info => info.TraversalPath);
             return paths;
         }
+
+        public List<VirtualPath> ResolvePath(VirtualPath path)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            List<NodeInformation> nodeInformation = ResolvePathTree(path).ToList();
+            List<VirtualPath> resolvedPaths = nodeInformation.Select(info => info.ResolvedPath!).ToList();
+
+            Debug.WriteLine($"Resolved Paths for '{path}':");
+            foreach (VirtualPath resolvedPath in resolvedPaths)
+            {
+                Debug.WriteLine(resolvedPath);
+            }
+
+            return resolvedPaths;
+        }
+
+
+
+        public static bool RegexMatch(VirtualNodeName nodeName, string pattern)
+        {
+            return Regex.IsMatch(nodeName, pattern);
+        }
+
+        public static bool PowerShellMatch(VirtualNodeName nodeName, string pattern)
+        {
+            // TODO: PowerShell のマッチングロジックを模倣する
+            // PowerShell のマッチングロジックを模倣する場合
+            // PowerShell はワイルドカード '*' と '?' を使用しますが、
+            // このサンプルでは簡単な実装に留めます。
+            string regexPattern = "^" + Regex.Escape(pattern)
+                                        .Replace("\\*", ".*")
+                                        .Replace("\\?", ".") + "$";
+            return Regex.IsMatch(nodeName, regexPattern);
+        }
+
+
 
         private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
         {
