@@ -1627,8 +1627,7 @@ namespace VirtualStorageLibrary
                     {
                         if (currentDepth == 0 || (currentDepth == patternList.Count))
                         {
-                            bool isMatch = patternList.All(pattern => patternMatcher(baseNode.Name, pattern));
-                            if (isMatch)
+                            if (MatchPatterns(currentPath.PartsList, patternList))
                             {
                                 // ディレクトリを通知
                                 yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
@@ -1665,8 +1664,7 @@ namespace VirtualStorageLibrary
                     {
                         if (currentDepth == 0 || (currentDepth == patternList.Count))
                         {
-                            bool isMatch = patternList.All(pattern => patternMatcher(baseNode.Name, pattern));
-                            if (isMatch)
+                            if (MatchPatterns(currentPath.PartsList, patternList))
                             {
                                 // アイテムを通知
                                 yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
@@ -1706,8 +1704,7 @@ namespace VirtualStorageLibrary
                         {
                             if (currentDepth == 0 || (currentDepth == patternList.Count))
                             {
-                                bool isMatch = patternList.All(pattern => patternMatcher(baseNode.Name, pattern));
-                                if (isMatch)
+                                if (MatchPatterns(currentPath.PartsList, patternList))
                                 {
                                     // シンボリックリンクを通知
                                     yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
@@ -1722,6 +1719,31 @@ namespace VirtualStorageLibrary
                     }
                 }
             }
+        }
+
+        static bool MatchPatterns(List<VirtualNodeName> parts, List<string> patternList)
+        {
+            PatternMatcher? patternMatcher = VirtualStorageSettings.Settings.PatternMatcher ?? null;
+
+            if (patternMatcher == null)
+            {
+                return false;
+            }
+
+            if (parts.Count != patternList.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < parts.Count; i++)
+            {
+                if (!patternMatcher(parts[i], patternList[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
