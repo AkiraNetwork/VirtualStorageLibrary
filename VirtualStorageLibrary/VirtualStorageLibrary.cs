@@ -225,11 +225,13 @@ namespace VirtualStorageLibrary
 
         private List<VirtualNodeName>? _partsList;
 
+        [DebuggerStepThrough]
         public static implicit operator VirtualPath(string path)
         {
             return new VirtualPath(path);
         }
 
+        [DebuggerStepThrough]
         public static implicit operator string(VirtualPath virtualPath)
         {
             return virtualPath._path;
@@ -340,7 +342,7 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public override int GetHashCode() => _path.GetHashCode();
 
-        //[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public VirtualPath(string path)
         {
             _path = path;
