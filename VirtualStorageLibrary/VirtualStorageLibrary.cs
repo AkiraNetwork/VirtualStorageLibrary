@@ -123,30 +123,43 @@ namespace VirtualStorageLibrary
     {
         private readonly string _name;
 
-        public string Name => _name;
+        public string Name
+        {
+            [DebuggerStepThrough]
+            get
+            {
+                return _name;
+            }
+        }
 
+        [DebuggerStepThrough]
         public override string ToString() => _name;
 
+        [DebuggerStepThrough]
         public VirtualNodeName(string name)
         {
             _name = name;
         }
 
+        [DebuggerStepThrough]
         public static implicit operator VirtualNodeName(string name)
         {
             return new VirtualNodeName(name);
         }
 
+        [DebuggerStepThrough]
         public static implicit operator string(VirtualNodeName nodeName)
         {
             return nodeName._name;
         }
 
+        [DebuggerStepThrough]
         public bool Equals(VirtualNodeName? other)
         {
             return _name == other?._name;
         }
 
+        [DebuggerStepThrough]
         public override bool Equals(object? obj)
         {
             if (obj is VirtualNodeName other)
@@ -156,8 +169,10 @@ namespace VirtualStorageLibrary
             return false;
         }
 
+        [DebuggerStepThrough]
         public override int GetHashCode() => _name.GetHashCode();
 
+        [DebuggerStepThrough]
         public int CompareTo(VirtualNodeName? other)
         {
             if (other == null)
@@ -168,6 +183,7 @@ namespace VirtualStorageLibrary
             return string.Compare(_name, other._name, StringComparison.Ordinal);
         }
 
+        [DebuggerStepThrough]
         public int CompareTo(object? obj)
         {
             if (obj == null)
@@ -183,6 +199,7 @@ namespace VirtualStorageLibrary
             return CompareTo((VirtualNodeName)obj);
         }
 
+        [DebuggerStepThrough]
         public static bool operator ==(VirtualNodeName? left, VirtualNodeName? right)
         {
             // 両方が null の場合は true
@@ -201,6 +218,7 @@ namespace VirtualStorageLibrary
             return left._name == right._name;
         }
 
+        [DebuggerStepThrough]
         public static bool operator !=(VirtualNodeName? left, VirtualNodeName? right)
         {
             return !(left == right);
