@@ -13,7 +13,7 @@ namespace VirtualStorageLibrary
 
         private VirtualStorageSettings() { }
 
-        public static void Reset() => _settings = new();
+        public static void Initialize() => _settings = new();
 
         public char PathSeparator { get; set; } = '/';
 
@@ -430,6 +430,36 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public static VirtualPath operator +(string str, VirtualPath path)
         {
+            // 末尾がパスセパレータでない場合は追加
+            if (!str.EndsWith(Separator))
+            {
+                str += Separator;
+            }
+
+            // 新しいパスを生成して返す
+            return new VirtualPath(str + path.Path);
+        }
+
+        [DebuggerStepThrough]
+        public static VirtualPath operator +(VirtualPath path, char chr)
+        {
+            string str = chr.ToString();
+
+            // 末尾がパスセパレータでない場合は追加
+            if (!path.Path.EndsWith(Separator))
+            {
+                str = Separator + str;
+            }
+
+            // 新しいパスを生成して返す
+            return new VirtualPath(path.Path + str);
+        }
+
+        [DebuggerStepThrough]
+        public static VirtualPath operator +(char chr, VirtualPath path)
+        {
+            string str = chr.ToString();
+
             // 末尾がパスセパレータでない場合は追加
             if (!str.EndsWith(Separator))
             {
@@ -1570,7 +1600,6 @@ namespace VirtualStorageLibrary
 
             foreach (NodeInformation info in nodeInformation)
             {
-                Debug.WriteLine(info.ResolvedPath!);
                 yield return info;
             }
         }
@@ -1596,7 +1625,7 @@ namespace VirtualStorageLibrary
                 {
                     if (patternMatcher != null && patternList != null)
                     {
-                        if (patternMatcher(baseNode.Name, patternList[currentDepth]))
+                        if (currentDepth == 0 || (currentDepth == patternList.Count && patternMatcher(baseNode.Name, patternList[currentDepth - 1])))
                         {
                             // ディレクトリを通知
                             yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
@@ -1630,7 +1659,7 @@ namespace VirtualStorageLibrary
                 {
                     if (patternMatcher != null && patternList != null)
                     {
-                        if (patternMatcher(baseNode.Name, patternList[currentDepth]))
+                        if (currentDepth == 0 || (currentDepth == patternList.Count && patternMatcher(baseNode.Name, patternList[currentDepth - 1])))
                         {
                             // アイテムを通知
                             yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
@@ -1667,7 +1696,7 @@ namespace VirtualStorageLibrary
                     {
                         if (patternMatcher != null && patternList != null)
                         {
-                            if (patternMatcher(baseNode.Name, patternList[currentDepth]))
+                            if (currentDepth == 0 || (currentDepth == patternList.Count && patternMatcher(baseNode.Name, patternList[currentDepth - 1])))
                             {
                                 // シンボリックリンクを通知
                                 yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
@@ -1777,13 +1806,8 @@ namespace VirtualStorageLibrary
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             List<NodeInformation> nodeInformation = ResolvePathTree(path).ToList();
-            List<VirtualPath> resolvedPaths = nodeInformation.Select(info => info.ResolvedPath!).ToList();
-
-            Debug.WriteLine($"Resolved Paths for '{path}':");
-            foreach (VirtualPath resolvedPath in resolvedPaths)
-            {
-                Debug.WriteLine(resolvedPath);
-            }
+            List<VirtualPath> resolvedPaths = nodeInformation.Select(info => 
+                (VirtualPath.Separator + info.TraversalPath).NormalizePath()).ToList();
 
             return resolvedPaths;
         }
