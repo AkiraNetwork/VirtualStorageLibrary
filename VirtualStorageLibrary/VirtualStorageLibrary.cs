@@ -1625,10 +1625,14 @@ namespace VirtualStorageLibrary
                 {
                     if (patternMatcher != null && patternList != null)
                     {
-                        if (currentDepth == 0 || (currentDepth == patternList.Count && patternMatcher(baseNode.Name, patternList[currentDepth - 1])))
+                        if (currentDepth == 0 || (currentDepth == patternList.Count))
                         {
-                            // ディレクトリを通知
-                            yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                            bool isMatch = patternList.All(pattern => patternMatcher(baseNode.Name, pattern));
+                            if (isMatch)
+                            {
+                                // ディレクトリを通知
+                                yield return new NodeInformation(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                            }
                         }
                     }
                     else
@@ -1659,10 +1663,14 @@ namespace VirtualStorageLibrary
                 {
                     if (patternMatcher != null && patternList != null)
                     {
-                        if (currentDepth == 0 || (currentDepth == patternList.Count && patternMatcher(baseNode.Name, patternList[currentDepth - 1])))
+                        if (currentDepth == 0 || (currentDepth == patternList.Count))
                         {
-                            // アイテムを通知
-                            yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                            bool isMatch = patternList.All(pattern => patternMatcher(baseNode.Name, pattern));
+                            if (isMatch)
+                            {
+                                // アイテムを通知
+                                yield return new NodeInformation(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                            }
                         }
                     }
                     else
@@ -1696,10 +1704,14 @@ namespace VirtualStorageLibrary
                     {
                         if (patternMatcher != null && patternList != null)
                         {
-                            if (currentDepth == 0 || (currentDepth == patternList.Count && patternMatcher(baseNode.Name, patternList[currentDepth - 1])))
+                            if (currentDepth == 0 || (currentDepth == patternList.Count))
                             {
-                                // シンボリックリンクを通知
-                                yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                                bool isMatch = patternList.All(pattern => patternMatcher(baseNode.Name, pattern));
+                                if (isMatch)
+                                {
+                                    // シンボリックリンクを通知
+                                    yield return new NodeInformation(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                                }
                             }
                         }
                         else
