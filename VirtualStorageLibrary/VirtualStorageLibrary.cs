@@ -23,7 +23,7 @@ namespace VirtualStorageLibrary
 
         public string PathDotDot { get; set; } = "..";
 
-        public PatternMatcher? PatternMatcher { get; set; } = VirtualStorage.PowerShellMatch;
+        public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardDictionary.PowerShellRegexMatch;
 
         public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = new (node => node.NodeType, true);
 
@@ -39,7 +39,7 @@ namespace VirtualStorageLibrary
 
     public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualNodeName nodeName);
 
-    public delegate bool PatternMatcher(VirtualNodeName nodeName, string pattern);
+    public delegate bool PatternMatcher(string nodeName, string pattern);
 
     public static class PowerShellWildcardDictionary
     {
@@ -58,6 +58,21 @@ namespace VirtualStorageLibrary
         public static IEnumerable<string> Wildcards => _wildcardDictionary.Keys;
 
         public static IEnumerable<string> Patterns => _wildcardDictionary.Values;
+
+        // ワイルドカードの実装（PowerShell）
+        public static bool PowerShellRegexMatch(string nodeName, string pattern)
+        {
+            // 正規表現のパターンを作成
+            string regexPattern = @"^" + Regex.Escape(pattern);
+            foreach (KeyValuePair<string, string> wildcard in PowerShellWildcardDictionary.WildcardDictionary)
+            {
+                regexPattern = regexPattern.Replace(@"\" + wildcard.Key, wildcard.Value);
+            }
+            regexPattern += "$";
+
+            // 正規表現を用いてマッチングを行う
+            return Regex.IsMatch(nodeName.ToString(), regexPattern);
+        }
     }
 
     public enum VirtualNodeType
@@ -1887,23 +1902,10 @@ namespace VirtualStorageLibrary
             return resolvedPaths;
         }
 
-        public static bool RegexMatch(VirtualNodeName nodeName, string pattern)
+        // ワイルドカードの実装（デフォルト）
+        public static bool RegexMatch(string nodeName, string pattern)
         {
             return Regex.IsMatch(nodeName, pattern);
-        }
-
-        public static bool PowerShellMatch(VirtualNodeName nodeName, string pattern)
-        {
-            // 正規表現のパターンを作成
-            string regexPattern = @"^" + Regex.Escape(pattern);
-            foreach (KeyValuePair<string, string> wildcard in PowerShellWildcardDictionary.WildcardDictionary)
-            {
-                regexPattern = regexPattern.Replace(@"\" + wildcard.Key, wildcard.Value);
-            }
-            regexPattern += "$";
-
-            // 正規表現を用いてマッチングを行う
-            return Regex.IsMatch(nodeName.ToString(), regexPattern);
         }
 
         private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
