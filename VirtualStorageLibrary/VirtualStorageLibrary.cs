@@ -33,18 +33,6 @@ namespace VirtualStorageLibrary
         };
 
         public VirtualNodeTypeFilter NodeTypeFilter { get; set; } = VirtualNodeTypeFilter.All;
-
-        // TODO: エスケープ(`)については別途、検討。
-        // ワイルドカードとそれに対応する正規表現のパターンの配列
-        private Dictionary<string, string> _powerShellWildcardDictionary = new()
-        {
-            { "*", ".*" },  // 0文字以上に一致
-            { "?", "." },   // 任意の1文字に一致
-            { "[", "[" },   // 文字クラスの開始
-            { "]", "]" }    // 文字クラスの終了
-        };
-
-        public Dictionary<string, string> PowerShellWildcardDictionary => _powerShellWildcardDictionary;
     }
 
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
@@ -52,6 +40,25 @@ namespace VirtualStorageLibrary
     public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualNodeName nodeName);
 
     public delegate bool PatternMatcher(VirtualNodeName nodeName, string pattern);
+
+    public static class PowerShellWildcardDictionary
+    {
+        // TODO: エスケープ(`)については別途、検討。
+        // ワイルドカードとそれに対応する正規表現のパターンの配列
+        private static Dictionary<string, string> _wildcardDictionary = new()
+        {
+            { "*", ".*" },  // 0文字以上に一致
+            { "?", "." },   // 任意の1文字に一致
+            { "[", "[" },   // 文字クラスの開始
+            { "]", "]" }    // 文字クラスの終了
+        };
+
+        public static Dictionary<string, string> WildcardDictionary => _wildcardDictionary;
+
+        public static IEnumerable<string> Wildcards => _wildcardDictionary.Keys;
+
+        public static IEnumerable<string> Patterns => _wildcardDictionary.Values;
+    }
 
     public enum VirtualNodeType
     {
@@ -1887,12 +1894,9 @@ namespace VirtualStorageLibrary
 
         public static bool PowerShellMatch(VirtualNodeName nodeName, string pattern)
         {
-            // VirtualStorageSettings からワイルドカードの辞書を取得
-            Dictionary<string, string> wildcards = VirtualStorageSettings.Settings.PowerShellWildcardDictionary;
-
             // 正規表現のパターンを作成
             string regexPattern = @"^" + Regex.Escape(pattern);
-            foreach (var wildcard in wildcards)
+            foreach (KeyValuePair<string, string> wildcard in PowerShellWildcardDictionary.WildcardDictionary)
             {
                 regexPattern = regexPattern.Replace(@"\" + wildcard.Key, wildcard.Value);
             }
