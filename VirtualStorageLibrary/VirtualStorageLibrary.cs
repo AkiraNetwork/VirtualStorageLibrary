@@ -403,7 +403,7 @@ namespace VirtualStorageLibrary
         [DebuggerStepThrough]
         public VirtualPath(IEnumerable<VirtualNodeName> parts)
         {
-            _path = string.Join(Separator, parts.Select(node => node.Name));
+            _path = Separator + string.Join(Separator, parts.Select(node => node.Name));
         }
 
         static VirtualPath()
@@ -1645,7 +1645,8 @@ namespace VirtualStorageLibrary
             VirtualPath path,
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All)
         {
-            VirtualPath basePath = VirtualPath.Root;
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            VirtualPath basePath = ExtractBasePath(path);
             VirtualNode node = GetNode(basePath, true);
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
@@ -1656,6 +1657,13 @@ namespace VirtualStorageLibrary
             {
                 yield return info;
             }
+        }
+
+        private VirtualPath ExtractBasePath(VirtualPath path)
+        {
+            var wildcards = PowerShellWildcardDictionary.Wildcards;
+            var parts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
+            return new VirtualPath(parts);
         }
 
         private IEnumerable<NodeInformation> WalkPathTreeInternal(
