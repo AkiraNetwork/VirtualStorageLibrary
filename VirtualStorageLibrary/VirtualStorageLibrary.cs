@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -1636,9 +1637,10 @@ namespace VirtualStorageLibrary
             bool followLinks = true)
         {
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
+            int baseDepth = GetBaseDepth(basePath);
             VirtualNode node = GetNode(basePath, followLinks);
 
-            return WalkPathTreeInternal(basePath, basePath, node, null, 0, 0, filter, recursive, followLinks, null);
+            return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, recursive, followLinks, null);
         }
 
         public IEnumerable<NodeInformation> ResolvePathTree(
@@ -1647,18 +1649,15 @@ namespace VirtualStorageLibrary
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualPath basePath = ExtractBasePath(path);
+            int baseDepth = GetBaseDepth(path);
             VirtualNode node = GetNode(basePath, true);
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
 
-            List<NodeInformation> nodeInformation = WalkPathTreeInternal(basePath, basePath, node, null, 0, 0, filter, true, true, patternList).ToList();
-
-            foreach (NodeInformation info in nodeInformation)
-            {
-                yield return info;
-            }
+            return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, true, true, patternList);
         }
 
+        // TODO: VirtualPathクラスに組み込むか検討する。
         private VirtualPath ExtractBasePath(VirtualPath path)
         {
             var wildcards = PowerShellWildcardDictionary.Wildcards;
@@ -1666,11 +1665,20 @@ namespace VirtualStorageLibrary
             return new VirtualPath(parts);
         }
 
+        // TODO: VirtualPathクラスに組み込むか検討する。
+        private static int GetBaseDepth(VirtualPath path)
+        {
+            var wildcards = PowerShellWildcardDictionary.Wildcards;
+            var baseParts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
+            return baseParts.Count;
+        }
+
         private IEnumerable<NodeInformation> WalkPathTreeInternal(
             VirtualPath basePath,
             VirtualPath currentPath,
             VirtualNode baseNode,
             VirtualDirectory? parentDirectory,
+            int baseDepth,
             int currentDepth,
             int currentIndex,
             VirtualNodeTypeFilter filter,
@@ -1689,7 +1697,7 @@ namespace VirtualStorageLibrary
                 {
                     if (patternMatcher != null && patternList != null)
                     {
-                        if (currentDepth == 0 || (currentDepth == patternList.Count))
+                        if (baseDepth + currentDepth == patternList.Count)
                         {
                             if (MatchPatterns(currentPath.PartsList, patternList))
                             {
@@ -1712,7 +1720,7 @@ namespace VirtualStorageLibrary
                     foreach (var node in directory.Nodes)
                     {
                         VirtualPath path = currentPath + node.Name;
-                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, currentDepth + 1, index, filter, recursive, followLinks, patternList))
+                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, baseDepth, currentDepth + 1, index, filter, recursive, followLinks, patternList))
                         {
                             yield return result;
                         }
@@ -1726,7 +1734,7 @@ namespace VirtualStorageLibrary
                 {
                     if (patternMatcher != null && patternList != null)
                     {
-                        if (currentDepth == 0 || (currentDepth == patternList.Count))
+                        if (baseDepth + currentDepth == patternList.Count)
                         {
                             if (MatchPatterns(currentPath.PartsList, patternList))
                             {
@@ -1755,7 +1763,7 @@ namespace VirtualStorageLibrary
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, currentDepth, currentIndex, filter, recursive, followLinks, patternList))
+                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, baseDepth, currentDepth, currentIndex, filter, recursive, followLinks, patternList))
                     {
                         yield return result;
                     }
@@ -1766,7 +1774,7 @@ namespace VirtualStorageLibrary
                     {
                         if (patternMatcher != null && patternList != null)
                         {
-                            if (currentDepth == 0 || (currentDepth == patternList.Count))
+                            if (baseDepth + currentDepth == patternList.Count)
                             {
                                 if (MatchPatterns(currentPath.PartsList, patternList))
                                 {
@@ -1900,12 +1908,12 @@ namespace VirtualStorageLibrary
             return paths;
         }
 
-        public List<VirtualPath> ResolvePath(VirtualPath path)
+        public IEnumerable<VirtualPath> ResolvePath(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            List<NodeInformation> nodeInformation = ResolvePathTree(path).ToList();
-            List<VirtualPath> resolvedPaths = nodeInformation.Select(info => 
-                (VirtualPath.Separator + info.TraversalPath).NormalizePath()).ToList();
+            VirtualPath basePath = ExtractBasePath(path);
+            IEnumerable<NodeInformation> nodeInformation = ResolvePathTree(path);
+            IEnumerable<VirtualPath> resolvedPaths = nodeInformation.Select(info => (basePath + info.TraversalPath).NormalizePath());
 
             return resolvedPaths;
         }
