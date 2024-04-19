@@ -5144,7 +5144,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths()
+        public void ResolvePath_WithWildcard_FindsCorrectPaths1()
         {
             // VirtualStorage インスタンスのセットアップ
             var vs = new VirtualStorage();
@@ -5215,6 +5215,39 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(result[1] == new VirtualPath("/dir1/file3.txt"));
             Assert.IsTrue(result[2] == new VirtualPath("/dir2/file1.txt"));
             Assert.IsTrue(result[3] == new VirtualPath("/dir2/file3.txt"));
+        }
+
+        [TestMethod]
+        public void ResolvePath_WithWildcard_FindsCorrectPaths4()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1/dir1a", true);
+            vs.ChangeDirectory("/dir1/dir1a");
+            vs.AddItem("file1.txt", "data");
+            vs.AddItem("file2.log", "data");
+            vs.AddItem("file3.txt", "data");
+            vs.AddDirectory("/dir2/dir2a", true);
+            vs.ChangeDirectory("/dir2/dir2a");
+            vs.AddItem("file4.txt", "data");
+            vs.AddItem("file5.log", "data");
+            vs.AddItem("file6.txt", "data");
+
+            // ワイルドカードを使用したパス解決
+            List<VirtualPath> result = vs.ResolvePath("/dir1/dir1a/*.txt").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == new VirtualPath("/dir1/dir1a/file1.txt"));
+            Assert.IsTrue(result[1] == new VirtualPath("/dir1/dir1a/file3.txt"));
         }
 
         [TestMethod]
