@@ -5251,6 +5251,38 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ResolvePath_WithWildcard_FindsCorrectPaths5()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddItem("/dir1/dir2/dir3/file1.txt", "data");
+            vs.AddDirectory("/dir1a/dir2/dir3", true);
+            vs.AddItem("/dir1a/dir2/dir3/file2.txt", "data");
+            vs.AddDirectory("/dir1/dir2a/dir3", true);
+            vs.AddItem("/dir1/dir2a/dir3/file3.txt", "data");
+            vs.AddDirectory("/dir1/dir2/dir3a", true);
+            vs.AddItem("/dir1/dir2/dir3a/file4.txt", "data");
+            vs.AddItem("/dir1/dir2/dir3/file5.log", "data");
+
+            // ワイルドカードを使用したパス解決
+            List<VirtualPath> result = vs.ResolvePath("/dir1/dir*/dir3/file*.txt").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == new VirtualPath("/dir1/dir2/dir3/file1.txt"));
+            Assert.IsTrue(result[1] == new VirtualPath("/dir1/dir2a/dir3/file3.txt"));
+        }
+
+        [TestMethod]
         public void ResolvePath_Root()
         {
             // VirtualStorage インスタンスのセットアップ
