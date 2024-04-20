@@ -1501,10 +1501,8 @@ namespace VirtualStorageLibrary
 
         private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName)
         {
-            VirtualDirectory newDirectory = new VirtualDirectory(nodeName);
-
             // 中間ディレクトリを追加
-            directory.Add(newDirectory);
+            directory.AddDirectory(nodeName);
 
             // 中間ディレクトリがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
             UpdateLinkTargetNodeTypes(directory.Name + nodeName);
