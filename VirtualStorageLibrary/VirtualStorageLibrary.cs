@@ -1743,8 +1743,6 @@ namespace VirtualStorageLibrary
             bool followLinks,
             List<string>? patternList)
         {
-            Debug.WriteLine($"WalkPathTreeInternal: {currentPath}");
-
             PatternMatcher? patternMatcher = VirtualStorageSettings.Settings.PatternMatcher ?? null;
 
             // ノードの種類に応じて処理を分岐

@@ -5760,6 +5760,238 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ResolvePath_WithEscapedQuestionMark_HandlesLiteralsCorrectly()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/file1.txt", "data");  // 通常のファイル
+            vs.AddItem("/dir1/file?.txt", "data");  // リテラルワイルドカードを含むファイル
+
+            // PowerShellスタイルのエスケープを含むパス解決
+            List<VirtualPath> result = vs.ResolvePath("/dir1/file`?.txt").ToList();
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file?.txt");
+        }
+
+        [TestMethod]
+        public void ResolvePath_WithEscapedBrackets_HandlesLiteralsCorrectly()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/file1.txt", "data");  // 通常のファイル
+            vs.AddItem("/dir1/file[1].txt", "data");  // リテラルワイルドカードを含むファイル
+
+            // PowerShellスタイルのエスケープを含むパス解決
+            List<VirtualPath> result = vs.ResolvePath("/dir1/file`[1`].txt").ToList();
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file[1].txt");
+        }
+
+        [TestMethod]
+        public void ResolvePath_WithHighVolumeOfFiles_PerformanceAndAccuracyTest()
+        {
+            const int NumberOfFiles = 10000; // テストに使用するファイルの数を定数で定義
+
+            // VirtualStorage インスタンスのセットアップ
+            var vs = new VirtualStorage();
+            vs.AddDirectory("/dir1", true);
+
+            // 指定された数のファイルを生成して追加
+            for (int i = 0; i < NumberOfFiles; i++)
+            {
+                vs.AddItem($"/dir1/file{i}.txt", "data");
+            }
+
+            // パフォーマンス計測の開始
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+            // ワイルドカードを使用したパス解決
+            var result = vs.ResolvePath("/dir1/file*.txt").ToList();
+
+            // ストップウォッチの停止
+            stopwatch.Stop();
+
+            // 期待される結果の確認
+            Assert.AreEqual(NumberOfFiles, result.Count, "The number of matched files does not meet the expected count.");
+
+            // 各ファイルが期待通りに結果リストに含まれているかを確認
+            for (int i = 0; i < NumberOfFiles; i++)
+            {
+                string expectedPath = $"/dir1/file{i}.txt";
+                Assert.IsTrue(result.Contains(new VirtualPath(expectedPath)), $"File {expectedPath} is missing in the results.");
+            }
+
+            // パフォーマンスの基準設定（例えば1秒以内に完了することを期待）
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
+
+            Debug.WriteLine($"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds for {NumberOfFiles} files.");
+        }
+
+        [TestMethod]
+        public void ResolvePath_WithMultipleLevels_PerformanceTest()
+        {
+            const int Depth = 30; // ディレクトリの深さ
+            const int FilesPerDepth = 10; // 各階層に生成するファイルの数
+
+            // VirtualStorage インスタンスのセットアップ
+            var vs = new VirtualStorage();
+
+            // 指定された階層と各階層にファイルを生成
+            string currentPath = "/";
+            for (int i = 0; i < Depth; i++)
+            {
+                currentPath += $"dir{i}/";
+                vs.AddDirectory(currentPath, true);
+                for (int j = 0; j < FilesPerDepth; j++)
+                {
+                    vs.AddItem(currentPath + $"file{j}.txt", "data");
+                    vs.AddItem(currentPath + $"file{j}.log", "data");
+                }
+            }
+
+            // デバッグ出力でツリー構造を表示
+            Debug.WriteLine("Virtual storage tree structure:");
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
+            Debug.WriteLine(tree);
+
+            // パフォーマンス計測の開始
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+            // 各階層でのファイル解決
+            for (int i = 0; i < Depth; i++)
+            {
+                string searchPath = "/";
+                for (int j = 0; j <= i; j++)
+                {
+                    searchPath += $"dir{j}/";
+                }
+                searchPath += "file*.txt";
+                var result = vs.ResolvePath(searchPath).ToList();
+                Assert.AreEqual(FilesPerDepth, result.Count, $"Failed at depth {i} with path {searchPath}");
+            }
+
+            // ストップウォッチの停止
+            stopwatch.Stop();
+
+            // デバッグ出力でタイムを表示
+            Debug.WriteLine($"Total time to resolve files at each depth: {stopwatch.ElapsedMilliseconds} milliseconds.");
+
+            // パフォーマンスの基準設定
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000, $"Total resolution time {stopwatch.ElapsedMilliseconds} milliseconds is too slow.");
+        }
+
+        [TestMethod]
+        public void ResolvePath_WithDeepNestedDirectories_PerformanceTest()
+        {
+            const int Depth = 30; // ディレクトリの深さ
+            const int FilesPerDepth = 10; // 最深階層に生成するファイルの数
+
+            // VirtualStorage インスタンスのセットアップ
+            var vs = new VirtualStorage();
+            string currentPath = "/";
+
+            // 指定された階層の数だけディレクトリを作成
+            for (int i = 0; i < Depth; i++)
+            {
+                currentPath += $"dir{i}";
+                vs.AddDirectory(currentPath + "/", true);
+                vs.AddDirectory(currentPath + "A/", true);
+                vs.AddDirectory(currentPath + "B/", true);
+                currentPath += "/";
+                if (i == Depth - 1)
+                {  // 最深階層にファイルを追加
+                    for (int j = 0; j < FilesPerDepth; j++)
+                    {
+                        vs.AddItem(currentPath + $"file{j}.txt", "data");
+                    }
+                }
+            }
+
+            // デバッグ出力でツリー構造を表示
+            Debug.WriteLine("Virtual storage tree structure:");
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
+            Debug.WriteLine(tree);
+
+            // 深い階層構造のパスを構築
+            string searchPath = "/*" + string.Concat(Enumerable.Repeat("/*", Depth - 1)) + "/file*.txt";
+
+            // searchPathのデバッグ出力
+            Debug.WriteLine($"Search path: {searchPath}");
+
+            // パフォーマンス計測の開始
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+            // ワイルドカードを使用してファイルを解決
+            var result = vs.ResolvePath(searchPath).ToList();
+
+            // ストップウォッチの停止
+            stopwatch.Stop();
+
+            // 期待される結果の確認
+            Assert.AreEqual(FilesPerDepth, result.Count, "The number of resolved files does not match the expected count.");
+
+            // パフォーマンスの基準設定
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
+
+            // デバッグ出力でタイムを表示
+            Debug.WriteLine($"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds for resolving files in deep nested directories.");
+        }
+
+        [TestMethod]
+        public void ResolveDeepDirectoryStructureTest()
+        {
+            const int Depth = 1000; // 例として10階層の深さを設定
+            const string BaseDir = "/dir1";
+            var vs = new VirtualStorage();
+
+            // 深い階層のディレクトリを作成し、最深部にファイルを追加
+            string currentPath = BaseDir;
+            for (int i = 1; i <= Depth; i++)
+            {
+                currentPath += $"/dir{i}";
+                vs.AddDirectory(currentPath, true);
+                if (i == Depth)
+                {
+                    vs.AddItem(currentPath + "/file1.txt", "data");
+                    vs.AddItem(currentPath + "/file2.txt", "data");
+                    vs.AddItem(currentPath + "/file3.txt", "data");
+                }
+            }
+
+            // ツリー構造の表示
+            Debug.WriteLine("Virtual storage tree structure:");
+            string tree = vs.GenerateTextBasedTreeStructure(BaseDir, true, true);
+            Debug.WriteLine(tree);
+
+            // パスのデバッグ出力
+            Debug.WriteLine("Resolved paths: " + currentPath + "/*.txt");
+
+            // ファイル解決のテスト
+            var result = vs.ResolvePath(currentPath + "/*.txt").ToList();
+
+            // 期待される結果の確認
+            Assert.AreEqual(3, result.Count);
+            Assert.IsTrue(result.Exists(p => p.Path.EndsWith("file1.txt")));
+            Assert.IsTrue(result.Exists(p => p.Path.EndsWith("file2.txt")));
+            Assert.IsTrue(result.Exists(p => p.Path.EndsWith("file3.txt")));
+
+            // 結果のデバッグ出力
+            Debug.WriteLine($"Resolved files:");
+            foreach (var file in result)
+            {
+                Debug.WriteLine(file);
+            }
+        }
+
+        [TestMethod]
         public void ResolvePath_Root()
         {
             // VirtualStorage インスタンスのセットアップ
