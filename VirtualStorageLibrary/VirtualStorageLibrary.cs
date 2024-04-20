@@ -12,7 +12,11 @@ namespace VirtualStorageLibrary
 
         public static VirtualStorageSettings Settings => _settings;
 
-        private VirtualStorageSettings() { }
+        private VirtualStorageSettings()
+        {
+            InvalidNodeNameCharacters = [ PathSeparator ];
+            InvalidFullNodeNames = [ PathDot, PathDotDot ];
+        }
 
         public static void Initialize() => _settings = new();
 
@@ -23,6 +27,10 @@ namespace VirtualStorageLibrary
         public string PathDot { get; set; } = ".";
 
         public string PathDotDot { get; set; } = "..";
+
+        public char[] InvalidNodeNameCharacters { get; set; }
+
+        public string[] InvalidFullNodeNames { get; set; }
 
         public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardDictionary.PowerShellRegexMatch;
 
@@ -174,6 +182,33 @@ namespace VirtualStorageLibrary
         public VirtualNodeName(string name)
         {
             _name = name;
+        }
+
+        // ユーザーが使用してはいけないノード名の文字のチェック
+        public static bool IsValidNodeName(string name)
+        {
+            if (name == string.Empty)
+            {
+                return false;
+            }
+
+            foreach (char c in VirtualStorageSettings.Settings.InvalidNodeNameCharacters)
+            {
+                if (name.Contains(c))
+                {
+                    return false;
+                }
+            }
+
+            foreach (string invalidFullNodeName in VirtualStorageSettings.Settings.InvalidFullNodeNames)
+            {
+                if (name == invalidFullNodeName)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         [DebuggerStepThrough]
