@@ -1257,6 +1257,54 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void Add_InvalidNodeName_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> newNode = new("Invalid/Name", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
+            Assert.IsTrue(ex.Message.Contains("ノード名 'Invalid/Name' は無効です。"), "The exception message should indicate that the node name is invalid.");
+        }
+
+        [TestMethod]
+        public void Add_EmptyNodeName_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> newNode = new("", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
+            Assert.IsTrue(ex.Message.Contains("ノード名 '' は無効です。"), "The exception message should indicate that the node name is invalid.");
+        }
+
+        [TestMethod]
+        public void Add_InvalidNodeNameWithDot_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> newNode = new(".", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
+            Assert.IsTrue(ex.Message.Contains("ノード名 '.' は無効です。"));
+        }
+
+        [TestMethod]
+        public void Add_InvalidNodeNameWithDotDot_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> newNode = new("..", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
+            Assert.IsTrue(ex.Message.Contains("ノード名 '..' は無効です。"));
+        }
+
+        [TestMethod]
         public void AddItem_AddsNewItemSuccessfully()
         {
             VirtualDirectory directory = new("TestDirectory");

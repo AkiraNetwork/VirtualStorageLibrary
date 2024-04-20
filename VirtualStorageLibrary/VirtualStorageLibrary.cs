@@ -1165,6 +1165,11 @@ namespace VirtualStorageLibrary
 
         public void Add(VirtualNode node, bool allowOverwrite = false)
         {
+            if (!VirtualNodeName.IsValidNodeName(node.Name.Name))
+            {
+                throw new ArgumentException($"ノード名 '{node.Name}' は無効です。", nameof(node.Name));
+            }
+
             VirtualNodeName key = node.Name;
 
             if (_nodes.ContainsKey(key) && !allowOverwrite)
