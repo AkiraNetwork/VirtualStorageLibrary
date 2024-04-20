@@ -1466,7 +1466,7 @@ namespace VirtualStorageLibrary
             }
 
             VirtualPath directoryPath = path.DirectoryPath;
-            VirtualNodeName newDirectory = path.NodeName;
+            VirtualNodeName newDirectoryName = path.NodeName;
             NodeInformation result;
 
             if (createSubdirectories)
@@ -1480,13 +1480,14 @@ namespace VirtualStorageLibrary
 
             if (result.Node is VirtualDirectory directory)
             {
-                if (directory.NodeExists(newDirectory))
+                if (directory.NodeExists(newDirectoryName))
                 {
-                    throw new InvalidOperationException($"ディレクトリ '{newDirectory}' は既に存在します。");
+                    throw new InvalidOperationException($"ディレクトリ '{newDirectoryName}' は既に存在します。");
                 }
 
                 // 新しいディレクトリを追加
-                directory.AddDirectory(newDirectory);
+                VirtualDirectory newDirectory = new(newDirectoryName);
+                directory.Add(newDirectory);
 
                 // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
                 UpdateLinkTargetNodeTypes(path);
@@ -1502,7 +1503,8 @@ namespace VirtualStorageLibrary
         private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName)
         {
             // 中間ディレクトリを追加
-            directory.AddDirectory(nodeName);
+            VirtualDirectory newSubdirectory = new(nodeName);
+            directory.Add(newSubdirectory);
 
             // 中間ディレクトリがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
             UpdateLinkTargetNodeTypes(directory.Name + nodeName);
