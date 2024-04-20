@@ -2053,66 +2053,6 @@ namespace VirtualStorageLibrary
 
         public void CopyNode(VirtualPath sourcePath, VirtualPath destinationPath, bool recursive = false, bool overwrite = false)
         {
-            // コピー前の事前条件チェック
-            CheckCopyPreconditions(sourcePath, destinationPath, overwrite, recursive);
-
-            VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
-            VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
-
-            VirtualNode sourceNode = GetNode(absoluteSourcePath);
-
-            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.IsEndsWithSlash;
-
-            VirtualPath targetDirectoryPath;
-            VirtualNodeName newNodeName;
-
-            if (destinationIsDirectory)
-            {
-                targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = absoluteSourcePath.NodeName;
-            }
-            else
-            {
-                targetDirectoryPath = absoluteDestinationPath.GetParentPath();
-                newNodeName = absoluteDestinationPath.NodeName;
-            }
-
-            // コピー先ディレクトリが存在しない場合は例外をスロー
-            if (!DirectoryExists(targetDirectoryPath))
-            {
-                throw new VirtualNodeNotFoundException($"コピー先ディレクトリ '{targetDirectoryPath}' は存在しません。");
-            }
-
-            VirtualDirectory targetDirectory = GetDirectory(targetDirectoryPath);
-
-            if (sourceNode is VirtualDirectory sourceDirectory)
-            {
-                // 再帰フラグが false でもディレクトリが空の場合はコピーを許可
-                if (!recursive && sourceDirectory.Nodes.Any())
-                {
-                    throw new InvalidOperationException("非空のディレクトリをコピーするには再帰フラグが必要です。");
-                }
-
-                // 再帰的なディレクトリコピーまたは空のディレクトリコピー
-                VirtualDirectory newDirectory = new(newNodeName);
-                targetDirectory.Add(newDirectory, overwrite);
-                if (recursive)
-                {
-                    foreach (var node in sourceDirectory.Nodes)
-                    {
-                        VirtualPath intermediatePath = targetDirectoryPath + newNodeName;
-                        VirtualPath newDestinationPath = intermediatePath + node.Name;
-                        CopyNode(absoluteSourcePath + node.Name, newDestinationPath, true, overwrite);
-                    }
-                }
-            }
-            else
-            {
-                // 単一ノードのコピー
-                VirtualNode clonedNode = sourceNode.DeepClone();
-                clonedNode.Name = newNodeName;
-                targetDirectory.Add(clonedNode, overwrite);
-            }
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
