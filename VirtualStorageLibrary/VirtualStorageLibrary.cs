@@ -71,16 +71,33 @@ namespace VirtualStorageLibrary
         // ワイルドカードの実装（PowerShell）
         public static bool PowerShellRegexMatch(string nodeName, string pattern)
         {
-            // 正規表現のパターンを作成
-            string regexPattern = @"^" + Regex.Escape(pattern);
-            foreach (KeyValuePair<string, string> wildcard in PowerShellWildcardDictionary.WildcardDictionary)
+            // エスケープ処理を考慮して正規表現のパターンを作成
+            string regexPattern = "^";
+            for (int i = 0; i < pattern.Length; i++)
             {
-                regexPattern = regexPattern.Replace(@"\" + wildcard.Key, wildcard.Value);
+                if (pattern[i] == '`' && i + 1 < pattern.Length && Wildcards.Contains(pattern[i + 1].ToString()))
+                {
+                    // エスケープされたワイルドカード文字をリテラルとして扱う
+                    regexPattern += Regex.Escape(pattern[i + 1].ToString());
+                    i++; // エスケープされた文字をスキップ
+                }
+                else
+                {
+                    string currentChar = pattern[i].ToString();
+                    if (WildcardDictionary.ContainsKey(currentChar))
+                    {
+                        regexPattern += WildcardDictionary[currentChar];
+                    }
+                    else
+                    {
+                        regexPattern += Regex.Escape(currentChar);
+                    }
+                }
             }
             regexPattern += "$";
 
             // 正規表現を用いてマッチングを行う
-            return Regex.IsMatch(nodeName.ToString(), regexPattern);
+            return Regex.IsMatch(nodeName, regexPattern);
         }
     }
 

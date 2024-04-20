@@ -5750,8 +5750,8 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file1.txt", "data");  // 通常のファイル
             vs.AddItem("/dir1/file*.txt", "data");  // リテラルワイルドカードを含むファイル
 
-            // エスケープされたワイルドカードを含むパス解決
-            List<VirtualPath> result = vs.ResolvePath(@"/dir1/file\*.txt").ToList();
+            // PowerShellスタイルのエスケープを含むパス解決
+            List<VirtualPath> result = vs.ResolvePath("/dir1/file`*.txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
