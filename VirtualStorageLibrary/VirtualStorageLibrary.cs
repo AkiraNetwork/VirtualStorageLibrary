@@ -1342,8 +1342,8 @@ namespace VirtualStorageLibrary
         public void ChangeDirectory(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualNodeContext? result = WalkPathToTarget(path, null, null, true, true);
-            CurrentPath = result.TraversalPath;
+            VirtualNodeContext? nodeContext = WalkPathToTarget(path, null, null, true, true);
+            CurrentPath = nodeContext.TraversalPath;
 
             return;
         }
@@ -1489,18 +1489,18 @@ namespace VirtualStorageLibrary
 
             VirtualPath directoryPath = path.DirectoryPath;
             VirtualNodeName newDirectoryName = path.NodeName;
-            VirtualNodeContext result;
+            VirtualNodeContext nodeContext;
 
             if (createSubdirectories)
             {
-                result = WalkPathToTarget(directoryPath, null, CreateIntermediateDirectory, true, true);
+                nodeContext = WalkPathToTarget(directoryPath, null, CreateIntermediateDirectory, true, true);
             }
             else
             {
-                result = WalkPathToTarget(directoryPath, null, null, true, true);
+                nodeContext = WalkPathToTarget(directoryPath, null, null, true, true);
             }
 
-            if (result.Node is VirtualDirectory directory)
+            if (nodeContext.Node is VirtualDirectory directory)
             {
                 if (directory.NodeExists(newDirectoryName))
                 {
@@ -1537,9 +1537,9 @@ namespace VirtualStorageLibrary
         public VirtualNodeContext WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
         {
             targetPath = ConvertToAbsolutePath(targetPath).NormalizePath();
-            VirtualNodeContext? result = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, notifyNode, actionNode, followLinks, exceptionEnabled);
+            VirtualNodeContext? nodeContext = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, notifyNode, actionNode, followLinks, exceptionEnabled);
 
-            return result;
+            return nodeContext;
         }
 
         private VirtualNodeContext WalkPathToTargetInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
@@ -1572,7 +1572,7 @@ namespace VirtualStorageLibrary
                 return new VirtualNodeContext(null, traversalPath, null, 0, 0, traversalPath);
             }
 
-            VirtualNodeContext? result;
+            VirtualNodeContext? nodeContext;
 
             // 探索ノードを取得
             VirtualNode? node = traversalDirectory[traversalNodeName];
@@ -1601,10 +1601,10 @@ namespace VirtualStorageLibrary
                 traversalDirectory = (VirtualDirectory)node;
 
                 // 再帰的に探索
-                result = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, notifyNode, actionNode, followLinks, exceptionEnabled);
-                node = result?.Node;
-                traversalPath = result?.TraversalPath ?? traversalPath;
-                resolvedPath = result?.ResolvedPath ?? resolvedPath;
+                nodeContext = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, notifyNode, actionNode, followLinks, exceptionEnabled);
+                node = nodeContext?.Node;
+                traversalPath = nodeContext?.TraversalPath ?? traversalPath;
+                resolvedPath = nodeContext?.ResolvedPath ?? resolvedPath;
             }
             else if (node is VirtualItem)
             {
@@ -1648,13 +1648,13 @@ namespace VirtualStorageLibrary
                 linkTargetPath = linkTargetPath.NormalizePath();
 
                 // シンボリックリンクのリンク先パスを再帰的に探索
-                result = WalkPathToTargetInternal(linkTargetPath, 0, VirtualPath.Root, null, _root, null, null, true, exceptionEnabled);
+                nodeContext = WalkPathToTargetInternal(linkTargetPath, 0, VirtualPath.Root, null, _root, null, null, true, exceptionEnabled);
 
-                node = result?.Node;
+                node = nodeContext?.Node;
                 //traversalPath = result?.TraversalPath ?? traversalPath;
 
                 // 解決済みのパスに未探索のパスを追加
-                resolvedPath = result?.ResolvedPath!.CombineFromIndex(targetPath, traversalIndex);
+                resolvedPath = nodeContext?.ResolvedPath!.CombineFromIndex(targetPath, traversalIndex);
 
                 // シンボリックリンクを通知
                 notifyNode?.Invoke(traversalPath, node, true);
@@ -1673,10 +1673,10 @@ namespace VirtualStorageLibrary
                     }
 
                     // 再帰的に探索
-                    result = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, notifyNode, actionNode, followLinks, exceptionEnabled);
-                    node = result?.Node;
-                    traversalPath = result?.TraversalPath ?? traversalPath;
-                    resolvedPath = result?.ResolvedPath ?? resolvedPath;
+                    nodeContext = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, notifyNode, actionNode, followLinks, exceptionEnabled);
+                    node = nodeContext?.Node;
+                    traversalPath = nodeContext?.TraversalPath ?? traversalPath;
+                    resolvedPath = nodeContext?.ResolvedPath ?? resolvedPath;
                 }
 
                 resolvedPath ??= traversalPath;
@@ -1876,15 +1876,15 @@ namespace VirtualStorageLibrary
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualNodeContext result = WalkPathToTarget(path, null, null, followLinks, true);
-            return result.Node!;
+            VirtualNodeContext nodeContext = WalkPathToTarget(path, null, null, followLinks, true);
+            return nodeContext.Node!;
         }
 
         public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualNodeContext result = WalkPathToTarget(path, null, null, true, true);
-            return result.ResolvedPath!;
+            VirtualNodeContext nodeContext = WalkPathToTarget(path, null, null, true, true);
+            return nodeContext.ResolvedPath!;
         }
 
         public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
@@ -1937,29 +1937,29 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            IEnumerable<VirtualNodeContext> nodeInformation = WalkPathTree(basePath, nodeType, recursive, followLinks);
-            IEnumerable<VirtualNode> nodes = nodeInformation.Select(info => info.Node!);
+            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(basePath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualNode> nodes = nodeContexts.Select(info => info.Node!);
             return nodes;
         }
 
         public IEnumerable<VirtualNode> GetNodes(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            IEnumerable<VirtualNodeContext> nodeInformation = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
-            IEnumerable<VirtualNode> nodes = nodeInformation.Select(info => info.Node!);
+            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualNode> nodes = nodeContexts.Select(info => info.Node!);
             return nodes;
         }
 
         public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            IEnumerable<VirtualNodeContext> nodeInformation = WalkPathTree(basePath, nodeType, recursive, followLinks);
-            IEnumerable<VirtualPath> paths = nodeInformation.Select(info => info.TraversalPath);
+            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(basePath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualPath> paths = nodeContexts.Select(info => info.TraversalPath);
             return paths;
         }
 
         public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            IEnumerable<VirtualNodeContext> nodeInformation = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
-            IEnumerable<VirtualPath> paths = nodeInformation.Select(info => info.TraversalPath);
+            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
+            IEnumerable<VirtualPath> paths = nodeContexts.Select(info => info.TraversalPath);
             return paths;
         }
 
@@ -1967,8 +1967,8 @@ namespace VirtualStorageLibrary
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualPath basePath = ExtractBasePath(path);
-            IEnumerable<VirtualNodeContext> nodeInformation = ResolvePathTree(path);
-            IEnumerable<VirtualPath> resolvedPaths = nodeInformation.Select(info => (basePath + info.TraversalPath).NormalizePath());
+            IEnumerable<VirtualNodeContext> nodeContexts = ResolvePathTree(path);
+            IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (basePath + info.TraversalPath).NormalizePath());
 
             return resolvedPaths;
         }
@@ -2059,7 +2059,7 @@ namespace VirtualStorageLibrary
             bool followLinks = true,
             bool overwrite = false)
         {
-            IEnumerable<VirtualNodeContext> nodeInformation = WalkPathTree(sourcePath, filter, recursive, followLinks);
+            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(sourcePath, filter, recursive, followLinks);
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
@@ -2353,13 +2353,13 @@ namespace VirtualStorageLibrary
             StringBuilder tree = new();
 
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
-            IEnumerable<VirtualNodeContext> nodeInfos = WalkPathTree(basePath, VirtualNodeTypeFilter.All, recursive, followLinks);
+            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(basePath, VirtualNodeTypeFilter.All, recursive, followLinks);
             StringBuilder line = new();
             string previous = string.Empty;
 
-            VirtualNodeContext baseNodeInfo = nodeInfos.First();
-            VirtualNode baseNode = baseNodeInfo.Node!;
-            VirtualPath baseAbsolutePath = (basePath + baseNodeInfo.TraversalPath).NormalizePath();
+            VirtualNodeContext nodeContext = nodeContexts.First();
+            VirtualNode baseNode = nodeContext.Node!;
+            VirtualPath baseAbsolutePath = (basePath + nodeContext.TraversalPath).NormalizePath();
             if (baseNode is VirtualDirectory)
             {
                 string baseNodeName;
@@ -2384,7 +2384,7 @@ namespace VirtualStorageLibrary
                 tree.AppendLine(baseNodeName);
             }
 
-            foreach (var nodeInfo in nodeInfos.Skip(1))
+            foreach (var nodeInfo in nodeContexts.Skip(1))
             {
                 VirtualNode? node = nodeInfo.Node;
                 string nodeName = nodeInfo.TraversalPath.NodeName;
