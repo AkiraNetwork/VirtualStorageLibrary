@@ -5898,7 +5898,8 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/item1", data);
 
             // 実行
-            vs.CopyNode("/item1", "/item2");
+            // TODO: コピー先がアイテムの場合の仕様を検討
+            //vs.CopyNode("/item1", "/item2");
 
             // 検査
             //Assert.IsTrue(vs.GetNode("/item2").Name == "item2");
@@ -5913,6 +5914,7 @@ namespace VirtualStorageLibrary.Test
             // テストデータ
             vs.AddDirectory("/dir1", true);
             vs.AddItem("/dir1/item1", data);
+            vs.AddDirectory("/dir2", true);
 
             // 実行
             vs.CopyNode("/dir1", "/dir2");

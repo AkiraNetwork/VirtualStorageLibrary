@@ -2067,31 +2067,35 @@ namespace VirtualStorageLibrary
             VirtualNodeName sourceNodeName = sourcePath.NodeName;
             VirtualPath destinationFullPath = destinationPath + sourceNodeName;
 
-            // コピー元ノードが存在しない場合
+            // コピー元パスが存在しない場合
             if (!NodeExists(sourcePath, true))
             {
-                throw new VirtualNodeNotFoundException($"コピー元ノード '{sourcePath}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"コピー元のパス '{sourcePath}' が存在しません。");
             }
 
-            // コピー先ノードが存在しない場合
+            // コピー先パスが存在しない場合
             if (!NodeExists(destinationPath, true))
             {
-                throw new VirtualNodeNotFoundException($"コピー先ノード '{destinationPath}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"コピー先のパス '{destinationPath}' が存在しません。");
             }
 
-            // コピー先ノードが存在する場合
+            // コピー先に同じ名前のノードが存在する場合
             if (NodeExists(destinationFullPath, true))
             {
                 // 上書きのチェック
                 if (!overwrite)
                 {
-                    throw new InvalidOperationException($"コピー先ノード '{destinationFullPath}' は既に存在します。上書きは許可されていません。");
+                    throw new InvalidOperationException($"コピー先のパスに同じ名前のノード '{destinationFullPath}' が存在します。上書きは許可されていません。");
                 }
                 else
                 {
+                    // TODO: 削除系の操作の前で delegate によるユーザー確認が必要か検討する
                     RemoveNode(destinationFullPath, true);
                 }
             }
+
+            VirtualNode newNode = sourceNode.DeepClone();
+
 
             if (destinationNode is VirtualDirectory destinationDirectory)
             {
@@ -2099,7 +2103,6 @@ namespace VirtualStorageLibrary
             }
             else if (destinationNode is VirtualItem destinationItem)
             {
-
 
             }
             else if (destinationNode is VirtualSymbolicLink destinationLink)
