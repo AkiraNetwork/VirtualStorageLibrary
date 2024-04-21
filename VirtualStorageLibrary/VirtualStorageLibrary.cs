@@ -2051,8 +2051,15 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public void CopyNode(VirtualPath sourcePath, VirtualPath destinationPath, bool recursive = false, bool overwrite = false)
+        public void CopyNode(
+            VirtualPath sourcePath,
+            VirtualPath destinationPath,
+            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
+            bool recursive = true,
+            bool followLinks = true,
+            bool overwrite = false)
         {
+            IEnumerable<NodeInformation> nodeInformation = WalkPathTree(sourcePath, filter, recursive, followLinks);
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
