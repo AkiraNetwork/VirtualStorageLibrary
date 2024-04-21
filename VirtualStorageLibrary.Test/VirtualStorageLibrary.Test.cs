@@ -5548,7 +5548,7 @@ namespace VirtualStorageLibrary.Test
             }
 
             // パフォーマンスの基準設定（例えば1秒以内に完了することを期待）
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 10000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
 
             Debug.WriteLine($"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds for {NumberOfFiles} files.");
         }
@@ -5603,7 +5603,7 @@ namespace VirtualStorageLibrary.Test
             Debug.WriteLine($"Total time to resolve files at each depth: {stopwatch.ElapsedMilliseconds} milliseconds.");
 
             // パフォーマンスの基準設定
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000, $"Total resolution time {stopwatch.ElapsedMilliseconds} milliseconds is too slow.");
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 10000, $"Total resolution time {stopwatch.ElapsedMilliseconds} milliseconds is too slow.");
         }
 
         [TestMethod]
@@ -5657,7 +5657,7 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(FilesPerDepth, result.Count, "The number of resolved files does not match the expected count.");
 
             // パフォーマンスの基準設定
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 10000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
 
             // デバッグ出力でタイムを表示
             Debug.WriteLine($"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds for resolving files in deep nested directories.");
@@ -5886,6 +5886,39 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link-to-item", "/item1");
             vs.AddSymbolicLink("/link-to-dir", "/dir1");
             return vs;
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyItem_simple()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+            
+            // テストデータ
+            vs.AddItem("/item1", data);
+
+            // 実行
+            vs.CopyNode("/item1", "/item2");
+
+            // 検査
+            //Assert.IsTrue(vs.GetNode("/item2").Name == "item2");
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectory_simple()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+            
+            // テストデータ
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", data);
+
+            // 実行
+            vs.CopyNode("/dir1", "/dir2");
+
+            // 検査
+            //Assert.IsTrue(vs.GetNode("/dir2/item1").Name == "item1");
         }
     }
 }

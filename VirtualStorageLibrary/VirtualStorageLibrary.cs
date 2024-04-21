@@ -2059,7 +2059,62 @@ namespace VirtualStorageLibrary
             bool followLinks = true,
             bool overwrite = false)
         {
+            sourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
+            destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
+
+            VirtualNode sourceNode = GetNode(sourcePath);
+            VirtualNode destinationNode = GetNode(destinationPath);
+            VirtualNodeName sourceNodeName = sourcePath.NodeName;
+            VirtualPath destinationFullPath = destinationPath + sourceNodeName;
+
+            // コピー元ノードが存在しない場合
+            if (!NodeExists(sourcePath, true))
+            {
+                throw new VirtualNodeNotFoundException($"コピー元ノード '{sourcePath}' は存在しません。");
+            }
+
+            // コピー先ノードが存在しない場合
+            if (!NodeExists(destinationPath, true))
+            {
+                throw new VirtualNodeNotFoundException($"コピー先ノード '{destinationPath}' は存在しません。");
+            }
+
+            // コピー先ノードが存在する場合
+            if (NodeExists(destinationFullPath, true))
+            {
+                // 上書きのチェック
+                if (!overwrite)
+                {
+                    throw new InvalidOperationException($"コピー先ノード '{destinationFullPath}' は既に存在します。上書きは許可されていません。");
+                }
+                else
+                {
+                    RemoveNode(destinationFullPath, true);
+                }
+            }
+
+            if (destinationNode is VirtualDirectory destinationDirectory)
+            {
+
+            }
+            else if (destinationNode is VirtualItem destinationItem)
+            {
+
+
+            }
+            else if (destinationNode is VirtualSymbolicLink destinationLink)
+            {
+
+            }
+
+
+
             IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(sourcePath, filter, recursive, followLinks);
+
+            foreach (VirtualNodeContext nodeContext in nodeContexts)
+            {
+                Debug.WriteLine(nodeContext.TraversalPath);
+            }
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
