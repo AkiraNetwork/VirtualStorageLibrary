@@ -928,7 +928,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = new("item", [1, 2, 3]);
 
             // Act
-            VirtualItem<BinaryData> clonedItem = ((IDeepCloneable<VirtualItem<BinaryData>>)originalItem).DeepClone();
+            VirtualItem<BinaryData> clonedItem = (VirtualItem<BinaryData>)originalItem.DeepClone();
 
             // Assert
             Assert.IsNotNull(clonedItem);
@@ -945,7 +945,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<SimpleData> originalItem = new("item", new(5));
 
             // Act
-            VirtualItem<SimpleData> clonedItem = ((IDeepCloneable<VirtualItem<SimpleData>>)originalItem).DeepClone();
+            VirtualItem<SimpleData> clonedItem = (VirtualItem<SimpleData>)originalItem.DeepClone();
 
             // Assert
             Assert.IsNotNull(clonedItem);
@@ -1106,7 +1106,7 @@ namespace VirtualStorageLibrary.Test
             originalDirectory.Add(new VirtualItem<BinaryData>("item", [1, 2, 3]));
 
             // Act
-            VirtualDirectory clonedDirectory = ((IDeepCloneable<VirtualDirectory>)originalDirectory).DeepClone();
+            VirtualDirectory clonedDirectory = (VirtualDirectory)originalDirectory.DeepClone();
 
             // Assert
             Assert.IsNotNull(clonedDirectory);
@@ -1125,7 +1125,7 @@ namespace VirtualStorageLibrary.Test
             originalDirectory.Add(subDirectory);
 
             // Act
-            VirtualDirectory clonedDirectory = ((IDeepCloneable<VirtualDirectory>)originalDirectory).DeepClone();
+            VirtualDirectory clonedDirectory = (VirtualDirectory)originalDirectory.DeepClone();
 
             // Assert
             Assert.IsNotNull(clonedDirectory);
@@ -1149,7 +1149,7 @@ namespace VirtualStorageLibrary.Test
             originalDirectory.Add(virtualItem);
 
             // Act
-            VirtualDirectory clonedDirectory = ((IDeepCloneable<VirtualDirectory>)originalDirectory).DeepClone();
+            VirtualDirectory clonedDirectory = (VirtualDirectory)originalDirectory.DeepClone();
 
             // Assert
             Assert.IsNotNull(clonedDirectory);

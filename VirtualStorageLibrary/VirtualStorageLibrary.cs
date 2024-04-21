@@ -979,7 +979,7 @@ namespace VirtualStorageLibrary
         public override abstract VirtualNode DeepClone();
     }
 
-    public class VirtualItem<T> : VirtualItem, IDeepCloneable<VirtualItem<T>>, IDisposable
+    public class VirtualItem<T> : VirtualItem, IDisposable
     {
         public T ItemData { get; set; }
 
@@ -1003,7 +1003,7 @@ namespace VirtualStorageLibrary
         {
             string itemInformation = $"ItemData: {Name}";
 
-            // C# 8.0のnull非許容参照型に対応
+            // C# 8.0の null 非許容参照型に対応
             // Itemがnullではないことを確認し、ItemのToString()の結果を使用
             if (ItemData != null && ItemData.GetType().ToString() != ItemData.ToString())
             {
@@ -1020,18 +1020,15 @@ namespace VirtualStorageLibrary
 
         public override VirtualNode DeepClone()
         {
-            T clonedItem = ItemData;
+            T newItemData = ItemData;
+
+            // ItemDataがIDeepCloneable<T>を実装している場合はDeepClone()を呼び出す
             if (ItemData is IDeepCloneable<T> cloneableItem)
             {
-                clonedItem = cloneableItem.DeepClone();
+                newItemData = cloneableItem.DeepClone();
             }
 
-            return new VirtualItem<T>(Name, clonedItem);
-        }
-
-        VirtualItem<T> IDeepCloneable<VirtualItem<T>>.DeepClone()
-        {
-            return (VirtualItem<T>)DeepClone();
+            return new VirtualItem<T>(Name, newItemData);
         }
 
         public void Dispose()
@@ -1056,7 +1053,7 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public class VirtualDirectory : VirtualNode, IDeepCloneable<VirtualDirectory>
+    public class VirtualDirectory : VirtualNode
     {
         private Dictionary<VirtualNodeName, VirtualNode> _nodes = new();
 
@@ -1135,24 +1132,16 @@ namespace VirtualStorageLibrary
 
         public override VirtualNode DeepClone()
         {
-            VirtualDirectory clonedDirectory = new(Name, CreatedDate, UpdatedDate);
+            VirtualDirectory newDirectory = new(Name, CreatedDate, UpdatedDate);
 
-            foreach (var pair in this._nodes)
+            foreach (var entry in _nodes)
             {
-                VirtualNode clonedNode = pair.Value;
-                if (pair.Value is IDeepCloneable<VirtualNode> cloneableNode)
-                {
-                    clonedNode = cloneableNode.DeepClone();
-                }
-                clonedDirectory._nodes.Add(pair.Key, clonedNode);
+                VirtualNode childNode = entry.Value;
+                VirtualNode newNode = childNode.DeepClone();
+                newDirectory.Add(newNode);
             }
 
-            return clonedDirectory;
-        }
-
-        VirtualDirectory IDeepCloneable<VirtualDirectory>.DeepClone()
-        {
-            return (VirtualDirectory)DeepClone();
+            return newDirectory;
         }
 
         public IEnumerable<VirtualNode> GetNodeList()
