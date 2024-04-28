@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq.Expressions;
 using System.Text;
@@ -2040,21 +2041,15 @@ namespace VirtualStorageLibrary
             }
         }
 
-        public void CopyNode(
+        public IEnumerable<VirtualNodeContext> CopyNode(
             VirtualPath sourcePath,
             VirtualPath destinationPath,
-            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
-            bool recursive = true,
-            bool followLinks = true,
-            bool overwrite = false)
+            bool force = false,
+            bool recursive = false,
+            bool followLinks = false)
         {
             sourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
-
-            VirtualNode sourceNode = GetNode(sourcePath);
-            VirtualNode destinationNode = GetNode(destinationPath);
-            VirtualNodeName sourceNodeName = sourcePath.NodeName;
-            VirtualPath destinationFullPath = destinationPath + sourceNodeName;
 
             // コピー元パスが存在しない場合
             if (!NodeExists(sourcePath, true))
@@ -2068,45 +2063,47 @@ namespace VirtualStorageLibrary
                 throw new VirtualNodeNotFoundException($"コピー先のパス '{destinationPath}' が存在しません。");
             }
 
-            // コピー先に同じ名前のノードが存在する場合
-            if (NodeExists(destinationFullPath, true))
+            // コピー元パスとコピー先パスが同じ場合
+            if (sourcePath == destinationPath)
             {
-                // 上書きのチェック
-                if (!overwrite)
-                {
-                    throw new InvalidOperationException($"コピー先のパスに同じ名前のノード '{destinationFullPath}' が存在します。上書きは許可されていません。");
-                }
-                else
-                {
-                    // TODO: 削除系の操作の前で delegate によるユーザー確認が必要か検討する
-                    RemoveNode(destinationFullPath, true);
-                }
+                throw new InvalidOperationException("コピー元とコピー先が同じです。");
             }
 
-            VirtualNode newNode = sourceNode.DeepClone();
+            IEnumerable<VirtualNodeContext> nodeContexts = Enumerable.Empty<VirtualNodeContext>();
+            VirtualNode sourceNode = GetNode(sourcePath, true);
 
-
-            if (destinationNode is VirtualDirectory destinationDirectory)
+            if (sourceNode is VirtualDirectory)
             {
-
+                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, destinationPath, force, recursive);
+                nodeContexts = nodeContexts.Concat(contexts);
             }
-            else if (destinationNode is VirtualItem destinationItem)
+            else if (sourceNode is VirtualItem)
             {
-
+                IEnumerable<VirtualNodeContext> contexts = CopyItemInternal(sourcePath, destinationPath, force);
+                nodeContexts = nodeContexts.Concat(contexts);
             }
-            else if (destinationNode is VirtualSymbolicLink destinationLink)
+            else if (sourceNode is VirtualSymbolicLink)
             {
-
+                IEnumerable<VirtualNodeContext> contexts = CopySymbolicLinkInternal(sourcePath, destinationPath, force, followLinks);
+                nodeContexts = nodeContexts.Concat(contexts);
             }
 
+            return nodeContexts;
+        }
 
+        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool followLinks)
+        {
+            throw new NotImplementedException();
+        }
 
-            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(sourcePath, filter, recursive, followLinks);
+        private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force)
+        {
+            throw new NotImplementedException();
+        }
 
-            foreach (VirtualNodeContext nodeContext in nodeContexts)
-            {
-                Debug.WriteLine(nodeContext.TraversalPath);
-            }
+        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool recursive)
+        {
+            throw new NotImplementedException();
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
