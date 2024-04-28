@@ -2091,7 +2091,7 @@ namespace VirtualStorageLibrary
             return nodeContexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool followLinks)
+        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool recursive)
         {
             throw new NotImplementedException();
         }
@@ -2101,7 +2101,7 @@ namespace VirtualStorageLibrary
             throw new NotImplementedException();
         }
 
-        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool recursive)
+        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool followLinks)
         {
             throw new NotImplementedException();
         }
