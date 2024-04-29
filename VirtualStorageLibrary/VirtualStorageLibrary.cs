@@ -2054,19 +2054,13 @@ namespace VirtualStorageLibrary
             // コピー元パスが存在しない場合
             if (!NodeExists(sourcePath, true))
             {
-                throw new VirtualNodeNotFoundException($"コピー元のパス '{sourcePath}' が存在しません。");
-            }
-
-            // コピー先パスが存在しない場合
-            if (!NodeExists(destinationPath, true))
-            {
-                throw new VirtualNodeNotFoundException($"コピー先のパス '{destinationPath}' が存在しません。");
+                throw new VirtualNodeNotFoundException($"コピー元のノード '{sourcePath}' が存在しません。");
             }
 
             // コピー元パスとコピー先パスが同じ場合
             if (sourcePath == destinationPath)
             {
-                throw new InvalidOperationException("コピー元とコピー先が同じです。");
+                throw new InvalidOperationException("コピー元パスとコピー先パスが同じです。");
             }
 
             IEnumerable<VirtualNodeContext> nodeContexts = Enumerable.Empty<VirtualNodeContext>();
@@ -2098,7 +2092,52 @@ namespace VirtualStorageLibrary
 
         private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force)
         {
-            throw new NotImplementedException();
+            IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
+
+            VirtualDirectory destinationDirectory;
+            VirtualNodeName? newNodeName = null;
+
+            VirtualNode? destinationNode = TryGetNode(destinationPath, true);
+            if (destinationNode == null)
+            {
+                // コピー先が新しいアイテムの場合
+                destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
+                newNodeName = destinationPath.NodeName;
+            }
+            else if (destinationNode is VirtualDirectory directory)
+            {
+                //　コピー先がディレクトリの場合
+                newNodeName = sourcePath.NodeName;
+                destinationDirectory = directory;
+            }
+            else
+            {
+                // コピー先がアイテムの場合
+                if (destinationNode.Name == sourcePath.NodeName)
+                {
+                    // コピー先アイテムのノード名がソースと同じ場合
+                    if (!force)
+                    {
+                        // 強制フラグが指定されていない場合は例外をスロー
+                        throw new InvalidOperationException($"アイテム '{sourcePath.NodeName}' は既に存在します。上書きは許可されていません。");
+                    }
+
+                    // 強制フラグが指定されている場合は、コピー先アイテムを削除
+                    RemoveNode(destinationPath);
+                }
+                newNodeName = destinationPath.NodeName;
+                destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
+            }
+
+            // コピー元アイテムを取得
+            VirtualNode sourceItem = GetNode(sourcePath, true);
+            VirtualNode destinationItem = sourceItem.DeepClone();
+            destinationItem.Name = newNodeName;
+
+            // コピー元アイテムをコピー先ディレクトリに追加
+            destinationDirectory.Add(destinationItem);
+
+            return contexts;
         }
 
         private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool followLinks)

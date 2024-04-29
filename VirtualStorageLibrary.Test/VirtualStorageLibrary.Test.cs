@@ -5898,29 +5898,37 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/item1", data);
 
             // 実行
-            // TODO: コピー先がアイテムの場合の仕様を検討
-            //vs.CopyNode("/item1", "/item2");
+            vs.CopyNode("/item1", "/item2");
 
             // 検査
-            //Assert.IsTrue(vs.GetNode("/item2").Name == "item2");
+            Assert.IsTrue(vs.GetNode("/item2").Name == "item2");
+            Assert.AreNotEqual(vs.GetNode("/item2"), vs.GetNode("/item1"));
         }
 
         [TestMethod]
-        public void CopyNode_CopyDirectory_simple()
+        public void CopyItemInternal_WithForce_OverwritesExistingItem()
         {
-            VirtualStorage vs = new();
-            BinaryData data = [1, 2, 3];
-            
-            // テストデータ
-            vs.AddDirectory("/dir1", true);
-            vs.AddItem("/dir1/item1", data);
-            vs.AddDirectory("/dir2", true);
+            VirtualStorage vs = new VirtualStorage();
+            BinaryData originalData = new BinaryData(new byte[] { 1, 2, 3 });
+            BinaryData newData = new BinaryData(new byte[] { 4, 5, 6 });
 
-            // 実行
-            vs.CopyNode("/dir1", "/dir2");
+            // テストデータの追加
+            vs.AddItem("/item1", originalData);
+            vs.AddItem("/item2", newData);
+
+            // 実行: "/item1"を"/item2"にforceオプションをtrueでコピー
+            vs.CopyNode("/item1", "/item2", true);
 
             // 検査
-            //Assert.IsTrue(vs.GetNode("/dir2/item1").Name == "item1");
+            var copiedItem = (VirtualItem<BinaryData>)vs.GetNode("/item2");
+            var originalItem = (VirtualItem<BinaryData>)vs.GetNode("/item1");
+
+            // コピー先のノード名が"/item2"であること
+            Assert.IsTrue(copiedItem.Name == "item2");
+            // コピー元とコピー先が同じデータを持たないこと（異なるインスタンス）
+            Assert.AreNotEqual(originalItem, copiedItem);
+            // コピーされたデータが元のデータと一致すること
+            Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
         }
     }
 }
