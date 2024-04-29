@@ -3026,6 +3026,125 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void GetItem_WhenItemExists_ReturnsItem()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            BinaryData data = new([1, 2, 3]);
+            virtualStorage.AddItem("/test-item", data);
+            VirtualPath path = "/test-item";
+
+            // Act
+            VirtualItem<BinaryData> item = virtualStorage.GetItem<BinaryData>(path);
+
+            // Assert
+            Assert.IsNotNull(item);
+            Assert.AreEqual(new BinaryData([1, 2, 3]), item.ItemData);
+        }
+
+        [TestMethod]
+        public void GetItem_WhenItemDoesNotExist_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            VirtualPath path = "/nonexistent";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.GetItem<BinaryData>(path));
+        }
+
+        [TestMethod]
+        public void GetItem_WhenNodeIsNotItemType_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            virtualStorage.AddDirectory("/test-directory");
+            VirtualPath path = "/test-directory";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.GetItem<BinaryData>(path));
+        }
+
+        [TestMethod]
+        public void GetItem_WhenPathIsRelative_ReturnsItem()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            BinaryData data = new([1, 2, 3]);
+            virtualStorage.AddItem("/test-item", data);
+            VirtualPath path = "test-item";  // Relative path
+
+            // Act
+            VirtualItem<BinaryData> item = virtualStorage.GetItem<BinaryData>(path);
+
+            // Assert
+            Assert.IsNotNull(item);
+            Assert.AreEqual(new BinaryData([1, 2, 3]), item.ItemData);
+        }
+
+        [TestMethod]
+        public void GetSymbolicLink_WhenLinkExists_ReturnsLink()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            VirtualPath targetPath = "/target";
+            virtualStorage.AddDirectory(targetPath);
+            VirtualPath linkPath = "/link";
+            virtualStorage.AddSymbolicLink(linkPath, targetPath);
+
+            // Act
+            VirtualSymbolicLink link = virtualStorage.GetSymbolicLink(linkPath);
+
+            // Assert
+            Assert.IsNotNull(link);
+            Assert.AreEqual(targetPath, link.TargetPath);
+        }
+
+        [TestMethod]
+        public void GetSymbolicLink_WhenLinkDoesNotExist_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            VirtualPath path = "/nonexistent-link";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.GetSymbolicLink(path));
+        }
+
+        [TestMethod]
+        public void GetSymbolicLink_WhenNodeIsNotLink_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            BinaryData file = new([1, 2, 3]);
+            virtualStorage.AddItem("/test-file", file);
+
+            VirtualPath path = "/test-file";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.GetSymbolicLink(path));
+        }
+
+        [TestMethod]
+        public void GetSymbolicLink_WhenPathIsRelative_ReturnsLink()
+        {
+            // Arrange
+            VirtualStorage virtualStorage = new();
+            VirtualPath targetPath = "/target";
+            virtualStorage.AddDirectory(targetPath);
+            VirtualPath linkPath = "/link";
+            virtualStorage.AddSymbolicLink(linkPath, targetPath);
+            VirtualPath relativePath = "link";
+
+            // Act
+            VirtualSymbolicLink link = virtualStorage.GetSymbolicLink(relativePath);
+
+            // Assert
+            Assert.IsNotNull(link);
+            Assert.AreEqual(targetPath, link.TargetPath);
+        }
+
+        [TestMethod]
         public void AddItem_AddsNewItemSuccessfully_WithBinaryData()
         {
             VirtualStorage virtualStorage = new();
@@ -3803,6 +3922,100 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsNull(node);
+        }
+
+        [TestMethod]
+        public void TryGetDirectory_ReturnsDirectory_WhenDirectoryExists()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            VirtualPath path = "/existing/directory";
+            storage.AddDirectory(path, true); 
+
+            // Act
+            VirtualDirectory? directory = storage.TryGetDirectory(path);
+
+            // Assert
+            Assert.IsNotNull(directory);
+        }
+
+        [TestMethod]
+        public void TryGetDirectory_ReturnsNull_WhenDirectoryDoesNotExist()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            VirtualPath path = "/non/existing/directory";
+
+            // Act
+            VirtualDirectory? directory = storage.TryGetDirectory(path);
+
+            // Assert
+            Assert.IsNull(directory);
+        }
+
+        [TestMethod]
+        public void TryGetItem_ReturnsItem_WhenItemExists()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            VirtualPath path = "/existing/item";
+            BinaryData data = new([1, 2, 3]);
+            storage.AddDirectory(path.DirectoryPath, true);
+            storage.AddItem(path, data);
+
+            // Act
+            VirtualItem<BinaryData>? item = storage.TryGetItem<BinaryData>(path);
+
+            // Assert
+            Assert.IsNotNull(item);
+            Assert.AreEqual(data, item.ItemData);
+        }
+
+        [TestMethod]
+        public void TryGetItem_ReturnsNull_WhenItemDoesNotExist()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            VirtualPath path = "/non/existing/item";
+
+            // Act
+            VirtualItem<BinaryData>? item = storage.TryGetItem<BinaryData>(path);
+
+            // Assert
+            Assert.IsNull(item);
+        }
+
+        [TestMethod]
+        public void TryGetSymbolicLink_ReturnsLink_WhenLinkExists()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            VirtualPath targetPath = "/target/path";
+            VirtualPath linkPath = "/existing/link";
+            storage.AddDirectory(targetPath, true);
+            storage.AddDirectory(linkPath.DirectoryPath, true);
+            storage.AddSymbolicLink(linkPath, targetPath);
+
+            // Act
+            VirtualSymbolicLink? link = storage.TryGetSymbolicLink(linkPath);
+
+            // Assert
+            Assert.IsNotNull(link);
+            Assert.AreEqual(targetPath, link.TargetPath);
+        }
+
+        [TestMethod]
+        public void TryGetSymbolicLink_ReturnsNull_WhenLinkDoesNotExist()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            VirtualPath linkPath = "/non/existing/link";
+
+            // Act
+            VirtualSymbolicLink? link = storage.TryGetSymbolicLink(linkPath);
+
+            // Assert
+            Assert.IsNull(link);
         }
 
         [TestMethod]

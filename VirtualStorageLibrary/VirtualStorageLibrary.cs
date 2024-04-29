@@ -1904,6 +1904,60 @@ namespace VirtualStorageLibrary
             }
         }
 
+        public VirtualItem<T> GetItem<T>(VirtualPath path, bool followLinks = false)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            VirtualNode node = GetNode(path, followLinks);
+
+            if (node is VirtualItem<T> item)
+            {
+                return item;
+            }
+            else
+            {
+                throw new VirtualNodeNotFoundException($"アイテム {path} は存在しません。");
+            }
+        }
+
+        public VirtualItem<T>? TryGetItem<T>(VirtualPath path)
+        {
+            try
+            {
+                return GetItem<T>(path);
+            }
+            catch (VirtualNodeNotFoundException)
+            {
+                return null;
+            }
+        }
+
+        public VirtualSymbolicLink GetSymbolicLink(VirtualPath path, bool followLinks = false)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            VirtualNode node = GetNode(path, followLinks);
+
+            if (node is VirtualSymbolicLink link)
+            {
+                return link;
+            }
+            else
+            {
+                throw new VirtualNodeNotFoundException($"シンボリックリンク {path} は存在しません。");
+            }
+        }
+
+        public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path)
+        {
+            try
+            {
+                return GetSymbolicLink(path);
+            }
+            catch (VirtualNodeNotFoundException)
+            {
+                return null;
+            }
+        }
+
         public VirtualNodeType GetNodeType(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
