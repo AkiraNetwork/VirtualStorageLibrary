@@ -2044,7 +2044,7 @@ namespace VirtualStorageLibrary
         public IEnumerable<VirtualNodeContext> CopyNode(
             VirtualPath sourcePath,
             VirtualPath destinationPath,
-            bool force = false,
+            bool overwrite = false,
             bool recursive = false,
             bool followLinks = false)
         {
@@ -2068,29 +2068,29 @@ namespace VirtualStorageLibrary
 
             if (sourceNode is VirtualDirectory)
             {
-                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, destinationPath, force, recursive);
+                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, destinationPath, overwrite, recursive);
                 nodeContexts = nodeContexts.Concat(contexts);
             }
             else if (sourceNode is VirtualItem)
             {
-                IEnumerable<VirtualNodeContext> contexts = CopyItemInternal(sourcePath, destinationPath, force);
+                IEnumerable<VirtualNodeContext> contexts = CopyItemInternal(sourcePath, destinationPath, overwrite);
                 nodeContexts = nodeContexts.Concat(contexts);
             }
             else if (sourceNode is VirtualSymbolicLink)
             {
-                IEnumerable<VirtualNodeContext> contexts = CopySymbolicLinkInternal(sourcePath, destinationPath, force, followLinks);
+                IEnumerable<VirtualNodeContext> contexts = CopySymbolicLinkInternal(sourcePath, destinationPath, overwrite, followLinks);
                 nodeContexts = nodeContexts.Concat(contexts);
             }
 
             return nodeContexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool recursive)
+        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
         {
             throw new NotImplementedException();
         }
 
-        private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force)
+        private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
         {
             IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
 
@@ -2098,9 +2098,11 @@ namespace VirtualStorageLibrary
             VirtualNodeName? newNodeName = null;
 
             VirtualNode? destinationNode = TryGetNode(destinationPath, true);
+
+            // コピー先ノードの種類のチェック
             if (destinationNode == null)
             {
-                // コピー先が新しいアイテムの場合
+                // コピー先にノードが存在しない場合
                 destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
                 newNodeName = destinationPath.NodeName;
             }
@@ -2113,20 +2115,24 @@ namespace VirtualStorageLibrary
             else
             {
                 // コピー先がアイテムの場合
-                if (destinationNode.Name == sourcePath.NodeName)
-                {
-                    // コピー先アイテムのノード名がソースと同じ場合
-                    if (!force)
-                    {
-                        // 強制フラグが指定されていない場合は例外をスロー
-                        throw new InvalidOperationException($"アイテム '{sourcePath.NodeName}' は既に存在します。上書きは許可されていません。");
-                    }
-
-                    // 強制フラグが指定されている場合は、コピー先アイテムを削除
-                    RemoveNode(destinationPath);
-                }
                 newNodeName = destinationPath.NodeName;
                 destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
+            }
+
+            VirtualPath newItemPath = destinationPath.DirectoryPath + newNodeName;
+
+            // コピー先に同名のノードが存在する場合の処理
+            if (NodeExists(newItemPath, true))
+            {
+                // コピー先アイテムのノード名がソースと同じ場合
+                if (!overwrite)
+                {
+                    // 上書きフラグが指定されていない場合は例外をスロー
+                    throw new InvalidOperationException($"アイテム '{newItemPath.NodeName}' は既に存在します。上書きは許可されていません。");
+                }
+
+                // 上書きフラグが指定されている場合は、コピー先アイテムを削除
+                RemoveNode(destinationPath);
             }
 
             // コピー元アイテムを取得
@@ -2140,7 +2146,7 @@ namespace VirtualStorageLibrary
             return contexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool force, bool followLinks)
+        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool followLinks)
         {
             throw new NotImplementedException();
         }
