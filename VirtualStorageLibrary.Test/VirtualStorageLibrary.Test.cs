@@ -5916,19 +5916,16 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/item1", originalData);
             vs.AddItem("/item2", newData);
 
-            // 実行: "/item1"を"/item2"にforceオプションをtrueでコピー
+            // 実行: "/item1"を"/item2"に overwrite オプションを true でコピー
             vs.CopyNode("/item1", "/item2", true);
 
             // 検査
             var copiedItem = (VirtualItem<BinaryData>)vs.GetNode("/item2");
             var originalItem = (VirtualItem<BinaryData>)vs.GetNode("/item1");
-
-            // コピー先のノード名が"/item2"であること
             Assert.IsTrue(copiedItem.Name == "item2");
-            // コピー元とコピー先が同じデータを持たないこと（異なるインスタンス）
             Assert.AreNotEqual(originalItem, copiedItem);
-            // コピーされたデータが元のデータと一致すること
             Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
+            Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
         }
     }
 }
