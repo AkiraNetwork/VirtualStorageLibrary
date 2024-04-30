@@ -382,6 +382,16 @@ namespace VirtualStorageLibrary
             }
         }
 
+        public int Depth
+        {
+            [DebuggerStepThrough]
+            get
+            {
+                // パスの深さを返す
+                return this.PartsList.Count;
+            }
+        }
+
         public static char Separator
         {
             [DebuggerStepThrough]

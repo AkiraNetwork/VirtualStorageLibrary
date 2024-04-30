@@ -560,6 +560,56 @@ namespace VirtualStorageLibrary.Test
 
             Assert.ThrowsException<InvalidOperationException>(() => path.GetRelativePath(basePath));
         }
+
+        [TestMethod]
+        public void Depth_WithRootPath_ReturnsZero()
+        {
+            VirtualPath path = "/";
+
+            Assert.AreEqual(0, path.Depth);
+        }
+
+        [TestMethod]
+        public void Depth_WithSingleLevelPath_ReturnsOne()
+        {
+            VirtualPath path = "/folder";
+
+            Assert.AreEqual(1, path.Depth);
+        }
+
+        [TestMethod]
+        public void Depth_WithMultiLevelPath_ReturnsCorrectDepth()
+        {
+            VirtualPath path = "/folder/subfolder/file";
+
+            Assert.AreEqual(3, path.Depth);
+        }
+
+        [TestMethod]
+        public void Depth_WithRelativePath_ReturnsCorrectDepth()
+        {
+            VirtualPath path = "folder/subfolder/file";
+
+            Assert.AreEqual(3, path.Depth);
+        }
+
+        [TestMethod]
+        public void Depth_WithEmptyPath_ReturnsZero()
+        {
+            VirtualPath path = "";
+
+            Assert.AreEqual(0, path.Depth);
+        }
+
+        [TestMethod]
+        public void Depth_WithNormalizedPath_ReturnsCorrectDepth()
+        {
+            VirtualPath path = "/path/./to/../directory/";
+
+            VirtualPath normalizedPath = path.NormalizePath();
+
+            Assert.AreEqual(2, normalizedPath.Depth);
+        }
     }
 
     [TestClass]
