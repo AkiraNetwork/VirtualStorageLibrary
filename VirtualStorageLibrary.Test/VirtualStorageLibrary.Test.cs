@@ -15,6 +15,12 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualNodeTests
     {
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            VirtualStorageSettings.Initialize();
+        }
+
         [TestMethod]
         public void DefaultConstructor_CreatesInstance()
         {
@@ -67,6 +73,12 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualPathTest
     {
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            VirtualStorageSettings.Initialize();
+        }
+
         [TestMethod]
         public void ImplicitConversion_FromString_CreatesVirtualPath()
         {
@@ -615,6 +627,12 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualNodeNameTests
     {
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            VirtualStorageSettings.Initialize();
+        }
+
         [TestMethod]
         public void Constructor_SetsNameCorrectly()
         {
@@ -856,6 +874,12 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualSymbolicLinkTests
     {
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            VirtualStorageSettings.Initialize();
+        }
+
         [TestMethod]
         public void VirtualSymbolicLink_Constructor_SetsNameAndTargetPath()
         {
@@ -930,6 +954,12 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualItemTest
     {
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            VirtualStorageSettings.Initialize();
+        }
+
         [TestMethod]
         public void VirtualItemConstructor_CreatesObjectCorrectly()
         {
@@ -1077,6 +1107,12 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualDirectoryTests
     {
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            VirtualStorageSettings.Initialize();
+        }
+
         [TestMethod]
         public void VirtualDirectoryConstructor_CreatesObjectCorrectly()
 
