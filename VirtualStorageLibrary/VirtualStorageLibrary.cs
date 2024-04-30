@@ -2159,6 +2159,7 @@ namespace VirtualStorageLibrary
             IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
 
             VirtualDirectory destinationDirectory;
+            VirtualPath destinationDirectoryPath;
             VirtualNodeName? newNodeName = null;
 
             VirtualNode? destinationNode = TryGetNode(destinationPath, true);
@@ -2167,20 +2168,23 @@ namespace VirtualStorageLibrary
             if (destinationNode == null)
             {
                 // コピー先にノードが存在しない場合
-                destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
                 newNodeName = destinationPath.NodeName;
+                destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
+                destinationDirectoryPath = destinationPath.DirectoryPath;
             }
             else if (destinationNode is VirtualDirectory directory)
             {
                 //　コピー先がディレクトリの場合
                 newNodeName = sourcePath.NodeName;
                 destinationDirectory = directory;
+                destinationDirectoryPath = destinationPath;
             }
             else
             {
                 // コピー先がアイテムの場合
                 newNodeName = destinationPath.NodeName;
                 destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
+                destinationDirectoryPath = destinationPath.DirectoryPath;
             }
 
             VirtualPath newItemPath = destinationPath.DirectoryPath + newNodeName;
@@ -2206,6 +2210,20 @@ namespace VirtualStorageLibrary
 
             // コピー元アイテムをコピー先ディレクトリに追加
             destinationDirectory.Add(destinationItem);
+
+            // コピー先ディレクトリからの相対パスを計算
+            VirtualPath relativePath = destinationPath.GetRelativePath(destinationDirectoryPath);
+
+            // コピー操作の結果を表す VirtualNodeContext を生成して返却
+            VirtualNodeContext context = new VirtualNodeContext(
+                node: destinationItem,
+                traversalPath: relativePath,
+                parentNode: destinationDirectory,
+                depth: relativePath.Depth,
+                index: 0
+            );
+
+            contexts = contexts.Append(context);
 
             return contexts;
         }

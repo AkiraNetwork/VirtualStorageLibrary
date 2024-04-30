@@ -6161,7 +6161,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/item1", data);
 
             // 実行
-            vs.CopyNode("/item1", "/item2");
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/item2");
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/item2");
@@ -6171,6 +6171,13 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
         }
 
         [TestMethod]
@@ -6185,7 +6192,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/item2", newData);
 
             // 実行: "/item1"を"/item2"に overwrite オプションを true でコピー
-            vs.CopyNode("/item1", "/item2", true);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/item2", true);
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/item2");
@@ -6195,6 +6202,13 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
         }
     }
 }
