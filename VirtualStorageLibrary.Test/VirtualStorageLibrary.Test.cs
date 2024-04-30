@@ -6114,18 +6114,23 @@ namespace VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/item2");
 
             // 検査
-            Assert.IsTrue(vs.GetNode("/item2").Name == "item2");
-            Assert.AreNotEqual(vs.GetNode("/item2"), vs.GetNode("/item1"));
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/item2");
+            VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/item1");
+            Assert.IsTrue(copiedItem.Name == "item2");
+            Assert.AreNotEqual(originalItem, copiedItem);
+            Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
+            Assert.AreNotSame(originalItem, copiedItem);
+            Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
         }
 
         [TestMethod]
         public void CopyItemInternal_WithForce_OverwritesExistingItem()
         {
-            VirtualStorage vs = new VirtualStorage();
-            BinaryData originalData = new BinaryData(new byte[] { 1, 2, 3 });
-            BinaryData newData = new BinaryData(new byte[] { 4, 5, 6 });
+            VirtualStorage vs = new();
+            BinaryData originalData = [ 1, 2, 3 ];
+            BinaryData newData = [ 4, 5, 6 ];
 
-            // テストデータの追加
+            // テストデータ
             vs.AddItem("/item1", originalData);
             vs.AddItem("/item2", newData);
 
@@ -6133,11 +6138,12 @@ namespace VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/item2", true);
 
             // 検査
-            var copiedItem = (VirtualItem<BinaryData>)vs.GetNode("/item2");
-            var originalItem = (VirtualItem<BinaryData>)vs.GetNode("/item1");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/item2");
+            VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/item1");
             Assert.IsTrue(copiedItem.Name == "item2");
             Assert.AreNotEqual(originalItem, copiedItem);
             Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
+            Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
         }
     }
