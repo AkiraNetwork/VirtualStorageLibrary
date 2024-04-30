@@ -3125,7 +3125,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsNotNull(item);
-            Assert.AreEqual(new BinaryData([1, 2, 3]), item.ItemData);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, item.ItemData.Data);
         }
 
         [TestMethod]
@@ -3165,7 +3165,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsNotNull(item);
-            Assert.AreEqual(new BinaryData([1, 2, 3]), item.ItemData);
+            CollectionAssert.AreEqual(new byte[] {1, 2, 3 }, item.ItemData.Data);
         }
 
         [TestMethod]
@@ -6204,7 +6204,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/item1");
             Assert.IsTrue(copiedItem.Name == "item2");
             Assert.AreNotEqual(originalItem, copiedItem);
-            Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
+            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
 
@@ -6235,7 +6235,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/item1");
             Assert.IsTrue(copiedItem.Name == "item2");
             Assert.AreNotEqual(originalItem, copiedItem);
-            Assert.AreEqual(originalItem.ItemData, copiedItem.ItemData);
+            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
 

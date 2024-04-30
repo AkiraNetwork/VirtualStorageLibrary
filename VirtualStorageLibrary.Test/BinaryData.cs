@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace VirtualStorageLibrary.Test
 {
     public class BinaryData
-        : IDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>, IEquatable<BinaryData>
+        : IDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>
     {
         private byte[] _data;
 
@@ -156,41 +156,6 @@ namespace VirtualStorageLibrary.Test
             byte[] dataClone = new byte[_data.Length];
             _data.CopyTo(dataClone, 0);
             return new BinaryData(dataClone);
-        }
-
-        public bool Equals(BinaryData? other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return _data.SequenceEqual(other._data);
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is BinaryData other && Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            var hash = new HashCode();
-            foreach (byte b in _data)
-            {
-                hash.Add(b);
-            }
-            return hash.ToHashCode();
-        }
-
-        public static bool operator ==(BinaryData? left, BinaryData? right)
-        {
-            return left is null ? right is null : left.Equals(right);
-        }
-
-        public static bool operator !=(BinaryData? left, BinaryData? right)
-        {
-            return !(left == right);
         }
     }
 }
