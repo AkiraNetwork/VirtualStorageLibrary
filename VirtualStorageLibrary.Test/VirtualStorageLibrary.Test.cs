@@ -6217,7 +6217,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyItemInternal_WithForce_OverwritesExistingItem()
+        public void CopyItemInternal_WithOverwritesExistingItem()
         {
             VirtualStorage vs = new();
             BinaryData originalData = [ 1, 2, 3 ];
@@ -6245,6 +6245,136 @@ namespace VirtualStorageLibrary.Test
             {
                 Debug.WriteLine(context);
             }
+        }
+
+        [TestMethod]
+        public void CopyNode_SourceNodeDoesNotExist_ThrowsException()
+        {
+            VirtualStorage vs = new();
+
+            // 実行 & 検査: 存在しない "/item1" をコピーしようとする
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/item2");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_SameSourceAndDestination_ThrowsException()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddItem("/item1", data);
+
+            // 実行 & 検査: 同じパスへのコピーを試みる
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/item1");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_ExistingDestinationWithoutOverwrite_ThrowsException()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddItem("/item1", data);
+            vs.AddItem("/item2", data);
+
+            // 実行 & 検査: overwriteを指定せずに"/item1"を"/item2"にコピー
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/item2");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_DestinationDirectoryDoesNotExist_CreatesNewItem()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", data);
+
+            // 実行: 存在しないディレクトリ "/dir1" にコピー
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/dir1/item2");
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("item2", (string)copiedItem.Name);
+            CollectionAssert.AreEqual(data.Data, copiedItem.ItemData.Data);
+        }
+
+        [TestMethod]
+        public void CopyNode_ExistingItemInDestinationWithoutOverwrite_ThrowsException()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ: "/dir1/item1" として既にアイテムを追加
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data);
+            vs.AddItem("/item1", data);
+
+            // 実行 & 検査: 上書きなしで "/item1" を "/dir1" にコピーしようとする
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/dir1/item1");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_ToSymbolicLinkTargetingDirectory_SuccessfulCopy()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            BinaryData originalData = [1, 2, 3];
+
+            // コピー元アイテムの追加
+            vs.AddItem("/item1", originalData);
+
+            // ターゲットディレクトリを作成し、シンボリックリンクを設定
+            vs.AddDirectory("/targetDir");
+            vs.AddSymbolicLink("/link", "/targetDir");
+
+            // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
+            vs.CopyNode("/item1", "/link/newItem", false);
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/targetDir/newItem");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("newItem", (string)copiedItem.Name);
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);
+        }
+
+        [TestMethod]
+        public void CopyNode_ToSymbolicLinkTargetingDirectory_ThrowsExceptionWhenItemExists()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData existingData = [4, 5, 6];
+
+            // コピー元アイテムの追加
+            vs.AddItem("/item1", originalData);
+
+            // ターゲットディレクトリを作成し、シンボリックリンクを設定
+            vs.AddDirectory("/targetDir");
+            vs.AddSymbolicLink("/link", "/targetDir");
+
+            // ターゲットディレクトリに既存のアイテムを追加
+            vs.AddItem("/targetDir/newItem", existingData);
+
+            // シンボリックリンクを経由して、既存のアイテム名で上書きなしのコピーを試みる
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.CopyNode("/item1", "/link/newItem", false);
+            });
         }
     }
 }
