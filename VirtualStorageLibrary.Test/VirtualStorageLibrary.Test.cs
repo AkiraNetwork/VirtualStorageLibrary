@@ -2330,7 +2330,7 @@ namespace VirtualStorageLibrary.Test
             // Act and Assert
             Assert.ThrowsException<ArgumentException>(() => virtualStorage.ConvertToAbsolutePath(string.Empty));
         }
-        
+
         [TestMethod]
         public void ConvertToAbsolutePath_WhenCurrentPathIsRootAndPathDoesNotStartWithSlash_ReturnsAbsolutePath()
         {
@@ -2501,7 +2501,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage virtualStorage = new();
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 virtualStorage.AddDirectory("/test/directory", false));
         }
 
@@ -2544,7 +2544,7 @@ namespace VirtualStorageLibrary.Test
             virtualStorage.AddDirectory("/test/directory", true);
 
             // Act & Assert
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 virtualStorage.AddDirectory("/test/directory", false));
         }
 
@@ -3094,7 +3094,7 @@ namespace VirtualStorageLibrary.Test
             // Act and Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.GetDirectory(path));
         }
-        
+
         [TestMethod]
         public void GetDirectory_WhenPathIsRelative_ReturnsDirectory()
         {
@@ -3165,7 +3165,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsNotNull(item);
-            CollectionAssert.AreEqual(new byte[] {1, 2, 3 }, item.ItemData.Data);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, item.ItemData.Data);
         }
 
         [TestMethod]
@@ -3879,7 +3879,7 @@ namespace VirtualStorageLibrary.Test
         {
             VirtualStorage storage = new();
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 storage.RemoveNode("/NonExistingDirectory"));
         }
 
@@ -3891,7 +3891,7 @@ namespace VirtualStorageLibrary.Test
             BinaryData item = [1, 2, 3];
             storage.AddItem("/TestDirectory/TestItem", item);
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.RemoveNode("/TestDirectory"));
         }
 
@@ -3934,7 +3934,7 @@ namespace VirtualStorageLibrary.Test
             BinaryData item1 = [1, 2, 3];
             storage.AddItem("/Level1/Level2/Level3/Item1", item1);
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.RemoveNode("/Level1"));
         }
 
@@ -4016,7 +4016,7 @@ namespace VirtualStorageLibrary.Test
             // Arrange
             VirtualStorage storage = new();
             VirtualPath path = "/existing/directory";
-            storage.AddDirectory(path, true); 
+            storage.AddDirectory(path, true);
 
             // Act
             VirtualDirectory? directory = storage.TryGetDirectory(path);
@@ -4284,7 +4284,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/sourceFile", new BinaryData([1, 2, 3]));
             storage.AddItem("/destinationFile", new BinaryData([4, 5, 6]));
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode("/sourceFile", "/destinationFile", false));
         }
 
@@ -4320,7 +4320,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage storage = new();
             storage.AddDirectory("/destinationDir");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 storage.MoveNode("/nonExistentSource", "/destinationDir", false));
         }
 
@@ -4330,7 +4330,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage storage = new();
             storage.AddDirectory("/sourceDir");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 storage.MoveNode("/sourceDir", "/nonExistentDestination/newDir", false));
         }
 
@@ -4341,9 +4341,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory("/sourceDir", true);
             storage.AddDirectory("/destinationDir/sourceDir", true);
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode("/sourceDir", "/destinationDir", false));
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode("/sourceDir", "/destinationDir", true));
         }
 
@@ -4354,7 +4354,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory("/sourceDir");
             storage.AddItem("/destinationFile", new BinaryData([4, 5, 6]));
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode("/sourceDir", "/destinationFile", false));
         }
 
@@ -4364,7 +4364,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage storage = new();
             storage.AddDirectory("/destinationDir");
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode(VirtualPath.Root, "/destinationDir", false));
         }
 
@@ -4395,7 +4395,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory("/destinationDir");
             storage.AddItem("/destinationDir/fileName", new BinaryData([4, 5, 6])); // 移動先に同名のファイルが存在
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode("/sourceDir/fileName", "/destinationDir", false)); // 上書き禁止で例外を期待
         }
 
@@ -4429,7 +4429,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage storage = new();
             storage.AddDirectory("/validDir");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 storage.MoveNode("/invalid?Path", "/validDir"));
         }
 
@@ -4464,7 +4464,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage storage = new();
             storage.AddDirectory("/parentDir/subDir", true);
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode("/parentDir", "/parentDir/subDir"));
         }
 
@@ -4475,7 +4475,7 @@ namespace VirtualStorageLibrary.Test
             VirtualStorage storage = new();
             storage.AddItem("/file", new BinaryData([1, 2, 3]));
 
-            Assert.ThrowsException<InvalidOperationException>(() => 
+            Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.MoveNode("/file", "/file"));
         }
 
@@ -4487,7 +4487,7 @@ namespace VirtualStorageLibrary.Test
             storage.AddDirectory("/existingDir");
             storage.AddItem("/existingDir/file", new BinaryData([1, 2, 3]));
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => 
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 storage.MoveNode("/existingDir/file", "/nonExistentDir/file"));
         }
 
@@ -5621,7 +5621,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(result[0] == "/dir2/file1.txt");
             Assert.IsTrue(result[1] == "/dir2/file3.txt");
         }
-        
+
         [TestMethod]
         public void ResolvePath_WithCharacterClassMatch_FindsCorrectPaths()
         {
@@ -6192,7 +6192,7 @@ namespace VirtualStorageLibrary.Test
         {
             VirtualStorage vs = new();
             BinaryData data = [1, 2, 3];
-            
+
             // テストデータ
             vs.AddItem("/item1", data);
 
@@ -6220,8 +6220,8 @@ namespace VirtualStorageLibrary.Test
         public void CopyItemInternal_WithOverwritesExistingItem()
         {
             VirtualStorage vs = new();
-            BinaryData originalData = [ 1, 2, 3 ];
-            BinaryData newData = [ 4, 5, 6 ];
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
 
             // テストデータ
             vs.AddItem("/item1", originalData);
@@ -6310,6 +6310,13 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);
             CollectionAssert.AreEqual(data.Data, copiedItem.ItemData.Data);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
         }
 
         [TestMethod]
@@ -6340,17 +6347,24 @@ namespace VirtualStorageLibrary.Test
             vs.AddItem("/item1", originalData);
 
             // ターゲットディレクトリを作成し、シンボリックリンクを設定
-            vs.AddDirectory("/targetDir");
-            vs.AddSymbolicLink("/link", "/targetDir");
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/link", "/dir1");
 
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
-            vs.CopyNode("/item1", "/link/newItem", false);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link/item2");
 
             // 検査
-            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/targetDir/newItem");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("newItem", (string)copiedItem.Name);
+            Assert.AreEqual("item2", (string)copiedItem.Name);
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
         }
 
         [TestMethod]
@@ -6375,6 +6389,64 @@ namespace VirtualStorageLibrary.Test
             {
                 vs.CopyNode("/item1", "/link/newItem", false);
             });
+        }
+
+        [TestMethod]
+        public void CopyNode_ToSymbolicLinkTargetingFile_ThrowsExceptionWhenNoOverwrite()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData targetItemData = [4, 5, 6];
+
+            // コピー元アイテムの追加
+            vs.AddItem("/item1", originalData);
+
+            // ターゲットアイテムの作成とデータ追加
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item2", targetItemData);
+
+            // アイテムへのシンボリックリンクを作成
+            vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
+
+            // シンボリックリンクを経由して、アイテムに上書きなしでコピーを試みる
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.CopyNode("/item1", "/linkToItem");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_ToSymbolicLinkTargetingFile_SuccessfulCopyWithOverwrite()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData targetItemData = [4, 5, 6];
+
+            // コピー元アイテムの追加
+            vs.AddItem("/item1", originalData);
+
+            // ターゲットアイテムの作成とデータ追加
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item2", targetItemData);
+
+            // アイテムへのシンボリックリンクを作成
+            vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
+
+            // 上書きを許可してシンボリックリンクを経由してアイテムにコピー
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/linkToItem", true);
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
         }
     }
 }

@@ -1880,11 +1880,37 @@ namespace VirtualStorageLibrary
             return nodeContext.Node!;
         }
 
+        public VirtualNode? TryGetNode(VirtualPath path, bool followLinks = false)
+        {
+            VirtualPath absolutePath = ConvertToAbsolutePath(path);
+            try
+            {
+                // GetNodeメソッドは、ノードが見つからない場合にnullを返すか、例外をスローするように実装されていると仮定
+                return GetNode(absolutePath, followLinks);
+            }
+            catch (VirtualNodeNotFoundException)
+            {
+                return null; // ノードが存在しない場合はnullを返す
+            }
+        }
+
         public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualNodeContext nodeContext = WalkPathToTarget(path, null, null, true, true);
             return nodeContext.ResolvedPath!;
+        }
+
+        public VirtualPath? TryResolveLinkTarget(VirtualPath path)
+        {
+            try
+            {
+                return ResolveLinkTarget(path);
+            }
+            catch (VirtualNodeNotFoundException)
+            {
+                return null;
+            }
         }
 
         public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
@@ -2162,6 +2188,12 @@ namespace VirtualStorageLibrary
             VirtualPath destinationDirectoryPath;
             VirtualNodeName? newNodeName = null;
 
+            VirtualPath originalDestinationPath = destinationPath;
+            VirtualPath originalDestinationDirectoryPath;
+
+            sourcePath = TryResolveLinkTarget(sourcePath) ?? sourcePath;
+            destinationPath = TryResolveLinkTarget(destinationPath) ?? destinationPath;
+
             VirtualNode? destinationNode = TryGetNode(destinationPath, true);
 
             // コピー先ノードの種類のチェック
@@ -2171,6 +2203,7 @@ namespace VirtualStorageLibrary
                 newNodeName = destinationPath.NodeName;
                 destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
                 destinationDirectoryPath = destinationPath.DirectoryPath;
+                originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
             }
             else if (destinationNode is VirtualDirectory directory)
             {
@@ -2178,6 +2211,7 @@ namespace VirtualStorageLibrary
                 newNodeName = sourcePath.NodeName;
                 destinationDirectory = directory;
                 destinationDirectoryPath = destinationPath;
+                originalDestinationDirectoryPath = originalDestinationPath;
             }
             else
             {
@@ -2185,6 +2219,7 @@ namespace VirtualStorageLibrary
                 newNodeName = destinationPath.NodeName;
                 destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
                 destinationDirectoryPath = destinationPath.DirectoryPath;
+                originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
             }
 
             VirtualPath newItemPath = destinationPath.DirectoryPath + newNodeName;
@@ -2212,7 +2247,7 @@ namespace VirtualStorageLibrary
             destinationDirectory.Add(destinationItem);
 
             // コピー先ディレクトリからの相対パスを計算
-            VirtualPath relativePath = destinationPath.GetRelativePath(destinationDirectoryPath);
+            VirtualPath relativePath = originalDestinationPath.GetRelativePath(originalDestinationDirectoryPath);
 
             // コピー操作の結果を表す VirtualNodeContext を生成して返却
             VirtualNodeContext context = new VirtualNodeContext(
@@ -2236,6 +2271,7 @@ namespace VirtualStorageLibrary
         public void RemoveNode(VirtualPath path, bool recursive = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
+            path = ResolveLinkTarget(path);
 
             if (path.IsRoot)
             {
@@ -2245,7 +2281,7 @@ namespace VirtualStorageLibrary
             VirtualNode node = GetNode(path, true);
 
             // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
-            VirtualPath parentPath = path.GetParentPath();
+            VirtualPath parentPath = path.DirectoryPath;
             VirtualDirectory parentDirectory = GetDirectory(parentPath);
 
             if (node is VirtualDirectory directory)
@@ -2272,20 +2308,6 @@ namespace VirtualStorageLibrary
             {
                 // ここで親ディレクトリからアイテム（ノード）を削除
                 parentDirectory.Remove(node.Name);
-            }
-        }
-
-        public VirtualNode? TryGetNode(VirtualPath path, bool followLinks = false)
-        {
-            VirtualPath absolutePath = ConvertToAbsolutePath(path);
-            try
-            {
-                // GetNodeメソッドは、ノードが見つからない場合にnullを返すか、例外をスローするように実装されていると仮定
-                return GetNode(absolutePath, followLinks);
-            }
-            catch (VirtualNodeNotFoundException)
-            {
-                return null; // ノードが存在しない場合はnullを返す
             }
         }
 
