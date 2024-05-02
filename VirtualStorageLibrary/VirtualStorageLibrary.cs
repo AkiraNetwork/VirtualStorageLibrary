@@ -2191,8 +2191,8 @@ namespace VirtualStorageLibrary
             VirtualPath originalDestinationPath = destinationPath;
             VirtualPath originalDestinationDirectoryPath;
 
-            sourcePath = TryResolveLinkTarget(sourcePath) ?? sourcePath;
-            destinationPath = TryResolveLinkTarget(destinationPath) ?? destinationPath;
+            sourcePath = ResolveLinkTarget(sourcePath);
+            destinationPath = ResolveLinkTarget(destinationPath);
 
             VirtualNode? destinationNode = TryGetNode(destinationPath, true);
 
