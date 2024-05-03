@@ -6484,7 +6484,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_ToSymbolicLinkTargetingFile_ThrowException()
+        public void CopyNode_ToNonExistingSymbolicLinkTargetingFile_SuccessfullCopy()
         {
             VirtualStorage vs = new VirtualStorage();
             BinaryData originalData = [1, 2, 3];
@@ -6496,13 +6496,22 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
 
             // アイテムへのシンボリックリンクを作成
-            vs.AddSymbolicLink("/link", "/dir1/nonExistingItem");
+            vs.AddSymbolicLink("/link", "/dir1/item2");
 
-            // シンボリックリンクを経由してアイテムにコピーするが例外をキャッチする
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            // シンボリックリンクを経由してアイテムにコピーする
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link", true);
+
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
             {
-                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link");
-            });
+                Debug.WriteLine(context);
+            }
         }
 
         [TestMethod]
