@@ -6381,20 +6381,10 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link", "/dir1");
 
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link/item2");
-
-            // 検査
-            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
-            Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                Debug.WriteLine(context);
-            }
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link/item2");
+            });
         }
 
         [TestMethod]
