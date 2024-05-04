@@ -2194,7 +2194,7 @@ namespace VirtualStorageLibrary
             sourcePath = ResolveLinkTarget(sourcePath);
             destinationPath = ResolveLinkTarget(destinationPath);
 
-            VirtualNode destinationNode = TryGetNode(destinationPath, true);
+            VirtualNode? destinationNode = TryGetNode(destinationPath, true);
 
             // コピー先ノードの種類のチェック
             if (destinationNode == null)
