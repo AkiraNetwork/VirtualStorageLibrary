@@ -6474,7 +6474,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_ToNonExistingSymbolicLinkTargetingFile_SuccessfullCopy()
+        public void CopyNode_ToNonExistingSymbolicLinkTargetingFile_SuccessfulCopy()
         {
             VirtualStorage vs = new VirtualStorage();
             BinaryData originalData = [1, 2, 3];

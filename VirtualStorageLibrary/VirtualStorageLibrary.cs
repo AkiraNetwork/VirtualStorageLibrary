@@ -2191,10 +2191,20 @@ namespace VirtualStorageLibrary
             VirtualPath originalDestinationPath = destinationPath;
             VirtualPath originalDestinationDirectoryPath;
 
-            sourcePath = ResolveLinkTarget(sourcePath);
-            destinationPath = ResolveLinkTarget(destinationPath);
+            //sourcePath = ResolveLinkTarget(sourcePath);
+            //destinationPath = ResolveLinkTarget(destinationPath);
 
-            VirtualNode? destinationNode = TryGetNode(destinationPath, true);
+            VirtualNodeContext nodeContext = WalkPathToTarget(destinationPath, null, null, true, false);
+            VirtualNode? destinationNode = nodeContext.Node;
+
+            if (destinationNode != null)
+            {
+                if (nodeContext.ResolvedPath != null && nodeContext.TraversalPath != nodeContext.ResolvedPath)
+                {
+                    // リンク先のノードが見つかった場合は、リンク先のノードをコピー先として扱う
+                    destinationPath = nodeContext.ResolvedPath;
+                }
+            }
 
             // コピー先ノードの種類のチェック
             if (destinationNode == null)
