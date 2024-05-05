@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VirtualStorageLibrary.Test
 {
@@ -6381,10 +6382,20 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link", "/dir1");
 
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link/item2");
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("item2", (string)copiedItem.Name);
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
             {
-                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link/item2");
-            });
+                Debug.WriteLine(context);
+            }
         }
 
         [TestMethod]
@@ -6489,19 +6500,10 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link", "/dir1/item2");
 
             // シンボリックリンクを経由してアイテムにコピーする
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link", true);
-
-            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
-            Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                Debug.WriteLine(context);
-            }
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link");
+            });
         }
 
         [TestMethod]
