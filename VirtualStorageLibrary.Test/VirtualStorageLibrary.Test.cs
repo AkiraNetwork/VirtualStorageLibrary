@@ -1585,7 +1585,7 @@ namespace VirtualStorageLibrary.Test
             directory.Add(existingNode);
 
             // Get メソッドを使用してノードを取得
-            VirtualNode retrievedNode = directory.Get("ExistingNode");
+            VirtualNode? retrievedNode = directory.Get("ExistingNode");
 
             // 取得したノードが期待通りであることを確認
             Assert.AreEqual(existingNode, retrievedNode);
@@ -1600,7 +1600,7 @@ namespace VirtualStorageLibrary.Test
             // 存在しないノード名で Get メソッドを呼び出すと例外がスローされることを確認
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                VirtualNode retrievedNode = directory.Get("NonExistingNode");
+                VirtualNode? retrievedNode = directory.Get("NonExistingNode");
             });
         }
 
@@ -6500,10 +6500,20 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link", "/dir1/item2");
 
             // シンボリックリンクを経由してアイテムにコピーする
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link");
+ 
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
             {
-                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link");
-            });
+                Debug.WriteLine(context);
+            }
         }
 
         [TestMethod]

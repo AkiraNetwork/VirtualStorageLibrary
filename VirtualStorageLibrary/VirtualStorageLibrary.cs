@@ -1248,11 +1248,18 @@ namespace VirtualStorageLibrary
             _nodes.Remove(name);
         }
 
-        public VirtualNode Get(VirtualNodeName name)
+        public VirtualNode? Get(VirtualNodeName name, bool exceptionEnabled = true)
         {
             if (!NodeExists(name))
             {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+                if (exceptionEnabled)
+                {
+                    throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+                }
+                else
+                {
+                    return null;
+                }
             }
             return _nodes[name];
         }
@@ -1269,8 +1276,8 @@ namespace VirtualStorageLibrary
                 throw new InvalidOperationException($"指定されたノード '{newName}' は存在しません。");
             }
 
-            var node = Get(oldName);
-            node.Name = newName;
+            VirtualNode? node = Get(oldName);
+            node!.Name = newName;
             Add(node);
             Remove(oldName);
         }
@@ -2194,78 +2201,48 @@ namespace VirtualStorageLibrary
 
         private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
         {
+            VirtualNodeName? newNodeName = null;
+
             IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
 
-            VirtualDirectory destinationDirectory;
-            VirtualPath destinationDirectoryPath;
-            VirtualNodeName? newNodeName = null;
+            VirtualPath destinationDirectoryPath = destinationPath.DirectoryPath;
+            VirtualDirectory destinationDirectory = GetDirectory(destinationDirectoryPath, true);
+            VirtualNodeName destinationNodeName = destinationPath.NodeName;
+
+            VirtualNode? destinationNode = destinationDirectory.Get(destinationNodeName, false);
 
             VirtualPath originalDestinationPath = destinationPath;
             VirtualPath originalDestinationDirectoryPath;
 
-            //sourcePath = ResolveLinkTarget(sourcePath);
-            //destinationPath = ResolveLinkTarget(destinationPath);
-
-            VirtualNodeContext nodeContext = WalkPathToTarget(destinationPath, null, null, true, false);
-            VirtualNode? destinationNode = nodeContext.Node;
-
-            if (destinationNode == null)
+            switch (destinationNode)
             {
-                if (nodeContext.Resolved)
-                {
-                    // リンク先の解決をしようとして失敗している場合は例外をスロー
-                    throw new VirtualNodeNotFoundException($"リンク先 '{destinationPath}' が見つかりません。");
-                }
-            }
-            else
-            {
-                if (nodeContext.ResolvedPath != null && nodeContext.TraversalPath != nodeContext.ResolvedPath)
-                {
-                    // リンク先のノードが見つかった場合は、リンク先のノードをコピー先として扱う
-                    destinationPath = nodeContext.ResolvedPath;
-                }
-            }
+                case VirtualDirectory directory:
+                    destinationDirectory = directory;
+                    newNodeName = sourcePath.NodeName;
+                    originalDestinationDirectoryPath = originalDestinationPath;
+                    break;
 
-            // コピー先ノードの種類のチェック
-            if (destinationNode == null)
-            {
-                // コピー先にノードが存在しない場合
-                newNodeName = destinationPath.NodeName;
-                destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
-                destinationDirectoryPath = destinationPath.DirectoryPath;
-                originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
-            }
-            else if (destinationNode is VirtualDirectory directory)
-            {
-                //　コピー先がディレクトリの場合
-                newNodeName = sourcePath.NodeName;
-                destinationDirectory = directory;
-                destinationDirectoryPath = destinationPath;
-                originalDestinationDirectoryPath = originalDestinationPath;
-            }
-            else
-            {
-                // コピー先がアイテムの場合
-                newNodeName = destinationPath.NodeName;
-                destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
-                destinationDirectoryPath = destinationPath.DirectoryPath;
-                originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
-            }
+                case VirtualItem _:
+                    if (overwrite)
+                    {
+                        destinationDirectory.Remove(destinationNodeName);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"アイテム '{destinationNodeName}' は既に存在します。上書きは許可されていません。");
+                    }
+                    newNodeName = destinationPath.NodeName;
+                    originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
+                    break;
 
-            VirtualPath newItemPath = destinationPath.DirectoryPath + newNodeName;
+                case VirtualSymbolicLink link:
+                    VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
+                    return CopyItemInternal(sourcePath, targetPath, overwrite);
 
-            // コピー先に同名のノードが存在する場合の処理
-            if (NodeExists(newItemPath, true))
-            {
-                // コピー先アイテムのノード名がソースと同じ場合
-                if (!overwrite)
-                {
-                    // 上書きフラグが指定されていない場合は例外をスロー
-                    throw new InvalidOperationException($"アイテム '{newItemPath.NodeName}' は既に存在します。上書きは許可されていません。");
-                }
-
-                // 上書きフラグが指定されている場合は、コピー先アイテムを削除
-                RemoveNode(destinationPath);
+                default:
+                    newNodeName = destinationPath.NodeName;
+                    originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
+                    break;
             }
 
             // コピー元アイテムを取得
