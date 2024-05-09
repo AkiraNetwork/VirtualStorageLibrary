@@ -1522,7 +1522,12 @@ namespace VirtualStorageLibrary
             return true;
         }
 
-        public VirtualNodeContext WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled)
+        public VirtualNodeContext WalkPathToTarget(
+            VirtualPath targetPath,
+            NotifyNodeDelegate? notifyNode = null,
+            ActionNodeDelegate? actionNode = null,
+            bool followLinks = true,
+            bool exceptionEnabled = true)
         {
             targetPath = ConvertToAbsolutePath(targetPath).NormalizePath();
             VirtualNodeContext? nodeContext = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, notifyNode, actionNode, followLinks, exceptionEnabled, false);
@@ -1530,7 +1535,17 @@ namespace VirtualStorageLibrary
             return nodeContext;
         }
 
-        private VirtualNodeContext WalkPathToTargetInternal(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled, bool resolved)
+        private VirtualNodeContext WalkPathToTargetInternal(
+            VirtualPath targetPath,
+            int traversalIndex,
+            VirtualPath traversalPath,
+            VirtualPath? resolvedPath,
+            VirtualDirectory traversalDirectory,
+            NotifyNodeDelegate? notifyNode,
+            ActionNodeDelegate? actionNode,
+            bool followLinks,
+            bool exceptionEnabled,
+            bool resolved)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (targetPath.IsRoot)
