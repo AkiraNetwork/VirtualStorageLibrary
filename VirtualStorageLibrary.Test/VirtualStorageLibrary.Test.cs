@@ -6497,11 +6497,45 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
 
             // アイテムへのシンボリックリンクを作成
-            vs.AddSymbolicLink("/link", "/dir1/item2");
+            vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
 
             // シンボリックリンクを経由してアイテムにコピーする
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/link");
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/linkToItem");
  
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
+        [TestMethod]
+        public void CopyNode_ToNonExistingDeepSymbolicLinkTargetingFile_SuccessfulCopy()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            BinaryData originalData = [1, 2, 3];
+
+            // コピー元アイテムの追加
+            vs.AddItem("/item1", originalData);
+
+            // ターゲットアイテムの作成とデータ追加
+            vs.AddDirectory("/dir1");
+
+            // アイテムへのシンボリックリンクを作成
+            vs.AddSymbolicLink("/linkToItem", "/linkToItem2");
+            vs.AddSymbolicLink("/linkToItem2", "/linkToItem3");
+            vs.AddSymbolicLink("/linkToItem3", "/dir1/item2");
+
+            // シンボリックリンクを経由してアイテムにコピーする
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/linkToItem");
+
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
@@ -6556,6 +6590,42 @@ namespace VirtualStorageLibrary.Test
 
             // アイテムへのシンボリックリンクを作成
             vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
+
+            // 上書きを許可してシンボリックリンクを経由してアイテムにコピー
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/linkToItem", true);
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
+            Assert.IsNotNull(copiedItem);
+            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
+        [TestMethod]
+        public void CopyNode_ToDeepSymbolicLinkTargetingFile_SuccessfulCopyWithOverwrite()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData targetItemData = [4, 5, 6];
+
+            // コピー元アイテムの追加
+            vs.AddItem("/item1", originalData);
+
+            // ターゲットアイテムの作成とデータ追加
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item2", targetItemData);
+
+            // アイテムへのシンボリックリンクを作成
+            vs.AddSymbolicLink("/linkToItem", "/linkToItem2");
+            vs.AddSymbolicLink("/linkToItem2", "/linkToItem3");
+            vs.AddSymbolicLink("/linkToItem3", "/dir1/item2");
 
             // 上書きを許可してシンボリックリンクを経由してアイテムにコピー
             IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/linkToItem", true);
