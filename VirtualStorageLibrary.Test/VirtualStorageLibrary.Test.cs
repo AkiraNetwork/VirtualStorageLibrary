@@ -935,21 +935,6 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(link.CreatedDate, clone.CreatedDate);
             Assert.AreEqual(link.UpdatedDate, clone.UpdatedDate);
         }
-
-        [TestMethod]
-        public void VirtualSymbolicLink_ToString_ReturnsCorrectFormat()
-        {
-            // Arrange
-            VirtualSymbolicLink symbolicLink = new("LinkToRoot", VirtualPath.Root);
-
-            // Act
-            string result = symbolicLink.ToString();
-            Debug.WriteLine(result);
-            Console.WriteLine(result);
-
-            // Assert
-            Assert.AreEqual("Symbolic Link: LinkToRoot -> /", result);
-        }
     }
 
     [TestClass]

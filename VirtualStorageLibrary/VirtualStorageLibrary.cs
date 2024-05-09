@@ -959,6 +959,8 @@ namespace VirtualStorageLibrary
             CreatedDate = createdDate;
             UpdatedDate = updatedDate;
         }
+
+        public override string ToString() => $"{Name}";
     }
 
     public class VirtualSymbolicLink : VirtualNode
@@ -979,11 +981,7 @@ namespace VirtualStorageLibrary
             TargetPath = targetPath;
         }
 
-        public override string ToString()
-        {
-            // シンボリックリンクの名前と、リンク先のパスを返します。
-            return $"Symbolic Link: {Name} -> {TargetPath}";
-        }
+        public override string ToString() => $"{Name} -> {TargetPath}";
 
         public override VirtualNode DeepClone()
         {
@@ -1020,24 +1018,7 @@ namespace VirtualStorageLibrary
             disposed = false;
         }
 
-        public override string ToString()
-        {
-            string itemInformation = $"ItemData: {Name}";
-
-            // C# 8.0の null 非許容参照型に対応
-            // Itemがnullではないことを確認し、ItemのToString()の結果を使用
-            if (ItemData != null && ItemData.GetType().ToString() != ItemData.ToString())
-            {
-                itemInformation += $", {ItemData.ToString()}";
-            }
-
-            // CreatedDateとUpdatedDateを追加
-            string createdDateFormatted = CreatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
-            string updatedDateFormatted = UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
-            itemInformation += $", CreatedDate: {createdDateFormatted}, UpdatedDate: {updatedDateFormatted}";
-
-            return itemInformation;
-        }
+        public override string ToString() => $"{Name}";
 
         public override VirtualNode DeepClone()
         {
@@ -1139,17 +1120,7 @@ namespace VirtualStorageLibrary
             _nodes = new();
         }
 
-        public override string ToString()
-        {
-            string directoryInformation = $"Directory: {Name}";
-
-            // CreatedDateとUpdatedDateを追加
-            string createdDateFormatted = CreatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
-            string updatedDateFormatted = UpdatedDate.ToString("yyyy/MM/dd HH:mm:ss.ffffff");
-            directoryInformation += $", CreatedDate: {createdDateFormatted}, UpdatedDate: {updatedDateFormatted}";
-
-            return directoryInformation;
-        }
+        public override string ToString() => $"{Name}/";
 
         public override VirtualNode DeepClone()
         {
