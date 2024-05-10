@@ -6453,7 +6453,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/linkToItem", "/item1");
 
             // シンボリックリンクを経由してアイテムにコピー
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/linkToItem", "/dir1/item2");
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/linkToItem", "/dir1/item2", false, true);
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
@@ -6620,6 +6620,35 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLink_Simple()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddItem("/item1", data);
+            vs.AddSymbolicLink("/link1", "/item1");
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false);
+
+            // 検査
+            VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/link2");
+            VirtualSymbolicLink originalLink = vs.GetSymbolicLink("/link1");
+            Assert.IsTrue(copiedLink.Name == "link2");
+            Assert.AreNotEqual(originalLink, copiedLink);
+            Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
+            Assert.AreNotSame(originalLink, copiedLink);
 
             // コンテキストの表示
             Debug.WriteLine("context:");

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq.Expressions;
@@ -1055,7 +1056,7 @@ namespace VirtualStorageLibrary
         }
     }
 
-    public class VirtualDirectory : VirtualNode
+    public class VirtualDirectory : VirtualNode, IEnumerable<VirtualNode>
     {
         private Dictionary<VirtualNodeName, VirtualNode> _nodes = new();
 
@@ -1252,6 +1253,10 @@ namespace VirtualStorageLibrary
             Add(node);
             Remove(oldName);
         }
+
+        public IEnumerator<VirtualNode> GetEnumerator() => Nodes.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     public class VirtualStorage
@@ -2140,8 +2145,8 @@ namespace VirtualStorageLibrary
             VirtualPath sourcePath,
             VirtualPath destinationPath,
             bool overwrite = false,
-            bool recursive = false,
-            bool followLinks = false)
+            bool followLinks = false,
+            bool recursive = false)
         {
             sourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
@@ -2158,34 +2163,85 @@ namespace VirtualStorageLibrary
                 throw new InvalidOperationException("コピー元パスとコピー先パスが同じです。");
             }
 
-            IEnumerable<VirtualNodeContext> nodeContexts = Enumerable.Empty<VirtualNodeContext>();
-            VirtualNode sourceNode = GetNode(sourcePath, true);
+            IEnumerable<VirtualNodeContext> destinationContexts = Enumerable.Empty<VirtualNodeContext>();
+
+            IEnumerable<VirtualNodeContext> sourceContexts = WalkPathTree(sourcePath, VirtualNodeTypeFilter.All, recursive, followLinks);
+
+            VirtualNode sourceNode = sourceContexts.First().Node!;
 
             if (sourceNode is VirtualDirectory)
             {
-                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, destinationPath, overwrite, recursive);
-                nodeContexts = nodeContexts.Concat(contexts);
+                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, destinationPath, overwrite, recursive, followLinks);
+                destinationContexts = destinationContexts.Concat(contexts);
             }
             else if (sourceNode is VirtualItem)
             {
-                IEnumerable<VirtualNodeContext> contexts = CopyItemInternal(sourcePath, destinationPath, overwrite);
-                nodeContexts = nodeContexts.Concat(contexts);
+                IEnumerable<VirtualNodeContext> contexts = CopyItemInternal(sourcePath, destinationPath, overwrite, followLinks);
+                destinationContexts = destinationContexts.Concat(contexts);
             }
             else if (sourceNode is VirtualSymbolicLink)
             {
                 IEnumerable<VirtualNodeContext> contexts = CopySymbolicLinkInternal(sourcePath, destinationPath, overwrite, followLinks);
-                nodeContexts = nodeContexts.Concat(contexts);
+                destinationContexts = destinationContexts.Concat(contexts);
             }
 
-            return nodeContexts;
+            return destinationContexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
+        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive, bool followLinks)
         {
-            throw new NotImplementedException();
+            // ディレクトリを取得
+            VirtualDirectory sourceDirectory = GetDirectory(sourcePath, true);
+            VirtualDirectory destinationDirectory;
+    
+            // ディレクトリの存在をチェック
+            VirtualNode? existingDestinationNode = TryGetNode(destinationPath, false);
+            if (existingDestinationNode != null)
+            {
+                if (!overwrite)
+                {
+                    throw new InvalidOperationException($"ディレクトリ '{destinationPath.NodeName}' は既に存在します。上書きは許可されていません。");
+                }
+                if (!(existingDestinationNode is VirtualDirectory))
+                {
+                    throw new InvalidOperationException($"ディレクトリパス '{destinationPath}' にはディレクトリ以外のノードが存在します。");
+                }
+
+                // 既存のディレクトリにマージする為、コピー元ディレクトリのノードを取得
+                destinationDirectory = (VirtualDirectory)existingDestinationNode;
+            }
+            else
+            {
+                destinationDirectory = new VirtualDirectory(destinationPath.NodeName);
+                GetDirectory(destinationPath.DirectoryPath, true).Add(destinationDirectory);
+            }
+
+            IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
+
+            // ディレクトリ内の各ノードをコピー
+            foreach (VirtualNode node in sourceDirectory)
+            {
+                VirtualPath childSourcePath = sourcePath.Combine(node.Name);
+                VirtualPath childDestinationPath = destinationPath.Combine(node.Name);
+
+                if (node is VirtualDirectory && recursive)
+                {
+                    contexts = contexts.Concat(CopyDirectoryInternal(childSourcePath, childDestinationPath, overwrite, recursive, followLinks));
+                }
+                else if (node is VirtualItem)
+                {
+                    contexts = contexts.Concat(CopyItemInternal(childSourcePath, childDestinationPath, overwrite, followLinks));
+                }
+                else if (node is VirtualSymbolicLink)
+                {
+                    contexts = contexts.Concat(CopySymbolicLinkInternal(childSourcePath, childDestinationPath, overwrite, followLinks));
+                }
+            }
+
+            return contexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
+        private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool followLinks)
         {
             VirtualNodeName? newNodeName = null;
 
@@ -2223,7 +2279,7 @@ namespace VirtualStorageLibrary
 
                 case VirtualSymbolicLink link:
                     VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
-                    return CopyItemInternal(sourcePath, targetPath, overwrite);
+                    return CopyItemInternal(sourcePath, targetPath, overwrite, followLinks);
 
                 default:
                     newNodeName = destinationPath.NodeName;
@@ -2232,7 +2288,7 @@ namespace VirtualStorageLibrary
             }
 
             // コピー元アイテムを取得
-            VirtualNode sourceItem = GetNode(sourcePath, true);
+            VirtualNode sourceItem = GetNode(sourcePath, followLinks);
             VirtualNode destinationItem = sourceItem.DeepClone();
             destinationItem.Name = newNodeName;
 
@@ -2258,7 +2314,75 @@ namespace VirtualStorageLibrary
 
         private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool followLinks)
         {
-            throw new NotImplementedException();
+            // TODO: 実質、CopyItemInternal と同じ処理なので、共通化する事を検討する
+
+            VirtualNodeName? newNodeName = null;
+
+            IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
+
+            VirtualPath destinationDirectoryPath = destinationPath.DirectoryPath;
+            VirtualDirectory destinationDirectory = GetDirectory(destinationDirectoryPath, true);
+            VirtualNodeName destinationNodeName = destinationPath.NodeName;
+
+            VirtualNode? destinationNode = destinationDirectory.Get(destinationNodeName, false);
+
+            VirtualPath originalDestinationPath = destinationPath;
+            VirtualPath originalDestinationDirectoryPath;
+
+            switch (destinationNode)
+            {
+                case VirtualDirectory directory:
+                    destinationDirectory = directory;
+                    newNodeName = sourcePath.NodeName;
+                    originalDestinationDirectoryPath = originalDestinationPath;
+                    break;
+
+                case VirtualItem _:
+                    if (overwrite)
+                    {
+                        destinationDirectory.Remove(destinationNodeName);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"アイテム '{destinationNodeName}' は既に存在します。上書きは許可されていません。");
+                    }
+                    newNodeName = destinationPath.NodeName;
+                    originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
+                    break;
+
+                case VirtualSymbolicLink link:
+                    VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
+                    return CopySymbolicLinkInternal(sourcePath, targetPath, overwrite, followLinks);
+
+                default:
+                    newNodeName = destinationPath.NodeName;
+                    originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
+                    break;
+            }
+
+            // コピー元アイテムを取得
+            VirtualNode sourceItem = GetNode(sourcePath, followLinks);
+            VirtualNode destinationItem = sourceItem.DeepClone();
+            destinationItem.Name = newNodeName;
+
+            // コピー元アイテムをコピー先ディレクトリに追加
+            destinationDirectory.Add(destinationItem);
+
+            // コピー先ディレクトリからの相対パスを計算
+            VirtualPath relativePath = originalDestinationPath.GetRelativePath(originalDestinationDirectoryPath);
+
+            // コピー操作の結果を表す VirtualNodeContext を生成して返却
+            VirtualNodeContext context = new VirtualNodeContext(
+                node: destinationItem,
+                traversalPath: relativePath,
+                parentNode: destinationDirectory,
+                depth: relativePath.Depth,
+                index: 0
+            );
+
+            contexts = contexts.Append(context);
+
+            return contexts;
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
