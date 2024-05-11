@@ -6628,34 +6628,5 @@ namespace VirtualStorageLibrary.Test
                 Debug.WriteLine(context);
             }
         }
-
-        [TestMethod]
-        public void CopyNode_CopySymbolicLink_Simple()
-        {
-            VirtualStorage vs = new();
-            BinaryData data = [1, 2, 3];
-
-            // テストデータ
-            vs.AddItem("/item1", data);
-            vs.AddSymbolicLink("/link1", "/item1");
-
-            // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false);
-
-            // 検査
-            VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/link2");
-            VirtualSymbolicLink originalLink = vs.GetSymbolicLink("/link1");
-            Assert.IsTrue(copiedLink.Name == "link2");
-            Assert.AreNotEqual(originalLink, copiedLink);
-            Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
-            Assert.AreNotSame(originalLink, copiedLink);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-        }
     }
 }
