@@ -2172,7 +2172,7 @@ namespace VirtualStorageLibrary
 
             if (sourceNode is VirtualDirectory)
             {
-                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, destinationPath, overwrite, recursive, followLinks);
+                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, sourceNode, destinationPath, overwrite, recursive, followLinks);
                 destinationContexts = destinationContexts.Concat(contexts);
             }
             else if (sourceNode is VirtualItem)
@@ -2182,64 +2182,17 @@ namespace VirtualStorageLibrary
             }
             else if (sourceNode is VirtualSymbolicLink)
             {
-                IEnumerable<VirtualNodeContext> contexts = CopySymbolicLinkInternal(sourcePath, destinationPath, overwrite, followLinks);
+                IEnumerable<VirtualNodeContext> contexts = CopySymbolicLinkInternal(sourcePath, sourceNode, destinationPath, overwrite, followLinks);
                 destinationContexts = destinationContexts.Concat(contexts);
             }
 
             return destinationContexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive, bool followLinks)
+        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualNode sourceDirectory, VirtualPath destinationPath, bool overwrite, bool recursive, bool followLinks)
         {
-            // ディレクトリを取得
-            VirtualDirectory sourceDirectory = GetDirectory(sourcePath, true);
-            VirtualDirectory destinationDirectory;
-    
-            // ディレクトリの存在をチェック
-            VirtualNode? existingDestinationNode = TryGetNode(destinationPath, false);
-            if (existingDestinationNode != null)
-            {
-                if (!overwrite)
-                {
-                    throw new InvalidOperationException($"ディレクトリ '{destinationPath.NodeName}' は既に存在します。上書きは許可されていません。");
-                }
-                if (!(existingDestinationNode is VirtualDirectory))
-                {
-                    throw new InvalidOperationException($"ディレクトリパス '{destinationPath}' にはディレクトリ以外のノードが存在します。");
-                }
-
-                // 既存のディレクトリにマージする為、コピー元ディレクトリのノードを取得
-                destinationDirectory = (VirtualDirectory)existingDestinationNode;
-            }
-            else
-            {
-                destinationDirectory = new VirtualDirectory(destinationPath.NodeName);
-                GetDirectory(destinationPath.DirectoryPath, true).Add(destinationDirectory);
-            }
-
-            IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
-
-            // ディレクトリ内の各ノードをコピー
-            foreach (VirtualNode node in sourceDirectory)
-            {
-                VirtualPath childSourcePath = sourcePath.Combine(node.Name);
-                VirtualPath childDestinationPath = destinationPath.Combine(node.Name);
-
-                if (node is VirtualDirectory && recursive)
-                {
-                    contexts = contexts.Concat(CopyDirectoryInternal(childSourcePath, childDestinationPath, overwrite, recursive, followLinks));
-                }
-                else if (node is VirtualItem)
-                {
-                    //contexts = contexts.Concat(CopyItemInternal(childSourcePath, childDestinationPath, overwrite, followLinks));
-                }
-                else if (node is VirtualSymbolicLink)
-                {
-                    contexts = contexts.Concat(CopySymbolicLinkInternal(childSourcePath, childDestinationPath, overwrite, followLinks));
-                }
-            }
-
-            return contexts;
+            // TODO: 実質、CopyItemInternal と同じ処理なので、共通化する事を検討する
+            throw new NotImplementedException();
         }
 
         private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualNode sourceItem, VirtualPath destinationPath, bool overwrite, bool followLinks)
@@ -2312,7 +2265,7 @@ namespace VirtualStorageLibrary
             return contexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool followLinks)
+        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualNode sourceLink, VirtualPath destinationPath, bool overwrite, bool followLinks)
         {
             // TODO: 実質、CopyItemInternal と同じ処理なので、共通化する事を検討する
             throw new NotImplementedException();
