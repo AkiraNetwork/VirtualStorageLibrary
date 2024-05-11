@@ -2170,32 +2170,13 @@ namespace VirtualStorageLibrary
 
             VirtualNode sourceNode = sourceContexts.First().Node!;
 
-            if (sourceNode is VirtualDirectory)
-            {
-                IEnumerable<VirtualNodeContext> contexts = CopyDirectoryInternal(sourcePath, sourceNode, destinationPath, overwrite, recursive, followLinks);
-                destinationContexts = destinationContexts.Concat(contexts);
-            }
-            else if (sourceNode is VirtualItem)
-            {
-                IEnumerable<VirtualNodeContext> contexts = CopyItemInternal(sourcePath, sourceNode, destinationPath, overwrite, followLinks);
-                destinationContexts = destinationContexts.Concat(contexts);
-            }
-            else if (sourceNode is VirtualSymbolicLink)
-            {
-                IEnumerable<VirtualNodeContext> contexts = CopySymbolicLinkInternal(sourcePath, sourceNode, destinationPath, overwrite, followLinks);
-                destinationContexts = destinationContexts.Concat(contexts);
-            }
+            IEnumerable<VirtualNodeContext> contexts = CopySingleInternal(sourcePath, sourceNode, destinationPath, overwrite, followLinks);
+            destinationContexts = destinationContexts.Concat(contexts);
 
             return destinationContexts;
         }
 
-        private IEnumerable<VirtualNodeContext> CopyDirectoryInternal(VirtualPath sourcePath, VirtualNode sourceDirectory, VirtualPath destinationPath, bool overwrite, bool recursive, bool followLinks)
-        {
-            // TODO: 実質、CopyItemInternal と同じ処理なので、共通化する事を検討する
-            throw new NotImplementedException();
-        }
-
-        private IEnumerable<VirtualNodeContext> CopyItemInternal(VirtualPath sourcePath, VirtualNode sourceItem, VirtualPath destinationPath, bool overwrite, bool followLinks)
+        private IEnumerable<VirtualNodeContext> CopySingleInternal(VirtualPath sourcePath, VirtualNode sourceNode, VirtualPath destinationPath, bool overwrite, bool followLinks)
         {
             VirtualNodeName? newNodeName = null;
 
@@ -2231,7 +2212,7 @@ namespace VirtualStorageLibrary
 
                 case VirtualSymbolicLink link:
                     VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
-                    return CopyItemInternal(sourcePath, sourceItem, targetPath, overwrite, followLinks);
+                    return CopySingleInternal(sourcePath, sourceNode, targetPath, overwrite, followLinks);
 
                 default:
                     newNodeName = destinationPath.NodeName;
@@ -2240,7 +2221,7 @@ namespace VirtualStorageLibrary
             }
 
             // コピー先アイテムを作成
-            VirtualNode destinationItem = sourceItem.DeepClone();
+            VirtualNode destinationItem = sourceNode.DeepClone();
             destinationItem.Name = newNodeName;
 
             // コピー元アイテムをコピー先ディレクトリに追加
@@ -2261,12 +2242,6 @@ namespace VirtualStorageLibrary
             contexts = contexts.Append(context);
 
             return contexts;
-        }
-
-        private IEnumerable<VirtualNodeContext> CopySymbolicLinkInternal(VirtualPath sourcePath, VirtualNode sourceLink, VirtualPath destinationPath, bool overwrite, bool followLinks)
-        {
-            // TODO: 実質、CopyItemInternal と同じ処理なので、共通化する事を検討する
-            throw new NotImplementedException();
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false)
