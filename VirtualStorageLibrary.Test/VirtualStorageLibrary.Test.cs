@@ -1130,14 +1130,7 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
             Assert.AreEqual(originalDirectory.CreatedDate, clonedDirectory.CreatedDate);
             Assert.AreEqual(originalDirectory.UpdatedDate, clonedDirectory.UpdatedDate);
-            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
-
-            // 各ノードも適切にクローンされていることを検証
-            foreach (VirtualNodeName name in originalDirectory.NodeNames)
-            {
-                Assert.AreNotSame(originalDirectory[name], clonedDirectory[name]);
-                Assert.AreEqual(originalDirectory[name].Name, clonedDirectory[name].Name);
-            }
+            Assert.AreEqual(0, clonedDirectory.Count); // ディレクトリのコピーなのでノードはコピーされない
         }
 
         [TestMethod]
@@ -1184,62 +1177,9 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(clonedDirectory);
             Assert.AreNotSame(originalDirectory, clonedDirectory);
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
-            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
-            Assert.AreNotSame(originalDirectory.Nodes.First(), clonedDirectory.Nodes.First());
+            Assert.AreEqual(clonedDirectory.Count, 0); // ディレクトリのコピーなのでアイテムはコピーされない
         }
-
-        [TestMethod]
-        public void DeepClone_ReturnsDeepCopyOfVirtualDirectory_WithSubdirectories()
-        {
-            // Arrange
-            VirtualDirectory originalDirectory = new("original");
-            VirtualDirectory subDirectory = new("sub");
-            originalDirectory.Add(subDirectory);
-
-            // Act
-            VirtualDirectory clonedDirectory = (VirtualDirectory)originalDirectory.DeepClone();
-
-            // Assert
-            Assert.IsNotNull(clonedDirectory);
-            Assert.AreNotSame(originalDirectory, clonedDirectory);
-            Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
-            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
-            Assert.AreNotSame(originalDirectory.Nodes.First(), clonedDirectory.Nodes.First());
-
-            VirtualDirectory clonedSubDirectory = (VirtualDirectory)clonedDirectory.Nodes.First();
-            Assert.AreEqual(subDirectory.Name, clonedSubDirectory.Name);
-            Assert.AreNotSame(subDirectory, clonedSubDirectory);
-        }
-
-        [TestMethod]
-        public void DeepClone_ReturnsDeepCopyOfVirtualDirectory_WithNonDeepCloneableItem()
-        {
-            // Arrange
-            VirtualDirectory originalDirectory = new("original");
-            SimpleData nonCloneableItem = new(10);
-            VirtualItem<SimpleData> virtualItem = new("item", nonCloneableItem);
-            originalDirectory.Add(virtualItem);
-
-            // Act
-            VirtualDirectory clonedDirectory = (VirtualDirectory)originalDirectory.DeepClone();
-
-            // Assert
-            Assert.IsNotNull(clonedDirectory);
-            Assert.AreNotSame(originalDirectory, clonedDirectory);
-            Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
-            Assert.AreEqual(originalDirectory.Count, clonedDirectory.Count);
-
-            VirtualItem<SimpleData>? originalItem = originalDirectory.Get("item") as VirtualItem<SimpleData>;
-            VirtualItem<SimpleData>? clonedItem = clonedDirectory.Get("item") as VirtualItem<SimpleData>;
-            Assert.IsNotNull(originalItem);
-            Assert.IsNotNull(clonedItem);
-            Assert.AreNotSame(originalItem, clonedItem);
-            Assert.AreEqual(originalItem.Name, clonedItem.Name);
-            
-            // SimpleDataインスタンスがシャローコピーされていることを確認
-            Assert.AreSame(originalItem.ItemData, clonedItem.ItemData);
-        }
-        
+       
         [TestMethod]
         public void Add_NewNode_AddsNodeCorrectly()
         {
@@ -6174,7 +6114,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_CopyItem_Simple()
+        public void CopyNode_CopyItemToNewItem()
         {
             VirtualStorage vs = new();
             BinaryData data = [1, 2, 3];
@@ -6203,7 +6143,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_CopyItem_ToDeepDirectory()
+        public void CopyNode_CopyItemToDeepDirectory()
         {
             VirtualStorage vs = new();
             BinaryData data = [1, 2, 3];
@@ -6233,7 +6173,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyItemInternal_WithOverwritesExistingItem()
+        public void CopyNode_CopyItemToWithOverwritesExistingItem()
         {
             VirtualStorage vs = new();
             BinaryData originalData = [1, 2, 3];
@@ -6264,7 +6204,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_SourceNodeDoesNotExist_ThrowsException()
+        public void CopyNode_CopyItemToSourceNodeDoesNotExist_ThrowsException()
         {
             VirtualStorage vs = new();
 
@@ -6276,7 +6216,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_SameSourceAndDestination_ThrowsException()
+        public void CopyNode_CopyItemToSameSourceAndDestination_ThrowsException()
         {
             VirtualStorage vs = new();
             BinaryData data = [1, 2, 3];
@@ -6292,7 +6232,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_ExistingDestinationWithoutOverwrite_ThrowsException()
+        public void CopyNode_CopyItemToExistingDestinationWithoutOverwrite_ThrowsException()
         {
             VirtualStorage vs = new();
             BinaryData data = [1, 2, 3];
@@ -6309,7 +6249,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_DestinationDirectoryDoesNotExist_CreatesNewItem()
+        public void CopyNode_CopyItemToDestinationDirectoryDoesNotExist_CreatesNewItem()
         {
             VirtualStorage vs = new();
             BinaryData data = [1, 2, 3];
@@ -6336,7 +6276,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_ExistingItemInDestinationWithoutOverwrite_ThrowsException()
+        public void CopyNode_CopyItemToExistingItemInDestinationWithoutOverwrite_ThrowsException()
         {
             VirtualStorage vs = new();
             BinaryData data = [1, 2, 3];
@@ -6354,7 +6294,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_ToSymbolicLinkTargetingDirectory_SuccessfulCopy()
+        public void CopyNode_CopyItemToSymbolicLinkTargetingDirectory_SuccessfulCopy()
         {
             VirtualStorage vs = new VirtualStorage();
             BinaryData originalData = [1, 2, 3];
@@ -6384,7 +6324,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_ToSymbolicLinkTargetingIntermediateDirectory_SuccessfulCopy()
+        public void CopyNode_CopyItemToSymbolicLinkTargetingIntermediateDirectory_SuccessfulCopy()
         {
             VirtualStorage vs = new VirtualStorage();
             BinaryData originalData = [1, 2, 3];
@@ -6414,7 +6354,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_ToSymbolicLinkTargetingDirectory_ThrowsExceptionWhenItemExists()
+        public void CopyNode_CopyItemToSymbolicLinkTargetingDirectory_ThrowsExceptionWhenItemExists()
         {
             VirtualStorage vs = new VirtualStorage();
             BinaryData originalData = [1, 2, 3];
@@ -6628,5 +6568,65 @@ namespace VirtualStorageLibrary.Test
                 Debug.WriteLine(context);
             }
         }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToNewDirectory()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data);
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dir2");
+
+            // 検査
+            VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2");
+            VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
+            Assert.IsTrue(copiedDirectory.Name == "dir2");
+            Assert.AreNotEqual(originalDirectory, copiedDirectory);
+            Assert.AreNotSame(originalDirectory, copiedDirectory);
+            Assert.AreEqual(0, copiedDirectory.Count);  // コピー先ディレクトリは空であることを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToDeepDirectory()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data);
+            vs.AddDirectory("/dir2/dir3", true);
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dir2/dir3/dir4");
+
+            // 検査
+            VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2/dir3/dir4");
+            VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
+            Assert.IsTrue(copiedDirectory.Name == "dir4");
+            Assert.AreNotEqual(originalDirectory, copiedDirectory);
+            Assert.AreNotSame(originalDirectory, copiedDirectory);
+            Assert.AreEqual(0, copiedDirectory.Count);  // コピー先ディレクトリは空であることを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
     }
 }

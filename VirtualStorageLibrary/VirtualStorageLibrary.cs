@@ -1121,19 +1121,11 @@ namespace VirtualStorageLibrary
             _nodes = new();
         }
 
-        public override string ToString() => $"{Name}/";
+        public override string ToString() => (Name == VirtualPath.Root) ? VirtualPath.Root : $"{Name}{VirtualPath.Separator}";
 
         public override VirtualNode DeepClone()
         {
             VirtualDirectory newDirectory = new(Name, CreatedDate, UpdatedDate);
-
-            foreach (var entry in _nodes)
-            {
-                VirtualNode childNode = entry.Value;
-                VirtualNode newNode = childNode.DeepClone();
-                newDirectory.Add(newNode);
-            }
-
             return newDirectory;
         }
 
@@ -2221,18 +2213,18 @@ namespace VirtualStorageLibrary
             }
 
             // コピー先アイテムを作成
-            VirtualNode destinationItem = sourceNode.DeepClone();
-            destinationItem.Name = newNodeName;
+            VirtualNode newNode = sourceNode.DeepClone();
+            newNode.Name = newNodeName;
 
             // コピー元アイテムをコピー先ディレクトリに追加
-            destinationDirectory.Add(destinationItem);
+            destinationDirectory.Add(newNode);
 
             // コピー先ディレクトリからの相対パスを計算
             VirtualPath relativePath = destinationPath.GetRelativePath(destinationDirectoryPath);
 
             // コピー操作の結果を表す VirtualNodeContext を生成して返却
             VirtualNodeContext context = new VirtualNodeContext(
-                node: destinationItem,
+                node: destinationNode,
                 traversalPath: relativePath,
                 parentNode: destinationDirectory,
                 depth: relativePath.Depth,
