@@ -2201,21 +2201,19 @@ namespace VirtualStorageLibrary
 
             IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
 
-            VirtualPath destinationDirectoryPath = destinationPath.DirectoryPath;
-            VirtualDirectory destinationDirectory = GetDirectory(destinationDirectoryPath, true);
+            VirtualDirectory destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
             VirtualNodeName destinationNodeName = destinationPath.NodeName;
 
             VirtualNode? destinationNode = destinationDirectory.Get(destinationNodeName, false);
 
-            VirtualPath originalDestinationPath = destinationPath;
-            VirtualPath originalDestinationDirectoryPath;
+            VirtualPath destinationDirectoryPath;
 
             switch (destinationNode)
             {
                 case VirtualDirectory directory:
                     destinationDirectory = directory;
                     newNodeName = sourcePath.NodeName;
-                    originalDestinationDirectoryPath = originalDestinationPath;
+                    destinationDirectoryPath = destinationPath;
                     break;
 
                 case VirtualItem _:
@@ -2228,7 +2226,7 @@ namespace VirtualStorageLibrary
                         throw new InvalidOperationException($"アイテム '{destinationNodeName}' は既に存在します。上書きは許可されていません。");
                     }
                     newNodeName = destinationPath.NodeName;
-                    originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
+                    destinationDirectoryPath = destinationPath.DirectoryPath;
                     break;
 
                 case VirtualSymbolicLink link:
@@ -2237,7 +2235,7 @@ namespace VirtualStorageLibrary
 
                 default:
                     newNodeName = destinationPath.NodeName;
-                    originalDestinationDirectoryPath = originalDestinationPath.DirectoryPath;
+                    destinationDirectoryPath = destinationPath.DirectoryPath;
                     break;
             }
 
@@ -2249,7 +2247,7 @@ namespace VirtualStorageLibrary
             destinationDirectory.Add(destinationItem);
 
             // コピー先ディレクトリからの相対パスを計算
-            VirtualPath relativePath = originalDestinationPath.GetRelativePath(originalDestinationDirectoryPath);
+            VirtualPath relativePath = destinationPath.GetRelativePath(destinationDirectoryPath);
 
             // コピー操作の結果を表す VirtualNodeContext を生成して返却
             VirtualNodeContext context = new VirtualNodeContext(
