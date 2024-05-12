@@ -2187,7 +2187,7 @@ namespace VirtualStorageLibrary
             {
                 case VirtualDirectory directory:
                     destinationDirectory = directory;
-                    newNodeName = sourcePath.NodeName;
+                    newNodeName = sourceNode.Name;
                     VirtualNode? node = destinationDirectory.Get(newNodeName, false);
                     if (node != null)
                     {

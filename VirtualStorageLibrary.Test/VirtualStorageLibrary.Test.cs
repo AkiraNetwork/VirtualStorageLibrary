@@ -6173,7 +6173,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_CopyItemToWithOverwritesExistingItem()
+        public void CopyNode_CopyItemToExistingItemWithOverwrites()
         {
             VirtualStorage vs = new();
             BinaryData originalData = [1, 2, 3];
@@ -6204,7 +6204,7 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void CopyNode_CopyItemToSourceNodeDoesNotExist_ThrowsException()
+        public void CopyNode_CopyItemWithDoesNotExist_ThrowsException()
         {
             VirtualStorage vs = new();
 
@@ -6258,7 +6258,7 @@ namespace VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
             vs.AddItem("/item1", data);
 
-            // 実行: 存在しないディレクトリ "/dir1" にコピー
+            // 実行: アイテムが存在しないディレクトリ "/dir1" にコピー
             IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/item1", "/dir1/item2");
 
             // 検査
@@ -6765,5 +6765,165 @@ namespace VirtualStorageLibrary.Test
                 IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", true);
             });
         }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLinkToNewSymbolicLink()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddItem("/item1", data);
+            vs.AddSymbolicLink("/link1", "/item1");
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false);
+
+            // 検査
+            VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/link2");
+            VirtualSymbolicLink originalLink = vs.GetSymbolicLink("/link1");
+            Assert.IsTrue(copiedLink.Name == "link2");
+            Assert.AreNotEqual(originalLink, copiedLink);
+            Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
+            Assert.AreNotSame(originalLink, copiedLink);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLinkToDeepDirectory()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddItem("/item1", data);
+            vs.AddSymbolicLink("/link1", "/item1");
+            vs.AddDirectory("/dir1/dir2", true);
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/dir1/dir2/link2", false, false);
+
+            // 検査
+            VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dir1/dir2/link2");
+            VirtualSymbolicLink originalLink = vs.GetSymbolicLink("/link1");
+            Assert.IsTrue(copiedLink.Name == "link2");
+            Assert.AreNotEqual(originalLink, copiedLink);
+            Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
+            Assert.AreNotSame(originalLink, copiedLink);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLinkToExistingSymbolicLinkWithOverwrites()
+        {
+            VirtualStorage vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+
+            // テストデータ
+            vs.AddItem("/item1", originalData);
+            vs.AddDirectory("/dst");
+            vs.AddSymbolicLink("/link1", "/item1");
+            vs.AddSymbolicLink("/link2", "/dst");
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false);
+
+            // 検査
+            VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dst/link1");
+            VirtualSymbolicLink originalLink = vs.GetSymbolicLink("/link1");
+            Assert.IsTrue(copiedLink.Name == "link1");
+            Assert.AreNotEqual(originalLink, copiedLink);
+            Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
+            Assert.AreNotSame(originalLink, copiedLink);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLinkWithDoesNotExist_ThrowsException()
+        {
+            VirtualStorage vs = new();
+
+            // 実行
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLinkToSameSourceAndDestination_ThrowsException()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddItem("/item1", data);
+            vs.AddSymbolicLink("/link1", "/item1");
+
+            // 実行
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link1");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLinkToNewSymbolicLinkWithFollowLinks()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir1/item1", data);
+            vs.AddSymbolicLink("/link1", "/dir1/item1");
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/dir2", false, true);
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir2/item1");
+            VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/dir1/item1");
+            Assert.IsTrue(copiedItem.Name == "item1");
+            Assert.AreNotEqual(originalItem, copiedItem);
+            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            Assert.AreNotSame(originalItem, copiedItem);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
+
     }
 }
