@@ -6628,5 +6628,142 @@ namespace VirtualStorageLibrary.Test
             }
         }
 
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToExistingDirectory()
+        {
+            VirtualStorage vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dst/dir1", true);
+            vs.AddItem("/dir1/item1", originalData);
+            vs.AddItem("/dst/dir1/item2", originalData);
+            vs.AddItem("/dst/dir1/item3", originalData);
+
+            // 実行 & 検査
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", false);
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToExistingItem()
+        {
+            VirtualStorage vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dst");
+            vs.AddItem("/dir1/item1", originalData);
+            vs.AddItem("/dst/dir1", originalData); // dir1 というアイテムがある場合
+
+            // 実行 & 検査
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", false);
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToExistingSymbolicLink()
+        {
+            VirtualStorage vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dst");
+            vs.AddItem("/dir1/item1", originalData);
+            vs.AddSymbolicLink("/dst/dir1", "/anywhere"); // dir1 というリンクがある場合
+
+            // 実行 & 検査
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", false);
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToExistingDirectoryWithOverwrites()
+        {
+            VirtualStorage vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dst/dir1", true);
+            vs.AddItem("/dir1/item1", originalData);
+            vs.AddItem("/dst/dir1/item2", originalData);
+            vs.AddItem("/dst/dir1/item3", originalData);
+            DateTime copiedCreatedDate = vs.GetDirectory("/dst/dir1").CreatedDate;
+            DateTime copiedUpdatedDate = vs.GetDirectory("/dst/dir1").UpdatedDate;
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", true);
+
+            // 検査
+            VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
+            VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
+            Assert.IsTrue(copiedDirectory.Name == "dir1");
+            Assert.AreNotEqual(originalDirectory, copiedDirectory);
+            Assert.AreNotSame(originalDirectory, copiedDirectory);
+            Assert.AreEqual(2, copiedDirectory.Count);  // コピー先ディレクトリのカウントに変化がない事を確認
+            Assert.AreEqual(copiedCreatedDate, copiedDirectory.CreatedDate);  // 作成日時が変更されていないことを確認
+            Assert.AreEqual(copiedUpdatedDate, copiedDirectory.UpdatedDate);  // 更新日時が変更されていることを確認
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToExistingItemWithOverwrites()
+        {
+            VirtualStorage vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dst");
+            vs.AddItem("/dir1/item1", originalData);
+            vs.AddItem("/dst/dir1", originalData); // dir1 というアイテムがある場合
+
+            // 実行 & 検査
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", true);
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToExistingSymbolicLinkWithOverwrites()
+        {
+            VirtualStorage vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dst");
+            vs.AddItem("/dir1/item1", originalData);
+            vs.AddSymbolicLink("/dst/dir1", "/anywhere"); // dir1 というリンクがある場合
+
+            // 実行 & 検査
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", true);
+            });
+        }
     }
 }

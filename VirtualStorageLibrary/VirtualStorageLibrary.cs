@@ -2181,11 +2181,25 @@ namespace VirtualStorageLibrary
 
             VirtualPath destinationDirectoryPath;
 
+            bool overwriteDirectory = false;
+
             switch (destinationNode)
             {
                 case VirtualDirectory directory:
                     destinationDirectory = directory;
                     newNodeName = sourcePath.NodeName;
+                    VirtualNode? node = destinationDirectory.Get(newNodeName, false);
+                    if (node != null)
+                    {
+                        if (overwrite && (node is VirtualDirectory))
+                        {
+                            overwriteDirectory = true;
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException($"ノード '{newNodeName}' は既に存在します。上書きは許可されていません。");
+                        }
+                    }
                     destinationDirectoryPath = destinationPath;
                     break;
 
@@ -2212,12 +2226,15 @@ namespace VirtualStorageLibrary
                     break;
             }
 
-            // コピー先アイテムを作成
+            // コピー先ノードを作成
             VirtualNode newNode = sourceNode.DeepClone();
             newNode.Name = newNodeName;
 
-            // コピー元アイテムをコピー先ディレクトリに追加
-            destinationDirectory.Add(newNode);
+            // コピー元ノードをコピー先ディレクトリに追加 (ディレクトリの上書き以外の場合)
+            if (!overwriteDirectory)
+            {
+                destinationDirectory.Add(newNode);
+            }
 
             // コピー先ディレクトリからの相対パスを計算
             VirtualPath relativePath = destinationPath.GetRelativePath(destinationDirectoryPath);
