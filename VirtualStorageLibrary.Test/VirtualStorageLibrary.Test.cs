@@ -6925,5 +6925,72 @@ namespace VirtualStorageLibrary.Test
             Debug.WriteLine(tree);
         }
 
+        [TestMethod]
+        public void aaa()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir1/item1", data);
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1/item1", "/dir2", false, true);
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir2/item1");
+            VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/dir1/item1");
+            Assert.IsTrue(copiedItem.Name == "item1");
+            Assert.AreNotEqual(originalItem, copiedItem);
+            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            Assert.AreNotSame(originalItem, copiedItem);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void bbb()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir1/item1", data);
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1/item1", "/dir2/item1", false, true);
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir2/item1");
+            VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/dir1/item1");
+            Assert.IsTrue(copiedItem.Name == "item1");
+            Assert.AreNotEqual(originalItem, copiedItem);
+            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            Assert.AreNotSame(originalItem, copiedItem);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
     }
 }

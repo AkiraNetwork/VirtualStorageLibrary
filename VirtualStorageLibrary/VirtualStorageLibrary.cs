@@ -2201,6 +2201,7 @@ namespace VirtualStorageLibrary
                         }
                     }
                     destinationDirectoryPath = destinationPath;
+                    destinationPath = destinationPath + newNodeName;
                     break;
 
                 case VirtualItem _:
@@ -2239,12 +2240,20 @@ namespace VirtualStorageLibrary
             // コピー先ディレクトリからの相対パスを計算
             VirtualPath relativePath = destinationPath.GetRelativePath(destinationDirectoryPath);
 
+            // パスの深さを計算
+            int depth = relativePath.Depth - 1;
+            if (depth < 0)
+            {
+                // デバッグ用
+                throw new InvalidOperationException("深さが負の値になりました。");
+            }
+
             // コピー操作の結果を表す VirtualNodeContext を生成して返却
             VirtualNodeContext context = new VirtualNodeContext(
-                node: destinationNode,
+                node: newNode,
                 traversalPath: relativePath,
                 parentNode: destinationDirectory,
-                depth: relativePath.Depth,
+                depth: depth,
                 index: 0
             );
 
