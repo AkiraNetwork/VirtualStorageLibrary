@@ -1001,19 +1001,25 @@ namespace VirtualStorageLibrary
 
     public class VirtualItem<T> : VirtualItem, IDisposable
     {
-        public T ItemData { get; set; }
+        public T? ItemData { get; set; }
 
         private bool disposed;
 
         public override VirtualNodeType NodeType => VirtualNodeType.Item;
 
-        public VirtualItem(VirtualNodeName name, T item) : base(name)
+        public VirtualItem(VirtualNodeName name) : base(name)
+        {
+            ItemData = default;
+            disposed = false;
+        }
+
+        public VirtualItem(VirtualNodeName name, T? item) : base(name)
         {
             ItemData = item;
             disposed = false;
         }
 
-        public VirtualItem(VirtualNodeName name, T item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             ItemData = item;
             disposed = false;
@@ -1023,7 +1029,7 @@ namespace VirtualStorageLibrary
 
         public override VirtualNode DeepClone()
         {
-            T newItemData = ItemData;
+            T? newItemData = ItemData;
 
             // ItemDataがIDeepCloneable<T>を実装している場合はDeepClone()を呼び出す
             if (ItemData is IDeepCloneable<T> cloneableItem)

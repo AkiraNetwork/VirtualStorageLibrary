@@ -963,7 +963,20 @@ namespace VirtualStorageLibrary.Test
             Assert.IsNotNull(virtualItem);
             Assert.AreEqual(name, virtualItem.Name);
             Assert.AreEqual(binaryData, virtualItem.ItemData);
-            CollectionAssert.AreEqual(virtualItem.ItemData.Data, testData);
+            CollectionAssert.AreEqual(virtualItem.ItemData!.Data, testData);
+        }
+
+        [TestMethod]
+        public void VirtualItemConstructorWithNonItemData_CreatesObjectCorrectly()
+        {
+            // VirtualItem<BinaryData> オブジェクトを作成
+            VirtualNodeName name = "TestBinaryItem";
+            VirtualItem<BinaryData> virtualItem = new(name);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(virtualItem);
+            Assert.AreEqual(name, virtualItem.Name);
+            Assert.AreEqual(null, virtualItem.ItemData);
         }
 
         [TestMethod]
@@ -983,8 +996,8 @@ namespace VirtualStorageLibrary.Test
             Assert.AreNotSame(originalItem.ItemData, clonedItem.ItemData);
 
             // BinaryData の Data プロパティが適切にクローンされていることを検証
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, clonedItem.ItemData.Data);
-            Assert.AreNotSame(originalItem.ItemData.Data, clonedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, clonedItem.ItemData!.Data);
+            Assert.AreNotSame(originalItem.ItemData!.Data, clonedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -999,7 +1012,7 @@ namespace VirtualStorageLibrary.Test
             // Assert
             Assert.IsNotNull(clonedItem);
             Assert.AreNotSame(originalItem, clonedItem);
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, clonedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, clonedItem.ItemData!.Data);
             Assert.AreEqual(originalItem.Name, clonedItem.Name);
             Assert.AreNotSame(originalItem.ItemData, clonedItem.ItemData);
         }
@@ -1016,7 +1029,7 @@ namespace VirtualStorageLibrary.Test
             // Assert
             Assert.IsNotNull(clonedItem);
             Assert.AreNotSame(originalItem, clonedItem);
-            Assert.AreEqual(originalItem.ItemData.Value, clonedItem.ItemData.Value);
+            Assert.AreEqual(originalItem.ItemData!.Value, clonedItem.ItemData!.Value);
             Assert.AreEqual(originalItem.Name, clonedItem.Name);
 
             // SimpleDataインスタンスがシャローコピーされていることを確認
@@ -1191,7 +1204,9 @@ namespace VirtualStorageLibrary.Test
 
             Assert.IsTrue(directory.NodeExists("NewItem"));
             Assert.AreEqual(newNode, directory["NewItem"]);
-            CollectionAssert.AreEqual(testData, ((BinaryData)((VirtualItem<BinaryData>)directory["NewItem"]).ItemData).Data);
+
+            VirtualItem<BinaryData> item = (VirtualItem<BinaryData>)directory.Get("NewItem")!;
+            CollectionAssert.AreEqual(testData, item.ItemData!.Data);
         }
 
         [TestMethod]
@@ -1224,7 +1239,9 @@ namespace VirtualStorageLibrary.Test
             directory.Add(newNode, allowOverwrite: true);
 
             Assert.AreEqual(newNode, directory["OriginalItem"]);
-            CollectionAssert.AreEqual(newTestData, ((BinaryData)((VirtualItem<BinaryData>)directory["OriginalItem"]).ItemData).Data);
+
+            VirtualItem<BinaryData> item = (VirtualItem<BinaryData>)directory.Get("OriginalItem")!;
+            CollectionAssert.AreEqual(newTestData, item.ItemData!.Data);
         }
 
         [TestMethod]
@@ -1327,7 +1344,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(directory.NodeExists("TestItem"));
             VirtualItem<BinaryData>? retrievedItem = directory.Get("TestItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(itemData.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(itemData!.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -1341,7 +1358,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(directory.NodeExists("TestItem"));
             VirtualItem<SimpleData>? retrievedItem = directory.Get("TestItem") as VirtualItem<SimpleData>;
             Assert.IsNotNull(retrievedItem);
-            Assert.AreEqual(itemData.Value, retrievedItem.ItemData.Value);
+            Assert.AreEqual(itemData!.Value, retrievedItem.ItemData!.Value);
         }
 
         [TestMethod]
@@ -1366,7 +1383,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualItem<BinaryData>? retrievedItem = directory.Get("TestItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(newItemData.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(newItemData!.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3051,7 +3068,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsNotNull(item);
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, item.ItemData.Data);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, item.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3091,7 +3108,7 @@ namespace VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsNotNull(item);
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, item.ItemData.Data);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, item.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3168,7 +3185,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(path));
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3184,7 +3201,7 @@ namespace VirtualStorageLibrary.Test
 
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode(path) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(newItem.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(newItem.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3230,7 +3247,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(itemName.AddStartSlash())); // カレントディレクトリにアイテムが作成されていることを確認
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode(itemName.AddStartSlash()) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3253,7 +3270,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists(fullPath)); // 相対パスで指定された位置にアイテムが作成されていることを確認
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode(fullPath) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3274,7 +3291,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists("/subdirectory/" + itemName));
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/subdirectory/" + itemName) as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(item.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3313,7 +3330,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists("/actualDirectory/newItem"));
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/actualDirectory/newItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -3333,7 +3350,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(virtualStorage.ItemExists("/level1/level2/targetDirectory/newItem"));
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/level1/level2/targetDirectory/newItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
-            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData.Data);
+            CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -4200,7 +4217,7 @@ namespace VirtualStorageLibrary.Test
 
             Assert.IsFalse(storage.NodeExists("/sourceFile"));
             VirtualItem<BinaryData> destinationItem = (VirtualItem<BinaryData>)storage.GetNode("/destinationFile");
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.ItemData.Data);
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, destinationItem.ItemData!.Data);
         }
 
         [TestMethod]
@@ -4309,7 +4326,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(storage.NodeExists("/destinationDir/fileName")); // 移動先にファイルが存在することを確認
 
             VirtualItem<BinaryData> movedItem = (VirtualItem<BinaryData>)storage.GetNode("/destinationDir/fileName");
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, movedItem.ItemData.Data); // 移動先のファイルの中身が正しいことを確認
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, movedItem.ItemData!.Data); // 移動先のファイルの中身が正しいことを確認
         }
 
         [TestMethod]
@@ -4379,7 +4396,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsFalse(storage.NodeExists("/sourceFile"));
             Assert.IsTrue(storage.NodeExists("/renamedFile"));
 
-            byte[] result = ((VirtualItem<BinaryData>)storage.GetNode("/renamedFile")).ItemData.Data;
+            byte[] result = ((VirtualItem<BinaryData>)storage.GetNode("/renamedFile")).ItemData!.Data;
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, result);
         }
 
@@ -6130,7 +6147,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/item1");
             Assert.IsTrue(copiedItem.Name == "item2");
             Assert.AreNotEqual(originalItem, copiedItem);
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
 
@@ -6160,7 +6177,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/item1");
             Assert.IsTrue(copiedItem.Name == "item2");
             Assert.AreNotEqual(originalItem, copiedItem);
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
 
@@ -6191,7 +6208,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/item1");
             Assert.IsTrue(copiedItem.Name == "item2");
             Assert.AreNotEqual(originalItem, copiedItem);
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
 
@@ -6265,7 +6282,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);
-            CollectionAssert.AreEqual(data.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(data.Data, copiedItem.ItemData!.Data);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6313,7 +6330,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6343,7 +6360,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/link/dir3/item2", true);
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6399,7 +6416,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6431,7 +6448,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6465,7 +6482,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6523,7 +6540,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6559,7 +6576,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
-            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData.Data);  // データが正しくコピーされたことを確認
+            CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6910,7 +6927,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/dir1/item1");
             Assert.IsTrue(copiedItem.Name == "item1");
             Assert.AreNotEqual(originalItem, copiedItem);
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
 
             // コンテキストの表示
@@ -6944,7 +6961,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/dir1/item1");
             Assert.IsTrue(copiedItem.Name == "item1");
             Assert.AreNotEqual(originalItem, copiedItem);
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
 
             // コンテキストの表示
@@ -6978,7 +6995,7 @@ namespace VirtualStorageLibrary.Test
             VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/dir1/item1");
             Assert.IsTrue(copiedItem.Name == "item1");
             Assert.AreNotEqual(originalItem, copiedItem);
-            CollectionAssert.AreEqual(originalItem.ItemData.Data, copiedItem.ItemData.Data);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
 
             // コンテキストの表示
