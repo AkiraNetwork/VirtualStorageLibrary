@@ -1265,6 +1265,53 @@ namespace VirtualStorageLibrary
         public IEnumerator<VirtualNode> GetEnumerator() => Nodes.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public VirtualItem<T> GetItem<T>(VirtualNodeName name)
+        {
+            if (!NodeExists(name))
+            {
+                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+            }
+
+            var node = _nodes[name];
+            if (node is VirtualItem<T> item)
+            {
+                return item;
+            }
+
+            throw new InvalidOperationException($"指定されたノード '{name}' はVirtualItem<{typeof(T).Name}>型ではありません。");
+        }
+
+        public VirtualDirectory GetDirectory(VirtualNodeName name)
+        {
+            if (!NodeExists(name))
+            {
+                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+            }
+
+            if (_nodes[name] is VirtualDirectory directory)
+            {
+                return directory;
+            }
+
+            throw new InvalidOperationException($"指定されたノード '{name}' はディレクトリ型ではありません。");
+        }
+
+        public VirtualSymbolicLink GetSymbolicLink(VirtualNodeName name)
+        {
+            if (!NodeExists(name))
+            {
+                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+            }
+
+            var node = _nodes[name];
+            if (node is VirtualSymbolicLink link)
+            {
+                return link;
+            }
+
+            throw new InvalidOperationException($"指定されたノード '{name}' はシンボリックリンク型ではありません。");
+        }
     }
 
     public class VirtualStorage

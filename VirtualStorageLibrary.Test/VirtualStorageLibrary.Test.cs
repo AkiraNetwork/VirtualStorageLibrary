@@ -2173,6 +2173,137 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(new VirtualNodeName("item1"), nodes[0].Name);
             Assert.AreEqual(new VirtualNodeName("item2"), nodes[1].Name);
         }
+
+        [TestMethod]
+        public void GetItem_ExistingItem_ReturnsItem()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            byte[] testData = new byte[] { 1, 2, 3 };
+            VirtualItem<BinaryData> item = new("TestItem", new BinaryData(testData));
+            directory.Add(item);
+
+            // Act
+            VirtualItem<BinaryData> result = directory.GetItem<BinaryData>("TestItem");
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(item, result);
+            CollectionAssert.AreEqual(testData, result.ItemData!.Data);
+        }
+
+        [TestMethod]
+        public void GetItem_NonExistingItem_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                directory.GetItem<BinaryData>("NonExistingItem");
+            });
+        }
+
+        [TestMethod]
+        public void GetItem_ItemWithDifferentType_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            directory.AddItem("TestItem", "This is a string item");
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                directory.GetItem<BinaryData>("TestItem");
+            });
+        }
+
+        [TestMethod]
+        public void GetDirectory_ExistingDirectory_ReturnsDirectory()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualDirectory subDirectory = new("SubDirectory");
+            directory.Add(subDirectory);
+
+            // Act
+            VirtualDirectory result = directory.GetDirectory("SubDirectory");
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(subDirectory, result);
+        }
+
+        [TestMethod]
+        public void GetDirectory_NonExistingDirectory_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                directory.GetDirectory("NonExistingDirectory");
+            });
+        }
+
+        [TestMethod]
+        public void GetDirectory_NodeIsNotDirectory_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            directory.AddItem("TestItem", new object());
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                directory.GetDirectory("TestItem");
+            });
+        }
+
+        [TestMethod]
+        public void GetSymbolicLink_ExistingSymbolicLink_ReturnsSymbolicLink()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualSymbolicLink symbolicLink = new("TestLink", "/path/to/target");
+            directory.Add(symbolicLink);
+
+            // Act
+            VirtualSymbolicLink result = directory.GetSymbolicLink("TestLink");
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(symbolicLink, result);
+        }
+
+        [TestMethod]
+        public void GetSymbolicLink_NonExistingSymbolicLink_ThrowsVirtualNodeNotFoundException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                directory.GetSymbolicLink("NonExistingLink");
+            });
+        }
+
+        [TestMethod]
+        public void GetSymbolicLink_NodeIsNotSymbolicLink_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            directory.AddItem("TestItem", new object());
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                directory.GetSymbolicLink("TestItem");
+            });
+        }
     }
 
     [TestClass]
