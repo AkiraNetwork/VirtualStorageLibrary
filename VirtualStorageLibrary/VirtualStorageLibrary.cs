@@ -349,8 +349,13 @@ namespace VirtualStorageLibrary
         }
 
         [DebuggerStepThrough]
-        public static implicit operator string(VirtualPath virtualPath)
+        public static implicit operator string(VirtualPath? virtualPath)
         {
+            if (virtualPath == null)
+            {
+                return string.Empty;
+            }
+
             return virtualPath._path;
         }
 
@@ -966,18 +971,23 @@ namespace VirtualStorageLibrary
 
     public class VirtualSymbolicLink : VirtualNode
     {
-        public VirtualPath TargetPath { get; set; }
+        public VirtualPath? TargetPath { get; set; }
 
         public VirtualNodeType TargetNodeType { get; set; }
 
         public override VirtualNodeType NodeType => VirtualNodeType.SymbolicLink;
 
-        public VirtualSymbolicLink(VirtualNodeName name, VirtualPath targetPath) : base(name)
+        public VirtualSymbolicLink(VirtualNodeName name) : base(name)
+        {
+            TargetPath = null;
+        }
+
+        public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath) : base(name)
         {
             TargetPath = targetPath;
         }
 
-        public VirtualSymbolicLink(VirtualNodeName name, VirtualPath targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
+        public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             TargetPath = targetPath;
         }
@@ -1339,20 +1349,20 @@ namespace VirtualStorageLibrary
             return;
         }
 
-        public VirtualPath ConvertToAbsolutePath(VirtualPath virtualRelativePath, VirtualPath? basePath = null)
+        public VirtualPath ConvertToAbsolutePath(VirtualPath? relativePath, VirtualPath? basePath = null)
         {
             basePath ??= CurrentPath;
 
-            // relativePathが空文字列の場合、ArgumentExceptionをスロー
-            if (virtualRelativePath.IsEmpty)
+            // relativePathがnullまたは空文字列の場合は、ArgumentExceptionをスロー
+            if (relativePath == null || relativePath.IsEmpty)
             {
-                throw new ArgumentException("relativePathが空です。", nameof(virtualRelativePath));
+                throw new ArgumentException("relativePathがnullまたは空です。", nameof(relativePath));
             }
 
             // relativePathが既に絶対パスである場合は、そのまま使用
-            if (virtualRelativePath.IsAbsolute)
+            if (relativePath.IsAbsolute)
             {
-                return virtualRelativePath;
+                return relativePath;
             }
 
             // basePathが空文字列の場合、ArgumentExceptionをスロー
@@ -1362,7 +1372,7 @@ namespace VirtualStorageLibrary
             }
 
             // relativePathをeffectiveBasePathに基づいて絶対パスに変換
-            var absolutePath = basePath + virtualRelativePath;
+            var absolutePath = basePath + relativePath;
 
             return absolutePath;
         }
@@ -1646,7 +1656,7 @@ namespace VirtualStorageLibrary
 
                 resolved = true;
 
-                VirtualPath linkTargetPath = link.TargetPath;
+                VirtualPath? linkTargetPath = link.TargetPath;
                 VirtualPath parentTraversalPath = traversalPath.DirectoryPath;
 
                 // シンボリックリンクのリンク先パスを絶対パスに変換
@@ -1817,7 +1827,7 @@ namespace VirtualStorageLibrary
             {
                 if (followLinks)
                 {
-                    VirtualPath linkTargetPath = link.TargetPath;
+                    VirtualPath? linkTargetPath = link.TargetPath;
 
                     // シンボリックリンクのリンク先パスを絶対パスに変換
                     linkTargetPath = ConvertToAbsolutePath(linkTargetPath, currentPath).NormalizePath();

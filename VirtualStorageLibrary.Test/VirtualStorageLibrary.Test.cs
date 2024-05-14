@@ -882,6 +882,20 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualSymbolicLink_Constructor_Default()
+        {
+            // Arrange
+            VirtualNodeName nodeName = "TestLink";
+
+            // Act
+            VirtualSymbolicLink link = new(nodeName);
+
+            // Assert
+            Assert.AreEqual(nodeName, link.Name);
+            Assert.AreEqual(null, link.TargetPath);
+        }
+
+        [TestMethod]
         public void VirtualSymbolicLink_Constructor_SetsNameAndTargetPath()
         {
             // Arrange
@@ -947,6 +961,19 @@ namespace VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualItemConstructorDefault_CreatesObjectCorrectly()
+        {
+            // VirtualItem<BinaryData> オブジェクトを作成
+            VirtualNodeName name = "TestBinaryItem";
+            VirtualItem<BinaryData> virtualItem = new(name);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(virtualItem);
+            Assert.AreEqual(name, virtualItem.Name);
+            Assert.AreEqual(default, virtualItem.ItemData);
+        }
+
+        [TestMethod]
         public void VirtualItemConstructor_CreatesObjectCorrectly()
         {
             // テストデータ
@@ -964,19 +991,6 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(name, virtualItem.Name);
             Assert.AreEqual(binaryData, virtualItem.ItemData);
             CollectionAssert.AreEqual(virtualItem.ItemData!.Data, testData);
-        }
-
-        [TestMethod]
-        public void VirtualItemConstructorWithNonItemData_CreatesObjectCorrectly()
-        {
-            // VirtualItem<BinaryData> オブジェクトを作成
-            VirtualNodeName name = "TestBinaryItem";
-            VirtualItem<BinaryData> virtualItem = new(name);
-
-            // オブジェクトが正しく作成されたか検証
-            Assert.IsNotNull(virtualItem);
-            Assert.AreEqual(name, virtualItem.Name);
-            Assert.AreEqual(null, virtualItem.ItemData);
         }
 
         [TestMethod]
