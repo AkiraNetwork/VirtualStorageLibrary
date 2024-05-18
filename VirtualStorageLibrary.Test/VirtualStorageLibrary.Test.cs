@@ -7168,10 +7168,17 @@ namespace VirtualStorageLibrary.Test
             BinaryData data = [1, 2, 3];
 
             // テストデータ
+            vs.AddDirectory("/data", true);
+            vs.AddItem("/data/itemA", data);
+            vs.AddItem("/data/itemB", data);
+            vs.AddItem("/data/itemC", data);
             vs.AddDirectory("/dir1/dir2/dir3", true);
             vs.AddItem("/dir1/item1", data);
+            vs.AddSymbolicLink("/dir1/itemA", "/data/itemA");
             vs.AddItem("/dir1/dir2/item2", data);
+            vs.AddSymbolicLink("/dir1/dir2/itemB", "/data/itemB");
             vs.AddItem("/dir1/dir2/dir3/item3", data);
+            vs.AddSymbolicLink("/dir1/dir2/dir3/itemC", "/data/itemC");
             vs.AddDirectory("/dst1/dst2", true);
 
             // 実行
@@ -7183,10 +7190,13 @@ namespace VirtualStorageLibrary.Test
             Assert.IsTrue(copiedDirectory.Name == "dir1");
             Assert.AreNotEqual(originalDirectory, copiedDirectory);
             Assert.AreNotSame(originalDirectory, copiedDirectory);
-            Assert.AreEqual(2, copiedDirectory.Count);
+            Assert.AreEqual(3, copiedDirectory.Count);
             Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/item1").Name == "item1");
             Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/dir2/item2").Name == "item2");
             Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/dir2/dir3/item3").Name == "item3");
+            Assert.IsTrue(vs.GetSymbolicLink("/dst1/dst2/dir1/itemA").Name == "itemA");
+            Assert.IsTrue(vs.GetSymbolicLink("/dst1/dst2/dir1/dir2/itemB").Name == "itemB");
+            Assert.IsTrue(vs.GetSymbolicLink("/dst1/dst2/dir1/dir2/dir3/itemC").Name == "itemC");
 
             // コンテキストの表示
             Debug.WriteLine("\ncontext:");
@@ -7196,6 +7206,58 @@ namespace VirtualStorageLibrary.Test
             }
 
             // 処理後のデータ構造の表示
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, false);
+            Debug.WriteLine("\nstructure:");
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToDeepDirectoryWithRecursiveAndFollowLinks()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/data", true);
+            vs.AddItem("/data/itemA", data);
+            vs.AddItem("/data/itemB", data);
+            vs.AddItem("/data/itemC", data);
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddItem("/dir1/item1", data);
+            vs.AddSymbolicLink("/dir1/itemA", "/data/itemA");
+            vs.AddItem("/dir1/dir2/item2", data);
+            vs.AddSymbolicLink("/dir1/dir2/itemB", "/data/itemB");
+            vs.AddItem("/dir1/dir2/dir3/item3", data);
+            vs.AddSymbolicLink("/dir1/dir2/dir3/itemC", "/data/itemC");
+            vs.AddDirectory("/dst1/dst2", true);
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst1/dst2", false, true, true);
+
+            // 検査
+            VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");
+            VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
+            Assert.IsTrue(copiedDirectory.Name == "dir1");
+            Assert.AreNotEqual(originalDirectory, copiedDirectory);
+            Assert.AreNotSame(originalDirectory, copiedDirectory);
+            Assert.AreEqual(3, copiedDirectory.Count);
+            Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/item1").Name == "item1");
+            Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/dir2/item2").Name == "item2");
+            Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/dir2/dir3/item3").Name == "item3");
+            Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/itemA").Name == "itemA");
+            Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/dir2/itemB").Name == "itemB");
+            Assert.IsTrue(vs.GetItem<BinaryData>("/dst1/dst2/dir1/dir2/dir3/itemC").Name == "itemC");
+
+            // コンテキストの表示
+            Debug.WriteLine("\ncontext:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, false);
             Debug.WriteLine("\nstructure:");
             string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
             Debug.WriteLine(tree);
