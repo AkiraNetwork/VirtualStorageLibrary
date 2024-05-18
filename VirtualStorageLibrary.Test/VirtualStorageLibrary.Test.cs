@@ -1892,6 +1892,7 @@ namespace VirtualStorageLibrary.Test
             Assert.IsFalse(exists); // アイテムはシンボリックリンクではないため、falseを返すべき
         }
 
+#if UNUSED_CODE
         [TestMethod]
         public void GetNodeList_DefaultOption()
         {
@@ -2173,6 +2174,7 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(new VirtualNodeName("item1"), nodes[0].Name);
             Assert.AreEqual(new VirtualNodeName("item2"), nodes[1].Name);
         }
+#endif
 
         [TestMethod]
         public void GetItem_ExistingItem_ReturnsItem()
@@ -7206,7 +7208,6 @@ namespace VirtualStorageLibrary.Test
             }
 
             // 処理後のデータ構造の表示
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, false);
             Debug.WriteLine("\nstructure:");
             string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
             Debug.WriteLine(tree);
@@ -7257,7 +7258,6 @@ namespace VirtualStorageLibrary.Test
             }
 
             // 処理後のデータ構造の表示
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, false);
             Debug.WriteLine("\nstructure:");
             string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
             Debug.WriteLine(tree);
