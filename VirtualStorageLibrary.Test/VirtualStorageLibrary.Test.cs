@@ -7086,5 +7086,79 @@ namespace VirtualStorageLibrary.Test
             string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
             Debug.WriteLine(tree);
         }
+
+        [TestMethod]
+        public void CopyNode_CopySymbolicLinkToSymbolicLinkWithFollowLinks()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data);
+            vs.AddDirectory("/dir2");
+            vs.AddDirectory("/dst");
+            vs.AddSymbolicLink("/dst/link", "/dir2");
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1/item1", "/dst/link", false, true);
+
+            // 検査
+            VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dst/link/item1", true);
+            VirtualItem<BinaryData> originalItem = vs.GetItem<BinaryData>("/dir1/item1");
+            Assert.IsTrue(copiedItem.Name == "item1");
+            Assert.AreNotEqual(originalItem, copiedItem);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
+            Assert.AreNotSame(originalItem, copiedItem);
+
+            // コンテキストの表示
+            Debug.WriteLine("\ncontext:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            Debug.WriteLine("\nstructure:");
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryWithRecursiveOption()
+        {
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+
+            // テストデータ
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", data);
+            vs.AddDirectory("/dst", true);
+
+            // 実行
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", false, false, true);
+
+            // 検査
+            VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
+            VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
+            Assert.IsTrue(copiedDirectory.Name == "dir1");
+            Assert.AreNotEqual(originalDirectory, copiedDirectory);
+            Assert.AreNotSame(originalDirectory, copiedDirectory);
+            Assert.AreEqual(1, copiedDirectory.Count);
+            Assert.IsTrue(vs.GetItem<BinaryData>("/dst/dir1/item1").Name == "item1");
+            CollectionAssert.AreEqual(data.Data, vs.GetItem<BinaryData>("/dst/dir1/item1").ItemData!.Data);
+
+            // コンテキストの表示
+            Debug.WriteLine("\ncontext:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            Debug.WriteLine("\nstructure:");
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+        }
     }
 }

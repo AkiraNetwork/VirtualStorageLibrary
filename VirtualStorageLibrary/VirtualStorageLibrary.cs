@@ -2225,8 +2225,21 @@ namespace VirtualStorageLibrary
 
             VirtualNode sourceNode = sourceContexts.First().Node!;
 
-            IEnumerable<VirtualNodeContext> contexts = CopySingleInternal(sourcePath, sourceNode, destinationPath, destinationPath, overwrite, followLinks);
+            IEnumerable<VirtualNodeContext> contexts = CopySingleInternal(sourcePath, sourceNode, destinationPath, null, overwrite, followLinks);
             destinationContexts = destinationContexts.Concat(contexts);
+
+            if (recursive && sourceNode is VirtualDirectory sourceDirectory)
+            {
+                foreach (var sourceContext in sourceContexts.Skip(1))
+                {
+                    VirtualPath sourceSubPath = sourcePath + sourceContext.TraversalPath;
+                    VirtualPath destinationSubPath = destinationPath + sourceNode.Name + sourceSubPath.GetRelativePath(sourcePath);
+                    VirtualNode sourceSubNode = sourceContext.Node!;
+
+                    contexts = CopySingleInternal(sourceSubPath, sourceSubNode, destinationSubPath, null, overwrite, followLinks);
+                    destinationContexts = destinationContexts.Concat(contexts);
+                }
+            }
 
             return destinationContexts;
         }
@@ -2235,7 +2248,7 @@ namespace VirtualStorageLibrary
             VirtualPath sourcePath,
             VirtualNode sourceNode,
             VirtualPath destinationPath,
-            VirtualPath originalDestinationPath,
+            VirtualPath? linkOriginalPath,
             bool overwrite,
             bool followLinks)
         {
@@ -2288,7 +2301,7 @@ namespace VirtualStorageLibrary
 
                 case VirtualSymbolicLink link:
                     VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
-                    return CopySingleInternal(sourcePath, sourceNode, targetPath, originalDestinationPath, overwrite, followLinks);
+                    return CopySingleInternal(sourcePath, sourceNode, targetPath, destinationPath, overwrite, followLinks);
 
                 default:
                     newNodeName = destinationPath.NodeName;
@@ -2306,8 +2319,11 @@ namespace VirtualStorageLibrary
                 destinationDirectory.Add(newNode);
             }
 
+            // リンクオリジナルパスが指定されている場合は設定
+            destinationPath = linkOriginalPath ?? destinationPath;
+
             // パスの深さを計算
-            int depth = originalDestinationPath.Depth - 1;
+            int depth = destinationPath.Depth - 1;
             if (depth < 0)
             {
                 // デバッグ用
@@ -2317,7 +2333,7 @@ namespace VirtualStorageLibrary
             // コピー操作の結果を表す VirtualNodeContext を生成して返却
             VirtualNodeContext context = new VirtualNodeContext(
                 node: newNode,
-                traversalPath: originalDestinationPath,
+                traversalPath: destinationPath,
                 parentNode: destinationDirectory,
                 depth: depth,
                 index: 0
