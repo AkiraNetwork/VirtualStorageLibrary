@@ -16,8 +16,8 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualNodeTests
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestInitialize]
+        public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
         }
@@ -74,8 +74,8 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualPathTest
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestInitialize]
+        public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
         }
@@ -628,8 +628,8 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualNodeNameTests
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestInitialize]
+        public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
         }
@@ -875,8 +875,8 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualSymbolicLinkTests
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestInitialize]
+        public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
         }
@@ -954,8 +954,8 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualItemTest
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestInitialize]
+        public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
         }
@@ -1120,8 +1120,8 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualDirectoryTests
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestInitialize]
+        public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
         }
@@ -1892,7 +1892,6 @@ namespace VirtualStorageLibrary.Test
             Assert.IsFalse(exists); // アイテムはシンボリックリンクではないため、falseを返すべき
         }
 
-#if UNUSED_CODE
         [TestMethod]
         public void GetNodeList_DefaultOption()
         {
@@ -2174,7 +2173,6 @@ namespace VirtualStorageLibrary.Test
             Assert.AreEqual(new VirtualNodeName("item1"), nodes[0].Name);
             Assert.AreEqual(new VirtualNodeName("item2"), nodes[1].Name);
         }
-#endif
 
         [TestMethod]
         public void GetItem_ExistingItem_ReturnsItem()
@@ -2311,8 +2309,8 @@ namespace VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualStorageTests
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestInitialize]
+        public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
         }
