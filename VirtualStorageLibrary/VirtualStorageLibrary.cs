@@ -20,7 +20,11 @@ namespace VirtualStorageLibrary
             InvalidFullNodeNames = [ PathDot, PathDotDot ];
         }
 
-        public static void Initialize() => _settings = new();
+        public static void Initialize()
+        {
+            _settings = new();
+            VirtualStorageState.InitializeFromSettings(_settings);
+        }
 
         public char PathSeparator { get; set; } = '/';
 
@@ -82,6 +86,27 @@ namespace VirtualStorageLibrary
         };
 
         public VirtualNodeTypeFilter NodeTypeFilter { get; set; } = VirtualNodeTypeFilter.All;
+
+        public static void InitializeFromSettings(VirtualStorageSettings settings)
+        {
+            _state = new VirtualStorageState
+            {
+                PathSeparator = settings.PathSeparator,
+                PathRoot = settings.PathRoot,
+                PathDot = settings.PathDot,
+                PathDotDot = settings.PathDotDot,
+                InvalidNodeNameCharacters = (char[])settings.InvalidNodeNameCharacters.Clone(),
+                InvalidFullNodeNames = (string[])settings.InvalidFullNodeNames.Clone(),
+                PatternMatcher = settings.PatternMatcher != null 
+                    ? new PatternMatcher(settings.PatternMatcher)
+                    : null,
+                NodeGroupCondition = settings.NodeGroupCondition != null
+                    ? new GroupCondition<VirtualNode, object>(settings.NodeGroupCondition.GroupBy, settings.NodeGroupCondition.Ascending)
+                    : null,
+                NodeSortConditions = settings.NodeSortConditions?.Select(c => new SortCondition<VirtualNode>(c.SortBy, c.Ascending)).ToList(),
+                NodeTypeFilter = settings.NodeTypeFilter
+            };
+        }
     }
 
     public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node, bool isEnd);
@@ -1175,18 +1200,18 @@ namespace VirtualStorageLibrary
         {
             _nodes = new();
 
-            NodeTypeFilter = VirtualStorageSettings.Settings.NodeTypeFilter;
-            NodeGroupCondition = VirtualStorageSettings.Settings.NodeGroupCondition;
-            NodeSortConditions = VirtualStorageSettings.Settings.NodeSortConditions;
+            NodeTypeFilter = VirtualStorageState.State.NodeTypeFilter;
+            NodeGroupCondition = VirtualStorageState.State.NodeGroupCondition;
+            NodeSortConditions = VirtualStorageState.State.NodeSortConditions;
         }
 
         public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             _nodes = new();
 
-            NodeTypeFilter = VirtualStorageSettings.Settings.NodeTypeFilter;
-            NodeGroupCondition = VirtualStorageSettings.Settings.NodeGroupCondition;
-            NodeSortConditions = VirtualStorageSettings.Settings.NodeSortConditions;
+            NodeTypeFilter = VirtualStorageState.State.NodeTypeFilter;
+            NodeGroupCondition = VirtualStorageState.State.NodeGroupCondition;
+            NodeSortConditions = VirtualStorageState.State.NodeSortConditions;
         }
 
         public override string ToString() => (Name == VirtualPath.Root) ? VirtualPath.Root : $"{Name}{VirtualPath.Separator}";
@@ -1199,6 +1224,10 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodeList()
         {
+            NodeTypeFilter = VirtualStorageState.State.NodeTypeFilter;
+            NodeGroupCondition = VirtualStorageState.State.NodeGroupCondition;
+            NodeSortConditions = VirtualStorageState.State.NodeSortConditions;
+
             IEnumerable<VirtualNode> nodes = _nodes.Values;
 
             switch (NodeTypeFilter)

@@ -1933,9 +1933,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
+            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageState.State.NodeSortConditions = new()
             {
                 new (node => node.Name, true)
             };
@@ -1971,9 +1971,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/", item2);
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
+            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageState.State.NodeSortConditions = new()
             {
                 new (node => node.CreatedDate, true)
             };
@@ -2009,9 +2009,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/", item2);
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
+            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageState.State.NodeSortConditions = new()
             {
                 new (node => node.CreatedDate, false)
             };
@@ -2045,9 +2045,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
+            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageState.State.NodeSortConditions = new()
             {
                 new (node => node.Name, false)
             };
@@ -2081,9 +2081,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, false);
-            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
+            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, false);
+            VirtualStorageState.State.NodeSortConditions = new()
             {
                 new (node => node.Name, true)
             };
@@ -2117,9 +2117,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.Directory;
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.Directory;
+            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageState.State.NodeSortConditions = new()
             {
                 new (node => node.Name, true)
             };
@@ -2151,9 +2151,9 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageSettings.Settings.NodeTypeFilter = VirtualNodeTypeFilter.Item;
-            VirtualStorageSettings.Settings.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageSettings.Settings.NodeSortConditions = new()
+            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.Item;
+            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
+            VirtualStorageState.State.NodeSortConditions = new()
             {
                 new (node => node.Name, true)
             };
