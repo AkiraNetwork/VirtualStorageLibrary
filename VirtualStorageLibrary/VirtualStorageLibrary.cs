@@ -18,6 +18,16 @@ namespace VirtualStorageLibrary
         {
             InvalidNodeNameCharacters = [ PathSeparator ];
             InvalidFullNodeNames = [ PathDot, PathDotDot ];
+
+            NodeListConditions = new()
+            {
+                Filter = VirtualNodeTypeFilter.All,
+                GroupCondition = new(node => node.NodeType, true),
+                SortConditions =
+                [
+                    new(node => node.Name, true)
+                ]
+            };
         }
 
         public static void Initialize()
@@ -40,14 +50,7 @@ namespace VirtualStorageLibrary
 
         public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardDictionary.PowerShellRegexMatch;
 
-        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = new (node => node.NodeType, true);
-
-        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = new()
-        {
-            new (node => node.Name, true)
-        };
-
-        public VirtualNodeTypeFilter NodeTypeFilter { get; set; } = VirtualNodeTypeFilter.All;
+        public VirtualNodeListConditions NodeListConditions { get; set; }
     }
 
     public class VirtualStorageState
@@ -58,8 +61,8 @@ namespace VirtualStorageLibrary
 
         private VirtualStorageState()
         {
-            InvalidNodeNameCharacters = [PathSeparator];
-            InvalidFullNodeNames = [PathDot, PathDotDot];
+            InvalidNodeNameCharacters = [ PathSeparator ];
+            InvalidFullNodeNames = [ PathDot, PathDotDot ];
         }
 
         public static void Initialize() => _state = new();
@@ -78,17 +81,19 @@ namespace VirtualStorageLibrary
 
         public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardDictionary.PowerShellRegexMatch;
 
-        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set; } = new(node => node.NodeType, true);
-
-        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; } = new()
-        {
-            new (node => node.Name, true)
-        };
-
-        public VirtualNodeTypeFilter NodeTypeFilter { get; set; } = VirtualNodeTypeFilter.All;
+        public VirtualNodeListConditions NodeListConditions { get; set; } = new();
 
         public static void InitializeFromSettings(VirtualStorageSettings settings)
         {
+            VirtualNodeListConditions settingsConditions = settings.NodeListConditions;
+            VirtualNodeListConditions stateConditions = new();
+
+            stateConditions.Filter = settingsConditions.Filter;
+            stateConditions.GroupCondition = settingsConditions.GroupCondition != null
+                    ? new GroupCondition<VirtualNode, object>(settingsConditions.GroupCondition.GroupBy, settingsConditions.GroupCondition.Ascending)
+                    : null;
+            stateConditions.SortConditions = settingsConditions.SortConditions?.Select(c => new SortCondition<VirtualNode>(c.SortBy, c.Ascending)).ToList();
+
             _state = new VirtualStorageState
             {
                 PathSeparator = settings.PathSeparator,
@@ -100,12 +105,21 @@ namespace VirtualStorageLibrary
                 PatternMatcher = settings.PatternMatcher != null 
                     ? new PatternMatcher(settings.PatternMatcher)
                     : null,
-                NodeGroupCondition = settings.NodeGroupCondition != null
-                    ? new GroupCondition<VirtualNode, object>(settings.NodeGroupCondition.GroupBy, settings.NodeGroupCondition.Ascending)
-                    : null,
-                NodeSortConditions = settings.NodeSortConditions?.Select(c => new SortCondition<VirtualNode>(c.SortBy, c.Ascending)).ToList(),
-                NodeTypeFilter = settings.NodeTypeFilter
+                NodeListConditions = stateConditions
             };
+        }
+
+        public static void SetNodeListConditions(VirtualNodeListConditions conditions)
+        {
+            _state.NodeListConditions = conditions;
+        }
+
+        public static void SetNodeListConditions(
+            VirtualNodeTypeFilter filter,
+            GroupCondition<VirtualNode, object>? groupCondition,
+            List<SortCondition<VirtualNode>>? sortConditions)
+        {
+            _state.NodeListConditions = new VirtualNodeListConditions(filter, groupCondition, sortConditions);
         }
     }
 
@@ -1135,6 +1149,29 @@ namespace VirtualStorageLibrary
         }
     }
 
+    public class VirtualNodeListConditions
+    {
+        public VirtualNodeTypeFilter Filter { get; set; }
+
+        public GroupCondition<VirtualNode, object>? GroupCondition { get; set; }
+
+        public List<SortCondition<VirtualNode>>? SortConditions { get; set; }
+
+        public VirtualNodeListConditions()
+        {
+            Filter = VirtualNodeTypeFilter.All;
+            GroupCondition = null;
+            SortConditions = null;
+        }
+
+        public VirtualNodeListConditions(VirtualNodeTypeFilter filter, GroupCondition<VirtualNode, object>? groupCondition, List<SortCondition<VirtualNode>>? sortConditions)
+        {
+            Filter = filter;
+            GroupCondition = groupCondition;
+            SortConditions = sortConditions;
+        }
+    }
+
     public class VirtualDirectory : VirtualNode, IEnumerable<VirtualNode>
     {
         private Dictionary<VirtualNodeName, VirtualNode> _nodes = new();
@@ -1152,12 +1189,6 @@ namespace VirtualStorageLibrary
         public IEnumerable<VirtualNodeName> NodeNames => _nodes.Keys;
 
         public IEnumerable<VirtualNode> Nodes => GetNodeList();
-
-        public VirtualNodeTypeFilter NodeTypeFilter { get; set; }
-
-        public GroupCondition<VirtualNode, object>? NodeGroupCondition { get; set;}
-
-        public List<SortCondition<VirtualNode>>? NodeSortConditions { get; set; }
 
         public bool NodeExists(VirtualNodeName name) => _nodes.ContainsKey(name);
 
@@ -1199,19 +1230,11 @@ namespace VirtualStorageLibrary
         public VirtualDirectory(VirtualNodeName name) : base(name)
         {
             _nodes = new();
-
-            NodeTypeFilter = VirtualStorageState.State.NodeTypeFilter;
-            NodeGroupCondition = VirtualStorageState.State.NodeGroupCondition;
-            NodeSortConditions = VirtualStorageState.State.NodeSortConditions;
         }
 
         public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             _nodes = new();
-
-            NodeTypeFilter = VirtualStorageState.State.NodeTypeFilter;
-            NodeGroupCondition = VirtualStorageState.State.NodeGroupCondition;
-            NodeSortConditions = VirtualStorageState.State.NodeSortConditions;
         }
 
         public override string ToString() => (Name == VirtualPath.Root) ? VirtualPath.Root : $"{Name}{VirtualPath.Separator}";
@@ -1224,13 +1247,13 @@ namespace VirtualStorageLibrary
 
         public IEnumerable<VirtualNode> GetNodeList()
         {
-            NodeTypeFilter = VirtualStorageState.State.NodeTypeFilter;
-            NodeGroupCondition = VirtualStorageState.State.NodeGroupCondition;
-            NodeSortConditions = VirtualStorageState.State.NodeSortConditions;
+            VirtualNodeTypeFilter filter = VirtualStorageState.State.NodeListConditions.Filter;
+            GroupCondition<VirtualNode, object>? groupCondition = VirtualStorageState.State.NodeListConditions.GroupCondition;
+            List<SortCondition<VirtualNode>>? sortConditions = VirtualStorageState.State.NodeListConditions.SortConditions;
 
             IEnumerable<VirtualNode> nodes = _nodes.Values;
 
-            switch (NodeTypeFilter)
+            switch (filter)
             {
                 case VirtualNodeTypeFilter.None:
                     return Enumerable.Empty<VirtualNode>();
@@ -1238,13 +1261,13 @@ namespace VirtualStorageLibrary
                     break;
                 default:
                     nodes = _nodes.Values.Where(node =>
-                        (NodeTypeFilter.HasFlag(VirtualNodeTypeFilter.Directory) && node is VirtualDirectory) ||
-                        (NodeTypeFilter.HasFlag(VirtualNodeTypeFilter.Item) && node is VirtualItem) ||
-                        (NodeTypeFilter.HasFlag(VirtualNodeTypeFilter.SymbolicLink) && node is VirtualSymbolicLink));
+                        (filter.HasFlag(VirtualNodeTypeFilter.Directory) && node is VirtualDirectory) ||
+                        (filter.HasFlag(VirtualNodeTypeFilter.Item) && node is VirtualItem) ||
+                        (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink) && node is VirtualSymbolicLink));
                     break;
             }
 
-            return nodes.GroupAndSort(NodeGroupCondition, NodeSortConditions);
+            return nodes.GroupAndSort(groupCondition, sortConditions);
         }
 
         public void Add(VirtualNode node, bool allowOverwrite = false)

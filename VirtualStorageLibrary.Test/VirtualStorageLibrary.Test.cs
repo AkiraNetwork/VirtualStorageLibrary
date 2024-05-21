@@ -1933,12 +1933,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageState.State.NodeSortConditions = new()
-            {
-                new (node => node.Name, true)
-            };
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.NodeType, true),
+                [ new(node => node.Name, true) ]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = storage.GetDirectory("/");
@@ -1971,12 +1969,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/", item2);
 
             // 条件を設定
-            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageState.State.NodeSortConditions = new()
-            {
-                new (node => node.CreatedDate, true)
-            };
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.NodeType, true),
+                [new(node => node.CreatedDate, true)]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = storage.GetDirectory("/");
@@ -2009,12 +2005,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/", item2);
 
             // 条件を設定
-            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageState.State.NodeSortConditions = new()
-            {
-                new (node => node.CreatedDate, false)
-            };
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.NodeType, true),
+                [new(node => node.CreatedDate, false)]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = storage.GetDirectory("/");
@@ -2045,12 +2039,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageState.State.NodeSortConditions = new()
-            {
-                new (node => node.Name, false)
-            };
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.NodeType, true),
+                [new(node => node.Name, false)]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = storage.GetDirectory("/");
@@ -2081,12 +2073,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.All;
-            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, false);
-            VirtualStorageState.State.NodeSortConditions = new()
-            {
-                new (node => node.Name, true)
-            };
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.NodeType, false),
+                [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = storage.GetDirectory("/");
@@ -2117,12 +2107,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.Directory;
-            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageState.State.NodeSortConditions = new()
-            {
-                new (node => node.Name, true)
-            };
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.Directory,
+                new(node => node.NodeType, true),
+                [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = storage.GetDirectory("/");
@@ -2151,12 +2139,10 @@ namespace VirtualStorageLibrary.Test
             storage.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
-            VirtualStorageState.State.NodeTypeFilter = VirtualNodeTypeFilter.Item;
-            VirtualStorageState.State.NodeGroupCondition = new(node => node.NodeType, true);
-            VirtualStorageState.State.NodeSortConditions = new()
-            {
-                new (node => node.Name, true)
-            };
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.Item,
+                new(node => node.NodeType, true),
+                [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = storage.GetDirectory("/");
