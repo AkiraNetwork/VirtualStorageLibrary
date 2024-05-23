@@ -48,7 +48,7 @@ namespace VirtualStorageLibrary
 
         public string[] InvalidFullNodeNames { get; set; }
 
-        public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardDictionary.PowerShellRegexMatch;
+        public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardMacher.PowerShellRegexMatch;
 
         public VirtualNodeListConditions NodeListConditions { get; set; }
     }
@@ -79,7 +79,7 @@ namespace VirtualStorageLibrary
 
         public string[] InvalidFullNodeNames { get; set; }
 
-        public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardDictionary.PowerShellRegexMatch;
+        public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardMacher.PowerShellRegexMatch;
 
         public VirtualNodeListConditions NodeListConditions { get; set; } = new();
 
@@ -129,7 +129,7 @@ namespace VirtualStorageLibrary
 
     public delegate bool PatternMatcher(string nodeName, string pattern);
 
-    public static class PowerShellWildcardDictionary
+    public static class PowerShellWildcardMacher
     {
         // TODO: エスケープ(`)については別途、検討。
         // ワイルドカードとそれに対応する正規表現のパターンの配列
@@ -1882,7 +1882,7 @@ namespace VirtualStorageLibrary
         // TODO: VirtualPathクラスに組み込むか検討する。
         private VirtualPath ExtractBasePath(VirtualPath path)
         {
-            var wildcards = PowerShellWildcardDictionary.Wildcards;
+            var wildcards = PowerShellWildcardMacher.Wildcards;
             var parts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
             return new VirtualPath(parts);
         }
@@ -1890,7 +1890,7 @@ namespace VirtualStorageLibrary
         // TODO: VirtualPathクラスに組み込むか検討する。
         private static int GetBaseDepth(VirtualPath path)
         {
-            var wildcards = PowerShellWildcardDictionary.Wildcards;
+            var wildcards = PowerShellWildcardMacher.Wildcards;
             var baseParts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
             return baseParts.Count;
         }
