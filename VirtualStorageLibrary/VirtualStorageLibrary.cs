@@ -19,8 +19,7 @@ namespace VirtualStorageLibrary
             InvalidNodeNameCharacters = [ PathSeparator ];
             InvalidFullNodeNames = [ PathDot, PathDotDot ];
 
-            WildcardMatcher = new PowerShellWildcardMacher();
-            PatternMatcher = WildcardMatcher.PowerShellRegexMatch;
+            WildcardMatcher = new PowerShellWildcardMatcher();
 
             NodeListConditions = new()
             {
@@ -53,8 +52,6 @@ namespace VirtualStorageLibrary
 
         public IWildcardMatcher? WildcardMatcher { get; set; }
 
-        public PatternMatcher? PatternMatcher { get; set; }
-
         public VirtualNodeListConditions NodeListConditions { get; set; }
     }
 
@@ -84,7 +81,7 @@ namespace VirtualStorageLibrary
 
         public string[] InvalidFullNodeNames { get; set; }
 
-        public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardMacher.PowerShellRegexMatch;
+        public IWildcardMatcher? WildcardMatcher { get; set; }
 
         public VirtualNodeListConditions NodeListConditions { get; set; } = new();
 
@@ -107,8 +104,8 @@ namespace VirtualStorageLibrary
                 PathDotDot = settings.PathDotDot,
                 InvalidNodeNameCharacters = (char[])settings.InvalidNodeNameCharacters.Clone(),
                 InvalidFullNodeNames = (string[])settings.InvalidFullNodeNames.Clone(),
-                PatternMatcher = settings.PatternMatcher != null 
-                    ? new PatternMatcher(settings.PatternMatcher)
+                WildcardMatcher = settings.WildcardMatcher != null
+                    ? settings.WildcardMatcher.DeepClone()
                     : null,
                 NodeListConditions = stateConditions
             };
@@ -132,17 +129,22 @@ namespace VirtualStorageLibrary
 
     public delegate bool ActionNodeDelegate(VirtualDirectory directory, VirtualNodeName nodeName);
 
-    public delegate bool PatternMatcher(string nodeName, string pattern);
+    public delegate bool PatternMatch(string nodeName, string pattern);
 
     public interface IWildcardMatcher
     {
         Dictionary<string, string> WildcardDictionary { get; }
+
         IEnumerable<string> Wildcards { get; }
+
         IEnumerable<string> Patterns { get; }
-        bool RegexMatch(string nodeName, string pattern);
+
+        bool PatternMatcher(string nodeName, string pattern);
+
+        public IWildcardMatcher DeepClone();
     }
 
-    public class PowerShellWildcardMacher : IWildcardMatcher
+    public class PowerShellWildcardMatcher : IWildcardMatcher
     {
         // TODO: エスケープ(`)については別途、検討。
         // ワイルドカードとそれに対応する正規表現のパターンの配列
@@ -161,7 +163,7 @@ namespace VirtualStorageLibrary
         public IEnumerable<string> Patterns => _wildcardDictionary.Values;
 
         // ワイルドカードの実装（PowerShell）
-        public bool PowerShellRegexMatch(string nodeName, string pattern)
+        public bool PatternMatcher(string nodeName, string pattern)
         {
             // エスケープ処理を考慮して正規表現のパターンを作成
             string regexPattern = "^";
@@ -190,6 +192,16 @@ namespace VirtualStorageLibrary
 
             // 正規表現を用いてマッチングを行う
             return Regex.IsMatch(nodeName, regexPattern);
+        }
+
+        public IWildcardMatcher DeepClone()
+        {
+            // まずは浅いクローンを作成
+            PowerShellWildcardMatcher clone = (PowerShellWildcardMatcher)this.MemberwiseClone();
+
+            // 次に他のインスタンスメンバーが追加された場合はここでクローンする
+
+            return clone;
         }
     }
 
@@ -1895,16 +1907,30 @@ namespace VirtualStorageLibrary
         // TODO: VirtualPathクラスに組み込むか検討する。
         private VirtualPath ExtractBasePath(VirtualPath path)
         {
-            var wildcards = PowerShellWildcardMacher.Wildcards;
-            var parts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
+            IWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
+
+            if (wildcardMatcher == null)
+            {
+                return path;
+            }
+
+            IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
+            List<VirtualNodeName> parts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
             return new VirtualPath(parts);
         }
 
         // TODO: VirtualPathクラスに組み込むか検討する。
         private static int GetBaseDepth(VirtualPath path)
         {
-            var wildcards = PowerShellWildcardMacher.Wildcards;
-            var baseParts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
+            IWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
+
+            if (wildcardMatcher == null)
+            {
+                return 0;
+            }
+
+            IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
+            List<VirtualNodeName> baseParts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
             return baseParts.Count;
         }
 
@@ -1921,7 +1947,16 @@ namespace VirtualStorageLibrary
             bool followLinks,
             List<string>? patternList)
         {
-            PatternMatcher? patternMatcher = VirtualStorageSettings.Settings.PatternMatcher ?? null;
+            IWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
+            PatternMatch? patternMatcher;
+            if (wildcardMatcher == null)
+            {
+                patternMatcher = null;
+            }
+            else
+            {
+                patternMatcher = wildcardMatcher.PatternMatcher;
+            }
 
             // ノードの種類に応じて処理を分岐
             if (baseNode is VirtualDirectory directory)
@@ -2028,7 +2063,16 @@ namespace VirtualStorageLibrary
 
         static bool MatchPatterns(List<VirtualNodeName> parts, List<string> patternList)
         {
-            PatternMatcher? patternMatcher = VirtualStorageSettings.Settings.PatternMatcher ?? null;
+            IWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
+            PatternMatch? patternMatcher;
+            if (wildcardMatcher == null)
+            {
+                patternMatcher = null;
+            }
+            else
+            {
+                patternMatcher = wildcardMatcher.PatternMatcher;
+            }
 
             if (patternMatcher == null)
             {
