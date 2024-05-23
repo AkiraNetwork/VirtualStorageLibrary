@@ -19,6 +19,9 @@ namespace VirtualStorageLibrary
             InvalidNodeNameCharacters = [ PathSeparator ];
             InvalidFullNodeNames = [ PathDot, PathDotDot ];
 
+            WildcardMatcher = new PowerShellWildcardMacher();
+            PatternMatcher = WildcardMatcher.PowerShellRegexMatch;
+
             NodeListConditions = new()
             {
                 Filter = VirtualNodeTypeFilter.All,
@@ -48,7 +51,9 @@ namespace VirtualStorageLibrary
 
         public string[] InvalidFullNodeNames { get; set; }
 
-        public PatternMatcher? PatternMatcher { get; set; } = PowerShellWildcardMacher.PowerShellRegexMatch;
+        public IWildcardMatcher? WildcardMatcher { get; set; }
+
+        public PatternMatcher? PatternMatcher { get; set; }
 
         public VirtualNodeListConditions NodeListConditions { get; set; }
     }
@@ -129,11 +134,19 @@ namespace VirtualStorageLibrary
 
     public delegate bool PatternMatcher(string nodeName, string pattern);
 
-    public static class PowerShellWildcardMacher
+    public interface IWildcardMatcher
+    {
+        Dictionary<string, string> WildcardDictionary { get; }
+        IEnumerable<string> Wildcards { get; }
+        IEnumerable<string> Patterns { get; }
+        bool RegexMatch(string nodeName, string pattern);
+    }
+
+    public class PowerShellWildcardMacher : IWildcardMatcher
     {
         // TODO: エスケープ(`)については別途、検討。
         // ワイルドカードとそれに対応する正規表現のパターンの配列
-        private static Dictionary<string, string> _wildcardDictionary = new()
+        private static readonly Dictionary<string, string> _wildcardDictionary = new()
         {
             { "*", ".*" },  // 0文字以上に一致
             { "?", "." },   // 任意の1文字に一致
@@ -141,14 +154,14 @@ namespace VirtualStorageLibrary
             { "]", "]" }    // 文字クラスの終了
         };
 
-        public static Dictionary<string, string> WildcardDictionary => _wildcardDictionary;
+        public Dictionary<string, string> WildcardDictionary => _wildcardDictionary;
 
-        public static IEnumerable<string> Wildcards => _wildcardDictionary.Keys;
+        public IEnumerable<string> Wildcards => _wildcardDictionary.Keys;
 
-        public static IEnumerable<string> Patterns => _wildcardDictionary.Values;
+        public IEnumerable<string> Patterns => _wildcardDictionary.Values;
 
         // ワイルドカードの実装（PowerShell）
-        public static bool PowerShellRegexMatch(string nodeName, string pattern)
+        public bool PowerShellRegexMatch(string nodeName, string pattern)
         {
             // エスケープ処理を考慮して正規表現のパターンを作成
             string regexPattern = "^";
