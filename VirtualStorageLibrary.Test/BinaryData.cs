@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 
-namespace VirtualStorageLibrary.Test
+namespace AkiraNet.VirtualStorageLibrary.Test
 {
     public class BinaryData
         : IDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace VirtualStorageLibrary.Test
+namespace AkiraNet.VirtualStorageLibrary.Test
 {
     public class SimpleData
     {

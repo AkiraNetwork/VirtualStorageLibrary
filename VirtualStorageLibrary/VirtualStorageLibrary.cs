@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace VirtualStorageLibrary
+namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualStorageSettings
     {
