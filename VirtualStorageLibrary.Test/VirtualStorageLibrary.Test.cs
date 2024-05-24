@@ -7246,5 +7246,33 @@ namespace VirtualStorageLibrary.Test
             string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
             Debug.WriteLine(tree);
         }
+
+        [TestMethod]
+        public void CopyNode_CopySourceToItsSubdirectory_ThrowsException()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // 実行 & 検査: コピー元がコピー先のサブディレクトリである場合
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.CopyNode("/dir1", "/dir1/subdir");
+            });
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDestinationToItsParentDirectory_ThrowsException()
+        {
+            VirtualStorage vs = new VirtualStorage();
+            vs.AddDirectory("/dir1/subdir", true);
+            vs.AddItem("/dir1/subdir/item1", new BinaryData(new byte[] { 1, 2, 3 }));
+
+            // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.CopyNode("/dir1/subdir", "/dir1");
+            });
+        }
     }
 }
