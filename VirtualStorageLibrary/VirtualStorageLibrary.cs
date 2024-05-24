@@ -2281,10 +2281,10 @@ namespace VirtualStorageLibrary
             return Regex.IsMatch(nodeName, pattern);
         }
 
-        private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite, bool recursive)
+        private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool followLinks, bool recursive)
         {
-            VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
-            VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+            VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
+            VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
             // ルートディレクトリのコピーを禁止
             if (absoluteSourcePath.IsRoot)
@@ -2293,7 +2293,7 @@ namespace VirtualStorageLibrary
             }
 
             // コピー元の存在確認
-            if (!NodeExists(absoluteSourcePath))
+            if (!NodeExists(absoluteSourcePath, true))
             {
                 throw new VirtualNodeNotFoundException($"コピー元ノード '{absoluteSourcePath}' は存在しません。");
             }
@@ -2310,45 +2310,18 @@ namespace VirtualStorageLibrary
                 throw new InvalidOperationException("コピー元またはコピー先が互いのサブディレクトリになっています。");
             }
 
-            bool destinationIsDirectory = DirectoryExists(absoluteDestinationPath) || absoluteDestinationPath.IsEndsWithSlash;
+            // コピー元ツリーの探索
+            IEnumerable<VirtualNodeContext> sourceContexts = WalkPathTree(absoluteSourcePath, VirtualNodeTypeFilter.All, recursive, followLinks);
 
-            VirtualPath targetDirectoryPath;
-            VirtualNodeName newNodeName;
-
-            if (destinationIsDirectory)
+            // 各ノードに対する存在確認
+            foreach (var context in sourceContexts)
             {
-                targetDirectoryPath = absoluteDestinationPath;
-                newNodeName = absoluteSourcePath.NodeName;
-            }
-            else
-            {
-                targetDirectoryPath = absoluteDestinationPath.GetParentPath();
-                newNodeName = absoluteDestinationPath.NodeName;
-            }
+                VirtualPath currentSourcePath = absoluteSourcePath + context.TraversalPath;
 
-            // コピー先ディレクトリが存在しない場合、新しいディレクトリとして扱う
-            if (!DirectoryExists(targetDirectoryPath))
-            {
-                return; // コピー先ディレクトリが存在しないので、それ以上のチェックは不要
-            }
-
-            VirtualDirectory targetDirectory = GetDirectory(targetDirectoryPath);
-
-            // コピー先に同名のノードが存在し、上書きが許可されていない場合、例外を投げる
-            if (targetDirectory.NodeExists(newNodeName) && !overwrite)
-            {
-                throw new InvalidOperationException($"コピー先ディレクトリ '{targetDirectoryPath}' に同名のノード '{newNodeName}' が存在します。上書きは許可されていません。");
-            }
-
-            // 再帰的なチェック（ディレクトリの場合のみ）
-            VirtualNode sourceNode = GetNode(absoluteSourcePath);
-            if (recursive && sourceNode is VirtualDirectory sourceDirectory)
-            {
-                foreach (var subNode in sourceDirectory.Nodes)
+                // コピー元ノードの存在確認
+                if (!NodeExists(currentSourcePath, true))
                 {
-                    VirtualPath newSubSourcePath = absoluteSourcePath + subNode.Name;
-                    VirtualPath newSubDestinationPath = absoluteDestinationPath + subNode.Name;
-                    CheckCopyPreconditions(newSubSourcePath, newSubDestinationPath, overwrite, true);
+                    throw new VirtualNodeNotFoundException($"コピー元ノード '{currentSourcePath}' は存在しません。");
                 }
             }
         }
@@ -2360,6 +2333,8 @@ namespace VirtualStorageLibrary
             bool followLinks = false,
             bool recursive = false)
         {
+            CheckCopyPreconditions(sourcePath, destinationPath, followLinks, recursive);
+
             sourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
