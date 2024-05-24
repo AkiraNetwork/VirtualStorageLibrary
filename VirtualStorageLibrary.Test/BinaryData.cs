@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
     public class BinaryData
-        : IDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>
+        : IVirtualDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>
     {
         private byte[] _data;
 
