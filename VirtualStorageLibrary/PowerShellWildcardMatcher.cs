@@ -9,7 +9,6 @@ namespace AkiraNet.VirtualStorageLibrary.WildcardMatchers
 {
     public class PowerShellWildcardMatcher : IVirtualWildcardMatcher
     {
-        // TODO: エスケープ(`)については別途、検討。
         // ワイルドカードとそれに対応する正規表現のパターンの配列
         private static readonly Dictionary<string, string> _wildcardDictionary = new()
         {

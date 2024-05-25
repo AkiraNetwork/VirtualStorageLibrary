@@ -159,10 +159,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // リンク辞書にリンク情報を追加
             AddLinkToDictionary(absoluteTargetPath, path);
-
-            // TODO: 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-
-            // TODO: シンボリックリンクがシンボリックリンクへリンクしていたらどうするか検討する
         }
 
         public void AddItem<T>(VirtualPath path, VirtualItem<T> item, bool overwrite = false)

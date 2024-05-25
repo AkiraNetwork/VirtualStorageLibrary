@@ -744,7 +744,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualPath resolvedPath = vs.ResolveLinkTarget("/LinkToDocuments");
 
             // 結果を検証
-            // TODO:これは期待通り。
             Assert.IsTrue(resolvedPath == "/Documents");
         }
 
@@ -761,7 +760,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualPath resolvedPath = vs.ResolveLinkTarget("/FirstLink");
 
             // 結果を検証
-            // TODO:これはできれば/FinalDestinationになってほしい。
             Assert.IsTrue(resolvedPath == "/FinalDestination");
         }
 
@@ -776,7 +774,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.ChangeDirectory("/dir1/dir2/dir3");
 
             // メソッドを実行
-            // TODO:これはできれば/dir1/dir2/dir3/itemになってほしい。
             VirtualPath resolvedPath = vs.ResolveLinkTarget("linkToDir2/../item");
 
             // 結果を検証
@@ -799,7 +796,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualPath resolvedPath = vs.ResolveLinkTarget("/dir1/link1/link2/item");
 
             // 結果を検証
-            // TODO:これは期待通り。
             Assert.IsTrue(resolvedPath == "/dir3/item");
         }
 
@@ -817,7 +813,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualPath resolvedPath = vs.ResolveLinkTarget("linkToDir2/item");
 
             // 結果を検証
-            // TODO:これは期待通り。
             Assert.IsTrue(resolvedPath == "/dir1/dir2/item");
         }
 
@@ -835,7 +830,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualPath resolvedPath = vs.ResolveLinkTarget("./link/item");
 
             // 結果を検証
-            // TODO:これは期待通り。
             Assert.IsTrue(resolvedPath == "/dir1/subdir/item");
         }
 

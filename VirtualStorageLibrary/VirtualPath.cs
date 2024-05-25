@@ -433,7 +433,6 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        // TODO: VirtualNodeNameを使ってCombineするように変更するかも
         [DebuggerStepThrough]
         public VirtualPath Combine(params VirtualPath[] paths)
         {
@@ -445,7 +444,6 @@ namespace AkiraNet.VirtualStorageLibrary
             return new VirtualPath(combinedPathString);
         }
 
-        // TODO: VirtualNodeNameを使ってCombineするように変更するかも
         [DebuggerStepThrough]
         public string Combine(params string[] paths)
         {
@@ -486,7 +484,6 @@ namespace AkiraNet.VirtualStorageLibrary
         }
 
         [DebuggerStepThrough]
-        // TODO: このメソッドいる? DirectoryPathとNodeNameを使えばいいのでは?
         public VirtualPath GetParentPath()
         {
             // パスの最後の PathSeparator を取り除きます
