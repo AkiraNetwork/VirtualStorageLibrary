@@ -5,27 +5,27 @@ namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualStorage
     {
-        private VirtualDirectory _root;
+        private readonly VirtualDirectory _root;
 
         public VirtualDirectory Root => _root;
 
         public VirtualPath CurrentPath { get; private set; }
 
-        private Dictionary<VirtualPath, List<VirtualPath>> _linkDictionary;
+        private readonly Dictionary<VirtualPath, List<VirtualPath>> _linkDictionary;
 
         public VirtualStorage()
         {
             _root = new VirtualDirectory(VirtualPath.Root);
             CurrentPath = VirtualPath.Root;
-            _linkDictionary = new();
+            _linkDictionary = [];
         }
 
         public void UpdateLinkTargetNodeTypes(VirtualPath targetPath)
         {
-            if (_linkDictionary.ContainsKey(targetPath))
+            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathList))
             {
                 VirtualNodeType targetType = GetNodeType(targetPath, true);
-                foreach (VirtualPath linkPath in _linkDictionary[targetPath])
+                foreach (VirtualPath linkPath in linkPathList)
                 {
                     VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
                     symbolicLink.TargetNodeType = targetType;
@@ -40,14 +40,16 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new ArgumentException("リンク先のパスは絶対パスである必要があります。", nameof(targetPath));
             }
 
+            // TODO: これbasePathが指定されてないけど大丈夫なの？
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
-            if (!_linkDictionary.ContainsKey(targetPath))
+            if (!_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathList))
             {
-                _linkDictionary[targetPath] = new();
+                linkPathList = [];
+                _linkDictionary[targetPath] = linkPathList;
             }
 
-            _linkDictionary[targetPath].Add(linkPath);
+            linkPathList.Add(linkPath);
 
             VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
             symbolicLink.TargetNodeType = GetNodeType(targetPath, true);
@@ -62,11 +64,11 @@ namespace AkiraNet.VirtualStorageLibrary
 
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
-            if (_linkDictionary.ContainsKey(targetPath))
+            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathsList))
             {
-                _linkDictionary[targetPath].Remove(linkPath);
+                linkPathsList.Remove(linkPath);
 
-                if (_linkDictionary[targetPath].Count == 0)
+                if (linkPathsList.Count == 0)
                 {
                     _linkDictionary.Remove(targetPath);
                 }
@@ -123,11 +125,8 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualNodeName linkName = path.NodeName;
 
             // 対象ディレクトリを安全に取得
-            VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true);
-            if (directory == null)
-            {
+            VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true) ??
                 throw new VirtualNodeNotFoundException($"ディレクトリ '{directoryPath}' が存在しません。");
-            }
 
             // 既存のノードの存在チェック
             if (directory.NodeExists(linkName))
@@ -326,12 +325,12 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualNode? node = traversalDirectory[traversalNodeName];
 
             // 探索パスを更新
-            traversalPath = traversalPath + traversalNodeName;
+            traversalPath += traversalNodeName;
 
             // 次のノードへ
             traversalIndex++;
 
-            if (node is VirtualDirectory)
+            if (node is VirtualDirectory directory)
             {
                 // 最後のノードに到達したかチェック
                 if (targetPath.PartsList.Count <= traversalIndex)
@@ -346,7 +345,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 notifyNode?.Invoke(traversalPath, node, false);
 
                 // 探索ディレクトリを取得
-                traversalDirectory = (VirtualDirectory)node;
+                traversalDirectory = directory;
 
                 // 再帰的に探索
                 nodeContext = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, notifyNode, actionNode, followLinks, exceptionEnabled, resolved);
@@ -409,10 +408,10 @@ namespace AkiraNet.VirtualStorageLibrary
                 // シンボリックリンクを通知
                 notifyNode?.Invoke(traversalPath, node, true);
 
-                if (node != null && (node is VirtualDirectory))
+                if (node != null && (node is VirtualDirectory linkDirectory))
                 {
                     // 探索ディレクトリを取得
-                    traversalDirectory = (VirtualDirectory)node;
+                    traversalDirectory = linkDirectory;
 
                     // 最後のノードに到達したかチェック
                     if (targetPath.PartsList.Count <= traversalIndex)
@@ -880,7 +879,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException("コピー元パスとコピー先パスが同じです。");
             }
 
-            IEnumerable<VirtualNodeContext> destinationContexts = Enumerable.Empty<VirtualNodeContext>();
+            IEnumerable<VirtualNodeContext> destinationContexts = [];
 
             // コピー元のツリーを取得
             IEnumerable<VirtualNodeContext> sourceContexts = WalkPathTree(sourcePath, VirtualNodeTypeFilter.All, recursive, followLinks);
@@ -895,7 +894,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 foreach (var sourceContext in sourceContexts.Skip(1))
                 {
                     VirtualPath sourceSubPath = sourcePath + sourceContext.TraversalPath;
-                    VirtualPath destinationSubPath = destinationPath + sourceNode.Name + sourceSubPath.GetRelativePath(sourcePath);
+                    VirtualPath destinationSubPath = destinationPath + sourceDirectory.Name + sourceSubPath.GetRelativePath(sourcePath);
                     VirtualNode sourceSubNode = sourceContext.Node!;
 
                     contexts = CopySingleInternal(sourceSubPath, sourceSubNode, destinationSubPath, null, overwrite, followLinks);
@@ -914,16 +913,14 @@ namespace AkiraNet.VirtualStorageLibrary
             bool overwrite,
             bool followLinks)
         {
-            VirtualNodeName? newNodeName = null;
+            VirtualNodeName? newNodeName;
 
-            IEnumerable<VirtualNodeContext> contexts = Enumerable.Empty<VirtualNodeContext>();
+            IEnumerable<VirtualNodeContext> contexts = [];
 
             VirtualDirectory destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
             VirtualNodeName destinationNodeName = destinationPath.NodeName;
 
             VirtualNode? destinationNode = destinationDirectory.Get(destinationNodeName, false);
-
-            VirtualPath destinationDirectoryPath;
 
             bool overwriteDirectory = false;
 
@@ -944,8 +941,7 @@ namespace AkiraNet.VirtualStorageLibrary
                             throw new InvalidOperationException($"ノード '{newNodeName}' は既に存在します。上書きは許可されていません。");
                         }
                     }
-                    destinationDirectoryPath = destinationPath;
-                    destinationPath = destinationPath + newNodeName;
+                    destinationPath += newNodeName;
                     break;
 
                 case VirtualItem _:
@@ -958,7 +954,6 @@ namespace AkiraNet.VirtualStorageLibrary
                         throw new InvalidOperationException($"アイテム '{destinationNodeName}' は既に存在します。上書きは許可されていません。");
                     }
                     newNodeName = destinationPath.NodeName;
-                    destinationDirectoryPath = destinationPath.DirectoryPath;
                     break;
 
                 case VirtualSymbolicLink link:
@@ -967,7 +962,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 default:
                     newNodeName = destinationPath.NodeName;
-                    destinationDirectoryPath = destinationPath.DirectoryPath;
                     break;
             }
 
@@ -993,12 +987,12 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             // コピー操作の結果を表す VirtualNodeContext を生成して返却
-            VirtualNodeContext context = new VirtualNodeContext(
-                node: newNode,
-                traversalPath: destinationPath,
-                parentNode: destinationDirectory,
-                depth: depth,
-                index: 0
+            VirtualNodeContext context = new(
+                newNode,
+                destinationPath,
+                destinationDirectory,
+                depth,
+                0
             );
 
             contexts = contexts.Append(context);
@@ -1337,13 +1331,13 @@ namespace AkiraNet.VirtualStorageLibrary
                                     line.Append(FullWidthSpaceChar);
                                     break;
                                 case '│':
-                                    line.Append("│");
+                                    line.Append('│');
                                     break;
                                 case '└':
                                     line.Append(FullWidthSpaceChar);
                                     break;
                                 case '├':
-                                    line.Append("│");
+                                    line.Append('│');
                                     break;
                                 default:
                                     line.Append(FullWidthSpaceChar);
@@ -1358,11 +1352,11 @@ namespace AkiraNet.VirtualStorageLibrary
 
                     if (index == count - 1)
                     {
-                        line.Append("└");
+                        line.Append('└');
                     }
                     else
                     {
-                        line.Append("├");
+                        line.Append('├');
                     }
                 }
 
