@@ -619,5 +619,34 @@ namespace AkiraNet.VirtualStorageLibrary
 
             return new VirtualPath(string.Join(VirtualPath.Separator, relativePath));
         }
+
+        public VirtualPath ExtractBasePath()
+        {
+            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
+
+            if (wildcardMatcher == null)
+            {
+                return _path;
+            }
+
+            IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
+            List<VirtualNodeName> parts = PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
+            return new VirtualPath(parts);
+        }
+
+        public int GetBaseDepth()
+        {
+            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
+
+            if (wildcardMatcher == null)
+            {
+                return 0;
+            }
+
+            IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
+            List<VirtualNodeName> baseParts = PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
+            return baseParts.Count;
+        }
+
     }
 }

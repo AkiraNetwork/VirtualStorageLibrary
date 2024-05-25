@@ -448,7 +448,7 @@ namespace AkiraNet.VirtualStorageLibrary
             bool followLinks = true)
         {
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
-            int baseDepth = GetBaseDepth(basePath);
+            int baseDepth = basePath.GetBaseDepth();
             VirtualNode node = GetNode(basePath, followLinks);
 
             return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, recursive, followLinks, null);
@@ -459,43 +459,13 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualPath basePath = ExtractBasePath(path);
-            int baseDepth = GetBaseDepth(path);
+            VirtualPath basePath = path.ExtractBasePath();
+            int baseDepth = path.GetBaseDepth();
             VirtualNode node = GetNode(basePath, true);
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
 
             return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, true, true, patternList);
-        }
-
-        // TODO: VirtualPathクラスに組み込むか検討する。
-        private VirtualPath ExtractBasePath(VirtualPath path)
-        {
-            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
-
-            if (wildcardMatcher == null)
-            {
-                return path;
-            }
-
-            IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
-            List<VirtualNodeName> parts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
-            return new VirtualPath(parts);
-        }
-
-        // TODO: VirtualPathクラスに組み込むか検討する。
-        private static int GetBaseDepth(VirtualPath path)
-        {
-            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
-
-            if (wildcardMatcher == null)
-            {
-                return 0;
-            }
-
-            IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
-            List<VirtualNodeName> baseParts = path.PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
-            return baseParts.Count;
         }
 
         private IEnumerable<VirtualNodeContext> WalkPathTreeInternal(
@@ -832,7 +802,7 @@ namespace AkiraNet.VirtualStorageLibrary
         public IEnumerable<VirtualPath> ResolvePath(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualPath basePath = ExtractBasePath(path);
+            VirtualPath basePath = path.ExtractBasePath();
             IEnumerable<VirtualNodeContext> nodeContexts = ResolvePathTree(path);
             IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (basePath + info.TraversalPath).NormalizePath());
 
