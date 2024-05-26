@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace AkiraNet.VirtualStorageLibrary
+﻿namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualGroupCondition<T, TKey>(Expression<Func<T, TKey>> groupBy, bool ascending = true)
     {

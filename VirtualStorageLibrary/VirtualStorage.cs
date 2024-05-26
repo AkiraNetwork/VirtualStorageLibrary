@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-
-namespace AkiraNet.VirtualStorageLibrary
+﻿namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualStorage
     {

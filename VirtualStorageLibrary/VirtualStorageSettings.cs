@@ -1,6 +1,4 @@
-﻿using AkiraNet.VirtualStorageLibrary.WildcardMatchers;
-
-namespace AkiraNet.VirtualStorageLibrary
+﻿namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualStorageSettings
     {

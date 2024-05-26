@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace AkiraNet.VirtualStorageLibrary
+﻿namespace AkiraNet.VirtualStorageLibrary
 {
     [method: DebuggerStepThrough]
     public class VirtualNodeContext(

@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace AkiraNet.VirtualStorageLibrary
+﻿namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualSortCondition<T>(Expression<Func<T, object>> sortBy, bool ascending = true)
     {

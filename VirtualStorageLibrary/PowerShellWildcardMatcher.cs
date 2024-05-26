@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace AkiraNet.VirtualStorageLibrary.WildcardMatchers
+﻿namespace AkiraNet.VirtualStorageLibrary.WildcardMatchers
 {
     public class PowerShellWildcardMatcher : IVirtualWildcardMatcher
     {
