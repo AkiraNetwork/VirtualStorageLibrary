@@ -37,7 +37,6 @@
                 throw new ArgumentException("リンク先のパスは絶対パスである必要があります。", nameof(targetPath));
             }
 
-            // TODO: これbasePathが指定されてないけど大丈夫なの？
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
             if (!_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathList))
