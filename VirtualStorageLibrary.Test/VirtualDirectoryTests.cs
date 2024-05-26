@@ -79,8 +79,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void DeepClone_ReturnsDeepCopyOfVirtualDirectory()
         {
             // Arrange
-            VirtualDirectory originalDirectory = new("original");
-            originalDirectory.Add(new VirtualItem<BinaryData>("item", [1, 2, 3]));
+            VirtualDirectory originalDirectory = new("original")
+            {
+                new VirtualItem<BinaryData>("item", [1, 2, 3])
+            };
 
             // Act
             VirtualDirectory clonedDirectory = (VirtualDirectory)originalDirectory.DeepClone();
@@ -146,8 +148,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void Add_NewDirectory_AddsDirectoryCorrectly()
         {
-            VirtualDirectory parentDirectory = new VirtualDirectory("ParentDirectory");
-            VirtualDirectory childDirectory = new VirtualDirectory("ChildDirectory");
+            VirtualDirectory parentDirectory = new("ParentDirectory");
+            VirtualDirectory childDirectory = new("ChildDirectory");
 
             parentDirectory.Add(childDirectory);
 
@@ -189,7 +191,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualDirectory directory = new("TestDirectory");
-            VirtualItem<BinaryData> newNode = new("Invalid/Name", new BinaryData(new byte[] { 1, 2, 3 }));
+            VirtualItem<BinaryData> newNode = new("Invalid/Name", new BinaryData([1, 2, 3]));
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
@@ -201,7 +203,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualDirectory directory = new("TestDirectory");
-            VirtualItem<BinaryData> newNode = new("", new BinaryData(new byte[] { 1, 2, 3 }));
+            VirtualItem<BinaryData> newNode = new("", new BinaryData([1, 2, 3]));
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
@@ -213,7 +215,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualDirectory directory = new("TestDirectory");
-            VirtualItem<BinaryData> newNode = new(".", new BinaryData(new byte[] { 1, 2, 3 }));
+            VirtualItem<BinaryData> newNode = new(".", new BinaryData([1, 2, 3]));
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
@@ -225,7 +227,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualDirectory directory = new("TestDirectory");
-            VirtualItem<BinaryData> newNode = new("..", new BinaryData(new byte[] { 1, 2, 3 }));
+            VirtualItem<BinaryData> newNode = new("..", new BinaryData([1, 2, 3]));
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
@@ -360,7 +362,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void Indexer_ValidKey_ReturnsNode()
         {
             VirtualDirectory directory = new("TestDirectory");
-            VirtualItem<BinaryData> node = new("ItemData", new BinaryData());
+            VirtualItem<BinaryData> node = new("ItemData", []);
             directory.Add(node);
 
             VirtualNode result = directory["ItemData"];
@@ -383,7 +385,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void Indexer_Setter_UpdatesNode()
         {
             VirtualDirectory directory = new("TestDirectory");
-            VirtualItem<BinaryData> newNode = new("NewItem", new BinaryData());
+            VirtualItem<BinaryData> newNode = new("NewItem", []);
 
             directory["NewItemKey"] = newNode;
             VirtualNode result = directory["NewItemKey"];
@@ -1050,7 +1052,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualDirectory directory = new("TestDirectory");
-            byte[] testData = new byte[] { 1, 2, 3 };
+            byte[] testData = [1, 2, 3];
             VirtualItem<BinaryData> item = new("TestItem", new BinaryData(testData));
             directory.Add(item);
 

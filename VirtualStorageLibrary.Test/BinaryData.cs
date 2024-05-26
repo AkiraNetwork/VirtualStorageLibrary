@@ -90,8 +90,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         public void CopyTo(byte[] array, int arrayIndex)
         {
-            if (array == null)
-                throw new ArgumentNullException(nameof(array));
+            ArgumentNullException.ThrowIfNull(array);
+
             if (arrayIndex < 0 || arrayIndex > array.Length)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), "インデックスが配列の範囲外です。");
             if (array.Length - arrayIndex < _data.Length)

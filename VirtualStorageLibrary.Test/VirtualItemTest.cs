@@ -31,7 +31,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             byte[] testData = [1, 2, 3];
 
             // BinaryData オブジェクトを作成
-            BinaryData binaryData = new BinaryData(testData);
+            BinaryData binaryData = new(testData);
 
             // VirtualItem<BinaryData> オブジェクトを作成
             VirtualNodeName name = "TestBinaryItem";
@@ -157,7 +157,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void ToString_ReturnsItemInformationWithStruct()
         {
-            SimpleStruct data = new SimpleStruct { Value = 10 };
+            SimpleStruct data = new() { Value = 10 };
 
             VirtualItem<SimpleStruct> item = new("TestItem", data);
 
