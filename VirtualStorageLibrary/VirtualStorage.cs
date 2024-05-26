@@ -10,6 +10,8 @@
 
         private readonly Dictionary<VirtualPath, List<VirtualPath>> _linkDictionary;
 
+        public Dictionary<VirtualPath, List<VirtualPath>> LinkDictionary => _linkDictionary;
+
         public VirtualStorage()
         {
             _root = new VirtualDirectory(VirtualPath.Root);

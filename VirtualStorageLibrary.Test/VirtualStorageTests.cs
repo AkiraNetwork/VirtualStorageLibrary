@@ -1167,6 +1167,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/actualDirectory/newItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData!.Data);
+
+            // リンク辞書の表示
+            foreach ((VirtualPath targetPath, List<VirtualPath> linkPathList) in virtualStorage.LinkDictionary)
+            {
+                Debug.WriteLine($"Link: {targetPath}");
+                foreach (var linkPath in linkPathList)
+                {
+                    Debug.WriteLine($"  -> {linkPath}");
+                }
+            }
         }
 
         [TestMethod]
