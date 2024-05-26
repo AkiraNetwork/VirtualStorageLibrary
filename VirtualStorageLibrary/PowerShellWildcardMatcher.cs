@@ -40,9 +40,9 @@ namespace AkiraNet.VirtualStorageLibrary.WildcardMatchers
                 else
                 {
                     string currentChar = pattern[i].ToString();
-                    if (WildcardDictionary.ContainsKey(currentChar))
+                    if (WildcardDictionary.TryGetValue(currentChar, out string? wildcard))
                     {
-                        regexPattern += WildcardDictionary[currentChar];
+                        regexPattern += wildcard;
                     }
                     else
                     {

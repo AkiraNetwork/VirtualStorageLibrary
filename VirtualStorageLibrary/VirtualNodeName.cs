@@ -2,9 +2,10 @@
 
 namespace AkiraNet.VirtualStorageLibrary
 {
-    public class VirtualNodeName : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable
+    [method: DebuggerStepThrough]
+    public class VirtualNodeName(string name) : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable
     {
-        private readonly string _name;
+        private readonly string _name = name;
 
         public string Name
         {
@@ -18,23 +19,17 @@ namespace AkiraNet.VirtualStorageLibrary
         [DebuggerStepThrough]
         public override string ToString() => _name;
 
-        [DebuggerStepThrough]
-        public VirtualNodeName(string name)
-        {
-            _name = name;
-        }
-
         // ユーザーが使用してはいけないノード名の文字のチェック
-        public static bool IsValidNodeName(string name)
+        public static bool IsValidNodeName(VirtualNodeName nodeName)
         {
-            if (name == string.Empty)
+            if (nodeName.Name == string.Empty)
             {
                 return false;
             }
 
             foreach (char c in VirtualStorageSettings.Settings.InvalidNodeNameCharacters)
             {
-                if (name.Contains(c))
+                if (nodeName.Name.Contains(c))
                 {
                     return false;
                 }
@@ -42,7 +37,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
             foreach (string invalidFullNodeName in VirtualStorageSettings.Settings.InvalidFullNodeNames)
             {
-                if (name == invalidFullNodeName)
+                if (nodeName.Name == invalidFullNodeName)
                 {
                     return false;
                 }
@@ -101,7 +96,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 return 1;
             }
 
-            if (!(obj is VirtualNodeName))
+            if (obj is not VirtualNodeName)
             {
                 throw new ArgumentException("Object is not a VirtualNodeName");
             }
@@ -113,13 +108,13 @@ namespace AkiraNet.VirtualStorageLibrary
         public static bool operator ==(VirtualNodeName? left, VirtualNodeName? right)
         {
             // 両方が null の場合は true
-            if (object.ReferenceEquals(left, null) && object.ReferenceEquals(right, null))
+            if (left is null && right is null)
             {
                 return true;
             }
 
             // 一方が null の場合は false
-            if (object.ReferenceEquals(left, null) || object.ReferenceEquals(right, null))
+            if (left is null || right is null)
             {
                 return false;
             }

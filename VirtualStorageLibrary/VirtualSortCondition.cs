@@ -2,15 +2,10 @@
 
 namespace AkiraNet.VirtualStorageLibrary
 {
-    public class VirtualSortCondition<T>
+    public class VirtualSortCondition<T>(Expression<Func<T, object>> sortBy, bool ascending = true)
     {
-        public Expression<Func<T, object>> SortBy { get; set; }
-        public bool Ascending { get; set; } = true; // デフォルトは昇順
+        public Expression<Func<T, object>> SortBy { get; set; } = sortBy;
 
-        public VirtualSortCondition(Expression<Func<T, object>> sortBy, bool ascending = true)
-        {
-            SortBy = sortBy;
-            Ascending = ascending;
-        }
+        public bool Ascending { get; set; } = ascending;
     }
 }

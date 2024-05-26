@@ -2,45 +2,41 @@
 
 namespace AkiraNet.VirtualStorageLibrary
 {
-    public class VirtualNodeContext
+    [method: DebuggerStepThrough]
+    public class VirtualNodeContext(
+        VirtualNode? node,
+        VirtualPath traversalPath,
+        VirtualDirectory? parentNode = null,
+        int depth = 0,
+        int index = 0,
+        VirtualPath? resolvedPath = null,
+        bool resolved = false)
     {
-        public VirtualNode? Node { [DebuggerStepThrough] get; }
+        public VirtualNode? Node { [DebuggerStepThrough] get; } = node;
 
-        public VirtualPath TraversalPath { [DebuggerStepThrough] get; }
+        public VirtualPath TraversalPath { [DebuggerStepThrough] get; } = traversalPath;
 
-        public VirtualDirectory? ParentDirectory { [DebuggerStepThrough] get; }
+        public VirtualDirectory? ParentDirectory { [DebuggerStepThrough] get; } = parentNode;
 
-        public int Depth { [DebuggerStepThrough] get; }
+        public int Depth { [DebuggerStepThrough] get; } = depth;
 
-        public int Index { [DebuggerStepThrough] get; }
+        public int Index { [DebuggerStepThrough] get; } = index;
 
-        public VirtualPath? ResolvedPath { [DebuggerStepThrough] get; }
+        public VirtualPath? ResolvedPath { [DebuggerStepThrough] get; } = resolvedPath;
 
-        public bool Resolved { [DebuggerStepThrough] get; }
-
-        [DebuggerStepThrough]
-        public VirtualNodeContext(VirtualNode? node, VirtualPath traversalPath, VirtualDirectory? parentNode = null, int depth = 0, int index = 0, VirtualPath? resolvedPath = null, bool resolved = false)
-        {
-            Node = node;
-            TraversalPath = traversalPath;
-            ParentDirectory = parentNode;
-            Depth = depth;
-            Index = index;
-            ResolvedPath = resolvedPath;
-            Resolved = resolved;
-        }
+        public bool Resolved { [DebuggerStepThrough] get; } = resolved;
 
         [DebuggerStepThrough]
         public override string ToString()
         {
-            List<string> parts = new()
-            {
+            List<string> parts =
+            [
                 $"NodeName: {Node?.Name}",
                 $"TraversalPath: {TraversalPath}",
                 $"ParentDirectory: {ParentDirectory?.Name}",
                 $"Depth: {Depth}",
                 $"Index: {Index}"
-            };
+            ];
 
             if (ResolvedPath != null)
             {

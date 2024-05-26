@@ -2,15 +2,10 @@
 
 namespace AkiraNet.VirtualStorageLibrary
 {
-    public class VirtualGroupCondition<T, TKey>
+    public class VirtualGroupCondition<T, TKey>(Expression<Func<T, TKey>> groupBy, bool ascending = true)
     {
-        public Expression<Func<T, TKey>> GroupBy { get; set; }
-        public bool Ascending { get; set; } = true; // デフォルトは昇順
+        public Expression<Func<T, TKey>> GroupBy { get; set; } = groupBy;
 
-        public VirtualGroupCondition(Expression<Func<T, TKey>> groupBy, bool ascending = true)
-        {
-            GroupBy = groupBy;
-            Ascending = ascending;
-        }
+        public bool Ascending { get; set; } = ascending;
     }
 }

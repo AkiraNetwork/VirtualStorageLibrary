@@ -33,13 +33,14 @@
         public static void InitializeFromSettings(VirtualStorageSettings settings)
         {
             VirtualNodeListConditions settingsConditions = settings.NodeListConditions;
-            VirtualNodeListConditions stateConditions = new();
-
-            stateConditions.Filter = settingsConditions.Filter;
-            stateConditions.GroupCondition = settingsConditions.GroupCondition != null
+            VirtualNodeListConditions stateConditions = new()
+            {
+                Filter = settingsConditions.Filter,
+                GroupCondition = settingsConditions.GroupCondition != null
                     ? new VirtualGroupCondition<VirtualNode, object>(settingsConditions.GroupCondition.GroupBy, settingsConditions.GroupCondition.Ascending)
-                    : null;
-            stateConditions.SortConditions = settingsConditions.SortConditions?.Select(c => new VirtualSortCondition<VirtualNode>(c.SortBy, c.Ascending)).ToList();
+                    : null,
+                SortConditions = settingsConditions.SortConditions?.Select(c => new VirtualSortCondition<VirtualNode>(c.SortBy, c.Ascending)).ToList()
+            };
 
             _state = new VirtualStorageState
             {
@@ -49,9 +50,7 @@
                 PathDotDot = settings.PathDotDot,
                 InvalidNodeNameCharacters = (char[])settings.InvalidNodeNameCharacters.Clone(),
                 InvalidFullNodeNames = (string[])settings.InvalidFullNodeNames.Clone(),
-                WildcardMatcher = settings.WildcardMatcher != null
-                    ? settings.WildcardMatcher.DeepClone()
-                    : null,
+                WildcardMatcher = settings.WildcardMatcher?.DeepClone(),
                 NodeListConditions = stateConditions
             };
         }

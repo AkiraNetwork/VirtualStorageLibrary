@@ -68,7 +68,7 @@
         {
             // Arrange
             string testName = "ImplicitTestNode";
-            VirtualNodeName nodeName = new VirtualNodeName(testName);
+            VirtualNodeName nodeName = new(testName);
 
             // Act
             string nameAsString = nodeName;  // Implicit conversion to string
@@ -200,7 +200,7 @@
         public void IsValidNodeName_ReturnsFalseForEmptyName()
         {
             // Act
-            bool isValid = VirtualNodeName.IsValidNodeName("");
+            bool isValid = VirtualNodeName.IsValidNodeName(string.Empty);
 
             // Assert
             Assert.IsFalse(isValid, "IsValidNodeName should return false for an empty name.");

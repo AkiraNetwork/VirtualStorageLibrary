@@ -4,7 +4,7 @@ namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualDirectory : VirtualNode, IEnumerable<VirtualNode>
     {
-        private Dictionary<VirtualNodeName, VirtualNode> _nodes = new();
+        private readonly Dictionary<VirtualNodeName, VirtualNode> _nodes = [];
 
         public override VirtualNodeType NodeType => VirtualNodeType.Directory;
 
@@ -59,12 +59,12 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public VirtualDirectory(VirtualNodeName name) : base(name)
         {
-            _nodes = new();
+            _nodes = [];
         }
 
         public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
-            _nodes = new();
+            _nodes = [];
         }
 
         public override string ToString() => (Name == VirtualPath.Root) ? VirtualPath.Root : $"{Name}{VirtualPath.Separator}";
@@ -86,7 +86,7 @@ namespace AkiraNet.VirtualStorageLibrary
             switch (filter)
             {
                 case VirtualNodeTypeFilter.None:
-                    return Enumerable.Empty<VirtualNode>();
+                    return [];
                 case VirtualNodeTypeFilter.All:
                     break;
                 default:
@@ -102,9 +102,9 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public void Add(VirtualNode node, bool allowOverwrite = false)
         {
-            if (!VirtualNodeName.IsValidNodeName(node.Name.Name))
+            if (!VirtualNodeName.IsValidNodeName(node.Name))
             {
-                throw new ArgumentException($"ノード名 '{node.Name}' は無効です。", nameof(node.Name));
+                throw new ArgumentException($"ノード名 '{node}' は無効です。", nameof(node));
             }
 
             VirtualNodeName key = node.Name;

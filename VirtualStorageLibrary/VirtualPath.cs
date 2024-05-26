@@ -69,10 +69,7 @@ namespace AkiraNet.VirtualStorageLibrary
             [DebuggerStepThrough]
             get
             {
-                if (_partsList == null)
-                {
-                    _partsList = GetPartsList();
-                }
+                _partsList ??= GetPartsList();
                 return _partsList;
             }
         }
@@ -192,13 +189,13 @@ namespace AkiraNet.VirtualStorageLibrary
         public static bool operator ==(VirtualPath? left, VirtualPath? right)
         {
             // 両方が null の場合は true
-            if (object.ReferenceEquals(left, null) && object.ReferenceEquals(right, null))
+            if (left is null && right is null)
             {
                 return true;
             }
 
             // 一方が null の場合は false
-            if (object.ReferenceEquals(left, null) || object.ReferenceEquals(right, null))
+            if (left is null || right is null)
             {
                 return false;
             }
@@ -288,7 +285,7 @@ namespace AkiraNet.VirtualStorageLibrary
         {
             if (_path.EndsWith(Separator))
             {
-                return new VirtualPath(_path.Substring(0, _path.Length - 1));
+                return new VirtualPath(_path[..^1]);
             }
             return this;
         }
@@ -374,7 +371,7 @@ namespace AkiraNet.VirtualStorageLibrary
             // 末尾の PathSeparator を取り除く
             if (normalizedPath.Length > 1 && normalizedPath.EndsWith(Separator))
             {
-                normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
+                normalizedPath = normalizedPath[..^1];
             }
 
             return normalizedPath;
@@ -399,7 +396,7 @@ namespace AkiraNet.VirtualStorageLibrary
             else
             {
                 // フルパスから最後の PathSeparator までの部分を抜き出して返す
-                return _path.Substring(0, lastSlashIndex);
+                return _path[..lastSlashIndex];
             }
         }
 
@@ -429,7 +426,7 @@ namespace AkiraNet.VirtualStorageLibrary
             else
             {
                 // 最後の PathSeparator 以降の部分を抜き出して返す
-                return new VirtualNodeName(path.ToString().Substring(lastSlashIndex + 1));
+                return new VirtualNodeName(path.ToString()[(lastSlashIndex + 1)..]);
             }
         }
 
@@ -438,14 +435,14 @@ namespace AkiraNet.VirtualStorageLibrary
         {
             string[] currentPathArray = [_path];
             string[] pathStrings = paths.Select(p => p.Path).ToArray();
-            string[] allPaths = currentPathArray.Concat(pathStrings).ToArray();
+            string[] allPaths = [.. currentPathArray, .. pathStrings];
             string combinedPathString = Combine(allPaths);
 
             return new VirtualPath(combinedPathString);
         }
 
         [DebuggerStepThrough]
-        public string Combine(params string[] paths)
+        public static string Combine(params string[] paths)
         {
             // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
             StringBuilder newPathBuilder = new();
@@ -476,7 +473,7 @@ namespace AkiraNet.VirtualStorageLibrary
             // 末尾の PathSeparator を取り除く
             if (normalizedPath.EndsWith(VirtualPath.Separator))
             {
-                normalizedPath = normalizedPath.Substring(0, normalizedPath.Length - 1);
+                normalizedPath = normalizedPath[..^1];
             }
 
             // 結合された文字列を返却
@@ -519,7 +516,7 @@ namespace AkiraNet.VirtualStorageLibrary
         [DebuggerStepThrough]
         public List<VirtualNodeName> GetPartsList()
         {
-            return GetPartsLinkedList().ToList();
+            return [.. GetPartsLinkedList()];
         }
 
         [DebuggerStepThrough]
@@ -532,7 +529,7 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualPath combinedPath = this;
             foreach (var part in partsFromIndex)
             {
-                combinedPath = combinedPath + part;
+                combinedPath += part;
             }
 
             return combinedPath;
@@ -555,7 +552,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 return 1;
             }
 
-            if (!(obj is VirtualPath))
+            if (obj is not VirtualPath)
             {
                 throw new ArgumentException("Object is not a VirtualPath");
             }
