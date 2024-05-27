@@ -1001,7 +1001,6 @@
         public void RemoveNode(VirtualPath path, bool recursive = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            path = ResolveLinkTarget(path);
 
             if (path.IsRoot)
             {
@@ -1012,7 +1011,7 @@
 
             // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
             VirtualPath parentPath = path.DirectoryPath;
-            VirtualDirectory parentDirectory = GetDirectory(parentPath);
+            VirtualDirectory parentDirectory = GetDirectory(parentPath, true);
 
             if (node is VirtualDirectory directory)
             {
