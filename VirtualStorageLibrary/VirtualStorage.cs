@@ -998,7 +998,7 @@
             return contexts;
         }
 
-        public void RemoveNode(VirtualPath path, bool recursive = false)
+        public void RemoveNode(VirtualPath path, bool recursive = false, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
 
@@ -1007,12 +1007,36 @@
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
-            VirtualNode node = GetNode(path, true);
+            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(path, VirtualNodeTypeFilter.All, recursive, followLinks);
 
-            // ディレクトリを親ディレクトリから削除するための共通の親パスと親ディレクトリを取得
-            VirtualPath parentPath = path.DirectoryPath;
-            VirtualDirectory parentDirectory = GetDirectory(parentPath, true);
+            if (recursive)
+            {
+                // ノードコンテキストを逆順に処理するためにリストに変換して逆順にソート
+                List<VirtualNodeContext> reversedContexts = contexts.Reverse().ToList();
 
+                foreach (VirtualNodeContext context in reversedContexts)
+                {
+                    VirtualDirectory? parentDir = context.ParentDirectory;
+                    parentDir?.Remove(context.Node!.Name);
+                }
+            }
+            else
+            {
+                VirtualNodeContext context = contexts.First();
+
+                if (context.Node is VirtualDirectory directory)
+                {
+                    if (directory.Count > 0)
+                    {
+                        throw new InvalidOperationException("ディレクトリが空ではなく、再帰フラグが設定されていません。");
+                    }
+                }
+                VirtualDirectory? parentDir = context.ParentDirectory;
+                parentDir?.Remove(context.Node!.Name);
+            }
+
+
+#if NOUSED_CODE
             if (node is VirtualDirectory directory)
             {
                 if (!recursive && directory.Count > 0)
@@ -1038,6 +1062,7 @@
                 // ここで親ディレクトリからアイテム（ノード）を削除
                 parentDirectory.Remove(node.Name);
             }
+#endif
         }
 
         public bool NodeExists(VirtualPath path, bool followLinks = false)
