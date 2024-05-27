@@ -4256,7 +4256,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/linkToItem", "/item1");
 
             // シンボリックリンクを経由してアイテムにコピー
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/linkToItem", "/dir1/item2", false, true);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/linkToItem", "/dir1/item2", false, false, true);
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir1/item2");
@@ -4639,7 +4639,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link1", "/item1");
 
             // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false, false);
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/link2");
@@ -4669,7 +4669,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1/dir2", true);
 
             // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/dir1/dir2/link2", false, false);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/dir1/dir2/link2", false, false, false);
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dir1/dir2/link2");
@@ -4700,7 +4700,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link2", "/dst");
 
             // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/link2", false, false, false);
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dst/link1");
@@ -4764,7 +4764,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link1", "/dir1/item1");
 
             // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/dir2", false, true);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/link1", "/dir2", false, false, true);
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dir2/item1");
@@ -4800,7 +4800,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/dst/link", "/dir2");
 
             // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1/item1", "/dst/link", false, true);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1/item1", "/dst/link", false, false, true);
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem<BinaryData>("/dst/link/item1", true);
@@ -4835,7 +4835,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dst", true);
 
             // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", false, false, true);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst", false, true, false);
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -4881,7 +4881,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dst1/dst2", true);
 
             // 実行
-            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst1/dst2", false, false, true);
+            IEnumerable<VirtualNodeContext> contexts = vs.CopyNode("/dir1", "/dst1/dst2", false, true, false);
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");

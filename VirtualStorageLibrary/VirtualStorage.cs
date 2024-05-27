@@ -857,8 +857,8 @@
             VirtualPath sourcePath,
             VirtualPath destinationPath,
             bool overwrite = false,
-            bool followLinks = false,
-            bool recursive = false)
+            bool recursive = false,
+            bool followLinks = false)
         {
             CheckCopyPreconditions(sourcePath, destinationPath, followLinks, recursive);
 
