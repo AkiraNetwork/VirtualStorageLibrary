@@ -444,7 +444,9 @@
             int baseDepth = basePath.GetBaseDepth();
             VirtualNode node = GetNode(basePath, followLinks);
 
-            return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, recursive, followLinks, null);
+            VirtualDirectory parentDirectory = GetDirectory(basePath.DirectoryPath, followLinks);
+
+            return WalkPathTreeInternal(basePath, basePath, node, parentDirectory, baseDepth, 0, 0, filter, recursive, followLinks, null);
         }
 
         public IEnumerable<VirtualNodeContext> ResolvePathTree(
@@ -1034,35 +1036,6 @@
                 VirtualDirectory? parentDir = context.ParentDirectory;
                 parentDir?.Remove(context.Node!.Name);
             }
-
-
-#if NOUSED_CODE
-            if (node is VirtualDirectory directory)
-            {
-                if (!recursive && directory.Count > 0)
-                {
-                    throw new InvalidOperationException("ディレクトリが空ではなく、再帰フラグが設定されていません。");
-                }
-
-                // directory.Nodes コレクションのスナップショットを作成
-                var nodesSnapshot = directory.Nodes.ToList();
-
-                // スナップショットを反復処理して、各ノードを削除
-                foreach (var subNode in nodesSnapshot)
-                {
-                    VirtualPath subPath = path + subNode.Name;
-                    RemoveNode(subPath, recursive);
-                }
-
-                // ここで親ディレクトリからディレクトリを削除
-                parentDirectory.Remove(directory.Name);
-            }
-            else
-            {
-                // ここで親ディレクトリからアイテム（ノード）を削除
-                parentDirectory.Remove(node.Name);
-            }
-#endif
         }
 
         public bool NodeExists(VirtualPath path, bool followLinks = false)
