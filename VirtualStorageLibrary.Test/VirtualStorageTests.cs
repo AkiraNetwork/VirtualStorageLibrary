@@ -1771,6 +1771,112 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void RemoveNode_SymbolicLink_RemovesLink()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
+            storage.AddSymbolicLink("/test/link", "/target/path");
+
+            // Act
+            storage.RemoveNode("/test/link");
+
+            // Assert
+            Assert.IsFalse(storage.NodeExists("/test/link"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_RecursiveDeletionWithSymbolicLink_RemovesDirectoryAndLink()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test/nested", true);
+            storage.AddSymbolicLink("/test/nested/link", "/target/path");
+
+            // Act
+            storage.RemoveNode("/test", true);
+
+            // Assert
+            Assert.IsFalse(storage.NodeExists("/test"));
+            Assert.IsFalse(storage.NodeExists("/test/nested"));
+            Assert.IsFalse(storage.NodeExists("/test/nested/link"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_SymbolicLinkTargetDeletion_RemovesTargetButNotLink()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/target/path", true);
+            storage.AddDirectory("/test");
+            storage.AddSymbolicLink("/test/link", "/target/path");
+
+            // Act
+            storage.RemoveNode("/target/path");
+
+            // Assert
+            Assert.IsFalse(storage.NodeExists("/target/path"));
+            Assert.IsTrue(storage.SymbolicLinkExists("/test/link"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_NonRecursiveDeletionWithSymbolicLink_ThrowsException()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
+            storage.AddSymbolicLink("/test/link", "/target/path");
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                storage.RemoveNode("/test"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_RecursiveDeletionWithSymbolicLinkFollowLinksFalse_RemovesDirectoryAndLinkOnly()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test/nested", true);
+            storage.AddDirectory("/target");
+            BinaryData targetItem = new BinaryData(new byte[] { 1, 2, 3 });
+            storage.AddItem("/target/targetItem", targetItem);
+            storage.AddSymbolicLink("/test/nested/link", "/target");
+
+            // Act
+            storage.RemoveNode("/test", true, false);
+
+            // Assert
+            Assert.IsFalse(storage.NodeExists("/test"));
+            Assert.IsFalse(storage.NodeExists("/test/nested"));
+            Assert.IsFalse(storage.NodeExists("/test/nested/link"));
+            Assert.IsTrue(storage.NodeExists("/target")); // ターゲットディレクトリは削除されない
+            Assert.IsTrue(storage.NodeExists("/target/targetItem")); // ターゲットディレクトリ内のアイテムも削除されない
+        }
+
+        [TestMethod]
+        public void RemoveNode_RecursiveDeletionWithSymbolicLinkFollowLinksTrue_RemovesDirectoryAndTarget()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test/nested", true);
+            storage.AddDirectory("/target");
+            BinaryData targetItem = new BinaryData(new byte[] { 1, 2, 3 });
+            storage.AddItem("/target/targetItem", targetItem);
+            storage.AddSymbolicLink("/test/nested/link", "/target");
+
+            // Act
+            storage.RemoveNode("/test", true, true);
+
+            // Assert
+            Assert.IsFalse(storage.NodeExists("/test"));
+            Assert.IsFalse(storage.NodeExists("/test/nested"));
+            Assert.IsFalse(storage.NodeExists("/test/nested/link"));
+            Assert.IsFalse(storage.NodeExists("/target")); // ターゲットディレクトリも削除される
+            Assert.IsFalse(storage.NodeExists("/target/targetItem")); // ターゲットディレクトリ内のアイテムも削除される
+        }
+
+        [TestMethod]
         public void TryGetNode_ReturnsNode_WhenNodeExists()
         {
             // Arrange
