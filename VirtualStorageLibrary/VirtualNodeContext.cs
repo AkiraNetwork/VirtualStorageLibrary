@@ -29,7 +29,7 @@
         {
             List<string> parts =
             [
-                $"NodeName: {Node?.Name}",
+                $"Node: {Node}",
                 $"TraversalPath: {TraversalPath}",
                 $"ParentDirectory: {ParentDirectory?.Name}",
                 $"Depth: {Depth}",
