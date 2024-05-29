@@ -1021,13 +1021,19 @@
                 {
                     VirtualDirectory? parentDir = context.ParentDirectory;
 
+                    // シンボリックリンクか判定
                     if (context.ResolvedLink != null)
                     {
-                        VirtualNodeName linkNodeName = context.ResolvedLink.Name;
-                        parentDir?.Remove(linkNodeName);
+                        // シンボリックリンクの場合はリンクノードを削除し、ターゲット先も削除
+                        VirtualSymbolicLink link = context.ResolvedLink;
+                        parentDir?.Remove(link.Name);
+                        VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
+                        VirtualDirectory targetParentDir = GetDirectory(targetPath.DirectoryPath, true);
+                        targetParentDir.Remove(targetPath.NodeName);
                     }
                     else
                     {
+                        // 通常のノードの場合はそのまま削除
                         parentDir?.Remove(context.Node!.Name);
                     }
                 }
