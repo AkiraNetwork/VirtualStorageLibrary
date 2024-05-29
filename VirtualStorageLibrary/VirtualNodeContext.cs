@@ -8,7 +8,8 @@
         int depth = 0,
         int index = 0,
         VirtualPath? resolvedPath = null,
-        bool resolved = false)
+        bool resolved = false,
+        VirtualSymbolicLink? resolvedLink = null)
     {
         public VirtualNode? Node { [DebuggerStepThrough] get; } = node;
 
@@ -23,6 +24,8 @@
         public VirtualPath? ResolvedPath { [DebuggerStepThrough] get; } = resolvedPath;
 
         public bool Resolved { [DebuggerStepThrough] get; } = resolved;
+
+        public VirtualSymbolicLink? ResolvedLink { [DebuggerStepThrough] get; set; } = resolvedLink;
 
         [DebuggerStepThrough]
         public override string ToString()
@@ -42,6 +45,7 @@
             }
 
             parts.Add($"Resolved: {Resolved}");
+            parts.Add($"ResolvedLink: {ResolvedLink}");
 
             return string.Join(", ", parts);
         }

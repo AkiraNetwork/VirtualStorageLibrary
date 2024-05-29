@@ -446,7 +446,7 @@
 
             VirtualDirectory parentDirectory = GetDirectory(basePath.DirectoryPath, followLinks);
 
-            return WalkPathTreeInternal(basePath, basePath, node, parentDirectory, baseDepth, 0, 0, filter, recursive, followLinks, null);
+            return WalkPathTreeInternal(basePath, basePath, node, parentDirectory, baseDepth, 0, 0, filter, recursive, followLinks, null, null);
         }
 
         public IEnumerable<VirtualNodeContext> ResolvePathTree(
@@ -460,7 +460,7 @@
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
 
-            return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, true, true, patternList);
+            return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, true, true, patternList, null);
         }
 
         private IEnumerable<VirtualNodeContext> WalkPathTreeInternal(
@@ -474,7 +474,8 @@
             VirtualNodeTypeFilter filter,
             bool recursive,
             bool followLinks,
-            List<string>? patternList)
+            List<string>? patternList,
+            VirtualSymbolicLink? resolvedLink)
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
             PatternMatch? patternMatcher;
@@ -499,14 +500,14 @@
                             if (MatchPatterns(currentPath.PartsList, patternList))
                             {
                                 // ディレクトリを通知
-                                yield return new VirtualNodeContext(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                                yield return new VirtualNodeContext(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
                             }
                         }
                     }
                     else
                     {
                         // ディレクトリを通知
-                        yield return new VirtualNodeContext(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                        yield return new VirtualNodeContext(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
                     }
                 }
 
@@ -517,7 +518,7 @@
                     foreach (var node in directory.Nodes)
                     {
                         VirtualPath path = currentPath + node.Name;
-                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, baseDepth, currentDepth + 1, index, filter, recursive, followLinks, patternList))
+                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, baseDepth, currentDepth + 1, index, filter, recursive, followLinks, patternList, null))
                         {
                             yield return result;
                         }
@@ -536,14 +537,14 @@
                             if (MatchPatterns(currentPath.PartsList, patternList))
                             {
                                 // アイテムを通知
-                                yield return new VirtualNodeContext(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                                yield return new VirtualNodeContext(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
                             }
                         }
                     }
                     else
                     {
                         // アイテムを通知
-                        yield return new VirtualNodeContext(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                        yield return new VirtualNodeContext(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
                     }
                 }
             }
@@ -560,7 +561,7 @@
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, baseDepth, currentDepth, currentIndex, filter, recursive, followLinks, patternList))
+                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, baseDepth, currentDepth, currentIndex, filter, recursive, followLinks, patternList, link))
                     {
                         yield return result;
                     }
@@ -576,14 +577,14 @@
                                 if (MatchPatterns(currentPath.PartsList, patternList))
                                 {
                                     // シンボリックリンクを通知
-                                    yield return new VirtualNodeContext(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                                    yield return new VirtualNodeContext(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
                                 }
                             }
                         }
                         else
                         {
                             // シンボリックリンクを通知
-                            yield return new VirtualNodeContext(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex);
+                            yield return new VirtualNodeContext(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
                         }
                     }
                 }
@@ -1019,7 +1020,16 @@
                 foreach (VirtualNodeContext context in reversedContexts)
                 {
                     VirtualDirectory? parentDir = context.ParentDirectory;
-                    parentDir?.Remove(context.Node!.Name);
+
+                    if (context.ResolvedLink != null)
+                    {
+                        VirtualNodeName linkNodeName = context.ResolvedLink.Name;
+                        parentDir?.Remove(linkNodeName);
+                    }
+                    else
+                    {
+                        parentDir?.Remove(context.Node!.Name);
+                    }
                 }
             }
             else
