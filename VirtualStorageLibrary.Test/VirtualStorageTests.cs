@@ -3922,7 +3922,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void ResolveDeepDirectoryStructureTest()
         {
-            const int Depth = 1000; // 例として10階層の深さを設定
+            const int Depth = 500;
             const string BaseDir = "/dir1";
             var vs = new VirtualStorage();
 

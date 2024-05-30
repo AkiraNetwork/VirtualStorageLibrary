@@ -272,121 +272,124 @@
             bool exceptionEnabled = true)
         {
             targetPath = ConvertToAbsolutePath(targetPath).NormalizePath();
-            VirtualNodeContext? nodeContext = WalkPathToTargetInternal(targetPath, 0, VirtualPath.Root, null, _root, notifyNode, actionNode, followLinks, exceptionEnabled, false);
+
+            WalkPathToTargetParameters p = new WalkPathToTargetParameters(
+                targetPath,
+                0,
+                VirtualPath.Root,
+                null,
+                _root,
+                notifyNode,
+                actionNode,
+                followLinks,
+                exceptionEnabled,
+                false);
+
+            VirtualNodeContext? nodeContext = WalkPathToTargetInternal(p);
 
             return nodeContext;
         }
 
-        private VirtualNodeContext WalkPathToTargetInternal(
-            VirtualPath targetPath,
-            int traversalIndex,
-            VirtualPath traversalPath,
-            VirtualPath? resolvedPath,
-            VirtualDirectory traversalDirectory,
-            NotifyNodeDelegate? notifyNode,
-            ActionNodeDelegate? actionNode,
-            bool followLinks,
-            bool exceptionEnabled,
-            bool resolved)
+        private VirtualNodeContext WalkPathToTargetInternal(WalkPathToTargetParameters p)
         {
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
-            if (targetPath.IsRoot)
+            if (p.TargetPath.IsRoot)
             {
-                notifyNode?.Invoke(VirtualPath.Root, _root, true);
-                return new VirtualNodeContext(_root, VirtualPath.Root, null, 0, 0, VirtualPath.Root, resolved);
+                p.NotifyNode?.Invoke(VirtualPath.Root, _root, true);
+                return new VirtualNodeContext(_root, VirtualPath.Root, null, 0, 0, VirtualPath.Root, p.Resolved);
             }
 
-            VirtualNodeName traversalNodeName = targetPath.PartsList[traversalIndex];
+            VirtualNodeName traversalNodeName = p.TargetPath.PartsList[p.TraversalIndex];
 
-            while (!traversalDirectory.NodeExists(traversalNodeName))
+            while (!p.TraversalDirectory.NodeExists(traversalNodeName))
             {
-                if (actionNode != null)
+                if (p.ActionNode != null)
                 {
-                    if (actionNode(traversalDirectory, traversalNodeName))
+                    if (p.ActionNode(p.TraversalDirectory, traversalNodeName))
                     {
                         continue;
                     }
                 }
 
                 // 例外が有効な場合は例外をスロー
-                if (exceptionEnabled)
+                if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException($"ノード '{traversalPath + traversalNodeName}' が見つかりません。");
+                    throw new VirtualNodeNotFoundException($"ノード '{p.TraversalPath + traversalNodeName}' が見つかりません。");
                 }
 
-                return new VirtualNodeContext(null, traversalPath, null, 0, 0, traversalPath, resolved);
+                return new VirtualNodeContext(null, p.TraversalPath, null, 0, 0, p.TraversalPath, p.Resolved);
             }
 
             VirtualNodeContext? nodeContext;
 
             // 探索ノードを取得
-            VirtualNode? node = traversalDirectory[traversalNodeName];
+            VirtualNode? node = p.TraversalDirectory[traversalNodeName];
 
             // 探索パスを更新
-            traversalPath += traversalNodeName;
+            p.TraversalPath += traversalNodeName;
 
             // 次のノードへ
-            traversalIndex++;
+            p.TraversalIndex++;
 
             if (node is VirtualDirectory directory)
             {
                 // 最後のノードに到達したかチェック
-                if (targetPath.PartsList.Count <= traversalIndex)
+                if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                 {
                     // 末端のノードを通知
-                    notifyNode?.Invoke(traversalPath, node, true);
-                    resolvedPath ??= traversalPath;
-                    return new VirtualNodeContext(node, traversalPath, null, 0, 0, resolvedPath, resolved);
+                    p.NotifyNode?.Invoke(p.TraversalPath, node, true);
+                    p.ResolvedPath ??= p.TraversalPath;
+                    return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
                 }
 
                 // 途中のノードを通知
-                notifyNode?.Invoke(traversalPath, node, false);
+                p.NotifyNode?.Invoke(p.TraversalPath, node, false);
 
                 // 探索ディレクトリを取得
-                traversalDirectory = directory;
+                p.TraversalDirectory = directory;
 
                 // 再帰的に探索
-                nodeContext = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, notifyNode, actionNode, followLinks, exceptionEnabled, resolved);
+                nodeContext = WalkPathToTargetInternal(p);
                 node = nodeContext?.Node;
-                traversalPath = nodeContext?.TraversalPath ?? traversalPath;
-                resolvedPath = nodeContext?.ResolvedPath ?? resolvedPath;
+                p.TraversalPath = nodeContext?.TraversalPath ?? p.TraversalPath;
+                p.ResolvedPath = nodeContext?.ResolvedPath ?? p.ResolvedPath;
             }
             else if (node is VirtualItem)
             {
                 // 末端のノードを通知
-                notifyNode?.Invoke(traversalPath, node, true);
+                p.NotifyNode?.Invoke(p.TraversalPath, node, true);
 
                 // 最後のノードに到達したかチェック
-                if (targetPath.PartsList.Count <= traversalIndex)
+                if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                 {
-                    resolvedPath ??= traversalPath;
-                    return new VirtualNodeContext(node, traversalPath, null, 0, 0, resolvedPath, resolved);
+                    p.ResolvedPath ??= p.TraversalPath;
+                    return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
                 }
 
-                resolvedPath ??= traversalPath;
+                p.ResolvedPath ??= p.TraversalPath;
 
                 // 例外が有効な場合は例外をスロー
-                if (exceptionEnabled)
+                if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException($"ノード '{targetPath}' まで到達できません。ノード '{traversalPath}' はアイテムです。");
+                    throw new VirtualNodeNotFoundException($"ノード '{p.TargetPath}' まで到達できません。ノード '{p.TraversalPath}' はアイテムです。");
                 }
 
-                return new VirtualNodeContext(null, traversalPath, null, 0, 0, resolvedPath, resolved);
+                return new VirtualNodeContext(null, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
             }
             else if (node is VirtualSymbolicLink link)
             {
-                if (!followLinks)
+                if (!p.FollowLinks)
                 {
                     // シンボリックリンクを通知
-                    notifyNode?.Invoke(traversalPath, node, true);
-                    resolvedPath ??= traversalPath;
-                    return new VirtualNodeContext(node, traversalPath, null, 0, 0, resolvedPath, resolved);
+                    p.NotifyNode?.Invoke(p.TraversalPath, node, true);
+                    p.ResolvedPath ??= p.TraversalPath;
+                    return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
                 }
 
-                resolved = true;
+                p.Resolved = true;
 
                 VirtualPath? linkTargetPath = link.TargetPath;
-                VirtualPath parentTraversalPath = traversalPath.DirectoryPath;
+                VirtualPath parentTraversalPath = p.TraversalPath.DirectoryPath;
 
                 // シンボリックリンクのリンク先パスを絶対パスに変換
                 linkTargetPath = ConvertToAbsolutePath(linkTargetPath, parentTraversalPath);
@@ -395,43 +398,54 @@
                 linkTargetPath = linkTargetPath.NormalizePath();
 
                 // シンボリックリンクのリンク先パスを再帰的に探索
-                nodeContext = WalkPathToTargetInternal(linkTargetPath, 0, VirtualPath.Root, null, _root, null, null, true, exceptionEnabled, resolved);
+                WalkPathToTargetParameters p2 = new WalkPathToTargetParameters(
+                    linkTargetPath,
+                    0,
+                    VirtualPath.Root,
+                    null,
+                    _root,
+                    null,
+                    null,
+                    true,
+                    p.ExceptionEnabled,
+                    p.Resolved);
+                nodeContext = WalkPathToTargetInternal(p2);
 
                 node = nodeContext?.Node;
                 //traversalPath = result?.TraversalPath ?? traversalPath;
 
                 // 解決済みのパスに未探索のパスを追加
-                resolvedPath = nodeContext?.ResolvedPath!.CombineFromIndex(targetPath, traversalIndex);
+                p.ResolvedPath = nodeContext?.ResolvedPath!.CombineFromIndex(p.TargetPath, p.TraversalIndex);
 
                 // シンボリックリンクを通知
-                notifyNode?.Invoke(traversalPath, node, true);
+                p.NotifyNode?.Invoke(p.TraversalPath, node, true);
 
                 if (node != null && (node is VirtualDirectory linkDirectory))
                 {
                     // 探索ディレクトリを取得
-                    traversalDirectory = linkDirectory;
+                    p.TraversalDirectory = linkDirectory;
 
                     // 最後のノードに到達したかチェック
-                    if (targetPath.PartsList.Count <= traversalIndex)
+                    if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                     {
                         // 末端のノードを通知
-                        resolvedPath ??= traversalPath;
-                        return new VirtualNodeContext(node, traversalPath, null, 0, 0, resolvedPath, resolved);
+                        p.ResolvedPath ??= p.TraversalPath;
+                        return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
                     }
 
                     // 再帰的に探索
-                    nodeContext = WalkPathToTargetInternal(targetPath, traversalIndex, traversalPath, resolvedPath, traversalDirectory, notifyNode, actionNode, followLinks, exceptionEnabled, resolved);
+                    nodeContext = WalkPathToTargetInternal(p);
                     node = nodeContext?.Node;
-                    traversalPath = nodeContext?.TraversalPath ?? traversalPath;
-                    resolvedPath = nodeContext?.ResolvedPath ?? resolvedPath;
+                    p.TraversalPath = nodeContext?.TraversalPath ?? p.TraversalPath;
+                    p.ResolvedPath = nodeContext?.ResolvedPath ?? p.ResolvedPath;
                 }
 
-                resolvedPath ??= traversalPath;
-                return new VirtualNodeContext(node, traversalPath, null, 0, 0, resolvedPath, resolved);
+                p.ResolvedPath ??= p.TraversalPath;
+                return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
             }
 
-            resolvedPath ??= traversalPath;
-            return new VirtualNodeContext(node, traversalPath, null, 0, 0, resolvedPath, resolved);
+            p.ResolvedPath ??= p.TraversalPath;
+            return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
         }
 
         public IEnumerable<VirtualNodeContext> WalkPathTree(
@@ -1388,6 +1402,30 @@
             }   
 
             return tree.ToString();
+        }
+
+        private struct WalkPathToTargetParameters(
+            VirtualPath targetPath,
+            int traversalIndex,
+            VirtualPath traversalPath,
+            VirtualPath? resolvedPath,
+            VirtualDirectory traversalDirectory,
+            NotifyNodeDelegate? notifyNode,
+            ActionNodeDelegate? actionNode,
+            bool followLinks,
+            bool exceptionEnabled,
+            bool resolved)
+        {
+            public VirtualPath TargetPath { get; set; } = targetPath;
+            public int TraversalIndex { get; set; } = traversalIndex;
+            public VirtualPath TraversalPath { get; set; } = traversalPath;
+            public VirtualPath? ResolvedPath { get; set; } = resolvedPath;
+            public VirtualDirectory TraversalDirectory { get; set; } = traversalDirectory;
+            public NotifyNodeDelegate? NotifyNode { get; set; } = notifyNode;
+            public ActionNodeDelegate? ActionNode { get; set; } = actionNode;
+            public bool FollowLinks { get; set; } = followLinks;
+            public bool ExceptionEnabled { get; set; } = exceptionEnabled;
+            public bool Resolved { get; set; } = resolved;
         }
     }
 }
