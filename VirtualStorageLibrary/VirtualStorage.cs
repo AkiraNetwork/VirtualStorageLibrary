@@ -460,7 +460,21 @@
 
             VirtualDirectory parentDirectory = GetDirectory(basePath.DirectoryPath, followLinks);
 
-            return WalkPathTreeInternal(basePath, basePath, node, parentDirectory, baseDepth, 0, 0, filter, recursive, followLinks, null, null);
+            WalkPathTreeParameters p = new WalkPathTreeParameters(
+                basePath,
+                basePath,
+                node,
+                parentDirectory,
+                baseDepth,
+                0,
+                0,
+                filter,
+                recursive,
+                followLinks,
+                null,
+                null);
+
+            return WalkPathTreeInternal(p);
         }
 
         public IEnumerable<VirtualNodeContext> ResolvePathTree(
@@ -474,22 +488,24 @@
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
 
-            return WalkPathTreeInternal(basePath, basePath, node, null, baseDepth, 0, 0, filter, true, true, patternList, null);
+            WalkPathTreeParameters p = new WalkPathTreeParameters(
+                basePath,
+                basePath,
+                node,
+                null,
+                baseDepth,
+                0,
+                0,
+                filter,
+                true,
+                true,
+                patternList,
+                null);
+
+            return WalkPathTreeInternal(p);
         }
 
-        private IEnumerable<VirtualNodeContext> WalkPathTreeInternal(
-            VirtualPath basePath,
-            VirtualPath currentPath,
-            VirtualNode baseNode,
-            VirtualDirectory? parentDirectory,
-            int baseDepth,
-            int currentDepth,
-            int currentIndex,
-            VirtualNodeTypeFilter filter,
-            bool recursive,
-            bool followLinks,
-            List<string>? patternList,
-            VirtualSymbolicLink? resolvedLink)
+        private IEnumerable<VirtualNodeContext> WalkPathTreeInternal(WalkPathTreeParameters p)
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
             PatternMatch? patternMatcher;
@@ -503,36 +519,51 @@
             }
 
             // ノードの種類に応じて処理を分岐
-            if (baseNode is VirtualDirectory directory)
+            if (p.BaseNode is VirtualDirectory directory)
             {
-                if (filter.HasFlag(VirtualNodeTypeFilter.Directory))
+                if (p.Filter.HasFlag(VirtualNodeTypeFilter.Directory))
                 {
-                    if (patternMatcher != null && patternList != null)
+                    if (patternMatcher != null && p.PatternList != null)
                     {
-                        if (baseDepth + currentDepth == patternList.Count)
+                        if (p.BaseDepth + p.CurrentDepth == p.PatternList.Count)
                         {
-                            if (MatchPatterns(currentPath.PartsList, patternList))
+                            if (MatchPatterns(p.CurrentPath.PartsList, p.PatternList))
                             {
                                 // ディレクトリを通知
-                                yield return new VirtualNodeContext(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
+                                yield return new VirtualNodeContext(directory, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                             }
                         }
                     }
                     else
                     {
                         // ディレクトリを通知
-                        yield return new VirtualNodeContext(directory, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
+                        yield return new VirtualNodeContext(directory, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                     }
                 }
 
-                if (recursive || 0 == currentDepth)
+                if (p.Recursive || 0 == p.CurrentDepth)
                 {
                     // ディレクトリ内のノードを再帰的に探索
                     int index = 0;
                     foreach (var node in directory.Nodes)
                     {
-                        VirtualPath path = currentPath + node.Name;
-                        foreach (var result in WalkPathTreeInternal(basePath, path, node, directory, baseDepth, currentDepth + 1, index, filter, recursive, followLinks, patternList, null))
+                        VirtualPath path = p.CurrentPath + node.Name;
+
+                        WalkPathTreeParameters p2 = new WalkPathTreeParameters(
+                            p.BasePath,
+                            path,
+                            node,
+                            directory,
+                            p.BaseDepth,
+                            p.CurrentDepth + 1,
+                            index,
+                            p.Filter,
+                            p.Recursive,
+                            p.FollowLinks,
+                            p.PatternList,
+                            null);
+
+                        foreach (var result in WalkPathTreeInternal(p2))
                         {
                             yield return result;
                         }
@@ -540,65 +571,79 @@
                     }
                 }
             }
-            else if (baseNode is VirtualItem item)
+            else if (p.BaseNode is VirtualItem item)
             {
-                if (filter.HasFlag(VirtualNodeTypeFilter.Item))
+                if (p.Filter.HasFlag(VirtualNodeTypeFilter.Item))
                 {
-                    if (patternMatcher != null && patternList != null)
+                    if (patternMatcher != null && p.PatternList != null)
                     {
-                        if (baseDepth + currentDepth == patternList.Count)
+                        if (p.BaseDepth + p.CurrentDepth == p.PatternList.Count)
                         {
-                            if (MatchPatterns(currentPath.PartsList, patternList))
+                            if (MatchPatterns(p.CurrentPath.PartsList, p.PatternList))
                             {
                                 // アイテムを通知
-                                yield return new VirtualNodeContext(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
+                                yield return new VirtualNodeContext(item, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                             }
                         }
                     }
                     else
                     {
                         // アイテムを通知
-                        yield return new VirtualNodeContext(item, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
+                        yield return new VirtualNodeContext(item, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                     }
                 }
             }
-            else if (baseNode is VirtualSymbolicLink link)
+            else if (p.BaseNode is VirtualSymbolicLink link)
             {
-                if (followLinks)
+                if (p.FollowLinks)
                 {
                     VirtualPath? linkTargetPath = link.TargetPath;
 
                     // シンボリックリンクのリンク先パスを絶対パスに変換
-                    linkTargetPath = ConvertToAbsolutePath(linkTargetPath, currentPath).NormalizePath();
+                    linkTargetPath = ConvertToAbsolutePath(linkTargetPath, p.CurrentPath).NormalizePath();
 
                     // リンク先のノードを取得
-                    VirtualNode? linkTargetNode = GetNode(linkTargetPath, followLinks);
+                    VirtualNode? linkTargetNode = GetNode(linkTargetPath, p.FollowLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    foreach (var result in WalkPathTreeInternal(basePath, currentPath, linkTargetNode, parentDirectory, baseDepth, currentDepth, currentIndex, filter, recursive, followLinks, patternList, link))
+                    WalkPathTreeParameters p2 = new WalkPathTreeParameters(
+                        p.BasePath,
+                        p.CurrentPath,
+                        linkTargetNode,
+                        p.ParentDirectory,
+                        p.BaseDepth,
+                        p.CurrentDepth,
+                        p.CurrentIndex,
+                        p.Filter,
+                        p.Recursive,
+                        p.FollowLinks,
+                        p.PatternList,
+                        link);
+
+                    foreach (var result in WalkPathTreeInternal(p2))
                     {
                         yield return result;
                     }
                 }
                 else
                 {
-                    if (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink))
+                    if (p.Filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink))
                     {
-                        if (patternMatcher != null && patternList != null)
+                        if (patternMatcher != null && p.PatternList != null)
                         {
-                            if (baseDepth + currentDepth == patternList.Count)
+                            if (p.BaseDepth + p.CurrentDepth == p.PatternList.Count)
                             {
-                                if (MatchPatterns(currentPath.PartsList, patternList))
+                                if (MatchPatterns(p.CurrentPath.PartsList, p.PatternList))
                                 {
                                     // シンボリックリンクを通知
-                                    yield return new VirtualNodeContext(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
+                                    yield return new VirtualNodeContext(link, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                                 }
                             }
                         }
                         else
                         {
                             // シンボリックリンクを通知
-                            yield return new VirtualNodeContext(link, currentPath.GetRelativePath(basePath), parentDirectory, currentDepth, currentIndex, null, false, resolvedLink);
+                            yield return new VirtualNodeContext(link, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                         }
                     }
                 }
@@ -1426,6 +1471,34 @@
             public bool FollowLinks { get; set; } = followLinks;
             public bool ExceptionEnabled { get; set; } = exceptionEnabled;
             public bool Resolved { get; set; } = resolved;
+        }
+
+        private struct WalkPathTreeParameters(
+            VirtualPath basePath,
+            VirtualPath currentPath,
+            VirtualNode baseNode,
+            VirtualDirectory? parentDirectory,
+            int baseDepth,
+            int currentDepth,
+            int currentIndex,
+            VirtualNodeTypeFilter filter,
+            bool recursive,
+            bool followLinks,
+            List<string>? patternList,
+            VirtualSymbolicLink? resolvedLink)
+        {
+            public VirtualPath BasePath { get; set; } = basePath;
+            public VirtualPath CurrentPath { get; set; } = currentPath;
+            public VirtualNode BaseNode { get; set; } = baseNode;
+            public VirtualDirectory? ParentDirectory { get; set; } = parentDirectory;
+            public int BaseDepth { get; set; } = baseDepth;
+            public int CurrentDepth { get; set; } = currentDepth;
+            public int CurrentIndex { get; set; } = currentIndex;
+            public VirtualNodeTypeFilter Filter { get; set; } = filter;
+            public bool Recursive { get; set; } = recursive;
+            public bool FollowLinks { get; set; } = followLinks;
+            public List<string>? PatternList { get; set; } = patternList;
+            public VirtualSymbolicLink? ResolvedLink { get; set; } = resolvedLink;
         }
     }
 }
