@@ -70,5 +70,10 @@
                 disposed = true;
             }
         }
+
+        ~VirtualItem()
+        {
+            Dispose(false);
+        }
     }
 }
