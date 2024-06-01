@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
     public class BinaryData
-        : IVirtualDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>
+        : IVirtualDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>, IDisposable
     {
         private byte[] _data;
 
@@ -156,6 +157,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             byte[] dataClone = new byte[_data.Length];
             _data.CopyTo(dataClone, 0);
             return new BinaryData(dataClone);
+        }
+
+        public void Dispose()
+        {
+            _data = [];
+
+            Debug.WriteLine("BinaryData.Dispose: データを破棄しました。");
         }
     }
 }

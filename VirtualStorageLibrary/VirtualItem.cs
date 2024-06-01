@@ -11,7 +11,7 @@
 
     public class VirtualItem<T> : VirtualItem, IDisposable
     {
-        public T? ItemData { get; set; }
+        public T? ItemData { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
 
         private bool disposed;
 

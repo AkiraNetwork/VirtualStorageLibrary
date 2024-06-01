@@ -1939,6 +1939,71 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void RemoveNode_ExistingItem_DisposesItem()
+        {
+            // Arrange
+            string itemName = "TestItem";
+            VirtualStorage storage = new();
+            BinaryData data = [1, 2, 3];
+            VirtualItem<BinaryData> item = new(itemName, data);
+            storage.AddItem("/", item);
+
+            // Act
+            storage.RemoveNode("/" + itemName);
+
+            // Assert
+            // BinaryDataのDisposeメソッドが呼び出されたかどうかを確認
+            Assert.IsTrue(item.ItemData!.Count == 0, "Item data should be cleared on Dispose.");
+            Assert.IsFalse(storage.ItemExists("/" + itemName));
+        }
+
+        [TestMethod]
+        public void RemoveNode_ExistingDirectoryWithDisposableItems_DisposesItems()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/TestDirectory");
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+            VirtualItem<BinaryData> item1 = new("Item1", data1);
+            VirtualItem<BinaryData> item2 = new("Item2", data2);
+            storage.AddItem("/TestDirectory", item1);
+            storage.AddItem("/TestDirectory", item2);
+
+            // Act
+            storage.RemoveNode("/TestDirectory", true);
+
+            // Assert
+            Assert.IsTrue(item1.ItemData!.Count == 0, "Item1 data should be cleared on Dispose.");
+            Assert.IsTrue(item2.ItemData!.Count == 0, "Item2 data should be cleared on Dispose.");
+            Assert.IsFalse(storage.DirectoryExists("/TestDirectory"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_SymbolicLink_DisposesLinkTarget()
+        {
+            // Arrange
+            VirtualStorage storage = new();
+            storage.AddDirectory("/test");
+            BinaryData targetData = [1, 2, 3];
+            VirtualItem<BinaryData> targetItem = new("TargetItem", targetData);
+            storage.AddDirectory("/target/path", true);
+            storage.AddItem("/target/path", targetItem);
+            storage.AddSymbolicLink("/test/link", "/target/path");
+
+            // Act
+            storage.RemoveNode("/test/link", true, true);
+
+            // Assert
+            Debug.WriteLine(storage.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Assert.IsTrue(targetItem.ItemData!.Count == 0, "Target item data should be cleared on Dispose.");
+            Assert.IsFalse(storage.NodeExists("/test/link"));
+            Assert.IsFalse(storage.NodeExists("/target/path"));
+            Assert.IsTrue(storage.NodeExists("/test"));
+            Assert.IsTrue(storage.NodeExists("/target"));
+        }
+
+        [TestMethod]
         public void TryGetNode_ReturnsNode_WhenNodeExists()
         {
             // Arrange

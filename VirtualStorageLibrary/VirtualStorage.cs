@@ -1,4 +1,6 @@
-﻿namespace AkiraNet.VirtualStorageLibrary
+﻿using System.IO;
+
+namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualStorage
     {
@@ -456,14 +458,24 @@
         {
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
             int baseDepth = basePath.GetBaseDepth();
-            VirtualNode node = GetNode(basePath, followLinks);
+            VirtualNode baseNode = GetNode(basePath, followLinks);
 
-            VirtualDirectory parentDirectory = GetDirectory(basePath.DirectoryPath, followLinks);
+            VirtualNodeContext nodeContext = WalkPathToTarget(basePath, null, null, true, true);
+            VirtualPath traversalBasePath = nodeContext.TraversalPath;
+            VirtualPath resolvedBasePath = nodeContext.ResolvedPath!;
+            VirtualPath parentDirectoryPath = resolvedBasePath.DirectoryPath;
+            VirtualDirectory parentDirectory = GetDirectory(parentDirectoryPath, followLinks);
+
+            VirtualSymbolicLink? link = null;
+            if (traversalBasePath != resolvedBasePath)
+            {
+                link = GetSymbolicLink(basePath, false);
+            }
 
             WalkPathTreeParameters p = new WalkPathTreeParameters(
                 basePath,
                 basePath,
-                node,
+                baseNode,
                 parentDirectory,
                 baseDepth,
                 0,
@@ -472,7 +484,7 @@
                 recursive,
                 followLinks,
                 null,
-                null);
+                link);
 
             return WalkPathTreeInternal(p);
         }
@@ -1069,7 +1081,7 @@
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
-            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(path, VirtualNodeTypeFilter.All, recursive, followLinks);
+            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(path, VirtualNodeTypeFilter.All, recursive, followLinks).ToList();
 
             if (recursive)
             {
@@ -1083,16 +1095,24 @@
                     // シンボリックリンクか判定
                     if (context.ResolvedLink != null)
                     {
-                        // シンボリックリンクの場合はリンクノードを削除し、ターゲット先も削除
+                        // シンボリックリンクの場合はリンクノードを削除する
                         VirtualSymbolicLink link = context.ResolvedLink;
                         parentDir?.Remove(link.Name);
+
+                        // リンクターゲットも削除する
                         VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
-                        VirtualDirectory targetParentDir = GetDirectory(targetPath.DirectoryPath, true);
-                        targetParentDir.Remove(targetPath.NodeName);
+                        RemoveNode(targetPath, recursive, followLinks);
                     }
                     else
                     {
                         // 通常のノードの場合はそのまま削除
+
+                        if (context.Node is IDisposable disposableNode)
+                        {
+                            // 削除対象ノードがIDisposableを実装している場合はDisposeメソッドを呼び出す
+                            disposableNode.Dispose();
+                        }
+
                         parentDir?.Remove(context.Node!.Name);
                     }
                 }
@@ -1109,6 +1129,13 @@
                     }
                 }
                 VirtualDirectory? parentDir = context.ParentDirectory;
+
+                if (context.Node is IDisposable disposableNode)
+                {
+                    // 削除対象ノードがIDisposableを実装している場合はDisposeメソッドを呼び出す
+                    disposableNode.Dispose();
+                }
+
                 parentDir?.Remove(context.Node!.Name);
             }
         }
@@ -1449,6 +1476,7 @@
             return tree.ToString();
         }
 
+        [DebuggerStepThrough]
         private struct WalkPathToTargetParameters(
             VirtualPath targetPath,
             int traversalIndex,
@@ -1473,6 +1501,7 @@
             public bool Resolved { get; set; } = resolved;
         }
 
+        [DebuggerStepThrough]
         private struct WalkPathTreeParameters(
             VirtualPath basePath,
             VirtualPath currentPath,
