@@ -460,6 +460,7 @@ namespace AkiraNet.VirtualStorageLibrary
             int baseDepth = basePath.GetBaseDepth();
             VirtualNode baseNode = GetNode(basePath, followLinks);
 
+            // TODO: リンクのターゲット先が存在しない場合の仕様を検討する。
             VirtualNodeContext nodeContext = WalkPathToTarget(basePath, null, null, true, true);
             VirtualPath traversalBasePath = nodeContext.TraversalPath;
             VirtualPath resolvedBasePath = nodeContext.ResolvedPath!;
@@ -1097,6 +1098,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // シンボリックリンクの場合はリンクノードを削除する
                         VirtualSymbolicLink link = context.ResolvedLink;
+                        parentDir = GetDirectory(path.DirectoryPath, true);
                         parentDir?.Remove(link.Name);
 
                         // リンクターゲットも削除する
