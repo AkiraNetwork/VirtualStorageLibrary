@@ -45,7 +45,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage virtualStorage = new();
             VirtualPath baseDirectoryPath = "/path/to/";
             VirtualPath targetDirectory = "/real/target/directory";
-            VirtualPath symbolicLink = "/path/to/symlink";
+            VirtualPath symbolicLink = "/path/to/link";
             virtualStorage.AddDirectory(baseDirectoryPath, true); // ベースディレクトリを追加
             virtualStorage.AddDirectory(targetDirectory, true); // 実際のターゲットディレクトリを追加
             virtualStorage.AddSymbolicLink(symbolicLink, targetDirectory); // ベースディレクトリ内にシンボリックリンクを追加
@@ -2621,7 +2621,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.AddSymbolicLink("/test/existingItem", "/new/target/path", true),
-                "既存のアイテム上にシンボリックリンクを追加しようとすると、上書きがtrueでもInvalidOperationExceptionが発生するべきです。");
+                "既存のアイテム上にシンボリックリンクを追加しようとすると、上書きが true でもInvalidOperationExceptionが発生するべきです。");
         }
 
         [TestMethod]
@@ -2637,7 +2637,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
                 storage.AddSymbolicLink("/test/existingDirectory", "/new/target/path", true),
-                "既存のディレクトリ上にシンボリックリンクを追加しようとすると、上書きがtrueでもInvalidOperationExceptionが発生するべきです。");
+                "既存のディレクトリ上にシンボリックリンクを追加しようとすると、上書きが true でもInvalidOperationExceptionが発生するべきです。");
         }
 
         [TestMethod]
@@ -3653,7 +3653,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/book.txt", "data");
             vs.AddItem("/dir1/cook.txt", "data");
 
-            // '[bc]ook' ワイルドカードを使用したパス解決
+            // ワイルドカードを使用したパス解決
             List<VirtualPath> result = vs.ResolvePath("/dir1/[bc]ook.txt").ToList();
 
             // 期待される結果の確認

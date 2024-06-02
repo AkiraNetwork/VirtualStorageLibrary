@@ -109,7 +109,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new ArgumentException("basePathが空です。", nameof(basePath));
             }
 
-            // relativePathをeffectiveBasePathに基づいて絶対パスに変換
+            // relativePathを effectiveBasePath に基づいて絶対パスに変換
             var absolutePath = basePath + relativePath;
 
             return absolutePath;
@@ -275,7 +275,7 @@ namespace AkiraNet.VirtualStorageLibrary
         {
             targetPath = ConvertToAbsolutePath(targetPath).NormalizePath();
 
-            WalkPathToTargetParameters p = new WalkPathToTargetParameters(
+            WalkPathToTargetParameters p = new(
                 targetPath,
                 0,
                 VirtualPath.Root,
@@ -400,7 +400,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 linkTargetPath = linkTargetPath.NormalizePath();
 
                 // シンボリックリンクのリンク先パスを再帰的に探索
-                WalkPathToTargetParameters p2 = new WalkPathToTargetParameters(
+                WalkPathToTargetParameters p2 = new(
                     linkTargetPath,
                     0,
                     VirtualPath.Root,
@@ -473,7 +473,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 link = GetSymbolicLink(basePath, false);
             }
 
-            WalkPathTreeParameters p = new WalkPathTreeParameters(
+            WalkPathTreeParameters p = new(
                 basePath,
                 basePath,
                 baseNode,
@@ -501,7 +501,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
 
-            WalkPathTreeParameters p = new WalkPathTreeParameters(
+            WalkPathTreeParameters p = new(
                 basePath,
                 basePath,
                 node,
@@ -562,7 +562,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         VirtualPath path = p.CurrentPath + node.Name;
 
-                        WalkPathTreeParameters p2 = new WalkPathTreeParameters(
+                        WalkPathTreeParameters p2 = new(
                             p.BasePath,
                             path,
                             node,
@@ -619,7 +619,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, p.FollowLinks);
 
                     // リンク先のノードに対して再帰的に探索
-                    WalkPathTreeParameters p2 = new WalkPathTreeParameters(
+                    WalkPathTreeParameters p2 = new(
                         p.BasePath,
                         p.CurrentPath,
                         linkTargetNode,
@@ -709,7 +709,7 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
             try
             {
-                // GetNodeメソッドは、ノードが見つからない場合にnullを返すか、例外をスローするように実装されていると仮定
+                // GetNodeメソッドは、ノードが見つからない場合に null を返すか、例外をスローするように実装されていると仮定
                 return GetNode(absolutePath, followLinks);
             }
             catch (VirtualNodeNotFoundException)
