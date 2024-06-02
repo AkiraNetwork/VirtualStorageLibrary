@@ -1098,7 +1098,9 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // シンボリックリンクの場合はリンクノードを削除する
                         VirtualSymbolicLink link = context.ResolvedLink;
-                        parentDir = GetDirectory(path.DirectoryPath, true);
+                        VirtualPath linkPath = (path + context.TraversalPath).NormalizePath();
+                        VirtualPath linkParentPath = linkPath.DirectoryPath;
+                        parentDir = GetDirectory(linkParentPath, true);
                         parentDir?.Remove(link.Name);
 
                         // リンクターゲットも削除する

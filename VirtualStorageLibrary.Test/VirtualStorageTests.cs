@@ -1778,11 +1778,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             storage.AddDirectory("/test");
             storage.AddSymbolicLink("/test/link", "/target/path");
 
-            // Act
-            storage.RemoveNode("/test/link");
-
-            // Assert
-            Assert.IsFalse(storage.NodeExists("/test/link"));
+            // Act & Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                storage.RemoveNode("/test/link");
+            });
         }
 
         [TestMethod]
