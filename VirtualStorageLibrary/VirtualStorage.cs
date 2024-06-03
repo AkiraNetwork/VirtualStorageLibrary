@@ -823,20 +823,7 @@ namespace AkiraNet.VirtualStorageLibrary
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualNode? node = TryGetNode(path, followLinks);
 
-            if (node is VirtualDirectory)
-            {
-                return VirtualNodeType.Directory;
-            }
-            else if (node is VirtualItem)
-            {
-                return VirtualNodeType.Item;
-            }
-            else if (node is VirtualSymbolicLink)
-            {
-                return VirtualNodeType.SymbolicLink;
-            }
-
-            return VirtualNodeType.None;
+            return node?.NodeType ?? VirtualNodeType.None;
         }
 
         public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
