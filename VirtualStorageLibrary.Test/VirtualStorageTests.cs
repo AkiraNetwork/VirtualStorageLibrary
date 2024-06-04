@@ -5242,56 +5242,38 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void AddLinkToDictionary_Test()
         {
+            // ユーザーデータ
+            BinaryData data = [1, 2, 3];
+
             // 仮想ストレージの初期化
             VirtualStorage vs = new();
 
             // テストデータの作成
             vs.AddDirectory("/dir1");
-            vs.AddItem("/dir1/item1", new BinaryData([1, 2, 3]));
-            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir1/item1", data);
+            vs.AddDirectory("/data");
 
-            // シンボリックリンクの作成
-            vs.AddSymbolicLink("/dir2/linkToItem1", "/dir1/item1");
+            // リンクの作成
+            vs.AddSymbolicLink("/data/linkToItem1", "/dir1/item1");
 
-            // リンク辞書にリンクが追加されたことを確認
-            var linkDictionary = vs.LinkDictionary; // リンク辞書のプロパティを利用
+            // 検査
+            var linkDictionary = vs.LinkDictionary;
             Assert.IsTrue(linkDictionary.ContainsKey("/dir1/item1"));
-            Assert.IsTrue(linkDictionary["/dir1/item1"].Contains("/dir2/linkToItem1"));
+            Assert.IsTrue(linkDictionary["/dir1/item1"].Contains("/data/linkToItem1"));
 
             // リンク辞書の中身をデバッグ出力
-            DebugPrintLinkDictionary(vs);
-        }
-
-        [TestMethod]
-        public void RemoveLinkToDictionary_Test()
-        {
-            // 仮想ストレージの初期化
-            VirtualStorage vs = new();
-
-            // テストデータの作成
-            vs.AddDirectory("/dir1");
-            vs.AddItem("/dir1/item1", new BinaryData([1, 2, 3]));
-            vs.AddDirectory("/dir2");
-
-            // シンボリックリンクの作成
-            vs.AddSymbolicLink("/dir2/linkToItem1", "/dir1/item1");
-
-            // リンク辞書にリンクが追加されたことを確認
-            var linkDictionary = vs.LinkDictionary; // リンク辞書のプロパティを利用
-            Assert.IsTrue(linkDictionary.ContainsKey("/dir1/item1"));
-            Assert.IsTrue(linkDictionary["/dir1/item1"].Contains("/dir2/linkToItem1"));
-
-            // リンク辞書の中身をデバッグ出力
+            Debug.WriteLine("Step1:");
             DebugPrintLinkDictionary(vs);
 
-            // シンボリックリンクの削除
-            vs.RemoveNode("/dir2/linkToItem1");
+            // リンクの作成
+            vs.AddSymbolicLink("/data/linkToItem2", "/dir1/item1");
 
-            // リンク辞書からリンクが削除されたことを確認
+            // 検査
             Assert.IsTrue(linkDictionary.ContainsKey("/dir1/item1"));
-            Assert.IsFalse(linkDictionary["/dir1/item1"].Contains("/dir2/linkToItem1"));
+            Assert.IsTrue(linkDictionary["/dir1/item1"].Contains("/data/linkToItem2"));
 
             // リンク辞書の中身をデバッグ出力
+            Debug.WriteLine("Step2:");
             DebugPrintLinkDictionary(vs);
         }
     }

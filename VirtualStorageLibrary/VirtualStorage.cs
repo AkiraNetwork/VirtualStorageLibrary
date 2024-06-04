@@ -21,19 +21,7 @@ namespace AkiraNet.VirtualStorageLibrary
             _linkDictionary = [];
         }
 
-        public void UpdateLinkTargetNodeTypes(VirtualPath targetPath)
-        {
-            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathList))
-            {
-                VirtualNodeType targetType = GetNodeType(targetPath, true);
-                foreach (VirtualPath linkPath in linkPathList)
-                {
-                    VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
-                    symbolicLink.TargetNodeType = targetType;
-                }
-            }
-        }
-
+        // リンク辞書に新しいリンクを追加します。
         public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
         {
             if (!targetPath.IsAbsolute)
@@ -51,30 +39,82 @@ namespace AkiraNet.VirtualStorageLibrary
 
             linkPathList.Add(linkPath);
 
-            VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
-            symbolicLink.TargetNodeType = GetNodeType(targetPath, true);
+            VirtualSymbolicLink link = GetSymbolicLink(linkPath);
+            link.TargetNodeType = GetNodeType(targetPath, true);
         }
 
-        public void RemoveLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
+        // リンク辞書内のリンクターゲットノードのタイプを更新します。
+        public void UpdateLinkTypesInDictionary(VirtualPath targetPath)
         {
-            if (!targetPath.IsAbsolute)
+            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathList))
             {
-                throw new ArgumentException("リンク先のパスは絶対パスである必要があります。", nameof(targetPath));
+                VirtualNodeType targetType = GetNodeType(targetPath, true);
+                foreach (VirtualPath linkPath in linkPathList)
+                {
+                    if (GetNode(linkPath) is VirtualSymbolicLink symbolicLink)
+                    {
+                        symbolicLink.TargetNodeType = targetType;
+                    }
+                }
             }
+        }
 
-            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
-
+        // 指定されたターゲットパスに関連するすべてのリンクをリンク辞書から削除します。
+        public void RemoveAllLinksFromDictionary(VirtualPath targetPath)
+        {
             if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathsList))
             {
-                linkPathsList.Remove(linkPath);
-
-                if (linkPathsList.Count == 0)
+                foreach (var linkPath in linkPathsList)
                 {
-                    _linkDictionary.Remove(targetPath);
+                    if (GetNode(linkPath) is VirtualSymbolicLink symbolicLink)
+                    {
+                        symbolicLink.TargetNodeType = VirtualNodeType.None;
+                    }
+                }
+                _linkDictionary.Remove(targetPath);
+            }
+        }
+
+        // 指定されたターゲットパスに関連するすべてのリンクパスをリンク辞書から取得します。
+        public List<VirtualPath> GetLinksFromDictionary(VirtualPath targetPath)
+        {
+            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathsList))
+            {
+                return new List<VirtualPath>(linkPathsList);
+            }
+            return new List<VirtualPath>();
+        }
+
+        // 特定のシンボリックリンクのターゲットパスを新しいターゲットパスに更新します。
+        public void UpdateLinkInDictionary(VirtualPath linkPath, VirtualPath newTargetPath)
+        {
+            if (GetNode(linkPath) is VirtualSymbolicLink link)
+            {
+                VirtualPath oldTargetPath = link.TargetPath ?? string.Empty;
+
+                // 古いターゲットパスからリンクを削除
+                if (_linkDictionary.TryGetValue(oldTargetPath, out List<VirtualPath>? linkPathsList))
+                {
+                    linkPathsList.Remove(linkPath);
+                    if (linkPathsList.Count == 0)
+                    {
+                        _linkDictionary.Remove(oldTargetPath);
+                    }
                 }
 
-                VirtualSymbolicLink symbolicLink = (VirtualSymbolicLink)GetNode(linkPath);
-                symbolicLink.TargetNodeType = VirtualNodeType.None;
+                // 新しいターゲットパスを設定
+                link.TargetPath = newTargetPath;
+
+                // 新しいターゲットパスにリンクを追加
+                if (!_linkDictionary.TryGetValue(newTargetPath, out List<VirtualPath>? newLinkPathsList))
+                {
+                    newLinkPathsList = new List<VirtualPath>();
+                    _linkDictionary[newTargetPath] = newLinkPathsList;
+                }
+                newLinkPathsList.Add(linkPath);
+
+                // 新しいターゲットノードのタイプを更新
+                link.TargetNodeType = GetNodeType(newTargetPath, true);
             }
         }
 
@@ -115,14 +155,14 @@ namespace AkiraNet.VirtualStorageLibrary
             return absolutePath;
         }
 
-        public void AddSymbolicLink(VirtualPath path, VirtualPath targetPath, bool overwrite = false)
+        public void AddSymbolicLink(VirtualPath linkPath, VirtualPath targetPath, bool overwrite = false)
         {
             // linkPathを絶対パスに変換し正規化も行う
-            path = ConvertToAbsolutePath(path).NormalizePath();
+            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
             // directoryPath（ディレクトリパス）と linkName（リンク名）を分離
-            VirtualPath directoryPath = path.DirectoryPath;
-            VirtualNodeName linkName = path.NodeName;
+            VirtualPath directoryPath = linkPath.DirectoryPath;
+            VirtualNodeName linkName = linkPath.NodeName;
 
             // 対象ディレクトリを安全に取得
             VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true) ??
@@ -157,16 +197,16 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualPath absoluteTargetPath = ConvertToAbsolutePath(targetPath, directoryPath).NormalizePath();
 
             // リンク辞書にリンク情報を追加
-            AddLinkToDictionary(absoluteTargetPath, path);
+            AddLinkToDictionary(absoluteTargetPath, linkPath);
         }
 
-        public void AddItem<T>(VirtualPath path, VirtualItem<T> item, bool overwrite = false)
+        public void AddItem<T>(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
         {
             // 絶対パスに変換
-            path = ConvertToAbsolutePath(path).NormalizePath();
+            itemDirectoryPath = ConvertToAbsolutePath(itemDirectoryPath).NormalizePath();
 
-            // 対象ディレクトリを取得
-            VirtualDirectory directory = GetDirectory(path, true);
+            // アイテム追加対象ディレクトリを取得
+            VirtualDirectory directory = GetDirectory(itemDirectoryPath, true);
 
             // 既存のアイテムの存在チェック
             if (directory.NodeExists(item.Name))
@@ -178,7 +218,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 else
                 {
                     // 上書き対象がアイテムであることを確認
-                    if (!ItemExists(path + item.Name))
+                    if (!ItemExists(itemDirectoryPath + item.Name))
                     {
                         throw new InvalidOperationException($"'{item.Name}' はアイテム以外のノードです。アイテムの上書きはできません。");
                     }
@@ -190,18 +230,18 @@ namespace AkiraNet.VirtualStorageLibrary
             // 新しいアイテムを追加
             directory.Add(item, overwrite);
 
-            // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-            UpdateLinkTargetNodeTypes(path + item.Name);
+            // リンク辞書を更新
+            UpdateLinkTypesInDictionary(itemDirectoryPath + item.Name);
         }
 
-        public void AddItem<T>(VirtualPath path, T data, bool overwrite = false)
+        public void AddItem<T>(VirtualPath itemPath, T data, bool overwrite = false)
         {
             // 絶対パスに変換
-            path = ConvertToAbsolutePath(path).NormalizePath();
+            itemPath = ConvertToAbsolutePath(itemPath).NormalizePath();
 
             // ディレクトリパスとアイテム名を分離
-            VirtualPath directoryPath = path.DirectoryPath;
-            VirtualNodeName itemName = path.NodeName;
+            VirtualPath directoryPath = itemPath.DirectoryPath;
+            VirtualNodeName itemName = itemPath.NodeName;
 
             // アイテムを作成
             VirtualItem<T> item = new(itemName, data);
@@ -244,7 +284,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 directory.Add(newDirectory);
 
                 // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-                UpdateLinkTargetNodeTypes(path);
+                //UpdateLinkTargetNodeTypes(path);
             }
             else
             {
@@ -260,8 +300,8 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualDirectory newSubdirectory = new(nodeName);
             directory.Add(newSubdirectory);
 
-            // 中間ディレクトリがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-            UpdateLinkTargetNodeTypes(directory.Name + nodeName);
+            // リンク辞書を更新
+            UpdateLinkTypesInDictionary(directory.Name + nodeName);
 
             return true;
         }
