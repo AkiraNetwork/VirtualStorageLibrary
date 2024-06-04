@@ -34,7 +34,10 @@ namespace AkiraNet.VirtualStorageLibrary
             List<VirtualPath>? linkPathList = GetLinksFromDictionary(targetPath);
             _linkDictionary[targetPath] = linkPathList;
 
-            linkPathList.Add(linkPath);
+            if (!linkPathList.Contains(linkPath))
+            {
+                linkPathList.Add(linkPath);
+            }
 
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
             link.TargetNodeType = GetNodeType(targetPath, true);
@@ -43,33 +46,20 @@ namespace AkiraNet.VirtualStorageLibrary
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
         public void UpdateLinkTypesInDictionary(VirtualPath targetPath)
         {
-            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathList))
+            List<VirtualPath> linkPathList = GetLinksFromDictionary(targetPath);
+            if (linkPathList.Count > 0)
             {
                 VirtualNodeType targetType = GetNodeType(targetPath, true);
-                foreach (VirtualPath linkPath in linkPathList)
-                {
-                    if (GetNode(linkPath) is VirtualSymbolicLink symbolicLink)
-                    {
-                        symbolicLink.TargetNodeType = targetType;
-                    }
-                }
+                SetLinkTargetNodeType(linkPathList, targetType);
             }
         }
 
         // 指定されたターゲットパスに関連するすべてのリンクをリンク辞書から削除します。
         public void RemoveAllLinksFromDictionary(VirtualPath targetPath)
         {
-            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathsList))
-            {
-                foreach (var linkPath in linkPathsList)
-                {
-                    if (GetNode(linkPath) is VirtualSymbolicLink symbolicLink)
-                    {
-                        symbolicLink.TargetNodeType = VirtualNodeType.None;
-                    }
-                }
-                _linkDictionary.Remove(targetPath);
-            }
+            List<VirtualPath> linkPathList = GetLinksFromDictionary(targetPath);
+            SetLinkTargetNodeType(linkPathList, VirtualNodeType.None);
+            _linkDictionary.Remove(targetPath);
         }
 
         // 指定されたターゲットパスに関連するすべてのリンクパスをリンク辞書から取得します。
@@ -80,6 +70,16 @@ namespace AkiraNet.VirtualStorageLibrary
                 return linkPathsList;
             }
             return [];
+        }
+
+        // 指定されたリンクパスリスト内の全てのシンボリックリンクのターゲットノードタイプを設定します。
+        public void SetLinkTargetNodeType(List<VirtualPath> linkPathList, VirtualNodeType nodeType)
+        {
+            foreach (var linkPath in linkPathList)
+            {
+                VirtualSymbolicLink link = GetSymbolicLink(linkPath);
+                link.TargetNodeType = nodeType;
+            }
         }
 
         // 特定のシンボリックリンクのターゲットパスを新しいターゲットパスに更新します。
