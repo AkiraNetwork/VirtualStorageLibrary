@@ -31,11 +31,8 @@ namespace AkiraNet.VirtualStorageLibrary
 
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
-            if (!_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathList))
-            {
-                linkPathList = [];
-                _linkDictionary[targetPath] = linkPathList;
-            }
+            List<VirtualPath>? linkPathList = GetLinksFromDictionary(targetPath);
+            _linkDictionary[targetPath] = linkPathList;
 
             linkPathList.Add(linkPath);
 
@@ -80,9 +77,9 @@ namespace AkiraNet.VirtualStorageLibrary
         {
             if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathsList))
             {
-                return new List<VirtualPath>(linkPathsList);
+                return linkPathsList;
             }
-            return new List<VirtualPath>();
+            return [];
         }
 
         // 特定のシンボリックリンクのターゲットパスを新しいターゲットパスに更新します。
