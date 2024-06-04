@@ -4,7 +4,7 @@
     {
         public VirtualPath? TargetPath { get; set; }
 
-        public VirtualNodeType TargetNodeType { get; set; }
+        public VirtualNodeType TargetNodeType { get; set; } = VirtualNodeType.None;
 
         public override VirtualNodeType NodeType => VirtualNodeType.SymbolicLink;
 
