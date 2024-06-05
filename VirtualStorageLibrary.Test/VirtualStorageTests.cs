@@ -1167,16 +1167,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualItem<BinaryData>? retrievedItem = virtualStorage.GetNode("/actualDirectory/newItem") as VirtualItem<BinaryData>;
             Assert.IsNotNull(retrievedItem);
             CollectionAssert.AreEqual(binaryData.Data, retrievedItem.ItemData!.Data);
-
-            // リンク辞書の表示
-            foreach ((VirtualPath targetPath, List<VirtualPath> linkPathList) in virtualStorage.LinkDictionary)
-            {
-                Debug.WriteLine($"Link: {targetPath}");
-                foreach (var linkPath in linkPathList)
-                {
-                    Debug.WriteLine($"  -> {linkPath}");
-                }
-            }
         }
 
         [TestMethod]
@@ -5228,13 +5218,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             foreach (var entry in linkDictionary)
             {
                 var targetPath = entry.Key;
-                var targetNode = vs.GetNode(targetPath); // ターゲットパスのノードを取得
-                var targetNodeType = targetNode?.NodeType.ToString() ?? "Unknown";
-
-                Debug.WriteLine($"ターゲットパス: {targetPath} (ノードタイプ: {targetNodeType})");
-                foreach (var linkPath in entry.Value)
+                var targetNode = vs.TryGetNode(targetPath); // ターゲットパスのノードを取得
+                if (targetNode != null)
                 {
-                    Debug.WriteLine($"  リンクパス: {linkPath}");
+                    var targetNodeType = targetNode?.NodeType.ToString() ?? "Unknown";
+
+                    Debug.WriteLine($"ターゲットパス: {targetPath} (ノードタイプ: {targetNodeType})");
+                    foreach (var linkPath in entry.Value)
+                    {
+                        Debug.WriteLine($"  リンクパス: {linkPath}");
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"ターゲットパス: {targetPath} (ノードタイプ: None)");
                 }
             }
         }
@@ -5274,6 +5271,138 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // リンク辞書の中身をデバッグ出力
             Debug.WriteLine("Step2:");
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // 絶対パスのターゲットパスとリンクパスを追加するテスト
+        [TestMethod]
+        public void AddLinkToDictionary_AddsLinkSuccessfully()
+        {
+            // Arrange
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath targetPath = "/absolute/dir1";
+            VirtualPath linkPath = "/absolute/link1";
+
+            // Act
+            vs.AddDirectory("/absolute/dir1", true);
+            vs.AddSymbolicLink(linkPath, targetPath);
+
+            // Assert
+            var links = vs.GetLinksFromDictionary(targetPath);
+            Assert.IsTrue(links.Contains(linkPath));
+            var link = vs.GetSymbolicLink(linkPath);
+            Assert.AreEqual(link.TargetNodeType, vs.GetNodeType(targetPath, true));
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // 相対パスのリンクパスを正しく変換して追加するテスト
+        [TestMethod]
+        public void AddLinkToDictionary_ConvertsRelativeLinkPath()
+        {
+            // Arrange
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath targetPath = "/absolute/dir1";
+            VirtualPath linkPath = "relative/r-dir2";
+
+            // Act
+            vs.AddDirectory("/absolute/dir1", true);
+            vs.AddDirectory("/relative", true);
+            vs.AddSymbolicLink(linkPath, targetPath);
+
+            // Assert
+            var links = vs.GetLinksFromDictionary(targetPath);
+            var absoluteLinkPath = vs.ConvertToAbsolutePath(linkPath).NormalizePath();
+            Assert.IsTrue(links.Contains(absoluteLinkPath));
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // 既に存在するターゲットパスに新しいリンクパスを追加するテスト
+        [TestMethod]
+        public void AddLinkToDictionary_AddsNewLinkToExistingTarget()
+        {
+            // Arrange
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath targetPath = "/absolute/dir1";
+            VirtualPath linkPath1 = "/absolute/link1";
+            VirtualPath linkPath2 = "/absolute/link2";
+            vs.AddDirectory("/absolute/dir1", true);
+
+            // Act
+            vs.AddSymbolicLink(linkPath1, targetPath);
+            vs.AddSymbolicLink(linkPath2, targetPath);
+
+            // Assert
+            var links = vs.GetLinksFromDictionary(targetPath);
+            Assert.IsTrue(links.Contains(linkPath1));
+            Assert.IsTrue(links.Contains(linkPath2));
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // リンクパスが正しく正規化されることを確認するテスト
+        [TestMethod]
+        public void AddLinkToDictionary_NormalizesLinkPath()
+        {
+            // Arrange
+            VirtualStorage vs = new VirtualStorage();
+            VirtualPath targetPath = "/absolute/dir1";
+            VirtualPath linkPath = "/absolute/link1/../link1";
+            vs.AddDirectory("/absolute/dir1", true);
+
+            // Act
+            vs.AddSymbolicLink(linkPath, targetPath);
+
+            // Assert
+            var links = vs.GetLinksFromDictionary(targetPath);
+            var normalizedLinkPath = linkPath.NormalizePath();
+            Assert.IsTrue(links.Contains(normalizedLinkPath));
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // リンクのターゲットノードタイプが正しく設定されることを確認するテスト
+        [TestMethod]
+        public void AddLinkToDictionary_SetsCorrectTargetNodeType()
+        {
+            // Arrange
+            VirtualStorage vs = new VirtualStorage();
+
+            // テスト用のパス設定
+            BinaryData data = [1, 2, 3];
+            VirtualPath directoryTargetPath = "/absolute/dir1";
+            VirtualPath itemTargetPath = "/absolute/item1";
+            VirtualPath symbolicLinkTargetPath = "/absolute/symlink1";
+            VirtualPath nonExistentTargetPath = "/absolute/nonexistent";
+
+            VirtualPath directoryLinkPath = "/absolute/linkToDir";
+            VirtualPath itemLinkPath = "/absolute/linkToItem";
+            VirtualPath symbolicLinkPath = "/absolute/linkToSymlink";
+            VirtualPath nonExistentLinkPath = "/absolute/linkToNonExistent";
+
+            // ディレクトリとリンクの作成
+            vs.AddDirectory(directoryTargetPath, true);
+            vs.AddItem("/absolute", new VirtualItem<BinaryData>("item1", data));
+            vs.AddSymbolicLink(symbolicLinkTargetPath, directoryTargetPath);
+
+            // Act
+            vs.AddSymbolicLink(directoryLinkPath, directoryTargetPath);
+            vs.AddSymbolicLink(itemLinkPath, itemTargetPath);
+            vs.AddSymbolicLink(symbolicLinkPath, symbolicLinkTargetPath);
+            vs.AddSymbolicLink(nonExistentLinkPath, nonExistentTargetPath);
+
+            // Assert
+            Assert.AreEqual(vs.GetSymbolicLink(directoryLinkPath).TargetNodeType, vs.GetNodeType(directoryTargetPath, true));
+            Assert.AreEqual(vs.GetSymbolicLink(itemLinkPath).TargetNodeType, vs.GetNodeType(itemTargetPath, true));
+            Assert.AreEqual(vs.GetSymbolicLink(symbolicLinkPath).TargetNodeType, vs.GetNodeType(symbolicLinkTargetPath, true));
+            Assert.AreEqual(vs.GetSymbolicLink(nonExistentLinkPath).TargetNodeType, vs.GetNodeType(nonExistentTargetPath, true));
+
+            // Debug print
             DebugPrintLinkDictionary(vs);
         }
     }

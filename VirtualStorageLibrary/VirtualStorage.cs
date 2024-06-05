@@ -10,9 +10,9 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public VirtualPath CurrentPath { get; private set; }
 
-        private readonly Dictionary<VirtualPath, List<VirtualPath>> _linkDictionary;
+        private readonly Dictionary<VirtualPath, HashSet<VirtualPath>> _linkDictionary;
 
-        public Dictionary<VirtualPath, List<VirtualPath>> LinkDictionary => _linkDictionary;
+        public Dictionary<VirtualPath, HashSet<VirtualPath>> LinkDictionary => _linkDictionary;
 
         public VirtualStorage()
         {
@@ -31,12 +31,12 @@ namespace AkiraNet.VirtualStorageLibrary
 
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
-            List<VirtualPath>? linkPathList = GetLinksFromDictionary(targetPath);
-            _linkDictionary[targetPath] = linkPathList;
+            HashSet<VirtualPath>? linkPathSet = GetLinksFromDictionary(targetPath);
+            _linkDictionary[targetPath] = linkPathSet;
 
-            if (!linkPathList.Contains(linkPath))
+            if (!linkPathSet.Contains(linkPath))
             {
-                linkPathList.Add(linkPath);
+                linkPathSet.Add(linkPath);
             }
 
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
@@ -46,36 +46,36 @@ namespace AkiraNet.VirtualStorageLibrary
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
         public void UpdateLinkTypesInDictionary(VirtualPath targetPath)
         {
-            List<VirtualPath> linkPathList = GetLinksFromDictionary(targetPath);
-            if (linkPathList.Count > 0)
+            HashSet<VirtualPath> linkPathSet = GetLinksFromDictionary(targetPath);
+            if (linkPathSet.Count > 0)
             {
                 VirtualNodeType targetType = GetNodeType(targetPath, true);
-                SetLinkTargetNodeType(linkPathList, targetType);
+                SetLinkTargetNodeType(linkPathSet, targetType);
             }
         }
 
         // 指定されたターゲットパスに関連するすべてのリンクをリンク辞書から削除します。
         public void RemoveAllLinksFromDictionary(VirtualPath targetPath)
         {
-            List<VirtualPath> linkPathList = GetLinksFromDictionary(targetPath);
-            SetLinkTargetNodeType(linkPathList, VirtualNodeType.None);
+            HashSet<VirtualPath> linkPathSet = GetLinksFromDictionary(targetPath);
+            SetLinkTargetNodeType(linkPathSet, VirtualNodeType.None);
             _linkDictionary.Remove(targetPath);
         }
 
         // 指定されたターゲットパスに関連するすべてのリンクパスをリンク辞書から取得します。
-        public List<VirtualPath> GetLinksFromDictionary(VirtualPath targetPath)
+        public HashSet<VirtualPath> GetLinksFromDictionary(VirtualPath targetPath)
         {
-            if (_linkDictionary.TryGetValue(targetPath, out List<VirtualPath>? linkPathsList))
+            if (_linkDictionary.TryGetValue(targetPath, out HashSet<VirtualPath>? linkPathSet))
             {
-                return linkPathsList;
+                return linkPathSet;
             }
             return [];
         }
 
         // 指定されたリンクパスリスト内の全てのシンボリックリンクのターゲットノードタイプを設定します。
-        public void SetLinkTargetNodeType(List<VirtualPath> linkPathList, VirtualNodeType nodeType)
+        public void SetLinkTargetNodeType(HashSet<VirtualPath> linkPathSet, VirtualNodeType nodeType)
         {
-            foreach (var linkPath in linkPathList)
+            foreach (var linkPath in linkPathSet)
             {
                 VirtualSymbolicLink link = GetSymbolicLink(linkPath);
                 link.TargetNodeType = nodeType;
@@ -90,10 +90,10 @@ namespace AkiraNet.VirtualStorageLibrary
                 VirtualPath oldTargetPath = link.TargetPath ?? string.Empty;
 
                 // 古いターゲットパスからリンクを削除
-                if (_linkDictionary.TryGetValue(oldTargetPath, out List<VirtualPath>? linkPathsList))
+                if (_linkDictionary.TryGetValue(oldTargetPath, out HashSet<VirtualPath>? oldLinkPathSet))
                 {
-                    linkPathsList.Remove(linkPath);
-                    if (linkPathsList.Count == 0)
+                    oldLinkPathSet.Remove(linkPath);
+                    if (oldLinkPathSet.Count == 0)
                     {
                         _linkDictionary.Remove(oldTargetPath);
                     }
@@ -103,12 +103,12 @@ namespace AkiraNet.VirtualStorageLibrary
                 link.TargetPath = newTargetPath;
 
                 // 新しいターゲットパスにリンクを追加
-                if (!_linkDictionary.TryGetValue(newTargetPath, out List<VirtualPath>? newLinkPathsList))
+                if (!_linkDictionary.TryGetValue(newTargetPath, out HashSet<VirtualPath>? newLinkPathSet))
                 {
-                    newLinkPathsList = new List<VirtualPath>();
-                    _linkDictionary[newTargetPath] = newLinkPathsList;
+                    newLinkPathSet = new HashSet<VirtualPath>();
+                    _linkDictionary[newTargetPath] = newLinkPathSet;
                 }
-                newLinkPathsList.Add(linkPath);
+                newLinkPathSet.Add(linkPath);
 
                 // 新しいターゲットノードのタイプを更新
                 link.TargetNodeType = GetNodeType(newTargetPath, true);
