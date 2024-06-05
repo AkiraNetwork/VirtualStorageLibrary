@@ -34,10 +34,7 @@ namespace AkiraNet.VirtualStorageLibrary
             HashSet<VirtualPath>? linkPathSet = GetLinksFromDictionary(targetPath);
             _linkDictionary[targetPath] = linkPathSet;
 
-            if (!linkPathSet.Contains(linkPath))
-            {
-                linkPathSet.Add(linkPath);
-            }
+            linkPathSet.Add(linkPath);
 
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
             link.TargetNodeType = GetNodeType(targetPath, true);
@@ -105,7 +102,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 // 新しいターゲットパスにリンクを追加
                 if (!_linkDictionary.TryGetValue(newTargetPath, out HashSet<VirtualPath>? newLinkPathSet))
                 {
-                    newLinkPathSet = new HashSet<VirtualPath>();
+                    newLinkPathSet = [];
                     _linkDictionary[newTargetPath] = newLinkPathSet;
                 }
                 newLinkPathSet.Add(linkPath);

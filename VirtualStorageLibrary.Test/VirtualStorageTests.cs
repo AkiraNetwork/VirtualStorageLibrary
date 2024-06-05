@@ -5279,7 +5279,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void AddLinkToDictionary_AddsLinkSuccessfully()
         {
             // Arrange
-            VirtualStorage vs = new VirtualStorage();
+            VirtualStorage vs = new();
             VirtualPath targetPath = "/absolute/dir1";
             VirtualPath linkPath = "/absolute/link1";
 
@@ -5302,7 +5302,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void AddLinkToDictionary_ConvertsRelativeLinkPath()
         {
             // Arrange
-            VirtualStorage vs = new VirtualStorage();
+            VirtualStorage vs = new();
             VirtualPath targetPath = "/absolute/dir1";
             VirtualPath linkPath = "relative/r-dir2";
 
@@ -5325,7 +5325,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void AddLinkToDictionary_AddsNewLinkToExistingTarget()
         {
             // Arrange
-            VirtualStorage vs = new VirtualStorage();
+            VirtualStorage vs = new();
             VirtualPath targetPath = "/absolute/dir1";
             VirtualPath linkPath1 = "/absolute/link1";
             VirtualPath linkPath2 = "/absolute/link2";
@@ -5349,7 +5349,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void AddLinkToDictionary_NormalizesLinkPath()
         {
             // Arrange
-            VirtualStorage vs = new VirtualStorage();
+            VirtualStorage vs = new();
             VirtualPath targetPath = "/absolute/dir1";
             VirtualPath linkPath = "/absolute/link1/../link1";
             vs.AddDirectory("/absolute/dir1", true);
@@ -5371,18 +5371,18 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void AddLinkToDictionary_SetsCorrectTargetNodeType()
         {
             // Arrange
-            VirtualStorage vs = new VirtualStorage();
+            VirtualStorage vs = new();
 
             // テスト用のパス設定
             BinaryData data = [1, 2, 3];
             VirtualPath directoryTargetPath = "/absolute/dir1";
             VirtualPath itemTargetPath = "/absolute/item1";
-            VirtualPath symbolicLinkTargetPath = "/absolute/symlink1";
+            VirtualPath symbolicLinkTargetPath = "/absolute/link1";
             VirtualPath nonExistentTargetPath = "/absolute/nonexistent";
 
             VirtualPath directoryLinkPath = "/absolute/linkToDir";
             VirtualPath itemLinkPath = "/absolute/linkToItem";
-            VirtualPath symbolicLinkPath = "/absolute/linkToSymlink";
+            VirtualPath symbolicLinkPath = "/absolute/linkToLink";
             VirtualPath nonExistentLinkPath = "/absolute/linkToNonExistent";
 
             // ディレクトリとリンクの作成
