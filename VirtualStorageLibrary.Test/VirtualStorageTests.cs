@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-using vpath = AkiraNet.VirtualStorageLibrary.VirtualPath;
-
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
     [TestClass]
