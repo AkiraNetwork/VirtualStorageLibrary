@@ -5499,5 +5499,36 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Debug print
             DebugPrintLinkDictionary(vs);
         }
+
+        [TestMethod]
+        public void AddDirectory_UpdatesLinkTypeForNonExistentIntermediateTargetToDirectory()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath intermediatePath = "/dir1/dir2";
+            VirtualPath finalDirectoryPath = "/dir1/dir2/dir3";
+            VirtualPath linkPath = "/dir1/linkToDir2";
+
+            // 存在しない中間ディレクトリに対するシンボリックリンクを作成
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink(linkPath, intermediatePath);
+
+            // リンクのノードタイプが None であることを確認
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+
+            // Act
+            // 中間ディレクトリを追加してリンクノードタイプを更新
+            vs.AddDirectory(finalDirectoryPath, true);
+
+            // Assert
+            // リンクのノードタイプが Directory に更新されていることを確認
+            Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
     }
 }
