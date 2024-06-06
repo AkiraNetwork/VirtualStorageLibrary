@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
+using vpath = AkiraNet.VirtualStorageLibrary.VirtualPath;
+
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
     [TestClass]
@@ -5401,6 +5403,98 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(vs.GetSymbolicLink(itemLinkPath).TargetNodeType, vs.GetNodeType(itemTargetPath, true));
             Assert.AreEqual(vs.GetSymbolicLink(symbolicLinkPath).TargetNodeType, vs.GetNodeType(symbolicLinkTargetPath, true));
             Assert.AreEqual(vs.GetSymbolicLink(nonExistentLinkPath).TargetNodeType, vs.GetNodeType(nonExistentTargetPath, true));
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // ターゲットパスが存在しないシンボリックリンクを作成し、ディレクトリを追加してリンクノードタイプを更新するテスト
+        [TestMethod]
+        public void AddDirectory_UpdatesLinkTypeForNonExistentTargetToDirectory()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath directoryTargetPath = "/absolute/dir1";
+            VirtualPath linkPath = "/absolute/linkToDir";
+
+            // 存在しないターゲットパスに対するシンボリックリンクを作成
+            vs.AddDirectory("/absolute", true);
+            vs.AddSymbolicLink(linkPath, directoryTargetPath);
+
+            // リンクのノードタイプが None であることを確認
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Act
+            // ディレクトリを追加してリンクノードタイプを更新
+            vs.AddDirectory(directoryTargetPath, true);
+
+            // Assert
+            // リンクのノードタイプが Directory に更新されていることを確認
+            Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // ターゲットパスが存在しないシンボリックリンクを作成し、アイテムを追加してリンクノードタイプを更新するテスト
+        [TestMethod]
+        public void AddItem_UpdatesLinkTypeForNonExistentTargetToItem()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath itemTargetPath = "/absolute/item1";
+            VirtualPath linkPath = "/absolute/linkToItem";
+
+            // 存在しないターゲットパスに対するシンボリックリンクを作成
+            vs.AddDirectory("/absolute", true);
+            vs.AddSymbolicLink(linkPath, itemTargetPath);
+
+            // リンクのノードタイプが None であることを確認
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+
+            // Act
+            // アイテムを追加してリンクノードタイプを更新
+            BinaryData data = [1, 2, 3];
+            vs.AddItem(itemTargetPath, data);
+
+            // Assert
+            // リンクのノードタイプが Item に更新されていることを確認
+            Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // ターゲットパスが存在しないシンボリックリンクを作成し、シンボリックリンクを追加してリンクノードタイプを更新するテスト
+        [TestMethod]
+        public void AddSymbolicLink_UpdatesLinkTypeForNonExistentTargetToSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath dir1 = "/absolute/dir1";
+            VirtualPath linkToDir1 = "/absolute/link";
+            VirtualPath linkToLink = "/absolute/linkToLink";
+
+            // 存在しないターゲットパスに対するシンボリックリンクを作成
+            vs.AddDirectory("/absolute", true);
+            vs.AddSymbolicLink(linkToLink, linkToDir1);
+
+            // リンクのノードタイプが None であることを確認
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToLink).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+
+            // Act
+            // シンボリックリンクを追加してリンクノードタイプを更新
+            vs.AddSymbolicLink(linkToDir1, dir1);
+
+            // Assert
+            // リンクのノードタイプが SymbolicLink に更新されていることを確認
+            Assert.AreEqual(VirtualNodeType.SymbolicLink, vs.GetSymbolicLink(linkToLink).TargetNodeType);
 
             // Debug print
             DebugPrintLinkDictionary(vs);

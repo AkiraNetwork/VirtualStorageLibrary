@@ -46,7 +46,7 @@ namespace AkiraNet.VirtualStorageLibrary
             HashSet<VirtualPath> linkPathSet = GetLinksFromDictionary(targetPath);
             if (linkPathSet.Count > 0)
             {
-                VirtualNodeType targetType = GetNodeType(targetPath, true);
+                VirtualNodeType targetType = GetNodeType(targetPath);
                 SetLinkTargetNodeType(linkPathSet, targetType);
             }
         }
@@ -192,6 +192,9 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // リンク辞書にリンク情報を追加
             AddLinkToDictionary(absoluteTargetPath, linkPath);
+
+            // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+            UpdateLinkTypesInDictionary(linkPath);
         }
 
         public void AddItem<T>(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
@@ -278,7 +281,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 directory.Add(newDirectory);
 
                 // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-                //UpdateLinkTargetNodeTypes(path);
+                UpdateLinkTypesInDictionary(path);
             }
             else
             {
@@ -294,8 +297,9 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualDirectory newSubdirectory = new(nodeName);
             directory.Add(newSubdirectory);
 
+            // TODO: リンク辞書を更新したいがActionNodeDelegateの仕様を変更する必要がある
             // リンク辞書を更新
-            UpdateLinkTypesInDictionary(directory.Name + nodeName);
+            //UpdateLinkTypesInDictionary();
 
             return true;
         }
