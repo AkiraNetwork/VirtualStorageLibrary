@@ -291,15 +291,14 @@ namespace AkiraNet.VirtualStorageLibrary
             return;
         }
 
-        private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName)
+        private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName, VirtualPath nodePath)
         {
             // 中間ディレクトリを追加
             VirtualDirectory newSubdirectory = new(nodeName);
             directory.Add(newSubdirectory);
 
-            // TODO: リンク辞書を更新したいがActionNodeDelegateの仕様を変更する必要がある
-            // リンク辞書を更新
-            //UpdateLinkTypesInDictionary();
+            // 中間ディレクトリをリンク辞書に追加
+            UpdateLinkTypesInDictionary(nodePath);
 
             return true;
         }
@@ -345,7 +344,7 @@ namespace AkiraNet.VirtualStorageLibrary
             {
                 if (p.ActionNode != null)
                 {
-                    if (p.ActionNode(p.TraversalDirectory, traversalNodeName))
+                    if (p.ActionNode(p.TraversalDirectory, traversalNodeName, p.TraversalPath + traversalNodeName))
                     {
                         continue;
                     }

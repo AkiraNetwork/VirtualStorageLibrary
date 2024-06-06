@@ -2987,11 +2987,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");
         }
 
-        private bool ActionNode(VirtualDirectory directory, VirtualNodeName nodeName)
+        private bool ActionNode(VirtualDirectory directory, VirtualNodeName nodeName, VirtualPath nodePath)
         {
             VirtualDirectory newDirectory = new(nodeName);
 
             directory.Add(newDirectory);
+
+            Debug.WriteLine($"IntermediateDirectory: {nodePath}");
 
             return true;
         }
