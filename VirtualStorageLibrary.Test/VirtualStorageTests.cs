@@ -5530,5 +5530,40 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Debug print
             DebugPrintLinkDictionary(vs);
         }
+        
+        // アイテム削除時のリンク辞書更新のテスト
+        [TestMethod]
+        public void RemoveNode_UpdatesLinkTypeForItemDeletion()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath itemPath = "/dir1/item1";
+            VirtualPath linkPath = "/dir1/linkToItem1";
+            
+            // アイテムを追加
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem(itemPath, data);
+
+            // アイテムに対するシンボリックリンクを作成
+            vs.AddSymbolicLink(linkPath, itemPath);
+
+            // リンクのノードタイプが Item であることを確認
+            Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+
+            // Act
+            // アイテムを削除
+            vs.RemoveNode(itemPath);
+
+            // Assert
+            // リンクのノードタイプが None に更新されていることを確認
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
     }
 }

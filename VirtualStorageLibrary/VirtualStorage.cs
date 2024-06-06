@@ -1165,6 +1165,8 @@ namespace AkiraNet.VirtualStorageLibrary
                 }
 
                 parentDir?.Remove(context.Node!.Name);
+
+                UpdateLinkTypesInDictionary(path);
             }
         }
 
