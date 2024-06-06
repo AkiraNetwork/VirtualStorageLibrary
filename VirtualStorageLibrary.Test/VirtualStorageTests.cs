@@ -5565,5 +5565,55 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Debug print
             DebugPrintLinkDictionary(vs);
         }
+
+        // ディレクトリツリー削除時のリンク辞書更新のテスト
+        [TestMethod]
+        public void RemoveNode_UpdatesLinkTypeForDirectoryTreeDeletion()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath directoryPath = "/dir1/dir2";
+            VirtualPath subDirectoryPath = "/dir1/dir2/dir3";
+            VirtualPath itemPath1 = "/dir1/dir2/item1";
+            VirtualPath itemPath2 = "/dir1/dir2/dir3/item2";
+            VirtualPath linkToItem1Path = "/dir1/linkToItem1";
+            VirtualPath linkToItem2Path = "/dir1/linkToItem2";
+            VirtualPath linkToDirectoryPath = "/dir1/linkToDir2";
+
+            // ディレクトリとアイテムを追加
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+            vs.AddDirectory("/dir1", true);
+            vs.AddDirectory(directoryPath, true);
+            vs.AddDirectory(subDirectoryPath, true);
+            vs.AddItem(itemPath1, data1);
+            vs.AddItem(itemPath2, data2);
+
+            // アイテムとディレクトリに対するシンボリックリンクを作成
+            vs.AddSymbolicLink(linkToItem1Path, itemPath1);
+            vs.AddSymbolicLink(linkToItem2Path, itemPath2);
+            vs.AddSymbolicLink(linkToDirectoryPath, directoryPath);
+
+            // リンクのノードタイプが適切であることを確認
+            Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkToItem1Path).TargetNodeType);
+            Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkToItem2Path).TargetNodeType);
+            Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkToDirectoryPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+
+            // Act
+            // ディレクトリツリーを削除
+            vs.RemoveNode(directoryPath, recursive: true);
+
+            // Assert
+            // リンクのノードタイプが None に更新されていることを確認
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToItem1Path).TargetNodeType);
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToItem2Path).TargetNodeType);
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToDirectoryPath).TargetNodeType);
+
+            // Debug print
+            DebugPrintLinkDictionary(vs);
+        }
     }
 }

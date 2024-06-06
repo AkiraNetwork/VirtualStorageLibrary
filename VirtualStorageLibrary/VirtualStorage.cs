@@ -74,8 +74,11 @@ namespace AkiraNet.VirtualStorageLibrary
         {
             foreach (var linkPath in linkPathSet)
             {
-                VirtualSymbolicLink link = GetSymbolicLink(linkPath);
-                link.TargetNodeType = nodeType;
+                VirtualSymbolicLink? link = TryGetSymbolicLink(linkPath);
+                if (link != null)
+                {
+                    link.TargetNodeType = nodeType;
+                }
             }
         }
 
@@ -451,7 +454,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 nodeContext = WalkPathToTargetInternal(p2);
 
                 node = nodeContext?.Node;
-                //traversalPath = result?.TraversalPath ?? traversalPath;
+                //deletePath = result?.TraversalPath ?? deletePath;
 
                 // 解決済みのパスに未探索のパスを追加
                 p.ResolvedPath = nodeContext?.ResolvedPath!.CombineFromIndex(p.TargetPath, p.TraversalIndex);
@@ -1106,6 +1109,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
+            // TODO: ToList
             IEnumerable<VirtualNodeContext> contexts = WalkPathTree(path, VirtualNodeTypeFilter.All, recursive, followLinks).ToList();
 
             if (recursive)
@@ -1141,7 +1145,12 @@ namespace AkiraNet.VirtualStorageLibrary
                             disposableNode.Dispose();
                         }
 
-                        parentDir?.Remove(context.Node!.Name);
+                        VirtualNodeName nodeName = context.Node!.Name;
+                        parentDir?.Remove(nodeName);
+
+                        // TODO: #101 VirtualPathクラスのCombine(params VirtualPath[] paths)で正規化されない場合がある
+                        VirtualPath deletePath = (path + context.TraversalPath).NormalizePath();
+                        UpdateLinkTypesInDictionary(deletePath);
                     }
                 }
             }
