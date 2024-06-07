@@ -5615,5 +5615,47 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Debug print
             DebugPrintLinkDictionary(vs);
         }
+
+        // シンボリックリンク削除時のリンク辞書更新のテスト
+        [TestMethod]
+        public void RemoveNode_UpdatesLinkTypeForSymbolicLinkDeletion()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath itemPath = "/dir1/item1";
+            VirtualPath linkToItemPath = "/dir1/linkToItem1";
+            VirtualPath linkToLinkPath = "/dir1/linkToLink";
+
+            // アイテムを追加
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem(itemPath, data);
+
+            // アイテムに対するシンボリックリンクを作成
+            vs.AddSymbolicLink(linkToItemPath, itemPath);
+
+            // シンボリックリンクに対するシンボリックリンクを作成
+            vs.AddSymbolicLink(linkToLinkPath, linkToItemPath);
+
+            // linkToLinkのターゲットノードタイプがシンボリックリンクであることを確認
+            Assert.AreEqual(VirtualNodeType.SymbolicLink, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
+
+            // linkToItem1のターゲットノードタイプがアイテムであることを確認
+            Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkToItemPath).TargetNodeType);
+
+            // Debug print before Act
+            DebugPrintLinkDictionary(vs);
+
+            // Act
+            // シンボリックリンクを削除
+            vs.RemoveNode(linkToItemPath);
+
+            // Assert
+            // linkToLinkのターゲットノードタイプがNoneに更新されていることを確認
+            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
+
+            // Debug print after Act
+            DebugPrintLinkDictionary(vs);
+        }
     }
 }

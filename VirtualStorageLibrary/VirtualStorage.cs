@@ -37,7 +37,7 @@ namespace AkiraNet.VirtualStorageLibrary
             linkPathSet.Add(linkPath);
 
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
-            link.TargetNodeType = GetNodeType(targetPath, true);
+            link.TargetNodeType = GetNodeType(targetPath);
         }
 
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
