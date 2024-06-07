@@ -250,6 +250,78 @@
         }
 
         [TestMethod]
+        public void Combine_RootPathWithDot_ReturnsRootPath()
+        {
+            VirtualPath path1 = "/";
+            VirtualPath path2 = ".";
+            VirtualPath expected = "/.";
+
+            VirtualPath result = path1.Combine(path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_RootPathWithSingleDirectory_ReturnsCorrectPath()
+        {
+            VirtualPath path1 = "/";
+            VirtualPath path2 = "directory";
+            VirtualPath expected = "/directory";
+
+            VirtualPath result = path1.Combine(path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_DirectoryWithDot_ReturnsSameDirectory()
+        {
+            VirtualPath path1 = "/directory";
+            VirtualPath path2 = ".";
+            VirtualPath expected = "/directory/.";
+
+            VirtualPath result = path1.Combine(path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_DirectoryWithDoubleDot_ReturnsParentDirectory()
+        {
+            VirtualPath path1 = "/directory/subdirectory";
+            VirtualPath path2 = "..";
+            VirtualPath expected = "/directory/subdirectory/..";
+
+            VirtualPath result = path1.Combine(path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_MultipleDirectoriesWithRelativePath_ReturnsCorrectPath()
+        {
+            VirtualPath path1 = "/directory/subdirectory";
+            VirtualPath path2 = "../anotherDirectory";
+            VirtualPath expected = "/directory/subdirectory/../anotherDirectory";
+
+            VirtualPath result = path1.Combine(path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_PathsWithDuplicatedSeparators_ReturnsCorrectPath()
+        {
+            VirtualPath path1 = "/directory//subdirectory/";
+            VirtualPath path2 = "//file.txt";
+            VirtualPath expected = "/directory//subdirectory/file.txt";
+
+            VirtualPath result = path1.Combine(path2);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
         public void GetParentPath_WithSingleLevelPath_ReturnsRoot()
         {
             VirtualPath path = "/level1";

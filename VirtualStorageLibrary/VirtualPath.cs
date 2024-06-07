@@ -464,7 +464,7 @@
 
                 var trimmedPath = path.Trim(VirtualPath.Separator);
 
-                if (newPathBuilder.Length > 0 && newPathBuilder[newPathBuilder.Length - 1] != VirtualPath.Separator)
+                if (newPathBuilder.Length > 0 && newPathBuilder[^1] != VirtualPath.Separator)
                 {
                     newPathBuilder.Append(VirtualPath.Separator);
                 }
