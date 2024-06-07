@@ -161,7 +161,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("./test/path");
 
-            Assert.IsTrue(result == "/root/subdirectory/./test/path");
+            Assert.IsTrue(result == "/root/subdirectory/test/path");
         }
 
         [TestMethod]
@@ -173,7 +173,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("../test/path");
 
-            Assert.IsTrue(result == "/root/subdirectory/../test/path");
+            Assert.IsTrue(result == "/root/test/path");
         }
 
         [TestMethod]
@@ -185,7 +185,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             VirtualPath result = virtualStorage.ConvertToAbsolutePath("../../test/path");
 
-            Assert.IsTrue(result == "/root/subdirectory/../../test/path");
+            Assert.IsTrue(result == "/test/path");
         }
 
         [TestMethod]

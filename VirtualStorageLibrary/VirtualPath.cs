@@ -207,21 +207,18 @@
             return !(left == right);
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
         {
-            return path1.Combine(path2);
+            return path1.Combine(path2).NormalizePath();
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
         {
             VirtualPath trimmedPath = path.TrimEndSlash();
-            string fullPath = trimmedPath._path + Separator + nodeName.Name;
+            string fullPath = NormalizePath(trimmedPath._path + Separator + nodeName.Name);
             return new VirtualPath(fullPath);
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, string str)
         {
             // 末尾がパスセパレータでない場合は追加
@@ -231,10 +228,10 @@
             }
 
             // 新しいパスを生成して返す
-            return new VirtualPath(path.Path + str);
+            VirtualPath newPath = (path.Path + str).Normalize();
+            return newPath;
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(string str, VirtualPath path)
         {
             // 末尾がパスセパレータでない場合は追加
@@ -244,10 +241,10 @@
             }
 
             // 新しいパスを生成して返す
-            return new VirtualPath(str + path.Path);
+            VirtualPath newPath = (str + path.Path).Normalize();
+            return newPath;
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, char chr)
         {
             string str = chr.ToString();
@@ -259,10 +256,10 @@
             }
 
             // 新しいパスを生成して返す
-            return new VirtualPath(path.Path + str);
+            VirtualPath newPath = (path.Path + str).Normalize();
+            return newPath;
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(char chr, VirtualPath path)
         {
             string str = chr.ToString();
@@ -274,7 +271,8 @@
             }
 
             // 新しいパスを生成して返す
-            return new VirtualPath(str + path.Path);
+            VirtualPath newPath = (str + path.Path).Normalize();
+            return newPath;
         }
 
         [DebuggerStepThrough]
@@ -427,7 +425,6 @@
             }
         }
 
-        [DebuggerStepThrough]
         public VirtualPath Combine(params VirtualPath[] paths)
         {
             string[] currentPathArray = [_path];
@@ -438,7 +435,6 @@
             return new VirtualPath(combinedPathString);
         }
 
-        [DebuggerStepThrough]
         public static string Combine(params string[] paths)
         {
             if (paths.Length == 0)
