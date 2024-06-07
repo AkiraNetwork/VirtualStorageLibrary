@@ -1132,6 +1132,9 @@ namespace AkiraNet.VirtualStorageLibrary
                         parentDir = GetDirectory(linkParentPath, true);
                         parentDir?.Remove(link.Name);
 
+                        VirtualPath deletePath = (linkParentPath + link.Name).NormalizePath();
+                        UpdateLinkTypesInDictionary(deletePath);
+
                         // リンクターゲットも削除する
                         VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
                         RemoveNode(targetPath, recursive, followLinks);
