@@ -5399,10 +5399,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink(nonExistentLinkPath, nonExistentTargetPath);
 
             // Assert
-            Assert.AreEqual(vs.GetSymbolicLink(directoryLinkPath).TargetNodeType, vs.GetNodeType(directoryTargetPath, true));
-            Assert.AreEqual(vs.GetSymbolicLink(itemLinkPath).TargetNodeType, vs.GetNodeType(itemTargetPath, true));
-            Assert.AreEqual(vs.GetSymbolicLink(symbolicLinkPath).TargetNodeType, vs.GetNodeType(symbolicLinkTargetPath, true));
-            Assert.AreEqual(vs.GetSymbolicLink(nonExistentLinkPath).TargetNodeType, vs.GetNodeType(nonExistentTargetPath, true));
+            Assert.AreEqual(vs.GetSymbolicLink(directoryLinkPath).TargetNodeType, vs.GetNodeType(directoryTargetPath));
+            Assert.AreEqual(vs.GetSymbolicLink(itemLinkPath).TargetNodeType, vs.GetNodeType(itemTargetPath));
+            Assert.AreEqual(vs.GetSymbolicLink(symbolicLinkPath).TargetNodeType, vs.GetNodeType(symbolicLinkTargetPath));
+            Assert.AreEqual(vs.GetSymbolicLink(nonExistentLinkPath).TargetNodeType, vs.GetNodeType(nonExistentTargetPath));
 
             // Debug print
             DebugPrintLinkDictionary(vs);
