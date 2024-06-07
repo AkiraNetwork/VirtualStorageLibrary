@@ -1114,6 +1114,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
             if (recursive)
             {
+                // TODO: ToList
                 // ノードコンテキストを逆順に処理するためにリストに変換して逆順にソート
                 List<VirtualNodeContext> reversedContexts = contexts.Reverse().ToList();
 
