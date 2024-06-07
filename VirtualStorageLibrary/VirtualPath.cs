@@ -441,40 +441,59 @@
         [DebuggerStepThrough]
         public static string Combine(params string[] paths)
         {
-            // 現在のパスを基点として新しいパスを構築するStringBuilderインスタンスを作成
+            if (paths.Length == 0)
+            {
+                return string.Empty;
+            }
+
             StringBuilder newPathBuilder = new();
+            bool isFirstPath = true;
+            bool isAbsolutePath = false;
 
             foreach (var path in paths)
             {
-                // 2番目以降のパスの場合だけ、PathSeparator を追加
-                if (newPathBuilder.Length > 0)
+                if (string.IsNullOrEmpty(path))
+                {
+                    continue;
+                }
+
+                if (isFirstPath && path.StartsWith(VirtualPath.Separator.ToString()))
+                {
+                    isAbsolutePath = true;
+                }
+
+                var trimmedPath = path.Trim(VirtualPath.Separator);
+
+                if (newPathBuilder.Length > 0 && newPathBuilder[newPathBuilder.Length - 1] != VirtualPath.Separator)
                 {
                     newPathBuilder.Append(VirtualPath.Separator);
                 }
 
-                // 新しいパスコンポーネントを追加
-                newPathBuilder.Append(path);
+                newPathBuilder.Append(trimmedPath);
+                isFirstPath = false;
             }
 
-            // StringBuilderの内容を文字列に変換
             var combinedPath = newPathBuilder.ToString();
 
-            // PathSeparator がダブっている箇所を解消
-            var normalizedPath = combinedPath.Replace(
-                VirtualPath.Separator.ToString() + VirtualPath.Separator.ToString(),
-                VirtualPath.Separator.ToString());
-
-            // 結果が PathSeparator だったら空文字列に変換
-            normalizedPath = (normalizedPath == VirtualPath.Separator.ToString()) ? string.Empty : normalizedPath;
-
-            // 末尾の PathSeparator を取り除く
-            if (normalizedPath.EndsWith(VirtualPath.Separator))
+            // 結果が空文字列の場合、そのまま返す
+            if (string.IsNullOrEmpty(combinedPath))
             {
-                normalizedPath = normalizedPath[..^1];
+                return string.Empty;
             }
 
-            // 結合された文字列を返却
-            return normalizedPath;
+            // 絶対パスの場合、先頭にセパレータを追加
+            if (isAbsolutePath)
+            {
+                combinedPath = VirtualPath.Separator + combinedPath;
+            }
+
+            // 末尾のPathSeparatorを取り除く
+            if (combinedPath.Length > 1 && combinedPath.EndsWith(VirtualPath.Separator))
+            {
+                combinedPath = combinedPath[..^1];
+            }
+
+            return combinedPath;
         }
 
         [DebuggerStepThrough]
