@@ -14,7 +14,7 @@
 
         private static readonly string _dotDot;
 
-        public string Path => _path;
+        public string Path { [DebuggerStepThrough] get => _path; }
 
         private List<VirtualNodeName>? _partsList;
 
@@ -159,6 +159,7 @@
             _path = Separator + string.Join(Separator, parts.Select(node => node.Name));
         }
 
+        [DebuggerStepThrough]
         static VirtualPath()
         {
             _root = VirtualStorageSettings.Settings.PathRoot;
@@ -207,35 +208,41 @@
             return !(left == right);
         }
 
+        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
         {
             return path1.Combine(path2).NormalizePath();
         }
 
+        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
         {
             string combinedPath = VirtualPath.Combine(path.Path, nodeName.Name);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
+        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, string str)
         {
             string combinedPath = VirtualPath.Combine(path.Path, str);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
+        [DebuggerStepThrough]
         public static VirtualPath operator +(string str, VirtualPath path)
         {
             string combinedPath = VirtualPath.Combine(str, path.Path);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
+        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, char chr)
         {
             string combinedPath = path.Path + chr;
             return new VirtualPath(combinedPath); // 正規化せずに結合
         }
 
+        [DebuggerStepThrough]
         public static VirtualPath operator +(char chr, VirtualPath path)
         {
             string combinedPath = chr + path.Path;
@@ -392,6 +399,7 @@
             }
         }
 
+        [DebuggerStepThrough]
         public VirtualPath Combine(params VirtualPath[] paths)
         {
             string[] currentPathArray = [_path];
@@ -402,6 +410,7 @@
             return new VirtualPath(combinedPathString);
         }
 
+        [DebuggerStepThrough]
         public static string Combine(params string[] paths)
         {
             if (paths.Length == 0)
@@ -514,6 +523,7 @@
             return combinedPath;
         }
 
+        [DebuggerStepThrough]
         public int CompareTo(VirtualPath? other)
         {
             if (other == null)
@@ -524,6 +534,7 @@
             return string.Compare(_path, other._path, StringComparison.Ordinal);
         }
 
+        [DebuggerStepThrough]
         public int CompareTo(object? obj)
         {
             if (obj == null)
@@ -539,6 +550,7 @@
             return CompareTo((VirtualPath)obj);
         }
 
+        [DebuggerStepThrough]
         public VirtualPath GetRelativePath(VirtualPath basePath)
         {
             // このパスが絶対パスでない場合は例外をスロー
@@ -593,6 +605,7 @@
             return new VirtualPath(string.Join(VirtualPath.Separator, relativePath));
         }
 
+        [DebuggerStepThrough]
         public VirtualPath ExtractBasePath()
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
@@ -607,6 +620,7 @@
             return new VirtualPath(parts);
         }
 
+        [DebuggerStepThrough]
         public int GetBaseDepth()
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
