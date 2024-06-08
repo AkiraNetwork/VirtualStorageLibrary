@@ -1127,12 +1127,12 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // シンボリックリンクの場合はリンクノードを削除する
                         VirtualSymbolicLink link = context.ResolvedLink;
-                        VirtualPath linkPath = (path + context.TraversalPath).NormalizePath();
+                        VirtualPath linkPath = path + context.TraversalPath;
                         VirtualPath linkParentPath = linkPath.DirectoryPath;
                         parentDir = GetDirectory(linkParentPath, true);
                         parentDir?.Remove(link.Name);
 
-                        VirtualPath deletePath = (linkParentPath + link.Name).NormalizePath();
+                        VirtualPath deletePath = linkParentPath + link.Name;
                         UpdateLinkTypesInDictionary(deletePath);
 
                         // リンクターゲットも削除する
@@ -1152,8 +1152,7 @@ namespace AkiraNet.VirtualStorageLibrary
                         VirtualNodeName nodeName = context.Node!.Name;
                         parentDir?.Remove(nodeName);
 
-                        // TODO: #101 VirtualPathクラスのCombine(params VirtualPath[] paths)で正規化されない場合がある
-                        VirtualPath deletePath = (path + context.TraversalPath).NormalizePath();
+                        VirtualPath deletePath = path + context.TraversalPath;
                         UpdateLinkTypesInDictionary(deletePath);
                     }
                 }
