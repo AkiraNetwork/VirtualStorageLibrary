@@ -322,6 +322,291 @@
         }
 
         [TestMethod]
+        public void OperatorPlus_VirtualPathCombinesCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to";
+            VirtualPath path2 = "directory/file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithRelativePath_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to";
+            VirtualPath path2 = "./directory/file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithParentDirectory_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to/directory";
+            VirtualPath path2 = "../file.txt";
+            VirtualPath expected = "/path/to/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithMultipleParentDirectories_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to/directory/subdirectory";
+            VirtualPath path2 = "../../file.txt";
+            VirtualPath expected = "/path/to/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithTrailingSlash_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to/directory/";
+            VirtualPath path2 = "file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithRootPath_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/";
+            VirtualPath path2 = "path/to/directory";
+            VirtualPath expected = "/path/to/directory";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithEmptyPaths_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "";
+            VirtualPath path2 = "";
+            VirtualPath expected = "";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithOneEmptyPath_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to/directory";
+            VirtualPath path2 = "";
+            VirtualPath expected = "/path/to/directory";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithOneEmptyPathReversed_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "";
+            VirtualPath path2 = "/path/to/directory";
+            VirtualPath expected = "/path/to/directory";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_WithMultipleSlashes_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path//to///directory/";
+            VirtualPath path2 = "//file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_RootPathWithDot_ReturnsRoot()
+        {
+            // Arrange
+            VirtualPath path1 = "/";
+            VirtualPath path2 = ".";
+            VirtualPath expected = "/";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_VirtualPathWithNodeNameCombinesCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to";
+            VirtualNodeName nodeName = new("directory");
+            VirtualPath expected = "/path/to/directory";
+
+            // Act
+            VirtualPath result = path1 + nodeName;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_VirtualPathWithNodeNameWithRelativePath_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to";
+            VirtualNodeName nodeName = new("./directory");
+            VirtualPath expected = "/path/to/directory";
+
+            // Act
+            VirtualPath result = path1 + nodeName;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_VirtualPathWithStringCombinesCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to";
+            string path2 = "directory/file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_VirtualPathWithStringWithRelativePath_ReturnsCorrectly()
+        {
+            // Arrange
+            VirtualPath path1 = "/path/to";
+            string path2 = "./directory/file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_StringWithVirtualPathCombinesCorrectly()
+        {
+            // Arrange
+            string path1 = "/path/to";
+            VirtualPath path2 = "directory/file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_StringWithVirtualPathWithRelativePath_ReturnsCorrectly()
+        {
+            // Arrange
+            string path1 = "/path/to";
+            VirtualPath path2 = "./directory/file.txt";
+            VirtualPath expected = "/path/to/directory/file.txt";
+
+            // Act
+            VirtualPath result = path1 + path2;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_VirtualPathWithCharAddsSeparatorAtEnd()
+        {
+            // Arrange
+            VirtualPath path = "/path/to/directory";
+            char separator = '/';
+            VirtualPath expected = "/path/to/directory/";
+
+            // Act
+            VirtualPath result = path + separator;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void OperatorPlus_CharWithVirtualPathAddsSeparatorAtStart()
+        {
+            // Arrange
+            char separator = '/';
+            VirtualPath path = "path/to/directory";
+            VirtualPath expected = "/path/to/directory";
+
+            // Act
+            VirtualPath result = separator + path;
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
         public void GetParentPath_WithSingleLevelPath_ReturnsRoot()
         {
             VirtualPath path = "/level1";

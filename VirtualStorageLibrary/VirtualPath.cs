@@ -214,65 +214,32 @@
 
         public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
         {
-            VirtualPath trimmedPath = path.TrimEndSlash();
-            string fullPath = NormalizePath(trimmedPath._path + Separator + nodeName.Name);
-            return new VirtualPath(fullPath);
+            string combinedPath = VirtualPath.Combine(path.Path, nodeName.Name);
+            return new VirtualPath(combinedPath).NormalizePath();
         }
 
         public static VirtualPath operator +(VirtualPath path, string str)
         {
-            // 末尾がパスセパレータでない場合は追加
-            if (!path.Path.EndsWith(Separator))
-            {
-                str = Separator + str;
-            }
-
-            // 新しいパスを生成して返す
-            VirtualPath newPath = (path.Path + str).Normalize();
-            return newPath;
+            string combinedPath = VirtualPath.Combine(path.Path, str);
+            return new VirtualPath(combinedPath).NormalizePath();
         }
 
         public static VirtualPath operator +(string str, VirtualPath path)
         {
-            // 末尾がパスセパレータでない場合は追加
-            if (!str.EndsWith(Separator))
-            {
-                str += Separator;
-            }
-
-            // 新しいパスを生成して返す
-            VirtualPath newPath = (str + path.Path).Normalize();
-            return newPath;
+            string combinedPath = VirtualPath.Combine(str, path.Path);
+            return new VirtualPath(combinedPath).NormalizePath();
         }
 
         public static VirtualPath operator +(VirtualPath path, char chr)
         {
-            string str = chr.ToString();
-
-            // 末尾がパスセパレータでない場合は追加
-            if (!path.Path.EndsWith(Separator))
-            {
-                str = Separator + str;
-            }
-
-            // 新しいパスを生成して返す
-            VirtualPath newPath = (path.Path + str).Normalize();
-            return newPath;
+            string combinedPath = path.Path + chr;
+            return new VirtualPath(combinedPath); // 正規化せずに結合
         }
 
         public static VirtualPath operator +(char chr, VirtualPath path)
         {
-            string str = chr.ToString();
-
-            // 末尾がパスセパレータでない場合は追加
-            if (!str.EndsWith(Separator))
-            {
-                str += Separator;
-            }
-
-            // 新しいパスを生成して返す
-            VirtualPath newPath = (str + path.Path).Normalize();
-            return newPath;
+            string combinedPath = chr + path.Path;
+            return new VirtualPath(combinedPath); // 正規化せずに結合
         }
 
         [DebuggerStepThrough]
