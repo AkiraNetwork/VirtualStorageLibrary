@@ -5735,7 +5735,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkToDir3Path).TargetNodeType);
             Assert.AreEqual(VirtualNodeType.SymbolicLink, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
 
-            // リンク辞書にdir4LinkPathのエントリが存在している事を確認
+            // リンク辞書に dir4LinkPath のエントリが存在している事を確認
             Assert.IsTrue(vs.LinkDictionary.ContainsKey(dir4Target));
 
             // Debug print before Act
@@ -5751,7 +5751,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToDir3Path).TargetNodeType);
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
 
-            // リンク辞書からdir4LinkPathのエントリが削除されている事を確認
+            // リンク辞書から dir4LinkPathの エントリが削除されている事を確認
             Assert.IsFalse(vs.LinkDictionary.ContainsKey(dir4Target));
 
             // Debug print after Act

@@ -99,29 +99,32 @@ namespace AkiraNet.VirtualStorageLibrary
                 VirtualPath oldTargetPath = link.TargetPath ?? string.Empty;
 
                 // 古いターゲットパスからリンクを削除
-                if (_linkDictionary.TryGetValue(oldTargetPath, out HashSet<VirtualPath>? oldLinkPathSet))
-                {
-                    oldLinkPathSet.Remove(linkPath);
-                    if (oldLinkPathSet.Count == 0)
-                    {
-                        _linkDictionary.Remove(oldTargetPath);
-                    }
-                }
+                RemoveLinkFromDictionary(oldTargetPath, linkPath);
 
                 // 新しいターゲットパスを設定
                 link.TargetPath = newTargetPath;
 
                 // 新しいターゲットパスにリンクを追加
-                if (!_linkDictionary.TryGetValue(newTargetPath, out HashSet<VirtualPath>? newLinkPathSet))
-                {
-                    newLinkPathSet = [];
-                    _linkDictionary[newTargetPath] = newLinkPathSet;
-                }
-                newLinkPathSet.Add(linkPath);
+                AddLinkToDictionary(newTargetPath, linkPath);
 
                 // 新しいターゲットノードのタイプを更新
-                link.TargetNodeType = GetNodeType(newTargetPath, true);
+                link.TargetNodeType = GetNodeType(newTargetPath);
             }
+        }
+
+        // 特定のターゲットパスを持つリンクのターゲットパスを新しいターゲットパスに更新します。
+        public void UpdateLinksToTarget(VirtualPath oldTargetPath, VirtualPath newTargetPath)
+        {
+            var linkPathSet = GetLinksFromDictionary(oldTargetPath);
+
+            foreach (var linkPath in linkPathSet)
+            {
+                // UpdateLinkInDictionaryを使用してリンクのターゲットパスを更新
+                UpdateLinkInDictionary(linkPath, newTargetPath);
+            }
+
+            // 古いターゲットパスからリンクを削除
+            _linkDictionary.Remove(oldTargetPath);
         }
 
         public void ChangeDirectory(VirtualPath path)
