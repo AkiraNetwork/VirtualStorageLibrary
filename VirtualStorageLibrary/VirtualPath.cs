@@ -105,7 +105,6 @@
             get => _dotDot;
         }
 
-        [DebuggerStepThrough]
         public override string ToString() => _path;
 
         public bool IsEmpty

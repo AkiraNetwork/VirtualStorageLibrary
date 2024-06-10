@@ -5654,6 +5654,48 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // linkToLinkのターゲットノードタイプがNoneに更新されていることを確認
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
 
+            // 削除されたリンクの情報がリンク辞書から削除されてる事を確認
+            Assert.IsFalse(vs.LinkDictionary.ContainsKey(itemPath));
+
+            // Debug print after Act
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // 複数のシンボリックリンクが張られている場合のリンク辞書更新のテスト
+        [TestMethod]
+        public void RemoveNode_UpdatesLinkTypeForMultipleSymbolicLinkDeletion()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            VirtualPath itemPath = "/dir1/item1";
+            VirtualPath linkToItemPath1 = "/dir1/linkToItem1";
+            VirtualPath linkToItemPath2 = "/dir1/linkToItem2";
+
+            // アイテムを追加
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem(itemPath, data);
+
+            // アイテムに対するシンボリックリンクを2つ作成
+            vs.AddSymbolicLink(linkToItemPath1, itemPath);
+            vs.AddSymbolicLink(linkToItemPath2, itemPath);
+
+            // Debug print before Act
+            DebugPrintLinkDictionary(vs);
+
+            // Act
+            // 最初のシンボリックリンクを削除
+            vs.RemoveNode(linkToItemPath1);
+
+            // Assert
+            // linkToItem1がリンク辞書から削除され、linkToItem2は残っていることを確認
+            var links = vs.GetLinksFromDictionary(itemPath);
+            Assert.IsFalse(links.Contains(linkToItemPath1));
+            Assert.IsTrue(links.Contains(linkToItemPath2));
+
+            // リンク辞書のエントリが削除されていないことを確認
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey(itemPath));
+
             // Debug print after Act
             DebugPrintLinkDictionary(vs);
         }
@@ -5693,6 +5735,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkToDir3Path).TargetNodeType);
             Assert.AreEqual(VirtualNodeType.SymbolicLink, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
 
+            // リンク辞書にdir4LinkPathのエントリが存在している事を確認
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey(dir4Target));
+
             // Debug print before Act
             DebugPrintLinkDictionary(vs);
 
@@ -5705,6 +5750,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToItemPath).TargetNodeType);
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToDir3Path).TargetNodeType);
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
+
+            // リンク辞書からdir4LinkPathのエントリが削除されている事を確認
+            Assert.IsFalse(vs.LinkDictionary.ContainsKey(dir4Target));
 
             // Debug print after Act
             DebugPrintLinkDictionary(vs);
