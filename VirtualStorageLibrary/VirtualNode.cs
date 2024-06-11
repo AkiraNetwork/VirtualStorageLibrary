@@ -2,20 +2,10 @@
 {
     public abstract class VirtualNode : IVirtualDeepCloneable<VirtualNode>
     {
-        private VirtualNodeName _name;
-
-        public VirtualNodeName Name
-        {
-            get => _name;
-            
-            internal set
-            {
-                _name = value;
-                UpdatedDate = DateTime.Now;
-            }
-        }
+        public VirtualNodeName Name { get; internal set; }
 
         public DateTime CreatedDate { get; private set; }
+
         public DateTime UpdatedDate { get; private set; }
 
         public abstract VirtualNodeType NodeType { get; }
@@ -24,21 +14,21 @@
 
         protected VirtualNode(VirtualNodeName name)
         {
-            _name = name;
+            Name = name;
             CreatedDate = DateTime.Now;
             UpdatedDate = DateTime.Now;
         }
 
         protected VirtualNode(VirtualNodeName name, DateTime createdDate)
         {
-            _name = name;
+            Name = name;
             CreatedDate = createdDate;
             UpdatedDate = createdDate;
         }
 
         protected VirtualNode(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)
         {
-            _name = name;
+            Name = name;
             CreatedDate = createdDate;
             UpdatedDate = updatedDate;
         }
