@@ -1254,6 +1254,44 @@ namespace AkiraNet.VirtualStorageLibrary
             return false;
         }
 
+        public void SetNodeName(VirtualPath oldPath, VirtualNodeName newName)
+        {
+            VirtualPath oldAbsolutePath = ConvertToAbsolutePath(oldPath);
+            VirtualPath newAbsolutePath = oldAbsolutePath.DirectoryPath + newName;
+
+            // 移動先と移動元が同じかどうかのチェック
+            if (oldAbsolutePath == newAbsolutePath)
+            {
+                throw new InvalidOperationException("新しい名前が現在の名前と同じです。");
+            }
+
+            // ノードの存在チェック
+            if (!NodeExists(oldAbsolutePath))
+            {
+                throw new VirtualNodeNotFoundException($"指定されたノード '{oldAbsolutePath}' は存在しません。");
+            }
+
+            // 新しい名前のノードが既に存在するかどうかのチェック
+            if (NodeExists(newAbsolutePath))
+            {
+                throw new InvalidOperationException($"指定された新しい名前のノード '{newAbsolutePath}' は既に存在します。");
+            }
+
+            // ノードの取得
+            VirtualNode node = GetNode(oldAbsolutePath);
+
+            // 親ディレクトリの取得
+            VirtualDirectory parentDirectory = GetDirectory(oldAbsolutePath.DirectoryPath);
+
+            // ノードの名前変更
+            VirtualNodeName oldName = node.Name;
+            node.Name = newName;
+
+            // 親ディレクトリから古いノードを削除し、新しい名前のノードを追加
+            parentDirectory.Remove(oldName);
+            parentDirectory.Add(node);
+        }
+
         public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false)
         {
             VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);

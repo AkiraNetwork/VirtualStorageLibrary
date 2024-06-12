@@ -2276,6 +2276,51 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void SetNodeName_ChangesNodeNameSuccessfully()
+        {
+            VirtualStorage storage = new();
+            storage.AddItem("/testFile", new BinaryData([1, 2, 3]));
+
+            storage.SetNodeName("/testFile", "newTestFile");
+
+            Assert.IsFalse(storage.NodeExists("/testFile"));
+            Assert.IsTrue(storage.NodeExists("/newTestFile"));
+
+            byte[] result = ((VirtualItem<BinaryData>)storage.GetNode("/newTestFile")).ItemData!.Data;
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, result);
+        }
+
+        [TestMethod]
+        public void SetNodeName_ThrowsWhenNodeDoesNotExist()
+        {
+            VirtualStorage storage = new();
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+                storage.SetNodeName("/nonExistentFile", "newName"));
+        }
+
+        [TestMethod]
+        public void SetNodeName_ThrowsWhenNewNameAlreadyExists()
+        {
+            VirtualStorage storage = new();
+            storage.AddItem("/testFile", new BinaryData([1, 2, 3]));
+            storage.AddItem("/newTestFile", new BinaryData([4, 5, 6]));
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                storage.SetNodeName("/testFile", "newTestFile"));
+        }
+
+        [TestMethod]
+        public void SetNodeName_ThrowsWhenNewNameIsSameAsOldName()
+        {
+            VirtualStorage storage = new();
+            storage.AddItem("/testFile", new BinaryData([1, 2, 3]));
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                storage.SetNodeName("/testFile", "testFile"));
+        }
+
+        [TestMethod]
         public void MoveNode_FileToFile_OverwritesWhenAllowed()
         {
             VirtualStorage storage = new();
