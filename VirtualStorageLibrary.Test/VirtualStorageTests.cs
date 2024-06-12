@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
