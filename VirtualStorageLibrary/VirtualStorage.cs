@@ -1339,7 +1339,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
             else
             {
-                // アイテムの場合
+                // アイテム、シンボリックリンクの場合
 
                 // 移動先のディレクトリ存在チェック
                 if (DirectoryExists(absoluteDestinationPath))

@@ -2504,6 +2504,60 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void MoveNode_SymbolicLinkToDirectory_MovesLinkToTargetDirectory()
+        {
+            VirtualStorage storage = new();
+            storage.AddDirectory("/destination");
+            storage.AddSymbolicLink("/sourceLink", "/target/path");
+
+            storage.MoveNode("/sourceLink", "/destination/", false);
+
+            Assert.IsFalse(storage.NodeExists("/sourceLink"));
+            Assert.IsTrue(storage.NodeExists("/destination/sourceLink"));
+            VirtualSymbolicLink movedLink = storage.GetSymbolicLink("/destination/sourceLink");
+            Assert.AreEqual("/target/path", (string)movedLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void MoveNode_SymbolicLinkToExistingLink_OverwritesWhenAllowed()
+        {
+            VirtualStorage storage = new();
+            storage.AddSymbolicLink("/sourceLink", "/target/path");
+            storage.AddSymbolicLink("/destinationLink", "/other/target");
+
+            storage.MoveNode("/sourceLink", "/destinationLink", true);
+
+            Assert.IsFalse(storage.NodeExists("/sourceLink"));
+            VirtualSymbolicLink destinationLink = (VirtualSymbolicLink)storage.GetNode("/destinationLink");
+            Assert.AreEqual("/target/path", (string)destinationLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void MoveNode_SymbolicLinkToExistingLink_ThrowsWhenOverwriteNotAllowed()
+        {
+            VirtualStorage storage = new();
+            storage.AddSymbolicLink("/sourceLink", "/target/path");
+            storage.AddSymbolicLink("/destinationLink", "/other/target");
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                storage.MoveNode("/sourceLink", "/destinationLink", false));
+        }
+
+        [TestMethod]
+        public void MoveNode_SymbolicLinkWithNonExistentTarget_MovesLink()
+        {
+            VirtualStorage storage = new();
+            storage.AddSymbolicLink("/sourceLink", "/nonExistent/target");
+
+            storage.MoveNode("/sourceLink", "/destinationLink", false);
+
+            Assert.IsFalse(storage.NodeExists("/sourceLink"));
+            Assert.IsTrue(storage.NodeExists("/destinationLink"));
+            VirtualSymbolicLink movedLink = (VirtualSymbolicLink)storage.GetNode("/destinationLink");
+            Assert.AreEqual("/nonExistent/target", (string)movedLink.TargetPath);
+        }
+
+        [TestMethod]
         public void SymbolicLinkExists_WhenLinkExists_ReturnsTrue()
         {
             // Arrange
