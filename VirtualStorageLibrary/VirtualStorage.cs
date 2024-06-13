@@ -1332,7 +1332,7 @@ namespace AkiraNet.VirtualStorageLibrary
             {
                 throw new InvalidOperationException("移動元と移動先が同じです。");
             }
-            
+
             // 移動元の存在チェック
             if (!NodeExists(absoluteSourcePath))
             {
@@ -1347,148 +1347,104 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException("ルートディレクトリを移動することはできません。");
             }
 
-            // 移動元のディレクトリ存在チェック
+            // 移動処理
             if (DirectoryExists(absoluteSourcePath))
             {
-                // ディレクトリの場合
-
-                // 移動先の種類チェック
-                if (DirectoryExists(absoluteDestinationPath))
-                {
-                    // ディレクトリの場合
-                    VirtualDirectory destinationDirectory = GetDirectory(absoluteDestinationPath);
-                    VirtualDirectory sourceDirectory = GetDirectory(absoluteSourcePath);
-                    
-                    // 移動先ディレクトリの同名チェック
-                    if (destinationDirectory.NodeExists(sourceDirectory.Name))
-                    {
-                        // 同名のディレクトリが存在する場合
-                        throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceDirectory.Name}' が存在します。");
-                    }
-                    destinationDirectory.Add(sourceDirectory);
-                    VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
-                    sourceParentDirectory.Remove(sourceDirectory.Name);
-                }
-                else
-                {
-                    // ディレクトリでない、または存在しない場合
-
-                    // 移動先の存在チェック
-                    if (!NodeExists(absoluteDestinationPath))
-                    {
-                        VirtualPath destinationParentPath = absoluteDestinationPath.GetParentPath();
-                        if (!DirectoryExists(destinationParentPath))
-                        {
-                            // 移動先の親ディレクトリが存在しない場合
-                            throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
-                        }
-                        VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        VirtualNodeName destinationNodeName = absoluteDestinationPath.NodeName;
-                        VirtualDirectory sourceDirectory = GetDirectory(absoluteSourcePath);
-
-                        VirtualNodeName oldNodeName = sourceDirectory.Name;
-                        sourceDirectory.Name = destinationNodeName;
-                        destinationParentDirectory.Add(sourceDirectory);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
-                        sourceParentDirectory.Remove(oldNodeName);
-                    }
-                    else
-                    {
-                        // 存在する場合（移動先ノードがアイテム）
-                        throw new InvalidOperationException($"移動先ノード '{absoluteDestinationPath}' はアイテムです。");
-                    }
-                }
+                MoveDirectoryInternal(absoluteSourcePath, absoluteDestinationPath);
             }
             else
             {
-                // アイテム、シンボリックリンクの場合
+                MoveItemOrLinkInternal(absoluteSourcePath, absoluteDestinationPath, overwrite);
+            }
+        }
 
-                // 移動先のディレクトリ存在チェック
-                if (DirectoryExists(absoluteDestinationPath))
+        private void MoveDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath)
+        {
+            VirtualDirectory sourceDirectory = GetDirectory(sourcePath);
+            VirtualDirectory sourceParentDirectory = GetDirectory(sourcePath.GetParentPath());
+
+            VirtualDirectory destinationParentDirectory;
+            VirtualNodeName destinationNodeName;
+
+            if (DirectoryExists(destinationPath))
+            {
+                destinationParentDirectory = GetDirectory(destinationPath);
+                destinationNodeName = sourceDirectory.Name;
+            }
+            else if (!NodeExists(destinationPath))
+            {
+                VirtualPath destinationParentPath = destinationPath.GetParentPath();
+                if (!DirectoryExists(destinationParentPath))
                 {
-                    // 存在する
+                    throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
+                }
 
-                    VirtualDirectory destinationDirectory = GetDirectory(absoluteDestinationPath);
-                    VirtualNode sourceNode = GetNode(absoluteSourcePath);
+                destinationParentDirectory = GetDirectory(destinationParentPath);
+                destinationNodeName = destinationPath.NodeName;
+            }
+            else
+            {
+                throw new InvalidOperationException($"移動先ノード '{destinationPath}' はアイテムです。");
+            }
 
-                    // 移動先ディレクトリの同名チェック
-                    if (destinationDirectory.NodeExists(sourceNode.Name))
-                    {
-                        // 同名のノードが存在する場合
+            if (destinationParentDirectory.NodeExists(destinationNodeName))
+            {
+                throw new InvalidOperationException($"移動先ディレクトリ '{destinationPath}' に同名のノード '{destinationNodeName}' が存在します。");
+            }
 
-                        // 上書きチェック
-                        if (overwrite)
-                        {
-                            // trueの場合、同名のノードを削除
-                            destinationDirectory.Remove(sourceNode.Name);
-                        }
-                        else
-                        {
-                            // falseの場合、例外をスロー
-                            throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{sourceNode.Name}' が存在します。");
-                        }
-                    }
-                    destinationDirectory.Add(sourceNode);
-                    VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
-                    sourceParentDirectory.Remove(sourceNode.Name);
+            // ノードを移動
+            sourceDirectory.Name = destinationNodeName;
+            destinationParentDirectory.Add(sourceDirectory);
+            sourceParentDirectory.Remove(sourceDirectory.Name);
+        }
+
+        private void MoveItemOrLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
+        {
+            VirtualNode sourceNode = GetNode(sourcePath);
+            VirtualDirectory sourceParentDirectory = GetDirectory(sourcePath.GetParentPath());
+
+            VirtualDirectory destinationParentDirectory;
+            VirtualNodeName destinationNodeName;
+
+            if (DirectoryExists(destinationPath))
+            {
+                destinationParentDirectory = GetDirectory(destinationPath);
+                destinationNodeName = sourceNode.Name;
+            }
+            else if (!NodeExists(destinationPath))
+            {
+                VirtualPath destinationParentPath = destinationPath.GetParentPath();
+                if (!DirectoryExists(destinationParentPath))
+                {
+                    throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
+                }
+
+                destinationParentDirectory = GetDirectory(destinationParentPath);
+                destinationNodeName = destinationPath.NodeName;
+            }
+            else
+            {
+                destinationParentDirectory = GetDirectory(destinationPath.GetParentPath());
+                destinationNodeName = destinationPath.NodeName;
+            }
+
+            if (destinationParentDirectory.NodeExists(destinationNodeName))
+            {
+                if (overwrite)
+                {
+                    destinationParentDirectory.Remove(destinationNodeName);
                 }
                 else
                 {
-                    // 存在しない
-
-                    // 移動先の存在チェック
-                    if (!NodeExists(absoluteDestinationPath))
-                    {
-                        VirtualPath destinationParentPath = absoluteDestinationPath.GetParentPath();
-                        if (!DirectoryExists(destinationParentPath))
-                        {
-                            // 移動先の親ディレクトリが存在しない場合
-                            throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
-                        }
-                        VirtualDirectory destinationParentDirectory = GetDirectory(destinationParentPath);
-                        VirtualNodeName destinationNodeName = absoluteDestinationPath.NodeName;
-                        VirtualNode sourceNode = GetNode(absoluteSourcePath);
-
-                        VirtualNodeName oldNodeName = sourceNode.Name;
-                        sourceNode.Name = destinationNodeName;
-                        destinationParentDirectory.Add(sourceNode);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
-                        sourceParentDirectory.Remove(oldNodeName);
-                    }
-                    else
-                    {
-                        // 存在する場合
-
-                        VirtualDirectory destinationParentDirectory = GetDirectory(absoluteDestinationPath.GetParentPath());
-                        VirtualNodeName destinationNodeName = absoluteDestinationPath.NodeName;
-                        VirtualNode sourceNode = GetNode(absoluteSourcePath);
-
-                        // 移動先ディレクトリの同名チェック
-                        if (destinationParentDirectory.NodeExists(destinationNodeName))
-                        {
-                            // 同名のノードが存在する場合
-
-                            // 上書きチェック
-                            if (overwrite)
-                            {
-                                // trueの場合、同名のノードを削除
-                                destinationParentDirectory.Remove(destinationNodeName);
-                            }
-                            else
-                            {
-                                // falseの場合、例外をスロー
-                                throw new InvalidOperationException($"移動先ディレクトリ '{absoluteDestinationPath}' に同名のノード '{destinationNodeName}' が存在します。");
-                            }
-                        }
-
-                        VirtualNodeName oldNodeName = sourceNode.Name;
-                        sourceNode.Name = destinationNodeName;
-                        destinationParentDirectory.Add(sourceNode);
-                        VirtualDirectory sourceParentDirectory = GetDirectory(absoluteSourcePath.GetParentPath());
-                        sourceParentDirectory.Remove(oldNodeName);
-                    }
+                    throw new InvalidOperationException($"移動先ディレクトリ '{destinationPath}' に同名のノード '{destinationNodeName}' が存在します。");
                 }
             }
+
+            // ノードを移動
+            VirtualNodeName oldNodeName = sourceNode.Name;
+            sourceNode.Name = destinationNodeName;
+            destinationParentDirectory.Add(sourceNode);
+            sourceParentDirectory.Remove(oldNodeName);
         }
 
         // 仮想ストレージのツリー構造をテキストベースで作成し返却する
