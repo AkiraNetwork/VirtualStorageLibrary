@@ -517,6 +517,34 @@ namespace AkiraNet.VirtualStorageLibrary
             return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
         }
 
+        public IEnumerable<VirtualNodeContext> ResolvePathTree(
+            VirtualPath path,
+            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            VirtualPath basePath = path.ExtractBasePath();
+            int baseDepth = path.GetBaseDepth();
+            VirtualNode node = GetNode(basePath, true);
+
+            List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
+
+            WalkPathTreeParameters p = new(
+                basePath,
+                basePath,
+                node,
+                null,
+                baseDepth,
+                0,
+                0,
+                filter,
+                true,
+                true,
+                patternList,
+                null);
+
+            return WalkPathTreeInternal(p);
+        }
+
         public IEnumerable<VirtualNodeContext> WalkPathTree(
             VirtualPath basePath,
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
@@ -553,34 +581,6 @@ namespace AkiraNet.VirtualStorageLibrary
                 followLinks,
                 null,
                 link);
-
-            return WalkPathTreeInternal(p);
-        }
-
-        public IEnumerable<VirtualNodeContext> ResolvePathTree(
-            VirtualPath path,
-            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All)
-        {
-            path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualPath basePath = path.ExtractBasePath();
-            int baseDepth = path.GetBaseDepth();
-            VirtualNode node = GetNode(basePath, true);
-
-            List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
-
-            WalkPathTreeParameters p = new(
-                basePath,
-                basePath,
-                node,
-                null,
-                baseDepth,
-                0,
-                0,
-                filter,
-                true,
-                true,
-                patternList,
-                null);
 
             return WalkPathTreeInternal(p);
         }
