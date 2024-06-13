@@ -1394,10 +1394,33 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException($"移動先ディレクトリ '{destinationPath}' に同名のノード '{destinationNodeName}' が存在します。");
             }
 
+            // 移動前のパスリストを取得
+            var sourceNodes = WalkPathTree(sourcePath, VirtualNodeTypeFilter.All, true, true)
+                                .Select(context => context.TraversalPath)
+                                .ToList();
+
             // ノードを移動
             sourceDirectory.Name = destinationNodeName;
             destinationParentDirectory.Add(sourceDirectory);
             sourceParentDirectory.Remove(sourceDirectory.Name);
+
+            // 移動後のパスリストを作成し、タプルとして管理
+            var nodePairs = sourceNodes
+                            .Select(path => (Source: sourcePath + path, Destination: destinationPath + path))
+                            .ToList();
+
+            // リンク辞書の更新
+            foreach (var (sourceNodePath, destinationNodePath) in nodePairs)
+            {
+                // リンク辞書の更新（シンボリックリンクの場合）
+                if (GetNode(sourceNodePath) is VirtualSymbolicLink)
+                {
+                    UpdateLinkNameInDictionary(sourceNodePath, destinationNodePath);
+                }
+
+                // リンク辞書の更新（ターゲットパスの変更）
+                UpdateLinksToTarget(sourceNodePath, destinationNodePath);
+            }
         }
 
         private void MoveItemOrLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
