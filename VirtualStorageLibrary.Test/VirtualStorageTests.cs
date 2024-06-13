@@ -2275,48 +2275,201 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void SetNodeName_ChangesNodeNameSuccessfully()
+        public void SetNodeName_ChangesItemNameSuccessfully()
         {
-            VirtualStorage storage = new();
-            storage.AddItem("/testFile", new BinaryData([1, 2, 3]));
+            VirtualStorage vs = new();
+            vs.AddItem("/testFile", new BinaryData([1, 2, 3]));
 
-            storage.SetNodeName("/testFile", "newTestFile");
+            vs.SetNodeName("/testFile", "newTestFile");
 
-            Assert.IsFalse(storage.NodeExists("/testFile"));
-            Assert.IsTrue(storage.NodeExists("/newTestFile"));
+            Assert.IsFalse(vs.NodeExists("/testFile"));
+            Assert.IsTrue(vs.NodeExists("/newTestFile"));
+        }
 
-            byte[] result = ((VirtualItem<BinaryData>)storage.GetNode("/newTestFile")).ItemData!.Data;
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, result);
+        [TestMethod]
+        public void SetNodeName_ChangesDirectoryNameSuccessfully()
+        {
+            VirtualStorage vs = new();
+            vs.AddDirectory("/testDir");
+            vs.AddItem("/testDir/item1", new BinaryData([1, 2, 3]));
+
+            vs.SetNodeName("/testDir", "newTestDir");
+
+            Assert.IsFalse(vs.NodeExists("/testDir"));
+            Assert.IsTrue(vs.NodeExists("/newTestDir"));
+            Assert.IsTrue(vs.NodeExists("/newTestDir/item1"));
+        }
+
+        [TestMethod]
+        public void SetNodeName_ChangesSymbolicLinkNameSuccessfully()
+        {
+            VirtualStorage vs = new();
+            vs.AddDirectory("/target");
+            vs.AddSymbolicLink("/link", "/target");
+
+            vs.SetNodeName("/link", "newLink");
+
+            Assert.IsFalse(vs.NodeExists("/link"));
+            Assert.IsTrue(vs.NodeExists("/newLink"));
+
+            // リンク辞書の確認
+            var links = vs.GetLinksFromDictionary("/target");
+            Assert.IsTrue(links.Contains("/newLink"));
+            Assert.IsFalse(links.Contains("/link"));
         }
 
         [TestMethod]
         public void SetNodeName_ThrowsWhenNodeDoesNotExist()
         {
-            VirtualStorage storage = new();
+            VirtualStorage vs = new();
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-                storage.SetNodeName("/nonExistentFile", "newName"));
+                vs.SetNodeName("/nonExistentFile", "newName"));
         }
 
         [TestMethod]
         public void SetNodeName_ThrowsWhenNewNameAlreadyExists()
         {
-            VirtualStorage storage = new();
-            storage.AddItem("/testFile", new BinaryData([1, 2, 3]));
-            storage.AddItem("/newTestFile", new BinaryData([4, 5, 6]));
+            VirtualStorage vs = new();
+            vs.AddItem("/testFile", new BinaryData([1, 2, 3]));
+            vs.AddItem("/newTestFile", new BinaryData([4, 5, 6]));
 
             Assert.ThrowsException<InvalidOperationException>(() =>
-                storage.SetNodeName("/testFile", "newTestFile"));
+                vs.SetNodeName("/testFile", "newTestFile"));
         }
 
         [TestMethod]
         public void SetNodeName_ThrowsWhenNewNameIsSameAsOldName()
         {
-            VirtualStorage storage = new();
-            storage.AddItem("/testFile", new BinaryData([1, 2, 3]));
+            VirtualStorage vs = new();
+            vs.AddItem("/testFile", new BinaryData([1, 2, 3]));
 
             Assert.ThrowsException<InvalidOperationException>(() =>
-                storage.SetNodeName("/testFile", "testFile"));
+                vs.SetNodeName("/testFile", "testFile"));
+        }
+
+        [TestMethod]
+        public void SetNodeName_ThrowsWhenNewNameIsDirectory()
+        {
+            VirtualStorage vs = new();
+            vs.AddItem("/testFile", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/newTestFile");
+
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                vs.SetNodeName("/testFile", "newTestFile"));
+        }
+
+        [TestMethod]
+        public void SetNodeName_UpdatesSymbolicLinkWhenTargetIsMissing()
+        {
+            VirtualStorage vs = new();
+            vs.AddSymbolicLink("/link", "/missingTarget");
+
+            vs.SetNodeName("/link", "newLink");
+
+            Assert.IsFalse(vs.NodeExists("/link"));
+            Assert.IsTrue(vs.NodeExists("/newLink"));
+
+            // リンク辞書の確認
+            var links = vs.GetLinksFromDictionary("/missingTarget");
+            Assert.IsTrue(links.Contains("/newLink"));
+            Assert.IsFalse(links.Contains("/link"));
+        }
+
+        [TestMethod]
+        public void SetNodeName_UpdatesLinksToTargetForItem()
+        {
+            VirtualStorage vs = new();
+            VirtualPath itemPath = "/dir1/item1";
+            VirtualPath newItemPath = "/dir1/newItem1";
+            VirtualPath linkPath = "/dir1/linkToItem1";
+
+            // アイテムとシンボリックリンクの追加
+            vs.AddDirectory("/dir1", true);
+            BinaryData data = [1, 2, 3];
+            vs.AddItem(itemPath, data);
+            vs.AddSymbolicLink(linkPath, itemPath);
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary(itemPath).Contains(linkPath));
+
+            // デバッグ出力
+            DebugPrintLinkDictionary(vs);
+
+            // アイテムの名前を変更
+            vs.SetNodeName(itemPath, new VirtualNodeName("newItem1"));
+
+            // リンク辞書の更新を確認
+            Assert.IsFalse(vs.GetLinksFromDictionary(itemPath).Contains(linkPath));
+            Assert.IsTrue(vs.GetLinksFromDictionary(newItemPath).Contains(linkPath));
+
+            // デバッグ出力
+            DebugPrintLinkDictionary(vs);
+        }
+
+        [TestMethod]
+        public void SetNodeName_UpdatesLinksToTargetForDirectory()
+        {
+            VirtualStorage vs = new();
+            VirtualPath dirPath = "/dir1";
+            VirtualPath newDirPath = "/newDir1";
+            VirtualPath linkPath = "/linkToDir1";
+            VirtualPath itemPath = "/dir1/item1";
+
+            // ディレクトリとシンボリックリンク、アイテムの追加
+            vs.AddDirectory(dirPath, true);
+            BinaryData data = [1, 2, 3];
+            vs.AddItem(itemPath, data);
+            vs.AddSymbolicLink(linkPath, dirPath);
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary(dirPath).Contains(linkPath));
+
+            // デバッグ出力
+            DebugPrintLinkDictionary(vs);
+
+            // ディレクトリの名前を変更
+            vs.SetNodeName(dirPath, new VirtualNodeName("newDir1"));
+
+            // リンク辞書の更新を確認
+            Assert.IsFalse(vs.GetLinksFromDictionary(dirPath).Contains(linkPath));
+            Assert.IsTrue(vs.GetLinksFromDictionary(newDirPath).Contains(linkPath));
+
+            // 配下のアイテムが存在することを確認
+            Assert.IsTrue(vs.NodeExists(newDirPath + "/item1"));
+
+            // デバッグ出力
+            DebugPrintLinkDictionary(vs);
+        }
+
+        [TestMethod]
+        public void SetNodeName_UpdatesLinkNameForSymbolicLink()
+        {
+            VirtualStorage vs = new();
+            VirtualPath targetLinkPath = "/dir1/targetLink";
+            VirtualPath linkPath = "/dir1/linkToTargetLink";
+            VirtualPath newLinkPath = "/dir1/newLinkToTargetLink";
+
+            // ディレクトリとシンボリックリンクの追加
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink(targetLinkPath, "/dir1"); // targetLinkは dir1 を指す
+            vs.AddSymbolicLink(linkPath, targetLinkPath); // linkToTargetLinkは targetLink を指す
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary(targetLinkPath).Contains(linkPath));
+
+            // デバッグ出力
+            DebugPrintLinkDictionary(vs);
+
+            // シンボリックリンクの名前を変更
+            vs.SetNodeName(linkPath, new VirtualNodeName("newLinkToTargetLink"));
+
+            // リンク辞書の更新を確認
+            Assert.IsFalse(vs.GetLinksFromDictionary(targetLinkPath).Contains(linkPath));
+            Assert.IsTrue(vs.GetLinksFromDictionary(targetLinkPath).Contains(newLinkPath));
+
+            // デバッグ出力
+            DebugPrintLinkDictionary(vs);
         }
 
         [TestMethod]

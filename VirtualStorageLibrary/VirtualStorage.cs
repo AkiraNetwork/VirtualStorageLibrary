@@ -127,6 +127,21 @@ namespace AkiraNet.VirtualStorageLibrary
             _linkDictionary.Remove(oldTargetPath);
         }
 
+        // リンク辞書内のリンク名を更新します。
+        private void UpdateLinkNameInDictionary(VirtualPath oldLinkPath, VirtualPath newLinkPath)
+        {
+            foreach (var entry in _linkDictionary)
+            {
+                var linkPaths = entry.Value;
+
+                // Remove が成功した場合、新しいリンクパスを追加
+                if (linkPaths.Remove(oldLinkPath))
+                {
+                    linkPaths.Add(newLinkPath);
+                }
+            }
+        }
+
         public void ChangeDirectory(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -1283,6 +1298,15 @@ namespace AkiraNet.VirtualStorageLibrary
             // 親ディレクトリの取得
             VirtualDirectory parentDirectory = GetDirectory(oldAbsolutePath.DirectoryPath);
 
+            // リンク辞書の更新（シンボリックリンクの場合）
+            if (node is VirtualSymbolicLink)
+            {
+                UpdateLinkNameInDictionary(oldAbsolutePath, newAbsolutePath);
+            }
+
+            // リンク辞書の更新（ターゲットパスの変更）
+            UpdateLinksToTarget(oldAbsolutePath, newAbsolutePath);
+            
             // ノードの名前変更
             VirtualNodeName oldName = node.Name;
             node.Name = newName;
