@@ -1368,10 +1368,13 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualDirectory destinationParentDirectory;
             VirtualNodeName destinationNodeName;
 
+            VirtualPath destinationBasePath;
+
             if (DirectoryExists(destinationPath))
             {
                 destinationParentDirectory = GetDirectory(destinationPath);
                 destinationNodeName = sourceDirectory.Name;
+                destinationBasePath = destinationPath + sourceDirectory.Name;
             }
             else if (!NodeExists(destinationPath))
             {
@@ -1383,6 +1386,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 destinationParentDirectory = GetDirectory(destinationParentPath);
                 destinationNodeName = destinationPath.NodeName;
+                destinationBasePath = destinationPath;
             }
             else
             {
@@ -1399,14 +1403,11 @@ namespace AkiraNet.VirtualStorageLibrary
                                 .Select(context => context.TraversalPath)
                                 .ToList();
 
-            // ノードを移動
-            sourceDirectory.Name = destinationNodeName;
-            destinationParentDirectory.Add(sourceDirectory);
-            sourceParentDirectory.Remove(sourceDirectory.Name);
-
             // 移動後のパスリストを作成し、タプルとして管理
             var nodePairs = sourceNodes
-                            .Select(path => (Source: sourcePath + path, Destination: destinationPath + path))
+                            .Select(path =>
+                                (Source: sourcePath + path,
+                                 Destination: destinationBasePath + path))
                             .ToList();
 
             // リンク辞書の更新
@@ -1421,6 +1422,11 @@ namespace AkiraNet.VirtualStorageLibrary
                 // リンク辞書の更新（ターゲットパスの変更）
                 UpdateLinksToTarget(sourceNodePath, destinationNodePath);
             }
+
+            // ノードを移動
+            sourceDirectory.Name = destinationNodeName;
+            destinationParentDirectory.Add(sourceDirectory);
+            sourceParentDirectory.Remove(sourceDirectory.Name);
         }
 
         private void MoveItemOrLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
