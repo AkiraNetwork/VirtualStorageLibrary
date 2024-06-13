@@ -2754,6 +2754,136 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual("/nonExistent/target", (string)movedLink.TargetPath);
         }
 
+        // アイテムのパス変更時のリンク辞書の更新を確認
+        [TestMethod]
+        public void MoveNode_ChangesItemPathSuccessfully()
+        {
+            VirtualStorage vs = new();
+            vs.AddItem("/testItem", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/linkToItem", "/testItem");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+
+            vs.MoveNode("/testItem", "/newTestItem");
+
+            Assert.IsFalse(vs.NodeExists("/testItem"));
+            Assert.IsTrue(vs.NodeExists("/newTestItem"));
+
+            // リンク辞書の更新を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/newTestItem").Contains("/linkToItem"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // シンボリックリンクのパス変更時のリンク辞書の更新を確認
+        [TestMethod]
+        public void MoveNode_ChangesSymbolicLinkPathSuccessfully()
+        {
+            VirtualStorage vs = new();
+            vs.AddDirectory("/target");
+            vs.AddSymbolicLink("/link", "/target");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/target").Contains("/link"));
+            DebugPrintLinkDictionary(vs);
+
+            vs.MoveNode("/link", "/newLink");
+
+            Assert.IsFalse(vs.NodeExists("/link"));
+            Assert.IsTrue(vs.NodeExists("/newLink"));
+
+            // リンク辞書の更新を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/target").Contains("/newLink"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/target").Contains("/link"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // 存在しないノードの移動時に例外をスロー
+        [TestMethod]
+        public void MoveNode_ThrowsWhenNodeDoesNotExist()
+        {
+            VirtualStorage vs = new();
+            vs.AddItem("/existingItem", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/linkToItem", "/existingItem");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/existingItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.MoveNode("/nonExistentItem", "/newName"));
+
+            // リンク辞書が変更されていないことを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/existingItem").Contains("/linkToItem"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/newName").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // 移動先に既にノードが存在する場合に例外をスロー
+        [TestMethod]
+        public void MoveNode_ThrowsWhenDestinationAlreadyExists()
+        {
+            VirtualStorage vs = new();
+            vs.AddItem("/testItem", new BinaryData([1, 2, 3]));
+            vs.AddItem("/newTestItem", new BinaryData([4, 5, 6]));
+            vs.AddSymbolicLink("/linkToItem", "/testItem");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+
+            Assert.ThrowsException<InvalidOperationException>(() => vs.MoveNode("/testItem", "/newTestItem"));
+
+            // リンク辞書が変更されていないことを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/newTestItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // 移動元と移動先が同じ場合に例外をスロー
+        [TestMethod]
+        public void MoveNode_ThrowsWhenDestinationIsSameAsSource()
+        {
+            VirtualStorage vs = new();
+            vs.AddItem("/testItem", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/linkToItem", "/testItem");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+
+            Assert.ThrowsException<InvalidOperationException>(() => vs.MoveNode("/testItem", "/testItem"));
+
+            // リンク辞書が変更されていないことを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        // アイテムをディレクトリに移動した際のリンク辞書の更新を確認
+        [TestMethod]
+        public void MoveNode_MovesItemToDirectorySuccessfully()
+        {
+            VirtualStorage vs = new();
+            vs.AddDirectory("/destinationDir");
+            vs.AddItem("/testItem", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/linkToItem", "/testItem");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+
+            vs.MoveNode("/testItem", "/destinationDir/testItem");
+
+            Assert.IsFalse(vs.NodeExists("/testItem"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/testItem"));
+
+            // リンク辞書の更新を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/testItem").Contains("/linkToItem"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
+            DebugPrintLinkDictionary(vs);
+        }
+
         [TestMethod]
         public void SymbolicLinkExists_WhenLinkExists_ReturnsTrue()
         {

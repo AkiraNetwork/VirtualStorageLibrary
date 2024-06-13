@@ -1298,6 +1298,8 @@ namespace AkiraNet.VirtualStorageLibrary
             // 親ディレクトリの取得
             VirtualDirectory parentDirectory = GetDirectory(oldAbsolutePath.DirectoryPath);
 
+            // TODO: MoveNode内でリンク辞書の更新をするのでここでは不要になる予定
+
             // リンク辞書の更新（シンボリックリンクの場合）
             if (node is VirtualSymbolicLink)
             {
@@ -1440,6 +1442,15 @@ namespace AkiraNet.VirtualStorageLibrary
                 }
             }
 
+            // リンク辞書の更新（シンボリックリンクの場合）
+            if (sourceNode is VirtualSymbolicLink)
+            {
+                UpdateLinkNameInDictionary(sourcePath, destinationPath);
+            }
+
+            // リンク辞書の更新（ターゲットパスの変更）
+            UpdateLinksToTarget(sourcePath, destinationPath);
+            
             // ノードを移動
             VirtualNodeName oldNodeName = sourceNode.Name;
             sourceNode.Name = destinationNodeName;
