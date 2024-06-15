@@ -1390,7 +1390,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
             else
             {
-                throw new InvalidOperationException($"移動先ノード '{destinationPath}' はアイテムです。");
+                throw new InvalidOperationException($"移動先ノード '{destinationPath}' はアイテムまたはシンボリックリンクです。");
             }
 
             if (destinationParentDirectory.NodeExists(destinationNodeName))

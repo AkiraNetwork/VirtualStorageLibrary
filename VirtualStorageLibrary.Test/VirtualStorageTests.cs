@@ -2885,6 +2885,436 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        // 単純なディレクトリの移動
+        public void MoveDirectoryInternal_SimpleMoveUpdatesLinksCorrectly()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリを作成
+            vs.AddDirectory("/sourceDir", true);
+
+            // ディスティネーションディレクトリを作成
+            vs.AddDirectory("/destinationDir", true);
+
+            // ソースディレクトリに対してシンボリックリンクを追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリをディスティネーションディレクトリに移動
+            vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        [TestMethod]
+        // 多階層ディレクトリの移動
+        public void MoveDirectoryInternal_MultiLevelMoveUpdatesLinksCorrectly()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリを作成
+            vs.AddDirectory("/sourceDir/subDir1/subDir2", true);
+
+            // ディスティネーションディレクトリを作成
+            vs.AddDirectory("/destinationDir", true);
+
+            // ソースディレクトリとそのサブディレクトリに対してシンボリックリンクを追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+            vs.AddSymbolicLink("/linkToSubDir1", "/sourceDir/subDir1");
+            vs.AddSymbolicLink("/linkToSubDir2", "/sourceDir/subDir1/subDir2");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/subDir2").Contains("/linkToSubDir2"));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリをディスティネーションディレクトリに移動
+            vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/subDir2"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1/subDir2").Contains("/linkToSubDir2"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/subDir2").Contains("/linkToSubDir2"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        [TestMethod]
+        // 移動先が既存のディレクトリ
+        public void MoveDirectoryInternal_MoveToExistingDirectoryUpdatesLinksCorrectly()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリを作成
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddDirectory("/sourceDir/subDir1", true);
+            vs.AddDirectory("/sourceDir/subDir2", true);
+
+            // ディスティネーションディレクトリを作成
+            vs.AddDirectory("/destinationDir/existingDir", true);
+
+            // ソースディレクトリとそのサブディレクトリに対してシンボリックリンクを追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+            vs.AddSymbolicLink("/linkToSubDir1", "/sourceDir/subDir1");
+            vs.AddSymbolicLink("/linkToSubDir2", "/sourceDir/subDir2");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir2").Contains("/linkToSubDir2"));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリをディスティネーションディレクトリ内の既存のディレクトリに移動
+            vs.MoveNode("/sourceDir", "/destinationDir/existingDir");
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/existingDir/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/existingDir/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/existingDir/sourceDir/subDir2"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/existingDir/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/existingDir/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/existingDir/sourceDir/subDir2").Contains("/linkToSubDir2"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir2").Contains("/linkToSubDir2"));
+            DebugPrintLinkDictionary(vs);
+        }
+
+        [TestMethod]
+        // 移動先に同名のディレクトリが存在する場合
+        public void MoveDirectoryInternal_MovesToSubdirectoryWhenDestinationDirectoryAlreadyExists()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリを作成
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddDirectory("/sourceDir/subDir1", true);
+            vs.AddDirectory("/sourceDir/subDir2", true);
+
+            // ディスティネーションディレクトリと同名のディレクトリを作成
+            vs.AddDirectory("/destinationDir/sourceDir", true);
+
+            // ソースディレクトリとそのサブディレクトリに対してシンボリックリンクをルートに追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+            vs.AddSymbolicLink("/linkToSubDir1", "/sourceDir/subDir1");
+            vs.AddSymbolicLink("/linkToSubDir2", "/sourceDir/subDir2");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir2").Contains("/linkToSubDir2"));
+
+            // デバッグ出力
+            Debug.WriteLine("MoveNode前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリを移動
+            vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
+
+            // デバッグ出力
+            Debug.WriteLine("\nMoveNode後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/sourceDir/subDir2"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/sourceDir/subDir2").Contains("/linkToSubDir2"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir2").Contains("/linkToSubDir2"));
+        }
+
+        [TestMethod]
+        // シンボリックリンクを含むディレクトリの移動
+        public void MoveDirectoryInternal_UpdatesLinksCorrectlyWhenSymbolicLinkIncludedInDirectory()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリおよびアイテムを作成
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddDirectory("/sourceDir/subDir1", true);
+            vs.AddItem("/sourceDir/subDir1/item1", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/sourceDir/subDir1/linkToItem1", "/sourceDir/subDir1/item1");
+
+            // ディスティネーションディレクトリを作成
+            vs.AddDirectory("/destinationDir", true);
+
+            // ソースディレクトリおよびそのサブディレクトリに対してシンボリックリンクをルートに追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+            vs.AddSymbolicLink("/LinkToLink", "/linkToSourceDir");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/sourceDir/subDir1/linkToItem1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/linkToSourceDir").Contains("/LinkToLink"));
+
+            // デバッグ出力
+            Debug.WriteLine("MoveNode前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリを移動
+            vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
+
+            // デバッグ出力
+            Debug.WriteLine("\nMoveNode後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/item1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/linkToItem1"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1/item1").Contains("/destinationDir/sourceDir/subDir1/linkToItem1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/linkToSourceDir").Contains("/LinkToLink"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/sourceDir/subDir1/linkToItem1"));
+        }
+
+        [TestMethod]
+        // ターゲットディレクトリのシンボリックリンク更新
+        public void MoveDirectoryInternal_UpdatesLinksCorrectlyWhenTargetDirectoryIsSymbolicLink()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリおよびアイテムを作成
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddDirectory("/sourceDir/subDir1", true);
+            vs.AddItem("/sourceDir/subDir1/item1", new BinaryData([1, 2, 3]));
+
+            // ディスティネーションディレクトリを作成
+            vs.AddDirectory("/destinationDir", true);
+
+            // /sourceDirをターゲットとするシンボリックリンクをルートに追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+
+            // /sourceDir/subDir1/item1をターゲットとするシンボリックリンクを追加
+            vs.AddSymbolicLink("/linkToItem1", "/sourceDir/subDir1/item1");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/linkToItem1"));
+
+            // デバッグ出力
+            Debug.WriteLine("MoveNode前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリを移動
+            vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
+
+            // デバッグ出力
+            Debug.WriteLine("\nMoveNode後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/item1"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1/item1").Contains("/linkToItem1"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/linkToItem1"));
+        }
+
+        [TestMethod]
+        // 親ディレクトリが存在しない場合の例外
+        public void MoveDirectoryInternal_ThrowsExceptionWhenParentDirectoryDoesNotExist()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリおよびアイテムを作成
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddDirectory("/sourceDir/subDir1", true);
+            vs.AddItem("/sourceDir/subDir1/item1", new BinaryData([1, 2, 3]));
+
+            // ソースディレクトリおよびそのサブディレクトリに対してシンボリックリンクをルートに追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+            vs.AddSymbolicLink("/linkToSubDir1", "/sourceDir/subDir1");
+            vs.AddSymbolicLink("/linkToItem1", "/sourceDir/subDir1/item1");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/linkToItem1"));
+
+            // デバッグ出力
+            Debug.WriteLine("MoveNode前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // 親ディレクトリが存在しないため例外がスローされることを確認
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.MoveNode("/sourceDir", "/nonExistentDir/newDir"));
+
+            // デバッグ出力
+            Debug.WriteLine("\nMoveNode後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ノードが移動されていないことを確認
+            Assert.IsTrue(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/sourceDir/subDir1/item1"));
+
+            // リンク辞書が変更されていないことを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/linkToItem1"));
+        }
+
+
+        [TestMethod]
+        // ディレクトリとアイテムが混在するディレクトリの移動
+        public void MoveDirectoryInternal_MovesDirectoryWithMixedContentCorrectly()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリおよびアイテムを作成
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddDirectory("/sourceDir/subDir1", true);
+            vs.AddItem("/sourceDir/item1", new BinaryData([1, 2, 3]));
+            vs.AddItem("/sourceDir/subDir1/item2", new BinaryData([4, 5, 6]));
+
+            // ディスティネーションディレクトリを作成
+            vs.AddDirectory("/destinationDir", true);
+
+            // ソースディレクトリおよびそのサブディレクトリ、アイテムに対してシンボリックリンクをルートに追加
+            vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
+            vs.AddSymbolicLink("/linkToSubDir1", "/sourceDir/subDir1");
+            vs.AddSymbolicLink("/linkToItem1", "/sourceDir/item1");
+            vs.AddSymbolicLink("/linkToItem2", "/sourceDir/subDir1/item2");
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/item1").Contains("/linkToItem1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item2").Contains("/linkToItem2"));
+
+            // デバッグ出力
+            Debug.WriteLine("MoveNode前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリを移動
+            vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
+
+            // デバッグ出力
+            Debug.WriteLine("\nMoveNode後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/item1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/item2"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/item1").Contains("/linkToItem1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1/item2").Contains("/linkToItem2"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/item1").Contains("/linkToItem1"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/item2").Contains("/linkToItem2"));
+        }
+
+        [TestMethod]
+        // ネストされたシンボリックリンクを含むディレクトリの移動
+        public void MoveDirectoryInternal_MovesDirectoryWithNestedSymbolicLinksCorrectly()
+        {
+            // 仮想ストレージを初期化
+            VirtualStorage vs = new();
+
+            // ソースディレクトリとそのサブディレクトリおよびアイテムを作成
+            vs.AddDirectory("/sourceDir", true);
+            vs.AddDirectory("/sourceDir/subDir1", true);
+            vs.AddItem("/sourceDir/subDir1/item1", new BinaryData([1, 2, 3]));
+
+            // サブディレクトリ内にシンボリックリンクを作成
+            vs.AddSymbolicLink("/sourceDir/subDir1/linkToItem1", "/sourceDir/subDir1/item1");
+
+            // ディスティネーションディレクトリを作成
+            vs.AddDirectory("/destinationDir", true);
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/sourceDir/subDir1/linkToItem1"));
+
+            // デバッグ出力
+            Debug.WriteLine("MoveNode前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ソースディレクトリを移動
+            vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
+
+            // デバッグ出力
+            Debug.WriteLine("\nMoveNode後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            DebugPrintLinkDictionary(vs);
+
+            // ノードが適切に移動されたことを確認
+            Assert.IsFalse(vs.NodeExists("/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/item1"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/linkToItem1"));
+
+            // リンク辞書が更新されていることを確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1/item1").Contains("/destinationDir/sourceDir/subDir1/linkToItem1"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/sourceDir/subDir1/linkToItem1"));
+        }
+
+        [TestMethod]
         public void SymbolicLinkExists_WhenLinkExists_ReturnsTrue()
         {
             // Arrange
@@ -4270,7 +4700,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             }
 
             // デバッグ出力でツリー構造を表示
-            Debug.WriteLine("Virtual storage tree structure:");
+            Debug.WriteLine("Virtual vs tree structure:");
             string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
             Debug.WriteLine(tree);
 
@@ -4328,7 +4758,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             }
 
             // デバッグ出力でツリー構造を表示
-            Debug.WriteLine("Virtual storage tree structure:");
+            Debug.WriteLine("Virtual vs tree structure:");
             string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
             Debug.WriteLine(tree);
 
@@ -4379,7 +4809,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             }
 
             // ツリー構造の表示
-            Debug.WriteLine("Virtual storage tree structure:");
+            Debug.WriteLine("Virtual vs tree structure:");
             string tree = vs.GenerateTextBasedTreeStructure(BaseDir, true, true);
             Debug.WriteLine(tree);
 
