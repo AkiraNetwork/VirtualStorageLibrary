@@ -179,18 +179,16 @@ namespace AkiraNet.VirtualStorageLibrary
             return absolutePath;
         }
 
-        public void AddSymbolicLink(VirtualPath linkPath, VirtualPath targetPath, bool overwrite = false)
+        public void AddSymbolicLink(VirtualPath linkDirectoryPath, VirtualSymbolicLink link, bool overwrite = false)
         {
-            // linkPathを絶対パスに変換し正規化も行う
-            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
+            // linkDirectoryPathを絶対パスに変換し正規化も行う
+            linkDirectoryPath = ConvertToAbsolutePath(linkDirectoryPath).NormalizePath();
 
-            // directoryPath（ディレクトリパス）と linkName（リンク名）を分離
-            VirtualPath directoryPath = linkPath.DirectoryPath;
-            VirtualNodeName linkName = linkPath.NodeName;
+            // シンボリックリンクの名前を取得
+            VirtualNodeName linkName = link.Name;
 
-            // 対象ディレクトリを安全に取得
-            VirtualDirectory? directory = TryGetDirectory(directoryPath, followLinks: true) ??
-                throw new VirtualNodeNotFoundException($"ディレクトリ '{directoryPath}' が存在しません。");
+            // シンボリックリンク追加対象ディレクトリを取得
+            VirtualDirectory directory = GetDirectory(linkDirectoryPath, true);
 
             // 既存のノードの存在チェック
             if (directory.NodeExists(linkName))
@@ -202,29 +200,42 @@ namespace AkiraNet.VirtualStorageLibrary
                 else
                 {
                     // 既存のノードがシンボリックリンクであるかどうかチェック
-                    if (!directory.SymbolicLinkExists(linkName))
+                    if (!SymbolicLinkExists(linkDirectoryPath + linkName))
                     {
                         throw new InvalidOperationException($"既存のノード '{linkName}' はシンボリックリンクではありません。シンボリックリンクのみ上書き可能です。");
                     }
-                    // 既存のシンボリックリンクを削除（上書きフラグが true の場合）
+                    // 既存のシンボリックリンクを削除
                     directory.Remove(linkName);
                 }
             }
 
-            // シンボリックリンクを作成
-            VirtualSymbolicLink symbolicLink = new(linkName, targetPath);
-            
             // 新しいシンボリックリンクを追加
-            directory.Add(symbolicLink);
+            directory.Add(link);
 
             // targetPathを絶対パスに変換して正規化する必要がある。その際、シンボリックリンクを作成したディレクトリパスを基準とする
-            VirtualPath absoluteTargetPath = ConvertToAbsolutePath(targetPath, directoryPath).NormalizePath();
+            VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath!, linkDirectoryPath).NormalizePath();
 
             // リンク辞書にリンク情報を追加
-            AddLinkToDictionary(absoluteTargetPath, linkPath);
+            AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + linkName);
 
             // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-            UpdateLinkTypesInDictionary(linkPath);
+            UpdateLinkTypesInDictionary(linkDirectoryPath + linkName);
+        }
+
+        public void AddSymbolicLink(VirtualPath linkPath, VirtualPath targetPath, bool overwrite = false)
+        {
+            // linkPathを絶対パスに変換し正規化も行う
+            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
+
+            // ディレクトリパスとリンク名を分離
+            VirtualPath directoryPath = linkPath.DirectoryPath;
+            VirtualNodeName linkName = linkPath.NodeName;
+
+            // シンボリックリンクを作成
+            VirtualSymbolicLink link = new(linkName, targetPath);
+
+            // AddSymbolicLinkメソッドを呼び出し
+            AddSymbolicLink(directoryPath, link, overwrite);
         }
 
         public void AddItem<T>(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
@@ -240,7 +251,7 @@ namespace AkiraNet.VirtualStorageLibrary
             {
                 if (!overwrite)
                 {
-                    throw new InvalidOperationException($"アイテム '{item.Name}' は既に存在します。上書きは許可されていません。");
+                    throw new InvalidOperationException($"ノード '{item.Name}' は既に存在します。上書きは許可されていません。");
                 }
                 else
                 {
@@ -1658,6 +1669,34 @@ namespace AkiraNet.VirtualStorageLibrary
             public bool FollowLinks { get; set; } = followLinks;
             public List<string>? PatternList { get; set; } = patternList;
             public VirtualSymbolicLink? ResolvedLink { get; set; } = resolvedLink;
+        }
+
+        public VirtualNode this[VirtualPath path]
+        {
+            get
+            {
+                return GetNode(path, true);
+            }
+            set
+            {
+                if (value is VirtualItem item)
+                {
+                    AddItem(path, item, true);
+                }
+                else if (value is VirtualDirectory)
+                {
+                    // TODO: ディレクトリに上書きという仕様は存在しない。
+                    AddDirectory(path);
+                }
+                else if (value is VirtualSymbolicLink link)
+                {
+                    AddSymbolicLink(path, link.TargetPath!, true);
+                }
+                else
+                {
+                    throw new InvalidOperationException($"サポートしていないノードが指定されました: {path}");
+                }
+            }
         }
     }
 }

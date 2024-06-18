@@ -3456,6 +3456,99 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 "親ディレクトリが存在しない場合、VirtualNodeNotFoundExceptionがスローされるべきです。");
         }
 
+        // シンボリックリンクをディレクトリに追加できるか確認する。
+        [TestMethod]
+        public void AddSymbolicLink_WithVirtualSymbolicLink_ShouldAddLinkToDirectory()
+        {
+            VirtualStorage storage = new();
+            VirtualPath path = "/dir";
+            storage.AddDirectory(path);
+            VirtualSymbolicLink link = new("link", "/target");
+
+            storage.AddSymbolicLink(path, link);
+
+            Assert.IsTrue(storage.SymbolicLinkExists(path + link.Name));
+        }
+
+        // 既存のリンクがある場合、上書きフラグが false のときに例外がスローされるか確認する。
+        [TestMethod]
+        public void AddSymbolicLink_WithVirtualSymbolicLink_WithOverwrite_ShouldThrowExceptionIfLinkExists()
+        {
+            VirtualStorage storage = new();
+            VirtualPath directoryPath = "/dir";
+            storage.AddDirectory(directoryPath);
+            VirtualNodeName existingLinkName = "existingLink";
+            VirtualSymbolicLink existingLink = new(existingLinkName, "/existingTarget");
+            VirtualSymbolicLink newLink = new(existingLinkName, "/newTarget");
+
+            storage.AddSymbolicLink(directoryPath, existingLink, false);
+
+            Assert.ThrowsException<InvalidOperationException>(() => storage.AddSymbolicLink(directoryPath, newLink, false));
+        }
+
+        // 上書きフラグが true の場合、既存のリンクを上書きできるか確認する。
+        [TestMethod]
+        public void AddSymbolicLink_WithOverwrite_ShouldOverwriteExistingLink()
+        {
+            VirtualStorage storage = new();
+            VirtualPath directoryPath = "/dir";
+            storage.AddDirectory(directoryPath);
+            VirtualNodeName linkName = "link";
+            VirtualSymbolicLink originalLink = new(linkName, "/originalTarget");
+            VirtualSymbolicLink newLink = new(linkName, "/newTarget");
+
+            storage.AddSymbolicLink(directoryPath, originalLink, false);
+            storage.AddSymbolicLink(directoryPath, newLink, true);
+
+            VirtualSymbolicLink overwrittenLink = storage.GetSymbolicLink(directoryPath + linkName);
+            Assert.AreEqual("/newTarget", (string)overwrittenLink.TargetPath);
+        }
+        
+        // 存在しないディレクトリにリンクを追加しようとした場合、例外がスローされるか確認する。
+        [TestMethod]
+        public void AddSymbolicLink_ToNonExistingDirectory_ShouldThrowVirtualNodeNotFoundException()
+        {
+            VirtualStorage storage = new();
+            VirtualPath directoryPath = "/nonExistingDir";
+            VirtualNodeName linkName = "link";
+            VirtualSymbolicLink link = new(linkName, "/target");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.AddSymbolicLink(directoryPath, link, false));
+        }
+
+        // シンボリックリンクが指す存在しないディレクトリにリンクを追加しようとした場合、例外がスローされるか確認する。
+        [TestMethod]
+        public void AddSymbolicLink_ToLocationPointedBySymbolicLink_ShouldThrowException()
+        {
+            VirtualStorage storage = new();
+            VirtualPath directoryPath = "/dir";
+            storage.AddDirectory(directoryPath);
+            VirtualPath linkPath = "/link";
+            VirtualPath targetPath = "/nonExistingTargetDir";
+            storage.AddSymbolicLink(linkPath, targetPath);
+
+            VirtualNodeName linkName = "link";
+            VirtualSymbolicLink link = new(linkName, "/target");
+
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => storage.AddSymbolicLink(linkPath, link, false));
+        }
+
+        // シンボリックリンクが指すディレクトリにリンクを追加できるか確認する。
+        [TestMethod]
+        public void AddSymbolicLink_ToLocationPointedBySymbolicLink_ShouldAddLinkSuccessfully()
+        {
+            VirtualStorage storage = new();
+            VirtualPath actualDirectoryPath = "/actualDir";
+            storage.AddDirectory(actualDirectoryPath);
+            VirtualPath symbolicLinkPath = "/symbolicLink";
+            storage.AddSymbolicLink(symbolicLinkPath, actualDirectoryPath);
+            VirtualNodeName linkName = "newLink";
+            VirtualSymbolicLink link = new(linkName, "/linkTarget");
+            storage.AddSymbolicLink(symbolicLinkPath, link);
+            Assert.IsTrue(storage.SymbolicLinkExists(actualDirectoryPath + linkName));
+            Assert.IsTrue(storage.SymbolicLinkExists(symbolicLinkPath));
+        }
+
         [TestMethod]
         public void WalkPathToTarget_Root()
         {
