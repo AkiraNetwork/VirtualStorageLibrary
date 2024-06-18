@@ -288,17 +288,10 @@ namespace AkiraNet.VirtualStorageLibrary
             AddItem(directoryPath, item, overwrite);
         }
 
-        public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
+        public void AddDirectory(VirtualPath directoryPath, VirtualDirectory directory, bool createSubdirectories = false)
         {
-            path = ConvertToAbsolutePath(path).NormalizePath();
+            directoryPath = ConvertToAbsolutePath(directoryPath).NormalizePath();
 
-            if (path.IsRoot)
-            {
-                throw new InvalidOperationException("ルートディレクトリは既に存在します。");
-            }
-
-            VirtualPath directoryPath = path.DirectoryPath;
-            VirtualNodeName newDirectoryName = path.NodeName;
             VirtualNodeContext nodeContext;
 
             if (createSubdirectories)
@@ -310,19 +303,18 @@ namespace AkiraNet.VirtualStorageLibrary
                 nodeContext = WalkPathToTarget(directoryPath, null, null, true, true);
             }
 
-            if (nodeContext.Node is VirtualDirectory directory)
+            if (nodeContext.Node is VirtualDirectory parentDirectory)
             {
-                if (directory.NodeExists(newDirectoryName))
+                if (parentDirectory.NodeExists(directory.Name))
                 {
-                    throw new InvalidOperationException($"ディレクトリ '{newDirectoryName}' は既に存在します。");
+                    throw new InvalidOperationException($"ディレクトリ '{directory.Name}' は既に存在します。");
                 }
 
                 // 新しいディレクトリを追加
-                VirtualDirectory newDirectory = new(newDirectoryName);
-                directory.Add(newDirectory);
+                parentDirectory.Add(directory);
 
                 // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-                UpdateLinkTypesInDictionary(path);
+                UpdateLinkTypesInDictionary(directoryPath + directory.Name);
             }
             else
             {
@@ -330,6 +322,22 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             return;
+        }
+
+        public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+
+            if (path.IsRoot)
+            {
+                throw new InvalidOperationException("ルートディレクトリは既に存在します。");
+            }
+
+            VirtualPath directoryPath = path.DirectoryPath;
+            VirtualNodeName newDirectoryName = path.NodeName;
+
+            VirtualDirectory newDirectory = new(newDirectoryName);
+            AddDirectory(directoryPath, newDirectory, createSubdirectories);
         }
 
         private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName, VirtualPath nodePath)
