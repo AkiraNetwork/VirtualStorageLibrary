@@ -30,6 +30,12 @@
 
         public VirtualNodeListConditions NodeListConditions { get; set; } = new();
 
+        public string prefixItem { get; set; } = "item";
+
+        public string prefixDirectory { get; set; } = "directory";
+
+        public string prefixSymbolicLink { get; set; } = "link";
+
         public static void InitializeFromSettings(VirtualStorageSettings settings)
         {
             VirtualNodeListConditions settingsConditions = settings.NodeListConditions;
@@ -51,7 +57,10 @@
                 InvalidNodeNameCharacters = (char[])settings.InvalidNodeNameCharacters.Clone(),
                 InvalidFullNodeNames = (string[])settings.InvalidFullNodeNames.Clone(),
                 WildcardMatcher = settings.WildcardMatcher?.DeepClone(),
-                NodeListConditions = stateConditions
+                NodeListConditions = stateConditions,
+                prefixItem = settings.prefixItem,
+                prefixDirectory = settings.prefixDirectory,
+                prefixSymbolicLink = settings.prefixSymbolicLink
             };
         }
 

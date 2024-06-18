@@ -35,6 +35,20 @@
             disposed = false;
         }
 
+        // タプルからVirtualItem<T>への暗黙的な変換
+        public static implicit operator VirtualItem<T>((string nodeName, T? itemData) tuple)
+        {
+            return new VirtualItem<T>(tuple.nodeName, tuple.itemData);
+        }
+
+        // データからVirtualItem<T>への暗黙的な変換
+        public static implicit operator VirtualItem<T>(T? itemData)
+        {
+            string prefix = VirtualStorageState.State.prefixItem;
+            VirtualNodeName nodeName = VirtualNodeName.GenerateNodeName(prefix);
+            return new VirtualItem<T>(nodeName, itemData);
+        }
+
         public override string ToString() => $"{Name}";
 
         public override VirtualNode DeepClone()

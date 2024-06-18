@@ -45,5 +45,11 @@
         public IVirtualWildcardMatcher? WildcardMatcher { get; set; }
 
         public VirtualNodeListConditions NodeListConditions { get; set; }
+
+        public string prefixItem { get; set; } = "item";
+
+        public string prefixDirectory { get; set; } = "directory";
+
+        public string prefixSymbolicLink { get; set; } = "link";
     }
 }

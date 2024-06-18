@@ -9,6 +9,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
         }
 
         [TestMethod]
@@ -165,6 +166,54 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(result);
 
             Assert.IsTrue(result.Contains("TestItem"));
+        }
+
+        // タプルからの暗黙的な変換で VirtualItem オブジェクトが正しく作成されることを検証します。
+        [TestMethod]
+        public void ImplicitConversionFromTuple_CreatesObjectCorrectly()
+        {
+            // テストデータ
+            VirtualNodeName nodeName = "TestBinaryItem";
+            byte[] testData = [1, 2, 3];
+
+            // BinaryData オブジェクトを作成
+            BinaryData binaryData = new(testData);
+
+            // タプルを利用して VirtualItem<BinaryData> オブジェクトを作成
+            VirtualItem<BinaryData> virtualItem = (nodeName, binaryData);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(virtualItem);
+            Assert.AreEqual(nodeName, virtualItem.Name);
+            Assert.AreEqual(binaryData, virtualItem.ItemData);
+            CollectionAssert.AreEqual(virtualItem.ItemData!.Data, testData);
+        }
+
+        // データからの暗黙的な変換でデフォルトの名前を持つ VirtualItem オブジェクトが作成されることを検証します。
+        [TestMethod]
+        public void ImplicitConversionFromData_CreatesObjectWithDefaultName()
+        {
+            // テストデータ
+            byte[] testData = [1, 2, 3];
+
+            // BinaryData オブジェクトを作成
+            BinaryData binaryData = new(testData);
+
+            // データを利用して VirtualItem<BinaryData> オブジェクトを作成
+            VirtualItem<BinaryData> virtualItem = binaryData;
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(virtualItem);
+
+            // プレフィックスの後の番号まで検証
+            string expectedPrefix = VirtualStorageState.State.prefixItem;
+            string expectedName = $"{expectedPrefix}1";
+            Assert.AreEqual(expectedName, virtualItem.Name.ToString());
+
+            Assert.AreEqual(binaryData, virtualItem.ItemData);
+            CollectionAssert.AreEqual(virtualItem.ItemData!.Data, testData);
+
+            Debug.WriteLine($"Generated NodeName: {virtualItem.Name}");
         }
     }
 }
