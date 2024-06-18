@@ -25,7 +25,7 @@
             // NodeExistsを使用してノードの存在を確認
             if (!NodeExists(name))
             {
-                return false; // ノードが存在しない場合はfalseを返す
+                return false; // ノードが存在しない場合は false を返す
             }
 
             var node = _nodes[name];
@@ -63,6 +63,12 @@
         public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             _nodes = [];
+        }
+
+        // 文字列からVirtualDirectoryへの暗黙的な変換
+        public static implicit operator VirtualDirectory(VirtualNodeName nodeName)
+        {
+            return new VirtualDirectory(nodeName);
         }
 
         public override string ToString() => (Name == VirtualPath.Root) ? VirtualPath.Root : $"{Name}{VirtualPath.Separator}";

@@ -9,6 +9,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
         }
 
         [TestMethod]
@@ -1176,6 +1177,19 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             {
                 directory.GetSymbolicLink("TestItem");
             });
+        }
+
+        // 文字列からの暗黙的な変換で VirtualDirectory オブジェクトが正しく作成されることを検証します。
+        [TestMethod]
+        public void ImplicitConversionFromString_CreatesObjectCorrectly()
+        {
+            // 文字列から VirtualDirectory オブジェクトを作成
+            VirtualNodeName directoryName = "MyDirectory";
+            VirtualDirectory directory = directoryName;
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(directory);
+            Assert.AreEqual(directoryName, directory.Name);
         }
     }
 }
