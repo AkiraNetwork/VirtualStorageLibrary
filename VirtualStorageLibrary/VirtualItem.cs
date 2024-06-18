@@ -36,7 +36,7 @@
         }
 
         // タプルからVirtualItem<T>への暗黙的な変換
-        public static implicit operator VirtualItem<T>((string nodeName, T? itemData) tuple)
+        public static implicit operator VirtualItem<T>((VirtualNodeName nodeName, T? itemData) tuple)
         {
             return new VirtualItem<T>(tuple.nodeName, tuple.itemData);
         }
