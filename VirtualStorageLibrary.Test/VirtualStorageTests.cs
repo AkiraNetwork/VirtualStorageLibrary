@@ -6783,5 +6783,39 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Debug print after Act
             DebugPrintLinkDictionary(vs);
         }
+
+        [TestMethod]
+        public void Indexer_GetItem_ReturnsItem()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data);
+
+            // Act
+            var item = (VirtualItem<BinaryData>)vs["/dir1/item1"];
+
+            // Assert
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
+        }
+
+        [TestMethod]
+        public void Indexer_SetItem_CreateItem()
+        {
+            // Arrange
+            VirtualStorage vs = new();
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1");
+
+            // Act
+            vs["/dir1"] = new VirtualItem<BinaryData>("item1", data);
+
+            // Assert
+            var item = vs.GetItem<BinaryData>("/dir1/item1");
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
+        }
     }
 }
