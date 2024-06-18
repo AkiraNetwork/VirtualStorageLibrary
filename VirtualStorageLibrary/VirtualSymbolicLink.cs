@@ -23,6 +23,20 @@
             TargetPath = targetPath;
         }
 
+        // VirtualPathからVirtualSymbolicLinkへの暗黙的な変換
+        public static implicit operator VirtualSymbolicLink(VirtualPath? targetPath)
+        {
+            string prefix = VirtualStorageState.State.prefixSymbolicLink;
+            VirtualNodeName nodeName = VirtualNodeName.GenerateNodeName(prefix);
+            return new VirtualSymbolicLink(nodeName, targetPath);
+        }
+
+        // タプルからVirtualSymbolicLinkへの暗黙的な変換
+        public static implicit operator VirtualSymbolicLink((string nodeName, VirtualPath? targetPath) tuple)
+        {
+            return new VirtualSymbolicLink(new VirtualNodeName(tuple.nodeName), tuple.targetPath);
+        }
+
         public override string ToString() => $"{Name} -> {TargetPath}";
 
         public override VirtualNode DeepClone()

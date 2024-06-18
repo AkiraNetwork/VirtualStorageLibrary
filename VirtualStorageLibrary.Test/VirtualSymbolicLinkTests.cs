@@ -7,6 +7,7 @@
         public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
         }
 
         [TestMethod]
@@ -76,6 +77,44 @@
             Assert.AreEqual(link.TargetPath, clone.TargetPath);
             Assert.AreEqual(link.CreatedDate, clone.CreatedDate);
             Assert.AreEqual(link.UpdatedDate, clone.UpdatedDate);
+        }
+
+        // VirtualPathからの暗黙的な変換で VirtualSymbolicLink オブジェクトが正しく作成されることを検証します。
+        [TestMethod]
+        public void ImplicitConversionFromVirtualPath_CreatesObjectWithDefaultName()
+        {
+            // テストデータ
+            VirtualPath targetPath = "/some/path";
+
+            // VirtualPathを利用して VirtualSymbolicLink オブジェクトを作成
+            VirtualSymbolicLink symbolicLink = targetPath;
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(symbolicLink);
+
+            // プレフィックスの後の番号まで検証
+            string expectedPrefix = VirtualStorageState.State.prefixSymbolicLink;
+            string expectedName = $"{expectedPrefix}1";
+            Assert.AreEqual(expectedName, symbolicLink.Name.ToString());
+
+            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
+        }
+
+        // タプルからの暗黙的な変換で VirtualSymbolicLink オブジェクトが正しく作成されることを検証します。
+        [TestMethod]
+        public void ImplicitConversionFromTuple_CreatesObjectCorrectly()
+        {
+            // テストデータ
+            VirtualNodeName nodeName = "MyLink";
+            VirtualPath targetPath = "/other/path";
+
+            // タプルを利用して VirtualSymbolicLink オブジェクトを作成
+            VirtualSymbolicLink symbolicLink = (nodeName, targetPath);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(symbolicLink);
+            Assert.AreEqual(nodeName, symbolicLink.Name);
+            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
         }
     }
 }
