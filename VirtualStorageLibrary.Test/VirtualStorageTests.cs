@@ -514,7 +514,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void TestAddDirectory_Success()
+        public void AddDirectory_Success()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
@@ -532,7 +532,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void TestAddDirectory_WithSubdirectories_Success()
+        public void AddDirectory_WithSubdirectories_Success()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
@@ -550,7 +550,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void TestAddDirectory_DirectoryAlreadyExists_ThrowsException()
+        public void AddDirectory_DirectoryAlreadyExists_ThrowsException()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
@@ -566,7 +566,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void TestAddDirectory_InvalidPath_ThrowsException()
+        public void AddDirectory_InvalidPath_ThrowsException()
         {
             // Arrange
             var virtualStorage = new VirtualStorage();
@@ -575,6 +575,64 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // Act & Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => virtualStorage.AddDirectory(invalidPath, newDirectory));
+        }
+
+        [TestMethod]
+        public void AddNode_AddDirectory_CreatesDirectory()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            var directoryPath = new VirtualPath("/parentDirectory");
+            var newDirectory = new VirtualDirectory(new VirtualNodeName("newDirectory"));
+            virtualStorage.AddDirectory(directoryPath);
+
+            // Act
+            virtualStorage.AddNode(directoryPath, newDirectory);
+
+            // Assert
+            var parentDirectory = virtualStorage.GetNode(directoryPath) as VirtualDirectory;
+            Assert.IsNotNull(parentDirectory);
+            Assert.IsTrue(parentDirectory.NodeExists(newDirectory.Name));
+        }
+
+        [TestMethod]
+        public void AddNode_AddSymbolicLink_CreatesLink()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            var linkDirectoryPath = new VirtualPath("/linkDirectory");
+            var linkName = new VirtualNodeName("link");
+            var targetPath = new VirtualPath("/targetDirectory");
+            var newLink = new VirtualSymbolicLink(linkName, targetPath);
+            virtualStorage.AddDirectory(linkDirectoryPath);
+
+            // Act
+            virtualStorage.AddNode(linkDirectoryPath, newLink);
+
+            // Assert
+            var linkDirectory = virtualStorage.GetNode(linkDirectoryPath) as VirtualDirectory;
+            Assert.IsNotNull(linkDirectory);
+            Assert.IsTrue(linkDirectory.NodeExists(linkName));
+        }
+
+        [TestMethod]
+        public void AddNode_AddItem_CreatesItem()
+        {
+            // Arrange
+            var virtualStorage = new VirtualStorage();
+            var itemDirectoryPath = new VirtualPath("/itemDirectory");
+            var itemName = new VirtualNodeName("item");
+            var data = new object();
+            var newItem = new VirtualItem<object>(itemName, data);
+            virtualStorage.AddDirectory(itemDirectoryPath);
+
+            // Act
+            virtualStorage.AddNode(itemDirectoryPath, newItem);
+
+            // Assert
+            var itemDirectory = virtualStorage.GetNode(itemDirectoryPath) as VirtualDirectory;
+            Assert.IsNotNull(itemDirectory);
+            Assert.IsTrue(itemDirectory.NodeExists(itemName));
         }
 
         [TestMethod]

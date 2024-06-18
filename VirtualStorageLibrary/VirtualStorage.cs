@@ -352,6 +352,27 @@ namespace AkiraNet.VirtualStorageLibrary
             return true;
         }
 
+        public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)
+        {
+            switch (node)
+            {
+                case VirtualDirectory directory:
+                    AddDirectory(nodeDirectoryPath, directory);
+                    break;
+
+                case VirtualSymbolicLink symbolicLink:
+                    AddSymbolicLink(nodeDirectoryPath, symbolicLink, overwrite);
+                    break;
+
+                case VirtualItem<object> item:
+                    AddItem(nodeDirectoryPath, item, overwrite);
+                    break;
+
+                default:
+                    throw new InvalidOperationException($"ノードの種類 '{node.GetType().Name}' はサポートされていません。");
+            }
+        }
+
         public VirtualNodeContext WalkPathToTarget(
             VirtualPath targetPath,
             NotifyNodeDelegate? notifyNode = null,
