@@ -1,9 +1,14 @@
-﻿namespace AkiraNet.VirtualStorageLibrary
+﻿using System.Runtime.CompilerServices;
+
+namespace AkiraNet.VirtualStorageLibrary
 {
     [method: DebuggerStepThrough]
     public class VirtualNodeName(string name) : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable
     {
         private readonly string _name = name;
+
+        // 生成するノード名に付加するカウンター
+        private static long _counter = 0;
 
         public string Name
         {
@@ -16,6 +21,26 @@
 
         [DebuggerStepThrough]
         public override string ToString() => _name;
+
+        // ノード名を生成する
+        public static VirtualNodeName GenerateNodeName(string prefix)
+        {
+            if (prefix == string.Empty)
+            {
+                throw new ArgumentException("プレフィックスは空にできません", nameof(prefix));
+            }
+
+            long currentNumber = Interlocked.Increment(ref _counter);
+            string generatedName = $"{prefix}{currentNumber}";
+
+            return new VirtualNodeName(generatedName);
+        }
+
+        // カウンターをリセットする
+        public static void ResetCounter()
+        {
+            Interlocked.Exchange(ref _counter, 0);
+        }
 
         // ユーザーが使用してはいけないノード名の文字のチェック
         public static bool IsValidNodeName(VirtualNodeName nodeName)

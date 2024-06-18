@@ -7,6 +7,7 @@
         public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
         }
 
         [TestMethod]
@@ -244,6 +245,64 @@
 
             // Assert
             Assert.IsTrue(isValid, "IsValidNodeName should return true for a valid name.");
+        }
+
+        [TestMethod]
+        // プレフィックス付きの正しい名前を返すか確認する
+        public void GenerateNodeName_ShouldReturnCorrectName_WithPrefix()
+        {
+            // Arrange
+            string prefix = "item";
+
+            // Act
+            VirtualNodeName result = VirtualNodeName.GenerateNodeName(prefix);
+            long actualNumber = long.Parse(result.ToString()[prefix.Length..]);
+
+            // Assert
+            StringAssert.StartsWith(result.ToString(), prefix);
+            Assert.AreEqual(1, actualNumber);
+        }
+
+        [TestMethod]
+        // カウンターが正しくインクリメントされるか確認する
+        public void GenerateNodeName_ShouldIncrementCounter()
+        {
+            // Arrange
+            string prefix = "node";
+            VirtualNodeName firstResult = VirtualNodeName.GenerateNodeName(prefix);
+            VirtualNodeName secondResult = VirtualNodeName.GenerateNodeName(prefix);
+
+            // Act
+            long firstNumber = long.Parse(firstResult.ToString()[prefix.Length..]);
+            long secondNumber = long.Parse(secondResult.ToString()[prefix.Length..]);
+
+            // Assert
+            Assert.AreEqual(firstNumber + 1, secondNumber);
+        }
+
+        [TestMethod]
+        // プレフィックスが空文字の場合に例外がスローされるか確認する
+        public void GenerateNodeName_ShouldThrowException_WithEmptyPrefix()
+        {
+            // Arrange
+            string prefix = "";
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentException>(() => VirtualNodeName.GenerateNodeName(prefix));
+        }
+
+        [TestMethod]
+        // 長いプレフィックスでも正しく動作するか確認する
+        public void GenerateNodeName_ShouldWorkWithLongPrefix()
+        {
+            // Arrange
+            string prefix = new string('a', 100);
+
+            // Act
+            VirtualNodeName result = VirtualNodeName.GenerateNodeName(prefix);
+
+            // Assert
+            StringAssert.StartsWith(result.ToString(), prefix);
         }
     }
 }
