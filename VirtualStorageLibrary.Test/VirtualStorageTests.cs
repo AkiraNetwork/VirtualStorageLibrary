@@ -6958,5 +6958,139 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual("linkToItem1", (string)symbolicLink.Name);
             Assert.AreEqual("/dir1/item1_new", (string)symbolicLink.TargetPath);
         }
+
+        [TestMethod]
+        public void SymbolicLinkIndexer_GetSymbolicLink_ReturnsSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+            VirtualPath targetPath = "/target";
+            vs.AddSymbolicLink("/parentDirectory/link", targetPath);
+
+            // Act
+            VirtualSymbolicLink symbolicLink = vs.Link["/parentDirectory/link", false];
+
+            // Assert
+            Assert.AreEqual("link", (string)symbolicLink.Name);
+            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkIndexer_SetSymbolicLink_CreateSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+            VirtualPath targetPath = "/target";
+
+            // Act
+            vs.Link["/parentDirectory"] = ("link", targetPath);
+
+            // Assert
+            VirtualSymbolicLink symbolicLink = vs.GetSymbolicLink("/parentDirectory/link");
+            Assert.IsNotNull(symbolicLink);
+            Assert.AreEqual("link", (string)symbolicLink.Name);
+            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkIndexer_SetSymbolicLink_OverwriteSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+            VirtualPath targetPath = "/target";
+            vs.Link["/parentDirectory"] = ("link", targetPath);
+
+            // Act
+            vs.Link["/parentDirectory"] = ("link", "/newTarget");
+
+            // Assert
+            VirtualSymbolicLink symbolicLink = vs.Link["/parentDirectory/link", false];
+            Assert.IsNotNull(symbolicLink);
+            Assert.AreEqual("link", (string)symbolicLink.Name);
+            Assert.AreEqual("/newTarget", (string)symbolicLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkIndexer_GetSymbolicLink_FollowLinks_ReturnsTarget()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", data);
+            vs.Link["/"] = ("linkToItem1", "/dir1/item1");
+            vs.Link["/"] = ("linkToLink", "/linkToItem1");
+
+            // Act
+            VirtualSymbolicLink link = vs.Link["/linkToLink", false];
+
+            // Assert
+            Assert.AreEqual("linkToLink", (string)link.Name);
+            Assert.AreEqual("/linkToItem1", (string)link.TargetPath);
+        }
+
+        [TestMethod]
+        public void DirectoryIndexer_GetDirectory_ReturnsDirectory()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory/subDirectory", true);
+
+            // Act
+            VirtualDirectory directory = vs.Dir["/parentDirectory/subDirectory"];
+
+            // Assert
+            Assert.AreEqual("subDirectory", (string)directory.Name);
+        }
+
+        [TestMethod]
+        public void DirectoryIndexer_SetDirectory_CreateDirectory()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+
+            // Act
+            vs.Dir["/parentDirectory"] = new("subDirectory");
+
+            // Assert
+            VirtualDirectory directory = vs.GetDirectory("/parentDirectory/subDirectory");
+            Assert.IsNotNull(directory);
+            Assert.AreEqual("subDirectory", (string)directory.Name);
+        }
+
+        [TestMethod]
+        public void DirectoryIndexer_SetDirectory_OverwriteDirectory_ThrowsException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+            vs.Dir["/parentDirectory"] = new("subDirectory");
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.Dir["/parentDirectory"] = new("subDirectory");
+            });
+        }
+
+        [TestMethod]
+        public void DirectoryIndexer_GetDirectory_FollowLinks_ReturnsTarget()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/subdir1", true);
+            vs.AddSymbolicLink("/linkToSubdir1", "/dir1/subdir1");
+            vs.Link["/"] = new("linkToLink", "/linkToSubdir1");
+
+            // Act
+            VirtualDirectory directory = vs.Dir["/linkToLink"];
+
+            // Assert
+            Assert.AreEqual("subdir1", (string)directory.Name);
+        }
     }
 }
