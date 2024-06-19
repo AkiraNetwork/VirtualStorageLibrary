@@ -6905,5 +6905,58 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual("item1", (string)item.Name);
             CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
         }
+
+        [TestMethod]
+        public void Indexer_SetItem_OverwriteItem()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+            vs.AddDirectory("/dir1", true);
+            vs["/dir1"] = new VirtualItem<BinaryData>("item1", originalData);
+
+            // Act
+            vs["/dir1"] = new VirtualItem<BinaryData>("item1", newData);
+
+            // Assert
+            var item = (VirtualItem<BinaryData>)vs["/dir1/item1"];
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(newData.Data, item.ItemData!.Data);
+        }
+
+        [TestMethod]
+        public void Indexer_SetDirectory_OverwriteDirectory_ThrowsException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs["/dir1"] = new VirtualDirectory("subdir1");
+
+            // Act & Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs["/dir1"] = new VirtualDirectory("subdir1");
+            });
+        }
+
+        [TestMethod]
+        public void Indexer_SetSymbolicLink_OverwriteSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1", true);
+            vs["/dir1"] = new VirtualItem<BinaryData>("item1", new BinaryData([1, 2, 3]));
+            vs["/"] = new VirtualSymbolicLink("linkToItem1", "/dir1/item1");
+
+            // Act
+            vs["/"] = new VirtualSymbolicLink("linkToItem1", "/dir1/item1_new");
+
+            // Assert
+            var symbolicLink = vs.GetNode("/linkToItem1") as VirtualSymbolicLink;
+            Assert.IsNotNull(symbolicLink);
+            Assert.AreEqual("linkToItem1", (string)symbolicLink.Name);
+            Assert.AreEqual("/dir1/item1_new", (string)symbolicLink.TargetPath);
+        }
     }
 }

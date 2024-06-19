@@ -4,11 +4,11 @@
     {
         private readonly VirtualStorage<T> _storage = storage;
 
-        public VirtualItem<T> this[VirtualPath path]
+        public VirtualItem<T> this[VirtualPath path, bool followLinks = true]
         {
             get
             {
-                var node = _storage[path];
+                var node = _storage[path, followLinks];
                 if (node is VirtualItem<T> item)
                 {
                     return item;
@@ -33,11 +33,11 @@
     {
         private readonly VirtualStorage<T> _storage = storage;
 
-        public VirtualDirectory this[VirtualPath path]
+        public VirtualDirectory this[VirtualPath path, bool followLinks = true]
         {
             get
             {
-                var node = _storage[path];
+                var node = _storage[path, followLinks];
                 if (node is VirtualDirectory directory)
                 {
                     return directory;
@@ -62,11 +62,11 @@
     {
         private readonly VirtualStorage<T> _storage = storage;
 
-        public VirtualSymbolicLink this[VirtualPath path]
+        public VirtualSymbolicLink this[VirtualPath path, bool followLinks = true]
         {
             get
             {
-                var node = _storage[path];
+                var node = _storage[path, followLinks];
                 if (node is VirtualSymbolicLink link)
                 {
                     return link;
