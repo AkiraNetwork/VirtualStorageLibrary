@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace AkiraNet.VirtualStorageLibrary
 {
@@ -14,11 +15,20 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public Dictionary<VirtualPath, HashSet<VirtualPath>> LinkDictionary => _linkDictionary;
 
+        // Adapterインスタンスをプロパティとして保持
+        public VirtualItemAdapter<T> Item { get; }
+        public VirtualDirectoryAdapter<T> Dir { get; }
+        public VirtualSymbolicLinkAdapter<T> Link { get; }
+
         public VirtualStorage()
         {
             _root = new VirtualDirectory(VirtualPath.Root);
             CurrentPath = VirtualPath.Root;
             _linkDictionary = [];
+
+            Item = new(this);
+            Dir = new(this);
+            Link = new(this);
         }
 
         // リンク辞書に新しいリンクを追加します。
@@ -180,10 +190,32 @@ namespace AkiraNet.VirtualStorageLibrary
         }
 
         // パスを受け取るインデクサ
-        public VirtualNode this[VirtualPath path]
+        [IndexerName("Indexer")]
+        public VirtualNode this[VirtualPath path, bool followLinks = true]
         {
-            get => GetNode(path, true);
+            get => GetNode(path, followLinks);
             set => AddNode(path, value);
+        }
+
+        public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = true)
+        {
+            switch (node)
+            {
+                case VirtualDirectory directory:
+                    AddDirectory(nodeDirectoryPath, directory);
+                    break;
+
+                case VirtualSymbolicLink symbolicLink:
+                    AddSymbolicLink(nodeDirectoryPath, symbolicLink, overwrite);
+                    break;
+
+                case VirtualItem<T> item:
+                    AddItem(nodeDirectoryPath, item, overwrite);
+                    break;
+
+                default:
+                    throw new InvalidOperationException($"ノードの種類 '{node.GetType().Name}' はサポートされていません。");
+            }
         }
 
         public void AddDirectory(VirtualPath directoryPath, VirtualDirectory directory, bool createSubdirectories = false)
@@ -357,27 +389,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // AddSymbolicLinkメソッドを呼び出し
             AddSymbolicLink(directoryPath, link, overwrite);
-        }
-
-        public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)
-        {
-            switch (node)
-            {
-                case VirtualDirectory directory:
-                    AddDirectory(nodeDirectoryPath, directory);
-                    break;
-
-                case VirtualSymbolicLink symbolicLink:
-                    AddSymbolicLink(nodeDirectoryPath, symbolicLink, overwrite);
-                    break;
-
-                case VirtualItem<T> item:
-                    AddItem(nodeDirectoryPath, item, overwrite);
-                    break;
-
-                default:
-                    throw new InvalidOperationException($"ノードの種類 '{node.GetType().Name}' はサポートされていません。");
-            }
         }
 
         public VirtualNodeContext WalkPathToTarget(

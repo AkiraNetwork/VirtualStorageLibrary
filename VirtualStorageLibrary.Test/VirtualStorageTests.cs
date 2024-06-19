@@ -6821,5 +6821,89 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual("item1", (string)item.Name);
             CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
         }
+
+        [TestMethod]
+        public void Indexer_GetDirectory_ReturnsDirectory()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory/subDirectory", true);
+
+            // Act
+            var directory = (VirtualDirectory)vs["/parentDirectory/subDirectory"];
+
+            // Assert
+            Assert.AreEqual("subDirectory", (string)directory.Name);
+        }
+
+        [TestMethod]
+        public void Indexer_SetDirectory_CreateDirectory()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+
+            // Act
+            vs["/parentDirectory"] = new VirtualDirectory(new VirtualNodeName("subDirectory"));
+
+            // Assert
+            var directory = vs.GetDirectory("/parentDirectory/subDirectory");
+            Assert.IsNotNull(directory);
+            Assert.AreEqual("subDirectory", (string)directory.Name);
+        }
+
+        [TestMethod]
+        public void Indexer_GetSymbolicLink_ReturnsSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+            var targetPath = new VirtualPath("/target");
+            var link = new VirtualSymbolicLink(new VirtualNodeName("link"), targetPath);
+            vs.AddSymbolicLink("/parentDirectory", link);
+
+            // Act
+            var symbolicLink = (VirtualSymbolicLink)vs["/parentDirectory/link", false];
+
+            // Assert
+            Assert.AreEqual("link", (string)symbolicLink.Name);
+            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void Indexer_SetSymbolicLink_CreateSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDirectory", true);
+            var targetPath = new VirtualPath("/target");
+
+            // Act
+            vs["/parentDirectory", false] = new VirtualSymbolicLink(new VirtualNodeName("link"), targetPath);
+
+            // Assert
+            var symbolicLink = vs.GetSymbolicLink("/parentDirectory/link");
+            Assert.IsNotNull(symbolicLink);
+            Assert.AreEqual("link", (string)symbolicLink.Name);
+            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
+        }
+
+        [TestMethod]
+        public void Indexer_GetItem_FollowLinks_ReturnsItem()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", data);
+            vs.AddSymbolicLink("/linkToItem1", "/dir1/item1");
+
+            // Act
+            VirtualItem<BinaryData> item = (VirtualItem<BinaryData>)vs["/linkToItem1"];
+
+            // Assert
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
+        }
     }
 }
