@@ -2,7 +2,7 @@
 
 namespace AkiraNet.VirtualStorageLibrary
 {
-    public class VirtualStorage
+    public class VirtualStorage<T>
     {
         private readonly VirtualDirectory _root;
 
@@ -250,7 +250,7 @@ namespace AkiraNet.VirtualStorageLibrary
             return true;
         }
 
-        public void AddItem<T>(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
+        public void AddItem(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
         {
             // 絶対パスに変換
             itemDirectoryPath = ConvertToAbsolutePath(itemDirectoryPath).NormalizePath();
@@ -284,7 +284,7 @@ namespace AkiraNet.VirtualStorageLibrary
             UpdateLinkTypesInDictionary(itemDirectoryPath + item.Name);
         }
 
-        public void AddItem<T>(VirtualPath itemPath, T data, bool overwrite = false)
+        public void AddItem(VirtualPath itemPath, T data, bool overwrite = false)
         {
             // 絶対パスに変換
             itemPath = ConvertToAbsolutePath(itemPath).NormalizePath();
@@ -371,8 +371,8 @@ namespace AkiraNet.VirtualStorageLibrary
                     AddSymbolicLink(nodeDirectoryPath, symbolicLink, overwrite);
                     break;
 
-                case VirtualItem:
-                    AddItem(nodeDirectoryPath, node, overwrite);
+                case VirtualItem<T> item:
+                    AddItem(nodeDirectoryPath, item, overwrite);
                     break;
 
                 default:
@@ -878,7 +878,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        public VirtualItem<T> GetItem<T>(VirtualPath path, bool followLinks = false)
+        public VirtualItem<T> GetItem(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualNode node = GetNode(path, followLinks);
@@ -893,11 +893,11 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        public VirtualItem<T>? TryGetItem<T>(VirtualPath path)
+        public VirtualItem<T>? TryGetItem(VirtualPath path)
         {
             try
             {
-                return GetItem<T>(path);
+                return GetItem(path);
             }
             catch (VirtualNodeNotFoundException)
             {

@@ -49,31 +49,31 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void DirectoryCount_WithMultipleDirectories_ReturnsCorrectCount()
         {
-            VirtualStorage storage = new();
-            storage.Root.AddDirectory("dir1");
-            storage.Root.AddDirectory("dir2");
+            VirtualStorage<BinaryData> vs = new();
+            vs.Root.AddDirectory("dir1");
+            vs.Root.AddDirectory("dir2");
 
-            Assert.AreEqual(2, storage.Root.DirectoryCount, "ルートディレクトリ内のディレクトリ数が正しくありません。");
+            Assert.AreEqual(2, vs.Root.DirectoryCount, "ルートディレクトリ内のディレクトリ数が正しくありません。");
         }
 
         [TestMethod]
         public void ItemCount_WithMultipleItems_ReturnsCorrectCount()
         {
-            VirtualStorage storage = new();
-            storage.Root.AddItem("item1", new object());
-            storage.Root.AddItem("item2", new object());
+            VirtualStorage<BinaryData> vs = new();
+            vs.Root.AddItem("item1", new object());
+            vs.Root.AddItem("item2", new object());
 
-            Assert.AreEqual(2, storage.Root.ItemCount, "ルートディレクトリ内のアイテム数が正しくありません。");
+            Assert.AreEqual(2, vs.Root.ItemCount, "ルートディレクトリ内のアイテム数が正しくありません。");
         }
 
         [TestMethod]
         public void SymbolicLinkCount_WithMultipleSymbolicLinks_ReturnsCorrectCount()
         {
-            VirtualStorage storage = new();
-            storage.Root.Add(new VirtualSymbolicLink("link1", "/path/to/target1"));
-            storage.Root.Add(new VirtualSymbolicLink("link2", "/path/to/target2"));
+            VirtualStorage<BinaryData> vs = new();
+            vs.Root.Add(new VirtualSymbolicLink("link1", "/path/to/target1"));
+            vs.Root.Add(new VirtualSymbolicLink("link2", "/path/to/target2"));
 
-            Assert.AreEqual(2, storage.Root.SymbolicLinkCount, "ルートディレクトリ内のシンボリックリンク数が正しくありません。");
+            Assert.AreEqual(2, vs.Root.SymbolicLinkCount, "ルートディレクトリ内のシンボリックリンク数が正しくありません。");
         }
 
         [TestMethod]
@@ -784,16 +784,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_DefaultOption()
         {
             // Arrange
-            VirtualStorage storage = new();
+            VirtualStorage<BinaryData> vs = new();
 
             // 仮想ディレクトリとアイテムを追加
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddItem("/item1", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
@@ -814,11 +814,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_NameAscAndTypeAsc()
         {
             // Arrange
-            VirtualStorage storage = new();
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddItem("/item1", new BinaryData([1, 2, 3]));
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
@@ -827,7 +827,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 [ new(node => node.Name, true) ]);
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
@@ -848,13 +848,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_CreatedDateAscAndTypeAsc()
         {
             // Arrange
-            VirtualStorage storage = new();
+            VirtualStorage<BinaryData> vs = new();
             VirtualItem<BinaryData> item1 = new("item1", new BinaryData([1, 2, 3]));
             VirtualItem<BinaryData> item2 = new("item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/", item1);
-            storage.AddItem("/", item2);
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/", item1);
+            vs.AddItem("/", item2);
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
@@ -863,7 +863,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 [new(node => node.CreatedDate, true)]);
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
@@ -884,13 +884,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_CreatedDateDesAndTypeAsc()
         {
             // Arrange
-            VirtualStorage storage = new();
+            VirtualStorage<BinaryData> vs = new();
             VirtualItem<BinaryData> item1 = new("item1", new BinaryData([1, 2, 3]));
             VirtualItem<BinaryData> item2 = new("item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/", item1);
-            storage.AddItem("/", item2);
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/", item1);
+            vs.AddItem("/", item2);
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
@@ -899,7 +899,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 [new(node => node.CreatedDate, false)]);
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
@@ -920,11 +920,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_NameDesAndTypeAsc()
         {
             // Arrange
-            VirtualStorage storage = new();
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddItem("/item1", new BinaryData([1, 2, 3]));
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
@@ -933,7 +933,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 [new(node => node.Name, false)]);
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
@@ -954,11 +954,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_NameAscAndTypeDes()
         {
             // Arrange
-            VirtualStorage storage = new();
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddItem("/item1", new BinaryData([1, 2, 3]));
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
@@ -967,7 +967,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
@@ -988,11 +988,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_NameAscAndTypeDesWithOnlyDir()
         {
             // Arrange
-            VirtualStorage storage = new();
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddItem("/item1", new BinaryData([1, 2, 3]));
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
@@ -1001,7 +1001,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
@@ -1020,11 +1020,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void GetNodeList_NameAscAndTypeDesWithOnlyItem()
         {
             // Arrange
-            VirtualStorage storage = new();
-            storage.AddDirectory("/dir2");
-            storage.AddItem("/item2", new BinaryData([1, 2, 3]));
-            storage.AddDirectory("/dir1");
-            storage.AddItem("/item1", new BinaryData([1, 2, 3]));
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
@@ -1033,7 +1033,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
-            VirtualDirectory directory = storage.GetDirectory("/");
+            VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
