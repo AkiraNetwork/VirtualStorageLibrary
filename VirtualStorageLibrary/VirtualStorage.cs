@@ -316,7 +316,7 @@ namespace AkiraNet.VirtualStorageLibrary
             UpdateLinkTypesInDictionary(itemDirectoryPath + item.Name);
         }
 
-        public void AddItem(VirtualPath itemPath, T data, bool overwrite = false)
+        public void AddItem(VirtualPath itemPath, T? data = default, bool overwrite = false)
         {
             // 絶対パスに変換
             itemPath = ConvertToAbsolutePath(itemPath).NormalizePath();
@@ -365,17 +365,20 @@ namespace AkiraNet.VirtualStorageLibrary
             // 新しいシンボリックリンクを追加
             directory.Add(link);
 
-            // targetPathを絶対パスに変換して正規化する必要がある。その際、シンボリックリンクを作成したディレクトリパスを基準とする
-            VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath!, linkDirectoryPath).NormalizePath();
+            if (link.TargetPath != null)
+            {
+                // targetPathを絶対パスに変換して正規化する必要がある。その際、シンボリックリンクを作成したディレクトリパスを基準とする
+                VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath!, linkDirectoryPath).NormalizePath();
 
-            // リンク辞書にリンク情報を追加
-            AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + linkName);
+                // リンク辞書にリンク情報を追加
+                AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + linkName);
 
-            // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-            UpdateLinkTypesInDictionary(linkDirectoryPath + linkName);
+                // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+                UpdateLinkTypesInDictionary(linkDirectoryPath + linkName);
+            }
         }
 
-        public void AddSymbolicLink(VirtualPath linkPath, VirtualPath targetPath, bool overwrite = false)
+        public void AddSymbolicLink(VirtualPath linkPath, VirtualPath? targetPath = null, bool overwrite = false)
         {
             // linkPathを絶対パスに変換し正規化も行う
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();

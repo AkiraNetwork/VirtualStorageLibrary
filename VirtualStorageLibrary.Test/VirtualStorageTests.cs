@@ -1131,6 +1131,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddItem_AddsNewItemSuccessfully_WithEmpty()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath path = "/NewItem";
+
+            vs.AddItem(path);
+
+            Assert.IsTrue(vs.ItemExists(path));
+            VirtualItem<BinaryData>? retrievedItem = vs.GetItem(path);
+            Assert.IsNotNull(retrievedItem);
+            Assert.IsNull(retrievedItem.ItemData);
+        }
+
+        [TestMethod]
         public void AddItem_AddsNewItemSuccessfully_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3480,6 +3494,23 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void AddSymbolicLink_WhenLinkIsNull_AddsSuccessfully()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/test");
+
+            // Act
+            vs.AddSymbolicLink("/test/newLink");
+
+            // Assert
+            Assert.IsTrue(vs.SymbolicLinkExists("/test/newLink"));
+            VirtualSymbolicLink? link = vs.GetNode("/test/newLink") as VirtualSymbolicLink;
+            Assert.IsNotNull(link);
+            Assert.IsNull(link.TargetPath);
         }
 
         [TestMethod]
