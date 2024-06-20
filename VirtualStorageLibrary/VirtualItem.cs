@@ -17,6 +17,13 @@
 
         public override VirtualNodeType NodeType => VirtualNodeType.Item;
 
+        public VirtualItem()
+            : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.prefixItem))
+        {
+            ItemData = default;
+            disposed = false;
+        }
+
         public VirtualItem(VirtualNodeName name) : base(name)
         {
             ItemData = default;
