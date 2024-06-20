@@ -21,7 +21,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // オブジェクトが正しく作成されたか検証
             Assert.IsNotNull(item);
-            Assert.AreEqual($"{VirtualStorageState.State.prefixItem}1", (string)item.Name);
+            Assert.AreEqual($"{VirtualStorageState.State.PrefixItem}1", (string)item.Name);
             Assert.AreEqual(default, item.ItemData);
         }
 
@@ -219,7 +219,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsNotNull(item);
 
             // プレフィックスの後の番号まで検証
-            string expectedPrefix = VirtualStorageState.State.prefixItem;
+            string expectedPrefix = VirtualStorageState.State.PrefixItem;
             string expectedName = $"{expectedPrefix}1";
             Assert.AreEqual(expectedName, item.Name.ToString());
 

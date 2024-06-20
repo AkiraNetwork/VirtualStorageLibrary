@@ -32,7 +32,7 @@
         // VirtualPathからVirtualSymbolicLinkへの暗黙的な変換
         public static implicit operator VirtualSymbolicLink(VirtualPath? targetPath)
         {
-            string prefix = VirtualStorageState.State.prefixSymbolicLink;
+            string prefix = VirtualStorageState.State.PrefixSymbolicLink;
             VirtualNodeName nodeName = VirtualNodeName.GenerateNodeName(prefix);
             return new VirtualSymbolicLink(nodeName, targetPath);
         }

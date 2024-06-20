@@ -93,7 +93,7 @@
             Assert.IsNotNull(symbolicLink);
 
             // プレフィックスの後の番号まで検証
-            string expectedPrefix = VirtualStorageState.State.prefixSymbolicLink;
+            string expectedPrefix = VirtualStorageState.State.PrefixSymbolicLink;
             string expectedName = $"{expectedPrefix}1";
             Assert.AreEqual(expectedName, symbolicLink.Name.ToString());
 

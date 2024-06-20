@@ -13,17 +13,30 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void VirtualDirectoryConstructor_CreatesObjectCorrectly()
+        public void VirtualDirectoryConstructorDefault_CreatesObjectCorrectly()
+
+        {
+            // VirtualDirectory オブジェクトを作成
+            VirtualDirectory directory = new();
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(directory);
+            Assert.AreEqual($"{VirtualStorageState.State.PrefixDirectory}1", (string)directory.Name);
+            Assert.AreEqual(0, directory.Count);
+        }
+
+        [TestMethod]
+        public void VirtualDirectoryConstructorByName_CreatesObjectCorrectly()
 
         {
             // VirtualDirectory オブジェクトを作成
             VirtualNodeName name = "TestDirectory";
-            VirtualDirectory virtualDirectory = new(name);
+            VirtualDirectory directory = new(name);
 
             // オブジェクトが正しく作成されたか検証
-            Assert.IsNotNull(virtualDirectory);
-            Assert.AreEqual(name, virtualDirectory.Name);
-            Assert.AreEqual(0, virtualDirectory.Count);
+            Assert.IsNotNull(directory);
+            Assert.AreEqual(name, directory.Name);
+            Assert.AreEqual(0, directory.Count);
         }
 
         [TestMethod]

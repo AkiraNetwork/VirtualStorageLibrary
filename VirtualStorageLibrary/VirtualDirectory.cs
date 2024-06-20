@@ -55,6 +55,12 @@
             return node is VirtualSymbolicLink;
         }
 
+        public VirtualDirectory()
+            : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixDirectory))
+        {
+            _nodes = [];
+        }
+
         public VirtualDirectory(VirtualNodeName name) : base(name)
         {
             _nodes = [];

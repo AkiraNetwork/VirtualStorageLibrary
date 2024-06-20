@@ -46,10 +46,10 @@
 
         public VirtualNodeListConditions NodeListConditions { get; set; }
 
-        public string prefixItem { get; set; } = "item";
+        public string PrefixItem { get; set; } = "item";
 
-        public string prefixDirectory { get; set; } = "directory";
+        public string PrefixDirectory { get; set; } = "directory";
 
-        public string prefixSymbolicLink { get; set; } = "link";
+        public string PrefixSymbolicLink { get; set; } = "link";
     }
 }

@@ -18,7 +18,7 @@
         public override VirtualNodeType NodeType => VirtualNodeType.Item;
 
         public VirtualItem()
-            : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.prefixItem))
+            : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixItem))
         {
             ItemData = default;
             disposed = false;
@@ -51,7 +51,7 @@
         // データからVirtualItem<T>への暗黙的な変換
         public static implicit operator VirtualItem<T>(T? itemData)
         {
-            string prefix = VirtualStorageState.State.prefixItem;
+            string prefix = VirtualStorageState.State.PrefixItem;
             VirtualNodeName nodeName = VirtualNodeName.GenerateNodeName(prefix);
             return new VirtualItem<T>(nodeName, itemData);
         }
