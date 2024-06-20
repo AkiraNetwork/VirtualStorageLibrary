@@ -13,6 +13,17 @@
         [TestMethod]
         public void VirtualSymbolicLink_Constructor_Default()
         {
+            // Act
+            VirtualSymbolicLink link = new();
+
+            // Assert
+            Assert.AreEqual($"{VirtualStorageState.State.PrefixSymbolicLink}1", (string)link.Name);
+            Assert.AreEqual(null, link.TargetPath);
+        }
+
+        [TestMethod]
+        public void VirtualSymbolicLink_Constructor_ByName()
+        {
             // Arrange
             VirtualNodeName nodeName = "TestLink";
 
@@ -87,17 +98,17 @@
             VirtualPath targetPath = "/some/path";
 
             // VirtualPathを利用して VirtualSymbolicLink オブジェクトを作成
-            VirtualSymbolicLink symbolicLink = targetPath;
+            VirtualSymbolicLink link = targetPath;
 
             // オブジェクトが正しく作成されたか検証
-            Assert.IsNotNull(symbolicLink);
+            Assert.IsNotNull(link);
 
             // プレフィックスの後の番号まで検証
             string expectedPrefix = VirtualStorageState.State.PrefixSymbolicLink;
             string expectedName = $"{expectedPrefix}1";
-            Assert.AreEqual(expectedName, symbolicLink.Name.ToString());
+            Assert.AreEqual(expectedName, link.Name.ToString());
 
-            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
+            Assert.AreEqual(targetPath, link.TargetPath);
         }
 
         // タプルからの暗黙的な変換で VirtualSymbolicLink オブジェクトが正しく作成されることを検証します。
@@ -109,12 +120,12 @@
             VirtualPath targetPath = "/other/path";
 
             // タプルを利用して VirtualSymbolicLink オブジェクトを作成
-            VirtualSymbolicLink symbolicLink = (nodeName, targetPath);
+            VirtualSymbolicLink link = (nodeName, targetPath);
 
             // オブジェクトが正しく作成されたか検証
-            Assert.IsNotNull(symbolicLink);
-            Assert.AreEqual(nodeName, symbolicLink.Name);
-            Assert.AreEqual(targetPath, symbolicLink.TargetPath);
+            Assert.IsNotNull(link);
+            Assert.AreEqual(nodeName, link.Name);
+            Assert.AreEqual(targetPath, link.TargetPath);
         }
     }
 }

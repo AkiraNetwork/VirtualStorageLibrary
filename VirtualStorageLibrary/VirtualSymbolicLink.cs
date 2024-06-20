@@ -1,4 +1,6 @@
-﻿namespace AkiraNet.VirtualStorageLibrary
+﻿using System.Xml.Linq;
+
+namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualSymbolicLink : VirtualNode
     {
@@ -7,6 +9,12 @@
         public VirtualNodeType TargetNodeType { get; set; } = VirtualNodeType.None;
 
         public override VirtualNodeType NodeType => VirtualNodeType.SymbolicLink;
+
+        public VirtualSymbolicLink()
+             : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixSymbolicLink))
+        {
+            TargetPath = null;
+        }
 
         public VirtualSymbolicLink(VirtualNodeName name) : base(name)
         {
