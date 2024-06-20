@@ -6960,6 +6960,77 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ItemIndexer_GetItem_ReturnsItem()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data);
+
+            // Act
+            VirtualItem<BinaryData> item = vs.Item["/dir1/item1"];
+
+            // Assert
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
+        }
+
+        [TestMethod]
+        public void ItemIndexer_SetItem_CreateItem()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1");
+
+            // Act
+            vs.Item["/dir1"] = ("item1", data);
+
+            // Assert
+            VirtualItem<BinaryData> item = vs.GetItem("/dir1/item1");
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
+        }
+
+        [TestMethod]
+        public void ItemIndexer_GetItem_FollowLinks_ReturnsItem()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data = [1, 2, 3];
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", data);
+            vs.AddSymbolicLink("/linkToItem1", "/dir1/item1");
+
+            // Act
+            VirtualItem<BinaryData> item = vs.Item["/linkToItem1"];
+
+            // Assert
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(data.Data, item.ItemData!.Data);
+        }
+
+        [TestMethod]
+        public void ItemIndexer_SetItem_OverwriteItem()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData originalData = [1, 2, 3];
+            BinaryData newData = [4, 5, 6];
+            vs.AddDirectory("/dir1", true);
+            vs.Item["/dir1"] = ("item1", originalData);
+
+            // Act
+            vs.Item["/dir1"] = ("item1", newData);
+
+            // Assert
+            var item = (VirtualItem<BinaryData>)vs["/dir1/item1"];
+            Assert.AreEqual("item1", (string)item.Name);
+            CollectionAssert.AreEqual(newData.Data, item.ItemData!.Data);
+        }
+
+        [TestMethod]
         public void SymbolicLinkIndexer_GetSymbolicLink_ReturnsSymbolicLink()
         {
             // Arrange
