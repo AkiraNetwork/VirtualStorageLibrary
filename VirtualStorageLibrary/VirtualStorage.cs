@@ -1570,31 +1570,17 @@ namespace AkiraNet.VirtualStorageLibrary
             StringBuilder line = new();
             string previous = string.Empty;
 
-            VirtualNodeContext nodeContext = nodeContexts.First();
-            VirtualNode baseNode = nodeContext.Node!;
-            VirtualPath baseAbsolutePath = (basePath + nodeContext.TraversalPath).NormalizePath();
-            if (baseNode is VirtualDirectory)
+            VirtualNodeContext nodeFirstContext = nodeContexts.First();
+            VirtualNode baseNode = nodeFirstContext.Node!;
+            VirtualPath baseAbsolutePath = basePath + nodeFirstContext.TraversalPath;
+
+            if (basePath.IsRoot)
             {
-                string baseNodeName;
-                if (baseAbsolutePath == VirtualPath.Root)
-                {
-                    baseNodeName = baseAbsolutePath.NodeName;
-                }
-                else
-                {
-                    baseNodeName = baseAbsolutePath.NodeName + VirtualPath.Separator;
-                }
-                tree.AppendLine(baseNodeName);
+                tree.AppendLine("/");
             }
-            else if (baseNode is VirtualItem)
+            else
             {
-                tree.AppendLine(baseAbsolutePath.NodeName);
-            }
-            else if (baseNode is VirtualSymbolicLink link)
-            {
-                string baseNodeName;
-                baseNodeName = (string)baseAbsolutePath.NodeName + " -> " + (string)link.TargetPath;
-                tree.AppendLine(baseNodeName);
+                tree.AppendLine(baseAbsolutePath);
             }
 
             foreach (var nodeInfo in nodeContexts.Skip(1))
@@ -1648,18 +1634,8 @@ namespace AkiraNet.VirtualStorageLibrary
                     }
                 }
 
-                if (node is VirtualDirectory)
-                {
-                    line.Append(nodeName + VirtualPath.Separator);
-                }
-                else if (node is VirtualSymbolicLink link)
-                {
-                    line.Append(nodeName + " -> " + (string)link.TargetPath);
-                }
-                else
-                {
-                    line.Append(nodeName);
-                }
+                line.Append(node?.ToString());
+
                 previous = line.ToString();
                 tree.AppendLine(line.ToString());
             }   
