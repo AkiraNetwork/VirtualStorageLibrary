@@ -4043,6 +4043,26 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
+        [TestMethod]
+        public void WalkPathToTarget_NullLink_ShouldSuccessfully()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/dir1/link"); // リンク先が null のシンボリックリンクを追加
+
+            // メソッドを実行
+            VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/link", NotifyNode, null, true, true);
+
+            // 結果を検証
+            VirtualSymbolicLink? link = nodeContext.Node as VirtualSymbolicLink;
+            Assert.IsNotNull(link);
+            Assert.AreEqual("link", (string)link.Name);
+            Assert.IsNull(link.TargetPath);
+            Assert.IsTrue(nodeContext.TraversalPath == "/dir1/link");
+        }
+
         private void NotifyNode(VirtualPath path, VirtualNode? node, bool isEnd)
         {
             Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");

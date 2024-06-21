@@ -508,7 +508,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
             else if (node is VirtualSymbolicLink link)
             {
-                if (!p.FollowLinks)
+                if (!p.FollowLinks || link.TargetPath == null)
                 {
                     // シンボリックリンクを通知
                     p.NotifyNode?.Invoke(p.TraversalPath, node, true);
