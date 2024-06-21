@@ -4530,6 +4530,31 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsTrue(nodeContexts[2].TraversalPath.ToString() == "item2");
         }
 
+        [TestMethod]
+        // nullリンクが含まれているディレクトリツリーを走査して正常終了する事を確認
+        public void WalkPathTree_WithNullLink_ShouldNotThrowException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddItem("/dir1/dir2/dir3/item1", [1, 2, 3]);
+            vs.AddDirectory("/dir1/dir2/dir3/dir4");
+            vs.AddSymbolicLink("/dir1/dir2/dir3/link1"); // リンク先が null のシンボリックリンクを追加
+
+            // メソッドを実行
+            IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.All, true, true);
+
+            // 結果を検証
+            foreach (VirtualNodeContext nodeContext in nodeContexts)
+            {
+                Debug.WriteLine(nodeContext);
+            }
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "dir2/dir3/link1"));
+        }
+
         private static void ResolvePath_SetData(VirtualStorage<string> vs)
         {
             vs.AddDirectory("/dir1", true);

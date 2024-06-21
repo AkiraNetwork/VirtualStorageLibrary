@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace AkiraNet.VirtualStorageLibrary
+﻿namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualSymbolicLink : VirtualNode
     {
@@ -45,7 +43,7 @@ namespace AkiraNet.VirtualStorageLibrary
             return new VirtualSymbolicLink(nodeName, targetPath);
         }
 
-        public override string ToString() => $"{Name} -> {TargetPath}";
+        public override string ToString() => $"{Name} -> {TargetPath ?? "(null)"}";
 
         public override VirtualNode DeepClone()
         {

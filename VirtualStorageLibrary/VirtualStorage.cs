@@ -736,7 +736,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
             else if (p.BaseNode is VirtualSymbolicLink link)
             {
-                if (p.FollowLinks)
+                if (p.FollowLinks && link.TargetPath != null)
                 {
                     VirtualPath? linkTargetPath = link.TargetPath;
 
