@@ -32,7 +32,7 @@
 
         public string PrefixItem { get; set; } = "item";
 
-        public string PrefixDirectory { get; set; } = "directory";
+        public string PrefixDirectory { get; set; } = "dir";
 
         public string PrefixSymbolicLink { get; set; } = "link";
 

@@ -7239,5 +7239,46 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Assert
             Assert.AreEqual("subdir1", (string)directory.Name);
         }
+
+        [TestMethod]
+        public void Free_Test1()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs.Dir["/"] = new();
+            vs.Dir["/"] = new();
+            vs.Dir["/"] = new();
+            vs.Item["/dir1"] = new();
+            vs.Item["/dir1"] = new();
+            vs.Item["/dir1"] = new();
+            vs.Link["/dir1"] = new();
+            vs.Link["/dir1"] = new();
+            vs.Link["/dir1"] = new();
+
+            // Debug print
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+
+            // Assert
+            Assert.AreEqual(4, vs.GetNodes("/", VirtualNodeTypeFilter.Directory).Count());
+            Assert.AreEqual(3, vs.GetNodes("/dir1", VirtualNodeTypeFilter.Item).Count());
+            Assert.AreEqual(3, vs.GetNodes("/dir1", VirtualNodeTypeFilter.SymbolicLink).Count());
+            Assert.AreEqual<string>("dir1", vs.Dir["/dir1"].Name);
+            Assert.AreEqual<string>("dir2", vs.Dir["/dir2"].Name);
+            Assert.AreEqual<string>("dir3", vs.Dir["/dir3"].Name);
+            Assert.AreEqual<string>("item4", vs.Item["/dir1/item4"].Name);
+            Assert.AreEqual<string>("item5", vs.Item["/dir1/item5"].Name);
+            Assert.AreEqual<string>("item6", vs.Item["/dir1/item6"].Name);
+            Assert.IsNull(vs.Item["/dir1/item4"].ItemData);
+            Assert.IsNull(vs.Item["/dir1/item5"].ItemData);
+            Assert.IsNull(vs.Item["/dir1/item6"].ItemData);
+            Assert.AreEqual<string>("link7", vs.Link["/dir1/link7"].Name);
+            Assert.AreEqual<string>("link8", vs.Link["/dir1/link8"].Name);
+            Assert.AreEqual<string>("link9", vs.Link["/dir1/link9"].Name);
+            Assert.IsNull(vs.Link["/dir1/link7"].TargetPath);
+            Assert.IsNull(vs.Link["/dir1/link8"].TargetPath);
+            Assert.IsNull(vs.Link["/dir1/link9"].TargetPath);
+        }
     }
 }
