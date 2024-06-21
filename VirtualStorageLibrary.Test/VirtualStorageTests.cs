@@ -7247,9 +7247,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
 
             // Act
-            vs.Dir["/"] = new();
-            vs.Dir["/"] = new();
-            vs.Dir["/"] = new();
+            vs.Dir["/"] = [];
+            vs.Dir["/"] = [];
+            vs.Dir["/"] = [];
             vs.Item["/dir1"] = new();
             vs.Item["/dir1"] = new();
             vs.Item["/dir1"] = new();

@@ -1571,7 +1571,6 @@ namespace AkiraNet.VirtualStorageLibrary
             string previous = string.Empty;
 
             VirtualNodeContext nodeFirstContext = nodeContexts.First();
-            VirtualNode baseNode = nodeFirstContext.Node!;
             VirtualPath baseAbsolutePath = basePath + nodeFirstContext.TraversalPath;
 
             if (basePath.IsRoot)
