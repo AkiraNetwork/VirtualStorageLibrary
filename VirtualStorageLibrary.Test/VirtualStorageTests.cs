@@ -7241,7 +7241,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Free_Test1()
+        public void Free_Test1_AllIndexerAndDefaultNodeConstructor()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
