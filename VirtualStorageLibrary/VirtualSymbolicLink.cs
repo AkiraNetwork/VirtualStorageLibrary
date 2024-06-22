@@ -45,7 +45,7 @@
 
         public override string ToString() => $"{Name} -> {TargetPath ?? "(null)"}";
 
-        public override VirtualNode DeepClone()
+        public override VirtualNode DeepClone(bool recursive = false)
         {
             return new VirtualSymbolicLink(Name, TargetPath, CreatedDate, UpdatedDate);
         }

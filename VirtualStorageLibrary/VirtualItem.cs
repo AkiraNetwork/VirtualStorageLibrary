@@ -6,7 +6,7 @@
 
         protected VirtualItem(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate) { }
 
-        public override abstract VirtualNode DeepClone();
+        public override abstract VirtualNode DeepClone(bool recursive = false);
     }
 
     public class VirtualItem<T> : VirtualItem, IDisposable
@@ -58,7 +58,7 @@
 
         public override string ToString() => $"{Name}";
 
-        public override VirtualNode DeepClone()
+        public override VirtualNode DeepClone(bool recursive = false)
         {
             T? newItemData = ItemData;
 

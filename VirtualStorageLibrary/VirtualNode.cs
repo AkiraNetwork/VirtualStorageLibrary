@@ -10,7 +10,7 @@
 
         public abstract VirtualNodeType NodeType { get; }
 
-        public abstract VirtualNode DeepClone();
+        public abstract VirtualNode DeepClone(bool recursive = false);
 
         protected VirtualNode(VirtualNodeName name)
         {

@@ -79,9 +79,16 @@
 
         public override string ToString() => (Name == VirtualPath.Root) ? VirtualPath.Root : $"{Name}{VirtualPath.Separator}";
 
-        public override VirtualNode DeepClone()
+        public override VirtualNode DeepClone(bool recursive = false)
         {
             VirtualDirectory newDirectory = new(Name, CreatedDate, UpdatedDate);
+            if (recursive)
+            {
+                foreach (var node in _nodes)
+                {
+                    newDirectory.Add(node.Value.DeepClone(true));
+                }
+            }
             return newDirectory;
         }
 

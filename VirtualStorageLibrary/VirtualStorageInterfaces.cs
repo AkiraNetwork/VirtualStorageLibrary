@@ -2,7 +2,7 @@
 {
     public interface IVirtualDeepCloneable<T>
     {
-        T DeepClone();
+        T DeepClone(bool recursive = false);
     }
 
     public interface IVirtualWildcardMatcher

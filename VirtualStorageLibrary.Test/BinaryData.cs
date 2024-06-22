@@ -152,7 +152,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             _data = newData;
         }
 
-        public BinaryData DeepClone()
+        public BinaryData DeepClone(bool recursive = false)
         {
             byte[] dataClone = new byte[_data.Length];
             _data.CopyTo(dataClone, 0);
