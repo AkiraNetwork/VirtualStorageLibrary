@@ -1043,12 +1043,13 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        public IEnumerable<VirtualNodeContext> CopyNode(
+        public void CopyNode(
             VirtualPath sourcePath,
             VirtualPath destinationPath,
             bool overwrite = false,
             bool recursive = false,
-            bool followLinks = false)
+            bool followLinks = false,
+            List<VirtualNodeContext>? destinationContextList = null)
         {
             CheckCopyPreconditions(sourcePath, destinationPath, followLinks, recursive);
 
@@ -1067,15 +1068,12 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException("コピー元パスとコピー先パスが同じです。");
             }
 
-            IEnumerable<VirtualNodeContext> destinationContexts = [];
-
             // コピー元のツリーを取得
             IEnumerable<VirtualNodeContext> sourceContexts = WalkPathTree(sourcePath, VirtualNodeTypeFilter.All, recursive, followLinks);
 
             VirtualNode sourceNode = sourceContexts.First().Node!;
 
-            IEnumerable<VirtualNodeContext> contexts = CopySingleInternal(sourcePath, sourceNode, destinationPath, null, overwrite, followLinks);
-            destinationContexts = destinationContexts.Concat(contexts);
+            CopySingleInternal(sourcePath, sourceNode, destinationPath, null, overwrite, followLinks, destinationContextList);
 
             if (recursive && sourceNode is VirtualDirectory sourceDirectory)
             {
@@ -1085,25 +1083,23 @@ namespace AkiraNet.VirtualStorageLibrary
                     VirtualPath destinationSubPath = destinationPath + sourceDirectory.Name + sourceSubPath.GetRelativePath(sourcePath);
                     VirtualNode sourceSubNode = sourceContext.Node!;
 
-                    contexts = CopySingleInternal(sourceSubPath, sourceSubNode, destinationSubPath, null, overwrite, followLinks);
-                    destinationContexts = destinationContexts.Concat(contexts);
+                    CopySingleInternal(sourceSubPath, sourceSubNode, destinationSubPath, null, overwrite, followLinks, destinationContextList);
                 }
             }
 
-            return destinationContexts;
+            return;
         }
 
-        private IEnumerable<VirtualNodeContext> CopySingleInternal(
+        private void CopySingleInternal(
             VirtualPath sourcePath,
             VirtualNode sourceNode,
             VirtualPath destinationPath,
             VirtualPath? linkOriginalPath,
             bool overwrite,
-            bool followLinks)
+            bool followLinks,
+            List<VirtualNodeContext>? destinationContextList)
         {
             VirtualNodeName? newNodeName;
-
-            IEnumerable<VirtualNodeContext> contexts = [];
 
             VirtualDirectory destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
             VirtualNodeName destinationNodeName = destinationPath.NodeName;
@@ -1146,7 +1142,8 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 case VirtualSymbolicLink link:
                     VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
-                    return CopySingleInternal(sourcePath, sourceNode, targetPath, destinationPath, overwrite, followLinks);
+                    CopySingleInternal(sourcePath, sourceNode, targetPath, destinationPath, overwrite, followLinks, destinationContextList);
+                    return;
 
                 default:
                     newNodeName = destinationPath.NodeName;
@@ -1174,18 +1171,20 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException("深さが負の値になりました。");
             }
 
-            // コピー操作の結果を表す VirtualNodeContext を生成して返却
-            VirtualNodeContext context = new(
-                newNode,
-                destinationPath,
-                destinationDirectory,
-                depth,
-                0
-            );
+            if (destinationContextList != null)
+            {
+                // コピー操作の結果を表す VirtualNodeContext を生成して返却
+                VirtualNodeContext context = new(
+                    newNode,
+                    destinationPath,
+                    destinationDirectory,
+                    depth,
+                    0
+                );
+                destinationContextList.Add(context);
+            }
 
-            contexts = contexts.Append(context);
-
-            return contexts;
+            return;
         }
 
         public void RemoveNode(VirtualPath path, bool recursive = false, bool followLinks = false)
