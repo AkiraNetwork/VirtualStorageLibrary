@@ -56,6 +56,12 @@
             return new VirtualItem<T>(nodeName, itemData);
         }
 
+        // ノード名からVirtualItem<T>への暗黙的な変換
+        public static implicit operator VirtualItem<T>(VirtualNodeName name)
+        {
+            return new VirtualItem<T>(name);
+        }
+
         public override string ToString() => $"{Name}";
 
         public override VirtualNode DeepClone(bool recursive = false)

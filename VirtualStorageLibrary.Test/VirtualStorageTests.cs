@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
@@ -7282,40 +7283,65 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/user-item3", data2);
 
-            // Act
-            vs.Dir["/"] = [];
-            vs.Dir["/"] = [];
-            vs.Dir["/"] = [];
+            // Act 1. Add
+            vs.Item["/dir1"] = ("user-item1", data1);
+
+            // Assert 1. 
+            Assert.AreEqual("user-item1", (string)vs.GetItem("/dir1/user-item1").Name);
+            CollectionAssert.AreEqual(data1.Data, vs.GetItem("/dir1/user-item1").ItemData!.Data);
+
+            // Act 2. Add
+            vs.Item["/dir1"] = (VirtualNodeName)"user-item2";
+
+            // Assert 2.
+            Assert.AreEqual("user-item2", (string)vs.GetItem("/dir1/user-item2").Name);
+            Assert.IsNull(vs.GetItem("/dir1/user-item2").ItemData);
+
+            // Act 3. Add
             vs.Item["/dir1"] = new();
-            vs.Item["/dir1"] = new();
-            vs.Item["/dir1"] = new();
-            vs.Link["/dir1"] = new();
-            vs.Link["/dir1"] = new();
-            vs.Link["/dir1"] = new();
+
+            // Assert 3.
+            Assert.AreEqual("item1", (string)vs.GetItem("/dir1/item1").Name);
+            Assert.IsNull(vs.GetItem("/dir1/item1").ItemData);
+
+            // Act 4. Add
+            vs.Item["/dir1"] = data1;
+
+            // Assert 4.
+            Assert.AreEqual("item2", (string)vs.GetItem("/dir1/item2").Name);
+            CollectionAssert.AreEqual(data1.Data, vs.GetItem("/dir1/item2").ItemData!.Data);
+
+            // Act 5. Add
+            vs.Item["/dir1"] = vs.Item["/user-item3"];
+
+            // Assert 5.
+            Assert.AreEqual("user-item3", (string)vs.GetItem("/dir1/user-item3").Name);
+            CollectionAssert.AreEqual(data2.Data, vs.GetItem("/dir1/user-item3").ItemData!.Data);
+            Assert.AreNotSame(vs.GetItem("/user-item3"), vs.GetItem("/dir1/user-item3"));
+            Assert.AreNotSame(vs.GetItem("/user-item3").ItemData, vs.GetItem("/dir1/user-item3").ItemData);
+
+            // Act 6. Add
+            vs.Item["/dir1/user-item1"] = vs.Item["/dir1/user-item3"];
+
+            // Assert 6.
+            Assert.AreEqual("user-item1", (string)vs.GetItem("/dir1/user-item1").Name);
+            CollectionAssert.AreEqual(data2.Data, vs.GetItem("/dir1/user-item1").ItemData!.Data);
+
+            // Act 7. Add
+            vs.Item["/dir1/user-item2"] = data2;
+
+            // Assert 7.
+            Assert.AreEqual("user-item2", (string)vs.GetItem("/dir1/user-item2").Name);
+            CollectionAssert.AreEqual(data2.Data, vs.GetItem("/dir1/user-item2").ItemData!.Data);
 
             // Debug print
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
 
-            // Assert
-            Assert.AreEqual(4, vs.GetNodes("/", VirtualNodeTypeFilter.Directory).Count());
-            Assert.AreEqual(3, vs.GetNodes("/dir1", VirtualNodeTypeFilter.Item).Count());
-            Assert.AreEqual(3, vs.GetNodes("/dir1", VirtualNodeTypeFilter.SymbolicLink).Count());
-            Assert.AreEqual<string>("dir1", vs.Dir["/dir1"].Name);
-            Assert.AreEqual<string>("dir2", vs.Dir["/dir2"].Name);
-            Assert.AreEqual<string>("dir3", vs.Dir["/dir3"].Name);
-            Assert.AreEqual<string>("item4", vs.Item["/dir1/item4"].Name);
-            Assert.AreEqual<string>("item5", vs.Item["/dir1/item5"].Name);
-            Assert.AreEqual<string>("item6", vs.Item["/dir1/item6"].Name);
-            Assert.IsNull(vs.Item["/dir1/item4"].ItemData);
-            Assert.IsNull(vs.Item["/dir1/item5"].ItemData);
-            Assert.IsNull(vs.Item["/dir1/item6"].ItemData);
-            Assert.AreEqual<string>("link7", vs.Link["/dir1/link7"].Name);
-            Assert.AreEqual<string>("link8", vs.Link["/dir1/link8"].Name);
-            Assert.AreEqual<string>("link9", vs.Link["/dir1/link9"].Name);
-            Assert.IsNull(vs.Link["/dir1/link7"].TargetPath);
-            Assert.IsNull(vs.Link["/dir1/link8"].TargetPath);
-            Assert.IsNull(vs.Link["/dir1/link9"].TargetPath);
         }
     }
 }

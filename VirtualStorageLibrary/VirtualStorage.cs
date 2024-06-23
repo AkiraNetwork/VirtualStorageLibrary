@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace AkiraNet.VirtualStorageLibrary
 {
@@ -194,11 +195,62 @@ namespace AkiraNet.VirtualStorageLibrary
         public VirtualNode this[VirtualPath path, bool followLinks = true]
         {
             get => GetNode(path, followLinks);
-            set => AddNode(path, value);
+            set => SetNode(path, value);
         }
 
-        public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = true)
+        public void SetNode(VirtualPath destinationPath, VirtualNode node)
         {
+            destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
+
+            switch (node)
+            {
+                case VirtualDirectory directory:
+                    AddNode(destinationPath, directory, true);
+                    break;
+
+                case VirtualSymbolicLink symbolicLink:
+                    AddNode(destinationPath, symbolicLink, true);
+                    break;
+
+                case VirtualItem<T> item:
+                    if (ItemExists(destinationPath))
+                    {
+                        UpdateItem(destinationPath, item);
+                    }
+                    else
+                    {
+                        AddItem(destinationPath, item, true);
+                    }
+                    break;
+
+                default:
+                    throw new InvalidOperationException($"ノードの種類 '{node.GetType().Name}' はサポートされていません。");
+            }
+        }
+
+        private void UpdateItem(VirtualPath itemPath, VirtualItem<T> newItem)
+        {
+            // 絶対パスに変換
+            itemPath = ConvertToAbsolutePath(itemPath).NormalizePath();
+
+            // 既存のアイテムを取得
+            VirtualItem<T> item = GetItem(itemPath, true);
+
+            // 既存アイテムのデータを更新
+            if (newItem.IsReferencedInStorage)
+            {
+                item.ItemData = ((VirtualItem<T>)newItem.DeepClone()).ItemData;
+            }
+            else
+            {
+                item.ItemData = newItem.ItemData;
+            }
+        }
+
+        public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)
+        {
+            nodeDirectoryPath = ConvertToAbsolutePath(nodeDirectoryPath).NormalizePath();
+
             switch (node)
             {
                 case VirtualDirectory directory:
@@ -308,6 +360,15 @@ namespace AkiraNet.VirtualStorageLibrary
                     directory.Remove(item.Name);
                 }
             }
+
+            // itemがストレージに追加済みなら、クローンを作成する
+            if (item.IsReferencedInStorage)
+            {
+                item = (VirtualItem<T>)item.DeepClone();
+            }
+
+            // 追加するアイテムのストレージ参照フラグをセット
+            item.IsReferencedInStorage = true;
 
             // 新しいアイテムを追加
             directory.Add(item, overwrite);
@@ -1217,6 +1278,11 @@ namespace AkiraNet.VirtualStorageLibrary
                         VirtualPath linkPath = path + context.TraversalPath;
                         VirtualPath linkParentPath = linkPath.DirectoryPath;
                         parentDir = GetDirectory(linkParentPath, true);
+
+                        // 削除するリンクのストレージ参照フラグをリセット
+                        link.IsReferencedInStorage = false;
+
+                        // 辞書からノードを削除
                         parentDir?.Remove(link.Name);
 
                         // ターゲットノードタイプを更新
@@ -1237,14 +1303,18 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // 通常のノードの場合はそのまま削除
 
-                        if (context.Node is IDisposable disposableNode)
+                        VirtualNode node = context.Node!;
+                        if (node is IDisposable disposableNode)
                         {
                             // 削除対象ノードがIDisposableを実装している場合はDisposeメソッドを呼び出す
                             disposableNode.Dispose();
                         }
 
-                        VirtualNodeName nodeName = context.Node!.Name;
-                        parentDir?.Remove(nodeName);
+                        // 削除するノードのストレージ参照フラグをリセット
+                        node.IsReferencedInStorage = false;
+
+                        // 辞書からノードを削除
+                        parentDir?.Remove(node.Name);
 
                         // ターゲットノードタイプを更新
                         VirtualPath deletePath = path + context.TraversalPath;
@@ -1255,8 +1325,9 @@ namespace AkiraNet.VirtualStorageLibrary
             else
             {
                 VirtualNodeContext context = contexts.First();
+                VirtualNode node = context.Node!;
 
-                if (context.Node is VirtualDirectory directory)
+                if (node is VirtualDirectory directory)
                 {
                     if (directory.Count > 0)
                     {
@@ -1265,19 +1336,23 @@ namespace AkiraNet.VirtualStorageLibrary
                 }
                 VirtualDirectory? parentDir = context.ParentDirectory;
 
-                if (context.Node is IDisposable disposableNode)
+                if (node is IDisposable disposableNode)
                 {
                     // 削除対象ノードがIDisposableを実装している場合はDisposeメソッドを呼び出す
                     disposableNode.Dispose();
                 }
 
-                parentDir?.Remove(context.Node!.Name);
+                // 削除するノードのストレージ参照フラグをリセット
+                node.IsReferencedInStorage = false;
+
+                // 辞書からノードを削除
+                parentDir?.Remove(node.Name);
 
                 // ターゲットノードタイプを更新
                 UpdateLinkTypesInDictionary(path);
 
                 // ノードがリンクの場合、リンク辞書からリンクを削除
-                if (context.Node is VirtualSymbolicLink link)
+                if (node is VirtualSymbolicLink link)
                 {
                     if (link.TargetPath != null)
                     {

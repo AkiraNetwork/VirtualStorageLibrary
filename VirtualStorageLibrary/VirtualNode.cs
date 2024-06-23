@@ -12,6 +12,8 @@
 
         public abstract VirtualNode DeepClone(bool recursive = false);
 
+        public bool IsReferencedInStorage { get; internal set; } = false;
+
         protected VirtualNode(VirtualNodeName name)
         {
             Name = name;
