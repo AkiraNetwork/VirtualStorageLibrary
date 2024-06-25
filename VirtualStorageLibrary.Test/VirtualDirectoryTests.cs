@@ -1319,5 +1319,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(subDirectory.IsReferencedInStorage);
             Assert.IsFalse(item.IsReferencedInStorage);
         }
+
+        [TestMethod]
+        public void Operator_Plus_test()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+            vs.AddDirectory("/dir1/dir2", true);
+            vs.AddItem("/dir1/dir2/item1", data1);
+
+            // Act
+            VirtualItem<BinaryData> item1 = vs.GetItem("/dir1/dir2/item1");
+            VirtualDirectory root = vs.GetDirectory("/");
+            root += item1;
+        }
     }
 }

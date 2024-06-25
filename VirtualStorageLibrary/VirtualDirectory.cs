@@ -117,7 +117,7 @@
             return nodes.GroupAndSort(groupCondition, sortConditions);
         }
 
-        public void Add(VirtualNode node, bool allowOverwrite = false)
+        public VirtualNode Add(VirtualNode node, bool allowOverwrite = false)
         {
             if (!VirtualNodeName.IsValidNodeName(node.Name))
             {
@@ -131,22 +131,44 @@
                 throw new InvalidOperationException($"ノード '{key}' は既に存在します。上書きは許可されていません。");
             }
 
+            // ノードがストレージに追加済みなら、クローンを作成する
+            if (node.IsReferencedInStorage)
+            {
+                // TODO: DeepClone(true)は再帰的クローン。
+                // ディレクトリのDeepClone(false)もCopyNodeで使っている為、CopyNodeのリファクタリングが終わり次第、
+                // DeepCloneもそれに合わせてリファクタリングする予定。
+                // その結果として、DeepClone(bool recursive = false)はDeepClone()に変更される予定。
+                if (node is VirtualDirectory)
+                {
+                    node = node.DeepClone(true);
+                }
+                else
+                {
+                    node = node.DeepClone(false);
+                }
+            }
+
             _nodes[key] = node;
+
+            return node;
         }
 
-        public void AddItem<T>(VirtualNodeName name, T item, bool allowOverwrite = false)
+        public VirtualItem<T> AddItem<T>(VirtualNodeName name, T itemData, bool allowOverwrite = false)
         {
-            Add(new VirtualItem<T>(name, item), allowOverwrite);
+            VirtualItem<T> item = (VirtualItem<T>)Add(new VirtualItem<T>(name, itemData), allowOverwrite);
+            return item;
         }
 
-        public void AddSymbolicLink(VirtualNodeName name, VirtualPath targetPath, bool allowOverwrite = false)
+        public VirtualSymbolicLink AddSymbolicLink(VirtualNodeName name, VirtualPath targetPath, bool allowOverwrite = false)
         {
-            Add(new VirtualSymbolicLink(name, targetPath), allowOverwrite);
+            VirtualSymbolicLink link = (VirtualSymbolicLink)Add(new VirtualSymbolicLink(name, targetPath), allowOverwrite);
+            return link;
         }
 
-        public void AddDirectory(VirtualNodeName name, bool allowOverwrite = false)
+        public VirtualDirectory AddDirectory(VirtualNodeName name, bool allowOverwrite = false)
         {
-            Add(new VirtualDirectory(name), allowOverwrite);
+            VirtualDirectory directory = (VirtualDirectory)Add(new VirtualDirectory(name), allowOverwrite);
+            return directory;
         }
 
         public VirtualNode this[VirtualNodeName name]
@@ -262,18 +284,18 @@
 
         public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNode node)
         {
+            node = directory.Add(node);
             if (directory.IsReferencedInStorage)
             {
                 SetIsReferencedInStorageRecursively(node, true);
             }
-            directory.Add(node);
             return directory;
         }
 
         public static VirtualDirectory operator -(VirtualDirectory directory, VirtualNode node)
         {
-            SetIsReferencedInStorageRecursively(node, false);
             directory.Remove(node.Name);
+            SetIsReferencedInStorageRecursively(node, false);
             return directory;
         }
 

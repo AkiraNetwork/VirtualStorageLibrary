@@ -24,7 +24,10 @@ namespace AkiraNet.VirtualStorageLibrary
         public VirtualStorage()
         {
             _root = new VirtualDirectory(VirtualPath.Root);
+            _root.IsReferencedInStorage = true;
+
             CurrentPath = VirtualPath.Root;
+
             _linkDictionary = [];
 
             Item = new(this);
@@ -292,11 +295,11 @@ namespace AkiraNet.VirtualStorageLibrary
                     throw new InvalidOperationException($"ディレクトリ '{directory.Name}' は既に存在します。");
                 }
 
+                // 新しいディレクトリを追加
+                directory = (VirtualDirectory)parentDirectory.Add(directory);
+
                 // 追加するノードのストレージ参照フラグをセット
                 directory.IsReferencedInStorage = true;
-
-                // 新しいディレクトリを追加
-                parentDirectory.Add(directory);
 
                 // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
                 UpdateLinkTypesInDictionary(directoryPath + directory.Name);
@@ -329,11 +332,11 @@ namespace AkiraNet.VirtualStorageLibrary
         {
             VirtualDirectory newSubdirectory = new(nodeName);
 
+            // 中間ディレクトリを追加
+            newSubdirectory = (VirtualDirectory)directory.Add(newSubdirectory);
+
             // 追加するノードのストレージ参照フラグをセット
             newSubdirectory.IsReferencedInStorage = true;
-
-            // 中間ディレクトリを追加
-            directory.Add(newSubdirectory);
 
             // 中間ディレクトリをリンク辞書に追加
             UpdateLinkTypesInDictionary(nodePath);
@@ -368,17 +371,11 @@ namespace AkiraNet.VirtualStorageLibrary
                 }
             }
 
-            // itemがストレージに追加済みなら、クローンを作成する
-            if (item.IsReferencedInStorage)
-            {
-                item = (VirtualItem<T>)item.DeepClone();
-            }
+            // 新しいアイテムを追加
+            item = (VirtualItem<T>)directory.Add(item, overwrite);
 
             // 追加するノードのストレージ参照フラグをセット
             item.IsReferencedInStorage = true;
-
-            // 新しいアイテムを追加
-            directory.Add(item, overwrite);
 
             // リンク辞書を更新
             UpdateLinkTypesInDictionary(itemDirectoryPath + item.Name);
@@ -431,7 +428,10 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             // 新しいシンボリックリンクを追加
-            directory.Add(link);
+            link = (VirtualSymbolicLink)directory.Add(link);
+
+            // 追加するノードのストレージ参照フラグをセット
+            link.IsReferencedInStorage = true;
 
             if (link.TargetPath != null)
             {
