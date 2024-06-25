@@ -1241,9 +1241,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualStorage<string> vs = new();
-            vs.AddDirectory("/userDir");
+            vs.AddDirectory("/testDir");
             VirtualItem<string> item = new("testItem");
-            VirtualDirectory directory = vs.GetDirectory("/userDir");
+            VirtualDirectory directory = vs.GetDirectory("/testDir");
 
             // Act
             directory += item;
@@ -1258,9 +1258,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualStorage<string> vs = new();
-            vs.AddDirectory("/userDir");
+            vs.AddDirectory("/testDir");
             VirtualItem<string> item = new("testItem");
-            VirtualDirectory directory = vs.GetDirectory("/userDir");
+            VirtualDirectory directory = vs.GetDirectory("/testDir");
             directory += item;
 
             // Act
@@ -1268,6 +1268,55 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsFalse(directory.NodeExists("testItem"));
+            Assert.IsFalse(item.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Plus_AddsDirectoryToDirectoryInVirtualStorage_And_VerifiesIsReferencedInStorageIsTrue()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddDirectory("/testDir");
+            VirtualDirectory subDirectory = new("subDir");
+            VirtualItem<string> item = new("testItem");
+            subDirectory += item;
+            VirtualDirectory directory = vs.GetDirectory("/testDir");
+
+            // Verify flags before Act
+            Assert.IsFalse(subDirectory.IsReferencedInStorage);
+            Assert.IsFalse(item.IsReferencedInStorage);
+
+            // Act
+            directory += subDirectory;
+
+            // Assert
+            Assert.IsTrue(directory.NodeExists("subDir"));
+            Assert.IsTrue(subDirectory.IsReferencedInStorage);
+            Assert.IsTrue(item.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Minus_RemovesDirectoryFromDirectoryInVirtualStorage_And_VerifiesIsReferencedInStorageIsFalse()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddDirectory("/testDir");
+            VirtualDirectory subDirectory = new("subDir");
+            VirtualItem<string> item = new("testItem");
+            subDirectory += item;
+            VirtualDirectory directory = vs.GetDirectory("/testDir");
+            directory += subDirectory;
+
+            // Verify flags before Act
+            Assert.IsTrue(subDirectory.IsReferencedInStorage);
+            Assert.IsTrue(item.IsReferencedInStorage);
+
+            // Act
+            directory -= subDirectory;
+
+            // Assert
+            Assert.IsFalse(directory.NodeExists("subDir"));
+            Assert.IsFalse(subDirectory.IsReferencedInStorage);
             Assert.IsFalse(item.IsReferencedInStorage);
         }
     }

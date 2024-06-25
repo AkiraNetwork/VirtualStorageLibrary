@@ -264,7 +264,7 @@
         {
             if (directory.IsReferencedInStorage)
             {
-                node.IsReferencedInStorage = true;
+                SetIsReferencedInStorageRecursively(node, true);
             }
             directory.Add(node);
             return directory;
@@ -272,9 +272,21 @@
 
         public static VirtualDirectory operator -(VirtualDirectory directory, VirtualNode node)
         {
-            node.IsReferencedInStorage = false;
+            SetIsReferencedInStorageRecursively(node, false);
             directory.Remove(node.Name);
             return directory;
+        }
+
+        private static void SetIsReferencedInStorageRecursively(VirtualNode node, bool value)
+        {
+            node.IsReferencedInStorage = value;
+            if (node is VirtualDirectory subDirectory)
+            {
+                foreach (var subNode in subDirectory._nodes.Values)
+                {
+                    SetIsReferencedInStorageRecursively(subNode, value);
+                }
+            }
         }
     }
 }
