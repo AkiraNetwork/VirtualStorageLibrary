@@ -205,7 +205,7 @@ namespace AkiraNet.VirtualStorageLibrary
             switch (node)
             {
                 case VirtualDirectory directory:
-                    AddNode(destinationPath, directory, true);
+                    AddDirectory(destinationPath, directory);
                     break;
 
                 case VirtualSymbolicLink symbolicLink:
@@ -292,6 +292,9 @@ namespace AkiraNet.VirtualStorageLibrary
                     throw new InvalidOperationException($"ディレクトリ '{directory.Name}' は既に存在します。");
                 }
 
+                // 追加するノードのストレージ参照フラグをセット
+                directory.IsReferencedInStorage = true;
+
                 // 新しいディレクトリを追加
                 parentDirectory.Add(directory);
 
@@ -324,8 +327,12 @@ namespace AkiraNet.VirtualStorageLibrary
 
         private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName, VirtualPath nodePath)
         {
-            // 中間ディレクトリを追加
             VirtualDirectory newSubdirectory = new(nodeName);
+
+            // 追加するノードのストレージ参照フラグをセット
+            newSubdirectory.IsReferencedInStorage = true;
+
+            // 中間ディレクトリを追加
             directory.Add(newSubdirectory);
 
             // 中間ディレクトリをリンク辞書に追加
@@ -367,7 +374,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 item = (VirtualItem<T>)item.DeepClone();
             }
 
-            // 追加するアイテムのストレージ参照フラグをセット
+            // 追加するノードのストレージ参照フラグをセット
             item.IsReferencedInStorage = true;
 
             // 新しいアイテムを追加

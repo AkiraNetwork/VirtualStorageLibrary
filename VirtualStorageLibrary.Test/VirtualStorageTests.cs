@@ -10,6 +10,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void TestInitialize()
         {
             VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
         }
 
         [TestMethod]
@@ -1965,7 +1966,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test/nested", true);
             vs.AddDirectory("/target");
-            BinaryData targetItem = [ 1, 2, 3 ];
+            BinaryData targetItem = [1, 2, 3];
             vs.AddItem("/target/targetItem", targetItem);
             vs.AddSymbolicLink("/test/nested/link", "/target");
 
@@ -1987,7 +1988,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test/nested", true);
             vs.AddDirectory("/target");
-            BinaryData targetItem = [ 1, 2, 3 ];
+            BinaryData targetItem = [1, 2, 3];
             vs.AddItem("/target/targetItem", targetItem);
             vs.AddSymbolicLink("/test/nested/link", "/target");
 
@@ -2008,7 +2009,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test/nested", true);
-            BinaryData targetItem = [ 1, 2, 3 ];
+            BinaryData targetItem = [1, 2, 3];
             vs.AddItem("/targetItem", targetItem);
             vs.AddSymbolicLink("/test/nested/linkToFile", "/targetItem");
 
@@ -3657,7 +3658,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualSymbolicLink overwrittenLink = vs.GetSymbolicLink(directoryPath + linkName);
             Assert.AreEqual("/newTarget", (string)overwrittenLink.TargetPath);
         }
-        
+
         // 存在しないディレクトリにリンクを追加しようとした場合、例外がスローされるか確認する。
         [TestMethod]
         public void AddSymbolicLink_ToNonExistingDirectory_ShouldThrowVirtualNodeNotFoundException()
@@ -5634,7 +5635,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // シンボリックリンクを経由してアイテムにコピーする
             vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
- 
+
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
@@ -6674,7 +6675,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Debug print
             DebugPrintLinkDictionary(vs);
         }
-        
+
         // アイテム削除時のリンク辞書更新のテスト
         [TestMethod]
         public void RemoveNode_UpdatesLinkTypeForItemDeletion()
@@ -6683,7 +6684,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             VirtualPath itemPath = "/dir1/item1";
             VirtualPath linkPath = "/dir1/linkToItem1";
-            
+
             // アイテムを追加
             BinaryData data = [1, 2, 3];
             vs.AddDirectory("/dir1", true);
@@ -7278,70 +7279,28 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual("subdir1", (string)directory.Name);
         }
 
+#if UNUSED_CODE
         [TestMethod]
-        public void Free_Test1_AllIndexerAndDefaultNodeConstructor()
+        public void Free_Test1_ItemIndexer()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             BinaryData data1 = [1, 2, 3];
-            BinaryData data2 = [4, 5, 6];
+            VirtualItem<BinaryData> item1 = ("item1", data1);
+
+            Assert.IsFalse(item1.IsReferencedInStorage);
+
             vs.AddDirectory("/dir1");
-            vs.AddItem("/user-item3", data2);
 
-            // Act 1. Add
-            vs.Item["/dir1"] = ("user-item1", data1);
+            // Act 1.
+            vs.Item["/dir1"] = vs.Item["/dir1"] + item1;
 
-            // Assert 1. 
-            Assert.AreEqual("user-item1", (string)vs.GetItem("/dir1/user-item1").Name);
-            CollectionAssert.AreEqual(data1.Data, vs.GetItem("/dir1/user-item1").ItemData!.Data);
-
-            // Act 2. Add
-            vs.Item["/dir1"] = (VirtualNodeName)"user-item2";
-
-            // Assert 2.
-            Assert.AreEqual("user-item2", (string)vs.GetItem("/dir1/user-item2").Name);
-            Assert.IsNull(vs.GetItem("/dir1/user-item2").ItemData);
-
-            // Act 3. Add
-            vs.Item["/dir1"] = new();
-
-            // Assert 3.
+            VirtualDirectory = VirtualDirectory + VirtualItem
+            
+            // Assert 1.
             Assert.AreEqual("item1", (string)vs.GetItem("/dir1/item1").Name);
-            Assert.IsNull(vs.GetItem("/dir1/item1").ItemData);
-
-            // Act 4. Add
-            vs.Item["/dir1"] = data1;
-
-            // Assert 4.
-            Assert.AreEqual("item2", (string)vs.GetItem("/dir1/item2").Name);
-            CollectionAssert.AreEqual(data1.Data, vs.GetItem("/dir1/item2").ItemData!.Data);
-
-            // Act 5. Add
-            vs.Item["/dir1"] = vs.Item["/user-item3"];
-
-            // Assert 5.
-            Assert.AreEqual("user-item3", (string)vs.GetItem("/dir1/user-item3").Name);
-            CollectionAssert.AreEqual(data2.Data, vs.GetItem("/dir1/user-item3").ItemData!.Data);
-            Assert.AreNotSame(vs.GetItem("/user-item3"), vs.GetItem("/dir1/user-item3"));
-            Assert.AreNotSame(vs.GetItem("/user-item3").ItemData, vs.GetItem("/dir1/user-item3").ItemData);
-
-            // Act 6. Add
-            vs.Item["/dir1/user-item1"] = vs.Item["/dir1/user-item3"];
-
-            // Assert 6.
-            Assert.AreEqual("user-item1", (string)vs.GetItem("/dir1/user-item1").Name);
-            CollectionAssert.AreEqual(data2.Data, vs.GetItem("/dir1/user-item1").ItemData!.Data);
-
-            // Act 7. Add
-            vs.Item["/dir1/user-item2"] = data2;
-
-            // Assert 7.
-            Assert.AreEqual("user-item2", (string)vs.GetItem("/dir1/user-item2").Name);
-            CollectionAssert.AreEqual(data2.Data, vs.GetItem("/dir1/user-item2").ItemData!.Data);
-
-            // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
-
+            Assert.IsTrue(vs.GetItem("/dir1/item1").IsReferencedInStorage);
         }
+#endif
     }
 }

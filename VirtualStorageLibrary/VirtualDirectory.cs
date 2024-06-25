@@ -259,5 +259,22 @@
 
             throw new InvalidOperationException($"指定されたノード '{name}' はシンボリックリンク型ではありません。");
         }
+
+        public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNode node)
+        {
+            if (directory.IsReferencedInStorage)
+            {
+                node.IsReferencedInStorage = true;
+            }
+            directory.Add(node);
+            return directory;
+        }
+
+        public static VirtualDirectory operator -(VirtualDirectory directory, VirtualNode node)
+        {
+            node.IsReferencedInStorage = false;
+            directory.Remove(node.Name);
+            return directory;
+        }
     }
 }

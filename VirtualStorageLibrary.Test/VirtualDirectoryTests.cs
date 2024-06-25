@@ -1204,5 +1204,71 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsNotNull(directory);
             Assert.AreEqual(directoryName, directory.Name);
         }
+
+        [TestMethod]
+        public void Operator_Plus_AddsNodeToDirectory_And_VerifiesIsReferencedInStorageIsFalse()
+        {
+            // Arrange
+            VirtualDirectory directory = new("testDir");
+            VirtualItem<string> item = new("testItem");
+
+            // Act
+            directory += item;
+
+            // Assert
+            Assert.IsTrue(directory.NodeExists("testItem"));
+            Assert.IsFalse(item.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Minus_RemovesNodeFromDirectory_And_VerifiesIsReferencedInStorageIsFalse()
+        {
+            // Arrange
+            VirtualDirectory directory = new("testDir");
+            VirtualItem<string> item = new("testItem");
+            directory += item;
+
+            // Act
+            directory -= item;
+
+            // Assert
+            Assert.IsFalse(directory.NodeExists("testItem"));
+            Assert.IsFalse(item.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Plus_AddsNodeToDirectoryInVirtualStorage()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddDirectory("/userDir");
+            VirtualItem<string> item = new("testItem");
+            VirtualDirectory directory = vs.GetDirectory("/userDir");
+
+            // Act
+            directory += item;
+
+            // Assert
+            Assert.IsTrue(directory.NodeExists("testItem"));
+            Assert.IsTrue(item.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Minus_RemovesNodeFromDirectoryInVirtualStorage()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddDirectory("/userDir");
+            VirtualItem<string> item = new("testItem");
+            VirtualDirectory directory = vs.GetDirectory("/userDir");
+            directory += item;
+
+            // Act
+            directory -= item;
+
+            // Assert
+            Assert.IsFalse(directory.NodeExists("testItem"));
+            Assert.IsFalse(item.IsReferencedInStorage);
+        }
     }
 }

@@ -17,14 +17,7 @@
             }
             set
             {
-                if (value is VirtualItem<T> item)
-                {
-                    _storage[path] = item;
-                }
-                else
-                {
-                    throw new ArgumentException("値はVirtualItemでなければなりません。");
-                }
+                _storage[path] = value;
             }
         }
     }
@@ -46,14 +39,7 @@
             }
             set
             {
-                if (value is VirtualDirectory directory)
-                {
-                    _storage[path] = directory;
-                }
-                else
-                {
-                    throw new ArgumentException("値はVirtualDirectoryでなければなりません。");
-                }
+                _storage[path] = value;
             }
         }
     }
@@ -75,14 +61,7 @@
             }
             set
             {
-                if (value is VirtualSymbolicLink link)
-                {
-                    _storage[path] = link;
-                }
-                else
-                {
-                    throw new ArgumentException("値はVirtualSymbolicLinkでなければなりません。");
-                }
+                _storage[path] = value;
             }
         }
     }
