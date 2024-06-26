@@ -465,18 +465,19 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void Rename_ExistingNode_RenamesNodeCorrectly()
         {
             // VirtualDirectory オブジェクトを作成し、ノードを追加
+            VirtualNodeName oldName = "ExistingNode";
+            VirtualNodeName newName = "RenamedNode";
             VirtualDirectory directory = new("TestDirectory");
             byte[] testData = [1, 2, 3];
-            VirtualItem<BinaryData> existingNode = new("ExistingNode", new BinaryData(testData));
+            VirtualItem<BinaryData> existingNode = new(oldName, new BinaryData(testData));
             directory.Add(existingNode);
 
             // Rename メソッドを使用してノードの名前を変更
-            VirtualNodeName newName = "RenamedNode";
             directory.Rename(existingNode, newName);
 
             // 名前が変更されたノードが存在し、元のノードが存在しないことを確認
             Assert.IsTrue(directory.NodeExists(newName));
-            Assert.IsFalse(directory.NodeExists(existingNode.Name));
+            Assert.IsFalse(directory.NodeExists(oldName));
         }
 
         [TestMethod]

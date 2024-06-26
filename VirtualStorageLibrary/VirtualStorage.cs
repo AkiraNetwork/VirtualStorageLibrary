@@ -1566,8 +1566,8 @@ namespace AkiraNet.VirtualStorageLibrary
             if (DirectoryExists(destinationPath))
             {
                 destinationParentDirectory = GetDirectory(destinationPath);
-                destinationNodeName = sourceNode.Name; // TODO: NodeExistsのシグネチャをnodeに変更する予定
-                destinationNode = TryGetNode(sourcePath);
+                destinationNodeName = sourceNode.Name; // TODO: NodeExistsのシグネチャを node に変更する予定
+                destinationNode = TryGetNode(destinationPath + sourceNode.Name);
             }
             else if (!NodeExists(destinationPath))
             {
