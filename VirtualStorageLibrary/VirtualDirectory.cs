@@ -1,4 +1,6 @@
-﻿namespace AkiraNet.VirtualStorageLibrary
+﻿using System.IO;
+
+namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualDirectory : VirtualNode, IEnumerable<VirtualNode>
     {
@@ -150,10 +152,16 @@
 
             _nodes[key] = node;
 
+            // 自分自身がストレージに追加済みなら、追加したノードもストレージに追加済みとする
+            if (IsReferencedInStorage)
+            {
+                SetIsReferencedInStorageRecursively(node, true);
+            }
+
             return node;
         }
 
-        public VirtualItem<T> AddItem<T>(VirtualNodeName name, T itemData, bool allowOverwrite = false)
+        public VirtualItem<T> AddItem<T>(VirtualNodeName name, T? itemData = default, bool allowOverwrite = false)
         {
             VirtualItem<T> item = (VirtualItem<T>)Add(new VirtualItem<T>(name, itemData), allowOverwrite);
             return item;

@@ -1413,5 +1413,30 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(addedTestItem.IsReferencedInStorage);
             Assert.IsFalse(addedTestLink.IsReferencedInStorage);
         }
+
+        [TestMethod]
+        public void AddDirectoryToAnotherDirectory_CreatesClone_And_VerifiesIsReferencedInStorage()
+        {
+            VirtualStorage<string> vs = new();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddDirectory("/dir1/dir2a/", true);
+
+            VirtualDirectory dir3 = vs.GetDirectory("/dir1/dir2/dir3");
+            VirtualDirectory dir2a = vs.GetDirectory("/dir1/dir2a");
+            
+            dir2a += dir3;
+            vs.GetDirectory("/dir1/dir2/dir3").AddItem<string>("item1");
+
+            Assert.IsTrue(dir2a.NodeExists("dir3"));
+            Assert.AreNotSame(vs.GetDirectory("/dir1/dir2/dir3"), vs.GetDirectory("/dir1/dir2a/dir3"));
+
+            Assert.IsTrue(vs.GetDirectory("/dir1").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetDirectory("/dir1/dir2").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetDirectory("/dir1/dir2/dir3").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetItem("/dir1/dir2/dir3/item1").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetDirectory("/dir1/dir2a").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetDirectory("/dir1/dir2a/dir3").IsReferencedInStorage);
+            Assert.IsFalse(vs.NodeExists("/dir1/dir2a/dir3/item1"));
+        }
     }
 }

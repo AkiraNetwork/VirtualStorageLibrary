@@ -298,9 +298,6 @@ namespace AkiraNet.VirtualStorageLibrary
                 // 新しいディレクトリを追加
                 directory = (VirtualDirectory)parentDirectory.Add(directory);
 
-                // 追加するノードのストレージ参照フラグをセット
-                directory.IsReferencedInStorage = true;
-
                 // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
                 UpdateLinkTypesInDictionary(directoryPath + directory.Name);
             }
@@ -334,9 +331,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // 中間ディレクトリを追加
             newSubdirectory = (VirtualDirectory)directory.Add(newSubdirectory);
-
-            // 追加するノードのストレージ参照フラグをセット
-            newSubdirectory.IsReferencedInStorage = true;
 
             // 中間ディレクトリをリンク辞書に追加
             UpdateLinkTypesInDictionary(nodePath);
@@ -373,9 +367,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // 新しいアイテムを追加
             item = (VirtualItem<T>)directory.Add(item, overwrite);
-
-            // 追加するノードのストレージ参照フラグをセット
-            item.IsReferencedInStorage = true;
 
             // リンク辞書を更新
             UpdateLinkTypesInDictionary(itemDirectoryPath + item.Name);
@@ -429,9 +420,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // 新しいシンボリックリンクを追加
             link = (VirtualSymbolicLink)directory.Add(link);
-
-            // 追加するノードのストレージ参照フラグをセット
-            link.IsReferencedInStorage = true;
 
             if (link.TargetPath != null)
             {
