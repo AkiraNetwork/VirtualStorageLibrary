@@ -411,10 +411,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void Remove_NonExistentNodeWithoutForce_ThrowsVirtualNodeNotFoundException()
         {
             VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> node = new("ExistingNode");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                directory.Remove("NonExistentNode");
+                directory.Remove(node);
             });
         }
 
@@ -423,13 +424,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             VirtualDirectory directory = new("TestDirectory");
             byte[] testData = [1, 2, 3];
-            VirtualNodeName nodeName = "ExistingNode";
-            VirtualItem<BinaryData> node = new(nodeName, new BinaryData(testData));
+            VirtualItem<BinaryData> node = new("item", new BinaryData(testData));
             directory.Add(node);
 
-            directory.Remove(nodeName);
+            directory.Remove(node);
 
-            Assert.IsFalse(directory.NodeExists(nodeName));
+            Assert.IsFalse(directory.NodeExists(node.Name));
         }
 
         [TestMethod]
@@ -465,19 +465,18 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void Rename_ExistingNode_RenamesNodeCorrectly()
         {
             // VirtualDirectory オブジェクトを作成し、ノードを追加
-            VirtualNodeName oldName = "ExistingNode";
             VirtualDirectory directory = new("TestDirectory");
             byte[] testData = [1, 2, 3];
-            VirtualItem<BinaryData> existingNode = new(oldName, new BinaryData(testData));
+            VirtualItem<BinaryData> existingNode = new("ExistingNode", new BinaryData(testData));
             directory.Add(existingNode);
 
             // Rename メソッドを使用してノードの名前を変更
             VirtualNodeName newName = "RenamedNode";
-            directory.Rename(oldName, newName);
+            directory.Rename(existingNode, newName);
 
             // 名前が変更されたノードが存在し、元のノードが存在しないことを確認
             Assert.IsTrue(directory.NodeExists(newName));
-            Assert.IsFalse(directory.NodeExists(oldName));
+            Assert.IsFalse(directory.NodeExists(existingNode.Name));
         }
 
         [TestMethod]
@@ -485,11 +484,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // VirtualDirectory オブジェクトを作成
             VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> item = new("ExistingNode");
 
             // 存在しないノード名で Rename メソッドを呼び出すと例外がスローされることを確認
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                directory.Rename("NonExistingNode", "NewName");
+                directory.Rename(item, "NewName");
             });
         }
 
@@ -507,7 +507,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // 既に存在するノード名に Rename メソッドを使用してノードの名前を変更しようとすると例外がスローされることを確認
             Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                directory.Rename("ExistingNode1", "ExistingNode2");
+                directory.Rename(existingNode1, "ExistingNode2");
             });
         }
 
@@ -541,9 +541,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void NodeNames_DirectoryWithNodesAfterRemovingOne_ReturnsRemainingNodeNames()
         {
             VirtualDirectory directory = new("TestDirectory");
-            directory.AddDirectory("Node1");
+            VirtualDirectory node1 = directory.AddDirectory("Node1");
             directory.AddDirectory("Node2");
-            directory.Remove("Node1");
+            directory.Remove(node1);
 
             IEnumerable<VirtualNodeName> nodeNames = directory.NodeNames;
 
@@ -583,9 +583,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         public void Nodes_DirectoryWithNodesAfterRemovingOne_ReturnsRemainingNodes()
         {
             VirtualDirectory directory = new("TestDirectory");
-            directory.AddDirectory("Node1");
+            VirtualDirectory node1 = directory.AddDirectory("Node1");
             directory.AddDirectory("Node2");
-            directory.Remove("Node1");
+            directory.Remove(node1);
 
             IEnumerable<VirtualNode> nodes = directory.Nodes;
 

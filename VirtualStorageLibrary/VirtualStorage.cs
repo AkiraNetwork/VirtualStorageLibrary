@@ -361,7 +361,7 @@ namespace AkiraNet.VirtualStorageLibrary
                         throw new InvalidOperationException($"'{item.Name}' はアイテム以外のノードです。アイテムの上書きはできません。");
                     }
                     // 既存アイテムの削除
-                    directory.Remove(item.Name);
+                    directory.Remove(item);
                 }
             }
 
@@ -393,28 +393,25 @@ namespace AkiraNet.VirtualStorageLibrary
             // linkDirectoryPathを絶対パスに変換し正規化も行う
             linkDirectoryPath = ConvertToAbsolutePath(linkDirectoryPath).NormalizePath();
 
-            // シンボリックリンクの名前を取得
-            VirtualNodeName linkName = link.Name;
-
             // シンボリックリンク追加対象ディレクトリを取得
             VirtualDirectory directory = GetDirectory(linkDirectoryPath, true);
 
             // 既存のノードの存在チェック
-            if (directory.NodeExists(linkName))
+            if (directory.NodeExists(link.Name))
             {
                 if (!overwrite)
                 {
-                    throw new InvalidOperationException($"ノード '{linkName}' は既に存在します。上書きは許可されていません。");
+                    throw new InvalidOperationException($"ノード '{link.Name}' は既に存在します。上書きは許可されていません。");
                 }
                 else
                 {
                     // 既存のノードがシンボリックリンクであるかどうかチェック
-                    if (!SymbolicLinkExists(linkDirectoryPath + linkName))
+                    if (!SymbolicLinkExists(linkDirectoryPath + link.Name))
                     {
-                        throw new InvalidOperationException($"既存のノード '{linkName}' はシンボリックリンクではありません。シンボリックリンクのみ上書き可能です。");
+                        throw new InvalidOperationException($"既存のノード '{link.Name}' はシンボリックリンクではありません。シンボリックリンクのみ上書き可能です。");
                     }
                     // 既存のシンボリックリンクを削除
-                    directory.Remove(linkName);
+                    directory.Remove(link);
                 }
             }
 
@@ -427,10 +424,10 @@ namespace AkiraNet.VirtualStorageLibrary
                 VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath!, linkDirectoryPath).NormalizePath();
 
                 // リンク辞書にリンク情報を追加
-                AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + linkName);
+                AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + link.Name);
 
                 // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-                UpdateLinkTypesInDictionary(linkDirectoryPath + linkName);
+                UpdateLinkTypesInDictionary(linkDirectoryPath + link.Name);
             }
         }
 
@@ -1158,9 +1155,9 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualNodeName? newNodeName;
 
             VirtualDirectory destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
-            VirtualNodeName destinationNodeName = destinationPath.NodeName;
+            //VirtualNodeName destinationNodeName = destinationPath.NodeName;
 
-            VirtualNode? destinationNode = destinationDirectory.Get(destinationNodeName, false);
+            VirtualNode? destinationNode = destinationDirectory.Get(destinationPath.NodeName, false);
 
             bool overwriteDirectory = false;
 
@@ -1187,11 +1184,12 @@ namespace AkiraNet.VirtualStorageLibrary
                 case VirtualItem _:
                     if (overwrite)
                     {
-                        destinationDirectory.Remove(destinationNodeName);
+                        VirtualItem<T> item = GetItem(destinationPath, true);
+                        destinationDirectory.Remove(item);
                     }
                     else
                     {
-                        throw new InvalidOperationException($"アイテム '{destinationNodeName}' は既に存在します。上書きは許可されていません。");
+                        throw new InvalidOperationException($"アイテム '{destinationPath.NodeName}' は既に存在します。上書きは許可されていません。");
                     }
                     newNodeName = destinationPath.NodeName;
                     break;
@@ -1278,7 +1276,7 @@ namespace AkiraNet.VirtualStorageLibrary
                         link.IsReferencedInStorage = false;
 
                         // 辞書からノードを削除
-                        parentDir?.Remove(link.Name);
+                        parentDir?.Remove(link);
 
                         // ターゲットノードタイプを更新
                         VirtualPath deletePath = linkParentPath + link.Name;
@@ -1309,7 +1307,7 @@ namespace AkiraNet.VirtualStorageLibrary
                         node.IsReferencedInStorage = false;
 
                         // 辞書からノードを削除
-                        parentDir?.Remove(node.Name);
+                        parentDir?.Remove(node);
 
                         // ターゲットノードタイプを更新
                         VirtualPath deletePath = path + context.TraversalPath;
@@ -1341,7 +1339,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 node.IsReferencedInStorage = false;
 
                 // 辞書からノードを削除
-                parentDir?.Remove(node.Name);
+                parentDir?.Remove(node);
 
                 // ターゲットノードタイプを更新
                 UpdateLinkTypesInDictionary(path);
@@ -1439,12 +1437,9 @@ namespace AkiraNet.VirtualStorageLibrary
             // リンク辞書の更新（ターゲットパスの変更）
             UpdateLinksToTarget(oldAbsolutePath, newAbsolutePath);
             
-            // ノードの名前変更
-            VirtualNodeName oldName = node.Name;
-            node.Name = newName;
-
             // 親ディレクトリから古いノードを削除し、新しい名前のノードを追加
-            parentDirectory.Remove(oldName);
+            parentDirectory.Remove(node);
+            node.Name = newName;
             parentDirectory.Add(node);
         }
 
@@ -1556,7 +1551,7 @@ namespace AkiraNet.VirtualStorageLibrary
             // ノードを移動
             sourceDirectory.Name = destinationNodeName;
             destinationParentDirectory.Add(sourceDirectory);
-            sourceParentDirectory.Remove(sourceDirectory.Name);
+            sourceParentDirectory.Remove(sourceDirectory);
         }
 
         private void MoveItemOrLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
@@ -1566,11 +1561,13 @@ namespace AkiraNet.VirtualStorageLibrary
 
             VirtualDirectory destinationParentDirectory;
             VirtualNodeName destinationNodeName;
+            VirtualNode? destinationNode;
 
             if (DirectoryExists(destinationPath))
             {
                 destinationParentDirectory = GetDirectory(destinationPath);
-                destinationNodeName = sourceNode.Name;
+                destinationNodeName = sourceNode.Name; // TODO: NodeExistsのシグネチャをnodeに変更する予定
+                destinationNode = TryGetNode(sourcePath);
             }
             else if (!NodeExists(destinationPath))
             {
@@ -1582,18 +1579,20 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 destinationParentDirectory = GetDirectory(destinationParentPath);
                 destinationNodeName = destinationPath.NodeName;
+                destinationNode = TryGetNode(destinationPath);
             }
             else
             {
                 destinationParentDirectory = GetDirectory(destinationPath.GetParentPath());
                 destinationNodeName = destinationPath.NodeName;
+                destinationNode = TryGetNode(destinationPath);
             }
 
-            if (destinationParentDirectory.NodeExists(destinationNodeName))
+            if (destinationNode != null)
             {
                 if (overwrite)
                 {
-                    destinationParentDirectory.Remove(destinationNodeName);
+                    destinationParentDirectory.Remove(destinationNode);
                 }
                 else
                 {
@@ -1609,12 +1608,11 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // リンク辞書の更新（ターゲットパスの変更）
             UpdateLinksToTarget(sourcePath, destinationPath);
-            
+
             // ノードを移動
-            VirtualNodeName oldNodeName = sourceNode.Name;
+            sourceParentDirectory.Remove(sourceNode);
             sourceNode.Name = destinationNodeName;
             destinationParentDirectory.Add(sourceNode);
-            sourceParentDirectory.Remove(oldNodeName);
         }
 
         // 仮想ストレージのツリー構造をテキストベースで作成し返却する
