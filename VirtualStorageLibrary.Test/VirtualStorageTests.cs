@@ -5853,8 +5853,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // テストデータ
             vs.AddDirectory("/dir1");
-            vs.AddDirectory("/dst/dir1", true);
             vs.AddItem("/dir1/item1", originalData);
+            vs.AddDirectory("/dst/dir1", true);
             vs.AddItem("/dst/dir1/item2", originalData);
             vs.AddItem("/dst/dir1/item3", originalData);
 
@@ -5916,10 +5916,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // テストデータ
             vs.AddDirectory("/dir1");
-            vs.AddDirectory("/dst/dir1", true);
             vs.AddItem("/dir1/item1", originalData);
+
+            vs.AddDirectory("/dst/dir1", true);
             vs.AddItem("/dst/dir1/item2", originalData);
             vs.AddItem("/dst/dir1/item3", originalData);
+
             DateTime copiedCreatedDate = vs.GetDirectory("/dst/dir1").CreatedDate;
             DateTime copiedUpdatedDate = vs.GetDirectory("/dst/dir1").UpdatedDate;
 
@@ -5942,6 +5944,48 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             {
                 Debug.WriteLine(context);
             }
+        }
+
+        [TestMethod]
+        public void CopyNode_CopyDirectoryToExistingDirectoryWithOverwritesAndRecursive()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData originalData = [1, 2, 3];
+            List<VirtualNodeContext> contexts = new();
+
+            // テストデータ
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", originalData);
+
+            vs.AddDirectory("/dst/dir1", true);
+            vs.AddItem("/dst/dir1/item2", originalData);
+            vs.AddItem("/dst/dir1/item3", originalData);
+
+            DateTime dir1Date = vs.GetDirectory("/dir1").UpdatedDate;
+
+            // 処理前のデータ構造の表示
+            Debug.WriteLine("処理前のデータ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+
+            // 実行
+            vs.CopyNode("/dir1", "/dst", true, true, false, contexts);
+
+            // 検査
+            Assert.IsTrue(vs.NodeExists("/dst/dir1/item1"));
+            Assert.IsTrue(vs.NodeExists("/dst/dir1/item2"));
+            Assert.IsTrue(vs.NodeExists("/dst/dir1/item3"));
+            Assert.AreNotEqual(dir1Date, vs.GetDirectory("/dst/dir1").UpdatedDate);
+
+            // コンテキストの表示
+            Debug.WriteLine("context:");
+            foreach (VirtualNodeContext context in contexts)
+            {
+                Debug.WriteLine(context);
+            }
+
+            // 処理後のデータ構造の表示
+            Debug.WriteLine("処理後のデータ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
         }
 
         [TestMethod]
