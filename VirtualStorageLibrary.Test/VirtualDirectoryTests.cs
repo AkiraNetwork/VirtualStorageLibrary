@@ -1321,7 +1321,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Operator_Plus_test()
+        public void Operator_Plus_AddsExistingItemToRootDirectoryInVirtualStorage()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -1333,6 +1333,85 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualItem<BinaryData> item1 = vs.GetItem("/dir1/dir2/item1");
             VirtualDirectory root = vs.GetDirectory("/");
             root += item1;
+
+            // Assert
+            Assert.IsTrue(root.NodeExists("item1"));
+            Assert.IsTrue(item1.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Plus_AddsAllNodeTypesToDirectoryInVirtualStorage()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddDirectory("/dir1");
+            VirtualDirectory dir2 = new("dir2");
+
+            // Add various node types to dir2
+            VirtualDirectory testSubDir = new("testSubDir");
+            VirtualItem<string> testItem = new("testItem");
+            VirtualSymbolicLink testLink = new("testLink", "/dir1/testItem");
+
+            dir2 += testSubDir;
+            dir2 += testItem;
+            dir2 += testLink;
+
+            // Get the directory to which dir2 will be added
+            VirtualDirectory directory = vs.GetDirectory("/dir1");
+
+            // Verify flags before Act
+            Assert.IsFalse(dir2.IsReferencedInStorage);
+            Assert.IsFalse(testSubDir.IsReferencedInStorage);
+            Assert.IsFalse(testItem.IsReferencedInStorage);
+            Assert.IsFalse(testLink.IsReferencedInStorage);
+
+            // Act
+            directory += dir2;
+
+            // Assert
+            Assert.IsTrue(vs.GetNode("/dir1/dir2").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetNode("/dir1/dir2/testSubDir").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetNode("/dir1/dir2/testItem").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetNode("/dir1/dir2/testLink").IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Plus_AddsExistingDirectoryToNewDirectory_And_VerifiesIsReferencedInStorage()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir1/dir2");
+            vs.AddDirectory("/dir1/dir2/testSubDir");
+            vs.AddItem("/dir1/dir2/testItem");
+            vs.AddSymbolicLink("/dir1/dir2/testLink", "/dir1/dir2/testItem");
+
+            VirtualDirectory dir3 = new("dir3");
+
+            // Verify flags before Act
+            Assert.IsTrue(vs.GetNode("/dir1/dir2").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetNode("/dir1/dir2/testSubDir").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetNode("/dir1/dir2/testItem").IsReferencedInStorage);
+            Assert.IsTrue(vs.GetNode("/dir1/dir2/testLink").IsReferencedInStorage);
+            Assert.IsFalse(dir3.IsReferencedInStorage);
+
+            // Act
+            dir3 += vs.GetDirectory("/dir1/dir2");
+
+            // Assert
+            Assert.IsFalse(dir3.IsReferencedInStorage);
+
+            // Verify the existence and IsReferencedInStorage flag of sub-nodes within dir3
+            VirtualDirectory addedDir2 = dir3.GetDirectory("dir2");
+            Assert.IsFalse(addedDir2.IsReferencedInStorage);
+
+            VirtualDirectory addedTestSubDir = addedDir2.GetDirectory("testSubDir");
+            VirtualItem<string> addedTestItem = addedDir2.GetItem<string>("testItem");
+            VirtualSymbolicLink addedTestLink = addedDir2.GetSymbolicLink("testLink");
+
+            Assert.IsFalse(addedTestSubDir.IsReferencedInStorage);
+            Assert.IsFalse(addedTestItem.IsReferencedInStorage);
+            Assert.IsFalse(addedTestLink.IsReferencedInStorage);
         }
     }
 }
