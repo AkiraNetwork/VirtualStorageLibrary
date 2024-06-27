@@ -6948,7 +6948,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_GetExistingItemTest()
+        public void Indexer_Item_GetExistingItemTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -6970,7 +6970,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_GetNonExistingItemTest()
+        public void Indexer_Item_GetNonExistingItemTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -6981,7 +6981,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_SetExistingItemTest()
+        public void Indexer_Item_SetExistingItemTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7010,7 +7010,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_SetItemWithInvalidPathTest()
+        public void Indexer_Item_SetItemWithInvalidPathTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7024,7 +7024,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_GetAndSetIndexerTest()
+        public void Indexer_Item_GetAndSetIndexerTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7060,7 +7060,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_GetExistingDirectoryTest()
+        public void Indexer_Directory_GetExistingDirectoryTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7080,7 +7080,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_GetNonExistingDirectoryTest()
+        public void Indexer_Directory_GetNonExistingDirectoryTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7091,7 +7091,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_SetExistingDirectoryTest()
+        public void Indexer_Directory_SetExistingDirectoryTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7111,7 +7111,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_SetExistingDirectoryWithItemsTest()
+        public void Indexer_Directory_SetExistingDirectoryWithItemsTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7169,7 +7169,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Indexer_SetVirtualDirectoryInstanceWithItemsTest()
+        public void Indexer_Directory_SetVirtualDirectoryInstanceWithItemsTest()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -7244,6 +7244,122 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 各サブディレクトリの実体が個別であることを確認
             Assert.AreNotSame(vs[dir1Path + "subDir1"], dir2.Get("subDir1"));
+        }
+
+        [TestMethod]
+        public void Indexer_SymbolicLink_GetExistingSymbolicLinkTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualNodeName linkName = "testLink";
+            VirtualPath targetPath = "/targetPath";
+            VirtualSymbolicLink link = new(linkName, targetPath);
+            VirtualPath linkPath = "/testLink";  // VirtualPathとしてシンボリックリンクの完全なパスを設定
+
+            // 仮想ストレージにシンボリックリンクを追加
+            vs.AddSymbolicLink(linkPath.DirectoryPath, link);
+
+            // Act
+            // followLinks=false リンク解決はせず、リンクそのものを扱う
+            VirtualSymbolicLink retrievedLink = (VirtualSymbolicLink)vs[linkPath, false];
+
+            // Assert
+            Assert.AreEqual(link.Name, retrievedLink.Name);
+            Assert.AreEqual(link.TargetPath, retrievedLink.TargetPath);
+            Assert.IsTrue(retrievedLink.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Indexer_SymbolicLink_GetNonExistingSymbolicLinkTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath linkPath = "/nonExistingLink";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[linkPath, false]);
+        }
+
+        [TestMethod]
+        public void Indexer_SymbolicLink_SetExistingSymbolicLinkTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualNodeName linkName = "testLink";
+            VirtualPath targetPath1 = "/targetPath1";
+            VirtualPath targetPath2 = "/targetPath2";
+            VirtualSymbolicLink link1 = new(linkName, targetPath1);
+            VirtualSymbolicLink link2 = new(linkName, targetPath2);
+            VirtualPath linkPath = "/testLink";
+
+            // 仮想ストレージにシンボリックリンクを追加
+            vs.AddSymbolicLink(linkPath.DirectoryPath, link1);
+
+            // 仮想ストレージにシンボリックリンクを上書き
+            vs[linkPath, false] = link2;
+
+            // Act
+            // followLinks=false リンク解決はせず、リンクそのものを扱う
+            VirtualSymbolicLink retrievedLink = (VirtualSymbolicLink)vs[linkPath, false];
+
+            // Assert
+            Assert.AreEqual(link2.Name, retrievedLink.Name);
+            Assert.AreEqual(link2.TargetPath, retrievedLink.TargetPath);
+            Assert.IsTrue(retrievedLink.IsReferencedInStorage);
+            Assert.AreNotSame(link2, retrievedLink);
+        }
+
+        [TestMethod]
+        public void Indexer_SymbolicLink_SetSymbolicLinkWithInvalidPathTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualNodeName linkName = "testLink";
+            VirtualPath targetPath = "/targetPath";
+            VirtualSymbolicLink link = new(linkName, targetPath);
+            VirtualPath invalidPath = "/nonexistent/directory/path";  // 存在しないディレクトリへのパス
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[invalidPath, false] = link);
+        }
+
+        [TestMethod]
+        public void Indexer_SymbolicLink_GetAndSetIndexerTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualNodeName linkName1 = "testLink1";
+            VirtualNodeName linkName2 = "testLink2";
+            VirtualPath targetPath1 = "/targetPath1";
+            VirtualPath targetPath2 = "/targetPath2";
+            VirtualSymbolicLink link1 = new(linkName1, targetPath1);
+            VirtualSymbolicLink link2 = new(linkName2, targetPath2);
+            VirtualPath linkPath1 = "/testLink1";
+            VirtualPath linkPath2 = "/testLink2";
+
+            // 仮想ストレージにシンボリックリンクを追加
+            vs.AddSymbolicLink(linkPath1.DirectoryPath, link1);
+            vs.AddSymbolicLink(linkPath2.DirectoryPath, link2);
+
+            // Act
+            // followLinks=false リンク解決はせず、リンクそのものを扱う
+            vs[linkPath1, false] = vs[linkPath2, false];
+
+            // Assert
+            VirtualSymbolicLink retrievedLink1 = (VirtualSymbolicLink)vs[linkPath1, false];
+            VirtualSymbolicLink retrievedLink2 = (VirtualSymbolicLink)vs[linkPath2, false];
+
+            // linkPath1の確認
+            Assert.AreEqual(linkName1, retrievedLink1.Name); // 名前は変わらない
+            Assert.AreEqual(targetPath2, retrievedLink1.TargetPath); // ターゲットパスは同じ
+            Assert.IsTrue(retrievedLink1.IsReferencedInStorage);
+
+            // ノードの実体が異なることを確認
+            Assert.AreNotSame(retrievedLink1, retrievedLink2);
+
+            // TargetPathの実体が同じであることを確認
+            // (VirtualPath内の_pathは string でありイミュータブルなので問題なし)
+            Assert.AreSame(retrievedLink1.TargetPath, retrievedLink2.TargetPath);
         }
     }
 }

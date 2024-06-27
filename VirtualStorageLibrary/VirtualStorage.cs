@@ -200,10 +200,10 @@ namespace AkiraNet.VirtualStorageLibrary
         public VirtualNode this[VirtualPath path, bool followLinks = true]
         {
             get => GetNode(path, followLinks);
-            set => SetNode(path, value);
+            set => SetNode(path, value, followLinks);
         }
 
-        public void SetNode(VirtualPath destinationPath, VirtualNode node)
+        public void SetNode(VirtualPath destinationPath, VirtualNode node, bool followLinks = false)
         {
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
@@ -214,7 +214,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     break;
 
                 case VirtualSymbolicLink symbolicLink:
-                    UpdateSymbolicLInk(destinationPath, symbolicLink);
+                    UpdateSymbolicLInk(destinationPath, symbolicLink, followLinks);
                     break;
 
                 case VirtualItem<T> item:
@@ -250,13 +250,13 @@ namespace AkiraNet.VirtualStorageLibrary
             directory.Update(newDirectory);
         }
 
-        public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink)
+        public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink, bool followLinks = false)
         {
             // 絶対パスに変換
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
             // 既存のシンボリックリンクを取得
-            VirtualSymbolicLink link = GetSymbolicLink(linkPath, true);
+            VirtualSymbolicLink link = GetSymbolicLink(linkPath, followLinks);
 
             // 既存シンボリックリンクのノードを更新
             link.Update(newLink);
