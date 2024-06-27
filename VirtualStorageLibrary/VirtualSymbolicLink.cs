@@ -49,5 +49,16 @@
         {
             return new VirtualSymbolicLink(Name, TargetPath, CreatedDate, UpdatedDate);
         }
+
+        public override void Update(VirtualNode node)
+        {
+            if (node is not VirtualSymbolicLink link)
+            {
+                throw new ArgumentException($"このノード {node.Name} はシンボリックリンクではありません。");
+            }
+
+            TargetPath = link.TargetPath;
+            UpdatedDate = link.UpdatedDate;
+        }
     }
 }

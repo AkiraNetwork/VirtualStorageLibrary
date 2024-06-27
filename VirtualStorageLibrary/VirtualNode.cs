@@ -4,13 +4,15 @@
     {
         public VirtualNodeName Name { get; internal set; }
 
-        public DateTime CreatedDate { get; private set; }
+        public DateTime CreatedDate { get; internal set; }
 
-        public DateTime UpdatedDate { get; private set; }
+        public DateTime UpdatedDate { get; internal set; }
 
         public abstract VirtualNodeType NodeType { get; }
 
         public abstract VirtualNode DeepClone(bool recursive = false);
+
+        public abstract void Update(VirtualNode node);
 
         public bool IsReferencedInStorage { get; internal set; } = false;
 

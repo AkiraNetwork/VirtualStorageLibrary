@@ -23,8 +23,10 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public VirtualStorage()
         {
-            _root = new VirtualDirectory(VirtualPath.Root);
-            _root.IsReferencedInStorage = true;
+            _root = new(VirtualPath.Root)
+            {
+                IsReferencedInStorage = true
+            };
 
             CurrentPath = VirtualPath.Root;
 
@@ -208,22 +210,15 @@ namespace AkiraNet.VirtualStorageLibrary
             switch (node)
             {
                 case VirtualDirectory directory:
-                    AddDirectory(destinationPath, directory);
+                    UpdateDirectory(destinationPath, directory);
                     break;
 
                 case VirtualSymbolicLink symbolicLink:
-                    AddNode(destinationPath, symbolicLink, true);
+                    UpdateSymbolicLInk(destinationPath, symbolicLink);
                     break;
 
                 case VirtualItem<T> item:
-                    if (ItemExists(destinationPath))
-                    {
-                        UpdateItem(destinationPath, item);
-                    }
-                    else
-                    {
-                        AddItem(destinationPath, item, true);
-                    }
+                    UpdateItem(destinationPath, item);
                     break;
 
                 default:
@@ -231,7 +226,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        private void UpdateItem(VirtualPath itemPath, VirtualItem<T> newItem)
+        public void UpdateItem(VirtualPath itemPath, VirtualItem<T> newItem)
         {
             // 絶対パスに変換
             itemPath = ConvertToAbsolutePath(itemPath).NormalizePath();
@@ -240,14 +235,31 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualItem<T> item = GetItem(itemPath, true);
 
             // 既存アイテムのデータを更新
-            if (newItem.IsReferencedInStorage)
-            {
-                item.ItemData = ((VirtualItem<T>)newItem.DeepClone()).ItemData;
-            }
-            else
-            {
-                item.ItemData = newItem.ItemData;
-            }
+            item.Update(newItem);
+        }
+
+        public void UpdateDirectory(VirtualPath directoryPath, VirtualDirectory newDirectory)
+        {
+            // 絶対パスに変換
+            directoryPath = ConvertToAbsolutePath(directoryPath).NormalizePath();
+
+            // 既存のディレクトリを取得
+            VirtualDirectory directory = GetDirectory(directoryPath, true);
+
+            // 既存ディレクトリのノードを更新
+            directory.Update(newDirectory);
+        }
+
+        public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink)
+        {
+            // 絶対パスに変換
+            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
+
+            // 既存のシンボリックリンクを取得
+            VirtualSymbolicLink link = GetSymbolicLink(linkPath, true);
+
+            // 既存シンボリックリンクのノードを更新
+            link.Update(newLink);
         }
 
         public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)
@@ -330,7 +342,7 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualDirectory newSubdirectory = new(nodeName);
 
             // 中間ディレクトリを追加
-            newSubdirectory = (VirtualDirectory)directory.Add(newSubdirectory);
+            directory.Add(newSubdirectory);
 
             // 中間ディレクトリをリンク辞書に追加
             UpdateLinkTypesInDictionary(nodePath);

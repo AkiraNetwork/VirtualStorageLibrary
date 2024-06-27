@@ -317,5 +317,30 @@ namespace AkiraNet.VirtualStorageLibrary
                 }
             }
         }
+
+        public override void Update(VirtualNode node)
+        {
+            if (node is not VirtualDirectory newDirectory)
+            {
+                throw new ArgumentException($"このノード {node.Name} はディレクトリではありません。");
+            }
+
+            if (newDirectory.IsReferencedInStorage)
+            {
+                newDirectory = (VirtualDirectory)newDirectory.DeepClone();
+            }
+
+            foreach (var subNode in newDirectory._nodes.Values)
+            {
+                if (_nodes.TryGetValue(subNode.Name, out VirtualNode? existingNode))
+                {
+                    existingNode.Update(subNode.DeepClone(true));
+                }
+                else
+                {
+                    Add(subNode.DeepClone(true));
+                }
+            }
+        }
     }
 }

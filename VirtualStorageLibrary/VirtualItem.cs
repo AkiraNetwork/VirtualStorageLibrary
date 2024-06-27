@@ -98,6 +98,25 @@
             }
         }
 
+        public override void Update(VirtualNode node)
+        {
+            if (node is not VirtualItem<T> newItem)
+            {
+                throw new ArgumentException($"このノード {node.Name} はアイテムではありません。");
+            }
+
+            if (newItem.IsReferencedInStorage)
+            {
+                VirtualItem<T> clonedItem = (VirtualItem<T>)newItem.DeepClone();
+                ItemData = clonedItem.ItemData;
+            }
+            else
+            {
+                ItemData = newItem.ItemData;
+                UpdatedDate = DateTime.Now;
+            }
+        }
+
         ~VirtualItem()
         {
             Dispose(false);
