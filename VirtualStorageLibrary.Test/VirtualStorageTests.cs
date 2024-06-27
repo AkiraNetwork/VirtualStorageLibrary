@@ -7058,5 +7058,192 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Dataの実体が異なることを確認
             Assert.AreNotSame(retrievedItem1.ItemData, retrievedItem2.ItemData);
         }
+
+        [TestMethod]
+        public void Indexer_GetExistingDirectoryTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualNodeName dirName = "testDir";
+            VirtualDirectory dir = new(dirName);
+            VirtualPath dirPath = "/testDir";
+
+            // 仮想ストレージにディレクトリを追加
+            vs.AddDirectory(dirPath.DirectoryPath, dir);
+
+            // Act
+            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dirPath];
+
+            // Assert
+            Assert.AreEqual(dir.Name, retrievedDir.Name);
+            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Indexer_GetNonExistingDirectoryTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath dirPath = "/nonExistingDir";
+
+            // Act and Assert
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[dirPath]);
+        }
+
+        [TestMethod]
+        public void Indexer_SetExistingDirectoryTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath dir1Path = "/dir1";
+            VirtualDirectory dir2 = new("/dir2");
+
+            vs.AddDirectory(dir1Path);
+
+            // Act
+            vs[dir1Path] = dir2;
+
+            // Assert
+            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dir1Path];
+            Assert.AreEqual(dir1Path.NodeName, retrievedDir.Name);
+            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
+            Assert.AreNotSame(dir2, retrievedDir);
+        }
+
+        [TestMethod]
+        public void Indexer_SetExistingDirectoryWithItemsTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath dir1Path = "/dir1";
+            VirtualPath dir2Path = "/dir2";
+
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+
+            VirtualItem<BinaryData> item1 = new("item1", data1);
+            VirtualItem<BinaryData> item2a = new("item2", data1);
+            VirtualItem<BinaryData> item2b = new("item2", data2);
+            VirtualItem<BinaryData> item3 = new("item3", data2);
+
+            vs.AddDirectory(dir1Path);
+            vs.AddDirectory(dir2Path);
+
+            vs.AddItem(dir1Path, item1);
+            vs.AddItem(dir1Path, item2a);
+            vs.AddItem(dir2Path, item2b);
+            vs.AddItem(dir2Path, item3);
+
+            // Act
+            vs[dir1Path] = vs[dir2Path];
+
+            // Assert
+            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dir1Path];
+
+            // /dir1の確認
+            Assert.AreEqual(dir1Path.NodeName, retrievedDir.Name);
+            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
+
+            // /dir1/item1の確認
+            VirtualItem<BinaryData> retrievedItem1 = (VirtualItem<BinaryData>)vs[dir1Path + "item1"];
+            CollectionAssert.AreEqual(data1.Data, retrievedItem1.ItemData!.Data);
+            Assert.IsTrue(retrievedItem1.IsReferencedInStorage);
+
+            // /dir1/item2の確認
+            VirtualItem<BinaryData> retrievedItem2 = (VirtualItem<BinaryData>)vs[dir1Path + "item2"];
+            CollectionAssert.AreEqual(data2.Data, retrievedItem2.ItemData!.Data);
+            Assert.IsTrue(retrievedItem2.IsReferencedInStorage);
+
+            // /dir1/item3の確認
+            VirtualItem<BinaryData> retrievedItem3 = (VirtualItem<BinaryData>)vs[dir1Path + "item3"];
+            CollectionAssert.AreEqual(data2.Data, retrievedItem3.ItemData!.Data);
+            Assert.IsTrue(retrievedItem3.IsReferencedInStorage);
+
+            // 各ノードの実体が個別であることを確認
+            Assert.AreNotSame(vs[dir1Path], vs[dir2Path]);
+            Assert.AreNotSame(vs[dir1Path + "item2"], vs[dir2Path + "item2"]);
+
+            // 各アイテムのデータの実体が個別であることを確認
+            Assert.AreNotSame(((VirtualItem<BinaryData>)vs[dir2Path + "item2"]).ItemData,
+                              ((VirtualItem<BinaryData>)vs[dir1Path + "item2"]).ItemData);
+        }
+
+        [TestMethod]
+        public void Indexer_SetVirtualDirectoryInstanceWithItemsTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath dir1Path = "/dir1";
+
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+
+            VirtualItem<BinaryData> item1 = new("item1", data1);
+            VirtualItem<BinaryData> item2a = new("item2", data1);
+            VirtualItem<BinaryData> item2b = new("item2", data2);
+            VirtualItem<BinaryData> item3 = new("item3", data2);
+            VirtualDirectory subDir1 = new("subDir1");
+
+            vs.AddDirectory(dir1Path);
+
+            vs.AddItem(dir1Path, item1);
+            vs.AddItem(dir1Path, item2a);
+
+            VirtualDirectory dir2 = new("dir2")
+            {
+                item2b,
+                item3,
+                subDir1
+            };
+
+            // ディレクトリ構造を出力
+            Debug.WriteLine("処理前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+
+            // Act
+            vs[dir1Path] = dir2;
+
+            // ディレクトリ構造を出力
+            Debug.WriteLine("処理後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+
+            // Assert
+            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dir1Path];
+
+            // /dir1の確認
+            Assert.AreEqual(dir1Path.NodeName, retrievedDir.Name);
+            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
+
+            // /dir1/item1の確認
+            VirtualItem<BinaryData> retrievedItem1 = (VirtualItem<BinaryData>)vs[dir1Path + "item1"];
+            CollectionAssert.AreEqual(data1.Data, retrievedItem1.ItemData!.Data);
+            Assert.IsTrue(retrievedItem1.IsReferencedInStorage);
+
+            // /dir1/item2の確認
+            VirtualItem<BinaryData> retrievedItem2 = (VirtualItem<BinaryData>)vs[dir1Path + "item2"];
+            CollectionAssert.AreEqual(data2.Data, retrievedItem2.ItemData!.Data);
+            Assert.IsTrue(retrievedItem2.IsReferencedInStorage);
+
+            // /dir1/item3の確認
+            VirtualItem<BinaryData> retrievedItem3 = (VirtualItem<BinaryData>)vs[dir1Path + "item3"];
+            CollectionAssert.AreEqual(data2.Data, retrievedItem3.ItemData!.Data);
+            Assert.IsTrue(retrievedItem3.IsReferencedInStorage);
+
+            // /dir1/subDir1の確認
+            VirtualDirectory retrievedSubDir1 = (VirtualDirectory)vs[dir1Path + "subDir1"];
+            Assert.AreEqual(subDir1.Name, retrievedSubDir1.Name);
+            Assert.IsTrue(retrievedSubDir1.IsReferencedInStorage);
+
+            // 各ノードの実体が個別であることを確認
+            Assert.AreNotSame(vs[dir1Path], dir2);
+            Assert.AreNotSame(vs[dir1Path + "item2"], dir2.Get("item2"));
+
+            // 各アイテムのデータの実体が個別であることを確認
+            Assert.AreNotSame(((VirtualItem<BinaryData>?)dir2.Get("item2"))!.ItemData,
+                              ((VirtualItem<BinaryData>)vs[dir1Path + "item2"]).ItemData);
+
+            // 各サブディレクトリの実体が個別であることを確認
+            Assert.AreNotSame(vs[dir1Path + "subDir1"], dir2.Get("subDir1"));
+        }
     }
 }

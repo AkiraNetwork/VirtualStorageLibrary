@@ -327,7 +327,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
             if (newDirectory.IsReferencedInStorage)
             {
-                newDirectory = (VirtualDirectory)newDirectory.DeepClone();
+                newDirectory = (VirtualDirectory)newDirectory.DeepClone(true);
             }
 
             foreach (var subNode in newDirectory._nodes.Values)
