@@ -17,7 +17,7 @@
             }
             set
             {
-                _storage[path] = value;
+                _storage[path, followLinks] = value;
             }
         }
     }
@@ -39,7 +39,7 @@
             }
             set
             {
-                _storage[path] = value;
+                _storage[path, followLinks] = value;
             }
         }
     }
@@ -61,7 +61,7 @@
             }
             set
             {
-                _storage[path] = value;
+                _storage[path, followLinks] = value;
             }
         }
     }
