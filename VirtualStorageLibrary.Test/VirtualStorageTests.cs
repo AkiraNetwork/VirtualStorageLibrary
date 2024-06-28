@@ -7376,5 +7376,37 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // (VirtualPath内の_pathは string でありイミュータブルなので問題なし)
             Assert.AreSame(retrievedLink1.TargetPath, retrievedLink2.TargetPath);
         }
+
+        [TestMethod]
+        public void Free_Test_CollectionExpressions()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+            BinaryData data3 = [7, 8, 9];
+            VirtualItem<BinaryData> item1 = new("item1", data1);
+            VirtualItem<BinaryData> item2 = new("item2", data2);
+            VirtualItem<BinaryData> item3 = new("item3", data3);
+            
+            // Act
+            VirtualDirectory dir1 = [item1, item2, item3];
+
+            // ノードの出力
+            Debug.WriteLine("dir:");
+            foreach (var node in dir1)
+            {
+                if (node is VirtualItem<BinaryData> item)
+                {
+                    Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(item));
+                }
+            }
+
+            // Assert
+            Assert.AreEqual(3, dir1.Count);
+            Assert.AreEqual(item1, dir1.Get("item1"));
+            Assert.AreEqual(item2, dir1.Get("item2"));
+            Assert.AreEqual(item3, dir1.Get("item3"));
+        }
     }
 }
