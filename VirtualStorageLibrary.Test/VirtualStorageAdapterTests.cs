@@ -426,5 +426,107 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // (VirtualPath内の_pathは string でありイミュータブルなので問題なし)
             Assert.AreSame(retrievedLink1.TargetPath, retrievedLink2.TargetPath);
         }
+
+        [TestMethod]
+        public void IndexerAdapter_OperatorPlusTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+            VirtualNodeName dirName1 = "dir1";
+            VirtualNodeName dirName2 = "dir2";
+            VirtualNodeName itemName = "item1";
+            VirtualNodeName linkName = "link1";
+            VirtualPath targetPath = "/targetPath";
+            VirtualDirectory dir1 = new(dirName1);
+            VirtualDirectory dir2 = new(dirName2);
+            VirtualItem<BinaryData> item1 = new(itemName, data1);
+            VirtualSymbolicLink link1 = new(linkName, targetPath);
+
+            // ディレクトリ構造を出力
+            Debug.WriteLine("処理前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // Act
+            vs.Dir["/"] += dir1;
+            vs.Dir["/dir1"] += dir2;
+            vs.Dir["/dir1"] += item1;
+            vs.Dir["/dir1"] += link1;
+
+            // ディレクトリ構造を出力
+            Debug.WriteLine("処理後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // Assert
+            Assert.AreEqual(dir1.Name, vs.Dir["/dir1"].Name);
+            Assert.AreEqual(dir2.Name, vs.Dir["/dir1/dir2"].Name);
+            Assert.AreEqual(item1.Name, vs.Item["/dir1/item1"].Name);
+            CollectionAssert.AreEqual(data1.Data, vs.Item["/dir1/item1"].ItemData!.Data);
+            Assert.AreEqual(link1.Name, vs.Link["/dir1/link1", false].Name);
+            Assert.AreEqual(link1.TargetPath, vs.Link["/dir1/link1", false].TargetPath);
+            Assert.IsTrue(vs.Dir["/"].IsReferencedInStorage);
+            Assert.IsTrue(vs.Dir["/dir1"].IsReferencedInStorage);
+            Assert.IsTrue(vs.Dir["/dir1/dir2"].IsReferencedInStorage);
+            Assert.IsTrue(vs.Item["/dir1/item1"].IsReferencedInStorage);
+            Assert.IsTrue(vs.Link["/dir1/link1", false].IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void IndexerAdapter_OperatorMinusTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+            VirtualNodeName dirName1 = "dir1";
+            VirtualNodeName dirName2 = "dir2";
+            VirtualNodeName itemName = "item1";
+            VirtualNodeName linkName = "link1";
+            VirtualPath targetPath = "/targetPath";
+            VirtualDirectory dir1 = new(dirName1);
+            VirtualDirectory dir2 = new(dirName2);
+            VirtualItem<BinaryData> item1 = new(itemName, data1);
+            VirtualSymbolicLink link1 = new(linkName, targetPath);
+
+            // ディレクトリ構造を出力
+            Debug.WriteLine("処理前:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // Act - ノードを追加
+            vs.Dir["/"] += dir1;
+            vs.Dir["/dir1"] += dir2;
+            vs.Dir["/dir1"] += item1;
+            vs.Dir["/dir1"] += link1;
+
+            // ディレクトリ構造を出力
+            Debug.WriteLine("追加後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // ノードを取得
+            VirtualDirectory retrievedDir2 = vs.Dir["/dir1/dir2"];
+            VirtualItem<BinaryData> retrievedItem1 = vs.Item["/dir1/item1"];
+            VirtualSymbolicLink retrievedLink1 = vs.Link["/dir1/link1", false];
+
+            // Act - ノードを削除
+            vs.Dir["/dir1"] -= dir2;
+            vs.Dir["/dir1"] -= item1;
+            vs.Dir["/dir1"] -= link1;
+
+            // ディレクトリ構造を出力
+            Debug.WriteLine("削除後:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // Assert - ノードが削除されたことを確認
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.Dir["/dir1/dir2"]);
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.Item["/dir1/item1"]);
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.Link["/dir1/link1", false]);
+
+            // 削除されたノードのIsReferencedInStorageフラグを確認
+            Assert.IsFalse(retrievedDir2.IsReferencedInStorage);
+            Assert.IsFalse(retrievedItem1.IsReferencedInStorage);
+            Assert.IsFalse(retrievedLink1.IsReferencedInStorage);
+
+            Assert.IsTrue(vs.Dir["/"].IsReferencedInStorage);
+            Assert.IsTrue(vs.Dir["/dir1"].IsReferencedInStorage);
+        }
     }
 }
