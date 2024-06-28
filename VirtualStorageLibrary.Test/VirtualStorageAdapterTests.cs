@@ -75,6 +75,36 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void IndexerAdapter_Item_SetExistingItemByItemDataTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+            VirtualNodeName itemName = "testItem";
+            VirtualItem<BinaryData> item1 = (itemName, data1);
+            VirtualItem<BinaryData> item2 = (itemName, data2);
+            VirtualPath itemPath = "/testItem";
+
+            // 仮想ストレージにアイテムを追加
+            vs.AddItem(itemPath.DirectoryPath, item1);
+
+            // 仮想ストレージにデータで上書き
+            // VirtualItem<T>は implicit operatorでVirtualItemData<T>に変換される
+            vs.Item[itemPath] = data2;
+
+            // Act
+            VirtualItem<BinaryData> retrievedItem = vs.Item[itemPath];
+
+            // Assert
+            Assert.AreEqual(item2.Name, retrievedItem.Name);
+            CollectionAssert.AreEqual(item2.ItemData!.Data, retrievedItem.ItemData!.Data);
+            Assert.IsTrue(retrievedItem.IsReferencedInStorage);
+            Assert.AreNotSame(item2, retrievedItem);
+            Assert.AreSame(item2.ItemData, retrievedItem.ItemData);
+        }
+
+        [TestMethod]
         public void IndexerAdapter_Item_SetItemWithInvalidPathTest()
         {
             // Arrange
@@ -362,6 +392,36 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 仮想ストレージにシンボリックリンクを上書き
             vs.Link[linkPath, false] = link2;
+
+            // Act
+            // followLinks=false リンク解決はせず、リンクそのものを扱う
+            VirtualSymbolicLink retrievedLink = vs.Link[linkPath, false];
+
+            // Assert
+            Assert.AreEqual(link2.Name, retrievedLink.Name);
+            Assert.AreEqual(link2.TargetPath, retrievedLink.TargetPath);
+            Assert.IsTrue(retrievedLink.IsReferencedInStorage);
+            Assert.AreNotSame(link2, retrievedLink);
+        }
+
+        [TestMethod]
+        public void IndexerAdapter_SymbolicLink_SetExistingSymbolicLinkByTargetPathTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualNodeName linkName = "testLink";
+            VirtualPath targetPath1 = "/targetPath1";
+            VirtualPath targetPath2 = "/targetPath2";
+            VirtualSymbolicLink link1 = new(linkName, targetPath1);
+            VirtualSymbolicLink link2 = new(linkName, targetPath2);
+            VirtualPath linkPath = "/testLink";
+
+            // 仮想ストレージにシンボリックリンクを追加
+            vs.AddSymbolicLink(linkPath.DirectoryPath, link1);
+
+            // 仮想ストレージにターゲットパスで上書き
+            // VirtualSymbolicLinkは implicit operatorでVirtualSymbolicLinkに変換される
+            vs.Link[linkPath, false] = targetPath2;
 
             // Act
             // followLinks=false リンク解決はせず、リンクそのものを扱う
