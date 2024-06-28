@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
+﻿using System.Runtime.CompilerServices;
 
 namespace AkiraNet.VirtualStorageLibrary
 {

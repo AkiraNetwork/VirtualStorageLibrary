@@ -1,8 +1,6 @@
-﻿using AkiraNet.VirtualStorageLibrary.Test;
-using AkiraNet.VirtualStorageLibrary;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace VirtualStorageLibrary.Test
+namespace AkiraNet.VirtualStorageLibrary.Test
 {
     [TestClass]
     public class VirtualStorageAdapterTests

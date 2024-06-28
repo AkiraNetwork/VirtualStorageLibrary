@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace AkiraNet.VirtualStorageLibrary
+﻿namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualDirectory : VirtualNode, IEnumerable<VirtualNode>
     {
