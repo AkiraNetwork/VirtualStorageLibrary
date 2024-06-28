@@ -4,9 +4,9 @@
     {
         public VirtualPath? TargetPath { get; set; }
 
-        public VirtualNodeType TargetNodeType { get; set; } = VirtualNodeType.None;
-
         public override VirtualNodeType NodeType => VirtualNodeType.SymbolicLink;
+
+        public VirtualNodeType TargetNodeType { get; set; } = VirtualNodeType.None;
 
         public VirtualSymbolicLink()
              : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixSymbolicLink))

@@ -4083,17 +4083,19 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void WalkPathTree_Test1()
         {
-            VirtualStorage<string> vs = new();
-            vs.AddItem("/item0", "test");
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+
+            vs.AddItem("/item0", data1);
             vs.AddDirectory("/dir1", true);
-            vs.AddItem("/dir1/item1", "test");
-            vs.AddItem("/dir1/item2", "test");
+            vs.AddItem("/dir1/item1", data1);
+            vs.AddItem("/dir1/item2");
             vs.AddDirectory("/dir2/sub", true);
-            vs.AddItem("/dir2/sub/item3", "test");
-            vs.AddItem("/dir2/sub/item4", "test");
-            vs.AddItem("/dir2/sub/item5", "test");
-            vs.AddItem("/item6", "test");
-            vs.AddItem("/item8", "test");
+            vs.AddItem("/dir2/sub/item3", data1);
+            vs.AddItem("/dir2/sub/item4", data1);
+            vs.AddItem("/dir2/sub/item5", data1);
+            vs.AddItem("/item6", data1);
+            vs.AddItem("/item8", data1);
             vs.AddSymbolicLink("/item7", "/dir1");
             vs.AddDirectory("/all-dir", true);
             vs.AddSymbolicLink("/all-dir/item1", "/dir1/item1");
@@ -4102,12 +4104,26 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
 
             IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
-            foreach (VirtualNodeContext nodeContext in nodeContexts)
-            {
-                Debug.WriteLine(nodeContext);
-            }
 
-            //Assert.AreEqual(4, result.Count());
+            // コンテキストの出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+
+            // ノードの出力
+            Debug.WriteLine("ノード(/dir1):");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetDirectory("/dir1")));
+
+            Debug.WriteLine("ノード(/dir1/item1):");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetItem("/dir1/item1")));
+
+            Debug.WriteLine("ノード(/dir1/item2):");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetItem("/dir1/item2")));
+
+            Debug.WriteLine("ノード(/all-dir/item1):");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetSymbolicLink("/all-dir/item1")));
+
+            Debug.WriteLine("ノード(/all-dir/item2):");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetSymbolicLink("/all-dir/item2")));
 
             string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
             Debug.WriteLine(tree);
