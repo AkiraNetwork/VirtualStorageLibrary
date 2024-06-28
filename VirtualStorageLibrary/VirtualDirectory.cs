@@ -1,4 +1,6 @@
-﻿namespace AkiraNet.VirtualStorageLibrary
+﻿using System.Runtime.CompilerServices;
+
+namespace AkiraNet.VirtualStorageLibrary
 {
     public class VirtualDirectory : VirtualNode, IEnumerable<VirtualNode>
     {
@@ -174,6 +176,7 @@
             return directory;
         }
 
+        [IndexerName("Indexer")]
         public VirtualNode this[VirtualNodeName name]
         {
             get

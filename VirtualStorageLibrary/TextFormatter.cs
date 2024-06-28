@@ -113,12 +113,23 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new ArgumentException("Object cannot be null");
 
             Type type = typeof(T);
-            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            List<PropertyInfo> properties = new List<PropertyInfo>();
+
+            // Get properties from base classes first
+            Type? currentType = type;
+            while (currentType != null)
+            {
+                properties.InsertRange(0, currentType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+                currentType = currentType.BaseType;
+            }
+
+            // Ensure properties are unique by name
+            var uniqueProperties = properties.GroupBy(p => p.Name).Select(g => g.First()).ToList();
 
             List<string> headers = new List<string>();
             List<string> row = new List<string>();
 
-            foreach (var property in properties)
+            foreach (var property in uniqueProperties)
             {
                 headers.Add(property.Name);
 
