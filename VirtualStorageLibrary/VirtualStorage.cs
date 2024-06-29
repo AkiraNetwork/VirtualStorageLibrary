@@ -615,9 +615,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 if (node != null && (node is VirtualDirectory linkDirectory))
                 {
-                    // 探索ディレクトリを取得
-                    p.TraversalDirectory = linkDirectory;
-
                     // 最後のノードに到達したかチェック
                     if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                     {
@@ -625,6 +622,9 @@ namespace AkiraNet.VirtualStorageLibrary
                         p.ResolvedPath ??= p.TraversalPath;
                         return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
                     }
+
+                    // 探索ディレクトリを取得
+                    p.TraversalDirectory = linkDirectory;
 
                     // 再帰的に探索
                     nodeContext = WalkPathToTargetInternal(p);

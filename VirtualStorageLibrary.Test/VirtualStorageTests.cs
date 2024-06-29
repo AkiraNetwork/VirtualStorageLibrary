@@ -2456,6 +2456,19 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void SetNodeName_ChangesSymbolicLinkNameWithResolveLinksSuccessfully()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/linkToDir", "/dir1");
+
+            vs.SetNodeName("/linkToDir", "dir2", true);
+
+            Assert.IsFalse(vs.NodeExists("/dir1"));
+            Assert.IsTrue(vs.NodeExists("/dir2"));
+        }
+
+        [TestMethod]
         public void SetNodeName_ThrowsWhenNodeDoesNotExist()
         {
             VirtualStorage<BinaryData> vs = new();
