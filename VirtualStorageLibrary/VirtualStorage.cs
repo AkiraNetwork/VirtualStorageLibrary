@@ -1407,7 +1407,7 @@ namespace AkiraNet.VirtualStorageLibrary
             return false;
         }
 
-        public void SetNodeName(VirtualPath oldPath, VirtualNodeName newName)
+        public void SetNodeName(VirtualPath oldPath, VirtualNodeName newName, bool resolveLinks = false)
         {
             VirtualPath oldAbsolutePath = ConvertToAbsolutePath(oldPath);
             VirtualPath newAbsolutePath = oldAbsolutePath.DirectoryPath + newName;
@@ -1418,11 +1418,9 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException("新しい名前が現在の名前と同じです。");
             }
 
-            // ノードの存在チェック
-            if (!NodeExists(oldAbsolutePath))
-            {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{oldAbsolutePath}' は存在しません。");
-            }
+            // ノードの取得（リンクを解決しながら）
+            VirtualNodeContext nodeContext = WalkPathToTarget(oldAbsolutePath, null, null, resolveLinks, true);
+            VirtualNode node = nodeContext.Node!;
 
             // 新しい名前のノードが既に存在するかどうかのチェック
             if (NodeExists(newAbsolutePath))
@@ -1430,23 +1428,18 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new InvalidOperationException($"指定された新しい名前のノード '{newAbsolutePath}' は既に存在します。");
             }
 
-            // ノードの取得
-            VirtualNode node = GetNode(oldAbsolutePath);
-
             // 親ディレクトリの取得
-            VirtualDirectory parentDirectory = GetDirectory(oldAbsolutePath.DirectoryPath);
-
-            // TODO: MoveNode内でリンク辞書の更新をするのでここでは不要になる予定
+            VirtualDirectory parentDirectory = nodeContext.ParentDirectory!;
 
             // リンク辞書の更新（シンボリックリンクの場合）
-            if (node is VirtualSymbolicLink)
+            if (node is VirtualSymbolicLink symbolicLink)
             {
                 UpdateLinkNameInDictionary(oldAbsolutePath, newAbsolutePath);
             }
 
             // リンク辞書の更新（ターゲットパスの変更）
             UpdateLinksToTarget(oldAbsolutePath, newAbsolutePath);
-            
+
             // 親ディレクトリから古いノードを削除し、新しい名前のノードを追加
             parentDirectory.Remove(node);
             node.Name = newName;
