@@ -2444,7 +2444,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/target");
             vs.AddSymbolicLink("/link", "/target");
 
-            vs.SetNodeName("/link", "newLink");
+            vs.SetNodeName("/link", "newLink", false);
 
             Assert.IsFalse(vs.NodeExists("/link"));
             Assert.IsTrue(vs.NodeExists("/newLink"));
@@ -2502,7 +2502,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddSymbolicLink("/link", "/missingTarget");
 
-            vs.SetNodeName("/link", "newLink");
+            vs.SetNodeName("/link", "newLink", false);
 
             Assert.IsFalse(vs.NodeExists("/link"));
             Assert.IsTrue(vs.NodeExists("/newLink"));
@@ -2599,7 +2599,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             DebugPrintLinkDictionary(vs);
 
             // シンボリックリンクの名前を変更
-            vs.SetNodeName(linkPath, new VirtualNodeName("newLinkToTargetLink"));
+            vs.SetNodeName(linkPath, new VirtualNodeName("newLinkToTargetLink"), false);
 
             // リンク辞書の更新を確認
             Assert.IsFalse(vs.GetLinksFromDictionary(targetLinkPath).Contains(linkPath));

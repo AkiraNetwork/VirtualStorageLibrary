@@ -532,7 +532,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     // 末端のノードを通知
                     p.NotifyNode?.Invoke(p.TraversalPath, node, true);
                     p.ResolvedPath ??= p.TraversalPath;
-                    return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
+                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
                 }
 
                 // 途中のノードを通知
@@ -556,7 +556,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                 {
                     p.ResolvedPath ??= p.TraversalPath;
-                    return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
+                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
                 }
 
                 p.ResolvedPath ??= p.TraversalPath;
@@ -576,7 +576,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     // シンボリックリンクを通知
                     p.NotifyNode?.Invoke(p.TraversalPath, node, true);
                     p.ResolvedPath ??= p.TraversalPath;
-                    return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
+                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
                 }
 
                 p.Resolved = true;
@@ -623,7 +623,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // 末端のノードを通知
                         p.ResolvedPath ??= p.TraversalPath;
-                        return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
+                        return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
                     }
 
                     // 再帰的に探索
@@ -634,11 +634,11 @@ namespace AkiraNet.VirtualStorageLibrary
                 }
 
                 p.ResolvedPath ??= p.TraversalPath;
-                return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
+                return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
             }
 
             p.ResolvedPath ??= p.TraversalPath;
-            return new VirtualNodeContext(node, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
+            return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
         }
 
         public IEnumerable<VirtualNodeContext> ResolvePathTree(
@@ -1407,7 +1407,7 @@ namespace AkiraNet.VirtualStorageLibrary
             return false;
         }
 
-        public void SetNodeName(VirtualPath oldPath, VirtualNodeName newName, bool resolveLinks = false)
+        public void SetNodeName(VirtualPath oldPath, VirtualNodeName newName, bool resolveLinks = true)
         {
             VirtualPath oldAbsolutePath = ConvertToAbsolutePath(oldPath);
             VirtualPath newAbsolutePath = oldAbsolutePath.DirectoryPath + newName;
