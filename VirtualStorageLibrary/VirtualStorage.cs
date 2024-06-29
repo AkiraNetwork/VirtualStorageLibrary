@@ -970,11 +970,11 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        public VirtualItem<T>? TryGetItem(VirtualPath path)
+        public VirtualItem<T>? TryGetItem(VirtualPath path, bool followLinks = false)
         {
             try
             {
-                return GetItem(path);
+                return GetItem(path, followLinks);
             }
             catch (VirtualNodeNotFoundException)
             {
@@ -997,11 +997,11 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path)
+        public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path, bool followLinks = false)
         {
             try
             {
-                return GetSymbolicLink(path);
+                return GetSymbolicLink(path, followLinks);
             }
             catch (VirtualNodeNotFoundException)
             {
