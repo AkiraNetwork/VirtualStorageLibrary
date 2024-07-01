@@ -633,8 +633,8 @@ namespace AkiraNet.VirtualStorageLibrary
                     // 再帰的に探索
                     nodeContext = WalkPathToTargetInternal(p);
 
-                    nodeContext.TraversalPath = nodeContext.TraversalPath ?? p.TraversalPath;
-                    nodeContext.ResolvedPath = nodeContext.ResolvedPath ?? p.ResolvedPath;
+                    nodeContext.TraversalPath ??= p.TraversalPath;
+                    nodeContext.ResolvedPath ??= p.ResolvedPath;
 
                     return nodeContext;
                 }

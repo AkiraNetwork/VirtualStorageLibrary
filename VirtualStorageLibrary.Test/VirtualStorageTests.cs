@@ -2155,7 +2155,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            BinaryData targetData = [1, 2, 3];
             vs.AddItem("/targetItem", targetData);
             vs.AddSymbolicLink("/link", "/targetItem");
 
@@ -2173,7 +2173,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test/nested", true);
-            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            BinaryData targetData = [1, 2, 3];
             vs.AddDirectory("/target", true);
             vs.AddItem("/target/targetItem", targetData);
             vs.AddSymbolicLink("/test/nested/link", "/target/targetItem");
@@ -2210,7 +2210,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test/nested", true);
-            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            vs.AddDirectory("/target", true);
+            BinaryData targetData = [1, 2, 3];
             vs.AddItem("/target/targetItem", targetData);
             vs.AddSymbolicLink("/test/nested/link", "/target");
 
@@ -2230,7 +2231,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            BinaryData targetData = [1, 2, 3];
             vs.AddItem("/targetItem", targetData);
             vs.AddSymbolicLink("/linkToFile", "/targetItem");
 
