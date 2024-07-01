@@ -2139,7 +2139,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/test/link", "/target/path");
 
             // Act
-            vs.RemoveNode("/test/link", true, true);
+            vs.RemoveNode("/test/link", true, true, false);
 
             // Assert
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
@@ -2148,6 +2148,98 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.NodeExists("/target/path"));
             Assert.IsTrue(vs.NodeExists("/test"));
             Assert.IsTrue(vs.NodeExists("/target"));
+        }
+
+        [TestMethod]
+        public void RemoveNode_SymbolicLink_ResolveLinksFalse_RemovesLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            vs.AddItem("/targetItem", targetData);
+            vs.AddSymbolicLink("/link", "/targetItem");
+
+            // Act
+            vs.RemoveNode("/link", false, false, false);
+
+            // Assert
+            Assert.IsTrue(vs.NodeExists("/targetItem"));
+            Assert.IsFalse(vs.NodeExists("/link")); // リンク自体が削除される
+        }
+
+        [TestMethod]
+        public void RemoveNode_RecursiveDeletionWithSymbolicLink_ResolveLinksFalse_RemovesLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/test/nested", true);
+            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            vs.AddDirectory("/target", true);
+            vs.AddItem("/target/targetItem", targetData);
+            vs.AddSymbolicLink("/test/nested/link", "/target/targetItem");
+
+            // Act
+            vs.RemoveNode("/test", true, false, false);
+
+            // Assert
+            Assert.IsFalse(vs.NodeExists("/test"));
+            Assert.IsFalse(vs.NodeExists("/test/nested"));
+            Assert.IsFalse(vs.NodeExists("/test/nested/link"));
+            Assert.IsTrue(vs.NodeExists("/target/targetItem")); // ターゲットアイテムは削除されない
+        }
+
+        [TestMethod]
+        public void RemoveNode_SymbolicLinkToDirectory_ResolveLinksFalse_RemovesLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/targetDir");
+            vs.AddSymbolicLink("/linkToDir", "/targetDir");
+
+            // Act
+            vs.RemoveNode("/linkToDir", false, false, false);
+
+            // Assert
+            Assert.IsTrue(vs.DirectoryExists("/targetDir"));
+            Assert.IsFalse(vs.NodeExists("/linkToDir")); // リンク自体が削除される
+        }
+
+        [TestMethod]
+        public void RemoveNode_SymbolicLinkWithFollowLinksFalse_ResolveLinksFalse_RemovesLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/test/nested", true);
+            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            vs.AddItem("/target/targetItem", targetData);
+            vs.AddSymbolicLink("/test/nested/link", "/target");
+
+            // Act
+            vs.RemoveNode("/test", true, false, false);
+
+            // Assert
+            Assert.IsFalse(vs.NodeExists("/test"));
+            Assert.IsFalse(vs.NodeExists("/test/nested"));
+            Assert.IsFalse(vs.NodeExists("/test/nested/link"));
+            Assert.IsTrue(vs.DirectoryExists("/target")); // ターゲットディレクトリは削除されない
+            Assert.IsTrue(vs.NodeExists("/target/targetItem")); // ターゲットアイテムは削除されない
+        }
+
+        [TestMethod]
+        public void RemoveNode_SymbolicLinkToFile_ResolveLinksFalse_RemovesLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData targetData = new BinaryData(new byte[] { 1, 2, 3 });
+            vs.AddItem("/targetItem", targetData);
+            vs.AddSymbolicLink("/linkToFile", "/targetItem");
+
+            // Act
+            vs.RemoveNode("/linkToFile", false, false, false);
+
+            // Assert
+            Assert.IsTrue(vs.NodeExists("/targetItem"));
+            Assert.IsFalse(vs.NodeExists("/linkToFile")); // リンク自体が削除される
         }
 
         [TestMethod]
@@ -7232,7 +7324,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // Act
             // シンボリックリンクを削除
-            vs.RemoveNode(linkToItemPath);
+            vs.RemoveNode(linkToItemPath, false, false, false);
 
             // Assert
             // linkToLinkのターゲットノードタイプがNoneに更新されていることを確認
@@ -7269,7 +7361,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // Act
             // 最初のシンボリックリンクを削除
-            vs.RemoveNode(linkToItemPath1);
+            vs.RemoveNode(linkToItemPath1, false, false, false);
 
             // Assert
             // linkToItem1がリンク辞書から削除され、linkToItem2は残っていることを確認

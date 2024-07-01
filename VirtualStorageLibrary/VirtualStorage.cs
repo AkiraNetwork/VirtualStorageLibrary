@@ -1257,17 +1257,23 @@ namespace AkiraNet.VirtualStorageLibrary
             return;
         }
 
-        public void RemoveNode(VirtualPath path, bool recursive = false, bool followLinks = false)
+        public void RemoveNode(VirtualPath nodePath, bool recursive = false, bool followLinks = false, bool resolveLinks = true)
         {
-            path = ConvertToAbsolutePath(path).NormalizePath();
+            nodePath = ConvertToAbsolutePath(nodePath).NormalizePath();
 
-            if (path.IsRoot)
+            if (nodePath.IsRoot)
             {
                 throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
             }
 
+            VirtualPath resolvedNodePath = nodePath;
+            if (resolveLinks)
+            {
+                resolvedNodePath = ResolveLinkTarget(nodePath);
+            }
+
             // TODO: ToList
-            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(path, VirtualNodeTypeFilter.All, recursive, followLinks).ToList();
+            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(resolvedNodePath, VirtualNodeTypeFilter.All, recursive, followLinks).ToList();
 
             if (recursive)
             {
@@ -1284,7 +1290,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // シンボリックリンクの場合はリンクノードを削除する
                         VirtualSymbolicLink link = context.ResolvedLink;
-                        VirtualPath linkPath = path + context.TraversalPath;
+                        VirtualPath linkPath = resolvedNodePath + context.TraversalPath;
                         VirtualPath linkParentPath = linkPath.DirectoryPath;
                         parentDir = GetDirectory(linkParentPath, true);
 
@@ -1326,7 +1332,7 @@ namespace AkiraNet.VirtualStorageLibrary
                         parentDir?.Remove(node);
 
                         // ターゲットノードタイプを更新
-                        VirtualPath deletePath = path + context.TraversalPath;
+                        VirtualPath deletePath = resolvedNodePath + context.TraversalPath;
                         UpdateLinkTypesInDictionary(deletePath);
                     }
                 }
@@ -1358,14 +1364,14 @@ namespace AkiraNet.VirtualStorageLibrary
                 parentDir?.Remove(node);
 
                 // ターゲットノードタイプを更新
-                UpdateLinkTypesInDictionary(path);
+                UpdateLinkTypesInDictionary(resolvedNodePath);
 
                 // ノードがリンクの場合、リンク辞書からリンクを削除
                 if (node is VirtualSymbolicLink link)
                 {
                     if (link.TargetPath != null)
                     {
-                        RemoveLinkFromDictionary(link.TargetPath, path);
+                        RemoveLinkFromDictionary(link.TargetPath, resolvedNodePath);
                     }
                 }
             }
