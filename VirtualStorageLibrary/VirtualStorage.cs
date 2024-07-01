@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 
 namespace AkiraNet.VirtualStorageLibrary
 {
@@ -335,12 +336,12 @@ namespace AkiraNet.VirtualStorageLibrary
             AddDirectory(directoryPath, newDirectory, createSubdirectories);
         }
 
-        private bool CreateIntermediateDirectory(VirtualDirectory directory, VirtualNodeName nodeName, VirtualPath nodePath)
+        private bool CreateIntermediateDirectory(VirtualDirectory parentDirectory, VirtualNodeName nodeName, VirtualPath nodePath)
         {
             VirtualDirectory newSubdirectory = new(nodeName);
 
             // 中間ディレクトリを追加
-            directory.Add(newSubdirectory);
+            parentDirectory.Add(newSubdirectory);
 
             // 中間ディレクトリをリンク辞書に追加
             UpdateLinkTypesInDictionary(nodePath);
@@ -489,7 +490,7 @@ namespace AkiraNet.VirtualStorageLibrary
             if (p.TargetPath.IsRoot)
             {
                 p.NotifyNode?.Invoke(VirtualPath.Root, _root, true);
-                return new VirtualNodeContext(_root, VirtualPath.Root, null, 0, 0, VirtualPath.Root, p.Resolved);
+                return new VirtualNodeContext(_root, VirtualPath.Root, null, -1, -1, VirtualPath.Root, p.Resolved);
             }
 
             VirtualNodeName traversalNodeName = p.TargetPath.PartsList[p.TraversalIndex];
@@ -510,10 +511,10 @@ namespace AkiraNet.VirtualStorageLibrary
                     throw new VirtualNodeNotFoundException($"ノード '{p.TraversalPath + traversalNodeName}' が見つかりません。");
                 }
 
-                return new VirtualNodeContext(null, p.TraversalPath, null, 0, 0, p.TraversalPath, p.Resolved);
+                return new VirtualNodeContext(null, p.TraversalPath, null, -1, -1, p.TraversalPath, p.Resolved);
             }
 
-            VirtualNodeContext? nodeContext;
+            VirtualNodeContext nodeContext;
 
             // 探索ノードを取得
             VirtualNode? node = p.TraversalDirectory[traversalNodeName];
@@ -532,7 +533,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     // 末端のノードを通知
                     p.NotifyNode?.Invoke(p.TraversalPath, node, true);
                     p.ResolvedPath ??= p.TraversalPath;
-                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
+                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
                 }
 
                 // 途中のノードを通知
@@ -543,9 +544,8 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 // 再帰的に探索
                 nodeContext = WalkPathToTargetInternal(p);
-                node = nodeContext?.Node;
-                p.TraversalPath = nodeContext?.TraversalPath ?? p.TraversalPath;
-                p.ResolvedPath = nodeContext?.ResolvedPath ?? p.ResolvedPath;
+
+                return nodeContext;
             }
             else if (node is VirtualItem)
             {
@@ -556,7 +556,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                 {
                     p.ResolvedPath ??= p.TraversalPath;
-                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
+                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
                 }
 
                 p.ResolvedPath ??= p.TraversalPath;
@@ -576,7 +576,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     // シンボリックリンクを通知
                     p.NotifyNode?.Invoke(p.TraversalPath, node, true);
                     p.ResolvedPath ??= p.TraversalPath;
-                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
+                    return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
                 }
 
                 p.Resolved = true;
@@ -620,7 +620,11 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // 末端のノードを通知
                         p.ResolvedPath ??= p.TraversalPath;
-                        return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
+
+                        nodeContext!.TraversalPath = p.TraversalPath;
+                        nodeContext.ResolvedPath = p.ResolvedPath;
+
+                        return nodeContext;
                     }
 
                     // 探索ディレクトリを取得
@@ -628,17 +632,19 @@ namespace AkiraNet.VirtualStorageLibrary
 
                     // 再帰的に探索
                     nodeContext = WalkPathToTargetInternal(p);
-                    node = nodeContext?.Node;
-                    p.TraversalPath = nodeContext?.TraversalPath ?? p.TraversalPath;
-                    p.ResolvedPath = nodeContext?.ResolvedPath ?? p.ResolvedPath;
+
+                    nodeContext.TraversalPath = nodeContext.TraversalPath ?? p.TraversalPath;
+                    nodeContext.ResolvedPath = nodeContext.ResolvedPath ?? p.ResolvedPath;
+
+                    return nodeContext;
                 }
 
                 p.ResolvedPath ??= p.TraversalPath;
-                return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
+                return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
             }
 
             p.ResolvedPath ??= p.TraversalPath;
-            return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, 0, 0, p.ResolvedPath, p.Resolved);
+            return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
         }
 
         public IEnumerable<VirtualNodeContext> ResolvePathTree(
@@ -1432,7 +1438,7 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualDirectory parentDirectory = nodeContext.ParentDirectory!;
 
             // リンク辞書の更新（シンボリックリンクの場合）
-            if (node is VirtualSymbolicLink symbolicLink)
+            if (node is VirtualSymbolicLink)
             {
                 UpdateLinkNameInDictionary(oldAbsolutePath, newAbsolutePath);
             }

@@ -1,6 +1,6 @@
 ﻿namespace AkiraNet.VirtualStorageLibrary
 {
-    [method: DebuggerStepThrough]
+    [DebuggerStepThrough]
     public class VirtualNodeContext(
         VirtualNode? node,
         VirtualPath traversalPath,
@@ -11,23 +11,22 @@
         bool resolved = false,
         VirtualSymbolicLink? resolvedLink = null)
     {
-        public VirtualNode? Node { [DebuggerStepThrough] get; } = node;
+        public VirtualNode? Node { get; set; } = node;
 
-        public VirtualPath TraversalPath { [DebuggerStepThrough] get; } = traversalPath;
+        public VirtualPath TraversalPath { get; set; } = traversalPath;
 
-        public VirtualDirectory? ParentDirectory { [DebuggerStepThrough] get; } = parentNode;
+        public VirtualDirectory? ParentDirectory { get; set; } = parentNode;
 
-        public int Depth { [DebuggerStepThrough] get; } = depth;
+        public int Depth { get; set; } = depth;
 
-        public int Index { [DebuggerStepThrough] get; } = index;
+        public int Index { get; set; } = index;
 
-        public VirtualPath? ResolvedPath { [DebuggerStepThrough] get; } = resolvedPath;
+        public VirtualPath? ResolvedPath { get; set; } = resolvedPath;
 
-        public bool Resolved { [DebuggerStepThrough] get; } = resolved;
+        public bool Resolved { get; set; } = resolved;
 
-        public VirtualSymbolicLink? ResolvedLink { [DebuggerStepThrough] get; set; } = resolvedLink;
+        public VirtualSymbolicLink? ResolvedLink { get; set; } = resolvedLink;
 
-        [DebuggerStepThrough]
         public override string ToString()
         {
             List<string> parts =

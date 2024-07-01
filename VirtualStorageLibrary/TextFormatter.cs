@@ -12,13 +12,13 @@ namespace AkiraNet.VirtualStorageLibrary
             var tableDataList = tableData.Select(row => row.ToList()).ToList(); // Convert to List<List<string>>
             int[] columnWidths = GetColumnWidths(tableDataList);
 
-            string horizontalLine = new string('-', columnWidths.Sum() + columnWidths.Length * 3 + 1);
-            StringBuilder formattedTable = new StringBuilder();
+            string horizontalLine = new('-', columnWidths.Sum() + columnWidths.Length * 3 + 1);
+            StringBuilder formattedTable = new();
             formattedTable.AppendLine(horizontalLine);
 
             foreach (var row in tableDataList)
             {
-                formattedTable.Append("|");
+                formattedTable.Append('|');
                 for (int i = 0; i < row.Count; i++)
                 {
                     formattedTable.Append(" " + row[i].PadRight(columnWidths[i] - GetStringWidth(row[i]) + row[i].Length) + " |");
@@ -85,17 +85,19 @@ namespace AkiraNet.VirtualStorageLibrary
         public static string GenerateTextBasedTable<T>(IEnumerable<T> enumerableObject)
         {
             if (enumerableObject == null || !enumerableObject.Any())
-                throw new ArgumentException("Objects collection cannot be null or empty");
+            {
+                return string.Empty;
+            }
 
             Type type = typeof(T);
             PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            List<IEnumerable<string>> tableData = new List<IEnumerable<string>>();
+            List<IEnumerable<string>> tableData = [];
             tableData.Add(properties.Select(p => p.Name));
 
             foreach (var obj in enumerableObject)
             {
-                List<string> row = new List<string>();
+                List<string> row = [];
                 foreach (var property in properties)
                 {
                     object? value = property.GetValue(obj);
@@ -113,7 +115,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 throw new ArgumentException("Object cannot be null");
 
             Type type = typeof(T);
-            List<PropertyInfo> properties = new List<PropertyInfo>();
+            List<PropertyInfo> properties = [];
 
             // Get properties from base classes first
             Type? currentType = type;
@@ -126,8 +128,8 @@ namespace AkiraNet.VirtualStorageLibrary
             // Ensure properties are unique by name
             var uniqueProperties = properties.GroupBy(p => p.Name).Select(g => g.First()).ToList();
 
-            List<string> headers = new List<string>();
-            List<string> row = new List<string>();
+            List<string> headers = [];
+            List<string> row = [];
 
             foreach (var property in uniqueProperties)
             {
@@ -139,7 +141,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     object? value = property.GetValue(singleObject);
 
                     // Skip collections and dictionaries
-                    if (value is IEnumerable && !(value is string))
+                    if (value is IEnumerable && value is not string)
                     {
                         row.Add("(no output)");
                     }
@@ -155,11 +157,11 @@ namespace AkiraNet.VirtualStorageLibrary
                 }
             }
 
-            List<IEnumerable<string>> tableData = new List<IEnumerable<string>>
-            {
+            List<IEnumerable<string>> tableData =
+            [
                 headers,
                 row
-            };
+            ];
 
             return FormatTable(tableData);
         }
