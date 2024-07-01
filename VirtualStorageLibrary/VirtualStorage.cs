@@ -489,7 +489,7 @@ namespace AkiraNet.VirtualStorageLibrary
             // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
             if (p.TargetPath.IsRoot)
             {
-                p.NotifyNode?.Invoke(VirtualPath.Root, _root, true);
+                p.NotifyNode?.Invoke(VirtualPath.Root, _root);
                 return new VirtualNodeContext(_root, VirtualPath.Root, null, -1, -1, VirtualPath.Root, p.Resolved);
             }
 
@@ -531,13 +531,13 @@ namespace AkiraNet.VirtualStorageLibrary
                 if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                 {
                     // 末端のノードを通知
-                    p.NotifyNode?.Invoke(p.TraversalPath, node, true);
+                    p.NotifyNode?.Invoke(p.TraversalPath, node);
                     p.ResolvedPath ??= p.TraversalPath;
                     return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
                 }
 
                 // 途中のノードを通知
-                p.NotifyNode?.Invoke(p.TraversalPath, node, false);
+                p.NotifyNode?.Invoke(p.TraversalPath, node);
 
                 // 探索ディレクトリを取得
                 p.TraversalDirectory = directory;
@@ -550,7 +550,7 @@ namespace AkiraNet.VirtualStorageLibrary
             else if (node is VirtualItem)
             {
                 // 末端のノードを通知
-                p.NotifyNode?.Invoke(p.TraversalPath, node, true);
+                p.NotifyNode?.Invoke(p.TraversalPath, node);
 
                 // 最後のノードに到達したかチェック
                 if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
@@ -574,7 +574,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 if (!p.FollowLinks || link.TargetPath == null)
                 {
                     // シンボリックリンクを通知
-                    p.NotifyNode?.Invoke(p.TraversalPath, node, true);
+                    p.NotifyNode?.Invoke(p.TraversalPath, node);
                     p.ResolvedPath ??= p.TraversalPath;
                     return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
                 }
@@ -611,7 +611,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 p.ResolvedPath = nodeContext?.ResolvedPath!.CombineFromIndex(p.TargetPath, p.TraversalIndex);
 
                 // シンボリックリンクを通知
-                p.NotifyNode?.Invoke(p.TraversalPath, node, true);
+                p.NotifyNode?.Invoke(p.TraversalPath, node);
 
                 if (node != null && (node is VirtualDirectory linkDirectory))
                 {

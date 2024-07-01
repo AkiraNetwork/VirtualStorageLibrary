@@ -3,11 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
-    public class NotifyNodeInfo(VirtualPath path, VirtualNode? node, bool isEnd)
+    public class NotifyNodeInfo(VirtualPath path, VirtualNode? node)
     {
         public VirtualPath Path { get; set; } = path;
         public VirtualNode? Node { get; set; } = node;
-        public bool IsEnd { get; set; } = isEnd;
     }
 
     public class ActionNodeInfo(VirtualDirectory parentDirectory, VirtualNodeName nodeName, VirtualPath nodePath)
@@ -4534,10 +4533,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsNull(((VirtualSymbolicLink)nodeContext.Node).TargetPath);
         }
 
-        private void NotifyNode(VirtualPath path, VirtualNode? node, bool isEnd)
+        private void NotifyNode(VirtualPath path, VirtualNode? node)
         {
             //Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");
-            _notifyNodeInfos.Add(new NotifyNodeInfo(path, node, isEnd));
+            _notifyNodeInfos.Add(new NotifyNodeInfo(path, node));
         }
 
         private bool ActionNode(VirtualDirectory parentDirectory, VirtualNodeName nodeName, VirtualPath nodePath)
@@ -5794,6 +5793,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/subdir1/item3", "test");
             vs.AddSymbolicLink("/link-to-item", "/item1");
             vs.AddSymbolicLink("/link-to-dir", "/dir1");
+
+            // ツリー構造の表示
+            Debug.WriteLine("tree structure (SetupVirtualStorage):");
+            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            Debug.WriteLine(tree);
+
             return vs;
         }
 
