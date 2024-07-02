@@ -52,7 +52,7 @@ namespace AkiraNet.VirtualStorageLibrary
             linkPathSet.Add(linkPath);
 
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
-            link.TargetNodeType = GetNodeType(targetPath);
+            link.TargetNodeType = GetNodeType(targetPath, true);
         }
 
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
@@ -434,11 +434,17 @@ namespace AkiraNet.VirtualStorageLibrary
                 // targetPathを絶対パスに変換して正規化する必要がある。その際、シンボリックリンクを作成したディレクトリパスを基準とする
                 VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath!, linkDirectoryPath).NormalizePath();
 
-                // リンク辞書にリンク情報を追加
-                AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + link.Name);
+                // リンクターゲットを解決
+                VirtualPath? resolvedLinkTarget = TryResolveLinkTarget(absoluteTargetPath);
 
-                // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-                UpdateLinkTypesInDictionary(linkDirectoryPath + link.Name);
+                if (resolvedLinkTarget != null)
+                {
+                    // リンク辞書にリンク情報を追加
+                    AddLinkToDictionary(resolvedLinkTarget, linkDirectoryPath + link.Name);
+
+                    // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+                    UpdateLinkTypesInDictionary(linkDirectoryPath + link.Name);
+                }
             }
         }
 
@@ -575,7 +581,23 @@ namespace AkiraNet.VirtualStorageLibrary
                 {
                     // シンボリックリンクを通知
                     p.NotifyNode?.Invoke(p.TraversalPath, node);
+
+                    // 最後のノードに到達したかチェック
+                    if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
+                    {
+                        p.ResolvedPath ??= p.TargetPath;
+                        return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
+                    }
+
                     p.ResolvedPath ??= p.TraversalPath;
+
+                    // 例外が有効な場合は例外をスロー
+                    if (p.ExceptionEnabled)
+                    {
+                        throw new VirtualNodeNotFoundException($"ノード '{p.TargetPath}' まで到達できません。" +
+                            $"ノード '{p.TraversalPath}' はシンボリックリンクであり、リンク解決は指定されていません。");
+                    }
+
                     return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
                 }
 
@@ -1722,6 +1744,38 @@ namespace AkiraNet.VirtualStorageLibrary
             }   
 
             return tree.ToString();
+        }
+
+        public string GenerateTextBasedTableForLinkDictionary()
+        {
+            if (LinkDictionary == null || LinkDictionary.Count == 0)
+                throw new ArgumentException("Link dictionary cannot be null or empty");
+
+            List<IEnumerable<string>> tableData =
+            [
+                ["TargetPath", "LinkPath"]
+            ];
+
+            foreach (var entry in LinkDictionary)
+            {
+                var targetPath = entry.Key;
+                var linkPathsWithTypes = entry.Value
+                    .Select(vp =>
+                    {
+                        var symbolicLinkNode = GetSymbolicLink(vp);
+                        var targetNodeType = symbolicLinkNode?.TargetNodeType.ToString() ?? "Unknown";
+                        return $"{vp}({targetNodeType})";
+                    })
+                    .ToList();
+
+                tableData.Add(
+                [
+                    targetPath.ToString(),
+                    string.Join(", ", linkPathsWithTypes)
+                ]);
+            }
+
+            return TextFormatter.FormatTable(tableData);
         }
 
         [DebuggerStepThrough]

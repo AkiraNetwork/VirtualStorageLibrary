@@ -1,5 +1,6 @@
 ﻿namespace AkiraNet.VirtualStorageLibrary
 {
+    [DebuggerStepThrough]
     public class VirtualStorageSettings
     {
         private static VirtualStorageSettings _settings = new();

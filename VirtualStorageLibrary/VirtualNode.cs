@@ -1,5 +1,6 @@
 ﻿namespace AkiraNet.VirtualStorageLibrary
 {
+    [DebuggerStepThrough]
     public abstract class VirtualNode : IVirtualDeepCloneable<VirtualNode>
     {
         public VirtualNodeName Name { get; internal set; }
