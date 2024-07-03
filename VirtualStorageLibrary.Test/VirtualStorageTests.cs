@@ -8132,55 +8132,55 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link2ToItem1", "/dir1/linkToDir2/item1");
 
             // ディレクトリ構造のデバッグ出力
-            Debug.WriteLine("ディレクトリ構造 (リンク追加後:)");
+            Debug.WriteLine("ディレクトリ構造 (/link1ToItem1, /link2ToItem1 追加後:)");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
-            Debug.WriteLine("リンク辞書 (リンク追加後):");
+            Debug.WriteLine("リンク辞書 (/link1ToItem1, /link2ToItem1 リンク追加後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Act
             vs.RemoveNode("/dir1/dir2/item1");
 
             // ディレクトリ構造のデバッグ出力
-            Debug.WriteLine("ディレクトリ構造 (アイテム削除後:)");
+            Debug.WriteLine("ディレクトリ構造 (/dir1/dir2/item1 アイテム削除後:)");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
-            Debug.WriteLine("リンク辞書 (アイテム削除後):");
+            Debug.WriteLine("リンク辞書 (/dir1/dir2/item1 アイテム削除後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Act
             vs.AddDirectory("/dir1/dir2/item1");
 
             // ディレクトリ構造のデバッグ出力
-            Debug.WriteLine("ディレクトリ構造 (ディレクトリ追加後:)");
+            Debug.WriteLine("ディレクトリ構造 (/dir1/dir2/item1 ディレクトリ追加後:)");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
-            Debug.WriteLine("リンク辞書 (ディレクトリ追加後):");
+            Debug.WriteLine("リンク辞書 (/dir1/dir2/item1 ディレクトリ追加後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Act
             vs.RemoveNode("/dir1/linkToDir2", false, false, false);
 
             // ディレクトリ構造のデバッグ出力
-            Debug.WriteLine("ディレクトリ構造 (シンボリックリンク削除後:)");
+            Debug.WriteLine("ディレクトリ構造 (/dir1/linkToDir2 シンボリックリンク削除後:)");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
-            Debug.WriteLine("リンク辞書 (ディレクトリ追加後):");
+            Debug.WriteLine("リンク辞書 (/dir1/linkToDir2 シンボリックリンク削除後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Act
             vs.RemoveNode("/link2ToItem1", false, false, false);
 
             // ディレクトリ構造のデバッグ出力
-            Debug.WriteLine("ディレクトリ構造 (シンボリックリンク削除後:)");
+            Debug.WriteLine("ディレクトリ構造 (/link2ToItem1 シンボリックリンク削除後:)");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
-            Debug.WriteLine("リンク辞書 (ディレクトリ追加後):");
+            Debug.WriteLine("リンク辞書 (/link2ToItem1 シンボリックリンク削除後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
         }
     }

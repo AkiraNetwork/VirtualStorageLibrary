@@ -111,19 +111,26 @@ namespace AkiraNet.VirtualStorageLibrary
         {
             if (GetNode(linkPath) is VirtualSymbolicLink link)
             {
-                VirtualPath oldTargetPath = link.TargetPath ?? string.Empty;
+                if (link.TargetPath != null)
+                {
+                    VirtualPath? resolvedLinkTarget = TryResolveLinkTarget(link.TargetPath);
+                    if (resolvedLinkTarget != null)
+                    {
+                        VirtualPath oldTargetPath = resolvedLinkTarget;
 
-                // 古いターゲットパスからリンクを削除
-                RemoveLinkFromDictionary(oldTargetPath, linkPath);
+                        // 古いターゲットパスからリンクを削除
+                        RemoveLinkFromDictionary(oldTargetPath, linkPath);
 
-                // 新しいターゲットパスを設定
-                link.TargetPath = newTargetPath;
+                        // 新しいターゲットパスを設定
+                        link.TargetPath = newTargetPath;
 
-                // 新しいターゲットパスにリンクを追加
-                AddLinkToDictionary(newTargetPath, linkPath);
+                        // 新しいターゲットパスにリンクを追加
+                        AddLinkToDictionary(newTargetPath, linkPath);
 
-                // 新しいターゲットノードのタイプを更新
-                link.TargetNodeType = GetNodeType(newTargetPath);
+                        // 新しいターゲットノードのタイプを更新
+                        link.TargetNodeType = GetNodeType(newTargetPath);
+                    }
+                }
             }
         }
 
@@ -701,14 +708,14 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualPath basePath,
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
             bool recursive = true,
-            bool followLinks = true)
+            bool followLinks = true,
+            bool resolveLinks = true)
         {
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
             int baseDepth = basePath.GetBaseDepth();
             VirtualNode baseNode = GetNode(basePath, followLinks);
 
-            // TODO: リンクのターゲット先が存在しない場合の仕様を検討する。
-            VirtualNodeContext nodeContext = WalkPathToTarget(basePath, null, null, true, true);
+            VirtualNodeContext nodeContext = WalkPathToTarget(basePath, null, null, resolveLinks, true);
             VirtualPath traversalBasePath = nodeContext.TraversalPath;
             VirtualPath resolvedBasePath = nodeContext.ResolvedPath!;
             VirtualPath parentDirectoryPath = resolvedBasePath.DirectoryPath;
@@ -1295,7 +1302,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             // TODO: ToList
-            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(resolvedNodePath, VirtualNodeTypeFilter.All, recursive, followLinks).ToList();
+            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(resolvedNodePath, VirtualNodeTypeFilter.All, recursive, followLinks, resolveLinks).ToList();
 
             if (recursive)
             {
@@ -1329,7 +1336,11 @@ namespace AkiraNet.VirtualStorageLibrary
                         // リンク辞書からリンクを削除
                         if (link.TargetPath != null)
                         {
-                            RemoveLinkFromDictionary(link.TargetPath, linkPath);
+                            VirtualPath? resolvedTargetPath = TryResolveLinkTarget(link.TargetPath);
+                            if (resolvedTargetPath != null)
+                            {
+                                RemoveLinkFromDictionary(resolvedTargetPath, linkPath);
+                            }
                         }
 
                         // リンクターゲットも削除する
@@ -1393,7 +1404,11 @@ namespace AkiraNet.VirtualStorageLibrary
                 {
                     if (link.TargetPath != null)
                     {
-                        RemoveLinkFromDictionary(link.TargetPath, resolvedNodePath);
+                        VirtualPath? resolvedTargetPath = TryResolveLinkTarget(link.TargetPath);
+                        if (resolvedTargetPath != null)
+                        {
+                            RemoveLinkFromDictionary(resolvedTargetPath, resolvedNodePath);
+                        }
                     }
                 }
             }
@@ -1762,7 +1777,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 var linkPathsWithTypes = entry.Value
                     .Select(vp =>
                     {
-                        var symbolicLinkNode = GetSymbolicLink(vp);
+                        var symbolicLinkNode = TryGetSymbolicLink(vp);
                         var targetNodeType = symbolicLinkNode?.TargetNodeType.ToString() ?? "Unknown";
                         return $"{vp}({targetNodeType})";
                     })
