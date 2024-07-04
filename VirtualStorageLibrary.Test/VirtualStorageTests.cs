@@ -4184,16 +4184,34 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void AddSymbolicLink_ToLocationPointedBySymbolicLink_ShouldAddLinkSuccessfully()
         {
+            // arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath actualDirectoryPath = "/actualDir";
-            vs.AddDirectory(actualDirectoryPath);
-            VirtualPath symbolicLinkPath = "/symbolicLink";
-            vs.AddSymbolicLink(symbolicLinkPath, actualDirectoryPath);
-            VirtualNodeName linkName = "newLink";
-            VirtualSymbolicLink link = new(linkName, "/linkTarget");
-            vs.AddSymbolicLink(symbolicLinkPath, link);
-            Assert.IsTrue(vs.SymbolicLinkExists(actualDirectoryPath + linkName));
-            Assert.IsTrue(vs.SymbolicLinkExists(symbolicLinkPath));
+            VirtualSymbolicLink link = new("newLink", "/newTarget");
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/link1", "/dir1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
+            // Act
+            vs.AddSymbolicLink("/link1", link);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
+            // Assert
+            Assert.IsTrue(vs.SymbolicLinkExists("/dir1" + "newLink"));
+            Assert.IsTrue(vs.SymbolicLinkExists("/link1"));
         }
 
         [TestMethod]
@@ -7309,7 +7327,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Assert
             Assert.AreEqual(vs.GetSymbolicLink(directoryLinkPath).TargetNodeType, vs.GetNodeType(directoryTargetPath));
             Assert.AreEqual(vs.GetSymbolicLink(itemLinkPath).TargetNodeType, vs.GetNodeType(itemTargetPath));
-            Assert.AreEqual(vs.GetSymbolicLink(symbolicLinkPath).TargetNodeType, vs.GetNodeType(symbolicLinkTargetPath));
+            Assert.AreEqual(vs.GetSymbolicLink(symbolicLinkPath).TargetNodeType, vs.GetNodeType(symbolicLinkTargetPath, true));
             Assert.AreEqual(vs.GetSymbolicLink(nonExistentLinkPath).TargetNodeType, vs.GetNodeType(nonExistentTargetPath));
 
             // Debug print
@@ -8142,6 +8160,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink("/link1").TargetNodeType);
         }
 
+        // このテストは幽霊リンクの問題を再現するためのテストです。
+        // ターゲットパスが /dir1/linkToDir2/item1 である場合において、
+        // linkToDir2 が削除された後にリンク辞書がどのような状態になるか
+        // 確認する事が目的です。
         [TestMethod]
         public void LinkDictionary_Test2()
         {
@@ -8194,6 +8216,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Act
+            // linkToDir2を削除すると、link2ToItem1はリンク辞書内で幽霊リンクとなる
+            // ターゲットパス: /dir1/linkToDir2/item1
+            // link2ToItem1 -> (幽霊:linkToDir2) -> item1
+            // この時、link2ToItem1 のターゲットノードタイプは item1 のノードタイプを
+            // 保持し続ける。
+            // 現状、この問題は仕様として扱っているが、この挙動が望ましいかどうかは
+            // 議論の余地がある。
             vs.RemoveNode("/dir1/linkToDir2", false, false, false);
 
             // ディレクトリ構造のデバッグ出力
