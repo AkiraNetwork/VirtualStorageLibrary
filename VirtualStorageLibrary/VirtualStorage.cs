@@ -164,6 +164,35 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
+        public void RemoveLinkByLinkPath(VirtualPath linkPath)
+        {
+            if (!linkPath.IsAbsolute)
+            {
+                throw new ArgumentException("リンクパスは絶対パスである必要があります。", nameof(linkPath));
+            }
+
+            List<VirtualPath> targetPathsToRemoveList = [];
+
+            foreach (KeyValuePair<VirtualPath, HashSet<VirtualPath>> entry in _linkDictionary)
+            {
+                VirtualPath targetPath = entry.Key;
+                HashSet<VirtualPath> linkPathSet = entry.Value;
+
+                if (linkPathSet.Remove(linkPath))
+                {
+                    if (linkPathSet.Count == 0)
+                    {
+                        targetPathsToRemoveList.Add(targetPath);
+                    }
+                }
+            }
+
+            foreach (VirtualPath targetPath in targetPathsToRemoveList)
+            {
+                _linkDictionary.Remove(targetPath);
+            }
+        }
+
         public void ChangeDirectory(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -438,7 +467,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
             if (link.TargetPath != null)
             {
-                // targetPathを絶対パスに変換して正規化する必要がある。その際、シンボリックリンクを作成したディレクトリパスを基準とする
+                // シンボリックリンクを作成したディレクトリパスを基準とする
                 VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath!, linkDirectoryPath).NormalizePath();
 
                 // リンクターゲットを解決
@@ -446,13 +475,18 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 if (resolvedLinkTarget != null)
                 {
-                    // リンク辞書にリンク情報を追加
+                    // リンク辞書にパス解決したリンク情報を追加
                     AddLinkToDictionary(resolvedLinkTarget, linkDirectoryPath + link.Name);
-
-                    // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-                    UpdateLinkTypesInDictionary(linkDirectoryPath + link.Name);
+                }
+                else
+                {
+                    // リンク辞書にリンク情報を追加
+                    AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + link.Name);
                 }
             }
+
+            // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
+            UpdateLinkTypesInDictionary(linkDirectoryPath + link.Name);
         }
 
         public void AddSymbolicLink(VirtualPath linkPath, VirtualPath? targetPath = null, bool overwrite = false)
@@ -1302,7 +1336,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             // TODO: ToList
-            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(resolvedNodePath, VirtualNodeTypeFilter.All, recursive, followLinks, resolveLinks).ToList();
+            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(nodePath, VirtualNodeTypeFilter.All, recursive, followLinks, resolveLinks).ToList();
 
             if (recursive)
             {
@@ -1319,7 +1353,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     {
                         // シンボリックリンクの場合はリンクノードを削除する
                         VirtualSymbolicLink link = context.ResolvedLink;
-                        VirtualPath linkPath = resolvedNodePath + context.TraversalPath;
+                        VirtualPath linkPath = nodePath + context.TraversalPath;
                         VirtualPath linkParentPath = linkPath.DirectoryPath;
                         parentDir = GetDirectory(linkParentPath, true);
 
@@ -1340,6 +1374,10 @@ namespace AkiraNet.VirtualStorageLibrary
                             if (resolvedTargetPath != null)
                             {
                                 RemoveLinkFromDictionary(resolvedTargetPath, linkPath);
+                            }
+                            else
+                            {
+                                RemoveLinkByLinkPath(resolvedNodePath);
                             }
                         }
 
@@ -1408,6 +1446,10 @@ namespace AkiraNet.VirtualStorageLibrary
                         if (resolvedTargetPath != null)
                         {
                             RemoveLinkFromDictionary(resolvedTargetPath, resolvedNodePath);
+                        }
+                        else
+                        {
+                            RemoveLinkByLinkPath(resolvedNodePath);
                         }
                     }
                 }
@@ -1764,7 +1806,9 @@ namespace AkiraNet.VirtualStorageLibrary
         public string GenerateTextBasedTableForLinkDictionary()
         {
             if (LinkDictionary == null || LinkDictionary.Count == 0)
-                throw new ArgumentException("Link dictionary cannot be null or empty");
+            {
+                return "(リンク辞書は空です。)";
+            }
 
             List<IEnumerable<string>> tableData =
             [

@@ -2129,6 +2129,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
+
             vs.AddDirectory("/test");
             BinaryData targetData = [1, 2, 3];
             VirtualItem<BinaryData> targetItem = new("TargetItem", targetData);
@@ -2136,11 +2137,26 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/target/path", targetItem);
             vs.AddSymbolicLink("/test/link", "/target/path");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
             // Act
-            vs.RemoveNode("/test/link", true, true, false);
+            vs.RemoveNode("/test/link", true, true, true);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Assert
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
             Assert.IsTrue(targetItem.ItemData!.Count == 0, "Target item data should be cleared on Dispose.");
             Assert.IsFalse(vs.NodeExists("/test/link"));
             Assert.IsFalse(vs.NodeExists("/target/path"));
@@ -7268,11 +7284,27 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/absolute", new VirtualItem<BinaryData>("item1", data));
             vs.AddSymbolicLink(symbolicLinkTargetPath, directoryTargetPath);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
             // Act
             vs.AddSymbolicLink(directoryLinkPath, directoryTargetPath);
             vs.AddSymbolicLink(itemLinkPath, itemTargetPath);
             vs.AddSymbolicLink(symbolicLinkPath, symbolicLinkTargetPath);
             vs.AddSymbolicLink(nonExistentLinkPath, nonExistentTargetPath);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Assert
             Assert.AreEqual(vs.GetSymbolicLink(directoryLinkPath).TargetNodeType, vs.GetNodeType(directoryTargetPath));
@@ -8181,6 +8213,17 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/link2ToItem1 シンボリックリンク削除後):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
+            // Act
+            vs.RemoveNode("/link1ToItem1", false, false, false);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (/link1ToItem1 シンボリックリンク削除後:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (/link1ToItem1 シンボリックリンク削除後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
         }
     }
