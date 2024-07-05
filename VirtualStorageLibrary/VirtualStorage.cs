@@ -51,7 +51,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
             linkPathSet.Add(linkPath);
 
-            // TODO: GetSymbolicLinkのfollowLinksってfalseじゃないと意味ないよね？
+            // TODO: GetSymbolicLinkの followLinks って false じゃないと意味ないよね？
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
             link.TargetNodeType = GetNodeType(targetPath, true);
         }
@@ -236,10 +236,10 @@ namespace AkiraNet.VirtualStorageLibrary
         public VirtualNode this[VirtualPath path, bool followLinks = true]
         {
             get => GetNode(path, followLinks);
-            set => SetNode(path, value, followLinks);
+            set => SetNode(path, value);
         }
 
-        public void SetNode(VirtualPath destinationPath, VirtualNode node, bool followLinks = false)
+        public void SetNode(VirtualPath destinationPath, VirtualNode node)
         {
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
@@ -250,7 +250,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     break;
 
                 case VirtualSymbolicLink symbolicLink:
-                    UpdateSymbolicLInk(destinationPath, symbolicLink, followLinks);
+                    UpdateSymbolicLInk(destinationPath, symbolicLink);
                     break;
 
                 case VirtualItem<T> item:
@@ -286,13 +286,13 @@ namespace AkiraNet.VirtualStorageLibrary
             directory.Update(newDirectory);
         }
 
-        public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink, bool followLinks = false)
+        public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink)
         {
             // 絶対パスに変換
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
             // 既存のシンボリックリンクを取得
-            VirtualSymbolicLink link = GetSymbolicLink(linkPath, followLinks);
+            VirtualSymbolicLink link = GetSymbolicLink(linkPath);
 
             // 既存シンボリックリンクのノードを更新
             link.Update(newLink);
@@ -759,7 +759,7 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualSymbolicLink? link = null;
             if (traversalBasePath != resolvedBasePath)
             {
-                link = GetSymbolicLink(basePath, false);
+                link = GetSymbolicLink(basePath);
             }
 
             WalkPathTreeParameters p = new(
@@ -1052,14 +1052,14 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        public VirtualSymbolicLink GetSymbolicLink(VirtualPath path, bool followLinks = false)
+        public VirtualSymbolicLink GetSymbolicLink(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
 
             VirtualPath directoryPath = ResolveLinkTarget(path.DirectoryPath);
             VirtualNodeName nodeName = path.NodeName;
 
-            VirtualNode node = GetNode(directoryPath + nodeName, followLinks);
+            VirtualNode node = GetNode(directoryPath + nodeName);
 
             if (node is VirtualSymbolicLink link)
             {
@@ -1071,11 +1071,11 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
-        public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path, bool followLinks = false)
+        public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path)
         {
             try
             {
-                return GetSymbolicLink(path, followLinks);
+                return GetSymbolicLink(path);
             }
             catch (VirtualNodeNotFoundException)
             {
