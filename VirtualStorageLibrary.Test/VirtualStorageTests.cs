@@ -4210,7 +4210,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Assert
-            Assert.IsTrue(vs.SymbolicLinkExists("/dir1" + "newLink"));
+            Assert.IsTrue(vs.SymbolicLinkExists("/dir1/newLink"));
             Assert.IsTrue(vs.SymbolicLinkExists("/link1"));
         }
 
