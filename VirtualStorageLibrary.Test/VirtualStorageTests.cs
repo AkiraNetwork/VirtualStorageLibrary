@@ -3708,22 +3708,28 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
             vs.AddSymbolicLink("/LinkToLink", "/linkToSourceDir");
 
-            // リンク辞書の初期状態を確認
-            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
-            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/sourceDir/subDir1/linkToItem1"));
-            Assert.IsTrue(vs.GetLinksFromDictionary("/linkToSourceDir").Contains("/LinkToLink"));
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
-            // デバッグ出力
-            Debug.WriteLine("MoveNode前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
+            // リンク辞書の初期状態を確認
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item1").Contains("/sourceDir/subDir1/linkToItem1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/LinkToLink"));
 
             // ソースディレクトリを移動
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
-            // デバッグ出力
-            Debug.WriteLine("\nMoveNode後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後:)");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // ノードが適切に移動されたことを確認
@@ -7563,28 +7569,39 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // シンボリックリンクに対するシンボリックリンクを作成
             vs.AddSymbolicLink(linkToLinkPath, linkToItemPath);
 
-            // linkToLinkのターゲットノードタイプがシンボリックリンクであることを確認
-            Assert.AreEqual(VirtualNodeType.SymbolicLink, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
+            // linkToLinkのターゲットノードタイプがアイテムであることを確認
+            Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
 
             // linkToItem1のターゲットノードタイプがアイテムであることを確認
             Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkToItemPath).TargetNodeType);
-
-            // Debug print before Act
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Act
             // シンボリックリンクを削除
             vs.RemoveNode(linkToItemPath, false, false, false);
 
-            // Assert
-            // linkToLinkのターゲットノードタイプがNoneに更新されていることを確認
-            Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (/dir1/linkToItem1 削除後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
-            // 削除されたリンクの情報がリンク辞書から削除されてる事を確認
-            Assert.IsFalse(vs.LinkDictionary.ContainsKey(itemPath));
-
-            // Debug print after Act
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (/dir1/linkToItem1 削除後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+
+            // Assert
+            // linkToLinkのターゲットノードタイプがアイテムのままである事を確認
+            // (いわゆる幽霊リンク経由であるケース)
+            Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
+
+            // 幽霊リンクのターゲットがまだ辞書に存在する事を確認
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey(itemPath));
         }
 
         // 複数のシンボリックリンクが張られている場合のリンク辞書更新のテスト

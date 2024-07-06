@@ -129,7 +129,7 @@ namespace AkiraNet.VirtualStorageLibrary
                         AddLinkToDictionary(newTargetPath, linkPath);
 
                         // 新しいターゲットノードのタイプを更新
-                        link.TargetNodeType = GetNodeType(newTargetPath);
+                        link.TargetNodeType = GetNodeType(oldTargetPath);
                     }
                 }
             }
@@ -1574,6 +1574,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             // 移動処理
+            // TODO: absoluteSourcePathがリンクに対応してない
             if (DirectoryExists(absoluteSourcePath))
             {
                 MoveDirectoryInternal(absoluteSourcePath, absoluteDestinationPath);
