@@ -46,14 +46,15 @@ namespace AkiraNet.VirtualStorageLibrary
 
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
-            HashSet<VirtualPath>? linkPathSet = GetLinksFromDictionary(targetPath);
-            _linkDictionary[targetPath] = linkPathSet;
+            VirtualPath resolvedTargetPath = TryResolveLinkTarget(targetPath) ?? targetPath;
+
+            HashSet<VirtualPath>? linkPathSet = GetLinksFromDictionary(resolvedTargetPath);
+            _linkDictionary[resolvedTargetPath] = linkPathSet;
 
             linkPathSet.Add(linkPath);
 
-            // TODO: GetSymbolicLinkの followLinks って false じゃないと意味ないよね？
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
-            link.TargetNodeType = GetNodeType(targetPath, true);
+            link.TargetNodeType = GetNodeType(resolvedTargetPath, true);
         }
 
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
@@ -114,23 +115,20 @@ namespace AkiraNet.VirtualStorageLibrary
             {
                 if (link.TargetPath != null)
                 {
-                    VirtualPath? resolvedLinkTarget = TryResolveLinkTarget(link.TargetPath);
-                    if (resolvedLinkTarget != null)
-                    {
-                        VirtualPath oldTargetPath = resolvedLinkTarget;
+                    // 古いターゲットパスを取得
+                    VirtualPath oldTargetPath = link.TargetPath;
 
-                        // 古いターゲットパスからリンクを削除
-                        RemoveLinkFromDictionary(oldTargetPath, linkPath);
+                    // 古いターゲットパスからリンクを削除
+                    RemoveLinkFromDictionary(oldTargetPath, linkPath);
 
-                        // 新しいターゲットパスを設定
-                        link.TargetPath = newTargetPath;
+                    // 新しいターゲットパスを設定
+                    link.TargetPath = newTargetPath;
 
-                        // 新しいターゲットパスにリンクを追加
-                        AddLinkToDictionary(newTargetPath, linkPath);
+                    // 新しいターゲットパスにリンクを追加
+                    AddLinkToDictionary(newTargetPath, linkPath);
 
-                        // 新しいターゲットノードのタイプを更新
-                        link.TargetNodeType = GetNodeType(oldTargetPath);
-                    }
+                    // 新しいターゲットノードのタイプを更新
+                    link.TargetNodeType = GetNodeType(oldTargetPath);
                 }
             }
         }
@@ -471,19 +469,8 @@ namespace AkiraNet.VirtualStorageLibrary
                 // シンボリックリンクを作成したディレクトリパスを基準とする
                 VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath!, linkDirectoryPath).NormalizePath();
 
-                // リンクターゲットを解決
-                VirtualPath? resolvedLinkTarget = TryResolveLinkTarget(absoluteTargetPath);
-
-                if (resolvedLinkTarget != null)
-                {
-                    // リンク辞書にパス解決したリンク情報を追加
-                    AddLinkToDictionary(resolvedLinkTarget, linkDirectoryPath + link.Name);
-                }
-                else
-                {
-                    // リンク辞書にリンク情報を追加
-                    AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + link.Name);
-                }
+                // リンク辞書にリンク情報を追加
+                AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + link.Name);
             }
 
             // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
