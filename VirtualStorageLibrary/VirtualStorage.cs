@@ -354,8 +354,8 @@ namespace AkiraNet.VirtualStorageLibrary
                 // 新しいディレクトリを追加
                 directory = (VirtualDirectory)parentDirectory.Add(directory);
 
-                // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-                UpdateTargetNodeTypesInDictionary(directoryPath + directory.Name);
+                // 全てのターゲットノードタイプを更新
+                UpdateAllTargetNodeTypesInDictionary();
             }
             else
             {
@@ -388,8 +388,8 @@ namespace AkiraNet.VirtualStorageLibrary
             // 中間ディレクトリを追加
             parentDirectory.Add(newSubdirectory);
 
-            // 中間ディレクトリをリンク辞書に追加
-            UpdateTargetNodeTypesInDictionary(nodePath);
+            // 全てのターゲットノードタイプを更新
+            UpdateAllTargetNodeTypesInDictionary();
 
             return true;
         }
@@ -424,8 +424,8 @@ namespace AkiraNet.VirtualStorageLibrary
             // 新しいアイテムを追加
             item = (VirtualItem<T>)directory.Add(item, overwrite);
 
-            // リンク辞書を更新
-            UpdateTargetNodeTypesInDictionary(itemDirectoryPath + item.Name);
+            // 全てのターゲットノードタイプを更新
+            UpdateAllTargetNodeTypesInDictionary();
         }
 
         public void AddItem(VirtualPath itemPath, T? data = default, bool overwrite = false)
@@ -483,8 +483,8 @@ namespace AkiraNet.VirtualStorageLibrary
                 AddLinkToDictionary(absoluteTargetPath, linkDirectoryPath + link.Name);
             }
 
-            // 作成したノードがリンクターゲットとして登録されている場合、リンクターゲットのノードタイプを更新
-            UpdateTargetNodeTypesInDictionary(linkDirectoryPath + link.Name);
+            // 全てのターゲットノードタイプを更新
+            UpdateAllTargetNodeTypesInDictionary();
         }
 
         public void AddSymbolicLink(VirtualPath linkPath, VirtualPath? targetPath = null, bool overwrite = false)
@@ -1367,7 +1367,9 @@ namespace AkiraNet.VirtualStorageLibrary
 
                         // ターゲットノードタイプを更新
                         VirtualPath deletePath = linkParentPath + link.Name;
-                        UpdateTargetNodeTypesInDictionary(deletePath);
+
+                        // 全てのターゲットノードタイプを更新
+                        UpdateAllTargetNodeTypesInDictionary();
 
                         // リンク辞書からリンクを削除
                         if (link.TargetPath != null)
@@ -1404,9 +1406,8 @@ namespace AkiraNet.VirtualStorageLibrary
                         // 辞書からノードを削除
                         parentDir?.Remove(node);
 
-                        // ターゲットノードタイプを更新
-                        VirtualPath deletePath = resolvedNodePath + context.TraversalPath;
-                        UpdateTargetNodeTypesInDictionary(deletePath);
+                        // 全てのターゲットノードタイプを更新
+                        UpdateAllTargetNodeTypesInDictionary();
                     }
                 }
             }
@@ -1436,8 +1437,8 @@ namespace AkiraNet.VirtualStorageLibrary
                 // 辞書からノードを削除
                 parentDir?.Remove(node);
 
-                // ターゲットノードタイプを更新
-                UpdateTargetNodeTypesInDictionary(resolvedNodePath);
+                // 全てのターゲットノードタイプを更新
+                UpdateAllTargetNodeTypesInDictionary();
 
                 // ノードがリンクの場合、リンク辞書からリンクを削除
                 if (node is VirtualSymbolicLink link)

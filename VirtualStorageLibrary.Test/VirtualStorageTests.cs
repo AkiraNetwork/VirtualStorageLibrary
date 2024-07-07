@@ -7293,20 +7293,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // テスト用のパス設定
             BinaryData data = [1, 2, 3];
-            VirtualPath directoryTargetPath = "/absolute/dir1";
-            VirtualPath itemTargetPath = "/absolute/item1";
-            VirtualPath symbolicLinkTargetPath = "/absolute/link1";
-            VirtualPath nonExistentTargetPath = "/absolute/nonexistent";
+            VirtualPath dir1Path = "/absolute/dir1";
+            VirtualPath item1Path = "/absolute/item1";
+            VirtualPath link1Path = "/absolute/link1";
+            VirtualPath nonExistentPath = "/absolute/nonExistent";
 
-            VirtualPath directoryLinkPath = "/absolute/linkToDir";
-            VirtualPath itemLinkPath = "/absolute/linkToItem";
-            VirtualPath symbolicLinkPath = "/absolute/linkToLink";
-            VirtualPath nonExistentLinkPath = "/absolute/linkToNonExistent";
+            VirtualPath linkToDirPath = "/absolute/linkToDir";
+            VirtualPath linkToItemPath = "/absolute/linkToItem";
+            VirtualPath linkToLinkPath = "/absolute/linkToLink";
+            VirtualPath linkToNonExistentPath = "/absolute/linkToNonExistent";
 
             // ディレクトリとリンクの作成
-            vs.AddDirectory(directoryTargetPath, true);
+            vs.AddDirectory(dir1Path, true);
             vs.AddItem("/absolute", new VirtualItem<BinaryData>("item1", data));
-            vs.AddSymbolicLink(symbolicLinkTargetPath, directoryTargetPath);
+            vs.AddSymbolicLink(link1Path, dir1Path);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
@@ -7317,10 +7317,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Act
-            vs.AddSymbolicLink(directoryLinkPath, directoryTargetPath);
-            vs.AddSymbolicLink(itemLinkPath, itemTargetPath);
-            vs.AddSymbolicLink(symbolicLinkPath, symbolicLinkTargetPath);
-            vs.AddSymbolicLink(nonExistentLinkPath, nonExistentTargetPath);
+            vs.AddSymbolicLink(linkToDirPath, dir1Path);
+            vs.AddSymbolicLink(linkToItemPath, item1Path);
+            vs.AddSymbolicLink(linkToLinkPath, link1Path);
+            vs.AddSymbolicLink(linkToNonExistentPath, nonExistentPath);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
@@ -7331,13 +7331,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
 
             // Assert
-            Assert.AreEqual(vs.GetSymbolicLink(directoryLinkPath).TargetNodeType, vs.GetNodeType(directoryTargetPath));
-            Assert.AreEqual(vs.GetSymbolicLink(itemLinkPath).TargetNodeType, vs.GetNodeType(itemTargetPath));
-            Assert.AreEqual(vs.GetSymbolicLink(symbolicLinkPath).TargetNodeType, vs.GetNodeType(symbolicLinkTargetPath, true));
-            Assert.AreEqual(vs.GetSymbolicLink(nonExistentLinkPath).TargetNodeType, vs.GetNodeType(nonExistentTargetPath));
-
-            // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            var directoryLink = vs.GetSymbolicLink(linkToDirPath);
+            var itemLink = vs.GetSymbolicLink(linkToItemPath);
+            var symbolicLink = vs.GetSymbolicLink(linkToLinkPath);
+            var nonExistentLink = vs.GetSymbolicLink(linkToNonExistentPath);
+            Assert.AreEqual(VirtualNodeType.Directory, directoryLink.TargetNodeType);
+            Assert.AreEqual(VirtualNodeType.Item, itemLink.TargetNodeType);
+            Assert.AreEqual(VirtualNodeType.SymbolicLink, symbolicLink.TargetNodeType);
+            Assert.AreEqual(VirtualNodeType.None, nonExistentLink.TargetNodeType);
         }
 
         // ターゲットパスが存在しないシンボリックリンクを作成し、ディレクトリを追加してリンクノードタイプを更新するテスト
