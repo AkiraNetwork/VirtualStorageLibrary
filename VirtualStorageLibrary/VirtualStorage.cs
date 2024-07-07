@@ -50,9 +50,6 @@ namespace AkiraNet.VirtualStorageLibrary
             _linkDictionary[targetPath] = linkPathSet;
 
             linkPathSet.Add(linkPath);
-
-            VirtualSymbolicLink link = GetSymbolicLink(linkPath);
-            link.TargetNodeType = GetNodeType(targetPath, true);
         }
 
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
@@ -136,9 +133,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
                     // 新しいターゲットパスにリンクを追加
                     AddLinkToDictionary(newTargetPath, linkPath);
-
-                    // 新しいターゲットノードのタイプを更新
-                    link.TargetNodeType = GetNodeType(oldTargetPath);
                 }
             }
         }
