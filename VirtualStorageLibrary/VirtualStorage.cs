@@ -54,14 +54,14 @@ namespace AkiraNet.VirtualStorageLibrary
 
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
         // TODO: GetNodeTypeでリンク解決も考慮する事。
-        // TryGetNodeTypeにして、nullだったらノードタイプをnoneにする。
+        // TryGetNodeTypeにして、null だったらノードタイプを none にする。
         // これは最後のノードまで辿り着けなかった事を意味する。
         public void UpdateTargetNodeTypesInDictionary(VirtualPath targetPath)
         {
             HashSet<VirtualPath> linkPathSet = GetLinksFromDictionary(targetPath);
             if (linkPathSet.Count > 0)
             {
-                VirtualNodeType targetType = GetNodeType(targetPath);
+                VirtualNodeType targetType = GetNodeType(targetPath, true);
                 SetLinkTargetNodeType(linkPathSet, targetType);
             }
         }
@@ -416,7 +416,7 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             // 新しいアイテムを追加
-            item = (VirtualItem<T>)directory.Add(item, overwrite);
+            directory.Add(item, overwrite);
 
             // 全てのターゲットノードタイプを更新
             UpdateAllTargetNodeTypesInDictionary();
@@ -1359,9 +1359,6 @@ namespace AkiraNet.VirtualStorageLibrary
                         // 辞書からノードを削除
                         parentDir?.Remove(link);
 
-                        // ターゲットノードタイプを更新
-                        VirtualPath deletePath = linkParentPath + link.Name;
-
                         // 全てのターゲットノードタイプを更新
                         UpdateAllTargetNodeTypesInDictionary();
 
@@ -1644,6 +1641,9 @@ namespace AkiraNet.VirtualStorageLibrary
             sourceDirectory.Name = destinationNodeName;
             destinationParentDirectory.Add(sourceDirectory);
             sourceParentDirectory.Remove(sourceDirectory);
+
+            // 全てのターゲットノードタイプを更新
+            UpdateAllTargetNodeTypesInDictionary();
         }
 
         private void MoveItemOrLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
@@ -1705,6 +1705,9 @@ namespace AkiraNet.VirtualStorageLibrary
             sourceParentDirectory.Remove(sourceNode);
             sourceNode.Name = destinationNodeName;
             destinationParentDirectory.Add(sourceNode);
+
+            // 全てのターゲットノードタイプを更新
+            UpdateAllTargetNodeTypesInDictionary();
         }
 
         // 仮想ストレージのツリー構造をテキストベースで作成し返却する
