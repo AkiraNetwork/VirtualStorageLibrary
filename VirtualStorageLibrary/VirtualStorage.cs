@@ -53,9 +53,6 @@ namespace AkiraNet.VirtualStorageLibrary
         }
 
         // リンク辞書内のリンクターゲットノードのタイプを更新します。
-        // TODO: GetNodeTypeでリンク解決も考慮する事。
-        // TryGetNodeTypeにして、null だったらノードタイプを none にする。
-        // これは最後のノードまで辿り着けなかった事を意味する。
         public void UpdateTargetNodeTypesInDictionary(VirtualPath targetPath)
         {
             HashSet<VirtualPath> linkPathSet = GetLinksFromDictionary(targetPath);
@@ -1331,12 +1328,12 @@ namespace AkiraNet.VirtualStorageLibrary
                 resolvedNodePath = ResolveLinkTarget(nodePath);
             }
 
-            // TODO: ToList
+            // TODO: ToList for Debug
             IEnumerable<VirtualNodeContext> contexts = WalkPathTree(nodePath, VirtualNodeTypeFilter.All, recursive, followLinks, resolveLinks).ToList();
 
             if (recursive)
             {
-                // TODO: ToList
+                // TODO: ToList for Debug
                 // ノードコンテキストを逆順に処理するためにリストに変換して逆順にソート
                 List<VirtualNodeContext> reversedContexts = contexts.Reverse().ToList();
 
@@ -1658,7 +1655,7 @@ namespace AkiraNet.VirtualStorageLibrary
             if (DirectoryExists(destinationPath))
             {
                 destinationParentDirectory = GetDirectory(destinationPath);
-                destinationNodeName = sourceNode.Name; // TODO: NodeExistsのシグネチャを node に変更する予定
+                destinationNodeName = sourceNode.Name;
                 destinationNode = TryGetNode(destinationPath + sourceNode.Name);
             }
             else if (!NodeExists(destinationPath))
