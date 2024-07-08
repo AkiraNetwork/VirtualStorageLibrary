@@ -1528,46 +1528,70 @@ namespace AkiraNet.VirtualStorageLibrary
             parentDirectory.Add(node);
         }
 
-        public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false)
+        public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool resolveLinks = true)
         {
-            VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath);
-            VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath);
+            sourcePath = ConvertToAbsolutePath(sourcePath);
+            destinationPath = ConvertToAbsolutePath(destinationPath);
 
-            // 循環参照チェック
-            if (absoluteDestinationPath.StartsWith(new VirtualPath(absoluteSourcePath.Path + VirtualPath.Separator)))
+            // 移動元パスのパス解決をする
+            if (resolveLinks)
             {
-                throw new InvalidOperationException("移動先が移動元のサブディレクトリになっています。");
+                // パス解決を指定した場合は、移動元パスの全体をパス解決する
+                sourcePath = ResolveLinkTarget(sourcePath);
+            }
+            else
+            {
+                // パス解決を指定しない場合は、移動元パスのディレクトリパスだけをパス解決する
+                sourcePath = ResolveLinkTarget(sourcePath.DirectoryPath) + sourcePath.NodeName;
+            }
+
+            // 移動先パスのパス解決をする
+            VirtualPath? path = TryResolveLinkTarget(destinationPath);
+            if (path != null)
+            {
+                // 全体がパス解決された場合は、移動先パスをそのまま使う
+                destinationPath = path;
+            }
+            else
+            {
+                // パス解決されなかった場合は、ディレクトリパスだけをパス解決する
+                destinationPath = ResolveLinkTarget(destinationPath.DirectoryPath) + destinationPath.NodeName;
             }
 
             // 移動先と移動元が同じかどうかのチェック
-            if (absoluteSourcePath == absoluteDestinationPath)
+            if (sourcePath == destinationPath)
             {
                 throw new InvalidOperationException("移動元と移動先が同じです。");
             }
 
+            // 循環参照チェック
+            if (destinationPath.StartsWith(sourcePath.Path + VirtualPath.Separator))
+            {
+                throw new InvalidOperationException("移動先が移動元のサブディレクトリになっています。");
+            }
+
             // 移動元の存在チェック
-            if (!NodeExists(absoluteSourcePath))
+            if (!NodeExists(sourcePath))
             {
                 // 存在しない場合は例外をスロー
-                throw new VirtualNodeNotFoundException($"指定されたノード '{absoluteSourcePath}' は存在しません。");
+                throw new VirtualNodeNotFoundException($"指定されたノード '{sourcePath}' は存在しません。");
             }
 
             // 移動元のルートディレクトリチェック
-            if (absoluteSourcePath.IsRoot)
+            if (sourcePath.IsRoot)
             {
                 // ルートディレクトリの場合は例外をスロー
                 throw new InvalidOperationException("ルートディレクトリを移動することはできません。");
             }
 
             // 移動処理
-            // TODO: absoluteSourcePathがリンクに対応してない
-            if (DirectoryExists(absoluteSourcePath))
+            if (DirectoryExists(sourcePath))
             {
-                MoveDirectoryInternal(absoluteSourcePath, absoluteDestinationPath);
+                MoveDirectoryInternal(sourcePath, destinationPath);
             }
             else
             {
-                MoveItemOrLinkInternal(absoluteSourcePath, absoluteDestinationPath, overwrite);
+                MoveItemOrLinkInternal(sourcePath, destinationPath, overwrite);
             }
         }
 
