@@ -1,6 +1,6 @@
 ﻿namespace AkiraNet.VirtualStorageLibrary
 {
-    public static class VirtualStorageLinqExtensions
+    public static class VirtualStorageExtensions
     {
         public static IEnumerable<T> GroupAndSort<T>(
             this IEnumerable<T> source,
