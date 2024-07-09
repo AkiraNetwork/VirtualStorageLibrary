@@ -17,7 +17,7 @@
             NodeListConditions = new()
             {
                 Filter = VirtualNodeTypeFilter.All,
-                GroupCondition = new(node => node.NodeType, true),
+                GroupCondition = new(node => node.ResolveNodeType(), true),
                 SortConditions =
                 [
                     new(node => node.Name, true)

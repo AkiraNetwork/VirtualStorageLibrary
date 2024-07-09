@@ -60,4 +60,16 @@
             return orderedQuery ?? source;
         }
     }
+
+    public static class VirtualNodeExtensions
+    {
+        public static VirtualNodeType ResolveNodeType(this VirtualNode node)
+        {
+            if (node is VirtualSymbolicLink link)
+            {
+                return link.TargetNodeType;
+            }
+            return node.NodeType;
+        }
+    }
 }

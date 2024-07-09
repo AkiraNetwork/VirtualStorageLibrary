@@ -1063,6 +1063,42 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void GetNodeList_NameAscAndTypeAscWithSymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2");
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
+
+            // 条件を設定
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.ResolveNodeType(), true),
+                [new(node => node.Name, true)]);
+
+            // テスト対象のディレクトリを取得
+            VirtualDirectory directory = vs.GetDirectory("/");
+
+            // Act
+            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (VirtualNode node in nodes)
+            {
+                Debug.WriteLine(node.Name);
+            }
+            Assert.AreEqual(5, nodes.Count);
+            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[0].Name);
+            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
+            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[2].Name);
+            Assert.AreEqual(new VirtualNodeName("item1"), nodes[3].Name);
+            Assert.AreEqual(new VirtualNodeName("item2"), nodes[4].Name);
+        }
+
+        [TestMethod]
         public void GetItem_ExistingItem_ReturnsItem()
         {
             // Arrange
