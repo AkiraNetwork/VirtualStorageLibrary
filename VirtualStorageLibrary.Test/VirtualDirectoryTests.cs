@@ -17,7 +17,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         {
             // VirtualDirectory オブジェクトを作成
-            VirtualDirectory directory = new();
+            VirtualDirectory directory = [];
 
             // オブジェクトが正しく作成されたか検証
             Assert.IsNotNull(directory);
@@ -820,12 +820,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 Debug.WriteLine(node.Name);
             }
             Assert.AreEqual(6, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[2].Name);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[3].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[4].Name);
-            Assert.AreEqual(new VirtualNodeName("item3"), nodes[5].Name);
+            Assert.AreEqual("dir1", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir3", (string)nodes[2].Name);
+            Assert.AreEqual("item1", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item3", (string)nodes[5].Name);
         }
 
         [TestMethod]
@@ -858,12 +858,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 Debug.WriteLine(node.Name);
             }
             Assert.AreEqual(6, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[2].Name);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[3].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[4].Name);
-            Assert.AreEqual(new VirtualNodeName("item3"), nodes[5].Name);
+            Assert.AreEqual("dir1", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir3", (string)nodes[2].Name);
+            Assert.AreEqual("item1", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item3", (string)nodes[5].Name);
         }
 
         [TestMethod]
@@ -898,12 +898,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[2].Name);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[3].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[4].Name);
-            Assert.AreEqual(new VirtualNodeName("item3"), nodes[5].Name);
+            Assert.AreEqual("dir1", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir3", (string)nodes[2].Name);
+            Assert.AreEqual("item1", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item3", (string)nodes[5].Name);
         }
 
         [TestMethod]
@@ -938,12 +938,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[2].Name);
-            Assert.AreEqual(new VirtualNodeName("item3"), nodes[3].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[4].Name);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[5].Name);
+            Assert.AreEqual("dir3", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir1", (string)nodes[2].Name);
+            Assert.AreEqual("item3", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item1", (string)nodes[5].Name);
         }
 
         [TestMethod]
@@ -976,12 +976,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 Debug.WriteLine(node.Name);
             }
             Assert.AreEqual(6, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[2].Name);
-            Assert.AreEqual(new VirtualNodeName("item3"), nodes[3].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[4].Name);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[5].Name);
+            Assert.AreEqual("dir3", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir1", (string)nodes[2].Name);
+            Assert.AreEqual("item3", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item1", (string)nodes[5].Name);
         }
 
         [TestMethod]
@@ -1014,12 +1014,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 Debug.WriteLine(node.Name);
             }
             Assert.AreEqual(6, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("item3"), nodes[2].Name);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[3].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[4].Name);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[5].Name);
+            Assert.AreEqual("item1", (string)nodes[0].Name);
+            Assert.AreEqual("item2", (string)nodes[1].Name);
+            Assert.AreEqual("item3", (string)nodes[2].Name);
+            Assert.AreEqual("dir1", (string)nodes[3].Name);
+            Assert.AreEqual("dir2", (string)nodes[4].Name);
+            Assert.AreEqual("dir3", (string)nodes[5].Name);
         }
 
         [TestMethod]
@@ -1036,7 +1036,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
-                VirtualNodeTypeFilter.Directory,
+                VirtualNodeTypeFilter.Directory | VirtualNodeTypeFilter.SymbolicLink,
                 new(node => node.ResolveNodeType(), true),
                 [new(node => node.Name, true)]);
 
@@ -1052,9 +1052,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 Debug.WriteLine(node.Name);
             }
             Assert.AreEqual(3, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[2].Name);
+            Assert.AreEqual("dir1", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir3", (string)nodes[2].Name);
         }
 
         [TestMethod]
@@ -1066,11 +1066,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/item2", new BinaryData([1, 2, 3]));
             vs.AddDirectory("/dir1");
             vs.AddItem("/item1", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/item3", "/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
 
             // 条件を設定
             VirtualStorageState.SetNodeListConditions(
-                VirtualNodeTypeFilter.Item,
-                new(node => node.NodeType, true),
+                VirtualNodeTypeFilter.Item | VirtualNodeTypeFilter.SymbolicLink,
+                new(node => node.ResolveNodeType(), true),
                 [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
@@ -1084,9 +1086,45 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             {
                 Debug.WriteLine(node.Name);
             }
-            Assert.AreEqual(2, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[1].Name);
+            Assert.AreEqual(3, nodes.Count);
+            Assert.AreEqual("item1", (string)nodes[0].Name);
+            Assert.AreEqual("item2", (string)nodes[1].Name);
+            Assert.AreEqual("item3", (string)nodes[2].Name);
+        }
+
+        [TestMethod]
+        public void GetNodeList_NameAscAndTypeDesWithOnlySymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/item3", "/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
+
+            // 条件を設定
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.SymbolicLink,
+                new(node => node.ResolveNodeType(), true),
+                [new(node => node.Name, true)]);
+
+            // テスト対象のディレクトリを取得
+            VirtualDirectory directory = vs.GetDirectory("/");
+
+            // Act
+            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (VirtualNode node in nodes)
+            {
+                Debug.WriteLine(node.Name);
+            }
+
+            // new(node => node.ResolveNodeType(), true)が指定されているため、SymbolicLink のみ取得される
+            // dir3、item3 はディレクトリ、アイテムの扱いとなるため取得されない
+            Assert.AreEqual(0, nodes.Count);
         }
 
         [TestMethod]
@@ -1098,6 +1136,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/item2");
             vs.AddDirectory("/dir1");
             vs.AddItem("/item1");
+            vs.AddSymbolicLink("/item3", "/item1");
             vs.AddSymbolicLink("/dir3", "/dir1");
 
             // 条件を設定
@@ -1117,12 +1156,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             {
                 Debug.WriteLine(node.Name);
             }
-            Assert.AreEqual(5, nodes.Count);
-            Assert.AreEqual(new VirtualNodeName("dir1"), nodes[0].Name);
-            Assert.AreEqual(new VirtualNodeName("dir2"), nodes[1].Name);
-            Assert.AreEqual(new VirtualNodeName("dir3"), nodes[2].Name);
-            Assert.AreEqual(new VirtualNodeName("item1"), nodes[3].Name);
-            Assert.AreEqual(new VirtualNodeName("item2"), nodes[4].Name);
+            Assert.AreEqual(6, nodes.Count);
+            Assert.AreEqual("dir1", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir3", (string)nodes[2].Name);
+            Assert.AreEqual("item1", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item3", (string)nodes[5].Name);
         }
 
         [TestMethod]
@@ -1433,6 +1473,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             directory += dir2;
 
             // Assert
+            Assert.IsTrue(directory.NodeExists("dir2"));
             Assert.IsTrue(vs.GetNode("/dir1/dir2").IsReferencedInStorage);
             Assert.IsTrue(vs.GetNode("/dir1/dir2/testSubDir").IsReferencedInStorage);
             Assert.IsTrue(vs.GetNode("/dir1/dir2/testItem").IsReferencedInStorage);

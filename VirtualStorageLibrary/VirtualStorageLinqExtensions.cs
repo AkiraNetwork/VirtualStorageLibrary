@@ -72,4 +72,18 @@
             return node.NodeType;
         }
     }
+
+    public static class VirtualNodeTypeFilterExtensions
+    {
+        public static VirtualNodeTypeFilter ToFilter(this VirtualNodeType nodeType)
+        {
+            return nodeType switch
+            {
+                VirtualNodeType.Directory => VirtualNodeTypeFilter.Directory,
+                VirtualNodeType.Item => VirtualNodeTypeFilter.Item,
+                VirtualNodeType.SymbolicLink => VirtualNodeTypeFilter.SymbolicLink,
+                _ => VirtualNodeTypeFilter.None,
+            };
+        }
+    }
 }

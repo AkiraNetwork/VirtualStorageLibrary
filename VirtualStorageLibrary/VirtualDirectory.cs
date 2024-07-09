@@ -109,14 +109,31 @@ namespace AkiraNet.VirtualStorageLibrary
                 case VirtualNodeTypeFilter.All:
                     break;
                 default:
-                    nodes = _nodes.Values.Where(node =>
-                        (filter.HasFlag(VirtualNodeTypeFilter.Directory) && node is VirtualDirectory) ||
-                        (filter.HasFlag(VirtualNodeTypeFilter.Item) && node is VirtualItem) ||
-                        (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink) && node is VirtualSymbolicLink));
+                    nodes = nodes.Where(node => IsNodeMatchingFilter(node, filter));
                     break;
             }
 
             return nodes.GroupAndSort(groupCondition, sortConditions);
+        }
+
+        private static bool IsNodeMatchingFilter(VirtualNode node, VirtualNodeTypeFilter filter)
+        {
+            if (filter.HasFlag(VirtualNodeTypeFilter.Directory) && node is VirtualDirectory)
+            {
+                return true;
+            }
+
+            if (filter.HasFlag(VirtualNodeTypeFilter.Item) && node is VirtualItem)
+            {
+                return true;
+            }
+
+            if (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink) && node is VirtualSymbolicLink link)
+            {
+                return filter.HasFlag(link.TargetNodeType.ToFilter());
+            }
+
+            return false;
         }
 
         public VirtualNode Add(VirtualNode node, bool allowOverwrite = false)
