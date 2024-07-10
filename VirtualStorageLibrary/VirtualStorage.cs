@@ -807,7 +807,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 {
                     // ディレクトリ内のノードを再帰的に探索
                     int index = 0;
-                    foreach (var node in directory.Nodes)
+                    foreach (var node in directory.NodesView)
                     {
                         VirtualPath path = p.CurrentPath + node.Name;
 

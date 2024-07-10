@@ -8,6 +8,10 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public override VirtualNodeType NodeType => VirtualNodeType.Directory;
 
+        public IEnumerable<VirtualNodeName> NodeNames => _nodes.Keys;
+
+        public IEnumerable<VirtualNode> Nodes => _nodes.Values;
+
         public int Count => _nodes.Count;
 
         public int DirectoryCount => _nodes.Values.Count(n => n is VirtualDirectory);
@@ -16,9 +20,15 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public int SymbolicLinkCount => _nodes.Values.Count(n => n is VirtualSymbolicLink);
 
-        public IEnumerable<VirtualNodeName> NodeNames => _nodes.Keys;
+        public IEnumerable<VirtualNode> NodesView => GetNodeList();
 
-        public IEnumerable<VirtualNode> Nodes => GetNodeList();
+        public int NodesViewCount => NodesView.Count();
+
+        public int DirectoryViewCount => NodesView.Count(n => n is VirtualDirectory);
+
+        public int ItemViewCount => NodesView.Count(n => n is VirtualItem);
+
+        public int SymbolicLinkViewCount => NodesView.Count(n => n is VirtualSymbolicLink);
 
         public bool NodeExists(VirtualNodeName name) => _nodes.ContainsKey(name);
 
@@ -256,7 +266,7 @@ namespace AkiraNet.VirtualStorageLibrary
             Add(node);
         }
 
-        public IEnumerator<VirtualNode> GetEnumerator() => Nodes.GetEnumerator();
+        public IEnumerator<VirtualNode> GetEnumerator() => NodesView.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 

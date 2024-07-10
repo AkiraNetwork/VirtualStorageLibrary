@@ -66,7 +66,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.Root.AddDirectory("dir1");
             vs.Root.AddDirectory("dir2");
 
-            Assert.AreEqual(2, vs.Root.DirectoryCount, "ルートディレクトリ内のディレクトリ数が正しくありません。");
+            Assert.AreEqual(2, vs.Root.DirectoryViewCount, "ルートディレクトリ内のディレクトリ数が正しくありません。");
         }
 
         [TestMethod]
@@ -76,7 +76,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.Root.AddItem("item1", new object());
             vs.Root.AddItem("item2", new object());
 
-            Assert.AreEqual(2, vs.Root.ItemCount, "ルートディレクトリ内のアイテム数が正しくありません。");
+            Assert.AreEqual(2, vs.Root.ItemViewCount, "ルートディレクトリ内のアイテム数が正しくありません。");
         }
 
         [TestMethod]
@@ -86,7 +86,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.Root.Add(new VirtualSymbolicLink("link1", "/path/to/target1"));
             vs.Root.Add(new VirtualSymbolicLink("link2", "/path/to/target2"));
 
-            Assert.AreEqual(2, vs.Root.SymbolicLinkCount, "ルートディレクトリ内のシンボリックリンク数が正しくありません。");
+            Assert.AreEqual(2, vs.Root.SymbolicLinkViewCount, "ルートディレクトリ内のシンボリックリンク数が正しくありません。");
         }
 
         [TestMethod]
@@ -510,94 +510,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             {
                 directory.Rename(existingNode1, "ExistingNode2");
             });
-        }
-
-        [TestMethod]
-        public void NodeNames_EmptyDirectory_ReturnsEmpty()
-        {
-            VirtualDirectory directory = new("TestDirectory");
-
-            IEnumerable<VirtualNodeName> nodeNames = directory.NodeNames;
-
-            Assert.IsNotNull(nodeNames);
-            Assert.AreEqual(0, nodeNames.Count());
-        }
-
-        [TestMethod]
-        public void NodeNames_DirectoryWithNodes_ReturnsNodeNames()
-        {
-            VirtualDirectory directory = new("TestDirectory");
-            directory.AddDirectory("Node1");
-            directory.AddDirectory("Node2");
-
-            IEnumerable<VirtualNodeName> nodeNames = directory.NodeNames;
-
-            Assert.IsNotNull(nodeNames);
-            Assert.AreEqual(2, nodeNames.Count());
-            CollectionAssert.Contains(nodeNames.ToList(), new VirtualNodeName("Node1"));
-            CollectionAssert.Contains(nodeNames.ToList(), new VirtualNodeName("Node2"));
-        }
-
-        [TestMethod]
-        public void NodeNames_DirectoryWithNodesAfterRemovingOne_ReturnsRemainingNodeNames()
-        {
-            VirtualDirectory directory = new("TestDirectory");
-            VirtualDirectory node1 = directory.AddDirectory("Node1");
-            directory.AddDirectory("Node2");
-            directory.Remove(node1);
-
-            IEnumerable<VirtualNodeName> nodeNames = directory.NodeNames;
-
-            Assert.IsNotNull(nodeNames);
-            Assert.AreEqual(1, nodeNames.Count());
-            CollectionAssert.DoesNotContain(nodeNames.ToList(), new VirtualNodeName("Node1"));
-            CollectionAssert.Contains(nodeNames.ToList(), new VirtualNodeName("Node2"));
-        }
-
-        [TestMethod]
-        public void Nodes_EmptyDirectory_ReturnsEmpty()
-        {
-            VirtualDirectory directory = new("TestDirectory");
-
-            IEnumerable<VirtualNode> nodes = directory.Nodes;
-
-            Assert.IsNotNull(nodes);
-            Assert.AreEqual(0, nodes.Count());
-        }
-
-        [TestMethod]
-        public void Nodes_DirectoryWithNodes_ReturnsNodes()
-        {
-            VirtualDirectory directory = new("TestDirectory");
-            directory.AddDirectory("Node1");
-            directory.AddDirectory("Node2");
-
-            IEnumerable<VirtualNode> nodes = directory.Nodes;
-
-            Assert.IsNotNull(nodes);
-            Assert.AreEqual(2, nodes.Count());
-            CollectionAssert.Contains(nodes.ToList(), directory["Node1"]);
-            CollectionAssert.Contains(nodes.ToList(), directory["Node2"]);
-        }
-
-        [TestMethod]
-        public void Nodes_DirectoryWithNodesAfterRemovingOne_ReturnsRemainingNodes()
-        {
-            VirtualDirectory directory = new("TestDirectory");
-            VirtualDirectory node1 = directory.AddDirectory("Node1");
-            directory.AddDirectory("Node2");
-            directory.Remove(node1);
-
-            IEnumerable<VirtualNode> nodes = directory.Nodes;
-
-            Assert.IsNotNull(nodes);
-            Assert.AreEqual(1, nodes.Count());
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-            {
-                // "Node1"が正しく削除されていることを確認
-                VirtualNode node = directory["Node1"];
-            });
-            CollectionAssert.Contains(nodes.ToList(), directory["Node2"]);
         }
 
         [TestMethod]
@@ -1542,6 +1454,434 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.GetDirectory("/dir1/dir2a").IsReferencedInStorage);
             Assert.IsTrue(vs.GetDirectory("/dir1/dir2a/dir3").IsReferencedInStorage);
             Assert.IsFalse(vs.NodeExists("/dir1/dir2a/dir3/item1"));
+        }
+
+        [TestMethod]
+        public void NodeNames_ReturnsCorrectNodeNames()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            List<VirtualNodeName> expectedNodeNames =
+            [
+                "subDir1",
+                "subDir2",
+                "item1",
+                "link1"
+            ];
+
+            // Act
+            IEnumerable<VirtualNodeName> actualNodeNames = dir1.NodeNames;
+
+            // Assert
+            CollectionAssert.AreEquivalent(expectedNodeNames, actualNodeNames.ToList());
+        }
+
+        [TestMethod]
+        public void Nodes_ReturnsCorrectNodes()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            VirtualDirectory subDir1 = new("subDir1");
+            VirtualDirectory subDir2 = new("subDir2");
+            VirtualItem<object> item1 = new("item1");
+            VirtualSymbolicLink link1 = new("link1", "/target");
+
+            dir1.Add(subDir1);
+            dir1.Add(subDir2);
+            dir1.Add(item1);
+            dir1.Add(link1);
+
+            List<VirtualNode> expectedNodes =
+            [
+                subDir1,
+                subDir2,
+                item1,
+                link1
+            ];
+
+            // Act
+            IEnumerable<VirtualNode> actualNodes = dir1.Nodes;
+
+            // Assert
+            CollectionAssert.AreEquivalent(expectedNodes, actualNodes.ToList());
+        }
+
+        [TestMethod]
+        public void Count_ReturnsCorrectNodeCount()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualCount = dir1.Count;
+
+            // Assert
+            Assert.AreEqual(4, actualCount);
+        }
+
+        [TestMethod]
+        public void DirectoryCount_ReturnsCorrectDirectoryCount()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualDirectoryCount = dir1.DirectoryCount;
+
+            // Assert
+            Assert.AreEqual(2, actualDirectoryCount);
+        }
+
+        [TestMethod]
+        public void ItemCount_ReturnsCorrectItemCount()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualItemCount = dir1.ItemCount;
+
+            // Assert
+            Assert.AreEqual(1, actualItemCount);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkCount_ReturnsCorrectSymbolicLinkCount()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualSymbolicLinkCount = dir1.SymbolicLinkCount;
+
+            // Assert
+            Assert.AreEqual(1, actualSymbolicLinkCount);
+        }
+
+        [TestMethod]
+        public void NodesView_ReturnsAllNodes_WithDefaultConditions()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            VirtualDirectory subDir1 = new("subDir1");
+            VirtualDirectory subDir2 = new("subDir2");
+            VirtualItem<object> item1 = new("item1");
+            VirtualSymbolicLink link1 = new("link1", "/target");
+
+            dir1.Add(subDir1);
+            dir1.Add(subDir2);
+            dir1.Add(item1);
+            dir1.Add(link1);
+
+            // Act
+            IEnumerable<VirtualNode> actualNodesView = dir1.NodesView;
+
+            List<VirtualNode> expectedNodesView =
+            [
+                subDir1,
+                subDir2,
+                item1,
+                link1
+            ];
+
+            // Assert
+            CollectionAssert.AreEquivalent(expectedNodesView, actualNodesView.ToList());
+        }
+
+        [TestMethod]
+        public void NodesView_ReturnsFilteredNodes_ByType()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            VirtualDirectory subDir1 = new("subDir1");
+            VirtualDirectory subDir2 = new("subDir2");
+            VirtualItem<object> item1 = new("item1");
+            VirtualSymbolicLink link1 = new("link1", "/target");
+
+            dir1.Add(subDir1);
+            dir1.Add(subDir2);
+            dir1.Add(item1);
+            dir1.Add(link1);
+
+            // Apply filter to only include directories
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.Directory,
+                null,
+                null
+            );
+
+            // Act
+            IEnumerable<VirtualNode> actualNodesView = dir1.NodesView;
+
+            List<VirtualNode> expectedNodesView =
+            [
+                subDir1,
+                subDir2
+            ];
+
+            // Assert
+            CollectionAssert.AreEquivalent(expectedNodesView, actualNodesView.ToList());
+        }
+
+        [TestMethod]
+        public void NodesView_ReturnsSortedNodes_ByName()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            VirtualDirectory subDir1 = new("subDir1");
+            VirtualDirectory subDir2 = new("subDir2");
+            VirtualItem<object> item1 = new("item1");
+            VirtualSymbolicLink link1 = new("link1", "/target");
+
+            dir1.Add(subDir1);
+            dir1.Add(subDir2);
+            dir1.Add(item1);
+            dir1.Add(link1);
+
+            // Apply sort condition by name
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                null,
+                [
+                    new(node => node.Name, true)
+                ]
+            );
+
+            // Act
+            IEnumerable<VirtualNode> actualNodesView = dir1.NodesView;
+
+            List<VirtualNode> expectedNodesView =
+            [
+                item1,
+                link1,
+                subDir1,
+                subDir2
+            ];
+
+            // Assert
+            CollectionAssert.AreEqual(expectedNodesView, actualNodesView.ToList());
+        }
+
+        [TestMethod]
+        public void NodesView_ReturnsGroupedNodes_ByType()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            VirtualDirectory subDir1 = new("subDir1");
+            VirtualDirectory subDir2 = new("subDir2");
+            VirtualItem<object> item1 = new("item1");
+            VirtualSymbolicLink link1 = new("link1", "/target");
+
+            dir1.Add(subDir1);
+            dir1.Add(subDir2);
+            dir1.Add(item1);
+            dir1.Add(link1);
+
+            // Apply group condition by type
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new VirtualGroupCondition<VirtualNode, object>(node => node.NodeType),
+                null
+            );
+
+            // Act
+            IEnumerable<VirtualNode> actualNodesView = dir1.NodesView;
+
+            List<VirtualNode> expectedNodesView =
+            [
+                subDir1,
+                subDir2,
+                item1,
+                link1
+            ];
+
+            // Assert
+            CollectionAssert.AreEquivalent(expectedNodesView, actualNodesView.ToList());
+        }
+
+        [TestMethod]
+        public void NodesViewCount_ReturnsCorrectCount_WithDefaultConditions()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualNodesViewCount = dir1.NodesViewCount;
+
+            // Assert
+            Assert.AreEqual(4, actualNodesViewCount);
+        }
+
+        [TestMethod]
+        public void NodesViewCount_ReturnsCorrectCount_WithDirectoryFilter()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Apply filter to only include directories
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.Directory,
+                null,
+                null
+            );
+
+            // Act
+            int actualNodesViewCount = dir1.NodesViewCount;
+
+            // Assert
+            Assert.AreEqual(2, actualNodesViewCount);
+        }
+
+        [TestMethod]
+        public void DirectoryViewCount_ReturnsCorrectCount_WithDefaultConditions()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualDirectoryViewCount = dir1.DirectoryViewCount;
+
+            // Assert
+            Assert.AreEqual(2, actualDirectoryViewCount);
+        }
+
+        [TestMethod]
+        public void DirectoryViewCount_ReturnsCorrectCount_WithDirectoryFilter()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Apply filter to only include directories
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.Directory,
+                null,
+                null
+            );
+
+            // Act
+            int actualDirectoryViewCount = dir1.DirectoryViewCount;
+
+            // Assert
+            Assert.AreEqual(2, actualDirectoryViewCount);
+        }
+
+        [TestMethod]
+        public void ItemViewCount_ReturnsCorrectCount_WithDefaultConditions()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualItemViewCount = dir1.ItemViewCount;
+
+            // Assert
+            Assert.AreEqual(1, actualItemViewCount);
+        }
+
+        [TestMethod]
+        public void ItemViewCount_ReturnsCorrectCount_WithItemFilter()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Apply filter to only include items
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.Item,
+                null,
+                null
+            );
+
+            // Act
+            int actualItemViewCount = dir1.ItemViewCount;
+
+            // Assert
+            Assert.AreEqual(1, actualItemViewCount);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkViewCount_ReturnsCorrectCount_WithDefaultConditions()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Act
+            int actualSymbolicLinkViewCount = dir1.SymbolicLinkViewCount;
+
+            // Assert
+            Assert.AreEqual(1, actualSymbolicLinkViewCount);
+        }
+
+        [TestMethod]
+        public void SymbolicLinkViewCount_ReturnsCorrectCount_WithSymbolicLinkFilter()
+        {
+            // Arrange
+            VirtualDirectory dir1 = new("dir1");
+            dir1.AddDirectory("subDir1");
+            dir1.AddDirectory("subDir2");
+            dir1.AddItem<object>("item1");
+            dir1.AddSymbolicLink("link1", "/target");
+
+            // Apply filter to only include symbolic links
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.SymbolicLink,
+                null,
+                null
+            );
+
+            // Act
+            int actualSymbolicLinkViewCount = dir1.SymbolicLinkViewCount;
+
+            // Assert
+            Assert.AreEqual(1, actualSymbolicLinkViewCount);
         }
     }
 }
