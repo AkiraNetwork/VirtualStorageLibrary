@@ -296,7 +296,7 @@
         public void GenerateNodeName_ShouldWorkWithLongPrefix()
         {
             // Arrange
-            string prefix = new string('a', 100);
+            string prefix = new('a', 100);
 
             // Act
             VirtualNodeName result = VirtualNodeName.GenerateNodeName(prefix);

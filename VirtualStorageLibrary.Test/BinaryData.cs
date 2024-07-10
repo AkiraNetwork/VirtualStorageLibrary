@@ -160,6 +160,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
+
             _data = [];
 
             Debug.WriteLine("BinaryData.Dispose: データを破棄しました。");
