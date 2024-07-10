@@ -163,10 +163,6 @@ namespace AkiraNet.VirtualStorageLibrary
             // ノードがストレージに追加済みなら、クローンを作成する
             if (node.IsReferencedInStorage)
             {
-                // TODO: DeepClone(true)は再帰的クローン。
-                // ディレクトリのDeepClone(false)もCopyNodeで使っている為、CopyNodeのリファクタリングが終わり次第、
-                // DeepCloneもそれに合わせてリファクタリングする予定。
-                // その結果として、DeepClone(bool recursive = false)はDeepClone()に変更される予定。
                 if (node is VirtualDirectory)
                 {
                     node = node.DeepClone(true);
