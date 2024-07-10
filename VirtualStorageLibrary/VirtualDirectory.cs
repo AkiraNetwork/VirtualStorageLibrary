@@ -245,23 +245,6 @@ namespace AkiraNet.VirtualStorageLibrary
             return _nodes[name];
         }
 
-        public void Rename(VirtualNode node, VirtualNodeName newNodeName)
-        {
-            if (!NodeExists(node.Name))
-            {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{node.Name}' は存在しません。");
-            }
-
-            if (NodeExists(newNodeName))
-            {
-                throw new InvalidOperationException($"指定されたノード '{newNodeName}' は既に存在します。");
-            }
-
-            Remove(node);
-            node.Name = newNodeName;
-            Add(node);
-        }
-
         public IEnumerator<VirtualNode> GetEnumerator() => NodesView.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

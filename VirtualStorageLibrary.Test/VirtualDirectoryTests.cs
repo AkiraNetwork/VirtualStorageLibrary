@@ -462,57 +462,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Rename_ExistingNode_RenamesNodeCorrectly()
-        {
-            // VirtualDirectory オブジェクトを作成し、ノードを追加
-            VirtualNodeName oldName = "ExistingNode";
-            VirtualNodeName newName = "RenamedNode";
-            VirtualDirectory directory = new("TestDirectory");
-            byte[] testData = [1, 2, 3];
-            VirtualItem<BinaryData> existingNode = new(oldName, new BinaryData(testData));
-            directory.Add(existingNode);
-
-            // Rename メソッドを使用してノードの名前を変更
-            directory.Rename(existingNode, newName);
-
-            // 名前が変更されたノードが存在し、元のノードが存在しないことを確認
-            Assert.IsTrue(directory.NodeExists(newName));
-            Assert.IsFalse(directory.NodeExists(oldName));
-        }
-
-        [TestMethod]
-        public void Rename_NonExistingNode_ThrowsVirtualNodeNotFoundException()
-        {
-            // VirtualDirectory オブジェクトを作成
-            VirtualDirectory directory = new("TestDirectory");
-            VirtualItem<BinaryData> item = new("ExistingNode");
-
-            // 存在しないノード名で Rename メソッドを呼び出すと例外がスローされることを確認
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-            {
-                directory.Rename(item, "NewName");
-            });
-        }
-
-        [TestMethod]
-        public void Rename_ToExistingNodeName_ThrowsInvalidOperationException()
-        {
-            // VirtualDirectory オブジェクトを作成し、2つのノードを追加
-            VirtualDirectory directory = new("TestDirectory");
-            byte[] testData = [1, 2, 3];
-            VirtualItem<BinaryData> existingNode1 = new("ExistingNode1", new BinaryData(testData));
-            VirtualItem<BinaryData> existingNode2 = new("ExistingNode2", new BinaryData(testData));
-            directory.Add(existingNode1);
-            directory.Add(existingNode2);
-
-            // 既に存在するノード名に Rename メソッドを使用してノードの名前を変更しようとすると例外がスローされることを確認
-            Assert.ThrowsException<InvalidOperationException>(() =>
-            {
-                directory.Rename(existingNode1, "ExistingNode2");
-            });
-        }
-
-        [TestMethod]
         public void VirtualDirectory_ToString_ReturnsCorrectFormat()
         {
             // Arrange
