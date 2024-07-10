@@ -123,7 +123,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             string result = item.ToString();
             Debug.WriteLine(result);
-            
+
             Assert.IsTrue(result.Contains("TestItem"));
         }
 

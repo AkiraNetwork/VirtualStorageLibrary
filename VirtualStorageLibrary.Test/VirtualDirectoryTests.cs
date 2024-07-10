@@ -107,7 +107,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
             Assert.AreEqual(clonedDirectory.Count, 0); // ディレクトリのコピーなのでアイテムはコピーされない
         }
-       
+
         [TestMethod]
         public void Add_NewNode_AddsNodeCorrectly()
         {
@@ -371,7 +371,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsTrue(parentDirectory.NodeExists("OriginalDirectory"));
             Assert.IsInstanceOfType(parentDirectory["OriginalDirectory"], typeof(VirtualDirectory));
         }
-        
+
         [TestMethod]
         public void Indexer_ValidKey_ReturnsNode()
         {
@@ -756,7 +756,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorageState.SetNodeListConditions(
                 VirtualNodeTypeFilter.All,
                 new(node => node.ResolveNodeType(), true),
-                [ new(node => node.Name, true) ]);
+                [new(node => node.Name, true)]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = vs.GetDirectory("/");
@@ -1440,7 +1440,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             VirtualDirectory dir3 = vs.GetDirectory("/dir1/dir2/dir3");
             VirtualDirectory dir2a = vs.GetDirectory("/dir1/dir2a");
-            
+
             dir2a += dir3;
             vs.GetDirectory("/dir1/dir2/dir3").AddItem<string>("item1");
 

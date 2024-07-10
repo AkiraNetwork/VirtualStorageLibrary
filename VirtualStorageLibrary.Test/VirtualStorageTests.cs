@@ -4646,7 +4646,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, false, true);
             });
-            
+
             Debug.WriteLine($"ExceptionMessage: {err.Message}");
         }
 

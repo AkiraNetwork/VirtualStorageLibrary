@@ -9,8 +9,8 @@
 
         private VirtualStorageSettings()
         {
-            InvalidNodeNameCharacters = [ PathSeparator ];
-            InvalidFullNodeNames = [ PathDot, PathDotDot ];
+            InvalidNodeNameCharacters = [PathSeparator];
+            InvalidFullNodeNames = [PathDot, PathDotDot];
 
             WildcardMatcher = new PowerShellWildcardMatcher();
 
@@ -34,7 +34,7 @@
         public char PathSeparator { get; set; } = '/';
 
         public string PathRoot { get; set; } = "/";
-        
+
         public string PathDot { get; set; } = ".";
 
         public string PathDotDot { get; set; } = "..";

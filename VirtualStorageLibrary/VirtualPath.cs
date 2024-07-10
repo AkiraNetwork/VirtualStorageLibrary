@@ -9,7 +9,7 @@
         private VirtualNodeName? _nodeName;
 
         private static readonly string _root;
-        
+
         private static readonly string _dot;
 
         private static readonly string _dotDot;
@@ -86,7 +86,7 @@
             [DebuggerStepThrough]
             get => VirtualStorageSettings.Settings.PathSeparator;
         }
-        
+
         public static string Root
         {
             [DebuggerStepThrough]
@@ -545,7 +545,7 @@
             {
                 throw new ArgumentException("Object is not a VirtualPath");
             }
-            
+
             return CompareTo((VirtualPath)obj);
         }
 

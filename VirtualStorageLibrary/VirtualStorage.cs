@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace AkiraNet.VirtualStorageLibrary
 {
@@ -71,7 +70,7 @@ namespace AkiraNet.VirtualStorageLibrary
                 UpdateTargetNodeTypesInDictionary(targetPath);
             }
         }
-        
+
         // リンク辞書からリンクを削除します。
         public void RemoveLinkFromDictionary(VirtualPath targetPath, VirtualPath linkPath)
         {
@@ -1801,7 +1800,7 @@ namespace AkiraNet.VirtualStorageLibrary
                             }
                         }
                         else
-                        { 
+                        {
                             line.Append(FullWidthSpaceChar);
                         }
                     }
@@ -1820,7 +1819,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
                 previous = line.ToString();
                 tree.AppendLine(line.ToString());
-            }   
+            }
 
             return tree.ToString();
         }

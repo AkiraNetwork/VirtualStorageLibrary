@@ -5,7 +5,7 @@
         public VirtualNodeNotFoundException()
         {
         }
-        
+
         public VirtualNodeNotFoundException(string message) : base(message)
         {
         }

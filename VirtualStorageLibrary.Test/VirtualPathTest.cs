@@ -28,7 +28,7 @@
 
             Assert.AreEqual(path, result);
         }
-        
+
         [TestMethod]
         public void NormalizePath_WithAbsolutePath_ReturnsNormalizedPath()
         {

@@ -8,8 +8,8 @@
 
         private VirtualStorageState()
         {
-            InvalidNodeNameCharacters = [ PathSeparator ];
-            InvalidFullNodeNames = [ PathDot, PathDotDot ];
+            InvalidNodeNameCharacters = [PathSeparator];
+            InvalidFullNodeNames = [PathDot, PathDotDot];
         }
 
         public static void Initialize() => _state = new();

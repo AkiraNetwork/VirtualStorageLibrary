@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace AkiraNet.VirtualStorageLibrary.Test
@@ -16,7 +15,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         public BinaryData(IEnumerable<byte> data)
         {
-            if(data == null)
+            if (data == null)
             {
                 throw new ArgumentNullException(nameof(data), "dataはnullにできません。");
             }
