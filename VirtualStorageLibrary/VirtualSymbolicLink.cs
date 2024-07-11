@@ -2,7 +2,13 @@
 {
     public class VirtualSymbolicLink : VirtualNode
     {
-        public VirtualPath? TargetPath { get; set; }
+        private VirtualPath? _targetPath = null;
+
+        public VirtualPath? TargetPath
+        {
+            get => _targetPath;
+            set => _targetPath = value;
+        }
 
         public override VirtualNodeType NodeType => VirtualNodeType.SymbolicLink;
 
@@ -11,22 +17,20 @@
         public VirtualSymbolicLink()
              : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixSymbolicLink))
         {
-            TargetPath = null;
         }
 
         public VirtualSymbolicLink(VirtualNodeName name) : base(name)
         {
-            TargetPath = null;
         }
 
         public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath) : base(name)
         {
-            TargetPath = targetPath;
+            _targetPath = targetPath;
         }
 
         public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
-            TargetPath = targetPath;
+            _targetPath = targetPath;
         }
 
         // タプルからVirtualSymbolicLinkへの暗黙的な変換

@@ -11,9 +11,15 @@
 
     public class VirtualItem<T> : VirtualItem, IDisposable
     {
-        public T? ItemData { [DebuggerStepThrough] get; [DebuggerStepThrough] set; }
+        private T? _itemData;
 
-        private bool disposed;
+        public T? ItemData
+        {
+            get => _itemData;
+            set => _itemData = value;
+        }
+
+        private bool _disposed;
 
         public override VirtualNodeType NodeType => VirtualNodeType.Item;
 
@@ -21,25 +27,25 @@
             : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixItem))
         {
             ItemData = default;
-            disposed = false;
+            _disposed = false;
         }
 
         public VirtualItem(VirtualNodeName name) : base(name)
         {
             ItemData = default;
-            disposed = false;
+            _disposed = false;
         }
 
         public VirtualItem(VirtualNodeName name, T? item) : base(name)
         {
             ItemData = item;
-            disposed = false;
+            _disposed = false;
         }
 
         public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             ItemData = item;
-            disposed = false;
+            _disposed = false;
         }
 
         // タプルからVirtualItem<T>への暗黙的な変換
@@ -85,7 +91,7 @@
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
@@ -94,7 +100,7 @@
                 }
 
                 // VirtualItem<T>はアンマネージドリソースを扱ってないので、ここでは何もしない
-                disposed = true;
+                _disposed = true;
             }
         }
 

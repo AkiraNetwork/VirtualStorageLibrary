@@ -1,6 +1,5 @@
 ﻿namespace AkiraNet.VirtualStorageLibrary
 {
-    [DebuggerStepThrough]
     public abstract class VirtualNode : IVirtualDeepCloneable<VirtualNode>
     {
         public VirtualNodeName Name { get; internal set; }
@@ -32,7 +31,8 @@
         protected VirtualNode(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)
         {
             Name = name;
-            CreatedDate = UpdatedDate = createdDate;
+            CreatedDate = createdDate;
+            UpdatedDate = updatedDate;
         }
 
         public override string ToString() => $"{Name}";
