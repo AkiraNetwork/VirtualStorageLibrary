@@ -107,14 +107,12 @@
 
             if (newItem.IsReferencedInStorage)
             {
-                VirtualItem<T> clonedItem = (VirtualItem<T>)newItem.DeepClone();
-                ItemData = clonedItem.ItemData;
+                newItem = (VirtualItem<T>)newItem.DeepClone();
             }
-            else
-            {
-                ItemData = newItem.ItemData;
-                UpdatedDate = DateTime.Now;
-            }
+
+            CreatedDate = newItem.CreatedDate;
+            UpdatedDate = DateTime.Now;
+            ItemData = newItem.ItemData;
         }
 
         ~VirtualItem()

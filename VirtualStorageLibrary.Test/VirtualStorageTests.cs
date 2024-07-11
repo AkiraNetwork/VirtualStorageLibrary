@@ -2549,6 +2549,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.IsFalse(vs.NodeExists("/testFile"));
             Assert.IsTrue(vs.NodeExists("/newTestFile"));
+            Assert.AreNotEqual(vs.GetNode("/newTestFile").CreatedDate, vs.GetNode("newTestFile").UpdatedDate);
         }
 
         [TestMethod]
@@ -2563,6 +2564,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.NodeExists("/testDir"));
             Assert.IsTrue(vs.NodeExists("/newTestDir"));
             Assert.IsTrue(vs.NodeExists("/newTestDir/item1"));
+            Assert.AreNotEqual(vs.GetNode("/newTestDir").CreatedDate, vs.GetNode("/newTestDir").UpdatedDate);
         }
 
         [TestMethod]
@@ -2576,6 +2578,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.IsFalse(vs.NodeExists("/link"));
             Assert.IsTrue(vs.NodeExists("/newLink"));
+            Assert.AreNotEqual(vs.GetNode("/newLink").CreatedDate, vs.GetNode("/newLink").UpdatedDate);
 
             // リンク辞書の確認
             var links = vs.GetLinksFromDictionary("/target");
@@ -2594,6 +2597,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.IsFalse(vs.NodeExists("/dir1"));
             Assert.IsTrue(vs.NodeExists("/dir2"));
+            Assert.AreNotEqual(vs.GetNode("/dir2").CreatedDate, vs.GetNode("/dir2").UpdatedDate);
         }
 
         [TestMethod]
@@ -2647,6 +2651,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.IsFalse(vs.NodeExists("/link"));
             Assert.IsTrue(vs.NodeExists("/newLink"));
+            Assert.AreNotEqual(vs.GetNode("/newLink").CreatedDate, vs.GetNode("/newLink").UpdatedDate);
 
             // リンク辞書の確認
             var links = vs.GetLinksFromDictionary("/missingTarget");
@@ -2693,6 +2698,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // リンク辞書の更新を確認
             Assert.IsFalse(vs.GetLinksFromDictionary(itemPath).Contains(linkPath));
             Assert.IsTrue(vs.GetLinksFromDictionary(newItemPath).Contains(linkPath));
+
+            Assert.AreNotEqual(vs.GetNode("/dir1/newItem1").CreatedDate, vs.GetNode("/dir1/newItem1").UpdatedDate);
         }
 
         [TestMethod]
@@ -2738,6 +2745,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 配下のアイテムが存在することを確認
             Assert.IsTrue(vs.NodeExists(newDirPath + "/item1"));
+            Assert.AreNotEqual(vs.GetNode("/newDir1").CreatedDate, vs.GetNode("/newDir1").UpdatedDate);
         }
 
         [TestMethod]
@@ -2781,6 +2789,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // リンク辞書の更新を確認
             Assert.IsFalse(vs.GetLinksFromDictionary(targetLinkPath).Contains(linkPath));
             Assert.IsTrue(vs.GetLinksFromDictionary(targetLinkPath).Contains(newLinkPath));
+
+            Assert.AreNotEqual(vs.GetNode("/dir1/newLinkToTargetLink").CreatedDate, vs.GetNode("/dir1/newLinkToTargetLink").UpdatedDate);
         }
 
         [TestMethod]
@@ -2815,6 +2825,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             var links = vs.GetLinksFromDictionary("/target");
             Assert.IsTrue(links.Contains("/newLink"));
             Assert.IsFalse(links.Contains("/link"));
+
+            Assert.AreNotEqual(vs.GetNode("/newLink").CreatedDate, vs.GetNode("/newLink").UpdatedDate);
         }
 
         [TestMethod]
@@ -2851,6 +2863,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(links.Contains("/linkToTestFile"));
             links = vs.GetLinksFromDictionary("/newTestFile");
             Assert.IsTrue(links.Contains("/linkToTestFile"));
+
+            Assert.AreNotEqual(vs.GetNode("/newTestFile").CreatedDate, vs.GetNode("/newTestFile").UpdatedDate);
         }
 
         [TestMethod]
@@ -2887,6 +2901,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(links.Contains("/linkToTestFile"));
             links = vs.GetLinksFromDictionary("/newTestFile");
             Assert.IsTrue(links.Contains("/linkToTestFile"));
+
+            Assert.AreNotEqual(vs.GetNode("/newTestFile").CreatedDate, vs.GetNode("/newTestFile").UpdatedDate);
         }
 
         [TestMethod]
@@ -2925,6 +2941,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(links.Contains("/linkToTestDir"));
             links = vs.GetLinksFromDictionary("/newTestDir");
             Assert.IsTrue(links.Contains("/linkToTestDir"));
+
+            Assert.AreNotEqual(vs.GetNode("/newTestDir").CreatedDate, vs.GetNode("/newTestDir").UpdatedDate);
         }
 
         [TestMethod]
@@ -2963,6 +2981,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(links.Contains("/linkToTestDir"));
             links = vs.GetLinksFromDictionary("/newTestDir");
             Assert.IsTrue(links.Contains("/linkToTestDir"));
+
+            Assert.AreNotEqual(vs.GetNode("/newTestDir").CreatedDate, vs.GetNode("/newTestDir").UpdatedDate);
         }
 
         [TestMethod]
@@ -3025,6 +3045,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             var links = vs.GetLinksFromDictionary("/missingTarget");
             Assert.IsTrue(links.Contains("/newLink"));
             Assert.IsFalse(links.Contains("/link"));
+
+            Assert.AreNotEqual(vs.GetNode("/newLink").CreatedDate, vs.GetNode("/newLink").UpdatedDate);
         }
 
         [TestMethod]
@@ -3063,6 +3085,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(links.Contains("/linkToTestFile"));
             links = vs.GetLinksFromDictionary("/dir1/dir2/newTestFile");
             Assert.IsTrue(links.Contains("/linkToTestFile"));
+
+            Assert.AreNotEqual(vs.GetNode("/dir1/dir2/newTestFile").CreatedDate, vs.GetNode("/dir1/dir2/newTestFile").UpdatedDate);
         }
 
         [TestMethod]
@@ -3100,6 +3124,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             var links = vs.GetLinksFromDictionary("/dir1/dir2/testFile");
             Assert.IsTrue(links.Contains("/dir1/dir2/newTestFile"));
             Assert.IsFalse(links.Contains("/dir1/dir2/linkToTestFile"));
+
+            Assert.AreNotEqual(vs.GetNode("/dir1/dir2/newTestFile").CreatedDate, vs.GetNode("/dir1/dir2/newTestFile").UpdatedDate);
         }
 
         [TestMethod]

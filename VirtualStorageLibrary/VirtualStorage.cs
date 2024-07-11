@@ -290,6 +290,7 @@ namespace AkiraNet.VirtualStorageLibrary
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
             // 既存のシンボリックリンクを取得
+            // シンボリックリンクの場合、パス解決をするのは無意味なので followLinks は false固定
             VirtualSymbolicLink link = GetSymbolicLink(linkPath);
 
             // 既存シンボリックリンクのノードを更新
@@ -1522,9 +1523,12 @@ namespace AkiraNet.VirtualStorageLibrary
             UpdateLinksToTarget(oldAbsolutePath, newAbsolutePath);
 
             // 親ディレクトリから古いノードを削除し、新しい名前のノードを追加
-            parentDirectory.Remove(node);
-            node.Name = newName;
-            parentDirectory.Add(node);
+            parentDirectory.SetNodeName(node.Name, newName);
+
+            // 更新日時の更新
+            DateTime updatedTime = DateTime.Now;
+            node.UpdatedDate = updatedTime;
+            parentDirectory.UpdatedDate = updatedTime;
         }
 
         public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool resolveLinks = true)

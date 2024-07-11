@@ -52,13 +52,19 @@
 
         public override void Update(VirtualNode node)
         {
-            if (node is not VirtualSymbolicLink link)
+            if (node is not VirtualSymbolicLink newLink)
             {
                 throw new ArgumentException($"このノード {node.Name} はシンボリックリンクではありません。");
             }
 
-            TargetPath = link.TargetPath;
-            UpdatedDate = link.UpdatedDate;
+            if (newLink.IsReferencedInStorage)
+            {
+                newLink = (VirtualSymbolicLink)newLink.DeepClone();
+            }
+
+            CreatedDate = newLink.CreatedDate;
+            UpdatedDate = DateTime.Now;
+            TargetPath = newLink.TargetPath;
         }
     }
 }

@@ -20,22 +20,19 @@
         protected VirtualNode(VirtualNodeName name)
         {
             Name = name;
-            CreatedDate = DateTime.Now;
-            UpdatedDate = DateTime.Now;
+            CreatedDate = UpdatedDate = DateTime.Now;
         }
 
         protected VirtualNode(VirtualNodeName name, DateTime createdDate)
         {
             Name = name;
-            CreatedDate = createdDate;
-            UpdatedDate = createdDate;
+            CreatedDate = UpdatedDate = createdDate;
         }
 
         protected VirtualNode(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)
         {
             Name = name;
-            CreatedDate = createdDate;
-            UpdatedDate = updatedDate;
+            CreatedDate = UpdatedDate = createdDate;
         }
 
         public override string ToString() => $"{Name}";

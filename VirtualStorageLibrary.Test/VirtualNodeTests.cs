@@ -22,8 +22,9 @@
             // Arrange
             VirtualNodeName name = "TestItem";
             SimpleData item = new(10);
-            DateTime createdDate = DateTime.Now;
-            DateTime updatedDate = DateTime.Now;
+            DateTime now = DateTime.Now;
+            DateTime createdDate = now;
+            DateTime updatedDate = now;
 
             // Act
             VirtualItem<SimpleData> virtualItem = new(name, item, createdDate, updatedDate);

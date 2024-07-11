@@ -14,11 +14,11 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public int Count => _nodes.Count;
 
-        public int DirectoryCount => _nodes.Values.Count(n => n is VirtualDirectory);
+        public int DirectoryCount => Nodes.Count(n => n is VirtualDirectory);
 
-        public int ItemCount => _nodes.Values.Count(n => n is VirtualItem);
+        public int ItemCount => Nodes.Count(n => n is VirtualItem);
 
-        public int SymbolicLinkCount => _nodes.Values.Count(n => n is VirtualSymbolicLink);
+        public int SymbolicLinkCount => Nodes.Count(n => n is VirtualSymbolicLink);
 
         public IEnumerable<VirtualNode> NodesView => GetNodeList();
 
@@ -96,9 +96,9 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualDirectory newDirectory = new(Name, CreatedDate, UpdatedDate);
             if (recursive)
             {
-                foreach (var node in _nodes)
+                foreach (VirtualNode node in Nodes)
                 {
-                    newDirectory.Add(node.Value.DeepClone(true));
+                    newDirectory.Add(node.DeepClone(true));
                 }
             }
             return newDirectory;
@@ -110,7 +110,7 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualGroupCondition<VirtualNode, object>? groupCondition = VirtualStorageState.State.NodeListConditions.GroupCondition;
             List<VirtualSortCondition<VirtualNode>>? sortConditions = VirtualStorageState.State.NodeListConditions.SortConditions;
 
-            IEnumerable<VirtualNode> nodes = _nodes.Values;
+            IEnumerable<VirtualNode> nodes = Nodes;
 
             switch (filter)
             {
@@ -216,6 +216,23 @@ namespace AkiraNet.VirtualStorageLibrary
             }
         }
 
+        internal void SetNodeName(VirtualNodeName oldName, VirtualNodeName newName)
+        {
+            if (!NodeExists(oldName))
+            {
+                throw new VirtualNodeNotFoundException($"指定されたノード '{oldName}' は存在しません。");
+            }
+
+            if (NodeExists(newName))
+            {
+                throw new InvalidOperationException($"指定されたノード '{newName}' は既に存在します。");
+            }
+
+            VirtualNode node = _nodes[oldName];
+            _nodes.Remove(oldName);
+            _nodes[newName] = node;
+        }
+
         public void Remove(VirtualNode node)
         {
             if (!NodeExists(node.Name))
@@ -318,7 +335,7 @@ namespace AkiraNet.VirtualStorageLibrary
             node.IsReferencedInStorage = value;
             if (node is VirtualDirectory subDirectory)
             {
-                foreach (var subNode in subDirectory._nodes.Values)
+                foreach (var subNode in subDirectory.Nodes)
                 {
                     SetIsReferencedInStorageRecursively(subNode, value);
                 }
@@ -337,7 +354,10 @@ namespace AkiraNet.VirtualStorageLibrary
                 newDirectory = (VirtualDirectory)newDirectory.DeepClone(true);
             }
 
-            foreach (var subNode in newDirectory._nodes.Values)
+            CreatedDate = newDirectory.CreatedDate;
+            UpdatedDate = DateTime.Now;
+
+            foreach (VirtualNode subNode in newDirectory.Nodes)
             {
                 if (_nodes.TryGetValue(subNode.Name, out VirtualNode? existingNode))
                 {

@@ -56,8 +56,9 @@
             // Arrange
             VirtualNodeName name = "TestLink";
             VirtualPath targetPath = "/target/path";
-            DateTime createdDate = DateTime.Now;
-            DateTime updatedDate = DateTime.Now;
+            DateTime now = DateTime.Now;
+            DateTime createdDate = now;
+            DateTime updatedDate = now;
 
             // Act
             VirtualSymbolicLink link = new(name, targetPath, createdDate, updatedDate);
