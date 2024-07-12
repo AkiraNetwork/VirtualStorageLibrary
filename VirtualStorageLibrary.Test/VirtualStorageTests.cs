@@ -3346,10 +3346,17 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             VirtualStorage<BinaryData> vs = new();
             vs.AddItem("/sourceFile", new BinaryData([1, 2, 3]));
+
+            DateTime createdDate = vs.GetNode("/sourceFile").CreatedDate;
+            DateTime updatedDate = vs.GetNode("/sourceFile").UpdatedDate;
+
             vs.MoveNode("/sourceFile", "/renamedFile");
 
             Assert.IsFalse(vs.NodeExists("/sourceFile"));
             Assert.IsTrue(vs.NodeExists("/renamedFile"));
+
+            Assert.AreEqual(createdDate, vs.GetNode("/renamedFile").CreatedDate);
+            Assert.AreEqual(updatedDate, vs.GetNode("/renamedFile").UpdatedDate);
 
             byte[] result = ((VirtualItem<BinaryData>)vs.GetNode("/renamedFile")).ItemData!.Data;
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, result);
