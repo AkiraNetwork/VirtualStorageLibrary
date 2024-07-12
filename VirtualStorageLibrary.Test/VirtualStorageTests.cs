@@ -6341,6 +6341,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
 
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
+
             // コンテキストの表示
             Debug.WriteLine("context:");
             foreach (VirtualNodeContext context in contexts)
@@ -6371,6 +6375,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6403,6 +6411,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
             Assert.AreNotSame(originalItem.ItemData, copiedItem.ItemData);
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6475,10 +6487,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/dir1/item2", false, false, false, contexts);
 
             // 検査
+            VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);
             CollectionAssert.AreEqual(data.Data, copiedItem.ItemData!.Data);
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6525,10 +6542,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/link/item2", false, false, false, contexts);
 
             // 検査
+            VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6556,10 +6578,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/dir1/link/dir3/item2", false, false, false, contexts);
 
             // 検査
+            VirtualItem<BinaryData> originalItem = vs.GetItem("/item1", true);
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/link/dir3/item2", true);
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6614,10 +6641,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/linkToItem", "/dir1/item2", false, false, true, contexts);
 
             // 検査
+            VirtualDirectory originalDir = vs.GetDirectory("/dir1");
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
+
+            Assert.AreNotEqual(originalDir.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalDir.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6647,10 +6679,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
 
             // 検査
+            VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6682,10 +6719,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
 
             // 検査
+            VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6742,10 +6784,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/linkToItem", true, false, false, contexts);
 
             // 検査
+            VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6779,10 +6826,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.CopyNode("/item1", "/linkToItem", true, false, false, contexts);
 
             // 検査
+            VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
             Assert.IsNotNull(copiedItem);
             Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
+
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");
@@ -6803,8 +6855,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
             vs.AddItem("/dir1/item1", data);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/dir1", "/dir2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2");
@@ -6813,6 +6873,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalDirectory, copiedDirectory);
             Assert.AreNotSame(originalDirectory, copiedDirectory);
             Assert.AreEqual(0, copiedDirectory.Count);  // コピー先ディレクトリは空であることを確認
+
+            Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
+            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
 
             // コンテキストの表示
             Debug.WriteLine("context:");

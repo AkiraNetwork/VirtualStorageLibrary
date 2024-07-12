@@ -51,7 +51,7 @@
 
         public override VirtualNode DeepClone(bool recursive = false)
         {
-            return new VirtualSymbolicLink(Name, TargetPath, CreatedDate, UpdatedDate);
+            return new VirtualSymbolicLink(Name, TargetPath);
         }
 
         public override void Update(VirtualNode node)

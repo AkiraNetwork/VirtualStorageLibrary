@@ -87,8 +87,8 @@
             Assert.IsNotNull(clone);
             Assert.AreEqual(link.Name, clone.Name);
             Assert.AreEqual(link.TargetPath, clone.TargetPath);
-            Assert.AreEqual(link.CreatedDate, clone.CreatedDate);
-            Assert.AreEqual(link.UpdatedDate, clone.UpdatedDate);
+            Assert.AreNotEqual(link.CreatedDate, clone.CreatedDate);
+            Assert.AreNotEqual(link.UpdatedDate, clone.UpdatedDate);
         }
 
         // VirtualPathからの暗黙的な変換で VirtualSymbolicLink オブジェクトが正しく作成されることを検証します。

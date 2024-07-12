@@ -54,8 +54,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsNotNull(clonedDirectory);
             Assert.AreNotSame(originalDirectory, clonedDirectory);
             Assert.AreEqual(originalDirectory.Name, clonedDirectory.Name);
-            Assert.AreEqual(originalDirectory.CreatedDate, clonedDirectory.CreatedDate);
-            Assert.AreEqual(originalDirectory.UpdatedDate, clonedDirectory.UpdatedDate);
+            Assert.AreNotEqual(originalDirectory.CreatedDate, clonedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, clonedDirectory.UpdatedDate);
             Assert.AreEqual(0, clonedDirectory.Count); // ディレクトリのコピーなのでノードはコピーされない
         }
 

@@ -93,7 +93,7 @@ namespace AkiraNet.VirtualStorageLibrary
 
         public override VirtualNode DeepClone(bool recursive = false)
         {
-            VirtualDirectory newDirectory = new(Name, CreatedDate, UpdatedDate);
+            VirtualDirectory newDirectory = new(Name);
             if (recursive)
             {
                 foreach (VirtualNode node in Nodes)
