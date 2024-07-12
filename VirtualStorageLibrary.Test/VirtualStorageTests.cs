@@ -6329,8 +6329,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // テストデータ
             vs.AddItem("/item1", data);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/item1", "/item2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
@@ -6344,13 +6356,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6364,8 +6369,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/item1", data);
             vs.AddDirectory("/dir1/dir2", true);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/item1", "/dir1/dir2/item2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/dir2/item2");
@@ -6379,13 +6396,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6400,8 +6410,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/item1", originalData);
             vs.AddItem("/item2", newData);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行: "/item1"を"/item2"に overwrite オプションを true でコピー
             vs.CopyNode("/item1", "/item2", true, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
@@ -6415,13 +6437,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6430,11 +6445,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             List<VirtualNodeContext> contexts = [];
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査: 存在しない "/item1" をコピーしようとする
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 vs.CopyNode("/item1", "/item2", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6447,11 +6467,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // テストデータ
             vs.AddItem("/item1", data);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査: 同じパスへのコピーを試みる
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/item1", "/item1", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6465,11 +6490,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/item1", data);
             vs.AddItem("/item2", data);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査: overwriteを指定せずに"/item1"を"/item2"にコピー
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/item1", "/item2", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6483,8 +6513,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
             vs.AddItem("/item1", data);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行: アイテムが存在しないディレクトリ "/dir1" にコピー
             vs.CopyNode("/item1", "/dir1/item2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -6496,13 +6538,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6517,11 +6552,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", data);
             vs.AddItem("/item1", data);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査: 上書きなしで "/item1" を "/dir1" にコピーしようとする
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/item1", "/dir1/item1", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6538,8 +6578,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
             vs.AddSymbolicLink("/link", "/dir1");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
             vs.CopyNode("/item1", "/link/item2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -6551,13 +6603,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6574,8 +6619,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1/dir2/dir3", true);
             vs.AddSymbolicLink("/dir1/link", "/dir1/dir2");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
             vs.CopyNode("/item1", "/dir1/link/dir3/item2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1", true);
@@ -6587,13 +6644,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6611,14 +6661,19 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
             vs.AddSymbolicLink("/link", "/dir1");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // ターゲットディレクトリに既存のアイテムを追加
             vs.AddItem("/dir1/item2", existingData);
 
             // シンボリックリンクを経由して、既存のアイテム名で上書きなしのコピーを試みる
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/item1", "/dir1/item2", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6637,8 +6692,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // アイテムへのシンボリックリンクを作成
             vs.AddSymbolicLink("/linkToItem", "/item1");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // シンボリックリンクを経由してアイテムにコピー
             vs.CopyNode("/linkToItem", "/dir1/item2", false, false, true, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualDirectory originalDir = vs.GetDirectory("/dir1");
@@ -6650,13 +6717,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalDir.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalDir.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6675,8 +6735,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // アイテムへのシンボリックリンクを作成
             vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // シンボリックリンクを経由してアイテムにコピーする
             vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -6688,13 +6760,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6715,8 +6780,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/linkToItem2", "/linkToItem3");
             vs.AddSymbolicLink("/linkToItem3", "/dir1/item2");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // シンボリックリンクを経由してアイテムにコピーする
             vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -6728,13 +6805,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6755,11 +6825,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // アイテムへのシンボリックリンクを作成
             vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // シンボリックリンクを経由して、アイテムに上書きなしでコピーを試みる
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6780,8 +6855,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // アイテムへのシンボリックリンクを作成
             vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 上書きを許可してシンボリックリンクを経由してアイテムにコピー
             vs.CopyNode("/item1", "/linkToItem", true, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -6793,13 +6880,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6822,8 +6902,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/linkToItem2", "/linkToItem3");
             vs.AddSymbolicLink("/linkToItem3", "/dir1/item2");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 上書きを許可してシンボリックリンクを経由してアイテムにコピー
             vs.CopyNode("/item1", "/linkToItem", true, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -6835,13 +6927,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
             Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
             Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6866,6 +6951,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine("ディレクトリ構造 (処理後):");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2");
             VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
@@ -6877,13 +6966,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
             Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
             Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
-
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
         }
 
         [TestMethod]
@@ -6898,8 +6980,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", data);
             vs.AddDirectory("/dir2/dir3", true);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/dir1", "/dir2/dir3/dir4", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2/dir3/dir4");
@@ -6909,12 +7003,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotSame(originalDirectory, copiedDirectory);
             Assert.AreEqual(0, copiedDirectory.Count);  // コピー先ディレクトリは空であることを確認
 
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
+            Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
+            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
         }
 
         [TestMethod]
@@ -6932,11 +7023,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dst/dir1/item2", originalData);
             vs.AddItem("/dst/dir1/item3", originalData);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/dir1", "/dst", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6953,11 +7049,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", originalData);
             vs.AddItem("/dst/dir1", originalData); // dir1 というアイテムがある場合
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/dir1", "/dst", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6974,11 +7075,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", originalData);
             vs.AddSymbolicLink("/dst/dir1", "/anywhere"); // dir1 というリンクがある場合
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/dir1", "/dst", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -6996,11 +7102,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dst/dir1/item2", originalData);
             vs.AddItem("/dst/dir1/item3", originalData);
 
-            DateTime copiedCreatedDate = vs.GetDirectory("/dst/dir1").CreatedDate;
-            DateTime copiedUpdatedDate = vs.GetDirectory("/dst/dir1").UpdatedDate;
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dst", true, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -7009,15 +7124,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreNotEqual(originalDirectory, copiedDirectory);
             Assert.AreNotSame(originalDirectory, copiedDirectory);
             Assert.AreEqual(2, copiedDirectory.Count);  // コピー先ディレクトリのカウントに変化がない事を確認
-            Assert.AreEqual(copiedCreatedDate, copiedDirectory.CreatedDate);  // 作成日時が変更されていないことを確認
-            Assert.AreEqual(copiedUpdatedDate, copiedDirectory.UpdatedDate);  // 更新日時が変更されていることを確認
 
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
+            Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
+            Assert.AreNotEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
         }
 
         [TestMethod]
@@ -7037,29 +7147,32 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             DateTime dir1Date = vs.GetDirectory("/dir1").UpdatedDate;
 
-            // 処理前のデータ構造の表示
-            Debug.WriteLine("処理前のデータ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dst", true, true, false, contexts);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+
             // 検査
+            VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
+            VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
             Assert.IsTrue(vs.NodeExists("/dst/dir1/item1"));
             Assert.IsTrue(vs.NodeExists("/dst/dir1/item2"));
             Assert.IsTrue(vs.NodeExists("/dst/dir1/item3"));
             Assert.AreNotEqual(dir1Date, vs.GetDirectory("/dst/dir1").UpdatedDate);
 
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-
-            // 処理後のデータ構造の表示
-            Debug.WriteLine("処理後のデータ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+            Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
+            Assert.AreNotEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
         }
 
         [TestMethod]
@@ -7076,11 +7189,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", originalData);
             vs.AddItem("/dst/dir1", originalData); // dir1 というアイテムがある場合
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/dir1", "/dst", true, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -7097,11 +7215,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", originalData);
             vs.AddSymbolicLink("/dst/dir1", "/anywhere"); // dir1 というリンクがある場合
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/dir1", "/dst", true, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -7115,8 +7238,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/item1", data);
             vs.AddSymbolicLink("/link1", "/item1");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/link1", "/link2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/link2");
@@ -7126,12 +7261,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
             Assert.AreNotSame(originalLink, copiedLink);
 
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
+            Assert.AreNotEqual(originalLink.CreatedDate, copiedLink.CreatedDate);
+            Assert.AreNotEqual(originalLink.UpdatedDate, copiedLink.UpdatedDate);
+            Assert.AreEqual(copiedLink.CreatedDate, copiedLink.UpdatedDate);
         }
 
         [TestMethod]
@@ -7146,8 +7278,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link1", "/item1");
             vs.AddDirectory("/dir1/dir2", true);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/link1", "/dir1/dir2/link2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dir1/dir2/link2");
@@ -7157,12 +7301,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
             Assert.AreNotSame(originalLink, copiedLink);
 
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
+            Assert.AreNotEqual(originalLink.CreatedDate, copiedLink.CreatedDate);
+            Assert.AreNotEqual(originalLink.UpdatedDate, copiedLink.UpdatedDate);
+            Assert.AreEqual(copiedLink.CreatedDate, copiedLink.UpdatedDate);
         }
 
         [TestMethod]
@@ -7178,8 +7319,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/link1", "/item1");
             vs.AddSymbolicLink("/link2", "/dst");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/link1", "/link2", false, false, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dst/link1");
@@ -7189,16 +7342,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.AreEqual(originalLink.TargetPath, copiedLink.TargetPath);
             Assert.AreNotSame(originalLink, copiedLink);
 
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-
-            // 処理後のデータ構造の表示
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
-            Debug.WriteLine(tree);
+            Assert.AreNotEqual(originalLink.CreatedDate, copiedLink.CreatedDate);
+            Assert.AreNotEqual(originalLink.UpdatedDate, copiedLink.UpdatedDate);
+            Assert.AreEqual(copiedLink.CreatedDate, copiedLink.UpdatedDate);
         }
 
         [TestMethod]
@@ -7207,11 +7353,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             List<VirtualNodeContext> contexts = [];
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 vs.CopyNode("/link1", "/link2", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -7225,11 +7376,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/item1", data);
             vs.AddSymbolicLink("/link1", "/item1");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/link1", "/link1", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -7245,8 +7401,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", data);
             vs.AddSymbolicLink("/link1", "/dir1/item1");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/link1", "/dir2", false, false, true, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir2/item1");
@@ -7256,16 +7424,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
 
-            // コンテキストの表示
-            Debug.WriteLine("context:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-
-            // 処理後のデータ構造の表示
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
-            Debug.WriteLine(tree);
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
         }
 
         [TestMethod]
@@ -7282,8 +7443,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dst");
             vs.AddSymbolicLink("/dst/link", "/dir2");
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/dir1/item1", "/dst/link", false, false, true, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dst/link/item1", true);
@@ -7293,17 +7466,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
 
-            // コンテキストの表示
-            Debug.WriteLine("\ncontext:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-
-            // 処理後のデータ構造の表示
-            Debug.WriteLine("\nstructure:");
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
-            Debug.WriteLine(tree);
+            Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
+            Assert.AreNotEqual(originalItem.UpdatedDate, copiedItem.UpdatedDate);
+            Assert.AreEqual(copiedItem.CreatedDate, copiedItem.UpdatedDate);
         }
 
         [TestMethod]
@@ -7318,8 +7483,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", data);
             vs.AddDirectory("/dst", true);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/dir1", "/dst", false, true, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -7331,17 +7508,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.GetItem("/dst/dir1/item1").Name == "item1");
             CollectionAssert.AreEqual(data.Data, vs.GetItem("/dst/dir1/item1").ItemData!.Data);
 
-            // コンテキストの表示
-            Debug.WriteLine("\ncontext:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-
-            // 処理後のデータ構造の表示
-            Debug.WriteLine("\nstructure:");
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
-            Debug.WriteLine(tree);
+            Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
+            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
         }
 
         [TestMethod]
@@ -7365,8 +7534,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/dir1/dir2/dir3/itemC", "/data/itemC");
             vs.AddDirectory("/dst1/dst2", true);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/dir1", "/dst1/dst2", false, true, false, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");
@@ -7382,17 +7563,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.GetSymbolicLink("/dst1/dst2/dir1/dir2/itemB").Name == "itemB");
             Assert.IsTrue(vs.GetSymbolicLink("/dst1/dst2/dir1/dir2/dir3/itemC").Name == "itemC");
 
-            // コンテキストの表示
-            Debug.WriteLine("\ncontext:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-
-            // 処理後のデータ構造の表示
-            Debug.WriteLine("\nstructure:");
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
-            Debug.WriteLine(tree);
+            Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
+            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
         }
 
         [TestMethod]
@@ -7416,8 +7589,20 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/dir1/dir2/dir3/itemC", "/data/itemC");
             vs.AddDirectory("/dst1/dst2", true);
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行
             vs.CopyNode("/dir1", "/dst1/dst2", false, true, true, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");
@@ -7433,32 +7618,29 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/itemB").Name == "itemB");
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/dir3/itemC").Name == "itemC");
 
-            // コンテキストの表示
-            Debug.WriteLine("\ncontext:");
-            foreach (VirtualNodeContext context in contexts)
-            {
-                Debug.WriteLine(context);
-            }
-
-            // 処理後のデータ構造の表示
-            Debug.WriteLine("\nstructure:");
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
-            Debug.WriteLine(tree);
+            Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
+            Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
+            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
         }
 
         [TestMethod]
         public void CopyNode_CopySourceToItsSubdirectory_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir1/subdir1", true);
             vs.AddItem("/dir1/item1", new BinaryData([1, 2, 3]));
             List<VirtualNodeContext> contexts = [];
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査: コピー元がコピー先のサブディレクトリである場合
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/dir1", "/dir1/subdir", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -7469,11 +7651,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/subdir/item1", new BinaryData([1, 2, 3]));
             List<VirtualNodeContext> contexts = [];
 
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
             // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.CopyNode("/dir1/subdir", "/dir1", false, false, false, contexts);
             });
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]

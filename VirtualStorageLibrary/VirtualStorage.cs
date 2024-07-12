@@ -1224,15 +1224,16 @@ namespace AkiraNet.VirtualStorageLibrary
             bool followLinks,
             List<VirtualNodeContext>? destinationContextList)
         {
+            DateTime now = DateTime.Now;
             VirtualNodeName? newNodeName;
 
             VirtualDirectory destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
-            //VirtualNodeName destinationNodeName = destinationPath.NodeName;
 
             VirtualNode? destinationNode = destinationDirectory.Get(destinationPath.NodeName, false);
 
             bool overwriteDirectory = false;
 
+            // コピー先ノードが存在する場合
             switch (destinationNode)
             {
                 case VirtualDirectory directory:
@@ -1241,9 +1242,12 @@ namespace AkiraNet.VirtualStorageLibrary
                     VirtualNode? node = destinationDirectory.Get(newNodeName, false);
                     if (node != null)
                     {
-                        if (overwrite && (node is VirtualDirectory))
+                        if (overwrite && (node is VirtualDirectory existingDirectory))
                         {
                             overwriteDirectory = true;
+
+                            // 同名ディレクトリへの上書きの場合、実質、上書きはしないが更新日付は更新する。
+                            existingDirectory.UpdatedDate = now;
                         }
                         else
                         {
@@ -1253,15 +1257,14 @@ namespace AkiraNet.VirtualStorageLibrary
                     destinationPath += newNodeName;
                     break;
 
-                case VirtualItem _:
+                case VirtualItem<T> item:
                     if (overwrite)
                     {
-                        VirtualItem<T> item = GetItem(destinationPath, true);
                         destinationDirectory.Remove(item);
                     }
                     else
                     {
-                        throw new InvalidOperationException($"アイテム '{destinationPath.NodeName}' は既に存在します。上書きは許可されていません。");
+                        throw new InvalidOperationException($"アイテム '{item.Name}' は既に存在します。上書きは許可されていません。");
                     }
                     newNodeName = destinationPath.NodeName;
                     break;
