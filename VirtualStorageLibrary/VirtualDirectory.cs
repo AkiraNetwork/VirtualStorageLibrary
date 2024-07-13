@@ -236,7 +236,9 @@ namespace AkiraNet.VirtualStorageLibrary
             _nodes[newName] = node;
 
             // 更新日付を更新
-            UpdatedDate = DateTime.Now;
+            DateTime now = DateTime.Now;
+            _nodes[newName].UpdatedDate = now;
+            UpdatedDate = now;
         }
 
         public void Remove(VirtualNode node)

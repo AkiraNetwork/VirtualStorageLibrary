@@ -1491,9 +1491,9 @@ namespace AkiraNet.VirtualStorageLibrary
             return false;
         }
 
-        public void SetNodeName(VirtualPath oldPath, VirtualNodeName newName, bool resolveLinks = true)
+        public void SetNodeName(VirtualPath nodePath, VirtualNodeName newName, bool resolveLinks = true)
         {
-            VirtualPath oldAbsolutePath = ConvertToAbsolutePath(oldPath);
+            VirtualPath oldAbsolutePath = ConvertToAbsolutePath(nodePath);
             VirtualPath newAbsolutePath = oldAbsolutePath.DirectoryPath + newName;
 
             // 移動先と移動元が同じかどうかのチェック
@@ -1526,11 +1526,6 @@ namespace AkiraNet.VirtualStorageLibrary
 
             // 親ディレクトリから古いノードを削除し、新しい名前のノードを追加
             parentDirectory.SetNodeName(node.Name, newName);
-
-            // 更新日時の更新
-            DateTime updatedTime = DateTime.Now;
-            node.UpdatedDate = updatedTime;
-            parentDirectory.UpdatedDate = updatedTime;
         }
 
         public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool resolveLinks = true)
