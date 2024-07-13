@@ -1224,7 +1224,6 @@ namespace AkiraNet.VirtualStorageLibrary
             bool followLinks,
             List<VirtualNodeContext>? destinationContextList)
         {
-            DateTime now = DateTime.Now;
             VirtualNodeName? newNodeName;
 
             VirtualDirectory destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
@@ -1247,7 +1246,7 @@ namespace AkiraNet.VirtualStorageLibrary
                             overwriteDirectory = true;
 
                             // 同名ディレクトリへの上書きの場合、実質、上書きはしないが更新日付は更新する。
-                            existingDirectory.UpdatedDate = now;
+                            existingDirectory.UpdatedDate = DateTime.Now;
                         }
                         else
                         {

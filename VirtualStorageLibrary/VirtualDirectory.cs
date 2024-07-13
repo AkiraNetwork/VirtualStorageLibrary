@@ -175,6 +175,9 @@ namespace AkiraNet.VirtualStorageLibrary
 
             _nodes[key] = node;
 
+            // 更新日付を更新
+            UpdatedDate = DateTime.Now;
+
             // 自分自身のIsReferencedInStorageを下位ノードに伝搬させる
             SetIsReferencedInStorageRecursively(node, IsReferencedInStorage);
 
@@ -231,6 +234,9 @@ namespace AkiraNet.VirtualStorageLibrary
             VirtualNode node = _nodes[oldName];
             _nodes.Remove(oldName);
             _nodes[newName] = node;
+
+            // 更新日付を更新
+            UpdatedDate = DateTime.Now;
         }
 
         public void Remove(VirtualNode node)
@@ -241,6 +247,9 @@ namespace AkiraNet.VirtualStorageLibrary
             }
 
             _nodes.Remove(node.Name);
+
+            // 更新日付を更新
+            UpdatedDate = DateTime.Now;
 
             // IsReferencedInStorage = false を下位ノードに伝搬させる
             SetIsReferencedInStorageRecursively(node, false);

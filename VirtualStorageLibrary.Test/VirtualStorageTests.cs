@@ -7517,7 +7517,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
             Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
-            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
+            Assert.IsTrue(copiedDirectory.CreatedDate < copiedDirectory.UpdatedDate);  // 下位ノードの更新が行われた事を確認
         }
 
         [TestMethod]
@@ -7572,7 +7572,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
             Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
-            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
+            Assert.IsTrue(copiedDirectory.CreatedDate < copiedDirectory.UpdatedDate);  // 下位ノードの更新が行われた事を確認
         }
 
         [TestMethod]
@@ -7627,7 +7627,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.AreNotEqual(originalDirectory.CreatedDate, copiedDirectory.CreatedDate);
             Assert.AreNotEqual(originalDirectory.UpdatedDate, copiedDirectory.UpdatedDate);
-            Assert.AreEqual(copiedDirectory.CreatedDate, copiedDirectory.UpdatedDate);
+            Assert.IsTrue(copiedDirectory.CreatedDate < copiedDirectory.UpdatedDate);  // 下位ノードの更新が行われた事を確認
         }
 
         [TestMethod]

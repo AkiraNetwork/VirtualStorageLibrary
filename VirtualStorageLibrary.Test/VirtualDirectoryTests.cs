@@ -115,10 +115,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             byte[] testData = [1, 2, 3];
             VirtualItem<BinaryData> newNode = new("NewItem", new(testData));
 
+            DateTime beforeDate = directory.UpdatedDate;
+
             directory.Add(newNode);
 
             Assert.IsTrue(directory.NodeExists("NewItem"));
             Assert.AreEqual(newNode, directory["NewItem"]);
+            
+            Assert.IsTrue(directory.UpdatedDate > beforeDate);
 
             VirtualItem<BinaryData> item = (VirtualItem<BinaryData>)directory.Get("NewItem")!;
             CollectionAssert.AreEqual(testData, item.ItemData!.Data);
@@ -134,10 +138,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             VirtualItem<BinaryData> newNode = new("OriginalItem", new BinaryData(testData));
 
+            DateTime beforeDate = directory.UpdatedDate;
+
             Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 directory.Add(newNode);
             });
+
+            Assert.IsTrue(directory.UpdatedDate == beforeDate);
         }
 
         [TestMethod]
@@ -413,10 +421,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualDirectory directory = new("TestDirectory");
             VirtualItem<BinaryData> node = new("ExistingNode");
 
+            DateTime beforeDate = directory.UpdatedDate;
+
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 directory.Remove(node);
             });
+
+            Assert.IsTrue(directory.UpdatedDate == beforeDate);
         }
 
         [TestMethod]
@@ -427,9 +439,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualItem<BinaryData> node = new("item", new BinaryData(testData));
             directory.Add(node);
 
+            DateTime beforeDate = directory.UpdatedDate;
+
             directory.Remove(node);
 
             Assert.IsFalse(directory.NodeExists(node.Name));
+
+            Assert.IsTrue(directory.UpdatedDate > beforeDate);
         }
 
         [TestMethod]
