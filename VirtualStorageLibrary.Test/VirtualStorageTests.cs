@@ -1153,11 +1153,17 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         [TestMethod]
         public void AddItem_AddsNewItemSuccessfully_WithEmpty()
         {
+            // Arrange
             VirtualStorage<BinaryData> vs = new();
             VirtualPath path = "/NewItem";
 
+            // Act
             vs.AddItem(path);
 
+            // デバッグ出力
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetItem(path)));
+
+            // Assert
             Assert.IsTrue(vs.ItemExists(path));
             VirtualItem<BinaryData>? retrievedItem = vs.GetItem(path);
             Assert.IsNotNull(retrievedItem);

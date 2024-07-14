@@ -10,6 +10,8 @@
 
         public abstract VirtualNodeType NodeType { get; }
 
+        public VirtualID VID { get; private set; } = new VirtualID();
+
         // 実体の深いクローンを作成する
         // ただし、CreatedDate、UpdatedDateはクローンした時点の日時に設定する為、クローンしてはいけない
         public abstract VirtualNode DeepClone(bool recursive = false);
