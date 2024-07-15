@@ -8687,6 +8687,107 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void CycleReference_WithCycleReference_ShouldThrowException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddSymbolicLink("/dir1/dir2/dir3/linkToDir1", "/dir1");
+
+            // Act & Assert
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void CycleReference_WithNormalReference_ShouldNormalEnd()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/base/dir1/dir2", true);
+            vs.AddSymbolicLink("/base/dir1/dir2/linkToDir3", "/dir3");
+            vs.AddDirectory("/dir3/dir4", true);
+
+            // Act
+            IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/base", VirtualNodeTypeFilter.All, true, true).ToList();
+
+            // コンテキスト出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodes));
+
+            // Assert
+            Assert.AreNotEqual(0, nodes.Count());
+        }
+
+        [TestMethod]
+        public void CycleReference_WithoutCycleReference_ShouldNotThrowException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+
+            // Act & Assert
+            IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+            Assert.IsTrue(nodes.Any());
+        }
+
+        [TestMethod]
+        public void CycleReference_WithComplexCycle_ShouldThrowException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/level1/level2/level3", true);
+            vs.AddSymbolicLink("/level1/level2/linkToLevel1", "/level1");
+            vs.AddSymbolicLink("/level1/level2/level3/linkToLevel2", "/level1/level2");
+
+            // Act & Assert
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void CycleReference_WithSelfReferencingLink_ShouldThrowException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/selfReferenceDir", true);
+            vs.AddSymbolicLink("/selfReferenceDir/selfLink", "/selfReferenceDir");
+
+            // Act & Assert
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void CycleReference_WithNestedCycleReference_ShouldThrowException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/nestedDir1/nestedDir2/nestedDir3", true);
+            vs.AddSymbolicLink("/nestedDir1/nestedDir2/nestedDir3/linkToNestedDir1", "/nestedDir1");
+
+            // Act & Assert
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
         public void Free_Test_CollectionExpressions()
         {
             // Arrange

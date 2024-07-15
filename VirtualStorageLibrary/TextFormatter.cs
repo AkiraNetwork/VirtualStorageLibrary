@@ -141,7 +141,12 @@ namespace AkiraNet.VirtualStorageLibrary
                     object? value = property.GetValue(singleObject);
 
                     // Skip collections and dictionaries
-                    if (value is IEnumerable && value is not string)
+                    if (value != null && IsToStringOverridden(value.GetType()))
+                    {
+                        row.Add(value?.ToString() ?? "(null)");
+                    }
+                    // Skip collections and dictionaries
+                    else if (value is IEnumerable && value is not string)
                     {
                         row.Add("(no output)");
                     }
@@ -164,6 +169,12 @@ namespace AkiraNet.VirtualStorageLibrary
             ];
 
             return FormatTable(tableData);
+        }
+
+        private static bool IsToStringOverridden(Type type)
+        {
+            MethodInfo? toStringMethod = type.GetMethod("ToString", Type.EmptyTypes);
+            return toStringMethod?.DeclaringType != typeof(object);
         }
     }
 }

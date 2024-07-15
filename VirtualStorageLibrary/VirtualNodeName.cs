@@ -20,6 +20,15 @@
         [DebuggerStepThrough]
         public override string ToString() => _name;
 
+        public bool IsRoot
+        {
+            [DebuggerStepThrough]
+            get
+            {
+                return _name == VirtualStorageState.State.PathRoot;
+            }
+        }
+
         // ノード名を生成する
         public static VirtualNodeName GenerateNodeName(string prefix)
         {

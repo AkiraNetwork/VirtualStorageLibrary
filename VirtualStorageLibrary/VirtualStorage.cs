@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace AkiraNet.VirtualStorageLibrary
 {
@@ -18,6 +19,9 @@ namespace AkiraNet.VirtualStorageLibrary
         public VirtualItemAdapter<T> Item { get; }
         public VirtualDirectoryAdapter<T> Dir { get; }
         public VirtualSymbolicLinkAdapter<T> Link { get; }
+
+        // 循環参照検出クラス
+        public VirtualCycleDetector CycleDetector { get; } = new();
 
         public VirtualStorage()
         {
@@ -750,6 +754,9 @@ namespace AkiraNet.VirtualStorageLibrary
                 link = GetSymbolicLink(basePath);
             }
 
+            // 循環参照検出クラスをクリア
+            CycleDetector.Clear();
+
             WalkPathTreeParameters p = new(
                 basePath,
                 basePath,
@@ -769,6 +776,9 @@ namespace AkiraNet.VirtualStorageLibrary
 
         private IEnumerable<VirtualNodeContext> WalkPathTreeInternal(WalkPathTreeParameters p)
         {
+            // 循環参照の検出
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(p));
+
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
             PatternMatch? patternMatcher;
             if (wildcardMatcher == null)
