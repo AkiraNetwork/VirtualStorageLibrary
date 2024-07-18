@@ -9353,8 +9353,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddSymbolicLink("/link1", "/link2");
-            vs.AddSymbolicLink("/link2", "/link1");
+            vs.AddSymbolicLink("/link1", "/link1");
 
             // Act & Assert
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
