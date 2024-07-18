@@ -5054,37 +5054,6 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("WalkPathToTarget")]
-        public void WalkPathToTarget_CircularSymbolicLink()
-        {
-            VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/dir1", true);
-            vs.AddSymbolicLink("/dir1/linkToDir2", "/dir2");
-            vs.AddDirectory("/dir2", true);
-            vs.AddSymbolicLink("/dir2/linkToDir1", "/dir1");
-
-            // ディレクトリ構造の出力
-            Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-
-            VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/linkToDir2/linkToDir1/linkToDir2", NotifyNode, null, true, false);
-
-            Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
-
-            Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
-            Debug.WriteLine($"ParentDirectory = {nodeContext.ParentDirectory?.Name}");
-            Debug.WriteLine($"TraversalPath = {nodeContext.TraversalPath}");
-            Debug.WriteLine($"ResolvedPath = {nodeContext.ResolvedPath}");
-
-            Assert.IsNotNull(nodeContext.Node);
-            Assert.AreEqual("dir2", (string)nodeContext.Node.Name);
-            Assert.AreEqual("/", (string)nodeContext.ParentDirectory!.Name);
-            Assert.AreEqual("/dir2", (string)nodeContext.ResolvedPath);
-        }
-
-        [TestMethod]
-        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLinkToNonExistentPath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -9081,6 +9050,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクのターゲットが自身の上位ノードを指している場合
+        // WalkPathTreeメソッドで循環参照を検出するかどうかのテスト
         public void CycleReference_WithCycleReference_ShouldThrowException()
         {
             // Arrange
@@ -9097,13 +9068,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
 
             // Assert
-            Assert.AreEqual(1, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
@@ -9112,6 +9083,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクのターゲットが別のツリーのノードを指している場合
+        // WalkPathTreeメソッドで循環参照を検出しないことを確認
         public void CycleReference_WithNormalReference_ShouldNormalEnd()
         {
             // Arrange
@@ -9125,7 +9098,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
@@ -9135,7 +9108,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
 
             // Assert
-            Assert.AreEqual(1, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
@@ -9144,6 +9117,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // 循環参照が存在しない場合のテスト
+        // WalkPathTreeメソッドで循環参照を検出しないことを確認
         public void CycleReference_WithoutCycleReference_ShouldNotThrowException()
         {
             // Arrange
@@ -9155,7 +9130,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
@@ -9165,7 +9140,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
 
             // Assert
-            Assert.AreEqual(0, vs.CycleDetector.Count);
+            Assert.AreEqual(0, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
@@ -9174,6 +9149,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // 複雑な循環参照が存在する場合のテスト
+        // WalkPathTreeメソッドで循環参照を検出することを確認
         public void CycleReference_WithComplexCycle_ShouldThrowException()
         {
             // Arrange
@@ -9191,13 +9168,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
 
             // Assert
-            Assert.AreEqual(1, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
@@ -9206,6 +9183,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクがひとつ上位のノードを指している場合
+        // WalkPathTreeメソッドで循環参照を検出することを確認
         public void CycleReference_WithSelfReferencingLink_ShouldThrowException()
         {
             // Arrange
@@ -9222,13 +9201,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
 
             // Assert
-            Assert.AreEqual(1, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
@@ -9237,6 +9216,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクがいくつか上位のノードを指している場合
+        // WalkPathTreeメソッドで循環参照を検出することを確認
         public void CycleReference_WithNestedCycleReference_ShouldThrowException()
         {
             // Arrange
@@ -9253,13 +9234,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
 
             // Assert
-            Assert.AreEqual(1, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
@@ -9268,6 +9249,8 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクが作成されていない場合
+        // WalkPathTreeメソッドで循環参照を検出しないことを確認
         public void CycleReference_Test1()
         {
             // Arrange
@@ -9281,7 +9264,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
@@ -9291,11 +9274,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
 
             // Assert
-            Assert.AreEqual(0, vs.CycleDetector.Count);
+            Assert.AreEqual(0, vs.CycleDetectorForTree.Count);
         }
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクがアイテムを指している場合
+        // WalkPathTreeメソッドで循環参照を検出しないことを確認
         public void CycleReference_Test2()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -9308,7 +9293,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
@@ -9318,11 +9303,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
 
             // Assert
-            Assert.AreEqual(1, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
         }
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクがディレクトリを指している場合
+        // WalkPathTreeメソッドで循環参照を検出しないことを確認
         public void CycleReference_Test3()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -9334,7 +9321,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTree.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
@@ -9344,33 +9331,73 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
 
             // Assert
-            Assert.AreEqual(1, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
         }
 
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
+        // リンクのターゲットが自身のパスを指す場合
+        // WalkPathToTargetメソッドで循環参照を検出するかどうかのテスト
         public void CycleReference_Test4()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddSymbolicLink("/link1", "/link1");
 
             // Act & Assert
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+                vs.AddSymbolicLink("/link1", "/link1");
             });
             Debug.WriteLine(err.Message);
 
             // 循環参照コレクション出力
             Debug.WriteLine("循環参照コレクション:");
-            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            foreach (var cycleInfo in vs.CycleDetectorForTarget.CycleDictionary)
             {
                 Debug.WriteLine(cycleInfo);
             }
 
             // Assert
-            Assert.AreEqual(2, vs.CycleDetector.Count);
+            Assert.AreEqual(1, vs.CycleDetectorForTarget.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+        }
+
+        [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
+        // リンクのターゲットが最終的に自身のパスを指す場合
+        // WalkPathToTargetメソッドで循環参照を検出するかどうかのテスト
+        public void CycleReference_Test5()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddSymbolicLink("/link1", "/link2");
+            vs.AddSymbolicLink("/link2", "/link3");
+            vs.AddSymbolicLink("/link3", "/link4");
+            vs.AddSymbolicLink("/link4", "/link5");
+            vs.AddSymbolicLink("/link5", "/link6");
+            vs.AddSymbolicLink("/link6", "/link7");
+            vs.AddSymbolicLink("/link7", "/link8");
+            vs.AddSymbolicLink("/link8", "/link9");
+
+            // Act & Assert
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.AddSymbolicLink("/link9", "/link1");
+            });
+            Debug.WriteLine(err.Message);
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetectorForTarget.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // Assert
+            Assert.AreEqual(9, vs.CycleDetectorForTarget.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");

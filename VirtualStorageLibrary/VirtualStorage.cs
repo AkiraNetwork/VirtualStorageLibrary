@@ -20,8 +20,11 @@ namespace AkiraNet.VirtualStorageLibrary
         public VirtualDirectoryAdapter<T> Dir { get; }
         public VirtualSymbolicLinkAdapter<T> Link { get; }
 
-        // 循環参照検出クラス
-        public VirtualCycleDetector CycleDetector { get; } = new();
+        // 循環参照検出クラス(WalkPathToTargetメソッド用)
+        public VirtualCycleDetector CycleDetectorForTarget { get; } = new();
+
+        // 循環参照検出クラス(WalkPathTreeメソッド用)
+        public VirtualCycleDetector CycleDetectorForTree { get; } = new();
 
         public VirtualStorage()
         {
@@ -519,6 +522,9 @@ namespace AkiraNet.VirtualStorageLibrary
                 exceptionEnabled,
                 false);
 
+            // 循環参照のクリア
+            CycleDetectorForTarget.Clear();
+
             VirtualNodeContext? nodeContext = WalkPathToTargetInternal(p);
 
             return nodeContext;
@@ -658,6 +664,13 @@ namespace AkiraNet.VirtualStorageLibrary
                     true,
                     p.ExceptionEnabled,
                     p.Resolved);
+
+                // 循環参照チェック
+                if (CycleDetectorForTarget.IsNodeInCycle(link))
+                {
+                    throw new InvalidOperationException($"循環参照を検出しました。 '{p.TraversalPath}' ({link})");
+                }
+
                 nodeContext = WalkPathToTargetInternal(p2);
 
                 node = nodeContext?.Node;
@@ -728,8 +741,8 @@ namespace AkiraNet.VirtualStorageLibrary
                 patternList,
                 null);
 
-            // 循環参照検出クラスをクリア
-            CycleDetector.Clear();
+            // 循環参照のクリア
+            CycleDetectorForTree.Clear();
 
             foreach (var result in WalkPathTreeInternal(p))
             {
@@ -774,8 +787,8 @@ namespace AkiraNet.VirtualStorageLibrary
                 null,
                 link);
 
-            // 循環参照検出クラスをクリア
-            CycleDetector.Clear();
+            // 循環参照のクリア
+            CycleDetectorForTree.Clear();
 
             foreach (var result in WalkPathTreeInternal(p))
             {
@@ -910,7 +923,7 @@ namespace AkiraNet.VirtualStorageLibrary
                     VirtualPath traversalFullPath = p.BasePath + traversalPath;
 
                     // 循環参照チェック
-                    if (CycleDetector.IsNodeInCycle(link))
+                    if (CycleDetectorForTree.IsNodeInCycle(link))
                     {
                         throw new InvalidOperationException($"循環参照を検出しました。 '{traversalFullPath}' ({link})");
                     }
