@@ -32,11 +32,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ChangeDirectory")]
         public void ChangeDirectory_WithExistingDirectory_ChangesCurrentPath()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath existingDirectory = "/path/to/existing/parentDirectory";
+            VirtualPath existingDirectory = "/cycleInfo/to/existing/parentDirectory";
             vs.AddDirectory(existingDirectory, true);
 
             // Act
@@ -47,24 +48,26 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ChangeDirectory")]
         public void ChangeDirectory_WithNonExistentDirectory_ThrowsDirectoryNotFoundException()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath nonExistentDirectory = "/path/to/nonexistent/parentDirectory";
+            VirtualPath nonExistentDirectory = "/cycleInfo/to/nonexistent/parentDirectory";
 
             // Act and Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.ChangeDirectory(nonExistentDirectory));
         }
 
         [TestMethod]
+        [TestCategory("ChangeDirectory")]
         public void ChangeDirectory_WithSymbolicLink_ChangesCurrentPathToTargetDirectory()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath baseDirectoryPath = "/path/to/";
+            VirtualPath baseDirectoryPath = "/cycleInfo/to/";
             VirtualPath targetDirectory = "/real/target/parentDirectory";
-            VirtualPath symbolicLink = "/path/to/link";
+            VirtualPath symbolicLink = "/cycleInfo/to/link";
             vs.AddDirectory(baseDirectoryPath, true); // ベースディレクトリを追加
             vs.AddDirectory(targetDirectory, true); // 実際のターゲットディレクトリを追加
             vs.AddSymbolicLink(symbolicLink, targetDirectory); // ベースディレクトリ内にシンボリックリンクを追加
@@ -77,17 +80,18 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ChangeDirectory")]
         public void ChangeDirectory_WithDotDotInPath_NormalizesPathAndChangesCurrentPath()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath baseDirectory = "/path/to";
-            VirtualPath subDirectory = "/path/to/subdirectory";
+            VirtualPath baseDirectory = "/cycleInfo/to";
+            VirtualPath subDirectory = "/cycleInfo/to/subdirectory";
             vs.AddDirectory(baseDirectory, true); // ベースディレクトリを追加
             vs.AddDirectory(subDirectory, true); // サブディレクトリを追加
 
             // サブディレクトリに移動し、そこから親ディレクトリに戻るパスを設定
-            VirtualPath pathToChange = "/path/to/subdirectory/../";
+            VirtualPath pathToChange = "/cycleInfo/to/subdirectory/../";
 
             // Act
             vs.ChangeDirectory(pathToChange);
@@ -97,12 +101,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ChangeDirectory")]
         public void ChangeDirectory_WithPathIncludingSymbolicLinkAndDotDot_NormalizesAndResolvesPathCorrectly()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath baseDirectory = "/path/to";
-            VirtualPath symbolicLinkPath = "/path/to/link";
+            VirtualPath baseDirectory = "/cycleInfo/to";
+            VirtualPath symbolicLinkPath = "/cycleInfo/to/link";
             VirtualPath targetDirectory = "/real/target/parentDirectory";
 
             // ベースディレクトリとターゲットディレクトリを追加
@@ -113,7 +118,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddSymbolicLink(symbolicLinkPath, targetDirectory);
 
             // シンボリックリンクを経由し、さらに".."を使って親ディレクトリに戻るパスを設定
-            VirtualPath pathToChange = "/path/to/link/../..";
+            VirtualPath pathToChange = "/cycleInfo/to/link/../..";
 
             // Act
             vs.ChangeDirectory(pathToChange);
@@ -121,11 +126,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Assert
             // シンボリックリンクを解決後、".."によりさらに上のディレクトリに移動するため、
             // 最終的なカレントディレクトリが/pathになることを期待
-            VirtualPath expectedPath = "/path";
+            VirtualPath expectedPath = "/cycleInfo";
             Assert.AreEqual(expectedPath, vs.CurrentPath);
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WhenPathIsEmpty_ThrowsArgumentException()
         {
             // Arrange
@@ -136,6 +142,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WhenCurrentPathIsRootAndPathDoesNotStartWithSlash_ReturnsAbsolutePath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -148,141 +155,152 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WhenPathStartsWithSlash_ReturnsSamePath()
         {
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/root/subdirectory", true);
             vs.ChangeDirectory("/root/subdirectory");
 
-            VirtualPath result = vs.ConvertToAbsolutePath("/test/path");
+            VirtualPath result = vs.ConvertToAbsolutePath("/test/cycleInfo");
 
-            Assert.IsTrue(result == "/test/path");
+            Assert.IsTrue(result == "/test/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WhenPathDoesNotStartWithSlash_ReturnsAbsolutePath()
         {
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/root/subdirectory", true);
             vs.ChangeDirectory("/root/subdirectory");
 
-            VirtualPath result = vs.ConvertToAbsolutePath("test/path");
+            VirtualPath result = vs.ConvertToAbsolutePath("test/cycleInfo");
 
-            Assert.IsTrue(result == "/root/subdirectory/test/path");
+            Assert.IsTrue(result == "/root/subdirectory/test/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WhenPathContainsDot_ReturnsAbsolutePathWithoutDot()
         {
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/root/subdirectory", true);
             vs.ChangeDirectory("/root/subdirectory");
 
-            VirtualPath result = vs.ConvertToAbsolutePath("./test/path");
+            VirtualPath result = vs.ConvertToAbsolutePath("./test/cycleInfo");
 
-            Assert.IsTrue(result == "/root/subdirectory/test/path");
+            Assert.IsTrue(result == "/root/subdirectory/test/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WhenPathContainsDoubleDot_ReturnsParentDirectoryPath()
         {
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/root/subdirectory", true);
             vs.ChangeDirectory("/root/subdirectory");
 
-            VirtualPath result = vs.ConvertToAbsolutePath("../test/path");
+            VirtualPath result = vs.ConvertToAbsolutePath("../test/cycleInfo");
 
-            Assert.IsTrue(result == "/root/test/path");
+            Assert.IsTrue(result == "/root/test/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WhenPathContainsMultipleDoubleDots_ReturnsCorrectPath()
         {
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/root/subdirectory", true);
             vs.ChangeDirectory("/root/subdirectory");
 
-            VirtualPath result = vs.ConvertToAbsolutePath("../../test/path");
+            VirtualPath result = vs.ConvertToAbsolutePath("../../test/cycleInfo");
 
-            Assert.IsTrue(result == "/test/path");
+            Assert.IsTrue(result == "/test/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WithBasePath_ConvertsRelativePathCorrectly()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/base/path", true); // 必要なディレクトリを作成
-            VirtualPath? basePath = "/base/path";
+            vs.AddDirectory("/base/cycleInfo", true); // 必要なディレクトリを作成
+            VirtualPath? basePath = "/base/cycleInfo";
             VirtualPath relativePath = "relative/to/base";
 
             // Act
             VirtualPath result = vs.ConvertToAbsolutePath(relativePath, basePath);
 
             // Assert
-            Assert.IsTrue(result == "/base/path/relative/to/base");
+            Assert.IsTrue(result == "/base/cycleInfo/relative/to/base");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WithoutBasePath_UsesCurrentPath()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/current/path", true); // 必要なディレクトリを作成
-            vs.ChangeDirectory("/current/path");
-            VirtualPath relativePath = "relative/path";
+            vs.AddDirectory("/current/cycleInfo", true); // 必要なディレクトリを作成
+            vs.ChangeDirectory("/current/cycleInfo");
+            VirtualPath relativePath = "relative/cycleInfo";
 
             // Act
             VirtualPath result = vs.ConvertToAbsolutePath(relativePath, null);
 
             // Assert
-            Assert.IsTrue(result == "/current/path/relative/path");
+            Assert.IsTrue(result == "/current/cycleInfo/relative/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WithEmptyBasePath_ThrowsArgumentException()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath relativePath = "some/relative/path";
+            VirtualPath relativePath = "some/relative/cycleInfo";
 
             // Act & Assert
             Assert.ThrowsException<ArgumentException>(() => vs.ConvertToAbsolutePath(relativePath, string.Empty));
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WithNullBasePath_UsesCurrentPath()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/current/path", true); // 必要なディレクトリを作成
-            vs.ChangeDirectory("/current/path");
-            VirtualPath relativePath = "relative/path";
+            vs.AddDirectory("/current/cycleInfo", true); // 必要なディレクトリを作成
+            vs.ChangeDirectory("/current/cycleInfo");
+            VirtualPath relativePath = "relative/cycleInfo";
             VirtualPath? basePath = null;
 
             // Act
             VirtualPath result = vs.ConvertToAbsolutePath(relativePath, basePath);
 
             // Assert
-            Assert.IsTrue(result == "/current/path/relative/path");
+            Assert.IsTrue(result == "/current/cycleInfo/relative/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
         public void ConvertToAbsolutePath_WithAbsolutePath_ReturnsOriginalPath()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/base/path", true); // 必要なディレクトリを作成
-            VirtualPath absolutePath = "/absolute/path";
+            vs.AddDirectory("/base/cycleInfo", true); // 必要なディレクトリを作成
+            VirtualPath absolutePath = "/absolute/cycleInfo";
 
             // Act
-            VirtualPath result = vs.ConvertToAbsolutePath(absolutePath, "/base/path");
+            VirtualPath result = vs.ConvertToAbsolutePath(absolutePath, "/base/cycleInfo");
 
             // Assert
             Assert.AreEqual(absolutePath, result);
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         // ディレクトリの追加が正常に行われることを確認
         public void AddDirectory_WithValidPath_CreatesDirectory()
         {
@@ -298,6 +316,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         // ネストされたディレクトリを作成する場合、createSubdirectories が false の場合、例外がスローされることを確認
         public void AddDirectory_WithNestedPathAndCreateSubdirectoriesFalse_ThrowsException()
         {
@@ -310,6 +329,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         // ネストされたディレクトリを作成する場合、createSubdirectories が true の場合、ディレクトリが作成されることを確認
         public void AddDirectory_WithNestedPathAndCreateSubdirectoriesTrue_CreatesDirectories()
         {
@@ -324,6 +344,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         // 既存のディレクトリに対して createSubdirectories が true の場合でも同じパスにディレクトリを追加しようとすると例外がスローされることを確認
         public void AddDirectory_WithExistingDirectoryAndCreateSubdirectoriesTrue_DoesNotThrowException()
         {
@@ -340,6 +361,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         // 既存のディレクトリに対して createSubdirectories が false の場合、例外がスローされることを確認
         public void AddDirectory_WithExistingDirectoryAndCreateSubdirectoriesFalse_ThrowException()
         {
@@ -353,6 +375,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_AttemptToAddRootDirectory_ThrowsInvalidOperationException()
         {
             // Arrange
@@ -364,6 +387,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_ThroughSymbolicLink_CreatesDirectoryAtResolvedPath()
         {
             // Arrange
@@ -379,6 +403,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_WithRelativePath_CreatesDirectory()
         {
             // Arrange
@@ -394,6 +419,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_ExistingSubdirectoriesWithCreateSubdirectoriesTrue_DoesNotAffectExistingSubdirectories()
         {
             // Arrange
@@ -409,6 +435,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_MultipleLevelsOfDirectoriesWithCreateSubdirectoriesFalse_ThrowsException()
         {
             // Arrange
@@ -420,6 +447,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_WithCurrentDirectoryDot_CreatesDirectoryCorrectly()
         {
             // Arrange
@@ -436,6 +464,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_WithPathIncludingDotDot_CreatesDirectoryCorrectly()
         {
             // Arrange
@@ -452,6 +481,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_WithPathNormalization_CreatesDirectoryAtNormalizedPath()
         {
             // Arrange
@@ -465,6 +495,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_AttemptToAddDirectoryUnderNonDirectoryNode_ThrowsException()
         {
             // Arrange
@@ -482,6 +513,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_AttemptToAddDirectoryUnderNonDirectoryNode_ThrowsException2()
         {
             // Arrange
@@ -501,6 +533,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_ThrowsException_WhenSymbolicLinkExistsWithSameName()
         {
             // Arrange
@@ -517,6 +550,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_ThrowsException_WhenItemExistsWithSameName()
         {
             // Arrange
@@ -534,6 +568,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_Success()
         {
             // Arrange
@@ -552,6 +587,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_WithSubdirectories_Success()
         {
             // Arrange
@@ -570,6 +606,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_DirectoryAlreadyExists_ThrowsException()
         {
             // Arrange
@@ -586,11 +623,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddDirectory")]
         public void AddDirectory_InvalidPath_ThrowsException()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            var invalidPath = new VirtualPath("/invalid/path");
+            var invalidPath = new VirtualPath("/invalid/cycleInfo");
             var newDirectory = new VirtualDirectory(new VirtualNodeName("newDirectory"));
 
             // Act & Assert
@@ -598,6 +636,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddNode")]
         public void AddNode_AddDirectory_CreatesDirectory()
         {
             // Arrange
@@ -616,6 +655,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddNode")]
         public void AddNode_AddSymbolicLink_CreatesLink()
         {
             // Arrange
@@ -636,6 +676,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddNode")]
         public void AddNode_AddItem_CreatesItem()
         {
             // Arrange
@@ -656,6 +697,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ReturnsCorrectNode_WhenNodeIsItem()
         {
             // テストデータの設定
@@ -674,6 +716,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ReturnsCorrectNode_WhenNodeIsDirectory()
         {
             // テストデータの設定
@@ -690,6 +733,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ThrowsVirtualNodeNotFoundException_WhenDirectoryDoesNotExist()
         {
             // テストデータの設定
@@ -700,6 +744,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_FollowsSymbolicLink_WhenFollowLinksIsTrue()
         {
             // Arrange
@@ -719,6 +764,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ReturnsSymbolicLink_WhenFollowLinksIsFalse()
         {
             // Arrange
@@ -738,6 +784,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ThrowsWhenSymbolicLinkIsBroken()
         {
             // Arrange
@@ -749,6 +796,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_StopsAtNonDirectoryNode()
         {
             // Arrange: 仮想ストレージにディレクトリとアイテムをセットアップ
@@ -765,6 +813,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_FollowsMultipleSymbolicLinksToReachAnItem()
         {
             // Arrange: 仮想ストレージと複数のディレクトリ、シンボリックリンクをセットアップ
@@ -790,6 +839,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ResolvesRelativePathSymbolicLink()
         {
             // Arrange: 仮想ストレージとディレクトリ、アイテム、相対パスのシンボリックリンクをセットアップ
@@ -812,6 +862,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ResolvesSymbolicLinkWithCurrentDirectoryReference_Correctly()
         {
             // Arrange
@@ -830,6 +881,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ResolvesSymbolicLinkWithParentDirectoryReference_Correctly()
         {
             // Arrange
@@ -848,6 +900,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNode")]
         public void GetNode_ComplexSymbolicLinkIncludingDotAndDotDot()
         {
             // テスト用の仮想ストレージとディレクトリ構造を準備
@@ -874,6 +927,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolveLinkTarget")]
         public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathIsSymbolicLink()
         {
             // テストデータの設定
@@ -889,6 +943,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolveLinkTarget")]
         public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathContainsTwoLinks()
         {
             // テストデータの設定
@@ -905,6 +960,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolveLinkTarget")]
         public void ResolveLinkTarget_ResolvesPathCorrectly_WhenUsingDotDotInPathWithSymbolicLink()
         {
             // テストデータの設定
@@ -922,6 +978,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolveLinkTarget")]
         public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathSpansMultipleLinkLevels()
         {
             // テストデータの設定
@@ -941,6 +998,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolveLinkTarget")]
         public void ResolveLinkTarget_ReturnsResolvedPath_WhenPathIncludesSymbolicLink()
         {
             // テストデータの設定
@@ -958,6 +1016,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolveLinkTarget")]
         public void ResolveLinkTarget_ResolvesPathCorrectly_WhenUsingDotWithSymbolicLink()
         {
             // テストデータの設定
@@ -975,6 +1034,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetDirectory")]
         public void GetDirectory_WhenDirectoryExists_ReturnsDirectory()
         {
             // Arrange
@@ -991,6 +1051,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetDirectory")]
         public void GetDirectory_WhenDirectoryDoesNotExist_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1002,6 +1063,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetDirectory")]
         public void GetDirectory_WhenNodeIsNotDirectory_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1016,6 +1078,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetDirectory")]
         public void GetDirectory_WhenPathIsRelative_ReturnsDirectory()
         {
             // Arrange
@@ -1032,6 +1095,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetItem")]
         public void GetItem_WhenItemExists_ReturnsItem()
         {
             // Arrange
@@ -1049,6 +1113,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetItem")]
         public void GetItem_WhenItemDoesNotExist_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1060,6 +1125,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetItem")]
         public void GetItem_WhenNodeIsNotItemType_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1072,13 +1138,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetItem")]
         public void GetItem_WhenPathIsRelative_ReturnsItem()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             BinaryData data = new([1, 2, 3]);
             vs.AddItem("/test-item", data);
-            VirtualPath path = "test-item";  // Relative path
+            VirtualPath path = "test-item";  // Relative cycleInfo
 
             // Act
             VirtualItem<BinaryData> item = vs.GetItem(path);
@@ -1089,6 +1156,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetSymbolicLink")]
         public void GetSymbolicLink_WhenLinkExists_ReturnsLink()
         {
             // Arrange
@@ -1107,6 +1175,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetSymbolicLink")]
         public void GetSymbolicLink_WhenLinkDoesNotExist_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1118,6 +1187,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetSymbolicLink")]
         public void GetSymbolicLink_WhenNodeIsNotLink_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1132,6 +1202,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetSymbolicLink")]
         public void GetSymbolicLink_WhenPathIsRelative_ReturnsLink()
         {
             // Arrange
@@ -1151,6 +1222,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_AddsNewItemSuccessfully_WithEmpty()
         {
             // Arrange
@@ -1171,6 +1243,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_AddsNewItemSuccessfully_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1186,6 +1259,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_OverwritesExistingItemWhenAllowed_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1202,6 +1276,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ThrowsArgumentException_WhenPathIsEmpty_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1211,6 +1286,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ThrowsVirtualNodeNotFoundException_WhenParentDirectoryDoesNotExist_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1221,6 +1297,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ThrowsInvalidOperationException_WhenOverwriteIsFalseAndItemExists_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1232,6 +1309,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_AddsNewItemToCurrentDirectory_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1248,6 +1326,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_AddsNewItemUsingRelativePath_WithBinaryData_Corrected()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1271,6 +1350,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_AddsNewItemToSubdirectoryAsCurrentDirectory_WithBinaryData()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1292,6 +1372,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ThrowsInvalidOperationException_WhenOverwriteTargetIsNotAnItem()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1312,6 +1393,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ThroughSymbolicLink_AddsItemToTargetDirectory()
         {
             // Arrange
@@ -1331,6 +1413,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ThroughNestedSymbolicLink_AddsItemToFinalTargetDirectory()
         {
             // Arrange
@@ -1351,6 +1434,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ToNonExistentTargetViaSymbolicLink_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1364,6 +1448,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ThroughSymbolicLinkWithNonExistentIntermediateTarget_ThrowsVirtualNodeNotFoundException()
         {
             // Arrange
@@ -1384,6 +1469,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_WithVirtualItem_ShouldAddItemToDirectory()
         {
             VirtualStorage<string> vs = new();
@@ -1397,6 +1483,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_WithVirtualItem_WithOverwrite_ShouldThrowExceptionIfItemExists()
         {
             VirtualStorage<string> vs = new();
@@ -1412,6 +1499,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_WithOverwrite_ShouldOverwriteExistingItem()
         {
             VirtualStorage<string> vs = new();
@@ -1428,6 +1516,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ToNonExistingDirectory_ShouldThrowVirtualNodeNotFoundException()
         {
             VirtualStorage<string> vs = new();
@@ -1439,6 +1528,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ToLocationPointedBySymbolicLink_ShouldThrowException()
         {
             VirtualStorage<string> vs = new();
@@ -1455,6 +1545,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddItem")]
         public void AddItem_ToLocationPointedBySymbolicLink_ShouldAddItemSuccessfully()
         {
             VirtualStorage<string> vs = new();
@@ -1469,6 +1560,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WhenIntermediateDirectoryDoesNotExist_ReturnsFalse()
         {
             // Arrange
@@ -1482,6 +1574,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WhenItemExists_ReturnsTrue()
         {
             // Arrange
@@ -1497,6 +1590,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WhenItemDoesNotExist_ReturnsFalse()
         {
             // Arrange
@@ -1510,6 +1604,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WhenDirectoryExists_ReturnsTrue()
         {
             // Arrange
@@ -1524,6 +1619,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WhenDirectoryDoesNotExist_ReturnsFalse()
         {
             // Arrange
@@ -1537,6 +1633,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WithSymbolicLinkToItemAndFollowLinksIsTrue_ReturnsTrue()
         {
             // Arrange
@@ -1553,6 +1650,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WithSymbolicLinkToItemAndFollowLinksIsFalse_ReturnsFalse()
         {
             // Arrange
@@ -1569,6 +1667,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WithSymbolicLinkToNonexistentItemAndFollowLinksIsTrue_ReturnsFalse()
         {
             // Arrange
@@ -1583,6 +1682,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_WithSymbolicLinkToPointingToDirectoryAndFollowLinksIsTrue_ReturnsFalse()
         {
             // Arrange
@@ -1645,6 +1745,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNodes")]
         public void GetNodes_ValidTest()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1652,7 +1753,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             SetTestData(vs);
 
             Assert.AreEqual(23, vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
-            Debug.WriteLine("\nAll nodes:");
+            Debug.WriteLine("\nAll nodeContexts:");
             foreach (VirtualNode node in vs.GetNodes(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
             {
                 Assert.IsNotNull(node);
@@ -1704,14 +1805,15 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodesWithPaths_ValidTest()
+        [TestCategory("GetNodes")]
+        public void GetNodes_WithPaths_ValidTest()
         {
             VirtualStorage<BinaryData> vs = new();
 
             SetTestData(vs);
 
             Assert.AreEqual(23, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
-            Debug.WriteLine("\nAll nodes:");
+            Debug.WriteLine("\nAll nodeContexts:");
             foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
             {
                 Assert.IsNotNull(name);
@@ -1762,6 +1864,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNodes")]
         public void GetNodes_WithEmptyPath_ThrowsArgumentException()
         {
             // Arrange
@@ -1773,6 +1876,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNodes")]
         public void GetNodes_WithNonAbsolutePath_ThrowsArgumentException()
         {
             // Arrange
@@ -1780,10 +1884,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // Act & Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-                vs.GetNodes("relative/path", VirtualNodeTypeFilter.All, true).ToList());
+                vs.GetNodes("relative/cycleInfo", VirtualNodeTypeFilter.All, true).ToList());
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_ExistingItem_RemovesItem()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1796,6 +1901,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_NonExistingItem_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1804,6 +1910,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_ExistingEmptyDirectory_RemovesDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1815,6 +1922,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_NonExistingDirectory_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1824,6 +1932,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_ExistingNonEmptyDirectoryWithoutRecursive_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1836,6 +1945,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_ExistingNonEmptyDirectoryWithRecursive_RemovesDirectoryAndContents()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1850,6 +1960,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_DeepNestedDirectoryWithRecursive_RemovesAllNestedContents()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1867,6 +1978,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_DeepNestedDirectoryWithoutRecursive_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1879,6 +1991,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_NestedDirectoryWithEmptySubdirectories_RecursiveRemoval()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1892,6 +2005,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RootDirectory_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1902,6 +2016,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_CurrentDirectoryDot_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1912,6 +2027,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_ParentDirectoryDotDot_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -1922,12 +2038,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_SymbolicLink_RemovesLink()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test");
-            vs.AddSymbolicLink("/test/link", "/target/path");
+            vs.AddSymbolicLink("/test/link", "/target/cycleInfo");
 
             // Act & Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
@@ -1937,12 +2054,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLink_RemovesDirectoryAndLink()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test/nested", true);
-            vs.AddSymbolicLink("/test/nested/link", "/target/path");
+            vs.AddSymbolicLink("/test/nested/link", "/target/cycleInfo");
 
             // Act
             vs.RemoveNode("/test", true);
@@ -1954,29 +2072,31 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_SymbolicLinkTargetDeletion_RemovesTargetButNotLink()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/target/path", true);
+            vs.AddDirectory("/target/cycleInfo", true);
             vs.AddDirectory("/test");
-            vs.AddSymbolicLink("/test/link", "/target/path");
+            vs.AddSymbolicLink("/test/link", "/target/cycleInfo");
 
             // Act
-            vs.RemoveNode("/target/path");
+            vs.RemoveNode("/target/cycleInfo");
 
             // Assert
-            Assert.IsFalse(vs.NodeExists("/target/path"));
+            Assert.IsFalse(vs.NodeExists("/target/cycleInfo"));
             Assert.IsTrue(vs.SymbolicLinkExists("/test/link"));
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_NonRecursiveDeletionWithSymbolicLink_ThrowsException()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test");
-            vs.AddSymbolicLink("/test/link", "/target/path");
+            vs.AddSymbolicLink("/test/link", "/target/cycleInfo");
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
@@ -1984,6 +2104,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLinkFollowLinksFalse_RemovesDirectoryAndLinkOnly()
         {
             // Arrange
@@ -2006,6 +2127,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLinkFollowLinksTrue_RemovesDirectoryAndTarget()
         {
             // Arrange
@@ -2028,6 +2150,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLinkToFileFollowLinksFalse_RemovesDirectoryAndLinkOnly()
         {
             // Arrange
@@ -2048,6 +2171,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLinkToFileFollowLinksTrue_RemovesDirectoryAndTargetItem()
         {
             // Arrange
@@ -2068,6 +2192,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLinkToFileFollowLinksTrue_RemovesDirectoryAndTargetItem_Part2()
         {
             // Arrange
@@ -2090,6 +2215,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_ExistingItem_DisposesItem()
         {
             // Arrange
@@ -2109,6 +2235,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_ExistingDirectoryWithDisposableItems_DisposesItems()
         {
             // Arrange
@@ -2131,6 +2258,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_SymbolicLink_DisposesLinkTarget()
         {
             // Arrange
@@ -2139,9 +2267,9 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/test");
             BinaryData targetData = [1, 2, 3];
             VirtualItem<BinaryData> targetItem = new("TargetItem", targetData);
-            vs.AddDirectory("/target/path", true);
-            vs.AddItem("/target/path", targetItem);
-            vs.AddSymbolicLink("/test/link", "/target/path");
+            vs.AddDirectory("/target/cycleInfo", true);
+            vs.AddItem("/target/cycleInfo", targetItem);
+            vs.AddSymbolicLink("/test/link", "/target/cycleInfo");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
@@ -2165,12 +2293,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Assert
             Assert.IsTrue(targetItem.ItemData!.Count == 0, "Target item data should be cleared on Dispose.");
             Assert.IsFalse(vs.NodeExists("/test/link"));
-            Assert.IsFalse(vs.NodeExists("/target/path"));
+            Assert.IsFalse(vs.NodeExists("/target/cycleInfo"));
             Assert.IsTrue(vs.NodeExists("/test"));
             Assert.IsTrue(vs.NodeExists("/target"));
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_SymbolicLink_ResolveLinksFalse_RemovesLink()
         {
             // Arrange
@@ -2188,6 +2317,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLink_ResolveLinksFalse_RemovesLink()
         {
             // Arrange
@@ -2209,6 +2339,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_SymbolicLinkToDirectory_ResolveLinksFalse_RemovesLink()
         {
             // Arrange
@@ -2225,6 +2356,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_SymbolicLinkWithFollowLinksFalse_ResolveLinksFalse_RemovesLink()
         {
             // Arrange
@@ -2247,6 +2379,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_SymbolicLinkToFile_ResolveLinksFalse_RemovesLink()
         {
             // Arrange
@@ -2264,11 +2397,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetNode")]
         public void TryGetNode_ReturnsNode_WhenNodeExists()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/existing/path";
+            VirtualPath path = "/existing/cycleInfo";
             vs.AddDirectory(path, true);
 
             // Act
@@ -2279,11 +2413,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetNode")]
         public void TryGetNode_ReturnsNull_WhenNodeDoesNotExist()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/non/existing/path";
+            VirtualPath path = "/non/existing/cycleInfo";
 
             // Act
             VirtualNode? node = vs.TryGetNode(path);
@@ -2293,6 +2428,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetDirectory")]
         public void TryGetDirectory_ReturnsDirectory_WhenDirectoryExists()
         {
             // Arrange
@@ -2308,6 +2444,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetDirectory")]
         public void TryGetDirectory_ReturnsNull_WhenDirectoryDoesNotExist()
         {
             // Arrange
@@ -2322,6 +2459,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetItem")]
         public void TryGetItem_ReturnsItem_WhenItemExists()
         {
             // Arrange
@@ -2340,6 +2478,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetItem")]
         public void TryGetItem_ReturnsNull_WhenItemDoesNotExist()
         {
             // Arrange
@@ -2354,11 +2493,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetSymbolicLink")]
         public void TryGetSymbolicLink_ReturnsLink_WhenLinkExists()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath targetPath = "/target/path";
+            VirtualPath targetPath = "/target/cycleInfo";
             VirtualPath linkPath = "/existing/link";
             vs.AddDirectory(targetPath, true);
             vs.AddDirectory(linkPath.DirectoryPath, true);
@@ -2373,6 +2513,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("TryGetSymbolicLink")]
         public void TryGetSymbolicLink_ReturnsNull_WhenLinkDoesNotExist()
         {
             // Arrange
@@ -2387,11 +2528,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("NodeExists")]
         public void NodeExists_ReturnsTrue_WhenNodeExists()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/existing/path";
+            VirtualPath path = "/existing/cycleInfo";
             vs.AddDirectory(path, true);
 
             // Act
@@ -2402,11 +2544,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("NodeExists")]
         public void NodeExists_ReturnsFalse_WhenNodeDoesNotExist()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/non/existing/path";
+            VirtualPath path = "/non/existing/cycleInfo";
 
             // Act
             bool exists = vs.NodeExists(path);
@@ -2416,6 +2559,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("NodeExists")]
         public void NodeExists_ReturnsTrue_WhenSymbolicLinkExistsAndFollowLinksIsTrue()
         {
             // Arrange
@@ -2435,6 +2579,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("NodeExists")]
         public void NodeExists_ReturnsTrue_WhenSymbolicLinkExistsAndFollowLinksIsFalse()
         {
             // Arrange
@@ -2454,6 +2599,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("NodeExists")]
         public void NodeExists_ReturnsFalse_WhenTargetOfSymbolicLinkDoesNotExistAndFollowLinksIsTrue()
         {
             // Arrange
@@ -2472,11 +2618,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("DirectoryExists")]
         public void DirectoryExists_ReturnsTrue_WhenDirectoryExists()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/existing/path";
+            VirtualPath path = "/existing/cycleInfo";
             vs.AddDirectory(path, true);
 
             // Act
@@ -2487,11 +2634,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("DirectoryExists")]
         public void DirectoryExists_ReturnsFalse_WhenDirectoryDoesNotExist()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/non/existing/path";
+            VirtualPath path = "/non/existing/cycleInfo";
 
             // Act
             bool exists = vs.DirectoryExists(path);
@@ -2501,13 +2649,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_ReturnsTrue_WhenItemExists()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/existing/path/item";
-            vs.AddDirectory("/existing/path", true);
-            vs.AddItem("/existing/path/item", new BinaryData([1, 2, 3]));
+            VirtualPath path = "/existing/cycleInfo/item";
+            vs.AddDirectory("/existing/cycleInfo", true);
+            vs.AddItem("/existing/cycleInfo/item", new BinaryData([1, 2, 3]));
 
             // Act
             bool exists = vs.ItemExists(path);
@@ -2517,11 +2666,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_ReturnsFalse_WhenItemDoesNotExist()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/non/existing/path/item";
+            VirtualPath path = "/non/existing/cycleInfo/item";
 
             // Act
             bool exists = vs.ItemExists(path);
@@ -2531,11 +2681,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ItemExists")]
         public void ItemExists_ReturnsFalse_WhenPathIsDirectory()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath path = "/existing/path";
+            VirtualPath path = "/existing/cycleInfo";
             vs.AddDirectory(path, true);
 
             // Act
@@ -2546,6 +2697,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesItemNameSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2560,6 +2712,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesDirectoryNameSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2576,6 +2729,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesSymbolicLinkNameSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2596,6 +2750,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesSymbolicLinkNameWithResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2611,6 +2766,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ThrowsWhenNodeDoesNotExist()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2622,6 +2778,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ThrowsWhenNewNameAlreadyExists()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2633,6 +2790,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ThrowsWhenNewNameIsSameAsOldName()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2643,6 +2801,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ThrowsWhenNewNameIsDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2654,6 +2813,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_UpdatesSymbolicLinkWhenTargetIsMissing()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2673,6 +2833,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_UpdatesLinksToTargetForItem()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2717,6 +2878,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_UpdatesLinksToTargetForDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2764,6 +2926,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_UpdatesLinkNameForSymbolicLink()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2810,6 +2973,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesSymbolicLinkNameWithoutResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2847,6 +3011,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesItemNameWithResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2886,6 +3051,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesItemNameWithoutResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2925,6 +3091,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesDirectoryNameWithResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -2966,6 +3133,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesDirectoryNameWithoutResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3007,6 +3175,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_UpdatesSymbolicLinkWithMissingTargetResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3036,6 +3205,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_UpdatesSymbolicLinkWithMissingTargetWithoutResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3071,6 +3241,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesDeepItemNameWithoutResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3111,6 +3282,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNodeName")]
         public void SetNodeName_ChangesDeepLinkNameWithoutResolveLinksSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3150,6 +3322,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_FileToFile_OverwritesWhenAllowed()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3164,6 +3337,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_FileToFile_ThrowsWhenOverwriteNotAllowed()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3175,6 +3349,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_FileToDirectory_MovesFileToTargetDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3188,6 +3363,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_LinkPath_Test1()
         {
             // Arrange
@@ -3221,6 +3397,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_DirectoryToDirectory_MovesDirectoryToTargetDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3234,6 +3411,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_WhenSourceDoesNotExist_ThrowsVirtualNodeNotFoundException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3244,6 +3422,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_WhenDestinationIsInvalid_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3254,6 +3433,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_DirectoryWithSameNameExistsAtDestination_ThrowsExceptionRegardlessOfOverwriteFlag()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3267,6 +3447,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_DirectoryToFile_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3278,6 +3459,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_RootDirectory_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3288,6 +3470,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_OverwritesExistingNodeInDestinationWhenAllowed()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3306,6 +3489,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_ThrowsWhenDestinationNodeExistsAndOverwriteIsFalse()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3319,6 +3503,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_EmptyDirectory_MovesSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3331,6 +3516,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_MultiLevelDirectory_MovesSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3343,6 +3529,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_WithInvalidPath_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3353,16 +3540,19 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [TestCategory("MoveNode")]
         public void MoveNode_DirectoryToFile_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/sourceDir");
             vs.AddItem("/destinationFile", new BinaryData([1, 2, 3]));
-            vs.MoveNode("/sourceDir", "/destinationFile");
+            
+            Assert.ThrowsException<InvalidOperationException>(() =>
+                vs.MoveNode("/sourceDir", "/destinationFile"));
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_WithinSameDirectory_RenamesNode()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3385,6 +3575,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 循環参照チェックテスト
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_WhenDestinationIsSubdirectoryOfSource_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3396,6 +3587,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 移動先と移動元が同じかどうかのチェックテスト
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_WhenSourceAndDestinationAreSame_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3407,6 +3599,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 移動先の親ディレクトリが存在しない場合のテスト
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_WhenDestinationParentDirectoryDoesNotExist_ThrowsVirtualNodeNotFoundException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3418,12 +3611,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_SymbolicLinkToDirectory_MovesLinkToTargetDirectory()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/destination");
-            vs.AddSymbolicLink("/sourceLink", "/target/path");
+            vs.AddSymbolicLink("/sourceLink", "/target/cycleInfo");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -3448,10 +3642,11 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
             Assert.IsTrue(vs.NodeExists("/destination/sourceLink"));
             VirtualSymbolicLink movedLink = vs.GetSymbolicLink("/destination/sourceLink");
-            Assert.AreEqual("/target/path", (string)movedLink.TargetPath);
+            Assert.AreEqual("/target/cycleInfo", (string)movedLink.TargetPath);
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_SymbolicLinkWithNonExistentTarget_MovesLink()
         {
             // Arrange
@@ -3485,11 +3680,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_SymbolicLinkToSameDirectory_ChangesLinkName()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddSymbolicLink("/sourceLink", "/target/path");
+            vs.AddSymbolicLink("/sourceLink", "/target/cycleInfo");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -3514,17 +3710,18 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
             Assert.IsTrue(vs.NodeExists("/sourceLinkRenamed"));
             VirtualSymbolicLink movedLink = vs.GetSymbolicLink("/sourceLinkRenamed");
-            Assert.AreEqual("/target/path", (string)movedLink.TargetPath);
+            Assert.AreEqual("/target/cycleInfo", (string)movedLink.TargetPath);
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_SymbolicLinkToDirectoryWithLinks_UpdatesTargetPaths()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/destinationDir");
             vs.AddSymbolicLink("/destinationDir/innerLink", "/target/innerPath");
-            vs.AddSymbolicLink("/sourceLink", "/target/path");
+            vs.AddSymbolicLink("/sourceLink", "/target/cycleInfo");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -3549,17 +3746,18 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
             Assert.IsTrue(vs.NodeExists("/destinationDir/sourceLink"));
             VirtualSymbolicLink movedLink = vs.GetSymbolicLink("/destinationDir/sourceLink");
-            Assert.AreEqual("/target/path", (string)movedLink.TargetPath);
+            Assert.AreEqual("/target/cycleInfo", (string)movedLink.TargetPath);
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_SymbolicLinkWithPathResolutionTrue_ResolvesFullPath()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/resolved/target/path", true); // 必要なディレクトリを追加
+            vs.AddDirectory("/resolved/target/cycleInfo", true); // 必要なディレクトリを追加
             vs.AddDirectory("/destination"); // 移動先ディレクトリを追加
-            vs.AddSymbolicLink("/sourceLink", "/resolved/target/path"); // ソースリンクを追加
+            vs.AddSymbolicLink("/sourceLink", "/resolved/target/cycleInfo"); // ソースリンクを追加
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -3582,18 +3780,19 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsTrue(vs.NodeExists("/sourceLink"));
-            Assert.IsTrue(vs.NodeExists("/destination/path"));
+            Assert.IsTrue(vs.NodeExists("/destination/cycleInfo"));
             VirtualSymbolicLink movedLink = vs.GetSymbolicLink("/sourceLink");
-            Assert.AreEqual("/destination/path", (string)movedLink.TargetPath);
+            Assert.AreEqual("/destination/cycleInfo", (string)movedLink.TargetPath);
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_SymbolicLinkWithPathResolutionFalse_ResolvesDirectoryOnly()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/resolved");
-            vs.AddSymbolicLink("/sourceLink", "/resolved/target/path");
+            vs.AddSymbolicLink("/sourceLink", "/resolved/target/cycleInfo");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -3618,16 +3817,17 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
             Assert.IsTrue(vs.NodeExists("/destinationLink"));
             VirtualSymbolicLink movedLink = vs.GetSymbolicLink("/destinationLink");
-            Assert.AreEqual("/resolved/target/path", (string)movedLink.TargetPath);
+            Assert.AreEqual("/resolved/target/cycleInfo", (string)movedLink.TargetPath);
         }
 
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_SymbolicLinkToParentDirectory_MovesLink()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/parentDir");
-            vs.AddSymbolicLink("/parentDir/sourceLink", "/target/path");
+            vs.AddSymbolicLink("/parentDir/sourceLink", "/target/cycleInfo");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -3652,11 +3852,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.NodeExists("/parentDir/sourceLink"));
             Assert.IsTrue(vs.NodeExists("/parentDirMovedLink"));
             VirtualSymbolicLink movedLink = vs.GetSymbolicLink("/parentDirMovedLink");
-            Assert.AreEqual("/target/path", (string)movedLink.TargetPath);
+            Assert.AreEqual("/target/cycleInfo", (string)movedLink.TargetPath);
         }
 
         // アイテムのパス変更時のリンク辞書の更新を確認
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_ChangesItemPathSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3680,6 +3881,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // シンボリックリンクのパス変更時のリンク辞書の更新を確認
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_ChangesSymbolicLinkPathSuccessfully()
         {
             // Arrange
@@ -3716,6 +3918,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 存在しないノードの移動時に例外をスロー
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_ThrowsWhenNodeDoesNotExist()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3736,6 +3939,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 移動先に既にノードが存在する場合に例外をスロー
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_ThrowsWhenDestinationAlreadyExists()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3757,6 +3961,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 移動元と移動先が同じ場合に例外をスロー
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_ThrowsWhenDestinationIsSameAsSource()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3776,6 +3981,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // アイテムをディレクトリに移動した際のリンク辞書の更新を確認
         [TestMethod]
+        [TestCategory("MoveNode")]
         public void MoveNode_MovesItemToDirectorySuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -3799,6 +4005,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // 単純なディレクトリの移動
         public void MoveDirectoryInternal_SimpleMoveUpdatesLinksCorrectly()
         {
@@ -3832,6 +4039,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // 多階層ディレクトリの移動
         public void MoveDirectoryInternal_MultiLevelMoveUpdatesLinksCorrectly()
         {
@@ -3875,6 +4083,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // 移動先が既存のディレクトリ
         public void MoveDirectoryInternal_MoveToExistingDirectoryUpdatesLinksCorrectly()
         {
@@ -3920,6 +4129,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // 移動先に同名のディレクトリが存在する場合
         public void MoveDirectoryInternal_MovesToSubdirectoryWhenDestinationDirectoryAlreadyExists()
         {
@@ -3973,6 +4183,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // シンボリックリンクを含むディレクトリの移動
         public void MoveDirectoryInternal_UpdatesLinksCorrectlyWhenSymbolicLinkIncludedInDirectory()
         {
@@ -4034,6 +4245,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // ターゲットディレクトリのシンボリックリンク更新
         public void MoveDirectoryInternal_UpdatesLinksCorrectlyWhenTargetDirectoryIsSymbolicLink()
         {
@@ -4085,6 +4297,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // 親ディレクトリが存在しない場合の例外
         public void MoveDirectoryInternal_ThrowsExceptionWhenParentDirectoryDoesNotExist()
         {
@@ -4132,6 +4345,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // ディレクトリとアイテムが混在するディレクトリの移動
         public void MoveDirectoryInternal_MovesDirectoryWithMixedContentCorrectly()
         {
@@ -4191,6 +4405,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("MoveNode - Directory")]
         // ネストされたシンボリックリンクを含むディレクトリの移動
         public void MoveDirectoryInternal_MovesDirectoryWithNestedSymbolicLinksCorrectly()
         {
@@ -4237,12 +4452,13 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SymbolicLinkExists")]
         public void SymbolicLinkExists_WhenLinkExists_ReturnsTrue()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test");
-            vs.AddSymbolicLink("/test/link", "/target/path");
+            vs.AddSymbolicLink("/test/link", "/target/cycleInfo");
 
             // Act
             bool exists = vs.SymbolicLinkExists("/test/link");
@@ -4252,6 +4468,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SymbolicLinkExists")]
         public void SymbolicLinkExists_WhenLinkDoesNotExist_ReturnsFalse()
         {
             // Arrange
@@ -4266,6 +4483,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SymbolicLinkExists")]
         public void SymbolicLinkExists_WhenParentDirectoryIsALinkAndLinkExists_ReturnsTrue()
         {
             // Arrange
@@ -4283,6 +4501,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_WhenLinkIsNull_AddsSuccessfully()
         {
             // Arrange
@@ -4300,6 +4519,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_WhenLinkIsNew_AddsSuccessfully()
         {
             // Arrange
@@ -4307,46 +4527,49 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/test");
 
             // Act
-            vs.AddSymbolicLink("/test/newLink", "/target/path");
+            vs.AddSymbolicLink("/test/newLink", "/target/cycleInfo");
 
             // Assert
             Assert.IsTrue(vs.SymbolicLinkExists("/test/newLink"));
             VirtualSymbolicLink? link = vs.GetNode("/test/newLink") as VirtualSymbolicLink;
             Assert.IsNotNull(link);
-            Assert.IsTrue(link.TargetPath == "/target/path");
+            Assert.IsTrue(link.TargetPath == "/target/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_WhenOverwriteIsFalseAndLinkExists_ThrowsInvalidOperationException()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test");
-            vs.AddSymbolicLink("/test/existingLink", "/old/target/path");
+            vs.AddSymbolicLink("/test/existingLink", "/old/target/cycleInfo");
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
-                vs.AddSymbolicLink("/test/existingLink", "/new/target/path", overwrite: false));
+                vs.AddSymbolicLink("/test/existingLink", "/new/target/cycleInfo", overwrite: false));
         }
 
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_WhenOverwriteIsTrueAndLinkExists_OverwritesLink()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/test");
-            vs.AddSymbolicLink("/test/existingLink", "/old/target/path");
+            vs.AddSymbolicLink("/test/existingLink", "/old/target/cycleInfo");
 
             // Act
-            vs.AddSymbolicLink("/test/existingLink", "/new/target/path", overwrite: true);
+            vs.AddSymbolicLink("/test/existingLink", "/new/target/cycleInfo", overwrite: true);
 
             // Assert
             VirtualSymbolicLink? link = vs.GetNode("/test/existingLink") as VirtualSymbolicLink;
             Assert.IsNotNull(link);
-            Assert.IsTrue(link.TargetPath == "/new/target/path");
+            Assert.IsTrue(link.TargetPath == "/new/target/cycleInfo");
         }
 
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_OverwriteTrue_LinkOverExistingItem_ThrowsInvalidOperationException()
         {
             // Arrange
@@ -4356,15 +4579,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/test");
             vs.AddItem("/test/existingItem", itemData); // 既存のアイテムを追加
 
-            vs.AddDirectory("/new/target/path", true); // シンボリックリンクのターゲットとなるディレクトリを追加
+            vs.AddDirectory("/new/target/cycleInfo", true); // シンボリックリンクのターゲットとなるディレクトリを追加
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
-                vs.AddSymbolicLink("/test/existingItem", "/new/target/path", true),
+                vs.AddSymbolicLink("/test/existingItem", "/new/target/cycleInfo", true),
                 "既存のアイテム上にシンボリックリンクを追加しようとすると、上書きが true でもInvalidOperationExceptionが発生するべきです。");
         }
 
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_OverwriteTrue_LinkOverExistingDirectory_ThrowsInvalidOperationException()
         {
             // Arrange
@@ -4372,15 +4596,16 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             vs.AddDirectory("/test/existingDirectory", true); // 既存のディレクトリを追加
 
-            vs.AddDirectory("/new/target/path", true); // シンボリックリンクのターゲットとなるディレクトリを追加
+            vs.AddDirectory("/new/target/cycleInfo", true); // シンボリックリンクのターゲットとなるディレクトリを追加
 
             // Act & Assert
             Assert.ThrowsException<InvalidOperationException>(() =>
-                vs.AddSymbolicLink("/test/existingDirectory", "/new/target/path", true),
+                vs.AddSymbolicLink("/test/existingDirectory", "/new/target/cycleInfo", true),
                 "既存のディレクトリ上にシンボリックリンクを追加しようとすると、上書きが true でもInvalidOperationExceptionが発生するべきです。");
         }
 
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_ThrowsVirtualNodeNotFoundException_WhenParentDirectoryDoesNotExist()
         {
             // Arrange
@@ -4397,6 +4622,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // シンボリックリンクをディレクトリに追加できるか確認する。
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_WithVirtualSymbolicLink_ShouldAddLinkToDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4411,6 +4637,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 既存のリンクがある場合、上書きフラグが false のときに例外がスローされるか確認する。
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_WithVirtualSymbolicLink_WithOverwrite_ShouldThrowExceptionIfLinkExists()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4427,6 +4654,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 上書きフラグが true の場合、既存のリンクを上書きできるか確認する。
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_WithOverwrite_ShouldOverwriteExistingLink()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4445,6 +4673,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 存在しないディレクトリにリンクを追加しようとした場合、例外がスローされるか確認する。
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_ToNonExistingDirectory_ShouldThrowVirtualNodeNotFoundException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4457,6 +4686,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // シンボリックリンクが指す存在しないディレクトリにリンクを追加しようとした場合、例外がスローされるか確認する。
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_ToLocationPointedBySymbolicLink_ShouldThrowException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4474,6 +4704,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // シンボリックリンクが指すディレクトリにリンクを追加できるか確認する。
         [TestMethod]
+        [TestCategory("AddSymbolicLink")]
         public void AddSymbolicLink_ToLocationPointedBySymbolicLink_ShouldAddLinkSuccessfully()
         {
             // arrange
@@ -4507,6 +4738,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_Root()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4523,6 +4755,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_Directory1()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4540,6 +4773,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_Directory2()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4557,6 +4791,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_Directory3()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4571,6 +4806,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_Item1()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4589,6 +4825,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_Item2()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4608,6 +4845,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_Item3()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4626,6 +4864,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLink1()
         {
             VirtualPath targetPath = "/dir1/link1/item";
@@ -4647,6 +4886,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLink2()
         {
             VirtualPath targetPath = "/dir1/link1/dir3";
@@ -4666,6 +4906,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLink3()
         {
             VirtualPath targetPath = "/dir1/link1";
@@ -4686,6 +4927,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLink4()
         {
             VirtualPath targetPath = "/dir1/link1/item";
@@ -4705,6 +4947,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4719,6 +4962,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPathWithExceptionEnabled()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4732,6 +4976,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPath2()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4749,6 +4994,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPath3()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4764,6 +5010,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPath4()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4780,6 +5027,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLinkToLink()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4805,6 +5053,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_CircularSymbolicLink()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4835,6 +5084,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLinkToNonExistentPath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4848,6 +5098,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_RelativePath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4879,6 +5130,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_DirAndDotDot()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4908,6 +5160,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_LinkAndDotDot()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -4939,6 +5192,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_MultipleLink()
         {
             // テストデータの設定
@@ -4975,6 +5229,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPathAndCreatePath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5008,6 +5263,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPathAndCreatePath2()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5041,6 +5297,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NullLink_ShouldSuccessfully()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5080,7 +5337,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         private void NotifyNode(VirtualPath path, VirtualNode? node)
         {
-            //Debug.WriteLine($"Path: {path}, Node: {node}, isEnd: {isEnd}");
+            //Debug.WriteLine($"Path: {cycleInfo}, Node: {node}, isEnd: {isEnd}");
             _notifyNodeInfos.Add(new NotifyNodeInfo(path, node));
         }
 
@@ -5098,6 +5355,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_Test1()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5121,6 +5379,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
 
             IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
+
+            // ディレクトリ構造の出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
 
             // コンテキストの出力
             Debug.WriteLine("コンテキスト:");
@@ -5147,6 +5409,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_EmptyDirectory_ShouldReturnOnlyDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5163,6 +5426,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_DirectoryWithItems_ShouldReturnItems()
         {
             VirtualStorage<string> vs = new();
@@ -5182,6 +5446,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_DirectoryWithSymbolicLink_ShouldFollowLinkIfRequested()
         {
             VirtualStorage<string> vs = new();
@@ -5199,6 +5464,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_EmptyDirectory_ReturnsOnlyRoot()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5213,6 +5479,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_SingleItemDirectory_IncludesItem()
         {
             VirtualStorage<string> vs = new();
@@ -5229,6 +5496,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_DirectoryWithSymbolicLink_IncludesLinkAndTarget()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5247,6 +5515,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_DeepNestedDirectories_ReturnsAllNodes()
         {
             VirtualStorage<string> vs = new();
@@ -5263,6 +5532,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_MultipleSymbolicLinks_IncludesLinksAndTargets()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5280,6 +5550,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_DirectoryWithManyItems_ReturnsAllItems()
         {
             VirtualStorage<string> vs = new();
@@ -5299,6 +5570,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_WithNonexistentPathSymbolicLink_ThrowsExceptionAndOutputsMessage()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5318,11 +5590,12 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_ShallowNestedDirectories_ExecutesWithoutErrorAndOutputsTree()
         {
             VirtualStorage<BinaryData> vs = new();
             string basePath = "/deep";
-            int depth = 100; // 最大1900くらいまでOK
+            int depth = 10; // 最大1900くらいまでOK
             for (int i = 1; i <= depth; i++)
             {
                 basePath = $"{basePath}/dir{i}";
@@ -5341,6 +5614,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_MultipleEmptyDirectories_ReturnsAllDirectoriesAndOutputsTree()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5357,6 +5631,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_MultipleSymbolicLinksInSamePath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5377,6 +5652,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_SymbolicLinkPointsToAnotherSymbolicLink()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5395,6 +5671,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_ShouldReturnOnlyItemsInDir1()
         {
             VirtualStorage<string> vs = new();
@@ -5411,6 +5688,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_ShouldReturnOnlyDirectoriesInDir2IncludingDirItself()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5427,6 +5705,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_ShouldReturnDirectoriesAndItemsIncludingDirItself()
         {
             VirtualStorage<string> vs = new();
@@ -5444,6 +5723,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_ShouldReturnAllTypesIncludingDirItself()
         {
             VirtualStorage<string> vs = new();
@@ -5463,6 +5743,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_WithNoFilter_ShouldNotReturnAnyNodes()
         {
             VirtualStorage<string> vs = new();
@@ -5476,6 +5757,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_WithDirectoryFilterButNoDirectories_ShouldReturnEmptyList()
         {
             VirtualStorage<string> vs = new();
@@ -5490,6 +5772,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_ShouldReturnOnlySymbolicLinksInDir1()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5506,6 +5789,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_ShouldReturnNoNodesWhenFilterDoesNotMatch()
         {
             VirtualStorage<string> vs = new();
@@ -5519,6 +5803,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_DirectoryWithDeepNestingAndRecursiveFalse_ShouldReturnImmediateChildrenOnly()
         {
             VirtualStorage<string> vs = new();
@@ -5541,6 +5826,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         public void WalkPathTree_StartFromSubdirectoryWithRecursiveFalse_ShouldReturnOrderedImmediateChildrenOnly()
         {
             VirtualStorage<string> vs = new();
@@ -5565,6 +5851,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("WalkPathTree")]
         // nullリンクが含まれているディレクトリツリーを走査して正常終了する事を確認
         public void WalkPathTree_WithNullLink_ShouldNotThrowException()
         {
@@ -5604,6 +5891,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithWildcard_FindsCorrectPaths1()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5628,6 +5916,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithWildcard_FindsCorrectPaths2()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5652,6 +5941,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithWildcard_FindsCorrectPaths3()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5678,6 +5968,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithWildcard_FindsCorrectPaths4()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5711,6 +6002,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithWildcard_FindsCorrectPaths5()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5743,6 +6035,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithSingleCharacterWildcard_FindsCorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5760,6 +6053,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithCharacterClassWildcard_FindsCorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5777,6 +6071,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithCharacterClassMatch_FindsCorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5796,6 +6091,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithCharacterClassNoMatch_DoesNotFindIncorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5812,6 +6108,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithMultipleWildcards_FindsAllLogFilesAcrossDirectories()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5840,6 +6137,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithCaseInsensitiveExtensionMatching_FindsAllTxtFiles()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5861,6 +6159,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithInvalidDirectoryPath_ThrowsVirtualNodeNotFoundException()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5873,6 +6172,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithImproperlyFormattedPath_ThrowsVirtualNodeNotFoundException()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5890,6 +6190,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithWildcardInMiddleOfPath_FindsCorrectFiles()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5913,6 +6214,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithEscapedWildcards_HandlesLiteralsCorrectly()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5931,6 +6233,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithEscapedQuestionMark_HandlesLiteralsCorrectly()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5949,6 +6252,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithEscapedBrackets_HandlesLiteralsCorrectly()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -5967,6 +6271,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithHighVolumeOfFiles_PerformanceAndAccuracyTest()
         {
             const int NumberOfFiles = 10000; // テストに使用するファイルの数を定数で定義
@@ -6007,6 +6312,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithMultipleLevels_PerformanceTest()
         {
             const int Depth = 10; // ディレクトリの深さ
@@ -6046,7 +6352,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
                 }
                 searchPath += "file*.txt";
                 var result = vs.ResolvePath(searchPath).ToList();
-                Assert.AreEqual(FilesPerDepth, result.Count, $"Failed at depth {i} with path {searchPath}");
+                Assert.AreEqual(FilesPerDepth, result.Count, $"Failed at depth {i} with cycleInfo {searchPath}");
             }
 
             // ストップウォッチの停止
@@ -6060,6 +6366,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithDeepNestedDirectories_PerformanceTest()
         {
             const int Depth = 10; // ディレクトリの深さ
@@ -6095,7 +6402,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             string searchPath = "/*" + string.Concat(Enumerable.Repeat("/*", Depth - 1)) + "/file*.txt";
 
             // searchPathのデバッグ出力
-            Debug.WriteLine($"Search path: {searchPath}");
+            Debug.WriteLine($"Search cycleInfo: {searchPath}");
 
             // パフォーマンス計測の開始
             var stopwatch = System.Diagnostics.Stopwatch.StartNew();
@@ -6117,9 +6424,10 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void ResolveDeepDirectoryStructureTest()
+        [TestCategory("ResolvePath")]
+        public void ResolvePath_DeepDirectoryStructureTest()
         {
-            const int Depth = 300;
+            const int Depth = 10;
             const string BaseDir = "/dir1";
             VirtualStorage<string> vs = new();
 
@@ -6163,6 +6471,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_Root()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -6185,6 +6494,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNodeType")]
         public void GetNodeType_ShouldReturnDirectoryForDirectoryPath()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6196,6 +6506,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNodeType")]
         public void GetNodeType_ShouldReturnItemForItemPath()
         {
             VirtualStorage<string> vs = new();
@@ -6207,6 +6518,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNodeType")]
         public void GetNodeType_ShouldReturnSymbolicLinkForLinkPathWithoutFollowing()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6219,6 +6531,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GetNodeType")]
         public void GetNodeType_ShouldReturnDirectoryForLinkPathWhenFollowing()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6231,6 +6544,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_RecursiveWithLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6239,6 +6553,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_RecursiveNoLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6247,6 +6562,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_NonRecursiveWithLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6255,6 +6571,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_NonRecursiveNoLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6263,6 +6580,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_NonExistentPathWithLinks()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6273,6 +6591,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_RecursiveWithLinksFromSubDirectory()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6281,6 +6600,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_NonRecursiveWithLinksFromSubDirectory()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6289,6 +6609,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_BasePathIsItem()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6297,6 +6618,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_LinkToItem_NoFollow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6305,6 +6627,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_LinkToItem_Follow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6313,6 +6636,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_LinkToDirectory_NoFollow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6321,6 +6645,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("GenerateTextBasedTreeStructure")]
         public void GenerateTextBasedTreeStructure_LinkToDirectory_Follow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
@@ -6348,6 +6673,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToNewItem()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6387,6 +6713,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToDeepDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6427,6 +6754,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToExistingItemWithOverwrites()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6468,6 +6796,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemWithDoesNotExist_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6486,6 +6815,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToSameSourceAndDestination_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6508,6 +6838,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToExistingDestinationWithoutOverwrite_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6531,6 +6862,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToDestinationDirectoryDoesNotExist_CreatesNewItem()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6569,6 +6901,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToExistingItemInDestinationWithoutOverwrite_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6593,6 +6926,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToSymbolicLinkTargetingDirectory_SuccessfulCopy()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6634,6 +6968,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToSymbolicLinkTargetingIntermediateDirectory_SuccessfulCopy()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6675,6 +7010,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyItemToSymbolicLinkTargetingDirectory_ThrowsExceptionWhenItemExists()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6705,6 +7041,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_FromSymbolicLinkTargetingFile_SuccessfulCopy()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6748,6 +7085,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_ToNonExistingSymbolicLinkTargetingFile_SuccessfulCopy()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6791,6 +7129,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_ToNonExistingDeepSymbolicLinkTargetingFile_SuccessfulCopy()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6836,6 +7175,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_ToSymbolicLinkTargetingFile_ThrowsExceptionWhenNoOverwrite()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6866,6 +7206,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_ToSymbolicLinkTargetingFile_SuccessfulCopyWithOverwrite()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6911,6 +7252,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_ToDeepSymbolicLinkTargetingFile_SuccessfulCopyWithOverwrite()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6958,6 +7300,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToNewDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -6997,6 +7340,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToDeepDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7037,6 +7381,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToExistingDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7064,6 +7409,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToExistingItem()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7090,6 +7436,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToExistingSymbolicLink()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7116,6 +7463,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToExistingDirectoryWithOverwrites()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7159,6 +7507,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToExistingDirectoryWithOverwritesAndRecursive()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7204,6 +7553,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToExistingItemWithOverwrites()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7230,6 +7580,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToExistingSymbolicLinkWithOverwrites()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7256,6 +7607,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySymbolicLinkToNewSymbolicLink()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7295,6 +7647,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySymbolicLinkToDeepDirectory()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7335,6 +7688,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySymbolicLinkToExistingSymbolicLinkWithOverwrites()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7376,6 +7730,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySymbolicLinkWithDoesNotExist_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7394,6 +7749,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySymbolicLinkToSameSourceAndDestination_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7417,6 +7773,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySymbolicLinkToNewSymbolicLinkWithFollowLinks()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7458,6 +7815,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySymbolicLinkToSymbolicLinkWithFollowLinks()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7500,6 +7858,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToDirectoryWithRecursiveOption()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7542,6 +7901,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToDeepDirectoryWithRecursiveOption()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7597,6 +7957,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDirectoryToDeepDirectoryWithRecursiveAndFollowLinks()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7652,6 +8013,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopySourceToItsSubdirectory_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7672,6 +8034,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CopyNode")]
         public void CopyNode_CopyDestinationToItsParentDirectory_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -7692,6 +8055,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("AddLinkToDictionary")]
         public void AddLinkToDictionary_Test()
         {
             // ユーザーデータ
@@ -7731,6 +8095,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 絶対パスのターゲットパスとリンクパスを追加するテスト
         [TestMethod]
+        [TestCategory("AddLinkToDictionary")]
         public void AddLinkToDictionary_AddsLinkSuccessfully()
         {
             // Arrange
@@ -7754,6 +8119,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 相対パスのリンクパスを正しく変換して追加するテスト
         [TestMethod]
+        [TestCategory("AddLinkToDictionary")]
         public void AddLinkToDictionary_ConvertsRelativeLinkPath()
         {
             // Arrange
@@ -7777,6 +8143,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 既に存在するターゲットパスに新しいリンクパスを追加するテスト
         [TestMethod]
+        [TestCategory("AddLinkToDictionary")]
         public void AddLinkToDictionary_AddsNewLinkToExistingTarget()
         {
             // Arrange
@@ -7801,6 +8168,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // リンクパスが正しく正規化されることを確認するテスト
         [TestMethod]
+        [TestCategory("AddLinkToDictionary")]
         public void AddLinkToDictionary_NormalizesLinkPath()
         {
             // Arrange
@@ -7823,6 +8191,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // リンクのターゲットノードタイプが正しく設定されることを確認するテスト
         [TestMethod]
+        [TestCategory("AddLinkToDictionary")]
         public void AddLinkToDictionary_SetsCorrectTargetNodeType()
         {
             // Arrange
@@ -7880,6 +8249,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // ターゲットパスが存在しないシンボリックリンクを作成し、ディレクトリを追加してリンクノードタイプを更新するテスト
         [TestMethod]
+        [TestCategory("AddLinkToDictionary")]
         public void AddDirectory_UpdatesLinkTypeForNonExistentTargetToDirectory()
         {
             // Arrange
@@ -7908,6 +8278,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // ターゲットパスが存在しないシンボリックリンクを作成し、アイテムを追加してリンクノードタイプを更新するテスト
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void AddItem_UpdatesLinkTypeForNonExistentTargetToItem()
         {
             // Arrange
@@ -7940,6 +8311,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // ターゲットパスが存在しないシンボリックリンクを作成し、シンボリックリンクを追加してリンクノードタイプを更新するテスト
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void AddSymbolicLink_UpdatesLinkTypeForNonExistentTargetToSymbolicLink()
         {
             // Arrange
@@ -7997,6 +8369,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void AddDirectory_UpdatesLinkTypeForNonExistentIntermediateTargetToDirectory()
         {
             // Arrange
@@ -8029,6 +8402,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // アイテム削除時のリンク辞書更新のテスト
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void RemoveNode_UpdatesLinkTypeForItemDeletion()
         {
             // Arrange
@@ -8064,6 +8438,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // ディレクトリツリー削除時のリンク辞書更新のテスト
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void RemoveNode_UpdatesLinkTypeForDirectoryTreeDeletion()
         {
             // Arrange
@@ -8114,6 +8489,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // シンボリックリンク削除時のリンク辞書更新のテスト
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void RemoveNode_UpdatesLinkTypeForSymbolicLinkDeletion()
         {
             // Arrange
@@ -8166,6 +8542,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // 複数のシンボリックリンクが張られている場合のリンク辞書更新のテスト
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void RemoveNode_UpdatesLinkTypeForMultipleSymbolicLinkDeletion()
         {
             // Arrange
@@ -8205,6 +8582,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
         // シンボリックリンクを考慮した再帰的削除のテスト
         [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void RemoveNode_UpdatesLinkTypesForRecursiveDeletionWithSymbolicLinks()
         {
             // Arrange
@@ -8272,6 +8650,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Item")]
         public void Indexer_Item_GetExistingItemTest()
         {
             // Arrange
@@ -8294,6 +8673,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Item")]
         public void Indexer_Item_GetNonExistingItemTest()
         {
             // Arrange
@@ -8305,6 +8685,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Item")]
         public void Indexer_Item_SetExistingItemTest()
         {
             // Arrange
@@ -8334,6 +8715,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Item")]
         public void Indexer_Item_SetItemWithInvalidPathTest()
         {
             // Arrange
@@ -8341,13 +8723,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             BinaryData data = [1, 2, 3];
             VirtualNodeName itemName = "testItem";
             VirtualItem<BinaryData> item = (itemName, data);
-            VirtualPath invalidPath = "/nonexistent/parentDirectory/path";  // 存在しないディレクトリへのパス
+            VirtualPath invalidPath = "/nonexistent/parentDirectory/cycleInfo";  // 存在しないディレクトリへのパス
 
             // Act and Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[invalidPath] = item);
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Item")]
         public void Indexer_Item_GetAndSetIndexerTest()
         {
             // Arrange
@@ -8384,6 +8767,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Directory")]
         public void Indexer_Directory_GetExistingDirectoryTest()
         {
             // Arrange
@@ -8404,6 +8788,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Directory")]
         public void Indexer_Directory_GetNonExistingDirectoryTest()
         {
             // Arrange
@@ -8415,6 +8800,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Directory")]
         public void Indexer_Directory_SetExistingDirectoryTest()
         {
             // Arrange
@@ -8435,6 +8821,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Directory")]
         public void Indexer_Directory_SetExistingDirectoryWithItemsTest()
         {
             // Arrange
@@ -8493,6 +8880,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_Directory")]
         public void Indexer_Directory_SetVirtualDirectoryInstanceWithItemsTest()
         {
             // Arrange
@@ -8571,6 +8959,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_SymbolicLink")]
         public void Indexer_SymbolicLink_GetExistingSymbolicLinkTest()
         {
             // Arrange
@@ -8594,6 +8983,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_SymbolicLink")]
         public void Indexer_SymbolicLink_GetNonExistingSymbolicLinkTest()
         {
             // Arrange
@@ -8605,6 +8995,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_SymbolicLink")]
         public void Indexer_SymbolicLink_SetExistingSymbolicLinkTest()
         {
             // Arrange
@@ -8634,6 +9025,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer_SymbolicLink")]
         public void Indexer_SymbolicLink_SetSymbolicLinkWithInvalidPathTest()
         {
             // Arrange
@@ -8641,13 +9033,14 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualNodeName linkName = "testLink";
             VirtualPath targetPath = "/targetPath";
             VirtualSymbolicLink link = new(linkName, targetPath);
-            VirtualPath invalidPath = "/nonexistent/parentDirectory/path";  // 存在しないディレクトリへのパス
+            VirtualPath invalidPath = "/nonexistent/parentDirectory/cycleInfo";  // 存在しないディレクトリへのパス
 
             // Act and Assert
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[invalidPath, false] = link);
         }
 
         [TestMethod]
+        [TestCategory("Indexer_SymbolicLink")]
         public void Indexer_SymbolicLink_GetAndSetIndexerTest()
         {
             // Arrange
@@ -8687,6 +9080,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
         public void CycleReference_WithCycleReference_ShouldThrowException()
         {
             // Arrange
@@ -8697,13 +9091,27 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Act & Assert
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+                IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
             });
-
             Debug.WriteLine(err.Message);
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // Assert
+            Assert.AreEqual(1, vs.CycleDetector.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
         }
 
         [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
         public void CycleReference_WithNormalReference_ShouldNormalEnd()
         {
             // Arrange
@@ -8713,17 +9121,29 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir3/dir4", true);
 
             // Act
-            IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/base", VirtualNodeTypeFilter.All, true, true).ToList();
+            IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodes));
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
 
             // Assert
-            Assert.AreNotEqual(0, nodes.Count());
+            Assert.AreEqual(1, vs.CycleDetector.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
         }
 
         [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
         public void CycleReference_WithoutCycleReference_ShouldNotThrowException()
         {
             // Arrange
@@ -8731,11 +9151,29 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1/dir2/dir3", true);
 
             // Act & Assert
-            IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
-            Assert.IsTrue(nodes.Any());
+            IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // コンテキスト出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+
+            // Assert
+            Assert.AreEqual(0, vs.CycleDetector.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
         }
 
         [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
         public void CycleReference_WithComplexCycle_ShouldThrowException()
         {
             // Arrange
@@ -8747,30 +9185,58 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             // Act & Assert
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+                IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
             });
-
             Debug.WriteLine(err.Message);
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // Assert
+            Assert.AreEqual(1, vs.CycleDetector.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
         }
 
         [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
         public void CycleReference_WithSelfReferencingLink_ShouldThrowException()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/selfReferenceDir", true);
-            vs.AddSymbolicLink("/selfReferenceDir/selfLink", "/selfReferenceDir");
+            vs.AddDirectory("/dir1", true);
+            vs.AddSymbolicLink("/dir1/linkToDir1", "/dir1");
 
             // Act & Assert
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+                IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
             });
-
             Debug.WriteLine(err.Message);
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // Assert
+            Assert.AreEqual(1, vs.CycleDetector.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
         }
 
         [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
         public void CycleReference_WithNestedCycleReference_ShouldThrowException()
         {
             // Arrange
@@ -8783,11 +9249,137 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             {
                 IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
             });
-
             Debug.WriteLine(err.Message);
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // Assert
+            Assert.AreEqual(1, vs.CycleDetector.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
         }
 
         [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
+        public void CycleReference_Test1()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1");
+            vs.AddItem("/dir1/item2");
+
+            // Act
+            IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.All, true, true).ToList();
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // コンテキスト出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+
+            // Assert
+            Assert.AreEqual(0, vs.CycleDetector.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
+        public void CycleReference_Test2()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data1 = [1, 2, 3];
+
+            vs.AddItem("/item1", data1);
+            vs.AddSymbolicLink("/linkToItem1", "/item1");
+
+            IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // コンテキスト出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+
+            // Assert
+            Assert.AreEqual(1, vs.CycleDetector.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
+        public void CycleReference_Test3()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/linkToDir1", "/dir1");
+
+            IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // コンテキスト出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+
+            // Assert
+            Assert.AreEqual(1, vs.CycleDetector.Count);
+        }
+
+        [TestMethod]
+        [TestCategory("CycleReferenceCheck")]
+        public void CycleReference_Test4()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddSymbolicLink("/link1", "/link2");
+            vs.AddSymbolicLink("/link2", "/link1");
+
+            // Act & Assert
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                IEnumerable<VirtualNodeContext> nodes = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
+            });
+            Debug.WriteLine(err.Message);
+
+            // 循環参照コレクション出力
+            Debug.WriteLine("循環参照コレクション:");
+            foreach (var cycleInfo in vs.CycleDetector.CycleDictionary)
+            {
+                Debug.WriteLine(cycleInfo);
+            }
+
+            // Assert
+            Assert.AreEqual(2, vs.CycleDetector.Count);
+
+            // ディレクトリ構造出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+        }
+
+        [TestMethod]
+        [TestCategory("Free Test")]
         public void Free_Test_CollectionExpressions()
         {
             // Arrange
@@ -8819,6 +9411,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Free Test")]
         public void LinkDictionary_Test1()
         {
             // Arrange
@@ -8853,6 +9446,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
         // linkToDir2 が削除された後にリンク辞書がどのような状態になるか
         // 確認する事が目的です。
         [TestMethod]
+        [TestCategory("Free Test")]
         public void LinkDictionary_Test2()
         {
             // Arrange

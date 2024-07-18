@@ -6,6 +6,8 @@
 
         public Guid ID => _id;
 
+        public override string ToString() => _id.ToString();
+
         public VirtualID()
         {
             _id = Guid.NewGuid();

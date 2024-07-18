@@ -2,27 +2,31 @@
 {
     public class VirtualCycleDetector
     {
-        private readonly HashSet<VirtualPath> _checkedNodeSet;
+        private readonly Dictionary<VirtualID, VirtualSymbolicLink> _cycleDictionary;
 
-        public HashSet<VirtualPath> CheckedNodeSet => _checkedNodeSet;
+        public Dictionary<VirtualID, VirtualSymbolicLink> CycleDictionary => _cycleDictionary;
+
+        public int Count => _cycleDictionary.Count;
 
         public VirtualCycleDetector()
         {
-            _checkedNodeSet = [];
+            _cycleDictionary = [];
         }
 
         public void Clear()
         {
-            _checkedNodeSet.Clear();
+            _cycleDictionary.Clear();
         }
 
-        public bool IsNodeInCycle(VirtualPath path)
+        public bool IsNodeInCycle(VirtualSymbolicLink link)
         {
-            if (!_checkedNodeSet.Add(path))
+            if (_cycleDictionary.ContainsKey(link.VID))
             {
                 // 循環が発生している
                 return true;
             }
+
+            _cycleDictionary.Add(link.VID, link);
 
             // 循環は発生していない
             return false;

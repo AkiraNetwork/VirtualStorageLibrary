@@ -728,7 +728,13 @@ namespace AkiraNet.VirtualStorageLibrary
                 patternList,
                 null);
 
-            return WalkPathTreeInternal(p);
+            // 循環参照検出クラスをクリア
+            CycleDetector.Clear();
+
+            foreach (var result in WalkPathTreeInternal(p))
+            {
+                yield return result;
+            }
         }
 
         public IEnumerable<VirtualNodeContext> WalkPathTree(
@@ -754,9 +760,6 @@ namespace AkiraNet.VirtualStorageLibrary
                 link = GetSymbolicLink(basePath);
             }
 
-            // 循環参照検出クラスをクリア
-            CycleDetector.Clear();
-
             WalkPathTreeParameters p = new(
                 basePath,
                 basePath,
@@ -771,14 +774,17 @@ namespace AkiraNet.VirtualStorageLibrary
                 null,
                 link);
 
-            return WalkPathTreeInternal(p);
+            // 循環参照検出クラスをクリア
+            CycleDetector.Clear();
+
+            foreach (var result in WalkPathTreeInternal(p))
+            {
+                yield return result;
+            }
         }
 
         private IEnumerable<VirtualNodeContext> WalkPathTreeInternal(WalkPathTreeParameters p)
         {
-            // 循環参照の検出
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(p));
-
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
             PatternMatch? patternMatcher;
             if (wildcardMatcher == null)
@@ -801,15 +807,19 @@ namespace AkiraNet.VirtualStorageLibrary
                         {
                             if (MatchPatterns(p.CurrentPath.PartsList, p.PatternList))
                             {
+                                VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
+
                                 // ディレクトリを通知
-                                yield return new VirtualNodeContext(directory, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
+                                yield return new VirtualNodeContext(directory, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                             }
                         }
                     }
                     else
                     {
+                        VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
+
                         // ディレクトリを通知
-                        yield return new VirtualNodeContext(directory, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
+                        yield return new VirtualNodeContext(directory, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                     }
                 }
 
@@ -853,15 +863,19 @@ namespace AkiraNet.VirtualStorageLibrary
                         {
                             if (MatchPatterns(p.CurrentPath.PartsList, p.PatternList))
                             {
+                                VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
+
                                 // アイテムを通知
-                                yield return new VirtualNodeContext(item, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
+                                yield return new VirtualNodeContext(item, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                             }
                         }
                     }
                     else
                     {
+                        VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
+
                         // アイテムを通知
-                        yield return new VirtualNodeContext(item, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
+                        yield return new VirtualNodeContext(item, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                     }
                 }
             }
@@ -892,6 +906,15 @@ namespace AkiraNet.VirtualStorageLibrary
                         p.PatternList,
                         link);
 
+                    VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
+                    VirtualPath traversalFullPath = p.BasePath + traversalPath;
+
+                    // 循環参照チェック
+                    if (CycleDetector.IsNodeInCycle(link))
+                    {
+                        throw new InvalidOperationException($"循環参照を検出しました。 '{traversalFullPath}' ({link})");
+                    }
+
                     foreach (var result in WalkPathTreeInternal(p2))
                     {
                         yield return result;
@@ -907,15 +930,19 @@ namespace AkiraNet.VirtualStorageLibrary
                             {
                                 if (MatchPatterns(p.CurrentPath.PartsList, p.PatternList))
                                 {
+                                    VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
+
                                     // シンボリックリンクを通知
-                                    yield return new VirtualNodeContext(link, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
+                                    yield return new VirtualNodeContext(link, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                                 }
                             }
                         }
                         else
                         {
+                            VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
+
                             // シンボリックリンクを通知
-                            yield return new VirtualNodeContext(link, p.CurrentPath.GetRelativePath(p.BasePath), p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
+                            yield return new VirtualNodeContext(link, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                         }
                     }
                 }
