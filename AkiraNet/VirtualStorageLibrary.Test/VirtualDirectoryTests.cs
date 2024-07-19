@@ -121,7 +121,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
 
             Assert.IsTrue(directory.NodeExists("NewItem"));
             Assert.AreEqual(newNode, directory["NewItem"]);
-            
+
             Assert.IsTrue(directory.UpdatedDate > beforeDate);
 
             VirtualItem<BinaryData> item = (VirtualItem<BinaryData>)directory.Get("NewItem")!;

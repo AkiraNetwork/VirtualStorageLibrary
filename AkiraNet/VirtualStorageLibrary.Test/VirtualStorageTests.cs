@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using AkiraNet.VirtualStorageLibrary.Utilities;
+using System.Diagnostics;
 
 namespace AkiraNet.VirtualStorageLibrary.Test
 {
@@ -3546,7 +3547,7 @@ namespace AkiraNet.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/sourceDir");
             vs.AddItem("/destinationFile", new BinaryData([1, 2, 3]));
-            
+
             Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.MoveNode("/sourceDir", "/destinationFile"));
         }

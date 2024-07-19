@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace AkiraNet.VirtualStorageLibrary
+namespace AkiraNet.VirtualStorageLibrary.Utilities
 {
     public static class TextFormatter
     {
@@ -72,14 +72,14 @@ namespace AkiraNet.VirtualStorageLibrary
         private static bool IsFullWidth(char c)
         {
             // Full-width character ranges
-            return (c >= 0x1100 && c <= 0x115F) ||
-                   (c >= 0x2E80 && c <= 0xA4CF && c != 0x303F) ||
-                   (c >= 0xAC00 && c <= 0xD7A3) ||
-                   (c >= 0xF900 && c <= 0xFAFF) ||
-                   (c >= 0xFE10 && c <= 0xFE19) ||
-                   (c >= 0xFE30 && c <= 0xFE6F) ||
-                   (c >= 0xFF00 && c <= 0xFF60) ||
-                   (c >= 0xFFE0 && c <= 0xFFE6);
+            return c >= 0x1100 && c <= 0x115F ||
+                   c >= 0x2E80 && c <= 0xA4CF && c != 0x303F ||
+                   c >= 0xAC00 && c <= 0xD7A3 ||
+                   c >= 0xF900 && c <= 0xFAFF ||
+                   c >= 0xFE10 && c <= 0xFE19 ||
+                   c >= 0xFE30 && c <= 0xFE6F ||
+                   c >= 0xFF00 && c <= 0xFF60 ||
+                   c >= 0xFFE0 && c <= 0xFFE6;
         }
 
         public static string GenerateTextBasedTable<T>(IEnumerable<T> enumerableObject)
