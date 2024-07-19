@@ -15,7 +15,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         private VirtualResourceManager()
         {
             resourceManager = new ResourceManager("AkiraNetwork.VirtualStorageLibrary.Resources.Resources", typeof(VirtualResourceManager).Assembly);
-            _messages = new Dictionary<string, string>();
+            _messages = [];
         }
 
         // 公開されたインスタンスプロパティ
@@ -25,11 +25,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public void Initialize(CultureInfo? culture = null)
         {
             _messages.Clear();
-            ResourceSet? resourceSet = resourceManager.GetResourceSet(culture ?? CultureInfo.InvariantCulture, true, true);
+            CultureInfo effectiveCulture = culture ?? CultureInfo.InvariantCulture;
+            ResourceSet? resourceSet = resourceManager.GetResourceSet(effectiveCulture, true, true);
 
-            if (resourceSet is null)
+            if (resourceSet == null)
             {
-                throw new InvalidOperationException($"Resources for culture '{culture?.Name ?? "InvariantCulture"}' could not be found.");
+                string cultureName = culture?.Name ?? "InvariantCulture";
+                throw new InvalidOperationException($"Resources for culture '{cultureName}' could not be found.");
             }
 
             foreach (DictionaryEntry entry in resourceSet)
@@ -58,6 +60,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 return GetString(key, args);
             }
+        }
+
+        // カルチャ情報を取得
+        public static CultureInfo GetCultureInfo(string locale)
+        {
+            // string.Empty をニュートラルカルチャとして扱う
+            if (locale == string.Empty)
+            {
+                return CultureInfo.InvariantCulture;
+            }
+
+            // その他のロケールは通常の CultureInfo を返す
+            return new CultureInfo(locale);
         }
 
         #region IReadOnlyDictionary<string, string> インターフェースの実装

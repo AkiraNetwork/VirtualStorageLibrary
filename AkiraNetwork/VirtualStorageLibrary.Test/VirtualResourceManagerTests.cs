@@ -17,7 +17,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             var manager = VirtualResourceManager.Resources;
 
             // Act
-            manager.Initialize(new CultureInfo("ja"));
+            manager.Initialize(new CultureInfo("ja-JP"));
 
             // Assert
             Assert.AreEqual("ノードが見つかりません。 テストノード", manager["ID01", "テストノード"]);
@@ -29,7 +29,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             // Arrange
             var manager = VirtualResourceManager.Resources;
-            manager.Initialize(new CultureInfo("ja"));
+            manager.Initialize(new CultureInfo("ja-JP"));
 
             // Act
             string result = manager["ID01", "path/to/node"];
@@ -43,7 +43,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             // Arrange
             var manager = VirtualResourceManager.Resources;
-            manager.Initialize(new CultureInfo("ja"));
+            manager.Initialize(new CultureInfo("ja-JP"));
 
             // Act
             string result = manager["ID02"];

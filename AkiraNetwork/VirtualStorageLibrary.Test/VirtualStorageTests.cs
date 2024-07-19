@@ -4969,6 +4969,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             VirtualPath targetPath = "/nonexistent";
 
+            VirtualStorageState.SetLocale("ja");
+
             VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
@@ -9403,6 +9405,72 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+        }
+
+        [TestMethod]
+        [TestCategory("Locale")]
+        public void Locale_Test1()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath targetPath = "/nonexistent";
+
+            // ニュートラルカルチャーの設定
+            VirtualStorageState.SetLocale();
+
+            // Act
+            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
+            });
+            Debug.WriteLine($"ExceptionMessage: {exception.Message}");
+
+            // Assert
+            Assert.AreEqual("Node not found. /nonexistent", exception.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("Locale")]
+        public void Locale_Test2()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath targetPath = "/nonexistent";
+
+            // ニュートラルカルチャーの設定
+            VirtualStorageState.SetLocale(string.Empty);
+
+            // Act
+            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
+            });
+            Debug.WriteLine($"ExceptionMessage: {exception.Message}");
+
+            // Assert
+            Assert.AreEqual("Node not found. /nonexistent", exception.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("Locale")]
+        public void Locale_Test3()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath targetPath = "/nonexistent";
+
+            // 日本語-日本の設定
+            VirtualStorageState.SetLocale("ja-JP");
+
+            // Act
+            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
+            });
+            Debug.WriteLine($"ExceptionMessage: {exception.Message}");
+
+            // Assert
+            Assert.AreEqual("ノードが見つかりません。 /nonexistent", exception.Message);
         }
 
         [TestMethod]

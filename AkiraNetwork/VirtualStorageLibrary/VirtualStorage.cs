@@ -26,6 +26,9 @@ namespace AkiraNetwork.VirtualStorageLibrary
         // 循環参照検出クラス(WalkPathTreeメソッド用)
         public VirtualCycleDetector CycleDetectorForTree { get; } = new();
 
+        // リソース
+        public VirtualResourceManager Resources { get; } = VirtualResourceManager.Resources;
+
         public VirtualStorage()
         {
             _root = new(VirtualPath.Root)
@@ -554,7 +557,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // 例外が有効な場合は例外をスロー
                 if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException($"ノード '{p.TraversalPath + traversalNodeName}' が見つかりません。");
+                    throw new VirtualNodeNotFoundException(Resources["ID01", p.TraversalPath + traversalNodeName]);
                 }
 
                 return new VirtualNodeContext(null, p.TraversalPath, null, -1, -1, p.TraversalPath, p.Resolved);
