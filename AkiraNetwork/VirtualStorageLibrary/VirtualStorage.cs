@@ -1381,14 +1381,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 resolvedNodePath = ResolveLinkTarget(nodePath);
             }
 
-            // TODO: ToList for Debug
-            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(nodePath, VirtualNodeTypeFilter.All, recursive, followLinks, resolveLinks).ToList();
+            IEnumerable<VirtualNodeContext> contexts = WalkPathTree(nodePath, VirtualNodeTypeFilter.All, recursive, followLinks, resolveLinks);
 
             if (recursive)
             {
-                // TODO: ToList for Debug
                 // ノードコンテキストを逆順に処理するためにリストに変換して逆順にソート
-                List<VirtualNodeContext> reversedContexts = contexts.Reverse().ToList();
+                IEnumerable<VirtualNodeContext> reversedContexts = contexts.Reverse();
 
                 foreach (VirtualNodeContext context in reversedContexts)
                 {
