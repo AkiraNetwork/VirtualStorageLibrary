@@ -38,8 +38,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public string PrefixSymbolicLink { get; set; } = "link";
 
-        public string Locale { get; set; } = string.Empty; // string.Empty is neutral culture
-
         public static void InitializeFromSettings(VirtualStorageSettings settings)
         {
             VirtualNodeListConditions settingsConditions = settings.NodeListConditions;
@@ -64,13 +62,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 NodeListConditions = stateConditions,
                 PrefixItem = settings.PrefixItem,
                 PrefixDirectory = settings.PrefixDirectory,
-                PrefixSymbolicLink = settings.PrefixSymbolicLink,
-                Locale = settings.Locale
+                PrefixSymbolicLink = settings.PrefixSymbolicLink
             };
-
-            // リソースを初期化
-            CultureInfo culture = VirtualResourceManager.GetCultureInfo(settings.Locale);
-            VirtualResourceManager.Resources.Initialize(culture);
         }
 
         public static void SetNodeListConditions(VirtualNodeListConditions conditions)
@@ -84,13 +77,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             List<VirtualSortCondition<VirtualNode>>? sortConditions)
         {
             _state.NodeListConditions = new VirtualNodeListConditions(filter, groupCondition, sortConditions);
-        }
-
-        public static void SetLocale(string? locale = null)
-        {
-            _state.Locale = locale ?? string.Empty;
-            CultureInfo culture = VirtualResourceManager.GetCultureInfo(_state.Locale);
-            VirtualResourceManager.Resources.Initialize(culture);
         }
     }
 }

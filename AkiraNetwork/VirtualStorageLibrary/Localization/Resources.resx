@@ -117,10 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ID01" xml:space="preserve">
-    <value>Node not found. {0}</value>
+  <data name="NodeNotFound" xml:space="preserve">
+    <value>Node not found. [{0}]</value>
+    <comment>Notifies if a node is not found while processing nodes included in the path.</comment>
   </data>
-  <data name="ID02" xml:space="preserve">
+  <data name="RootAlreadyExists" xml:space="preserve">
     <value>The root directory already exists.</value>
+    <comment>Notifies if a root directory is specified when creating a directory.</comment>
   </data>
 </root>

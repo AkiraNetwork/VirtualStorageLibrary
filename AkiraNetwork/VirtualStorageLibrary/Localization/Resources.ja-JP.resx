@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ID01" xml:space="preserve">
-    <value>ノードが見つかりません。 {0}</value>
+  <data name="NodeNotFound" xml:space="preserve">
+    <value>ノードが見つかりません。 [{0}]</value>
   </data>
-  <data name="ID02" xml:space="preserve">
+  <data name="RootAlreadyExists" xml:space="preserve">
     <value>ルートディレクトリは既に存在します。</value>
   </data>
 </root>

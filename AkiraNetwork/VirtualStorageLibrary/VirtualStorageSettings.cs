@@ -54,7 +54,5 @@
         public string PrefixDirectory { get; set; } = "dir";
 
         public string PrefixSymbolicLink { get; set; } = "link";
-
-        public string Locale { get; set; } = string.Empty; // string.Empty is neutral culture
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AkiraNetwork.VirtualStorageLibrary.Resources {
+namespace AkiraNetwork.VirtualStorageLibrary.Localization {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AkiraNetwork.VirtualStorageLibrary.Resources.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AkiraNetwork.VirtualStorageLibrary.Localization.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace AkiraNetwork.VirtualStorageLibrary.Resources {
         }
         
         /// <summary>
-        ///   Node not found. {0} に類似しているローカライズされた文字列を検索します。
+        ///   Node not found. [{0}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ID01 {
+        internal static string NodeNotFound {
             get {
-                return ResourceManager.GetString("ID01", resourceCulture);
+                return ResourceManager.GetString("NodeNotFound", resourceCulture);
             }
         }
         
         /// <summary>
         ///   The root directory already exists. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ID02 {
+        internal static string RootAlreadyExists {
             get {
-                return ResourceManager.GetString("ID02", resourceCulture);
+                return ResourceManager.GetString("RootAlreadyExists", resourceCulture);
             }
         }
     }

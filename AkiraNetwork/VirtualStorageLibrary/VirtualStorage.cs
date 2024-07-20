@@ -1,4 +1,5 @@
-﻿using AkiraNetwork.VirtualStorageLibrary.Utilities;
+﻿using AkiraNetwork.VirtualStorageLibrary.Localization;
+using AkiraNetwork.VirtualStorageLibrary.Utilities;
 using System.Runtime.CompilerServices;
 
 namespace AkiraNetwork.VirtualStorageLibrary
@@ -25,9 +26,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         // 循環参照検出クラス(WalkPathTreeメソッド用)
         public VirtualCycleDetector CycleDetectorForTree { get; } = new();
-
-        // リソース
-        public VirtualResourceManager Resources { get; } = VirtualResourceManager.Resources;
 
         public VirtualStorage()
         {
@@ -372,7 +370,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (path.IsRoot)
             {
-                throw new InvalidOperationException("ルートディレクトリは既に存在します。");
+                throw new InvalidOperationException(string.Format(Resources.RootAlreadyExists));
             }
 
             VirtualPath directoryPath = path.DirectoryPath;
@@ -557,7 +555,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // 例外が有効な場合は例外をスロー
                 if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException(Resources["ID01", p.TraversalPath + traversalNodeName]);
+                    throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, p.TraversalPath + traversalNodeName));
                 }
 
                 return new VirtualNodeContext(null, p.TraversalPath, null, -1, -1, p.TraversalPath, p.Resolved);

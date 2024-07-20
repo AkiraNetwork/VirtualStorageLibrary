@@ -1,5 +1,6 @@
 ﻿using AkiraNetwork.VirtualStorageLibrary.Utilities;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
@@ -4969,7 +4970,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             VirtualPath targetPath = "/nonexistent";
 
-            VirtualStorageState.SetLocale("ja");
+            //VirtualStorageState.SetLocale("ja-JP");
 
             VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
@@ -9416,17 +9417,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath targetPath = "/nonexistent";
 
             // ニュートラルカルチャーの設定
-            VirtualStorageState.SetLocale();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             // Act
-            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
             Debug.WriteLine($"ExceptionMessage: {exception.Message}");
 
             // Assert
-            Assert.AreEqual("Node not found. /nonexistent", exception.Message);
+            Assert.AreEqual("Node not found. [/nonexistent]", exception.Message);
         }
 
         [TestMethod]
@@ -9437,18 +9438,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             VirtualPath targetPath = "/nonexistent";
 
-            // ニュートラルカルチャーの設定
-            VirtualStorageState.SetLocale(string.Empty);
+            // 用意していないカルチャーの設定
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ko-KR");
 
             // Act
-            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
             Debug.WriteLine($"ExceptionMessage: {exception.Message}");
 
             // Assert
-            Assert.AreEqual("Node not found. /nonexistent", exception.Message);
+            Assert.AreEqual("Node not found. [/nonexistent]", exception.Message);
         }
 
         [TestMethod]
@@ -9460,17 +9461,61 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath targetPath = "/nonexistent";
 
             // 日本語-日本の設定
-            VirtualStorageState.SetLocale("ja-JP");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
 
             // Act
-            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
             Debug.WriteLine($"ExceptionMessage: {exception.Message}");
 
             // Assert
-            Assert.AreEqual("ノードが見つかりません。 /nonexistent", exception.Message);
+            Assert.AreEqual("ノードが見つかりません。 [/nonexistent]", exception.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("Locale")]
+        public void Locale_Test4()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath targetPath = "/";
+
+            // ニュートラルカルチャーの設定
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            // Act
+            Exception exception = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.AddDirectory(targetPath);
+            });
+            Debug.WriteLine($"ExceptionMessage: {exception.Message}");
+
+            // Assert
+            Assert.AreEqual("The root directory already exists.", exception.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("Locale")]
+        public void Locale_Test5()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath targetPath = "/";
+
+            // 日本語-日本の設定
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
+
+            // Act
+            Exception exception = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.AddDirectory(targetPath);
+            });
+            Debug.WriteLine($"ExceptionMessage: {exception.Message}");
+
+            // Assert
+            Assert.AreEqual("ルートディレクトリは既に存在します。", exception.Message);
         }
 
         [TestMethod]
