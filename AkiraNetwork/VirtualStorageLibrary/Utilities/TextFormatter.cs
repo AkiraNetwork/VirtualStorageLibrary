@@ -6,8 +6,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
     {
         public static string FormatTable(IEnumerable<IEnumerable<string>> tableData)
         {
-            if (tableData == null || !tableData.Any())
-                throw new ArgumentException("Table data cannot be null or empty");
+            if (!tableData.Any())
+            {
+                return string.Empty;
+            }
 
             var tableDataList = tableData.Select(row => row.ToList()).ToList(); // Convert to List<List<string>>
             int[] columnWidths = GetColumnWidths(tableDataList);
@@ -111,9 +113,6 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 
         public static string GenerateTextBasedTableBySingle<T>(T singleObject)
         {
-            if (singleObject == null)
-                throw new ArgumentException("Object cannot be null");
-
             Type type = typeof(T);
             List<PropertyInfo> properties = [];
 
