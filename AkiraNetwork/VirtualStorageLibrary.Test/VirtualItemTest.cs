@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
@@ -8,6 +9,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         [TestInitialize]
         public void TestInitialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
         }
@@ -227,6 +230,89 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(item.ItemData!.Data, testData);
 
             Debug.WriteLine($"Generated NodeName: {item.Name}");
+        }
+
+        [TestMethod]
+        public void Update_ValidItem_UpdatesCorrectly()
+        {
+            // Arrange
+            VirtualItem<BinaryData> originalItem = new("OriginalItem", [1, 2, 3]);
+            VirtualItem<BinaryData> newItem = new("NewItem", [4, 5, 6]);
+
+            // Act
+            originalItem.Update(newItem);
+
+            // Assert
+            Assert.AreEqual(originalItem.CreatedDate, newItem.CreatedDate);
+            Assert.IsTrue(originalItem.UpdatedDate > newItem.UpdatedDate);
+            Assert.AreEqual(originalItem.ItemData, newItem.ItemData);
+            Assert.IsFalse(originalItem.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Update_InvalidNode_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualItem<BinaryData> originalItem = new("OriginalItem", [1, 2, 3]);
+            VirtualDirectory directoryNode = new("DirectoryNode");
+
+            // Act & Assert
+            Exception err = Assert.ThrowsException<ArgumentException>(() => originalItem.Update(directoryNode));
+
+            Assert.AreEqual("The specified node [DirectoryNode] is not of type VirtualItem<BinaryData>.", err.Message);
+
+            Debug.WriteLine(err.Message);
+
+        }
+
+        [TestMethod]
+        public void Update_ReferencedItem_CreatesClone()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> originalItem = new("OriginalItem", [1, 2, 3]);
+            vs.AddItem("/NewItem", [4, 5, 6]);
+
+            // Act
+            VirtualItem<BinaryData> newItem = vs.GetItem("/NewItem");
+            originalItem.Update(newItem);
+
+            // Assert
+            Assert.AreNotSame(originalItem, newItem);
+            CollectionAssert.AreEqual(originalItem.ItemData!.Data, newItem.ItemData!.Data);
+            Assert.IsTrue(originalItem.UpdatedDate > newItem.UpdatedDate);
+            Assert.IsFalse(originalItem.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Update_ItemDataIsUpdated()
+        {
+            // Arrange
+            VirtualItem<BinaryData> originalItem = new("OriginalItem", [1, 2, 3]);
+            VirtualItem<BinaryData> newItem = new("NewItem", [4, 5, 6]);
+
+            // Act
+            originalItem.Update(newItem);
+
+            // Assert
+            Assert.AreEqual(originalItem.ItemData, newItem.ItemData);
+            Assert.IsFalse(originalItem.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Update_UpdatedDateIsChanged()
+        {
+            // Arrange
+            VirtualItem<BinaryData> originalItem = new("OriginalItem", [1, 2, 3]);
+            VirtualItem<BinaryData> newItem = new("NewItem", [4, 5, 6]);
+            DateTime beforeDate = originalItem.UpdatedDate;
+
+            // Act
+            originalItem.Update(newItem);
+
+            // Assert
+            Assert.IsTrue(originalItem.UpdatedDate > beforeDate);
+            Assert.IsFalse(originalItem.IsReferencedInStorage);
         }
     }
 }

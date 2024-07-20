@@ -1,4 +1,7 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary
+﻿using AkiraNetwork.VirtualStorageLibrary.Localization;
+using System.Reflection;
+
+namespace AkiraNetwork.VirtualStorageLibrary
 {
     [method: DebuggerStepThrough]
     public class VirtualNodeName(string name) : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable
@@ -34,7 +37,7 @@
         {
             if (prefix == string.Empty)
             {
-                throw new ArgumentException("プレフィックスは空にできません", nameof(prefix));
+                throw new ArgumentException(Resources.PrefixIsEmpty);
             }
 
             long currentNumber = Interlocked.Increment(ref _counter);

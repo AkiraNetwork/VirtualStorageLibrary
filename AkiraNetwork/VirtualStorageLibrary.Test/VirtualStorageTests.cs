@@ -27,6 +27,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         [TestInitialize]
         public void TestInitialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
             _notifyNodeInfos = [];
@@ -2773,10 +2775,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             VirtualStorage<BinaryData> vs = new();
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
                 vs.SetNodeName("/nonExistentFile", "newName"));
 
             Assert.IsTrue(vs.GetNode("/").CreatedDate == vs.GetNode("/").UpdatedDate);
+            Assert.AreEqual("Node not found. [/nonExistentFile]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -2787,8 +2792,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/testFile", new BinaryData([1, 2, 3]));
             vs.AddItem("/newTestFile", new BinaryData([4, 5, 6]));
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.SetNodeName("/testFile", "newTestFile"));
+
+            Assert.AreEqual("Node [/newTestFile] already exists. Overwriting is not allowed.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]

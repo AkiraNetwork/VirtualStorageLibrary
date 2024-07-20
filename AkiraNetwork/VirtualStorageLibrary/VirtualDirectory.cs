@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using AkiraNetwork.VirtualStorageLibrary.Localization;
+using System.Runtime.CompilerServices;
 
 namespace AkiraNetwork.VirtualStorageLibrary
 {
@@ -150,14 +151,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (!VirtualNodeName.IsValidNodeName(node.Name))
             {
-                throw new ArgumentException($"ノード名 '{node}' は無効です。", nameof(node));
+                throw new ArgumentException(string.Format(Resources.InvalidNodeName, node.Name));
             }
 
             VirtualNodeName key = node.Name;
 
             if (_nodes.ContainsKey(key) && !allowOverwrite)
             {
-                throw new InvalidOperationException($"ノード '{key}' は既に存在します。上書きは許可されていません。");
+                throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, key));
             }
 
             // ノードがストレージに追加済みなら、クローンを作成する
@@ -209,7 +210,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 if (!NodeExists(name))
                 {
-                    throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+                    throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, name));
                 }
                 return _nodes[name];
             }
@@ -223,12 +224,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (!NodeExists(oldName))
             {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{oldName}' は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, oldName));
             }
 
             if (NodeExists(newName))
             {
-                throw new InvalidOperationException($"指定されたノード '{newName}' は既に存在します。");
+                throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, newName));
             }
 
             VirtualNode node = _nodes[oldName];
@@ -245,7 +246,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (!NodeExists(node.Name))
             {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{node}' は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, node.Name));
             }
 
             _nodes.Remove(node.Name);
@@ -263,7 +264,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 if (exceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+                    throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, name));
                 }
                 else
                 {
@@ -281,7 +282,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (!NodeExists(name))
             {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, name));
             }
 
             var node = _nodes[name];
@@ -290,14 +291,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 return item;
             }
 
-            throw new InvalidOperationException($"指定されたノード '{name}' はVirtualItem<{typeof(T).Name}>型ではありません。");
+            throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualItem, name, typeof(T).Name));
         }
 
         public VirtualDirectory GetDirectory(VirtualNodeName name)
         {
             if (!NodeExists(name))
             {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, name));
             }
 
             if (_nodes[name] is VirtualDirectory directory)
@@ -305,14 +306,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 return directory;
             }
 
-            throw new InvalidOperationException($"指定されたノード '{name}' はディレクトリ型ではありません。");
+            throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualDirectory, name));
         }
 
         public VirtualSymbolicLink GetSymbolicLink(VirtualNodeName name)
         {
             if (!NodeExists(name))
             {
-                throw new VirtualNodeNotFoundException($"指定されたノード '{name}' は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, name));
             }
 
             var node = _nodes[name];
@@ -321,7 +322,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 return link;
             }
 
-            throw new InvalidOperationException($"指定されたノード '{name}' はシンボリックリンク型ではありません。");
+            throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualSymbolicLink, name));
         }
 
         public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNode node)
@@ -357,7 +358,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (node is not VirtualDirectory newDirectory)
             {
-                throw new ArgumentException($"このノード {node.Name} はディレクトリではありません。");
+                throw new ArgumentException(string.Format(Resources.NodeIsNotVirtualDirectory, node.Name));
             }
 
             if (newDirectory.IsReferencedInStorage)

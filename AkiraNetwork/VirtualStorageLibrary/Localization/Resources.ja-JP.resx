@@ -123,4 +123,34 @@
   <data name="RootAlreadyExists" xml:space="preserve">
     <value>ルートディレクトリは既に存在します。</value>
   </data>
+  <data name="InvalidNodeName" xml:space="preserve">
+    <value>ノード名 [{0}] は無効です。使用禁止の文字が使われています。</value>
+  </data>
+  <data name="NodeAlreadyExists" xml:space="preserve">
+    <value>ノード [{0}] は既に存在します。上書きは許可されていません。</value>
+  </data>
+  <data name="NodeIsNotVirtualItem" xml:space="preserve">
+    <value>指定されたノード [{0}] は VirtualItem&lt;{1}&gt; 型ではありません。</value>
+  </data>
+  <data name="NodeIsNotVirtualDirectory" xml:space="preserve">
+    <value>指定されたノード [{0}] は VirtualDirectory 型ではありません。</value>
+  </data>
+  <data name="NodeIsNotVirtualSymbolicLink" xml:space="preserve">
+    <value>指定されたノード [{0}] は VirtualSymbolicLink 型ではありません。</value>
+  </data>
+  <data name="PrefixIsEmpty" xml:space="preserve">
+    <value>プレフィックスは空にできません。</value>
+  </data>
+  <data name="PathNormalizationAboveRoot" xml:space="preserve">
+    <value>パスの正規化により、ルートディレクトリの上位になっています。 [{0}]</value>
+  </data>
+  <data name="ParameterIsNotVirtualPath" xml:space="preserve">
+    <value>パラメータで指定されたオブジェクトはVirtualPath型ではありません。</value>
+  </data>
+  <data name="PathIsNotAbsolutePath" xml:space="preserve">
+    <value>このパスは絶対パスではありません。 [{0}]</value>
+  </data>
+  <data name="BasePathIsNotAbsolute" xml:space="preserve">
+    <value>指定されたベースパスが絶対パスではありません。 [{0}]</value>
+  </data>
 </root>

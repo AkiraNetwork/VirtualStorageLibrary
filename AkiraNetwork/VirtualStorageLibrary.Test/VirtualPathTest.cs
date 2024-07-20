@@ -1,4 +1,7 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary.Test
+﻿using System.Diagnostics;
+using System.Globalization;
+
+namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
     public class VirtualPathTest
@@ -6,6 +9,8 @@
         [TestInitialize]
         public void TestInitialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
             VirtualStorageSettings.Initialize();
         }
 
@@ -64,10 +69,14 @@
         {
             VirtualPath path = "/../";
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 path = path.NormalizePath();
             });
+
+            Assert.AreEqual("Due to path normalization, it is above the root directory. [/../]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -854,10 +863,27 @@
         [TestMethod]
         public void GetRelativePath_WithAbsolutePathAndRelativeBasePath_ThrowsInvalidOperationException()
         {
-            VirtualPath basePath = "relative/path";
+            VirtualPath basePath = "relative/basePath";
             VirtualPath path = "/absolute/path";
 
-            Assert.ThrowsException<InvalidOperationException>(() => path.GetRelativePath(basePath));
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() => path.GetRelativePath(basePath));
+
+            Assert.AreEqual("The specified base path is not an absolute path. [relative/basePath]", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void GetRelativePath_WithRelativePathAndRelativeBasePath_ThrowsInvalidOperationException()
+        {
+            VirtualPath basePath = "relative/basePath";
+            VirtualPath path = "relative/path";
+
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() => path.GetRelativePath(basePath));
+
+            Assert.AreEqual("This path is not an absolute path. [relative/path]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -908,6 +934,62 @@
             VirtualPath normalizedPath = path.NormalizePath();
 
             Assert.AreEqual(2, normalizedPath.Depth);
+        }
+
+        [TestMethod]
+        public void CompareTo_NullObject_ReturnsOne()
+        {
+            // Arrange
+            VirtualPath path = new("/dir1");
+
+            // Act
+            int result = path.CompareTo(null);
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void CompareTo_NonVirtualPathObject_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualPath path = new("/dir1");
+            object nonVirtualPathObject = "NonVirtualPath";
+
+            // Act and Assert
+            Exception err = Assert.ThrowsException<ArgumentException>(() => path.CompareTo(nonVirtualPathObject));
+
+            Assert.AreEqual("The object specified by the parameter is not of type VirtualPath.", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void CompareTo_SamePath_ReturnsZero()
+        {
+            // Arrange
+            VirtualPath path1 = new("/dir1");
+            VirtualPath path2 = new("/dir1");
+
+            // Act
+            int result = path1.CompareTo(path2);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void CompareTo_DifferentPath_ReturnsNonZero()
+        {
+            // Arrange
+            VirtualPath path1 = new("/dir1");
+            VirtualPath path2 = new("/dir2");
+
+            // Act
+            int result = path1.CompareTo(path2);
+
+            // Assert
+            Assert.AreNotEqual(0, result);
         }
     }
 }

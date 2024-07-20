@@ -1,4 +1,6 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary
+﻿using AkiraNetwork.VirtualStorageLibrary.Localization;
+
+namespace AkiraNetwork.VirtualStorageLibrary
 {
     public abstract class VirtualItem : VirtualNode
     {
@@ -108,7 +110,7 @@
         {
             if (node is not VirtualItem<T> newItem)
             {
-                throw new ArgumentException($"このノード {node.Name} はアイテムではありません。");
+                throw new ArgumentException(string.Format(Resources.NodeIsNotVirtualItem, node.Name, typeof(T).Name));
             }
 
             if (newItem.IsReferencedInStorage)

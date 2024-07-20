@@ -61,11 +61,101 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   The specified base path is not an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string BasePathIsNotAbsolute {
+            get {
+                return ResourceManager.GetString("BasePathIsNotAbsolute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Node name [{0}] is invalid. Forbidden characters are used. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidNodeName {
+            get {
+                return ResourceManager.GetString("InvalidNodeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Node [{0}] already exists. Overwriting is not allowed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NodeAlreadyExists {
+            get {
+                return ResourceManager.GetString("NodeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The specified node [{0}] is not of type VirtualDirectory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NodeIsNotVirtualDirectory {
+            get {
+                return ResourceManager.GetString("NodeIsNotVirtualDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The specified node [{0}] is not of type VirtualItem&lt;{1}&gt;. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NodeIsNotVirtualItem {
+            get {
+                return ResourceManager.GetString("NodeIsNotVirtualItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The specified node [{0}] is not of type VirtualSymbolicLink. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NodeIsNotVirtualSymbolicLink {
+            get {
+                return ResourceManager.GetString("NodeIsNotVirtualSymbolicLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Node not found. [{0}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NodeNotFound {
             get {
                 return ResourceManager.GetString("NodeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The object specified by the parameter is not of type VirtualPath. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ParameterIsNotVirtualPath {
+            get {
+                return ResourceManager.GetString("ParameterIsNotVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This path is not an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PathIsNotAbsolutePath {
+            get {
+                return ResourceManager.GetString("PathIsNotAbsolutePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Due to path normalization, it is above the root directory. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PathNormalizationAboveRoot {
+            get {
+                return ResourceManager.GetString("PathNormalizationAboveRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Prefix cannot be empty. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PrefixIsEmpty {
+            get {
+                return ResourceManager.GetString("PrefixIsEmpty", resourceCulture);
             }
         }
         

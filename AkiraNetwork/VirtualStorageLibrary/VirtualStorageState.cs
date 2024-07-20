@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace AkiraNetwork.VirtualStorageLibrary
+﻿namespace AkiraNetwork.VirtualStorageLibrary
 {
     public class VirtualStorageState
     {

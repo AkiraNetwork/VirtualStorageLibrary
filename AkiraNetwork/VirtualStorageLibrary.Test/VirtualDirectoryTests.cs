@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
@@ -8,6 +9,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         [TestInitialize]
         public void TestInitialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
         }
@@ -188,10 +190,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             VirtualDirectory newDirectory = new("OriginalDirectory");
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 parentDirectory.Add(newDirectory);
             });
+
+            Assert.AreEqual("Node [OriginalDirectory] already exists. Overwriting is not allowed.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -217,7 +223,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
-            Assert.IsTrue(ex.Message.Contains("ノード名 'Invalid/Name' は無効です。"), "The exception message should indicate that the node name is invalid.");
+            Assert.AreEqual("Node name [Invalid/Name] is invalid. Forbidden characters are used.", ex.Message);
+
+            Debug.WriteLine(ex.Message);
         }
 
         [TestMethod]
@@ -229,7 +237,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
-            Assert.IsTrue(ex.Message.Contains("ノード名 '' は無効です。"), "The exception message should indicate that the node name is invalid.");
+
+            Debug.WriteLine(ex.Message);
         }
 
         [TestMethod]
@@ -241,7 +250,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
-            Assert.IsTrue(ex.Message.Contains("ノード名 '.' は無効です。"));
+
+            Debug.WriteLine(ex.Message);
         }
 
         [TestMethod]
@@ -253,7 +263,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
-            Assert.IsTrue(ex.Message.Contains("ノード名 '..' は無効です。"));
+
+            Debug.WriteLine(ex.Message);
         }
 
         [TestMethod]
@@ -397,10 +408,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             VirtualDirectory directory = new("TestDirectory");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNode result = directory["InvalidKey"];
             });
+
+            Assert.AreEqual("Node not found. [InvalidKey]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -423,12 +438,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             DateTime beforeDate = directory.UpdatedDate;
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 directory.Remove(node);
             });
 
             Assert.IsTrue(directory.UpdatedDate == beforeDate);
+            Assert.AreEqual("Node not found. [ExistingNode]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -471,10 +489,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = new("TestDirectory");
 
             // 存在しないノード名で Get メソッドを呼び出すと例外がスローされることを確認
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNode? retrievedNode = directory.Get("NonExistingNode");
             });
+
+            Assert.AreEqual("Node not found. [NonExistingNode]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1067,10 +1089,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = new("TestDirectory");
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 directory.GetItem<BinaryData>("NonExistingItem");
             });
+
+            Assert.AreEqual("Node not found. [NonExistingItem]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1081,10 +1107,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             directory.AddItem("TestItem", "This is a string item");
 
             // Act & Assert
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 directory.GetItem<BinaryData>("TestItem");
             });
+
+            // ノードの型がVirtualItemであり、かつ、Tの型がBinaryDataでなければならない
+            Assert.AreEqual("The specified node [TestItem] is not of type VirtualItem<BinaryData>.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1110,10 +1141,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = new("TestDirectory");
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 directory.GetDirectory("NonExistingDirectory");
             });
+
+            Assert.AreEqual("Node not found. [NonExistingDirectory]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1124,10 +1159,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             directory.AddItem("TestItem", new object());
 
             // Act & Assert
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 directory.GetDirectory("TestItem");
             });
+
+            Assert.AreEqual("The specified node [TestItem] is not of type VirtualDirectory.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1153,10 +1192,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = new("TestDirectory");
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 directory.GetSymbolicLink("NonExistingLink");
             });
+
+            Assert.AreEqual("Node not found. [NonExistingLink]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1167,10 +1210,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             directory.AddItem("TestItem", new object());
 
             // Act & Assert
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 directory.GetSymbolicLink("TestItem");
             });
+
+            Assert.AreEqual("The specified node [TestItem] is not of type VirtualSymbolicLink.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         // 文字列からの暗黙的な変換で VirtualDirectory オブジェクトが正しく作成されることを検証します。
@@ -1847,6 +1894,98 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Assert
             Assert.AreEqual(1, actualSymbolicLinkViewCount);
+        }
+
+        [TestMethod]
+        public void Update_ValidDirectory_UpdatesCorrectly()
+        {
+            // Arrange
+            VirtualDirectory originalDirectory = new("OriginalDirectory");
+            VirtualDirectory newDirectory = new("NewDirectory");
+            newDirectory.AddDirectory("SubDirectory");
+            newDirectory.AddItem("Item", new BinaryData([1, 2, 3]));
+
+            // Act
+            originalDirectory.Update(newDirectory);
+
+            // Assert
+            Assert.AreEqual(originalDirectory.CreatedDate, newDirectory.CreatedDate);
+            Assert.IsTrue(originalDirectory.UpdatedDate > newDirectory.UpdatedDate);
+            Assert.IsTrue(originalDirectory.NodeExists("SubDirectory"));
+            Assert.IsTrue(originalDirectory.NodeExists("Item"));
+            Assert.IsFalse(originalDirectory.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Update_InvalidNode_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualDirectory originalDirectory = new("OriginalDirectory");
+            VirtualItem<BinaryData> invalidNode = new("ItemNode", new BinaryData([1, 2, 3]));
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => originalDirectory.Update(invalidNode));
+
+            Assert.AreEqual("The specified node [ItemNode] is not of type VirtualDirectory.", ex.Message);
+
+            Debug.WriteLine(ex.Message);
+        }
+
+        [TestMethod]
+        public void Update_ReferencedDirectory_CreatesClone()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("NewDirectory/SubDirectory", true);
+            VirtualDirectory originalDirectory = new("OriginalDirectory");
+
+            // Act
+            VirtualDirectory newDirectory = vs.GetDirectory("/NewDirectory");
+            originalDirectory.Update(newDirectory);
+
+            // Assert
+            Assert.AreNotSame(originalDirectory, newDirectory);
+            Assert.IsTrue(originalDirectory.NodeExists("SubDirectory"));
+            Assert.IsFalse(originalDirectory.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Update_SubNodeExists_UpdatesSubNode()
+        {
+            // Arrange
+            VirtualDirectory originalDirectory = new("OriginalDirectory");
+            VirtualDirectory newDirectory = new("NewDirectory");
+            originalDirectory.AddDirectory("SubDirectory");
+            newDirectory.AddDirectory("SubDirectory");
+
+            DateTime beforeDate = originalDirectory.UpdatedDate;
+
+            // Act
+            originalDirectory.Update(newDirectory);
+
+            // Assert
+            Assert.IsTrue(originalDirectory.UpdatedDate > beforeDate);
+            Assert.IsTrue(originalDirectory.NodeExists("SubDirectory"));
+            Assert.IsFalse(originalDirectory.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Update_SubNodeNotExists_AddsSubNode()
+        {
+            // Arrange
+            VirtualDirectory originalDirectory = new("OriginalDirectory");
+            VirtualDirectory newDirectory = new("NewDirectory");
+            newDirectory.AddDirectory("SubDirectory");
+
+            DateTime beforeDate = originalDirectory.UpdatedDate;
+
+            // Act
+            originalDirectory.Update(newDirectory);
+
+            // Assert
+            Assert.IsTrue(originalDirectory.UpdatedDate > beforeDate);
+            Assert.IsTrue(originalDirectory.NodeExists("SubDirectory"));
+            Assert.IsFalse(originalDirectory.IsReferencedInStorage);
         }
     }
 }

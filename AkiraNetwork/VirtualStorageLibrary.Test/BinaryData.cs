@@ -17,7 +17,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             if (data == null)
             {
-                throw new ArgumentNullException(nameof(data), "dataはnullにできません。");
+                throw new ArgumentNullException(nameof(data), "data can not be null.");
             }
             _data = data.ToArray();
         }
@@ -53,7 +53,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 if (index < 0 || index >= _data.Length)
                 {
-                    throw new IndexOutOfRangeException("インデックスが配列の範囲外です。");
+                    throw new IndexOutOfRangeException($"Index out of range. [{index}]");
                 }
                 return _data[index];
             }
@@ -61,7 +61,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 if (index < 0 || index >= _data.Length)
                 {
-                    throw new IndexOutOfRangeException("インデックスが配列の範囲外です。");
+                    throw new IndexOutOfRangeException($"Index out of range. [{index}]");
                 }
                 _data[index] = value;
             }
@@ -93,9 +93,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             ArgumentNullException.ThrowIfNull(array);
 
             if (arrayIndex < 0 || arrayIndex > array.Length)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), "インデックスが配列の範囲外です。");
+                throw new ArgumentOutOfRangeException($"Argument out of range. [{arrayIndex}]");
             if (array.Length - arrayIndex < _data.Length)
-                throw new ArgumentException("配列の残りの長さが不足しています。");
+                throw new ArgumentException("The remaining length of the array is insufficient.");
 
             _data.CopyTo(array, arrayIndex);
         }
@@ -120,7 +120,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             if (index < 0 || index > _data.Length)
             {
-                throw new ArgumentOutOfRangeException(nameof(index), "indexは配列の範囲外です。");
+                throw new ArgumentOutOfRangeException($"Argument out of range. [{index}]");
             }
 
             byte[] newData = new byte[_data.Length + 1];
@@ -142,7 +142,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             if (index < 0 || index >= _data.Length)
             {
-                throw new ArgumentOutOfRangeException(nameof(index), "indexは配列の範囲外です。");
+                throw new ArgumentOutOfRangeException($"Argument out of range. [{index}]");
             }
 
             byte[] newData = new byte[_data.Length - 1];

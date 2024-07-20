@@ -1,4 +1,7 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary.Test
+﻿using System.Diagnostics;
+using System.Globalization;
+
+namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
     public class VirtualNodeNameTests
@@ -6,6 +9,8 @@
         [TestInitialize]
         public void TestInitialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
         }
@@ -288,7 +293,11 @@
             string prefix = "";
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => VirtualNodeName.GenerateNodeName(prefix));
+            Exception err = Assert.ThrowsException<ArgumentException>(() => VirtualNodeName.GenerateNodeName(prefix));
+
+            Assert.AreEqual("Prefix cannot be empty.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]

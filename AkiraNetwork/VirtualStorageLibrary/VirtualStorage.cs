@@ -370,7 +370,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (path.IsRoot)
             {
-                throw new InvalidOperationException(string.Format(Resources.RootAlreadyExists));
+                throw new InvalidOperationException(Resources.RootAlreadyExists);
             }
 
             VirtualPath directoryPath = path.DirectoryPath;
@@ -1560,7 +1560,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // 新しい名前のノードが既に存在するかどうかのチェック
             if (NodeExists(newAbsolutePath))
             {
-                throw new InvalidOperationException($"指定された新しい名前のノード '{newAbsolutePath}' は既に存在します。");
+                throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, newAbsolutePath));
             }
 
             // 親ディレクトリの取得

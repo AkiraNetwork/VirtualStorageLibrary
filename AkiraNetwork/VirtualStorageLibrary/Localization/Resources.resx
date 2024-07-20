@@ -125,4 +125,44 @@
     <value>The root directory already exists.</value>
     <comment>Notifies if a root directory is specified when creating a directory.</comment>
   </data>
+  <data name="InvalidNodeName" xml:space="preserve">
+    <value>Node name [{0}] is invalid. Forbidden characters are used.</value>
+    <comment>Notifies if forbidden characters are included in the node name.</comment>
+  </data>
+  <data name="NodeAlreadyExists" xml:space="preserve">
+    <value>Node [{0}] already exists. Overwriting is not allowed.</value>
+    <comment>Notifies when adding a node if a node already exists and overwriting is not allowed.</comment>
+  </data>
+  <data name="NodeIsNotVirtualItem" xml:space="preserve">
+    <value>The specified node [{0}] is not of type VirtualItem&lt;{1}&gt;.</value>
+    <comment>Notifies if the specified node type is not VirtualItem&lt;T&gt;.</comment>
+  </data>
+  <data name="NodeIsNotVirtualDirectory" xml:space="preserve">
+    <value>The specified node [{0}] is not of type VirtualDirectory.</value>
+    <comment>Notifies if the specified node type is not VirtualDirectory.</comment>
+  </data>
+  <data name="NodeIsNotVirtualSymbolicLink" xml:space="preserve">
+    <value>The specified node [{0}] is not of type VirtualSymbolicLink.</value>
+    <comment>Notifies if the specified node type is not VirtualSymbolicLink.</comment>
+  </data>
+  <data name="PrefixIsEmpty" xml:space="preserve">
+    <value>Prefix cannot be empty.</value>
+    <comment>Notifies if the specified prefix is empty.</comment>
+  </data>
+  <data name="PathNormalizationAboveRoot" xml:space="preserve">
+    <value>Due to path normalization, it is above the root directory. [{0}]</value>
+    <comment>Notifies when path normalization results in the path being above the root directory.</comment>
+  </data>
+  <data name="ParameterIsNotVirtualPath" xml:space="preserve">
+    <value>The object specified by the parameter is not of type VirtualPath.</value>
+    <comment>Notifies when comparing paths if the type of the object specified by the parameter is not VirtualPath.</comment>
+  </data>
+  <data name="PathIsNotAbsolutePath" xml:space="preserve">
+    <value>This path is not an absolute path. [{0}]</value>
+    <comment>Notifies when obtaining a relative path if the path within VirtualPath is not an absolute path.</comment>
+  </data>
+  <data name="BasePathIsNotAbsolute" xml:space="preserve">
+    <value>The specified base path is not an absolute path. [{0}]</value>
+    <comment>Notifies when obtaining a relative path if the specified base path is not an absolute path.</comment>
+  </data>
 </root>

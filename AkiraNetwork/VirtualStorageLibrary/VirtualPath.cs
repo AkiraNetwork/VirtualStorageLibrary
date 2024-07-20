@@ -1,4 +1,6 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary
+﻿using AkiraNetwork.VirtualStorageLibrary.Localization;
+
+namespace AkiraNetwork.VirtualStorageLibrary
 {
     public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>, IComparable
     {
@@ -321,7 +323,7 @@
                     }
                     else
                     {
-                        throw new InvalidOperationException("パスがルートディレクトリより上への移動を試みています。無効なパス: " + path);
+                        throw new InvalidOperationException(string.Format(Resources.PathNormalizationAboveRoot, path));
                     }
                 }
                 else if (part != ".")
@@ -543,7 +545,7 @@
 
             if (obj is not VirtualPath)
             {
-                throw new ArgumentException("Object is not a VirtualPath");
+                throw new ArgumentException(Resources.ParameterIsNotVirtualPath);
             }
 
             return CompareTo((VirtualPath)obj);
@@ -555,13 +557,13 @@
             // このパスが絶対パスでない場合は例外をスロー
             if (!IsAbsolute)
             {
-                throw new InvalidOperationException("このパスは絶対パスではありません: " + _path);
+                throw new InvalidOperationException(string.Format(Resources.PathIsNotAbsolutePath, _path));
             }
 
             // ベースパスが絶対パスでない場合も例外をスロー
             if (!basePath.IsAbsolute)
             {
-                throw new InvalidOperationException("ベースパスは絶対パスでなければなりません: " + basePath.Path);
+                throw new InvalidOperationException(string.Format(Resources.BasePathIsNotAbsolute, basePath.Path));
             }
 
             // 両方のパスが等しい場合は"."を返却
