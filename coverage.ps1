@@ -1,5 +1,5 @@
 ﻿# TestResults ディレクトリのパス
-$testResultsDir = "/workspace/VirtualStorageLibrary/VirtualStorageLibrary.Test/TestResults"
+$testResultsDir = "/workspace/VirtualStorageLibrary/AkiraNetwork/VirtualStorageLibrary.Test/TestResults"
 
 # TestResults 内の全てのGUID名ディレクトリを削除
 Get-ChildItem -Path $testResultsDir -Directory |
