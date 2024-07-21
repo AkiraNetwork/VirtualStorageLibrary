@@ -124,6 +124,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   The object specified by the parameter is not of type VirtualNodeName. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ParameterIsNotVirtualNodeName {
+            get {
+                return ResourceManager.GetString("ParameterIsNotVirtualNodeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The object specified by the parameter is not of type VirtualPath. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ParameterIsNotVirtualPath {

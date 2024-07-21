@@ -153,4 +153,7 @@
   <data name="BasePathIsNotAbsolute" xml:space="preserve">
     <value>指定されたベースパスが絶対パスではありません。 [{0}]</value>
   </data>
+  <data name="ParameterIsNotVirtualNodeName" xml:space="preserve">
+    <value>パラメータで指定されたオブジェクトはVirtualNodeName型ではありません。</value>
+  </data>
 </root>

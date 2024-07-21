@@ -165,4 +165,8 @@
     <value>The specified base path is not an absolute path. [{0}]</value>
     <comment>Notifies when obtaining a relative path if the specified base path is not an absolute path.</comment>
   </data>
+  <data name="ParameterIsNotVirtualNodeName" xml:space="preserve">
+    <value>The object specified by the parameter is not of type VirtualNodeName.</value>
+    <comment>Notifies if the type of the object specified by the parameter is not VirtualNodeName.</comment>
+  </data>
 </root>

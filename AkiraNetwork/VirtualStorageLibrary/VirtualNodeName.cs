@@ -3,7 +3,6 @@ using System.Reflection;
 
 namespace AkiraNetwork.VirtualStorageLibrary
 {
-    [method: DebuggerStepThrough]
     public class VirtualNodeName(string name) : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable
     {
         private readonly string _name = name;
@@ -131,7 +130,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (obj is not VirtualNodeName)
             {
-                throw new ArgumentException("Object is not a VirtualNodeName");
+                throw new ArgumentException(Resources.ParameterIsNotVirtualNodeName);
             }
 
             return CompareTo((VirtualNodeName)obj);

@@ -159,6 +159,76 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void CompareTo_ReturnsPositiveWhenComparedWithNull()
+        {
+            // Arrange
+            var nodeName = new VirtualNodeName("Node");
+
+            // Act
+            int result = nodeName.CompareTo(null);
+
+            // Assert
+            Assert.IsTrue(result > 0, "CompareTo should return a positive number when compared with null.");
+        }
+
+        [TestMethod]
+        public void CompareTo_ThrowsArgumentExceptionWhenComparedWithDifferentType()
+        {
+            // Arrange
+            VirtualNodeName nodeName = "Node";
+            object obj = new object();
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => nodeName.CompareTo(obj));
+
+            Assert.AreEqual("The object specified by the parameter is not of type VirtualNodeName.", ex.Message);
+
+            Debug.WriteLine(ex.Message);
+        }
+
+        [TestMethod]
+        public void CompareTo_ReturnsZeroForIdenticalNamesUsingObject()
+        {
+            // Arrange
+            var nodeName1 = new VirtualNodeName("Node");
+            var nodeName2 = new VirtualNodeName("Node");
+
+            // Act
+            int result = nodeName1.CompareTo((object)nodeName2);
+
+            // Assert
+            Assert.AreEqual(0, result, "CompareTo should return 0 for identical names using object parameter.");
+        }
+
+        [TestMethod]
+        public void CompareTo_ReturnsNegativeForAlphabeticallyPriorUsingObject()
+        {
+            // Arrange
+            var nodeName1 = new VirtualNodeName("Node1");
+            var nodeName2 = new VirtualNodeName("Node2");
+
+            // Act
+            int result = nodeName1.CompareTo((object)nodeName2);
+
+            // Assert
+            Assert.IsTrue(result < 0, "CompareTo should return a negative number when the first name is alphabetically before the second using object parameter.");
+        }
+
+        [TestMethod]
+        public void CompareTo_ReturnsPositiveForAlphabeticallyAfterUsingObject()
+        {
+            // Arrange
+            var nodeName1 = new VirtualNodeName("Node2");
+            var nodeName2 = new VirtualNodeName("Node1");
+
+            // Act
+            int result = nodeName1.CompareTo((object)nodeName2);
+
+            // Assert
+            Assert.IsTrue(result > 0, "CompareTo should return a positive number when the first name is alphabetically after the second using object parameter.");
+        }
+
+        [TestMethod]
         public void OperatorEquals_ReturnsTrueForIdenticalNames()
         {
             // Arrange
