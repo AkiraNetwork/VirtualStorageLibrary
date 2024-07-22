@@ -36,7 +36,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (prefix == string.Empty)
             {
-                throw new ArgumentException(Resources.PrefixIsEmpty);
+                throw new ArgumentException(Resources.PrefixIsEmpty, nameof(prefix));
             }
 
             long currentNumber = Interlocked.Increment(ref _counter);
@@ -130,7 +130,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (obj is not VirtualNodeName)
             {
-                throw new ArgumentException(Resources.ParameterIsNotVirtualNodeName);
+                throw new ArgumentException(Resources.ParameterIsNotVirtualNodeName, nameof(obj));
             }
 
             return CompareTo((VirtualNodeName)obj);

@@ -181,7 +181,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => nodeName.CompareTo(obj));
 
-            Assert.AreEqual("The object specified by the parameter is not of type VirtualNodeName.", ex.Message);
+            Assert.AreEqual("The object specified by the parameter is not of type VirtualNodeName. (Parameter 'obj')", ex.Message);
 
             Debug.WriteLine(ex.Message);
         }
@@ -365,7 +365,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Act & Assert
             Exception err = Assert.ThrowsException<ArgumentException>(() => VirtualNodeName.GenerateNodeName(prefix));
 
-            Assert.AreEqual("Prefix cannot be empty.", err.Message);
+            Assert.AreEqual("Prefix cannot be empty. (Parameter 'prefix')", err.Message);
 
             Debug.WriteLine(err.Message);
         }

@@ -545,7 +545,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (obj is not VirtualPath)
             {
-                throw new ArgumentException(Resources.ParameterIsNotVirtualPath);
+                throw new ArgumentException(Resources.ParameterIsNotVirtualPath, nameof(obj));
             }
 
             return CompareTo((VirtualPath)obj);
@@ -636,5 +636,47 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return baseParts.Count;
         }
 
+        public static bool ArePathsSubdirectories(VirtualPath sourcePath, VirtualPath destinationPath)
+        {
+            if (sourcePath.IsEmpty)
+            {
+                throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(sourcePath));
+            }
+            else if (destinationPath.IsEmpty)
+            {
+                throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(destinationPath));
+            }
+
+            // パスがルートであるかを確認
+            if (sourcePath.IsRoot || destinationPath.IsRoot)
+            {
+                return true;
+            }
+
+            var sourceParts = sourcePath.PartsList;
+            var destinationParts = destinationPath.PartsList;
+
+            // パスが完全に一致するか確認
+            if (sourceParts.SequenceEqual(destinationParts))
+            {
+                return true;
+            }
+
+            // sourcePath が destinationPath のサブディレクトリか確認
+            if (sourceParts.Count <= destinationParts.Count &&
+                sourceParts.SequenceEqual(destinationParts.Take(sourceParts.Count)))
+            {
+                return true;
+            }
+
+            // destinationPath が sourcePath のサブディレクトリか確認
+            if (destinationParts.Count <= sourceParts.Count &&
+                destinationParts.SequenceEqual(sourceParts.Take(destinationParts.Count)))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

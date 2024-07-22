@@ -156,4 +156,31 @@
   <data name="ParameterIsNotVirtualNodeName" xml:space="preserve">
     <value>パラメータで指定されたオブジェクトはVirtualNodeName型ではありません。</value>
   </data>
+  <data name="TargetPathIsNotAbsolutePath" xml:space="preserve">
+    <value>パラメータで指定されたターゲットパスは絶対パスである必要があります。 [{0}]</value>
+  </data>
+  <data name="LinkPathIsNotAbsolutePath" xml:space="preserve">
+    <value>パラメータで指定されたシンボリックリンクのパスは絶対パスである必要があります。 [{0}]</value>
+  </data>
+  <data name="ParameterIsNullOrEmpty" xml:space="preserve">
+    <value>パラメータで指定された値がNULLまたは空です。 [{0}]</value>
+  </data>
+  <data name="ParameterIsEmpty" xml:space="preserve">
+    <value>パラメータで指定された値が空です。 [{0}]</value>
+  </data>
+  <data name="CannotReachBecauseNodeItem" xml:space="preserve">
+    <value>ノード [{0}] まで到達できません。ノード [{1}] はアイテムです。</value>
+  </data>
+  <data name="CannotReachBecauseNodeSymbolicLink" xml:space="preserve">
+    <value>ノード [{0}] まで到達できません。ノード [{1}] はシンボリックリンクであり、followLinksパラメータはfalseが指定されています。</value>
+  </data>
+  <data name="CircularReferenceDetected" xml:space="preserve">
+    <value>循環参照を検出しました。 [{0}] [{1}]</value>
+  </data>
+  <data name="PathCannotBeEmpty" xml:space="preserve">
+    <value>パスに空文字は指定できません。</value>
+  </data>
+  <data name="RecursiveSubdirectoryConflict" xml:space="preserve">
+    <value>recursiveパラメータがtrueに指定されている場合、コピー元またはコピー先に互いのサブディレクトリを指定することはできません。 [{0}] [{1}]</value>
+  </data>
 </root>

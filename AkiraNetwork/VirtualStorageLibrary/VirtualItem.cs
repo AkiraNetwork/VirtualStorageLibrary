@@ -110,7 +110,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (node is not VirtualItem<T> newItem)
             {
-                throw new ArgumentException(string.Format(Resources.NodeIsNotVirtualItem, node.Name, typeof(T).Name));
+                throw new ArgumentException(string.Format(Resources.NodeIsNotVirtualItem, node.Name, typeof(T).Name), nameof(node));
             }
 
             if (newItem.IsReferencedInStorage)

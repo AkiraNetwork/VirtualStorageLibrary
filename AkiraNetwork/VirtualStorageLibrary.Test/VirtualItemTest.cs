@@ -259,7 +259,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Act & Assert
             Exception err = Assert.ThrowsException<ArgumentException>(() => originalItem.Update(directoryNode));
 
-            Assert.AreEqual("The specified node [DirectoryNode] is not of type VirtualItem<BinaryData>.", err.Message);
+            Assert.AreEqual("The specified node [DirectoryNode] is not of type VirtualItem<BinaryData>. (Parameter 'node')", err.Message);
 
             Debug.WriteLine(err.Message);
 

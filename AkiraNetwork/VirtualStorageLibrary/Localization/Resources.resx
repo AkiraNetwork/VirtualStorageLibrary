@@ -169,4 +169,40 @@
     <value>The object specified by the parameter is not of type VirtualNodeName.</value>
     <comment>Notifies if the type of the object specified by the parameter is not VirtualNodeName.</comment>
   </data>
+  <data name="TargetPathIsNotAbsolutePath" xml:space="preserve">
+    <value>The target path specified in the parameter must be an absolute path. [{0}]</value>
+    <comment>Notifies if the target path specified by the parameter is not an absolute path.</comment>
+  </data>
+  <data name="LinkPathIsNotAbsolutePath" xml:space="preserve">
+    <value>The symbolic link path specified in the parameter must be an absolute path. [{0}]</value>
+    <comment>Notifies if the symbolic link path specified by the parameter is not an absolute path.</comment>
+  </data>
+  <data name="ParameterIsNullOrEmpty" xml:space="preserve">
+    <value>The values ​​specified in the parameters are null or empty. [{0}]</value>
+    <comment>Notifies if the value specified by the parameter is NULL or empty.</comment>
+  </data>
+  <data name="ParameterIsEmpty" xml:space="preserve">
+    <value>The values ​​specified in the parameters are empty. [{0}]</value>
+    <comment>Notifies if the value specified by the parameter is empty.</comment>
+  </data>
+  <data name="CannotReachBecauseNodeItem" xml:space="preserve">
+    <value>Cannot reach node [{0}]. Node [{1}] is an item.</value>
+    <comment>Notifies when path traversal cannot continue because an intermediate node is an item.</comment>
+  </data>
+  <data name="CannotReachBecauseNodeSymbolicLink" xml:space="preserve">
+    <value>Cannot reach node [{0}]. Node [{1}] is a symbolic link, and the followLinks parameter is set to false.</value>
+    <comment>Notifies when path traversal cannot continue because an intermediate node is a symbolic link and the followLinks parameter is false.</comment>
+  </data>
+  <data name="CircularReferenceDetected" xml:space="preserve">
+    <value>Circular reference detected. [{0}] [{1}]</value>
+    <comment>Notifies when a circular reference in the path is detected during path traversal.</comment>
+  </data>
+  <data name="PathCannotBeEmpty" xml:space="preserve">
+    <value>An empty string cannot be specified as a path.</value>
+    <comment>Notifies if the specified path is an empty string.</comment>
+  </data>
+  <data name="RecursiveSubdirectoryConflict" xml:space="preserve">
+    <value>If the recursive parameter is set to true, the source or destination cannot be a subdirectory of each other. [{0}] [{1}]</value>
+    <comment>Notifies when copying nodes if the recursive parameter is set to true and the source or destination is a subdirectory of each other.</comment>
+  </data>
 </root>

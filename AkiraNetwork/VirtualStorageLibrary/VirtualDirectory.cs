@@ -151,7 +151,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (!VirtualNodeName.IsValidNodeName(node.Name))
             {
-                throw new ArgumentException(string.Format(Resources.InvalidNodeName, node.Name));
+                throw new ArgumentException(string.Format(Resources.InvalidNodeName, node.Name), nameof(node));
             }
 
             VirtualNodeName key = node.Name;
@@ -358,7 +358,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (node is not VirtualDirectory newDirectory)
             {
-                throw new ArgumentException(string.Format(Resources.NodeIsNotVirtualDirectory, node.Name));
+                throw new ArgumentException(string.Format(Resources.NodeIsNotVirtualDirectory, node.Name), nameof(node));
             }
 
             if (newDirectory.IsReferencedInStorage)

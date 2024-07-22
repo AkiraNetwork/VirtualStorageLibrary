@@ -70,11 +70,47 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Cannot reach node [{0}]. Node [{1}] is an item. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotReachBecauseNodeItem {
+            get {
+                return ResourceManager.GetString("CannotReachBecauseNodeItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cannot reach node [{0}]. Node [{1}] is a symbolic link, and the followLinks parameter is set to false. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotReachBecauseNodeSymbolicLink {
+            get {
+                return ResourceManager.GetString("CannotReachBecauseNodeSymbolicLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Circular reference detected. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CircularReferenceDetected {
+            get {
+                return ResourceManager.GetString("CircularReferenceDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Node name [{0}] is invalid. Forbidden characters are used. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string InvalidNodeName {
             get {
                 return ResourceManager.GetString("InvalidNodeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The symbolic link path specified in the parameter must be an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LinkPathIsNotAbsolutePath {
+            get {
+                return ResourceManager.GetString("LinkPathIsNotAbsolutePath", resourceCulture);
             }
         }
         
@@ -124,6 +160,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   The values ​​specified in the parameters are empty. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ParameterIsEmpty {
+            get {
+                return ResourceManager.GetString("ParameterIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The object specified by the parameter is not of type VirtualNodeName. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ParameterIsNotVirtualNodeName {
@@ -138,6 +183,24 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         internal static string ParameterIsNotVirtualPath {
             get {
                 return ResourceManager.GetString("ParameterIsNotVirtualPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The values ​​specified in the parameters are null or empty. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ParameterIsNullOrEmpty {
+            get {
+                return ResourceManager.GetString("ParameterIsNullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   An empty string cannot be specified as a path. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PathCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("PathCannotBeEmpty", resourceCulture);
             }
         }
         
@@ -169,11 +232,29 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   If the recursive parameter is set to true, the source or destination cannot be a subdirectory of each other. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RecursiveSubdirectoryConflict {
+            get {
+                return ResourceManager.GetString("RecursiveSubdirectoryConflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The root directory already exists. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string RootAlreadyExists {
             get {
                 return ResourceManager.GetString("RootAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The target path specified in the parameter must be an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TargetPathIsNotAbsolutePath {
+            get {
+                return ResourceManager.GetString("TargetPathIsNotAbsolutePath", resourceCulture);
             }
         }
     }

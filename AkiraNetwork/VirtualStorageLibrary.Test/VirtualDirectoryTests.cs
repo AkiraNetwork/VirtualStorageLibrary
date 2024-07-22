@@ -223,7 +223,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
-            Assert.AreEqual("Node name [Invalid/Name] is invalid. Forbidden characters are used.", ex.Message);
+            Assert.AreEqual("Node name [Invalid/Name] is invalid. Forbidden characters are used. (Parameter 'node')", ex.Message);
 
             Debug.WriteLine(ex.Message);
         }
@@ -1926,7 +1926,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => originalDirectory.Update(invalidNode));
 
-            Assert.AreEqual("The specified node [ItemNode] is not of type VirtualDirectory.", ex.Message);
+            Assert.AreEqual("The specified node [ItemNode] is not of type VirtualDirectory. (Parameter 'node')", ex.Message);
 
             Debug.WriteLine(ex.Message);
         }

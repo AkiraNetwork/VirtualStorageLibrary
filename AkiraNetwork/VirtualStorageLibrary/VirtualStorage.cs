@@ -48,7 +48,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (!targetPath.IsAbsolute)
             {
-                throw new ArgumentException("リンク先のパスは絶対パスである必要があります。", nameof(targetPath));
+                throw new ArgumentException(string.Format(Resources.TargetPathIsNotAbsolutePath, targetPath), nameof(targetPath));
             }
 
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
@@ -175,7 +175,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             if (!linkPath.IsAbsolute)
             {
-                throw new ArgumentException("リンクパスは絶対パスである必要があります。", nameof(linkPath));
+                throw new ArgumentException(string.Format(Resources.LinkPathIsNotAbsolutePath, linkPath), nameof(linkPath));
             }
 
             List<VirtualPath> targetPathsToRemoveList = [];
@@ -216,7 +216,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // relativePathがnullまたは空文字列の場合は、ArgumentExceptionをスロー
             if (relativePath == null || relativePath.IsEmpty)
             {
-                throw new ArgumentException("relativePathがnullまたは空です。", nameof(relativePath));
+                throw new ArgumentException(string.Format(Resources.ParameterIsNullOrEmpty, relativePath), nameof(relativePath));
             }
 
             // relativePathが既に絶対パスである場合は、そのまま使用
@@ -228,7 +228,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // basePathが空文字列の場合、ArgumentExceptionをスロー
             if (basePath.IsEmpty)
             {
-                throw new ArgumentException("basePathが空です。", nameof(basePath));
+                throw new ArgumentException(string.Format(Resources.ParameterIsEmpty, basePath), nameof(basePath));
             }
 
             // relativePathを effectiveBasePath に基づいて絶対パスに変換
@@ -262,9 +262,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 case VirtualItem<T> item:
                     UpdateItem(destinationPath, item);
                     break;
-
-                default:
-                    throw new InvalidOperationException($"ノードの種類 '{node.GetType().Name}' はサポートされていません。");
             }
         }
 
@@ -322,9 +319,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 case VirtualItem<T> item:
                     AddItem(nodeDirectoryPath, item, overwrite);
                     break;
-
-                default:
-                    throw new InvalidOperationException($"ノードの種類 '{node.GetType().Name}' はサポートされていません。");
             }
         }
 
@@ -347,7 +341,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 if (parentDirectory.NodeExists(directory.Name))
                 {
-                    throw new InvalidOperationException($"ディレクトリ '{directory.Name}' は既に存在します。");
+                    throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, directory.Name));
                 }
 
                 // 新しいディレクトリを追加
@@ -358,7 +352,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException($"ノード '{directoryPath}' はディレクトリではありません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeIsNotVirtualDirectory, nodeContext.Node!.Name));
             }
 
             return;
@@ -406,14 +400,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 if (!overwrite)
                 {
-                    throw new InvalidOperationException($"ノード '{item.Name}' は既に存在します。上書きは許可されていません。");
+                    throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, item.Name));
                 }
                 else
                 {
-                    // 上書き対象がアイテムであることを確認
+                    // 上書き対象がアイテムでない場合は例外をスロー
                     if (!ItemExists(itemDirectoryPath + item.Name))
                     {
-                        throw new InvalidOperationException($"'{item.Name}' はアイテム以外のノードです。アイテムの上書きはできません。");
+                        throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualItem, item.Name, typeof(T).Name));
                     }
                     // 既存アイテムの削除
                     directory.Remove(item);
@@ -456,14 +450,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 if (!overwrite)
                 {
-                    throw new InvalidOperationException($"ノード '{link.Name}' は既に存在します。上書きは許可されていません。");
+                    throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, link.Name));
                 }
                 else
                 {
-                    // 既存のノードがシンボリックリンクであるかどうかチェック
+                    // 既存のノードがシンボリックリンクでない場合は例外をスロー
                     if (!SymbolicLinkExists(linkDirectoryPath + link.Name))
                     {
-                        throw new InvalidOperationException($"既存のノード '{link.Name}' はシンボリックリンクではありません。シンボリックリンクのみ上書き可能です。");
+                        throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualSymbolicLink, link.Name));
                     }
                     // 既存のシンボリックリンクを削除
                     directory.Remove(link);
@@ -611,7 +605,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // 例外が有効な場合は例外をスロー
                 if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException($"ノード '{p.TargetPath}' まで到達できません。ノード '{p.TraversalPath}' はアイテムです。");
+                    throw new VirtualNodeNotFoundException(string.Format(Resources.CannotReachBecauseNodeItem, p.TargetPath, p.TraversalPath));
                 }
 
                 return new VirtualNodeContext(null, p.TraversalPath, null, 0, 0, p.ResolvedPath, p.Resolved);
@@ -635,8 +629,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     // 例外が有効な場合は例外をスロー
                     if (p.ExceptionEnabled)
                     {
-                        throw new VirtualNodeNotFoundException($"ノード '{p.TargetPath}' まで到達できません。" +
-                            $"ノード '{p.TraversalPath}' はシンボリックリンクであり、リンク解決は指定されていません。");
+                        throw new VirtualNodeNotFoundException(string.Format(Resources.CannotReachBecauseNodeSymbolicLink, p.TargetPath, p.TraversalPath));
                     }
 
                     return new VirtualNodeContext(node, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
@@ -669,7 +662,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // 循環参照チェック
                 if (CycleDetectorForTarget.IsNodeInCycle(link))
                 {
-                    throw new InvalidOperationException($"循環参照を検出しました。 '{p.TraversalPath}' ({link})");
+                    throw new InvalidOperationException(string.Format(Resources.CircularReferenceDetected, p.TraversalPath, link));
                 }
 
                 nodeContext = WalkPathToTargetInternal(p2);
@@ -926,7 +919,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     // 循環参照チェック
                     if (CycleDetectorForTree.IsNodeInCycle(link))
                     {
-                        throw new InvalidOperationException($"循環参照を検出しました。 '{traversalFullPath}' ({link})");
+                        throw new InvalidOperationException(string.Format(Resources.CircularReferenceDetected, traversalFullPath, link));
                     }
 
                     foreach (var result in WalkPathTreeInternal(p2))
@@ -1048,7 +1041,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException($"ディレクトリ {path} は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, node.Name));
             }
         }
 
@@ -1075,7 +1068,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException($"アイテム {path} は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, node.Name));
             }
         }
 
@@ -1106,7 +1099,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException($"シンボリックリンク {path} は存在しません。");
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, node.Name));
             }
         }
 
@@ -1180,10 +1173,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
             // ルートディレクトリのコピーを禁止
-            if (absoluteSourcePath.IsRoot)
-            {
-                throw new InvalidOperationException("ルートディレクトリのコピーは禁止されています。");
-            }
+            //if (absoluteSourcePath.IsRoot)
+            //{
+            //    throw new InvalidOperationException("ルートディレクトリのコピーは禁止されています。");
+            //}
 
             // コピー元の存在確認
             if (!NodeExists(absoluteSourcePath, true))
@@ -1198,25 +1191,16 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
 
             // 循環参照チェック
-            if (absoluteDestinationPath.StartsWith(absoluteSourcePath.AddEndSlash()) || absoluteSourcePath.StartsWith(absoluteDestinationPath.AddEndSlash()))
+            if (recursive)
             {
-                throw new InvalidOperationException("コピー元またはコピー先が互いのサブディレクトリになっています。");
-            }
-
-            // コピー元ツリーの探索
-            IEnumerable<VirtualNodeContext> sourceContexts = WalkPathTree(absoluteSourcePath, VirtualNodeTypeFilter.All, recursive, followLinks);
-
-            // 各ノードに対する存在確認
-            foreach (var context in sourceContexts)
-            {
-                VirtualPath currentSourcePath = absoluteSourcePath + context.TraversalPath;
-
-                // コピー元ノードの存在確認
-                if (!NodeExists(currentSourcePath, true))
+                if (VirtualPath.ArePathsSubdirectories(absoluteSourcePath, absoluteDestinationPath))
                 {
-                    throw new VirtualNodeNotFoundException($"コピー元ノード '{currentSourcePath}' は存在しません。");
+                    throw new InvalidOperationException(string.Format(Resources.RecursiveSubdirectoryConflict, absoluteSourcePath, absoluteDestinationPath));
                 }
             }
+
+            // コピー元ツリーの探索 (コピー元の存在確認を行い、問題があれば例外をスロー。返却値は破棄)
+            IEnumerable<VirtualNodeContext> _ = WalkPathTree(absoluteSourcePath, VirtualNodeTypeFilter.All, recursive, followLinks).ToList();
         }
 
         public void CopyNode(

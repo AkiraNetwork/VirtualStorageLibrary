@@ -142,7 +142,26 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
 
             // Act and Assert
-            Assert.ThrowsException<ArgumentException>(() => vs.ConvertToAbsolutePath(string.Empty));
+            Exception err = Assert.ThrowsException<ArgumentException>(() => vs.ConvertToAbsolutePath(string.Empty));
+
+            Assert.AreEqual("The values ​​specified in the parameters are null or empty. [] (Parameter 'relativePath')", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("ConvertToAbsolutePath")]
+        public void ConvertToAbsolutePath_WhenPathIsNull_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act and Assert
+            Exception err = Assert.ThrowsException<ArgumentException>(() => vs.ConvertToAbsolutePath(null));
+
+            Assert.AreEqual("The values ​​specified in the parameters are null or empty. [] (Parameter 'relativePath')", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -266,7 +285,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath relativePath = "some/relative/cycleInfo";
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentException>(() => vs.ConvertToAbsolutePath(relativePath, string.Empty));
+            Exception err = Assert.ThrowsException<ArgumentException>(() => vs.ConvertToAbsolutePath(relativePath, string.Empty));
+
+            Assert.AreEqual("The values ​​specified in the parameters are empty. [] (Parameter 'basePath')", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -511,9 +534,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act & Assert
             // "/dir1/item"がディレクトリではないノードの下に"dir2"ディレクトリを追加しようとすると例外がスローされることを確認
-            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-                vs.AddDirectory("/dir1/item/dir2", true));
-            Debug.WriteLine(exception.Message);
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+                vs.AddDirectory("/dir1/item/dir2"));
+
+            Assert.AreEqual("The specified node [item] is not of type VirtualDirectory.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -548,7 +574,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/base/link", "/target");
 
             // Act & Assert
-            // "/base/link"にディレクトリを作成しようとすると、例外が発生することを確認
+            // "/base/link"に同じ名前のディレクトリを作成しようとすると、例外が発生することを確認
             Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.AddDirectory("/base/link", true));
         }
@@ -561,14 +587,34 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<string> vs = new();
             // 基本ディレクトリを作成
             vs.AddDirectory("/base", true);
-            // "/base"ディレクトリにアイテム"/base/item"を作成（この例では、アイテムを作成するメソッドを仮定）
+            // "/base"ディレクトリにアイテム"/base/item"を作成
             vs.AddItem("/base/item", "Some content", true);
 
             // Act & Assert
-            // "/base/item"にディレクトリを作成しようとすると、例外が発生することを確認
+            // "/base/item"に同じ名前のディレクトリを作成しようとすると、例外が発生することを確認
             Assert.ThrowsException<InvalidOperationException>(() =>
-                vs.AddDirectory("/base/item", true),
-                "Expected VirtualNodeNotFoundException when trying to create a parentDirectory where an item exists with the same nodeName.");
+                vs.AddDirectory("/base/item", true));
+        }
+
+        [TestMethod]
+        [TestCategory("AddDirectory")]
+        public void AddDirectory_ThrowsException_WhenDirectoryExistsWithSameName()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            // 基本ディレクトリを作成
+            vs.AddDirectory("/base", true);
+            // "/base"ディレクトリにディレクトリ"/base/dir"を作成
+            vs.AddItem("/base/dir", "Some content", true);
+
+            // Act & Assert
+            // "/base/dir"に同じ名前のディレクトリを作成しようとすると、例外が発生することを確認
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
+                vs.AddDirectory("/base/dir", true));
+
+            Assert.AreEqual("Node [dir] already exists. Overwriting is not allowed.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1063,7 +1109,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/nonexistent";
 
             // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetDirectory(path));
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetDirectory(path));
+
+            Assert.AreEqual("Node not found. [/nonexistent]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1125,7 +1175,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/nonexistent";
 
             // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetItem(path));
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetItem(path));
+
+            Assert.AreEqual("Node not found. [/nonexistent]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1187,7 +1241,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/nonexistent-link";
 
             // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetSymbolicLink(path));
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetSymbolicLink(path));
+
+            Assert.AreEqual("Node not found. [/nonexistent-link]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1309,7 +1367,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/ExistingItem";
             vs.AddItem(path, originalItem);
 
-            Assert.ThrowsException<InvalidOperationException>(() => vs.AddItem(path, new BinaryData([4, 5, 6]), false));
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() => vs.AddItem(path, new BinaryData([4, 5, 6]), false));
+
+            Assert.AreEqual("Node [ExistingItem] already exists. Overwriting is not allowed.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -1391,9 +1453,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeName itemName = "itemName";
 
             // アイテム上書きを試みる（ただし、実際にはディレクトリが存在するため、アイテムではない）
-            Assert.ThrowsException<InvalidOperationException>(() =>
-                vs.AddItem("/testDirectory/" + itemName, item, true),
-                "上書き対象がアイテムではなくディレクトリの場合、InvalidOperationExceptionが投げられるべきです。");
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
+                vs.AddItem((VirtualPath)"/testDirectory" + itemName, item, true));
+
+            Assert.AreEqual("The specified node [itemName] is not of type VirtualItem<BinaryData>.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -4557,8 +4622,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/test/existingLink", "/old/target/cycleInfo");
 
             // Act & Assert
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.AddSymbolicLink("/test/existingLink", "/new/target/cycleInfo", overwrite: false));
+
+            Assert.AreEqual("Node [existingLink] already exists. Overwriting is not allowed.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -4605,14 +4674,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Arrange
             VirtualStorage<BinaryData> vs = new();
 
-            vs.AddDirectory("/test/existingDirectory", true); // 既存のディレクトリを追加
+            vs.AddDirectory("/link1", true); // 既存のディレクトリを追加
 
-            vs.AddDirectory("/new/target/cycleInfo", true); // シンボリックリンクのターゲットとなるディレクトリを追加
+            vs.AddDirectory("/oldTarget", true); // シンボリックリンクのターゲットとなるディレクトリを追加
 
             // Act & Assert
-            Assert.ThrowsException<InvalidOperationException>(() =>
-                vs.AddSymbolicLink("/test/existingDirectory", "/new/target/cycleInfo", true),
-                "既存のディレクトリ上にシンボリックリンクを追加しようとすると、上書きが true でもInvalidOperationExceptionが発生するべきです。");
+            Exception err =  Assert.ThrowsException<InvalidOperationException>(() =>
+                vs.AddSymbolicLink("/link1", "/newTarget", true));
+
+            Assert.AreEqual("The specified node [link1] is not of type VirtualSymbolicLink.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -4810,10 +4882,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path + "dir3";
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -4864,14 +4938,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             BinaryData data = [1, 2, 3];
             vs.AddDirectory(path.DirectoryPath, true);
             vs.AddItem(path, data);
-            VirtualPath targetPath = path;
+            VirtualPath targetPath = path + "dir2";
 
-            VirtualNodeNotFoundException err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath + "otherItem", NotifyNode, null, true, true);
+                VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
 
-            Debug.WriteLine($"ExceptionMessage: {err.Message}");
+            Assert.AreEqual("Cannot reach node [/dir1/item/dir2]. Node [/dir1/item] is an item.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -4949,12 +5025,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir2/item", data);
             vs.AddSymbolicLink("/dir1/link1", "/dir2");
 
-            VirtualNodeNotFoundException err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, false, true);
             });
 
-            Debug.WriteLine($"ExceptionMessage: {err.Message}");
+            Assert.AreEqual("Cannot reach node [/dir1/link1/item]. " +
+                "Node [/dir1/link1] is a symbolic link, and the followLinks parameter is set to false.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -8007,11 +8086,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine("ディレクトリ構造 (処理前):");
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
-            // 実行 & 検査: コピー元がコピー先のサブディレクトリである場合
+            // 実行 & 検査: コピー先がコピー元のサブディレクトリであり、 recursive パラメータが true の場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/dir1", "/dir1/subdir", false, false, false, contexts);
+                vs.CopyNode("/dir1", "/dir1/subdir", false, true, false, contexts);
             });
+
+            Assert.AreEqual("If the recursive parameter is set to true, " +
+                "the source or destination cannot be a subdirectory of each other. [/dir1] [/dir1/subdir]", err.Message);
+
             Debug.WriteLine(err.Message);
         }
 
@@ -8031,13 +8114,67 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/dir1/subdir", "/dir1", false, false, false, contexts);
+                vs.CopyNode("/dir1/subdir", "/dir1", false, true, false, contexts);
             });
+
+            Assert.AreEqual("If the recursive parameter is set to true, " +
+                "the source or destination cannot be a subdirectory of each other. [/dir1/subdir] [/dir1]", err.Message);
+
             Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
-        [TestCategory("AddLinkToDictionary")]
+        [TestCategory("CopyNode")]
+        public void CopyNode_CopySourceToItsSubdirectoryWithRoot_ThrowsException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/subdir1", true);
+            vs.AddItem("/dir1/item1", new BinaryData([1, 2, 3]));
+            List<VirtualNodeContext> contexts = [];
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // 実行 & 検査: コピー先がコピー元のサブディレクトリであり、 recursive パラメータが true の場合
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.CopyNode("/", "/dir1/subdir", false, true, false, contexts);
+            });
+
+            Assert.AreEqual("If the recursive parameter is set to true, " +
+                "the source or destination cannot be a subdirectory of each other. [/] [/dir1/subdir]", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("CopyNode")]
+        public void CopyNode_CopyDestinationToItsParentDirectoryWithRoot_ThrowsException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/subdir", true);
+            vs.AddItem("/dir1/subdir/item1", new BinaryData([1, 2, 3]));
+            List<VirtualNodeContext> contexts = [];
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.CopyNode("/dir1/subdir", "/", false, true, false, contexts);
+            });
+
+            Assert.AreEqual("If the recursive parameter is set to true, " +
+                "the source or destination cannot be a subdirectory of each other. [/dir1/subdir] [/]", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
         public void AddLinkToDictionary_Test()
         {
             // ユーザーデータ
@@ -8077,7 +8214,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         // 絶対パスのターゲットパスとリンクパスを追加するテスト
         [TestMethod]
-        [TestCategory("AddLinkToDictionary")]
+        [TestCategory("LinkDictionary")]
         public void AddLinkToDictionary_AddsLinkSuccessfully()
         {
             // Arrange
@@ -8101,7 +8238,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         // 相対パスのリンクパスを正しく変換して追加するテスト
         [TestMethod]
-        [TestCategory("AddLinkToDictionary")]
+        [TestCategory("LinkDictionary")]
         public void AddLinkToDictionary_ConvertsRelativeLinkPath()
         {
             // Arrange
@@ -8125,7 +8262,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         // 既に存在するターゲットパスに新しいリンクパスを追加するテスト
         [TestMethod]
-        [TestCategory("AddLinkToDictionary")]
+        [TestCategory("LinkDictionary")]
         public void AddLinkToDictionary_AddsNewLinkToExistingTarget()
         {
             // Arrange
@@ -8150,7 +8287,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         // リンクパスが正しく正規化されることを確認するテスト
         [TestMethod]
-        [TestCategory("AddLinkToDictionary")]
+        [TestCategory("LinkDictionary")]
         public void AddLinkToDictionary_NormalizesLinkPath()
         {
             // Arrange
@@ -8173,7 +8310,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         // リンクのターゲットノードタイプが正しく設定されることを確認するテスト
         [TestMethod]
-        [TestCategory("AddLinkToDictionary")]
+        [TestCategory("LinkDictionary")]
         public void AddLinkToDictionary_SetsCorrectTargetNodeType()
         {
             // Arrange
@@ -8229,9 +8366,30 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.None, nonExistentLink.TargetNodeType);
         }
 
+        // ターゲットパスが絶対パスでない場合に例外がスローされることを確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void AddLinkToDictionary_ThrowsExceptionForNonAbsolutePath()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath targetPath = "relative/dir1";
+            VirtualPath linkPath = "/absolute/link1";
+
+            // Act & Assert
+            var err = Assert.ThrowsException<ArgumentException>(() =>
+            {
+                vs.AddLinkToDictionary(targetPath, linkPath);
+            });
+
+            Assert.AreEqual("The target path specified in the parameter must be an absolute path. [relative/dir1] (Parameter 'targetPath')", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
         // ターゲットパスが存在しないシンボリックリンクを作成し、ディレクトリを追加してリンクノードタイプを更新するテスト
         [TestMethod]
-        [TestCategory("AddLinkToDictionary")]
+        [TestCategory("LinkDictionary")]
         public void AddDirectory_UpdatesLinkTypeForNonExistentTargetToDirectory()
         {
             // Arrange
@@ -8629,6 +8787,26 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書から dir4LinkPathの エントリが削除されている事を確認
             Assert.IsFalse(vs.LinkDictionary.ContainsKey(dir4Target));
+        }
+
+        // シンボリックリンクのパスが絶対パスでない場合に例外がスローされることを確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void RemoveLinkByLinkPath_ThrowsExceptionForNonAbsolutePath()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath linkPath = "relative/link1";
+
+            // Act & Assert
+            var err = Assert.ThrowsException<ArgumentException>(() =>
+            {
+                vs.RemoveLinkByLinkPath(linkPath);
+            });
+
+            Assert.AreEqual("The symbolic link path specified in the parameter must be an absolute path. [relative/link1] (Parameter 'linkPath')", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -9210,6 +9388,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true).ToList();
             });
+
+            Assert.AreEqual("Circular reference detected. [/dir1/linkToDir1/linkToDir1] [linkToDir1 -> /dir1]", err.Message);
+
             Debug.WriteLine(err.Message);
 
             // 循環参照コレクション出力
@@ -9361,6 +9542,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 vs.AddSymbolicLink("/link1", "/link1");
             });
+
+            Assert.AreEqual("Circular reference detected. [/link1] [link1 -> /link1]", err.Message);
+
             Debug.WriteLine(err.Message);
 
             // 循環参照コレクション出力
