@@ -183,4 +183,16 @@
   <data name="RecursiveSubdirectoryConflict" xml:space="preserve">
     <value>recursiveパラメータがtrueに指定されている場合、コピー元またはコピー先に互いのサブディレクトリを指定することはできません。 [{0}] [{1}]</value>
   </data>
+  <data name="PathNotFound" xml:space="preserve">
+    <value>パスが見つかりません。 [{0}]</value>
+  </data>
+  <data name="SourceAndDestinationPathSame" xml:space="preserve">
+    <value>コピー元のパスとコピー先のパスが同じです。</value>
+  </data>
+  <data name="CannotAddRoot" xml:space="preserve">
+    <value>ディレクトリにルートを追加する事は出来ません。</value>
+  </data>
+  <data name="NegativeDepthValue" xml:space="preserve">
+    <value>深さが負の値になりました。 [{0}]</value>
+  </data>
 </root>

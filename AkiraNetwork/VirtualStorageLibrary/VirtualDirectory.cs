@@ -149,6 +149,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public VirtualNode Add(VirtualNode node, bool allowOverwrite = false)
         {
+            if (node.Name.IsRoot)
+            {
+                throw new ArgumentException(Resources.CannotAddRoot, nameof(node));
+            }
+
             if (!VirtualNodeName.IsValidNodeName(node.Name))
             {
                 throw new ArgumentException(string.Format(Resources.InvalidNodeName, node.Name), nameof(node));

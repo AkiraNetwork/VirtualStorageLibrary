@@ -70,6 +70,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Cannot add the root to a directory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotAddRoot {
+            get {
+                return ResourceManager.GetString("CannotAddRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cannot reach node [{0}]. Node [{1}] is an item. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CannotReachBecauseNodeItem {
@@ -111,6 +120,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         internal static string LinkPathIsNotAbsolutePath {
             get {
                 return ResourceManager.GetString("LinkPathIsNotAbsolutePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Depth has become a negative value. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NegativeDepthValue {
+            get {
+                return ResourceManager.GetString("NegativeDepthValue", resourceCulture);
             }
         }
         
@@ -223,6 +241,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Path not found. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PathNotFound {
+            get {
+                return ResourceManager.GetString("PathNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Prefix cannot be empty. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PrefixIsEmpty {
@@ -246,6 +273,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         internal static string RootAlreadyExists {
             get {
                 return ResourceManager.GetString("RootAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The source path and the destination path are the same. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SourceAndDestinationPathSame {
+            get {
+                return ResourceManager.GetString("SourceAndDestinationPathSame", resourceCulture);
             }
         }
         

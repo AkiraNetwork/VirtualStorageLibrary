@@ -1172,22 +1172,16 @@ namespace AkiraNetwork.VirtualStorageLibrary
             VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
             VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
-            // ルートディレクトリのコピーを禁止
-            //if (absoluteSourcePath.IsRoot)
-            //{
-            //    throw new InvalidOperationException("ルートディレクトリのコピーは禁止されています。");
-            //}
-
             // コピー元の存在確認
             if (!NodeExists(absoluteSourcePath, true))
             {
-                throw new VirtualNodeNotFoundException($"コピー元ノード '{absoluteSourcePath}' は存在しません。");
+                throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, absoluteSourcePath));
             }
 
             // コピー元とコピー先が同じ場合は例外をスロー
             if (absoluteSourcePath == absoluteDestinationPath)
             {
-                throw new InvalidOperationException("コピー元とコピー先が同じです。");
+                throw new InvalidOperationException(Resources.SourceAndDestinationPathSame);
             }
 
             // 循環参照チェック
@@ -1215,18 +1209,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             sourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
-
-            // コピー元パスが存在しない場合
-            if (!NodeExists(sourcePath, true))
-            {
-                throw new VirtualNodeNotFoundException($"コピー元のノード '{sourcePath}' が存在しません。");
-            }
-
-            // コピー元パスとコピー先パスが同じ場合
-            if (sourcePath == destinationPath)
-            {
-                throw new InvalidOperationException("コピー元パスとコピー先パスが同じです。");
-            }
 
             // コピー元のツリーを取得
             IEnumerable<VirtualNodeContext> sourceContexts = WalkPathTree(sourcePath, VirtualNodeTypeFilter.All, recursive, followLinks);
@@ -1260,10 +1242,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
             List<VirtualNodeContext>? destinationContextList)
         {
             VirtualNodeName? newNodeName;
+            VirtualDirectory destinationDirectory;
+            VirtualNode? destinationNode;
 
-            VirtualDirectory destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
-
-            VirtualNode? destinationNode = destinationDirectory.Get(destinationPath.NodeName, false);
+            if (destinationPath.IsRoot)
+            {
+                destinationDirectory = _root;
+                destinationNode = _root;
+            }
+            else
+            {
+                destinationDirectory = GetDirectory(destinationPath.DirectoryPath, true);
+                destinationNode = destinationDirectory.Get(destinationPath.NodeName, false);
+            }
 
             bool overwriteDirectory = false;
 
@@ -1285,7 +1276,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                         }
                         else
                         {
-                            throw new InvalidOperationException($"ノード '{newNodeName}' は既に存在します。上書きは許可されていません。");
+                            throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, newNodeName));
                         }
                     }
                     destinationPath += newNodeName;
@@ -1298,7 +1289,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     }
                     else
                     {
-                        throw new InvalidOperationException($"アイテム '{item.Name}' は既に存在します。上書きは許可されていません。");
+                        throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, item.Name));
                     }
                     newNodeName = destinationPath.NodeName;
                     break;
@@ -1330,8 +1321,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
             int depth = destinationPath.Depth - 1;
             if (depth < 0)
             {
-                // デバッグ用
-                throw new InvalidOperationException("深さが負の値になりました。");
+                // デバッグ用 (これは内務矛盾が発生した場合のみ。処理を見直す必要があるかもしれない)
+                throw new InvalidOperationException(string.Format(Resources.NegativeDepthValue, depth));
             }
 
             if (destinationContextList != null)

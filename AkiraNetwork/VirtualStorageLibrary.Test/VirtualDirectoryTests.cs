@@ -268,6 +268,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void Add_InvalidNodeNameWithRoot_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> newNode = new("/", new BinaryData([1, 2, 3]));
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => directory.Add(newNode));
+
+            Assert.AreEqual("Cannot add the root to a directory. (Parameter 'node')", ex.Message);
+
+            Debug.WriteLine(ex.Message);
+        }
+
+        [TestMethod]
         public void AddItem_AddsNewItemSuccessfully()
         {
             VirtualDirectory directory = new("TestDirectory");

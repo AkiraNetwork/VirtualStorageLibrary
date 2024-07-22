@@ -205,4 +205,20 @@
     <value>If the recursive parameter is set to true, the source or destination cannot be a subdirectory of each other. [{0}] [{1}]</value>
     <comment>Notifies when copying nodes if the recursive parameter is set to true and the source or destination is a subdirectory of each other.</comment>
   </data>
+  <data name="PathNotFound" xml:space="preserve">
+    <value>Path not found. [{0}]</value>
+    <comment>Notifies if a path is not found while processing nodes included in the path.</comment>
+  </data>
+  <data name="SourceAndDestinationPathSame" xml:space="preserve">
+    <value>The source path and the destination path are the same.</value>
+    <comment>Notifies when copying nodes if the source path and the destination path are the same.</comment>
+  </data>
+  <data name="CannotAddRoot" xml:space="preserve">
+    <value>Cannot add the root to a directory.</value>
+    <comment>Notifies when attempting to add the root to a directory.</comment>
+  </data>
+  <data name="NegativeDepthValue" xml:space="preserve">
+    <value>Depth has become a negative value. [{0}]</value>
+    <comment>Notifies when an internal inconsistency occurs in the depth calculation set in the context during the node copy process.</comment>
+  </data>
 </root>

@@ -6868,10 +6868,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // 実行 & 検査: 存在しない "/item1" をコピーしようとする
-            var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 vs.CopyNode("/item1", "/item2", false, false, false, contexts);
             });
+
+            Assert.AreEqual("Path not found. [/item1]", err.Message);
+
             Debug.WriteLine(err.Message);
         }
 
@@ -6895,6 +6898,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 vs.CopyNode("/item1", "/item1", false, false, false, contexts);
             });
+
+            Assert.AreEqual("The source path and the destination path are the same.", err.Message);
+
             Debug.WriteLine(err.Message);
         }
 
@@ -6983,6 +6989,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 vs.CopyNode("/item1", "/dir1/item1", false, false, false, contexts);
             });
+
+            Assert.AreEqual("Node [item1] already exists. Overwriting is not allowed.", err.Message);
+
             Debug.WriteLine(err.Message);
         }
 
@@ -7493,6 +7502,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 vs.CopyNode("/dir1", "/dst", false, false, false, contexts);
             });
+
+            Assert.AreEqual("Node [dir1] already exists. Overwriting is not allowed.", err.Message);
+
             Debug.WriteLine(err.Message);
         }
 
@@ -7802,7 +7814,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
 
             // 実行
-            var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 vs.CopyNode("/link1", "/link2", false, false, false, contexts);
             });
@@ -8089,11 +8101,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 実行 & 検査: コピー先がコピー元のサブディレクトリであり、 recursive パラメータが true の場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/dir1", "/dir1/subdir", false, true, false, contexts);
+                vs.CopyNode("/dir1", "/dir1/subdir1", false, true, false, contexts);
             });
 
             Assert.AreEqual("If the recursive parameter is set to true, " +
-                "the source or destination cannot be a subdirectory of each other. [/dir1] [/dir1/subdir]", err.Message);
+                "the source or destination cannot be a subdirectory of each other. [/dir1] [/dir1/subdir1]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -8103,8 +8115,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void CopyNode_CopyDestinationToItsParentDirectory_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/dir1/subdir", true);
-            vs.AddItem("/dir1/subdir/item1", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1/subdir1", true);
+            vs.AddItem("/dir1/subdir1/item1", new BinaryData([1, 2, 3]));
             List<VirtualNodeContext> contexts = [];
 
             // ディレクトリ構造のデバッグ出力
@@ -8114,11 +8126,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/dir1/subdir", "/dir1", false, true, false, contexts);
+                vs.CopyNode("/dir1/subdir1", "/dir1", false, true, false, contexts);
             });
 
             Assert.AreEqual("If the recursive parameter is set to true, " +
-                "the source or destination cannot be a subdirectory of each other. [/dir1/subdir] [/dir1]", err.Message);
+                "the source or destination cannot be a subdirectory of each other. [/dir1/subdir1] [/dir1]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -8139,11 +8151,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 実行 & 検査: コピー先がコピー元のサブディレクトリであり、 recursive パラメータが true の場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/", "/dir1/subdir", false, true, false, contexts);
+                vs.CopyNode("/", "/dir1/subdir1", false, true, false, contexts);
             });
 
             Assert.AreEqual("If the recursive parameter is set to true, " +
-                "the source or destination cannot be a subdirectory of each other. [/] [/dir1/subdir]", err.Message);
+                "the source or destination cannot be a subdirectory of each other. [/] [/dir1/subdir1]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -8153,8 +8165,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void CopyNode_CopyDestinationToItsParentDirectoryWithRoot_ThrowsException()
         {
             VirtualStorage<BinaryData> vs = new();
-            vs.AddDirectory("/dir1/subdir", true);
-            vs.AddItem("/dir1/subdir/item1", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1/subdir1", true);
+            vs.AddItem("/dir1/subdir1/item1", new BinaryData([1, 2, 3]));
             List<VirtualNodeContext> contexts = [];
 
             // ディレクトリ構造のデバッグ出力
@@ -8164,13 +8176,62 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/dir1/subdir", "/", false, true, false, contexts);
+                vs.CopyNode("/dir1/subdir1", "/", false, true, false, contexts);
             });
 
             Assert.AreEqual("If the recursive parameter is set to true, " +
-                "the source or destination cannot be a subdirectory of each other. [/dir1/subdir] [/]", err.Message);
+                "the source or destination cannot be a subdirectory of each other. [/dir1/subdir1] [/]", err.Message);
 
             Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("CopyNode")]
+        public void CopyNode_CopySourceToItsSubdirectoryWithRoot_WithoutFollowLinks()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/subdir1", true);
+            vs.AddItem("/dir1/item1", new BinaryData([1, 2, 3]));
+            List<VirtualNodeContext> contexts = [];
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // 実行 & 検査: recursive が false でコピーした場合、コピー先にルートの名前で作成できないので例外が発生する
+            var err = Assert.ThrowsException<ArgumentException>(() =>
+            {
+                vs.CopyNode("/", "/dir1/subdir1", false, false, false, contexts);
+            });
+
+            Assert.AreEqual("Cannot add the root to a directory. (Parameter 'node')", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("CopyNode")]
+        public void CopyNode_CopyDestinationToItsParentDirectoryWithRoot_WithoutFollowLinks()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/subdir1", true);
+            vs.AddItem("/dir1/subdir1/item1", new BinaryData([1, 2, 3]));
+            List<VirtualNodeContext> contexts = [];
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            // 実行: コピー先がコピー元の親ディレクトリである場合
+            vs.CopyNode("/dir1/subdir1", "/", false, false, false, contexts);
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+
+            // 検査
+            Assert.IsTrue(vs.NodeExists("/dir1/subdir1/item1"));
+            Assert.IsTrue(vs.NodeExists("/subdir1"));
         }
 
         [TestMethod]
