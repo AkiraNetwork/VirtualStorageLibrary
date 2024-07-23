@@ -2009,8 +2009,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             BinaryData item = [1, 2, 3];
             vs.AddItem("/TestDirectory/TestItem", item);
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.RemoveNode("/TestDirectory"));
+
+            Assert.AreEqual("Cannot remove the directory because it is not empty and the recursive parameter is set to false. [TestDirectory]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -2078,10 +2082,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void RemoveNode_RootDirectory_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 vs.RemoveNode(VirtualPath.Root);
             });
+
+            Assert.AreEqual("Cannot remove the root directory.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -2860,7 +2868,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.SetNodeName("/testFile", "newTestFile"));
 
-            Assert.AreEqual("Node [/newTestFile] already exists. Overwriting is not allowed.", err.Message);
+            Assert.AreEqual("Cannot rename because a node with the new name already exists. [/newTestFile]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -2872,8 +2880,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddItem("/testFile", new BinaryData([1, 2, 3]));
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.SetNodeName("/testFile", "testFile"));
+
+            Assert.AreEqual("The new name is the same as the current name. [/testFile]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -3420,8 +3432,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/sourceFile", new BinaryData([1, 2, 3]));
             vs.AddItem("/destinationFile", new BinaryData([4, 5, 6]));
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.MoveNode("/sourceFile", "/destinationFile", false));
+
+            Assert.AreEqual("A node with the same name already exists at the destination path. [/destinationFile] [destinationFile]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -3493,8 +3509,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/destinationDir");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-                vs.MoveNode("/nonExistentSource", "/destinationDir", false));
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
+                vs.MoveNode("/nonExistentSource", "/destinationDir", false, false));
+
+            Assert.AreEqual("Path not found. [/nonExistentSource]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -3505,7 +3525,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/sourceDir");
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
-                vs.MoveNode("/sourceDir", "/nonExistentDestination/newDir", false));
+                vs.MoveNode("/sourceDir", "/nonExistentDestination/newDir", false, false));
         }
 
         [TestMethod]
@@ -3516,10 +3536,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/sourceDir", true);
             vs.AddDirectory("/destinationDir/sourceDir", true);
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.MoveNode("/sourceDir", "/destinationDir", false));
-            Assert.ThrowsException<InvalidOperationException>(() =>
-                vs.MoveNode("/sourceDir", "/destinationDir", true));
+
+            Assert.AreEqual("A node with the same name already exists at the destination path. [/destinationDir] [sourceDir]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -3541,8 +3563,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/destinationDir");
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.MoveNode(VirtualPath.Root, "/destinationDir", false));
+
+            Assert.AreEqual("Cannot move the root directory.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -3623,8 +3649,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/sourceDir");
             vs.AddItem("/destinationFile", new BinaryData([1, 2, 3]));
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.MoveNode("/sourceDir", "/destinationFile"));
+
+            Assert.AreEqual("The destination node is an item or a symbolic link. [/destinationFile]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -3649,7 +3679,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, result);
         }
 
-        // 循環参照チェックテスト
+        // 移動先が移動元のサブディレクトリの場合のテスト
         [TestMethod]
         [TestCategory("MoveNode")]
         public void MoveNode_WhenDestinationIsSubdirectoryOfSource_ThrowsInvalidOperationException()
@@ -3657,8 +3687,81 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/parentDir/subDir", true);
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.MoveNode("/parentDir", "/parentDir/subDir"));
+
+            Debug.WriteLine(err.Message);
+        }
+
+        // 移動先が移動元のサブディレクトリでない場合のテスト
+        [TestMethod]
+        [TestCategory("MoveNode")]
+        public void MoveNode_WhenDestinationIsSubdirectoryOfSource_Part2_ThrowsInvalidOperationException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDir/subDir", true);
+            vs.AddDirectory("/parentDir_Other", true);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            vs.MoveNode("/parentDir_Other", "/parentDir/subDir");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            Assert.IsFalse(vs.NodeExists("/parentDir_Other"));
+            Assert.IsTrue(vs.NodeExists("/parentDir/subDir/parentDir_Other"));
+        }
+
+        // 移動先が移動元のサブディレクトリでない場合のテスト
+        [TestMethod]
+        [TestCategory("MoveNode")]
+        public void MoveNode_WhenDestinationIsSubdirectoryOfSource_Part3_ThrowsInvalidOperationException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDir_Other/subDir", true);
+            vs.AddDirectory("/parentDir", true);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            vs.MoveNode("/parentDir", "/parentDir_Other/subDir");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            Assert.IsFalse(vs.NodeExists("/parentDir"));
+            Assert.IsTrue(vs.NodeExists("/parentDir_Other/subDir/parentDir"));
+        }
+
+        // 移動元が移動先のサブディレクトリの場合のテスト
+        [TestMethod]
+        [TestCategory("MoveNode")]
+        public void MoveNode_WhenSourceIsSubdirectoryOfDestination_DoesNotThrowException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/parentDir/subDir1/subDir2/subDir3", true);
+            vs.AddItem("/parentDir/subDir1/subDir2/subDir3/item1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            vs.MoveNode("/parentDir/subDir1/subDir2/subDir3", "/parentDir");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+
+            Assert.IsTrue(vs.NodeExists("/parentDir/subDir1/subDir2"));
+            Assert.IsFalse(vs.NodeExists("/parentDir/subDir1/subDir2/subDir3"));
+            Assert.IsTrue(vs.NodeExists("/parentDir/subDir3"));
+            Assert.IsTrue(vs.NodeExists("/parentDir/subDir3/item1"));
         }
 
         // 移動先と移動元が同じかどうかのチェックテスト
@@ -3669,8 +3772,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddItem("/file", new BinaryData([1, 2, 3]));
 
-            Assert.ThrowsException<InvalidOperationException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.MoveNode("/file", "/file"));
+
+            Assert.AreEqual("The source path and the destination path for the move operation are the same. [/file] [/file]", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         // 移動先の親ディレクトリが存在しない場合のテスト
@@ -6899,7 +7006,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
                 vs.CopyNode("/item1", "/item1", false, false, false, contexts);
             });
 
-            Assert.AreEqual("The source path and the destination path are the same.", err.Message);
+            Assert.AreEqual("The source path and the destination path for the copy operation are the same. [/item1] [/item1]", err.Message);
 
             Debug.WriteLine(err.Message);
         }

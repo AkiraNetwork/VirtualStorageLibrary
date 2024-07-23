@@ -1,4 +1,6 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary
+﻿using AkiraNetwork.VirtualStorageLibrary.Localization;
+
+namespace AkiraNetwork.VirtualStorageLibrary
 {
     public class VirtualSymbolicLink : VirtualNode
     {
@@ -58,7 +60,7 @@
         {
             if (node is not VirtualSymbolicLink newLink)
             {
-                throw new ArgumentException($"このノード {node.Name} はシンボリックリンクではありません。");
+                throw new ArgumentException(string.Format(Resources.NodeIsNotVirtualSymbolicLink, node.Name), nameof(node));
             }
 
             if (newLink.IsReferencedInStorage)

@@ -1069,7 +1069,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
                 VirtualPath.ArePathsSubdirectories(sourcePath, destinationPath);
             });
 
-            Assert.AreEqual("An empty string cannot be specified as a path. (Parameter 'sourcePath')", err.Message);
+            Assert.AreEqual("An empty string cannot be specified as a path. (Parameter 'path1')", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -1085,7 +1085,105 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
                 VirtualPath.ArePathsSubdirectories(sourcePath, destinationPath);
             });
 
-            Assert.AreEqual("An empty string cannot be specified as a path. (Parameter 'destinationPath')", err.Message);
+            Assert.AreEqual("An empty string cannot be specified as a path. (Parameter 'path2')", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_SourcePathIsSubdirectoryOfDestinationPath_ReturnsTrue()
+        {
+            VirtualPath sourcePath = "/dir1";
+            VirtualPath destinationPath = "/dir1/dir2";
+
+            bool result = destinationPath.IsSubdirectory(sourcePath);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_DestinationPathIsSubdirectoryOfSourcePath_ReturnsFalse()
+        {
+            VirtualPath sourcePath = "/dir1/dir2";
+            VirtualPath destinationPath = "/dir1";
+
+            bool result = destinationPath.IsSubdirectory(sourcePath);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_PathsAreIdentical_ReturnsFalse()
+        {
+            VirtualPath sourcePath = "/dir1";
+            VirtualPath destinationPath = "/dir1";
+
+            bool result = destinationPath.IsSubdirectory(sourcePath);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_PathsAreNotRelated_ReturnsFalse()
+        {
+            VirtualPath sourcePath = "/dir1";
+            VirtualPath destinationPath = "/dir3";
+
+            bool result = destinationPath.IsSubdirectory(sourcePath);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_SourcePathIsRoot_ReturnsFalse()
+        {
+            VirtualPath sourcePath = "/";
+            VirtualPath destinationPath = "/dir1/dir2";
+
+            bool result = destinationPath.IsSubdirectory(sourcePath);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_DestinationPathIsRoot_ReturnsTrue()
+        {
+            VirtualPath sourcePath = "/dir1/dir2";
+            VirtualPath destinationPath = "/";
+
+            bool result = destinationPath.IsSubdirectory(sourcePath);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_SourcePathIsEmpty_ThrowsArgumentException()
+        {
+            VirtualPath sourcePath = string.Empty;
+            VirtualPath destinationPath = "/dir1";
+
+            Exception err = Assert.ThrowsException<ArgumentException>(() =>
+            {
+                destinationPath.IsSubdirectory(sourcePath);
+            });
+
+            Assert.AreEqual("An empty string cannot be specified as a path. (Parameter 'parentPath')", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void IsSubdirectory_DestinationPathIsEmpty_ThrowsArgumentException()
+        {
+            VirtualPath sourcePath = "/dir1";
+            VirtualPath destinationPath = string.Empty;
+
+            Exception err = Assert.ThrowsException<ArgumentException>(() =>
+            {
+                destinationPath.IsSubdirectory(sourcePath);
+            });
+
+            Assert.AreEqual("An empty string cannot be specified as a path.", err.Message);
 
             Debug.WriteLine(err.Message);
         }

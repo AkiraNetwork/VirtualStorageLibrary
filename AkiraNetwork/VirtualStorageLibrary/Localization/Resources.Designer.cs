@@ -79,6 +79,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Cannot move the root directory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotMoveRootDirectory {
+            get {
+                return ResourceManager.GetString("CannotMoveRootDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cannot reach node [{0}]. Node [{1}] is an item. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CannotReachBecauseNodeItem {
@@ -97,11 +106,47 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Cannot remove the directory because it is not empty and the recursive parameter is set to false. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotRemoveNonEmptyDirectory {
+            get {
+                return ResourceManager.GetString("CannotRemoveNonEmptyDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cannot remove the root directory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotRemoveRoot {
+            get {
+                return ResourceManager.GetString("CannotRemoveRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Circular reference detected. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CircularReferenceDetected {
             get {
                 return ResourceManager.GetString("CircularReferenceDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The destination path is a subdirectory of the source path. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DestinationIsSubdirectoryOfSource {
+            get {
+                return ResourceManager.GetString("DestinationIsSubdirectoryOfSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The destination node is an item or a symbolic link. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DestinationNodeIsItemOrSymbolicLink {
+            get {
+                return ResourceManager.GetString("DestinationNodeIsItemOrSymbolicLink", resourceCulture);
             }
         }
         
@@ -129,6 +174,24 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         internal static string NegativeDepthValue {
             get {
                 return ResourceManager.GetString("NegativeDepthValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cannot rename because a node with the new name already exists. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NewNameNodeAlreadyExists {
+            get {
+                return ResourceManager.GetString("NewNameNodeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The new name is the same as the current name. [{0}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NewNameSameAsCurrent {
+            get {
+                return ResourceManager.GetString("NewNameSameAsCurrent", resourceCulture);
             }
         }
         
@@ -174,6 +237,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         internal static string NodeNotFound {
             get {
                 return ResourceManager.GetString("NodeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   A node with the same name already exists at the destination path. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NodeWithSameNameAtDestination {
+            get {
+                return ResourceManager.GetString("NodeWithSameNameAtDestination", resourceCulture);
             }
         }
         
@@ -277,11 +349,20 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
-        ///   The source path and the destination path are the same. に類似しているローカライズされた文字列を検索します。
+        ///   The source path and the destination path for the copy operation are the same. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SourceAndDestinationPathSame {
+        internal static string SourceAndDestinationPathSameForCopy {
             get {
-                return ResourceManager.GetString("SourceAndDestinationPathSame", resourceCulture);
+                return ResourceManager.GetString("SourceAndDestinationPathSameForCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The source path and the destination path for the move operation are the same. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SourceAndDestinationPathSameForMove {
+            get {
+                return ResourceManager.GetString("SourceAndDestinationPathSameForMove", resourceCulture);
             }
         }
         

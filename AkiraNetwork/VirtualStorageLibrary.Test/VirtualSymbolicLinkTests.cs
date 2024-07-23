@@ -1,4 +1,7 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary.Test
+﻿using System.Diagnostics;
+using System.Globalization;
+
+namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
     public class VirtualSymbolicLinkTests
@@ -6,6 +9,8 @@
         [TestInitialize]
         public void TestInitialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
         }
@@ -127,6 +132,45 @@
             Assert.IsNotNull(link);
             Assert.AreEqual(nodeName, link.Name);
             Assert.AreEqual(targetPath, link.TargetPath);
+        }
+
+        [TestMethod]
+        public void Update_UpdatesTargetPathAndDates()
+        {
+            // Arrange
+            VirtualNodeName originalName = "OriginalLink";
+            VirtualPath originalTargetPath = "/original/path";
+            VirtualSymbolicLink originalLink = new(originalName, originalTargetPath);
+
+            VirtualNodeName newName = "NewLink";
+            VirtualPath newTargetPath = "/new/path";
+            VirtualSymbolicLink newLink = new(newName, newTargetPath);
+
+            // Act
+            DateTime beforeUpdate = originalLink.UpdatedDate;
+            originalLink.Update(newLink);
+            DateTime afterUpdate = originalLink.UpdatedDate;
+
+            // Assert
+            Assert.AreEqual(newLink.TargetPath, originalLink.TargetPath);
+            Assert.AreEqual(newLink.CreatedDate, originalLink.CreatedDate);
+            Assert.IsTrue(afterUpdate > beforeUpdate);
+        }
+
+        [TestMethod]
+        public void Update_ThrowsArgumentExceptionWhenNodeIsNotVirtualSymbolicLink()
+        {
+            // Arrange
+            VirtualNodeName originalName = "OriginalLink";
+            VirtualSymbolicLink originalLink = new(originalName);
+            VirtualItem<BinaryData> itemNode = new("item");
+
+            // Act & Assert
+            Exception err = Assert.ThrowsException<ArgumentException>(() => originalLink.Update(itemNode));
+
+            Assert.AreEqual("The specified node [item] is not of type VirtualSymbolicLink. (Parameter 'node')", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary
+﻿using AkiraNetwork.VirtualStorageLibrary.Localization;
+
+namespace AkiraNetwork.VirtualStorageLibrary
 {
     public class VirtualItemAdapter<T>(VirtualStorage<T> storage)
     {
@@ -13,7 +15,7 @@
                 {
                     return item;
                 }
-                throw new InvalidCastException("ノードはVirtualItemではありません。");
+                throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualItem, node.Name, typeof(T).Name));
             }
             set
             {
@@ -35,7 +37,7 @@
                 {
                     return directory;
                 }
-                throw new InvalidCastException("ノードはVirtualDirectoryではありません。");
+                throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualDirectory, node));
             }
             set
             {
@@ -57,7 +59,7 @@
                 {
                     return link;
                 }
-                throw new InvalidCastException("ノードはVirtualSymbolicLinkではありません。");
+                throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualSymbolicLink, node));
             }
             set
             {

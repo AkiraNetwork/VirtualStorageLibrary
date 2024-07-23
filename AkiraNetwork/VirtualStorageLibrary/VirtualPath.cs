@@ -636,25 +636,25 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return baseParts.Count;
         }
 
-        public static bool ArePathsSubdirectories(VirtualPath sourcePath, VirtualPath destinationPath)
+        public static bool ArePathsSubdirectories(VirtualPath path1, VirtualPath path2)
         {
-            if (sourcePath.IsEmpty)
+            if (path1.IsEmpty)
             {
-                throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(sourcePath));
+                throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(path1));
             }
-            else if (destinationPath.IsEmpty)
+            else if (path2.IsEmpty)
             {
-                throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(destinationPath));
+                throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(path2));
             }
 
             // パスがルートであるかを確認
-            if (sourcePath.IsRoot || destinationPath.IsRoot)
+            if (path1.IsRoot || path2.IsRoot)
             {
                 return true;
             }
 
-            var sourceParts = sourcePath.PartsList;
-            var destinationParts = destinationPath.PartsList;
+            var sourceParts = path1.PartsList;
+            var destinationParts = path2.PartsList;
 
             // パスが完全に一致するか確認
             if (sourceParts.SequenceEqual(destinationParts))
@@ -662,16 +662,52 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 return true;
             }
 
-            // sourcePath が destinationPath のサブディレクトリか確認
+            // path1 が path2 のサブディレクトリか確認
             if (sourceParts.Count <= destinationParts.Count &&
                 sourceParts.SequenceEqual(destinationParts.Take(sourceParts.Count)))
             {
                 return true;
             }
 
-            // destinationPath が sourcePath のサブディレクトリか確認
+            // path2 が path1 のサブディレクトリか確認
             if (destinationParts.Count <= sourceParts.Count &&
                 destinationParts.SequenceEqual(sourceParts.Take(destinationParts.Count)))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsSubdirectory(VirtualPath parentPath)
+        {
+            if (IsEmpty)
+            {
+                throw new ArgumentException(Resources.PathCannotBeEmpty);
+            }
+            else if (parentPath.IsEmpty)
+            {
+                throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(parentPath));
+            }
+
+            var sourceParts = parentPath.PartsList;
+            var destinationParts = PartsList;
+
+            // パスが完全に一致するか確認
+            if (sourceParts.SequenceEqual(destinationParts))
+            {
+                return false;
+            }
+
+            // parentPath がルートディレクトリの場合、destinationPartsがルート以下か確認
+            if (parentPath.IsRoot)
+            {
+                return true;
+            }
+
+            // parentPath が現在のパスの親ディレクトリか確認
+            if (sourceParts.Count <= destinationParts.Count &&
+                sourceParts.SequenceEqual(destinationParts.Take(sourceParts.Count)))
             {
                 return true;
             }

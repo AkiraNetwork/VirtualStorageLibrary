@@ -186,13 +186,40 @@
   <data name="PathNotFound" xml:space="preserve">
     <value>パスが見つかりません。 [{0}]</value>
   </data>
-  <data name="SourceAndDestinationPathSame" xml:space="preserve">
-    <value>コピー元のパスとコピー先のパスが同じです。</value>
+  <data name="SourceAndDestinationPathSameForCopy" xml:space="preserve">
+    <value>コピー元のパスとコピー先のパスが同じです。 [{0}] [{1}]</value>
   </data>
   <data name="CannotAddRoot" xml:space="preserve">
     <value>ディレクトリにルートを追加する事は出来ません。</value>
   </data>
   <data name="NegativeDepthValue" xml:space="preserve">
     <value>深さが負の値になりました。 [{0}]</value>
+  </data>
+  <data name="CannotRemoveRoot" xml:space="preserve">
+    <value>ルートディレクトリを削除することはできません。</value>
+  </data>
+  <data name="CannotRemoveNonEmptyDirectory" xml:space="preserve">
+    <value>ディレクトリが空ではなく、再帰パラメータがfalseに設定されている為、削除できません。 [{0}]</value>
+  </data>
+  <data name="NewNameSameAsCurrent" xml:space="preserve">
+    <value>新しい名前が現在の名前と同じです。 [{0}]</value>
+  </data>
+  <data name="NewNameNodeAlreadyExists" xml:space="preserve">
+    <value>新しい名前のノードが既に存在する為、名前を変更できません。 [{0}]</value>
+  </data>
+  <data name="SourceAndDestinationPathSameForMove" xml:space="preserve">
+    <value>移動元のパスと移動先のパスが同じです。 [{0}] [{1}]</value>
+  </data>
+  <data name="CannotMoveRootDirectory" xml:space="preserve">
+    <value>ルートディレクトリを移動することはできません。</value>
+  </data>
+  <data name="DestinationIsSubdirectoryOfSource" xml:space="preserve">
+    <value>移動先のパスが移動元のパスのサブディレクトリになっています。 [{0}] [{1}]</value>
+  </data>
+  <data name="DestinationNodeIsItemOrSymbolicLink" xml:space="preserve">
+    <value>移動先のノードはアイテムまたはシンボリックリンクです。 [{0}]</value>
+  </data>
+  <data name="NodeWithSameNameAtDestination" xml:space="preserve">
+    <value>移動先のパスに同名のノードが存在します。 [{0}] [{1}]</value>
   </data>
 </root>

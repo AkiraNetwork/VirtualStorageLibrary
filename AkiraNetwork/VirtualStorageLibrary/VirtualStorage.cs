@@ -1181,7 +1181,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // コピー元とコピー先が同じ場合は例外をスロー
             if (absoluteSourcePath == absoluteDestinationPath)
             {
-                throw new InvalidOperationException(Resources.SourceAndDestinationPathSame);
+                throw new InvalidOperationException(string.Format(Resources.SourceAndDestinationPathSameForCopy, absoluteSourcePath, absoluteDestinationPath));
             }
 
             // 循環参照チェック
@@ -1347,7 +1347,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (nodePath.IsRoot)
             {
-                throw new InvalidOperationException("ルートディレクトリを削除することはできません。");
+                throw new InvalidOperationException(Resources.CannotRemoveRoot);
             }
 
             VirtualPath resolvedNodePath = nodePath;
@@ -1434,7 +1434,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 {
                     if (directory.Count > 0)
                     {
-                        throw new InvalidOperationException("ディレクトリが空ではなく、再帰フラグが設定されていません。");
+                        throw new InvalidOperationException(string.Format(Resources.CannotRemoveNonEmptyDirectory, node.Name));
                     }
                 }
                 VirtualDirectory? parentDir = context.ParentDirectory;
@@ -1520,10 +1520,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             VirtualPath oldAbsolutePath = ConvertToAbsolutePath(nodePath);
             VirtualPath newAbsolutePath = oldAbsolutePath.DirectoryPath + newName;
 
-            // 移動先と移動元が同じかどうかのチェック
+            // 新しい名前が現在の名前と同じかどうかのチェック
             if (oldAbsolutePath == newAbsolutePath)
             {
-                throw new InvalidOperationException("新しい名前が現在の名前と同じです。");
+                throw new InvalidOperationException(string.Format(Resources.NewNameSameAsCurrent, newAbsolutePath));
             }
 
             // ノードの取得（リンクを解決しながら）
@@ -1533,7 +1533,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // 新しい名前のノードが既に存在するかどうかのチェック
             if (NodeExists(newAbsolutePath))
             {
-                throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, newAbsolutePath));
+                throw new InvalidOperationException(string.Format(Resources.NewNameNodeAlreadyExists, newAbsolutePath));
             }
 
             // 親ディレクトリの取得
@@ -1565,7 +1565,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                // パス解決を指定しない場合は、移動元パスのディレクトリパスだけをパス解決する
+                // パス解決を指定しない場合は、移動元パスの親のパスだけをパス解決する
                 sourcePath = ResolveLinkTarget(sourcePath.DirectoryPath) + sourcePath.NodeName;
             }
 
@@ -1585,27 +1585,27 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // 移動先と移動元が同じかどうかのチェック
             if (sourcePath == destinationPath)
             {
-                throw new InvalidOperationException("移動元と移動先が同じです。");
-            }
-
-            // 循環参照チェック
-            if (destinationPath.StartsWith(sourcePath.Path + VirtualPath.Separator))
-            {
-                throw new InvalidOperationException("移動先が移動元のサブディレクトリになっています。");
-            }
-
-            // 移動元の存在チェック
-            if (!NodeExists(sourcePath))
-            {
-                // 存在しない場合は例外をスロー
-                throw new VirtualNodeNotFoundException($"指定されたノード '{sourcePath}' は存在しません。");
+                throw new InvalidOperationException(string.Format(Resources.SourceAndDestinationPathSameForMove, sourcePath, destinationPath));
             }
 
             // 移動元のルートディレクトリチェック
             if (sourcePath.IsRoot)
             {
                 // ルートディレクトリの場合は例外をスロー
-                throw new InvalidOperationException("ルートディレクトリを移動することはできません。");
+                throw new InvalidOperationException(Resources.CannotMoveRootDirectory);
+            }
+
+            // 移動先が移動元のサブディレクトリになっていないかどうかのチェック
+            if (destinationPath.IsSubdirectory(sourcePath))
+            {
+                throw new InvalidOperationException(string.Format(Resources.DestinationIsSubdirectoryOfSource, sourcePath, destinationPath));
+            }
+
+            // 移動元の存在チェック
+            if (!NodeExists(sourcePath))
+            {
+                // 存在しない場合は例外をスロー
+                throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, sourcePath));
             }
 
             // 移動処理
@@ -1638,10 +1638,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             else if (!NodeExists(destinationPath))
             {
                 VirtualPath destinationParentPath = destinationPath.GetParentPath();
-                if (!DirectoryExists(destinationParentPath))
-                {
-                    throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
-                }
 
                 destinationParentDirectory = GetDirectory(destinationParentPath);
                 destinationNodeName = destinationPath.NodeName;
@@ -1649,12 +1645,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new InvalidOperationException($"移動先ノード '{destinationPath}' はアイテムまたはシンボリックリンクです。");
+                throw new InvalidOperationException(string.Format(Resources.DestinationNodeIsItemOrSymbolicLink, destinationPath));
             }
 
             if (destinationParentDirectory.NodeExists(destinationNodeName))
             {
-                throw new InvalidOperationException($"移動先ディレクトリ '{destinationPath}' に同名のノード '{destinationNodeName}' が存在します。");
+                throw new InvalidOperationException(string.Format(Resources.NodeWithSameNameAtDestination, destinationPath, destinationNodeName));
             }
 
             // 移動前のパスリストを取得
@@ -1709,10 +1705,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             else if (!NodeExists(destinationPath))
             {
                 VirtualPath destinationParentPath = destinationPath.GetParentPath();
-                if (!DirectoryExists(destinationParentPath))
-                {
-                    throw new VirtualNodeNotFoundException($"指定されたノード '{destinationParentPath}' は存在しません。");
-                }
 
                 destinationParentDirectory = GetDirectory(destinationParentPath);
                 destinationNodeName = destinationPath.NodeName;
@@ -1733,7 +1725,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 }
                 else
                 {
-                    throw new InvalidOperationException($"移動先ディレクトリ '{destinationPath}' に同名のノード '{destinationNodeName}' が存在します。");
+                    throw new InvalidOperationException(string.Format(Resources.NodeWithSameNameAtDestination, destinationPath, destinationNodeName));
                 }
             }
 

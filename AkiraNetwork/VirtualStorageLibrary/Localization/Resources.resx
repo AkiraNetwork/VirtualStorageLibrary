@@ -209,8 +209,8 @@
     <value>Path not found. [{0}]</value>
     <comment>Notifies if a path is not found while processing nodes included in the path.</comment>
   </data>
-  <data name="SourceAndDestinationPathSame" xml:space="preserve">
-    <value>The source path and the destination path are the same.</value>
+  <data name="SourceAndDestinationPathSameForCopy" xml:space="preserve">
+    <value>The source path and the destination path for the copy operation are the same. [{0}] [{1}]</value>
     <comment>Notifies when copying nodes if the source path and the destination path are the same.</comment>
   </data>
   <data name="CannotAddRoot" xml:space="preserve">
@@ -220,5 +220,41 @@
   <data name="NegativeDepthValue" xml:space="preserve">
     <value>Depth has become a negative value. [{0}]</value>
     <comment>Notifies when an internal inconsistency occurs in the depth calculation set in the context during the node copy process.</comment>
+  </data>
+  <data name="CannotRemoveRoot" xml:space="preserve">
+    <value>Cannot remove the root directory.</value>
+    <comment>Notifies when attempting to remove the root directory.</comment>
+  </data>
+  <data name="CannotRemoveNonEmptyDirectory" xml:space="preserve">
+    <value>Cannot remove the directory because it is not empty and the recursive parameter is set to false. [{0}]</value>
+    <comment>Notifies when attempting to remove a directory if the directory is not empty and the recursive parameter is set to false.</comment>
+  </data>
+  <data name="NewNameSameAsCurrent" xml:space="preserve">
+    <value>The new name is the same as the current name. [{0}]</value>
+    <comment>Notifies when renaming if the specified new name is the same as the current name.</comment>
+  </data>
+  <data name="NewNameNodeAlreadyExists" xml:space="preserve">
+    <value>Cannot rename because a node with the new name already exists. [{0}]</value>
+    <comment>Notifies when renaming if a node with the specified new name already exists.</comment>
+  </data>
+  <data name="SourceAndDestinationPathSameForMove" xml:space="preserve">
+    <value>The source path and the destination path for the move operation are the same. [{0}] [{1}]</value>
+    <comment>Notifies when moving a node if the source path and the destination path are the same.</comment>
+  </data>
+  <data name="CannotMoveRootDirectory" xml:space="preserve">
+    <value>Cannot move the root directory.</value>
+    <comment>Notifies when moving a node if the source path is specified as the root.</comment>
+  </data>
+  <data name="DestinationIsSubdirectoryOfSource" xml:space="preserve">
+    <value>The destination path is a subdirectory of the source path. [{0}] [{1}]</value>
+    <comment>Notifies when moving a node if the destination path is specified as a subdirectory of the source path.</comment>
+  </data>
+  <data name="DestinationNodeIsItemOrSymbolicLink" xml:space="preserve">
+    <value>The destination node is an item or a symbolic link. [{0}]</value>
+    <comment>Notifies when moving a node if the destination node is an item or a symbolic link.</comment>
+  </data>
+  <data name="NodeWithSameNameAtDestination" xml:space="preserve">
+    <value>A node with the same name already exists at the destination path. [{0}] [{1}]</value>
+    <comment>Notifies when moving a node if a node with the same name already exists at the destination path.</comment>
   </data>
 </root>

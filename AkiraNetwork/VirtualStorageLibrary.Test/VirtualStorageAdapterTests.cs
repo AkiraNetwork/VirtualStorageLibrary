@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
@@ -8,6 +9,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         [TestInitialize]
         public void TestInitialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
         }
@@ -152,6 +155,26 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Dataの実体が異なることを確認
             Assert.AreNotSame(retrievedItem1.ItemData, retrievedItem2.ItemData);
+        }
+
+        [TestMethod]
+        public void IndexerAdapter_Item_InvalidCastTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualNodeName dirName = "testDir";
+            VirtualDirectory dir = new(dirName);
+            VirtualPath dirPath = "/testDir";
+
+            // 仮想ストレージにディレクトリを追加
+            vs.AddDirectory(dirPath.DirectoryPath, dir);
+
+            // Act and Assert
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() => vs.Item[dirPath]);
+
+            Assert.AreEqual("The specified node [testDir] is not of type VirtualItem<BinaryData>.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -339,6 +362,27 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 各サブディレクトリの実体が個別であることを確認
             Assert.AreNotSame(vs.Dir[dir1Path + "subDir1"], dir2.Get("subDir1"));
+        }
+
+        [TestMethod]
+        public void IndexerAdapter_Directory_InvalidCastTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data = [1, 2, 3];
+            VirtualNodeName itemName = "testItem";
+            VirtualItem<BinaryData> item = (itemName, data);
+            VirtualPath itemPath = "/testItem";
+
+            // 仮想ストレージにアイテムを追加
+            vs.AddItem(itemPath.DirectoryPath, item);
+
+            // Act and Assert
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() => vs.Dir[itemPath]);
+
+            Assert.AreEqual("The specified node [testItem] is not of type VirtualDirectory.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
 
         [TestMethod]
@@ -587,6 +631,27 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             Assert.IsTrue(vs.Dir["/"].IsReferencedInStorage);
             Assert.IsTrue(vs.Dir["/dir1"].IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void IndexerAdapter_SymbolicLink_InvalidCastTest()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            BinaryData data = [1, 2, 3];
+            VirtualNodeName itemName = "testItem";
+            VirtualItem<BinaryData> item = (itemName, data);
+            VirtualPath itemPath = "/testItem";
+
+            // 仮想ストレージにアイテムを追加
+            vs.AddItem(itemPath.DirectoryPath, item);
+
+            // Act and Assert
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() => vs.Link[itemPath, false]);
+
+            Assert.AreEqual("The specified node [testItem] is not of type VirtualSymbolicLink.", err.Message);
+
+            Debug.WriteLine(err.Message);
         }
     }
 }
