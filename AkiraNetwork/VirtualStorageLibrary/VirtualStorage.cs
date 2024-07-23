@@ -1175,7 +1175,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // コピー元の存在確認
             if (!NodeExists(absoluteSourcePath, true))
             {
-                throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, absoluteSourcePath));
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, absoluteSourcePath.NodeName));
             }
 
             // コピー元とコピー先が同じ場合は例外をスロー
@@ -1605,7 +1605,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             if (!NodeExists(sourcePath))
             {
                 // 存在しない場合は例外をスロー
-                throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, sourcePath));
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, sourcePath.NodeName));
             }
 
             // 移動処理
