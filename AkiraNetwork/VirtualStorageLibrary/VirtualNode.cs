@@ -38,7 +38,5 @@
             CreatedDate = createdDate;
             UpdatedDate = updatedDate;
         }
-
-        public override string ToString() => $"{Name}";
     }
 }

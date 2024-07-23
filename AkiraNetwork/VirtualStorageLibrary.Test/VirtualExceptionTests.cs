@@ -1,39 +1,13 @@
 ﻿namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
-    public class VirtualNodeTests
+    public class VirtualExceptionTests
     {
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            VirtualStorageSettings.Initialize();
-        }
-
         [TestMethod]
         public void DefaultConstructor_CreatesInstance()
         {
             VirtualNodeNotFoundException exception = new();
             Assert.IsNotNull(exception);
-        }
-
-        [TestMethod]
-        public void VirtualItem_Constructor_SetsNameItemAndDates()
-        {
-            // Arrange
-            VirtualNodeName name = "TestItem";
-            SimpleData item = new(10);
-            DateTime now = DateTime.Now;
-            DateTime createdDate = now;
-            DateTime updatedDate = now;
-
-            // Act
-            VirtualItem<SimpleData> virtualItem = new(name, item, createdDate, updatedDate);
-
-            // Assert
-            Assert.AreEqual(name, virtualItem.Name);
-            Assert.AreEqual(item, virtualItem.ItemData);
-            Assert.AreEqual(createdDate, virtualItem.CreatedDate);
-            Assert.AreEqual(updatedDate, virtualItem.UpdatedDate);
         }
 
         [TestMethod]

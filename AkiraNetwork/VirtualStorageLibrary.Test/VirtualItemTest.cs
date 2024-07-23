@@ -62,6 +62,56 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualItemConstructorWithDates_CreatesObjectCorrectly()
+        {
+            // テストデータ
+            byte[] testData = [1, 2, 3];
+
+            // BinaryData オブジェクトを作成
+            BinaryData binaryData = new(testData);
+
+            // 日付
+            DateTime createdDate = new(2000, 1, 1, 0, 0, 0);
+            DateTime updatedDate = new(2000, 1, 2, 0, 0, 0);
+
+            // VirtualItem<BinaryData> オブジェクトを作成
+            VirtualNodeName name = "TestBinaryItem";
+            VirtualItem<BinaryData> item = new(name, binaryData, createdDate, updatedDate);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(item);
+            Assert.AreEqual(name, item.Name);
+            Assert.AreEqual(binaryData, item.ItemData);
+            CollectionAssert.AreEqual(item.ItemData!.Data, testData);
+            Assert.AreEqual(createdDate, item.CreatedDate);
+            Assert.AreEqual(updatedDate, item.UpdatedDate);
+        }
+
+        [TestMethod]
+        public void VirtualItemConstructorWithCreatedDate_CreatesObjectCorrectly()
+        {
+            // テストデータ
+            byte[] testData = [1, 2, 3];
+
+            // BinaryData オブジェクトを作成
+            BinaryData binaryData = new(testData);
+
+            // 日付
+            DateTime createdDate = new(2000, 1, 1, 0, 0, 0);
+
+            // VirtualItem<BinaryData> オブジェクトを作成
+            VirtualNodeName name = "TestBinaryItem";
+            VirtualItem<BinaryData> item = new(name, binaryData, createdDate);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(item);
+            Assert.AreEqual(name, item.Name);
+            Assert.AreEqual(binaryData, item.ItemData);
+            CollectionAssert.AreEqual(item.ItemData!.Data, testData);
+            Assert.AreEqual(createdDate, item.CreatedDate);
+        }
+
+        [TestMethod]
         public void VirtualItemDeepClone_CreatesDistinctCopyWithSameData()
         {
             // BinaryData オブジェクトを作成
@@ -119,12 +169,24 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void ToString_ReturnsItemInformationWithInt()
+        public void ToString_ReturnsItemInformation()
         {
             int value = 10;
             VirtualItem<int> item = new("TestItem", value);
 
             string result = item.ToString();
+            Debug.WriteLine(result);
+
+            Assert.IsTrue(result.Contains("TestItem"));
+        }
+
+        [TestMethod]
+        public void ToString_ReturnsItemInformationByVirtualNode()
+        {
+            int value = 10;
+            VirtualItem<int> item = new("TestItem", value);
+
+            string result = ((VirtualNode)item).ToString();
             Debug.WriteLine(result);
 
             Assert.IsTrue(result.Contains("TestItem"));
@@ -230,6 +292,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             CollectionAssert.AreEqual(item.ItemData!.Data, testData);
 
             Debug.WriteLine($"Generated NodeName: {item.Name}");
+        }
+
+        // ノード名からの暗黙的な変換でVirtualItem オブジェクトが作成されることを検証します。
+        [TestMethod]
+        public void ImplicitConversionFromNodeName_CreatesObjectWithDefaultName()
+        {
+            // テストデータ
+            VirtualNodeName nodeName = "TestBinaryItem";
+
+            // データを利用して VirtualItem<BinaryData> オブジェクトを作成
+            VirtualItem<BinaryData> item = nodeName;
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(item);
+
+            Debug.WriteLine(item.Name);
         }
 
         [TestMethod]

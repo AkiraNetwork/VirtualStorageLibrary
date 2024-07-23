@@ -71,8 +71,8 @@
 
         public static void SetNodeListConditions(
             VirtualNodeTypeFilter filter,
-            VirtualGroupCondition<VirtualNode, object>? groupCondition,
-            List<VirtualSortCondition<VirtualNode>>? sortConditions)
+            VirtualGroupCondition<VirtualNode, object>? groupCondition = null,
+            List<VirtualSortCondition<VirtualNode>>? sortConditions = null)
         {
             _state.NodeListConditions = new VirtualNodeListConditions(filter, groupCondition, sortConditions);
         }

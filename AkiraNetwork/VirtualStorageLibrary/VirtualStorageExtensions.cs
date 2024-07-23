@@ -4,8 +4,8 @@
     {
         public static IEnumerable<T> GroupAndSort<T>(
             this IEnumerable<T> source,
-            VirtualGroupCondition<T, object>? groupCondition,
-            List<VirtualSortCondition<T>>? sortConditions)
+            VirtualGroupCondition<T, object>? groupCondition = null,
+            List<VirtualSortCondition<T>>? sortConditions = null)
         {
             var query = source.AsQueryable();
 
@@ -27,7 +27,7 @@
 
         public static IEnumerable<T> ApplySortConditions<T>(
             this IEnumerable<T> source,
-            List<VirtualSortCondition<T>>? sortConditions)
+            List<VirtualSortCondition<T>>? sortConditions = null)
         {
             if (sortConditions == null || sortConditions.Count == 0)
             {
@@ -56,8 +56,7 @@
                 }
             }
 
-            // ソートの指定がなかったらそのまま返す
-            return orderedQuery ?? source;
+            return orderedQuery!;
         }
     }
 

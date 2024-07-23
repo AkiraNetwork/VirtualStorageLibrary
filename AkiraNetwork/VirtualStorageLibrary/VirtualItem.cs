@@ -6,6 +6,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
     {
         protected VirtualItem(VirtualNodeName name) : base(name) { }
 
+        protected VirtualItem(VirtualNodeName name, DateTime createdDate) : base(name, createdDate) { }
+
         protected VirtualItem(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate) { }
 
         public override abstract VirtualNode DeepClone(bool recursive = false);
@@ -39,6 +41,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         public VirtualItem(VirtualNodeName name, T? item) : base(name)
+        {
+            ItemData = item;
+            _disposed = false;
+        }
+
+        public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate) : base(name, createdDate)
         {
             ItemData = item;
             _disposed = false;

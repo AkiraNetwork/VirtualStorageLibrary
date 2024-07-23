@@ -781,6 +781,44 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void GetNodeList_TypeAsc()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/item3", "/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
+
+            // 条件を設定
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.ResolveNodeType(), true),
+                null);
+
+            // テスト対象のディレクトリを取得
+            VirtualDirectory directory = vs.GetDirectory("/");
+
+            // Act
+            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (VirtualNode node in nodes)
+            {
+                Debug.WriteLine(node.Name);
+            }
+            Assert.AreEqual(6, nodes.Count);
+            Assert.AreEqual("dir2", (string)nodes[0].Name);
+            Assert.AreEqual("dir1", (string)nodes[1].Name);
+            Assert.AreEqual("dir3", (string)nodes[2].Name);
+            Assert.AreEqual("item2", (string)nodes[3].Name);
+            Assert.AreEqual("item1", (string)nodes[4].Name);
+            Assert.AreEqual("item3", (string)nodes[5].Name);
+        }
+
+        [TestMethod]
         public void GetNodeList_CreatedDateAscAndTypeAsc()
         {
             // Arrange
@@ -821,6 +859,49 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void GetNodeList_CreatedDateAndUpdatedDateAscAndTypeAsc()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", new BinaryData([1, 2, 3]));
+            VirtualItem<BinaryData> item2 = new("item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/", item1);
+            vs.AddItem("/", item2);
+            vs.AddSymbolicLink("/item3", "/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
+
+            // 条件を設定
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.ResolveNodeType(), true),
+                [
+                    new(node => node.CreatedDate, true),
+                    new(node => node.UpdatedDate, true)
+                ]);
+
+            // テスト対象のディレクトリを取得
+            VirtualDirectory directory = vs.GetDirectory("/");
+
+            // Act
+            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (VirtualNode node in nodes)
+            {
+                Debug.WriteLine(node);
+            }
+            Assert.AreEqual(6, nodes.Count);
+            Assert.AreEqual("dir1", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir3", (string)nodes[2].Name);
+            Assert.AreEqual("item1", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item3", (string)nodes[5].Name);
+        }
+
+        [TestMethod]
         public void GetNodeList_CreatedDateDesAndTypeAsc()
         {
             // Arrange
@@ -839,6 +920,49 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
                 VirtualNodeTypeFilter.All,
                 new(node => node.ResolveNodeType(), true),
                 [new(node => node.CreatedDate, false)]);
+
+            // テスト対象のディレクトリを取得
+            VirtualDirectory directory = vs.GetDirectory("/");
+
+            // Act
+            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+
+            // Assert
+            foreach (VirtualNode node in nodes)
+            {
+                Debug.WriteLine(node);
+            }
+            Assert.AreEqual(6, nodes.Count);
+            Assert.AreEqual("dir3", (string)nodes[0].Name);
+            Assert.AreEqual("dir2", (string)nodes[1].Name);
+            Assert.AreEqual("dir1", (string)nodes[2].Name);
+            Assert.AreEqual("item3", (string)nodes[3].Name);
+            Assert.AreEqual("item2", (string)nodes[4].Name);
+            Assert.AreEqual("item1", (string)nodes[5].Name);
+        }
+
+        [TestMethod]
+        public void GetNodeList_CreatedDateAndUpdatedDateDesAndTypeAsc()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", new BinaryData([1, 2, 3]));
+            VirtualItem<BinaryData> item2 = new("item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/", item1);
+            vs.AddItem("/", item2);
+            vs.AddSymbolicLink("/item3", "/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
+
+            // 条件を設定
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.All,
+                new(node => node.ResolveNodeType(), true),
+                [
+                    new(node => node.CreatedDate, false),
+                    new(node => node.UpdatedDate, false)
+                ]);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = vs.GetDirectory("/");
@@ -1031,15 +1155,43 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             List<VirtualNode> nodes = directory.GetNodeList().ToList();
 
             // Assert
-            foreach (VirtualNode node in nodes)
-            {
-                Debug.WriteLine(node.Name);
-            }
-
             // new(node => node.ResolveNodeType(), true)が指定されているため、SymbolicLink のみ取得される
             // dir3、item3 はディレクトリ、アイテムの扱いとなるため取得されない
             Assert.AreEqual(0, nodes.Count);
         }
+
+        //[TestMethod]
+        //public void GetNodeList_NameAscAndTypeDesWithOnlySymbolicLink_Part2()
+        //{
+        //    // Arrange
+        //    VirtualStorage<BinaryData> vs = new();
+        //    vs.AddDirectory("/dir2");
+        //    vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+        //    vs.AddDirectory("/dir1");
+        //    vs.AddItem("/item1", new BinaryData([1, 2, 3]));
+        //    vs.AddSymbolicLink("/item3", "/item1");
+        //    vs.AddSymbolicLink("/dir3", "/dir1");
+
+        //    // 条件を設定
+        //    VirtualStorageState.SetNodeListConditions(
+        //        VirtualNodeTypeFilter.SymbolicLink,
+        //        new(node => node.NodeType, true),
+        //        [new(node => node.Name, true)]);
+
+        //    // テスト対象のディレクトリを取得
+        //    VirtualDirectory directory = vs.GetDirectory("/");
+
+        //    // Act
+        //    List<VirtualNode> nodes = directory.GetNodeList().ToList();
+
+        //    // Assert
+        //    foreach (VirtualNode node in nodes)
+        //    {
+        //        Debug.WriteLine(node.Name);
+        //    }
+
+        //    Assert.AreEqual(2, nodes.Count);
+        //}
 
         [TestMethod]
         public void GetNodeList_NameAscAndTypeAscWithSymbolicLink()
