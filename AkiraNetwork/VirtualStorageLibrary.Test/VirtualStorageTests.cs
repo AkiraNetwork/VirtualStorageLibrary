@@ -10031,5 +10031,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine("リンク辞書 (/link1ToItem1 シンボリックリンク削除後):");
             Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
         }
+
+        [TestMethod]
+        [TestCategory("Free Test")]
+        public void CopyNode_ToRoot()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1");
+
+            vs.CopyNode("/dir1/item1", "/item2");
+        }
+
     }
 }

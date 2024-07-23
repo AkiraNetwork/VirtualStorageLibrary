@@ -217,10 +217,6 @@
     <value>Cannot add the root to a directory.</value>
     <comment>Notifies when attempting to add the root to a directory.</comment>
   </data>
-  <data name="NegativeDepthValue" xml:space="preserve">
-    <value>Depth has become a negative value. [{0}]</value>
-    <comment>Notifies when an internal inconsistency occurs in the depth calculation set in the context during the node copy process.</comment>
-  </data>
   <data name="CannotRemoveRoot" xml:space="preserve">
     <value>Cannot remove the root directory.</value>
     <comment>Notifies when attempting to remove the root directory.</comment>

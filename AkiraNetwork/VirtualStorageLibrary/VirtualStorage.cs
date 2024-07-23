@@ -1319,11 +1319,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             // パスの深さを計算
             int depth = destinationPath.Depth - 1;
-            if (depth < 0)
-            {
-                // デバッグ用 (これは内務矛盾が発生した場合のみ。処理を見直す必要があるかもしれない)
-                throw new InvalidOperationException(string.Format(Resources.NegativeDepthValue, depth));
-            }
 
             if (destinationContextList != null)
             {

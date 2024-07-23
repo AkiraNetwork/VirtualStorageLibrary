@@ -192,9 +192,6 @@
   <data name="CannotAddRoot" xml:space="preserve">
     <value>ディレクトリにルートを追加する事は出来ません。</value>
   </data>
-  <data name="NegativeDepthValue" xml:space="preserve">
-    <value>深さが負の値になりました。 [{0}]</value>
-  </data>
   <data name="CannotRemoveRoot" xml:space="preserve">
     <value>ルートディレクトリを削除することはできません。</value>
   </data>
