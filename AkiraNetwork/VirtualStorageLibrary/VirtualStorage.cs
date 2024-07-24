@@ -538,9 +538,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             while (!p.TraversalDirectory.NodeExists(traversalNodeName))
             {
+                VirtualPath traversalPath = p.TraversalPath + traversalNodeName;
+
                 if (p.ActionNode != null)
                 {
-                    if (p.ActionNode(p.TraversalDirectory, traversalNodeName, p.TraversalPath + traversalNodeName))
+                    if (p.ActionNode(p.TraversalDirectory, traversalNodeName, traversalPath))
                     {
                         continue;
                     }
@@ -549,10 +551,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // 例外が有効な場合は例外をスロー
                 if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, p.TraversalPath + traversalNodeName));
+                    throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, traversalPath));
                 }
 
-                return new VirtualNodeContext(null, p.TraversalPath, null, -1, -1, p.TraversalPath, p.Resolved);
+                return new VirtualNodeContext(null, traversalPath, p.TraversalDirectory, -1, -1, traversalPath, p.Resolved);
             }
 
             VirtualNodeContext nodeContext;

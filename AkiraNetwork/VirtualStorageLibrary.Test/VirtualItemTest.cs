@@ -186,10 +186,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             int value = 10;
             VirtualItem<int> item = new("TestItem", value);
 
-            string result = ((VirtualNode)item).ToString();
+            string? result = ((VirtualNode)item).ToString();
             Debug.WriteLine(result);
 
-            Assert.IsTrue(result.Contains("TestItem"));
+            Assert.IsTrue(result?.Contains("TestItem"));
         }
 
         [TestMethod]

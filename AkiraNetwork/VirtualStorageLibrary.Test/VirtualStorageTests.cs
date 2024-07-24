@@ -5435,7 +5435,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void WalkPathToTarget_NonExistentPathAndCreatePathOnce()
         {
             VirtualStorage<BinaryData> vs = new();
-            VirtualPath targetPath = "/dir1/dir2/dir3";
+            VirtualPath targetPath = "/dir1/dir2/dir3/dir4";
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -5451,6 +5451,23 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(nodeContext));
+
+            // 結果を検証
+            // ActionNodeNotContinueは、"dir2" まで作成して終了する ("dir2" のタイミングで false を返す)
+
+            // NULLコンテキストを確認
+            // ただし、TraversalPathは処理したとこまで返される
+            Assert.IsNull(nodeContext.Node);
+            Assert.AreEqual("/dir1/dir2", (string)nodeContext.TraversalPath);
+            Assert.AreEqual("dir1", (string)nodeContext.ParentDirectory!.Name);
+            Assert.AreEqual(-1, nodeContext.Depth);
+            Assert.AreEqual(-1, nodeContext.Index);
+            Assert.AreEqual("/dir1/dir2", (string)nodeContext.ResolvedPath);
+            Assert.IsFalse(nodeContext.Resolved);
+            Assert.IsNull(nodeContext.ResolvedLink);
+
+            // 途中まで作成されたディレクトリを確認
+            Assert.IsTrue(vs.NodeExists("/dir1/dir2"));
         }
 
         [TestMethod]
@@ -5555,7 +5572,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             _actionNodeInfos.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
 
-            return false;
+            return nodeName == "dir2" ? false : true;
         }
 
         [TestMethod]
