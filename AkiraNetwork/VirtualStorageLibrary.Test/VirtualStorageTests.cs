@@ -5154,7 +5154,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNode? node = nodeContext?.Node;
 
             Assert.IsNull(node);
-            Assert.IsNull(nodeContext?.ParentDirectory);
+            Assert.AreEqual("/", (string)nodeContext!.ParentDirectory!.Name);
             Debug.WriteLine($"NodeName: {node?.Name}");
         }
 
@@ -5543,6 +5543,58 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsNull(((VirtualSymbolicLink)nodeContext.Node).TargetPath);
         }
 
+        [TestMethod]
+        [TestCategory("WalkPathToTarget")]
+        public void WalkPathToTarget_ReturnsNullForUnresolvedNode()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1", true);
+            vs.AddDirectory("/dir2", true);
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
+            vs.AddItem("/dir2/item1", [1, 2, 3]);
+
+            // メソッドの実行
+            VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/link1/item1", NotifyNode, null, false, false);
+
+            // NULLコンテキストを確認
+            // ただし、TraversalPathは処理したとこまで返される
+            Assert.IsNull(nodeContext.Node);
+            Assert.AreEqual("/dir1/link1", (string)nodeContext.TraversalPath);
+            Assert.AreEqual("dir1", (string)nodeContext.ParentDirectory!.Name);
+            Assert.AreEqual(-1, nodeContext.Depth);
+            Assert.AreEqual(-1, nodeContext.Index);
+            Assert.AreEqual("/dir1/link1", (string)nodeContext.ResolvedPath);
+            Assert.IsFalse(nodeContext.Resolved);
+            Assert.IsNull(nodeContext.ResolvedLink);
+        }
+
+        [TestMethod]
+        [TestCategory("WalkPathToTarget")]
+        public void WalkPathToTarget_ReturnsNullForPathContainingItem()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/item1", [1, 2, 3]);
+
+            // メソッドの実行
+            VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/item1/dir2", NotifyNode, null, false, false);
+
+            // NULLコンテキストを確認
+            // ただし、TraversalPathは処理したとこまで返される
+            Assert.IsNull(nodeContext.Node);
+            Assert.AreEqual("/dir1/item1", (string)nodeContext.TraversalPath);
+            Assert.AreEqual("dir1", (string)nodeContext.ParentDirectory!.Name);
+            Assert.AreEqual(-1, nodeContext.Depth);
+            Assert.AreEqual(-1, nodeContext.Index);
+            Assert.AreEqual("/dir1/item1", (string)nodeContext.ResolvedPath);
+            Assert.IsFalse(nodeContext.Resolved);
+            Assert.IsNull(nodeContext.ResolvedLink);
+        }
+
         private void NotifyNode(VirtualPath path, VirtualNode? node)
         {
             //Debug.WriteLine($"Path: {cycleInfo}, Node: {node}, isEnd: {isEnd}");
@@ -5572,7 +5624,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             _actionNodeInfos.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
 
-            return nodeName == "dir2" ? false : true;
+            return nodeName != "dir2";
         }
 
         [TestMethod]
