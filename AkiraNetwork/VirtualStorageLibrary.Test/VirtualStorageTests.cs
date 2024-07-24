@@ -5432,6 +5432,29 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("WalkPathToTarget")]
+        public void WalkPathToTarget_NonExistentPathAndCreatePathOnce()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath targetPath = "/dir1/dir2/dir3";
+
+            // ディレクトリ構造の出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // メソッドを実行
+            VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, ActionNodeNotContinue, true, false);
+
+            // ディレクトリ構造の出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(nodeContext));
+        }
+
+        [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPathAndCreatePath2()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5520,6 +5543,19 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             _actionNodeInfos.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
 
             return true;
+        }
+
+        private bool ActionNodeNotContinue(VirtualDirectory parentDirectory, VirtualNodeName nodeName, VirtualPath nodePath)
+        {
+            VirtualDirectory newDirectory = new(nodeName);
+
+            parentDirectory.Add(newDirectory);
+
+            Debug.WriteLine($"IntermediateDirectory: {nodePath}");
+
+            _actionNodeInfos.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
+
+            return false;
         }
 
         [TestMethod]
