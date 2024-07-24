@@ -709,7 +709,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_DefaultOption()
+        public void GetNodesView_DefaultOption()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -726,12 +726,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
             Assert.AreEqual("dir1", (string)nodes[0].Name);
@@ -743,7 +743,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameAscAndTypeAsc()
+        public void GetNodesView_NameAscAndTypeAsc()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -764,12 +764,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
             Assert.AreEqual("dir1", (string)nodes[0].Name);
@@ -781,7 +781,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_TypeAsc()
+        public void GetNodesView_TypeAsc()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -802,12 +802,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
             Assert.AreEqual("dir2", (string)nodes[0].Name);
@@ -819,7 +819,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_CreatedDateAscAndTypeAsc()
+        public void GetNodesView_CreatedDateAscAndTypeAsc()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -842,7 +842,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
@@ -859,7 +859,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_CreatedDateAndUpdatedDateAscAndTypeAsc()
+        public void GetNodesView_CreatedDateAndUpdatedDateAscAndTypeAsc()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -885,7 +885,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
@@ -902,7 +902,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_CreatedDateDesAndTypeAsc()
+        public void GetNodesView_CreatedDateDesAndTypeAsc()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -925,7 +925,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
@@ -942,7 +942,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_CreatedDateAndUpdatedDateDesAndTypeAsc()
+        public void GetNodesView_CreatedDateAndUpdatedDateDesAndTypeAsc()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -968,7 +968,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
@@ -985,7 +985,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameDesAndTypeAsc()
+        public void GetNodesView_NameDesAndTypeAsc()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -1006,12 +1006,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
             Assert.AreEqual("dir3", (string)nodes[0].Name);
@@ -1023,7 +1023,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameAscAndTypeDes()
+        public void GetNodesView_NameAscAndTypeDes()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -1044,12 +1044,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
             Assert.AreEqual("item1", (string)nodes[0].Name);
@@ -1061,7 +1061,35 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameAscAndTypeDesWithOnlyDir()
+        public void GetNodesView_None()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/item3", "/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
+
+            // 条件を設定 (何も表示しない)
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.None, // 何も表示しない
+                new(node => node.ResolveNodeType(), true),
+                [new(node => node.Name, true)]);
+
+            // テスト対象のディレクトリを取得
+            VirtualDirectory directory = vs.GetDirectory("/");
+
+            // Act
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
+
+            // Assert
+            Assert.AreEqual(0, nodes.Count);
+        }
+
+        [TestMethod]
+        public void GetNodesView_NameAscAndTypeDesWithOnlyDir()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -1082,12 +1110,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(3, nodes.Count);
             Assert.AreEqual("dir1", (string)nodes[0].Name);
@@ -1096,7 +1124,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameAscAndTypeDesWithOnlyItem()
+        public void GetNodesView_NameAscAndTypeDesWithOnlyItem()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -1117,12 +1145,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(3, nodes.Count);
             Assert.AreEqual("item1", (string)nodes[0].Name);
@@ -1131,7 +1159,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void GetNodeList_NameAscAndTypeDesWithOnlySymbolicLink()
+        public void GetNodesView_NameAscAndTypeDesWithOnlySymbolicLink()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -1152,49 +1180,54 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
-            // new(node => node.ResolveNodeType(), true)が指定されているため、SymbolicLink のみ取得される
-            // dir3、item3 はディレクトリ、アイテムの扱いとなるため取得されない
-            Assert.AreEqual(0, nodes.Count);
+            foreach (VirtualNode node in nodes)
+            {
+                Debug.WriteLine(node);
+            }
+
+            // VirtualNodeTypeFilter.SymbolicLink を指定した場合、シンボリックリンクのみが取得される
+            Assert.AreEqual(2, nodes.Count);
         }
 
-        //[TestMethod]
-        //public void GetNodeList_NameAscAndTypeDesWithOnlySymbolicLink_Part2()
-        //{
-        //    // Arrange
-        //    VirtualStorage<BinaryData> vs = new();
-        //    vs.AddDirectory("/dir2");
-        //    vs.AddItem("/item2", new BinaryData([1, 2, 3]));
-        //    vs.AddDirectory("/dir1");
-        //    vs.AddItem("/item1", new BinaryData([1, 2, 3]));
-        //    vs.AddSymbolicLink("/item3", "/item1");
-        //    vs.AddSymbolicLink("/dir3", "/dir1");
+        [TestMethod]
+        public void GetNodesView_NameAscAndTypeDesWithOnlySymbolicLink_Part2()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/item2", new BinaryData([1, 2, 3]));
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/item1", new BinaryData([1, 2, 3]));
+            vs.AddSymbolicLink("/item3", "/item1");
+            vs.AddSymbolicLink("/dir3", "/dir1");
 
-        //    // 条件を設定
-        //    VirtualStorageState.SetNodeListConditions(
-        //        VirtualNodeTypeFilter.SymbolicLink,
-        //        new(node => node.NodeType, true),
-        //        [new(node => node.Name, true)]);
+            // 条件を設定
+            VirtualStorageState.SetNodeListConditions(
+                VirtualNodeTypeFilter.SymbolicLink,
+                new(node => node.NodeType, true),
+                [new(node => node.Name, true)]);
 
-        //    // テスト対象のディレクトリを取得
-        //    VirtualDirectory directory = vs.GetDirectory("/");
+            // テスト対象のディレクトリを取得
+            VirtualDirectory directory = vs.GetDirectory("/");
 
-        //    // Act
-        //    List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            // Act
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
-        //    // Assert
-        //    foreach (VirtualNode node in nodes)
-        //    {
-        //        Debug.WriteLine(node.Name);
-        //    }
+            // Assert
+            foreach (VirtualNode node in nodes)
+            {
+                Debug.WriteLine(node);
+            }
 
-        //    Assert.AreEqual(2, nodes.Count);
-        //}
+            // VirtualNodeTypeFilter.SymbolicLink を指定した場合、シンボリックリンクのみが取得される
+            Assert.AreEqual(2, nodes.Count);
+        }
 
         [TestMethod]
-        public void GetNodeList_NameAscAndTypeAscWithSymbolicLink()
+        public void GetNodesView_NameAscAndTypeAscWithSymbolicLink()
         {
             // Arrange
             VirtualStorage<BinaryData> vs = new();
@@ -1215,12 +1248,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory directory = vs.GetDirectory("/");
 
             // Act
-            List<VirtualNode> nodes = directory.GetNodeList().ToList();
+            List<VirtualNode> nodes = directory.GetNodesView().ToList();
 
             // Assert
             foreach (VirtualNode node in nodes)
             {
-                Debug.WriteLine(node.Name);
+                Debug.WriteLine(node);
             }
             Assert.AreEqual(6, nodes.Count);
             Assert.AreEqual("dir1", (string)nodes[0].Name);

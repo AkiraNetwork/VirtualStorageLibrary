@@ -21,7 +21,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public int SymbolicLinkCount => Nodes.Count(n => n is VirtualSymbolicLink);
 
-        public IEnumerable<VirtualNode> NodesView => GetNodeList();
+        public IEnumerable<VirtualNode> NodesView => GetNodesView();
 
         public int NodesViewCount => NodesView.Count();
 
@@ -105,7 +105,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return newDirectory;
         }
 
-        public IEnumerable<VirtualNode> GetNodeList()
+        public IEnumerable<VirtualNode> GetNodesView()
         {
             VirtualNodeTypeFilter filter = VirtualStorageState.State.NodeListConditions.Filter;
             VirtualGroupCondition<VirtualNode, object>? groupCondition = VirtualStorageState.State.NodeListConditions.GroupCondition;
@@ -141,6 +141,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (filter.HasFlag(VirtualNodeTypeFilter.SymbolicLink) && node is VirtualSymbolicLink link)
             {
+                // SymbolicLink フラグのみが指定されている場合は true を返す
+                if (filter == VirtualNodeTypeFilter.SymbolicLink)
+                {
+                    return true;
+                }
+
                 return filter.HasFlag(link.TargetNodeType.ToFilter());
             }
 
