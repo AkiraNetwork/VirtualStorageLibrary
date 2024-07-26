@@ -5061,6 +5061,28 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_SymbolicLink1()
         {
+            VirtualPath targetPath = "/dir1/link1";
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item");
+            vs.AddSymbolicLink("/dir1/link1", "/dir1/item");
+
+            // リンク解決しない場合
+            VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, false, false);
+            VirtualNode? node = nodeContext?.Node;
+
+            Assert.IsNotNull(node);
+            Assert.AreEqual("link1", (string)node?.Name!);
+            Assert.AreEqual("dir1", (string)nodeContext?.ParentDirectory!.Name!);
+            Assert.AreEqual("/dir1/link1", (string)nodeContext?.ResolvedPath);
+            Assert.AreEqual("link1", (string)nodeContext?.ResolvedLink?.Name!);
+            Debug.WriteLine($"NodeName: {node?.Name}");
+        }
+
+        [TestMethod]
+        [TestCategory("WalkPathToTarget")]
+        public void WalkPathToTarget_SymbolicLink2()
+        {
             VirtualPath targetPath = "/dir1/link1/item";
             VirtualStorage<BinaryData> vs = new();
             BinaryData data = [1, 2, 3];
@@ -5081,7 +5103,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("WalkPathToTarget")]
-        public void WalkPathToTarget_SymbolicLink2()
+        public void WalkPathToTarget_SymbolicLink3()
         {
             VirtualPath targetPath = "/dir1/link1/dir3";
             VirtualStorage<BinaryData> vs = new();
@@ -5101,7 +5123,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("WalkPathToTarget")]
-        public void WalkPathToTarget_SymbolicLink3()
+        public void WalkPathToTarget_SymbolicLink4()
         {
             VirtualPath targetPath = "/dir1/link1";
             VirtualPath linkTargetPath = "/dir2";
@@ -5122,7 +5144,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("WalkPathToTarget")]
-        public void WalkPathToTarget_SymbolicLink4()
+        public void WalkPathToTarget_SymbolicLink5()
         {
             VirtualPath targetPath = "/dir1/link1/item";
             VirtualStorage<BinaryData> vs = new();
@@ -5472,6 +5494,38 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("WalkPathToTarget")]
+        public void WalkPathToTarget_InvalidLink()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/dir1/link1", "/nonexistent");
+
+            // ディレクトリ構造の出力
+            Debug.WriteLine("ディレクトリ構造:");
+            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+
+            // メソッドを実行
+            VirtualNodeContext nodeContext = vs.WalkPathToTarget("/dir1/link1", NotifyNode, null, true, false);
+
+            // コンテキストのデバッグ出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(nodeContext));
+
+            // 結果を検証
+            // ただし、TraversalPathは処理したとこまで返される
+            // ターゲットパスの取得には成功したが、ターゲットパスのノードは存在しない
+            Assert.IsNull(nodeContext.Node);
+            Assert.AreEqual("/dir1/link1", (string)nodeContext.TraversalPath);
+            Assert.AreEqual("dir1", (string)nodeContext.ParentDirectory!.Name);
+            Assert.AreEqual(-1, nodeContext.Depth);
+            Assert.AreEqual(-1, nodeContext.Index);
+            Assert.AreEqual("/nonexistent", (string)nodeContext.ResolvedPath);
+            Assert.IsTrue(nodeContext.Resolved);
+            Assert.IsNotNull(nodeContext.ResolvedLink);
+        }
+
+        [TestMethod]
+        [TestCategory("WalkPathToTarget")]
         public void WalkPathToTarget_NonExistentPathAndCreatePath2()
         {
             VirtualStorage<BinaryData> vs = new();
@@ -5567,7 +5621,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(-1, nodeContext.Index);
             Assert.AreEqual("/dir1/link1", (string)nodeContext.ResolvedPath);
             Assert.IsFalse(nodeContext.Resolved);
-            Assert.IsNull(nodeContext.ResolvedLink);
+            Assert.IsNotNull(nodeContext.ResolvedLink);
         }
 
         [TestMethod]
@@ -6165,6 +6219,44 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("ResolvePath")]
+        public void ResolvePath_WithWildcard_MatcherIsNull()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ResolvePath_SetData(vs);
+
+            // ワイルドカードパス
+            VirtualPath wildcardPath = "/dir1";
+
+            // ワイルドカードマッチャーを使用しない場合
+            VirtualStorageState.State.WildcardMatcher = null;
+
+            // ワイルドカードを使用したパス解決
+            List<VirtualPath> result = vs.ResolvePath(wildcardPath).ToList();
+
+            // ワイルドカードパス出力
+            Debug.WriteLine("Wildcard path: " + wildcardPath);
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // これでいいんだっけ? dir1だけが返ってくる事を期待してるんじゃないの?
+            // →「ワイルドカードマッチャーを使用しない場合」だから、通常のツリー取得と同じ挙動になる
+            //Debug Trace:
+            //Resolved paths:
+            /// dir1
+            /// dir1/file1.txt
+            /// dir1/file2.log
+            /// dir1/file3.txt
+            /// dir1/file4.log
+        }
+
+        [TestMethod]
+        [TestCategory("ResolvePath")]
         public void ResolvePath_WithWildcard_FindsCorrectPaths1()
         {
             // VirtualStorage インスタンスのセットアップ
@@ -6305,6 +6397,56 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(2, result.Count);
             Assert.IsTrue(result[0] == "/dir1/dir2/dir3/file1.txt");
             Assert.IsTrue(result[1] == "/dir1/dir2a/dir3/file3.txt");
+        }
+
+        [TestMethod]
+        [TestCategory("ResolvePath")]
+        public void ResolvePath_WithWildcard_FindsCorrectPaths6()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ResolvePath_SetData(vs);
+
+            // ワイルドカードを使用したパス解決
+            List<VirtualPath> result = vs.ResolvePath("/dir*").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == "/dir1");
+            Assert.IsTrue(result[1] == "/dir2");
+        }
+
+        [TestMethod]
+        [TestCategory("ResolvePath")]
+        public void ResolvePath_WithWildcard_FindsCorrectPaths7()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ResolvePath_SetData(vs);
+
+            // ワイルドカードを使用したパス解決
+            List<VirtualPath> result = vs.ResolvePath("/dir?").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == "/dir1");
+            Assert.IsTrue(result[1] == "/dir2");
         }
 
         [TestMethod]
@@ -10147,6 +10289,5 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             vs.CopyNode("/dir1/item1", "/item2");
         }
-
     }
 }

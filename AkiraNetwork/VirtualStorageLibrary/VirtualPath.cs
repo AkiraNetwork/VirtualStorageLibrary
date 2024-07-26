@@ -16,17 +16,15 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         private static readonly string _dotDot;
 
-        public string Path { [DebuggerStepThrough] get => _path; }
+        public string Path { get => _path; }
 
         private List<VirtualNodeName>? _partsList;
 
-        [DebuggerStepThrough]
         public static implicit operator VirtualPath(string path)
         {
             return new VirtualPath(path);
         }
 
-        [DebuggerStepThrough]
         public static implicit operator string(VirtualPath? virtualPath)
         {
             if (virtualPath == null)
@@ -39,7 +37,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public VirtualPath DirectoryPath
         {
-            [DebuggerStepThrough]
             get
             {
                 if (_directoryPath == null)
@@ -52,7 +49,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public VirtualNodeName NodeName
         {
-            [DebuggerStepThrough]
             get
             {
                 if (_nodeName == null)
@@ -65,7 +61,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public List<VirtualNodeName> PartsList
         {
-            [DebuggerStepThrough]
             get
             {
                 _partsList ??= GetPartsList();
@@ -75,7 +70,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public int Depth
         {
-            [DebuggerStepThrough]
             get
             {
                 // パスの深さを返す
@@ -85,25 +79,21 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public static char Separator
         {
-            [DebuggerStepThrough]
             get => VirtualStorageSettings.Settings.PathSeparator;
         }
 
         public static string Root
         {
-            [DebuggerStepThrough]
             get => _root;
         }
 
         public static string Dot
         {
-            [DebuggerStepThrough]
             get => _dot;
         }
 
         public static string DotDot
         {
-            [DebuggerStepThrough]
             get => _dotDot;
         }
 
@@ -111,56 +101,46 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public bool IsEmpty
         {
-            [DebuggerStepThrough]
             get => _path == string.Empty;
         }
 
         public bool IsRoot
         {
-            [DebuggerStepThrough]
             get => _path == Separator.ToString();
         }
 
         public bool IsAbsolute
         {
-            [DebuggerStepThrough]
             get => _path.StartsWith(Separator);
         }
 
         public bool IsEndsWithSlash
         {
-            [DebuggerStepThrough]
             get => _path.EndsWith(Separator);
         }
 
         public bool IsDot
         {
-            [DebuggerStepThrough]
             get => _path == Dot;
         }
 
         public bool IsDotDot
         {
-            [DebuggerStepThrough]
             get => _path == DotDot;
         }
 
-        [DebuggerStepThrough]
         public override int GetHashCode() => _path.GetHashCode();
 
-        [DebuggerStepThrough]
         public VirtualPath(string path)
         {
             _path = path;
         }
 
-        [DebuggerStepThrough]
         public VirtualPath(IEnumerable<VirtualNodeName> parts)
         {
             _path = Separator + string.Join(Separator, parts.Select(node => node.Name));
         }
 
-        [DebuggerStepThrough]
         static VirtualPath()
         {
             _root = VirtualStorageSettings.Settings.PathRoot;
@@ -168,7 +148,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             _dotDot = VirtualStorageSettings.Settings.PathDotDot;
         }
 
-        [DebuggerStepThrough]
         public override bool Equals(object? obj)
         {
             if (obj is VirtualPath other)
@@ -178,13 +157,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return false;
         }
 
-        [DebuggerStepThrough]
         public bool Equals(VirtualPath? other)
         {
             return _path == other?._path;
         }
 
-        [DebuggerStepThrough]
         public static bool operator ==(VirtualPath? left, VirtualPath? right)
         {
             // 両方が null の場合は true
@@ -203,54 +180,46 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return left._path == right._path;
         }
 
-        [DebuggerStepThrough]
         public static bool operator !=(VirtualPath? left, VirtualPath? right)
         {
             return !(left == right);
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
         {
             return path1.Combine(path2).NormalizePath();
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
         {
             string combinedPath = VirtualPath.Combine(path.Path, nodeName.Name);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, string str)
         {
             string combinedPath = VirtualPath.Combine(path.Path, str);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(string str, VirtualPath path)
         {
             string combinedPath = VirtualPath.Combine(str, path.Path);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(VirtualPath path, char chr)
         {
             string combinedPath = path.Path + chr;
             return new VirtualPath(combinedPath); // 正規化せずに結合
         }
 
-        [DebuggerStepThrough]
         public static VirtualPath operator +(char chr, VirtualPath path)
         {
             string combinedPath = chr + path.Path;
             return new VirtualPath(combinedPath); // 正規化せずに結合
         }
 
-        [DebuggerStepThrough]
         public VirtualPath TrimEndSlash()
         {
             if (_path.EndsWith(Separator))
@@ -260,7 +229,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return this;
         }
 
-        [DebuggerStepThrough]
         public VirtualPath AddEndSlash()
         {
             if (!_path.EndsWith(Separator))
@@ -270,7 +238,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return this;
         }
 
-        [DebuggerStepThrough]
         public VirtualPath AddStartSlash()
         {
             if (!_path.StartsWith(Separator))
@@ -280,13 +247,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return this;
         }
 
-        [DebuggerStepThrough]
         public bool StartsWith(VirtualPath path)
         {
             return _path.StartsWith(path.Path);
         }
 
-        [DebuggerStepThrough]
         public VirtualPath NormalizePath()
         {
             // string型でパスを正規化する静的メソッドを呼び出す。
@@ -296,7 +261,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(normalizedPathString);
         }
 
-        [DebuggerStepThrough]
         public static string NormalizePath(string path)
         {
             // パスが空文字列、または PathSeparator の場合はそのまま返す
@@ -347,7 +311,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return normalizedPath;
         }
 
-        [DebuggerStepThrough]
         private string GetDirectoryPath()
         {
             // パスが PathSeparator で始まっていない場合、それは相対パスなのでそのまま返す
@@ -370,7 +333,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        [DebuggerStepThrough]
         private VirtualNodeName GetNodeName()
         {
             if (_path == VirtualPath.Separator.ToString())
@@ -400,7 +362,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        [DebuggerStepThrough]
         public VirtualPath Combine(params VirtualPath[] paths)
         {
             string[] currentPathArray = [_path];
@@ -411,7 +372,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(combinedPathString);
         }
 
-        [DebuggerStepThrough]
         public static string Combine(params string[] paths)
         {
             if (paths.Length == 0)
@@ -469,7 +429,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return combinedPath;
         }
 
-        [DebuggerStepThrough]
         public VirtualPath GetParentPath()
         {
             // パスの最後の PathSeparator を取り除きます
@@ -490,7 +449,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(parentPath);
         }
 
-        [DebuggerStepThrough]
         public LinkedList<VirtualNodeName> GetPartsLinkedList()
         {
             LinkedList<VirtualNodeName> parts = new();
@@ -502,13 +460,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return parts;
         }
 
-        [DebuggerStepThrough]
         public List<VirtualNodeName> GetPartsList()
         {
             return [.. GetPartsLinkedList()];
         }
 
-        [DebuggerStepThrough]
         public VirtualPath CombineFromIndex(VirtualPath path, int index)
         {
             // 指定されたインデックスからのパスのパーツを取得
@@ -524,7 +480,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return combinedPath;
         }
 
-        [DebuggerStepThrough]
         public int CompareTo(VirtualPath? other)
         {
             if (other == null)
@@ -535,7 +490,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return string.Compare(_path, other._path, StringComparison.Ordinal);
         }
 
-        [DebuggerStepThrough]
         public int CompareTo(object? obj)
         {
             if (obj == null)
@@ -551,7 +505,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return CompareTo((VirtualPath)obj);
         }
 
-        [DebuggerStepThrough]
         public VirtualPath GetRelativePath(VirtualPath basePath)
         {
             // このパスが絶対パスでない場合は例外をスロー
@@ -606,7 +559,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(string.Join(VirtualPath.Separator, relativePath));
         }
 
-        [DebuggerStepThrough]
         public VirtualPath ExtractBasePath()
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
@@ -621,7 +573,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(parts);
         }
 
-        [DebuggerStepThrough]
         public int GetBaseDepth()
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
