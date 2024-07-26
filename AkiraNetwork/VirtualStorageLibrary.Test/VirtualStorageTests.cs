@@ -6211,10 +6211,29 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file2.log", "data");
             vs.AddItem("/dir1/file3.txt", "data");
             vs.AddItem("/dir1/file4.log", "data");
+            vs.AddSymbolicLink("/dir1/file5", "/dir1/file1.txt");
+            vs.AddSymbolicLink("/dir1/file6", "/dir1/file2.log");
             vs.AddItem("/dir2/file1.txt", "data");
             vs.AddItem("/dir2/file2.log", "data");
             vs.AddItem("/dir2/file3.txt", "data");
             vs.AddItem("/dir2/file4.log", "data");
+            vs.AddSymbolicLink("/dir2/file5", "/dir2/file1.txt");
+            vs.AddSymbolicLink("/dir2/file6", "/dir2/file2.log");
+        }
+
+        private static void ExpandPath_SetData2(VirtualStorage<string> vs)
+        {
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/file1.txt", "data");
+            vs.AddSymbolicLink("/dir1/file2.txt", "/dir1/nonexistent");
+        }
+
+        private static void ExpandPath_SetData3(VirtualStorage<string> vs)
+        {
+            vs.AddDirectory("/dir1", true);
+            vs.AddItem("/dir1/file1.txt", "data");
+            vs.AddItem("/file2.txt", "data");
+            vs.AddSymbolicLink("/dir1/file2.txt", "/file2.txt");
         }
 
         [TestMethod]
@@ -6447,6 +6466,69 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(2, result.Count);
             Assert.IsTrue(result[0] == "/dir1");
             Assert.IsTrue(result[1] == "/dir2");
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths8()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData(vs);
+
+            // ワイルドカードを使用したパス解決
+            List<VirtualPath> result = vs.ExpandPath("/dir?").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == "/dir1");
+            Assert.IsTrue(result[1] == "/dir2");
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDoFollowLinksWithNonExistentTargetPath_ThrowVirtualNodeNotFoundException()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData2(vs);
+
+            // ワイルドカードを使用したパス解決
+            // /dir1/file2.txt -> /dir1/nonexistent なのでノードが見つからないパターン
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt").ToList();
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDoFollowLinksWithExistentTargetPath()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData3(vs);
+
+            // ワイルドカードを使用したパス解決
+            // /dir1/file2.txt -> /file2.txt なのでノードが見つかるパターン
+            List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
         }
 
         [TestMethod]
