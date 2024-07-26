@@ -711,7 +711,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        public IEnumerable<VirtualNodeContext> ResolvePathTree(
+        public IEnumerable<VirtualNodeContext> ExpandPathTree(
             VirtualPath path,
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All)
         {
@@ -1152,11 +1152,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return paths;
         }
 
-        public IEnumerable<VirtualPath> ResolvePath(VirtualPath path)
+        public IEnumerable<VirtualPath> ExpandPath(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualPath basePath = path.ExtractBasePath();
-            IEnumerable<VirtualNodeContext> nodeContexts = ResolvePathTree(path);
+            IEnumerable<VirtualNodeContext> nodeContexts = ExpandPathTree(path);
             IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (basePath + info.TraversalPath).NormalizePath());
 
             return resolvedPaths;

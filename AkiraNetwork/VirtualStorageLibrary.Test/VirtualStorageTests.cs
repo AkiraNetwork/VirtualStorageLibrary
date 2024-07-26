@@ -6203,7 +6203,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "dir2/dir3/link1"));
         }
 
-        private static void ResolvePath_SetData(VirtualStorage<string> vs)
+        private static void ExpandPath_SetData(VirtualStorage<string> vs)
         {
             vs.AddDirectory("/dir1", true);
             vs.AddDirectory("/dir2", true);
@@ -6218,12 +6218,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_MatcherIsNull()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_MatcherIsNull()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // ワイルドカードパス
             VirtualPath wildcardPath = "/dir1";
@@ -6232,7 +6232,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorageState.State.WildcardMatcher = null;
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath(wildcardPath).ToList();
+            List<VirtualPath> result = vs.ExpandPath(wildcardPath).ToList();
 
             // ワイルドカードパス出力
             Debug.WriteLine("Wildcard path: " + wildcardPath);
@@ -6256,15 +6256,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths1()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths1()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/*.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6281,15 +6281,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths2()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths2()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir*/file1.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir*/file1.txt").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6306,15 +6306,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths3()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths3()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir*/*.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir*/*.txt").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6333,8 +6333,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths4()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths4()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6350,7 +6350,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("file6.txt", "data");
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/dir1a/*.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/dir1a/*.txt").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6367,8 +6367,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths5()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths5()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6383,7 +6383,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/dir2/dir3/file5.log", "data");
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/dir*/dir3/file*.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/dir*/dir3/file*.txt").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6400,15 +6400,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths6()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths6()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir*").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir*").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6425,15 +6425,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcard_FindsCorrectPaths7()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcard_FindsCorrectPaths7()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir?").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir?").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6450,15 +6450,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithSingleCharacterWildcard_FindsCorrectPaths()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithSingleCharacterWildcard_FindsCorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // '?' ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/file?.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/file?.txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6468,15 +6468,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithCharacterClassWildcard_FindsCorrectPaths()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithCharacterClassWildcard_FindsCorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
-            ResolvePath_SetData(vs);
+            ExpandPath_SetData(vs);
 
             // '[]' ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir2/file[1-3].txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir2/file[1-3].txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6486,8 +6486,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithCharacterClassMatch_FindsCorrectPaths()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithCharacterClassMatch_FindsCorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6496,7 +6496,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/cook.txt", "data");
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/[bc]ook.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/[bc]ook.txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6506,8 +6506,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithCharacterClassNoMatch_DoesNotFindIncorrectPaths()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithCharacterClassNoMatch_DoesNotFindIncorrectPaths()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6515,7 +6515,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/hook.txt", "data");
 
             // '[bc]ook.txt' ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/[bc]ook.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/[bc]ook.txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6523,8 +6523,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithMultipleWildcards_FindsAllLogFilesAcrossDirectories()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithMultipleWildcards_FindsAllLogFilesAcrossDirectories()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6540,7 +6540,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir2/file4.log", "data");
 
             // 複数のワイルドカードを含むパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir*/file*.log").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir*/file*.log").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6552,8 +6552,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithCaseInsensitiveExtensionMatching_FindsAllTxtFiles()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithCaseInsensitiveExtensionMatching_FindsAllTxtFiles()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6563,7 +6563,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file3.TxT", "data");  // 混在する拡張子
 
             // 大文字小文字を区別しないパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/file?.[tT][xX][tT]").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/file?.[tT][xX][tT]").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6574,8 +6574,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithInvalidDirectoryPath_ThrowsVirtualNodeNotFoundException()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithInvalidDirectoryPath_ThrowsVirtualNodeNotFoundException()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6583,12 +6583,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file1.txt", "data");
 
             // 存在しないディレクトリパスの解決時に例外を期待
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.ResolvePath("/invalid/dir/*.txt").ToList());
+            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.ExpandPath("/invalid/dir/*.txt").ToList());
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithImproperlyFormattedPath_ThrowsVirtualNodeNotFoundException()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithImproperlyFormattedPath_ThrowsVirtualNodeNotFoundException()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6596,7 +6596,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file1.txt", "data");
 
             // 正規化されて検索される
-            List<VirtualPath> result = vs.ResolvePath("/dir1/*.txt/").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt/").ToList();
 
             // フォーマットが正しくないパターンの場合、正規化されることを確認する
             Assert.IsNotNull(result);
@@ -6605,8 +6605,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithWildcardInMiddleOfPath_FindsCorrectFiles()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithWildcardInMiddleOfPath_FindsCorrectFiles()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6619,7 +6619,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/file1.txt", "data");
 
             // パス中のワイルドカードを含むパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/*/file1.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/*/file1.txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6629,8 +6629,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithEscapedWildcards_HandlesLiteralsCorrectly()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithEscapedWildcards_HandlesLiteralsCorrectly()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6639,7 +6639,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file*.txt", "data");  // リテラルワイルドカードを含むファイル
 
             // PowerShellスタイルのエスケープを含むパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/file`*.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/file`*.txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6648,8 +6648,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithEscapedQuestionMark_HandlesLiteralsCorrectly()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithEscapedQuestionMark_HandlesLiteralsCorrectly()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6658,7 +6658,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file?.txt", "data");  // リテラルワイルドカードを含むファイル
 
             // PowerShellスタイルのエスケープを含むパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/file`?.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/file`?.txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6667,8 +6667,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithEscapedBrackets_HandlesLiteralsCorrectly()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithEscapedBrackets_HandlesLiteralsCorrectly()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<string> vs = new();
@@ -6677,7 +6677,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file[1].txt", "data");  // リテラルワイルドカードを含むファイル
 
             // PowerShellスタイルのエスケープを含むパス解決
-            List<VirtualPath> result = vs.ResolvePath("/dir1/file`[1`].txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/file`[1`].txt").ToList();
 
             // 期待される結果の確認
             Assert.IsNotNull(result);
@@ -6686,8 +6686,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithHighVolumeOfFiles_PerformanceAndAccuracyTest()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithHighVolumeOfFiles_PerformanceAndAccuracyTest()
         {
             const int NumberOfFiles = 10000; // テストに使用するファイルの数を定数で定義
 
@@ -6705,7 +6705,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
             // ワイルドカードを使用したパス解決
-            var result = vs.ResolvePath("/dir1/file*.txt").ToList();
+            var result = vs.ExpandPath("/dir1/file*.txt").ToList();
 
             // ストップウォッチの停止
             stopwatch.Stop();
@@ -6721,14 +6721,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             }
 
             // パフォーマンスの基準設定（例えば1秒以内に完了することを期待）
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 10000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 10000, $"ExpandPath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
 
-            Debug.WriteLine($"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds for {NumberOfFiles} files.");
+            Debug.WriteLine($"ExpandPath took {stopwatch.ElapsedMilliseconds} milliseconds for {NumberOfFiles} files.");
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithMultipleLevels_PerformanceTest()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithMultipleLevels_PerformanceTest()
         {
             const int Depth = 10; // ディレクトリの深さ
             const int FilesPerDepth = 10; // 各階層に生成するファイルの数
@@ -6766,7 +6766,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
                     searchPath += $"dir{j}/";
                 }
                 searchPath += "file*.txt";
-                var result = vs.ResolvePath(searchPath).ToList();
+                var result = vs.ExpandPath(searchPath).ToList();
                 Assert.AreEqual(FilesPerDepth, result.Count, $"Failed at depth {i} with cycleInfo {searchPath}");
             }
 
@@ -6781,8 +6781,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_WithDeepNestedDirectories_PerformanceTest()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDeepNestedDirectories_PerformanceTest()
         {
             const int Depth = 10; // ディレクトリの深さ
             const int FilesPerDepth = 10; // 最深階層に生成するファイルの数
@@ -6823,7 +6823,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
             // ワイルドカードを使用してファイルを解決
-            var result = vs.ResolvePath(searchPath).ToList();
+            var result = vs.ExpandPath(searchPath).ToList();
 
             // ストップウォッチの停止
             stopwatch.Stop();
@@ -6832,15 +6832,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(FilesPerDepth, result.Count, "The number of resolved files does not match the expected count.");
 
             // パフォーマンスの基準設定
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 10000, $"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 10000, $"ExpandPath took {stopwatch.ElapsedMilliseconds} milliseconds, which is too slow.");
 
             // デバッグ出力でタイムを表示
-            Debug.WriteLine($"ResolvePath took {stopwatch.ElapsedMilliseconds} milliseconds for resolving files in deep nested directories.");
+            Debug.WriteLine($"ExpandPath took {stopwatch.ElapsedMilliseconds} milliseconds for resolving files in deep nested directories.");
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_DeepDirectoryStructureTest()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_DeepDirectoryStructureTest()
         {
             const int Depth = 10;
             const string BaseDir = "/dir1";
@@ -6869,7 +6869,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine("Resolved paths: " + currentPath + "/*.txt");
 
             // ファイル解決のテスト
-            var result = vs.ResolvePath(currentPath + "/*.txt").ToList();
+            var result = vs.ExpandPath(currentPath + "/*.txt").ToList();
 
             // 期待される結果の確認
             Assert.AreEqual(3, result.Count);
@@ -6886,14 +6886,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("ResolvePath")]
-        public void ResolvePath_Root()
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_Root()
         {
             // VirtualStorage インスタンスのセットアップ
             VirtualStorage<BinaryData> vs = new();
 
             // ワイルドカードを使用したパス解決
-            List<VirtualPath> result = vs.ResolvePath("/").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/").ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
