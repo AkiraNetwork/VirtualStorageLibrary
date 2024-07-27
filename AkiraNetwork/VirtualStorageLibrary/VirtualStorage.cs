@@ -960,26 +960,9 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         static bool MatchPatterns(List<VirtualNodeName> parts, List<string> patternList)
         {
-            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
-            PatternMatch? patternMatcher;
-            if (wildcardMatcher == null)
-            {
-                patternMatcher = null;
-            }
-            else
-            {
-                patternMatcher = wildcardMatcher.PatternMatcher;
-            }
+            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher!;
 
-            if (patternMatcher == null)
-            {
-                return false;
-            }
-
-            if (parts.Count != patternList.Count)
-            {
-                return false;
-            }
+            PatternMatch? patternMatcher = wildcardMatcher.PatternMatcher;
 
             for (int i = 0; i < parts.Count; i++)
             {
@@ -1161,12 +1144,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (fixedPath + info.TraversalPath).NormalizePath());
 
             return resolvedPaths;
-        }
-
-        // ワイルドカードの実装（デフォルト）
-        public static bool RegexMatch(string nodeName, string pattern)
-        {
-            return Regex.IsMatch(nodeName, pattern);
         }
 
         private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool followLinks, bool recursive)

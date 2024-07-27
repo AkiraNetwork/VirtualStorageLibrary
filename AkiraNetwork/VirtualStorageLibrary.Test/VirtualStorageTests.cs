@@ -1,5 +1,5 @@
 ﻿using AkiraNetwork.VirtualStorageLibrary.Utilities;
-using System.Collections.Generic;
+using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -7118,6 +7118,34 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
             Assert.IsTrue(result[0] == "/");
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDefaultWildcard_FindsCorrectPaths1()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData(vs);
+
+            // デフォルトのワイルドカードマッチャーを使用
+            VirtualStorageState.State.WildcardMatcher = new DefaultWildcardMatcher();
+
+            // ワイルドカードを使用したパス解決
+            List<VirtualPath> result = vs.ExpandPath(@"/dir1/.*\.txt").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file1.txt");
+            Assert.IsTrue(result[1] == "/dir1/file3.txt");
         }
 
         [TestMethod]
