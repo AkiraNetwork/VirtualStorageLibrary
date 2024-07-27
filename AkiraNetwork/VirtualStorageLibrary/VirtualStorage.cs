@@ -713,18 +713,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public IEnumerable<VirtualNodeContext> ExpandPathTree(
             VirtualPath path,
-            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All)
+            VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
+            bool followLinks = true)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualPath basePath = path.ExtractBasePath();
-            int baseDepth = path.GetBaseDepth();
-            VirtualNode node = GetNode(basePath, true);
+            VirtualPath fixedPath = path.FixedPath;
+            int baseDepth = path.BaseDepth;
+            VirtualNode node = GetNode(fixedPath, true);
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
 
             WalkPathTreeParameters p = new(
-                basePath,
-                basePath,
+                fixedPath,
+                fixedPath,
                 node,
                 null,
                 baseDepth,
@@ -732,7 +733,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 0,
                 filter,
                 true,
-                true,
+                followLinks,
                 patternList,
                 null);
 
@@ -753,7 +754,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             bool resolveLinks = true)
         {
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
-            int baseDepth = basePath.GetBaseDepth();
+            int baseDepth = basePath.BaseDepth;
             VirtualNode baseNode = GetNode(basePath, followLinks);
 
             VirtualNodeContext nodeContext = WalkPathToTarget(basePath, null, null, resolveLinks, true);
@@ -1152,12 +1153,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return paths;
         }
 
-        public IEnumerable<VirtualPath> ExpandPath(VirtualPath path)
+        public IEnumerable<VirtualPath> ExpandPath(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
-            VirtualPath basePath = path.ExtractBasePath();
-            IEnumerable<VirtualNodeContext> nodeContexts = ExpandPathTree(path);
-            IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (basePath + info.TraversalPath).NormalizePath());
+            VirtualPath fixedPath = path.FixedPath;
+            IEnumerable<VirtualNodeContext> nodeContexts = ExpandPathTree(path, filter, followLinks);
+            IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (fixedPath + info.TraversalPath).NormalizePath());
 
             return resolvedPaths;
         }
@@ -1745,7 +1746,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         // 仮想ストレージのツリー構造をテキストベースで作成し返却する
         // 返却するテストは以下の出力の形式とする。
-        // 例: もし、/dir1/dir2/item1, /dir1/dir2/item2, /dir1/item3 が存在し、/dir1が basePath で指定された場合
+        // 例: もし、/dir1/dir2/item1, /dir1/dir2/item2, /dir1/item3 が存在し、/dir1が fixedPath で指定された場合
         // 出力:
         // /
         // ├dir1/

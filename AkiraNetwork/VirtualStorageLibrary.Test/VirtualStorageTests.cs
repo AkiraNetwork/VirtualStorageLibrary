@@ -1,4 +1,5 @@
 ﻿using AkiraNetwork.VirtualStorageLibrary.Utilities;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -6501,11 +6502,82 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<string> vs = new();
             ExpandPath_SetData2(vs);
 
-            // ワイルドカードを使用したパス解決
+            // followLinks を true で指定したパターン
             // /dir1/file2.txt -> /dir1/nonexistent なのでノードが見つからないパターン
             Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt").ToList();
+                List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt", VirtualNodeTypeFilter.All, true).ToList();
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_RootWithDoFollowLinks_NoneWildcard()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData3(vs);
+
+            // followLinks を true で指定したパターン
+            // ワイルドカードを使用しないのでそのまま返却される。
+            List<VirtualPath> result = vs.ExpandPath("/", VirtualNodeTypeFilter.All, true).ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsTrue(result[0] == "/");
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDoFollowLinks_NoneWildcard()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData3(vs);
+
+            // followLinks を true で指定したパターン
+            // ワイルドカードを使用しないのでそのまま返却される
+            List<VirtualPath> result = vs.ExpandPath("/dir1/file2.txt", VirtualNodeTypeFilter.All, true).ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file2.txt");
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDoFollowLinks_MatcherIsNull()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData3(vs);
+
+            // ワイルドカードマッチャーを使用しない場合
+            VirtualStorageState.State.WildcardMatcher = null;
+
+            // followLinks を true で指定したパターン
+            // ワイルドカードマッチャーを使用しないので例外になる
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt", VirtualNodeTypeFilter.All, true).ToList();
             });
 
             Debug.WriteLine(err.Message);
@@ -6519,9 +6591,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<string> vs = new();
             ExpandPath_SetData3(vs);
 
-            // ワイルドカードを使用したパス解決
+            // followLinks を true で指定したパターン
             // /dir1/file2.txt -> /file2.txt なのでノードが見つかるパターン
-            List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt").ToList();
+            List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt", VirtualNodeTypeFilter.All, true).ToList();
 
             // デバッグ出力
             Debug.WriteLine("Resolved paths:");
@@ -6529,6 +6601,64 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 Debug.WriteLine(path);
             }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file1.txt");
+            Assert.IsTrue(result[1] == "/dir1/file2.txt");
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDoNotFollowLinksWithNonExistentTargetPath()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData2(vs);
+
+            // followLinks を false で指定したパターン
+            // /dir1/file2.txt -> /dir1/nonexistent だけど、リンクを辿らないのでそのままリンクを返すパターン
+            List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt", VirtualNodeTypeFilter.All, false).ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file1.txt");
+            Assert.IsTrue(result[1] == "/dir1/file2.txt");
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDoNotFollowLinksWithExistentTargetPath()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData3(vs);
+
+            // followLinks を false で指定したパターン
+            // /dir1/file2.txt -> /file2.txt だけど、リンクを辿らないのでそのままリンクを返すパターン
+            List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt", VirtualNodeTypeFilter.All, true).ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file1.txt");
+            Assert.IsTrue(result[1] == "/dir1/file2.txt");
         }
 
         [TestMethod]

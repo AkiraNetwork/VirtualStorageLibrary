@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
@@ -1186,6 +1187,144 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual("An empty string cannot be specified as a path.", err.Message);
 
             Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        public void FixedPath_NoWildcardMatcher_ReturnsPathAndDepth()
+        {
+            // Arrange
+            VirtualPath dir1 = "/dir1/file.txt";
+            VirtualPath expectedPath = "/dir1/file.txt";
+            int expectedDepth = 2;
+            VirtualStorageState.State.WildcardMatcher = null;
+
+            // Act
+            VirtualPath resultPath = dir1.FixedPath;
+            int resultDepth = dir1.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void FixedPath_WithWildcards_ReturnsTrimmedPathAndDepth()
+        {
+            // Arrange
+            VirtualPath path = "/dir1/dir*/file.txt";
+            VirtualPath expectedPath = "/dir1";
+            int expectedDepth = 1;
+
+            // Act
+            VirtualPath resultPath = path.FixedPath;
+            int resultDepth = path.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void FixedPath_NoWildcardsInParts_ReturnsPathAndDepth()
+        {
+            // Arrange
+            VirtualPath path = "/dir1/dir2/file.txt";
+            VirtualPath expectedPath = "/dir1/dir2";
+            int expectedDepth = 2;
+
+            // Act
+            VirtualPath resultPath = path.FixedPath;
+            int resultDepth = path.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void FixedPath_WithMultipleWildcards_ReturnsTrimmedPathAndDepth()
+        {
+            // Arrange
+            VirtualPath path = "/dir1/dir*/dir2/dir*/file.txt";
+            VirtualPath expectedPath = "/dir1";
+            int expectedDepth = 1;
+
+            // Act
+            VirtualPath resultPath = path.FixedPath;
+            int resultDepth = path.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void FixedPath_RootPath_ReturnsRootPathAndZeroDepth()
+        {
+            // Arrange
+            VirtualPath rootPath = "/";
+            VirtualPath expectedPath = "/";
+            int expectedDepth = 0;
+            VirtualStorageState.State.WildcardMatcher = null;
+
+            // Act
+            VirtualPath resultPath = rootPath.FixedPath;
+            int resultDepth = rootPath.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void FixedPath_RootPath_ReturnsRootPathAndZeroDepth2()
+        {
+            // Arrange
+            VirtualPath rootPath = "/";
+            VirtualPath expectedPath = "/";
+            int expectedDepth = 0;
+
+            // Act
+            VirtualPath resultPath = rootPath.FixedPath;
+            int resultDepth = rootPath.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void FixedPath_PathWithoutWildcards_ReturnsPathAndDepth()
+        {
+            // Arrange
+            VirtualPath path = "/dir1/dir2/dir3";
+            VirtualPath expectedPath = "/dir1/dir2";
+            int expectedDepth = 2;
+
+            // Act
+            VirtualPath resultPath = path.FixedPath;
+            int resultDepth = path.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void FixedPath_PathWithEndingWildcard_ReturnsTrimmedPathAndDepth()
+        {
+            // Arrange
+            VirtualPath path = "/dir1/dir2/dir*";
+            VirtualPath expectedPath = "/dir1/dir2";
+            int expectedDepth = 2;
+
+            // Act
+            VirtualPath resultPath = path.FixedPath;
+            int resultDepth = path.BaseDepth;
+
+            // Assert
+            Assert.AreEqual(expectedPath, resultPath);
+            Assert.AreEqual(expectedDepth, resultDepth);
         }
     }
 }

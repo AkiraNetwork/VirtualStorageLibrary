@@ -20,6 +20,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         private List<VirtualNodeName>? _partsList;
 
+        private VirtualPath? _fixedPath;
+
+        private int? _baseDepth;
+
         public static implicit operator VirtualPath(string path)
         {
             return new VirtualPath(path);
@@ -74,6 +78,30 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 // パスの深さを返す
                 return this.PartsList.Count;
+            }
+        }
+
+        public VirtualPath FixedPath
+        {
+            get
+            {
+                if (_fixedPath == null)
+                {
+                    (_fixedPath, _baseDepth) = CalculateFixedPathAndBaseDepth();
+                }
+                return _fixedPath;
+            }
+        }
+
+        public int BaseDepth
+        {
+            get
+            {
+                if (_baseDepth == null)
+                {
+                    (_fixedPath, _baseDepth) = CalculateFixedPathAndBaseDepth();
+                }
+                return _baseDepth.Value;
             }
         }
 
@@ -559,32 +587,24 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(string.Join(VirtualPath.Separator, relativePath));
         }
 
-        public VirtualPath ExtractBasePath()
+        private (VirtualPath, int) CalculateFixedPathAndBaseDepth()
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
 
             if (wildcardMatcher == null)
             {
-                return _path;
+                return (this, PartsList.Count);
             }
 
             IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
             List<VirtualNodeName> parts = PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
-            return new VirtualPath(parts);
-        }
 
-        public int GetBaseDepth()
-        {
-            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
-
-            if (wildcardMatcher == null)
+            if (parts.Count == PartsList.Count)
             {
-                return 0;
+                return (DirectoryPath, DirectoryPath.PartsList.Count);
             }
 
-            IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
-            List<VirtualNodeName> baseParts = PartsList.TakeWhile(part => !wildcards.Any(wildcard => part.Name.Contains(wildcard))).ToList();
-            return baseParts.Count;
+            return (new VirtualPath(parts), parts.Count);
         }
 
         public static bool ArePathsSubdirectories(VirtualPath path1, VirtualPath path2)
