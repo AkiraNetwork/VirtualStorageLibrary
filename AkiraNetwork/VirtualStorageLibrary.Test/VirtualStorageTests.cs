@@ -1296,7 +1296,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem(path);
 
             // デバッグ出力
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetItem(path)));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetItem(path)));
 
             // Assert
             Assert.IsTrue(vs.ItemExists(path));
@@ -2369,22 +2369,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.RemoveNode("/test/link", true, true, true);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsTrue(targetItem.ItemData!.Count == 0, "Target item data should be cleared on Dispose.");
@@ -2974,22 +2974,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // アイテムの名前を変更
             vs.SetNodeName(itemPath, new VirtualNodeName("newItem1"));
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // リンク辞書の更新を確認
             Assert.IsFalse(vs.GetLinksFromDictionary(itemPath).Contains(linkPath));
@@ -3020,22 +3020,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ディレクトリの名前を変更
             vs.SetNodeName(dirPath, new VirtualNodeName("newDir1"));
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // リンク辞書の更新を確認
             Assert.IsFalse(vs.GetLinksFromDictionary(dirPath).Contains(linkPath));
@@ -3069,22 +3069,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // シンボリックリンクの名前を変更
             vs.SetNodeName(linkPath, new VirtualNodeName("newLinkToTargetLink"), false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // リンク辞書の更新を確認
             Assert.IsFalse(vs.GetLinksFromDictionary(targetLinkPath).Contains(linkPath));
@@ -3104,21 +3104,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/link", "newLink", false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/link"));
             Assert.IsTrue(vs.NodeExists("/newLink"));
@@ -3142,21 +3142,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/testFile", "newTestFile", true);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/testFile"));
             Assert.IsTrue(vs.NodeExists("/newTestFile"));
@@ -3182,21 +3182,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/testFile", "newTestFile", false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/testFile"));
             Assert.IsTrue(vs.NodeExists("/newTestFile"));
@@ -3223,21 +3223,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/testDir", "newTestDir", true);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/testDir"));
             Assert.IsTrue(vs.NodeExists("/newTestDir"));
@@ -3265,21 +3265,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/testDir", "newTestDir", false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/testDir"));
             Assert.IsTrue(vs.NodeExists("/newTestDir"));
@@ -3305,11 +3305,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
@@ -3335,21 +3335,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/link", "newLink", false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/link"));
             Assert.IsTrue(vs.NodeExists("/newLink"));
@@ -3374,21 +3374,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/dir1/dir2/testFile", "newTestFile", false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/dir1/dir2/testFile"));
             Assert.IsTrue(vs.NodeExists("/dir1/dir2/newTestFile"));
@@ -3415,21 +3415,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.SetNodeName("/dir1/dir2/linkToTestFile", "newTestFile", false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.IsFalse(vs.NodeExists("/dir1/dir2/linkToTestFile"));
             Assert.IsTrue(vs.NodeExists("/dir1/dir2/newTestFile"));
@@ -3500,22 +3500,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/link1", "/dir1");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/item1"));
@@ -3738,13 +3738,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             vs.MoveNode("/parentDir_Other", "/parentDir/subDir");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             Assert.IsFalse(vs.NodeExists("/parentDir_Other"));
             Assert.IsTrue(vs.NodeExists("/parentDir/subDir/parentDir_Other"));
@@ -3761,13 +3761,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             vs.MoveNode("/parentDir", "/parentDir_Other/subDir");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             Assert.IsFalse(vs.NodeExists("/parentDir"));
             Assert.IsTrue(vs.NodeExists("/parentDir_Other/subDir/parentDir"));
@@ -3784,13 +3784,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             vs.MoveNode("/parentDir/subDir1/subDir2/subDir3", "/parentDir");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             Assert.IsTrue(vs.NodeExists("/parentDir/subDir1/subDir2"));
             Assert.IsFalse(vs.NodeExists("/parentDir/subDir1/subDir2/subDir3"));
@@ -3838,22 +3838,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/sourceLink", "/destination/", false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
@@ -3872,22 +3872,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/sourceLink", "/destinationLink", false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
@@ -3906,22 +3906,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/sourceLink", "/sourceLinkRenamed", false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
@@ -3942,22 +3942,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/sourceLink", "/destinationDir/sourceLink", false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
@@ -3978,22 +3978,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/sourceLink", "/destination", false, true); // ソースリンクを移動
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsTrue(vs.NodeExists("/sourceLink"));
@@ -4013,22 +4013,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/sourceLink", "/destinationLink", false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/sourceLink"));
@@ -4048,22 +4048,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/parentDir/sourceLink", "/parentDirMovedLink", false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/parentDir/sourceLink"));
@@ -4083,7 +4083,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の初期状態を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.MoveNode("/testItem", "/newTestItem");
 
@@ -4093,7 +4093,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // リンク辞書の更新を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/newTestItem").Contains("/linkToItem"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // シンボリックリンクのパス変更時のリンク辞書の更新を確認
@@ -4108,22 +4108,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/link", "/newLink", false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsFalse(vs.NodeExists("/link"));
@@ -4144,14 +4144,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の初期状態を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/existingItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.MoveNode("/nonExistentItem", "/newName"));
 
             // リンク辞書が変更されていないことを確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/existingItem").Contains("/linkToItem"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/newName").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // 移動先に既にノードが存在する場合に例外をスロー
@@ -4166,14 +4166,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の初期状態を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.ThrowsException<InvalidOperationException>(() => vs.MoveNode("/testItem", "/newTestItem"));
 
             // リンク辞書が変更されていないことを確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/newTestItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // 移動元と移動先が同じ場合に例外をスロー
@@ -4187,13 +4187,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の初期状態を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             Assert.ThrowsException<InvalidOperationException>(() => vs.MoveNode("/testItem", "/testItem"));
 
             // リンク辞書が変更されていないことを確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // アイテムをディレクトリに移動した際のリンク辞書の更新を確認
@@ -4208,7 +4208,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の初期状態を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             vs.MoveNode("/testItem", "/destinationDir/testItem");
 
@@ -4218,7 +4218,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // リンク辞書の更新を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/testItem").Contains("/linkToItem"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/testItem").Contains("/linkToItem"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         [TestMethod]
@@ -4240,7 +4240,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の初期状態を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ソースディレクトリをディスティネーションディレクトリに移動
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
@@ -4252,7 +4252,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // リンク辞書が更新されていることを確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         [TestMethod]
@@ -4278,7 +4278,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/subDir2").Contains("/linkToSubDir2"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ソースディレクトリをディスティネーションディレクトリに移動
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
@@ -4296,7 +4296,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/subDir2").Contains("/linkToSubDir2"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         [TestMethod]
@@ -4324,7 +4324,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir2").Contains("/linkToSubDir2"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ソースディレクトリをディスティネーションディレクトリ内の既存のディレクトリに移動
             vs.MoveNode("/sourceDir", "/destinationDir/existingDir");
@@ -4342,7 +4342,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir2").Contains("/linkToSubDir2"));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         [TestMethod]
@@ -4373,16 +4373,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // デバッグ出力
             Debug.WriteLine("MoveNode前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ソースディレクトリを移動
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
             // デバッグ出力
             Debug.WriteLine("\nMoveNode後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ノードが適切に移動されたことを確認
             Assert.IsFalse(vs.NodeExists("/sourceDir"));
@@ -4423,22 +4423,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             // ノードが適切に移動されたことを確認
@@ -4489,16 +4489,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // デバッグ出力
             Debug.WriteLine("MoveNode前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ソースディレクトリを移動
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
             // デバッグ出力
             Debug.WriteLine("\nMoveNode後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ノードが適切に移動されたことを確認
             Assert.IsFalse(vs.NodeExists("/sourceDir"));
@@ -4538,16 +4538,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // デバッグ出力
             Debug.WriteLine("MoveNode前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // 親ディレクトリが存在しないため例外がスローされることを確認
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.MoveNode("/sourceDir", "/nonExistentDir/newDir"));
 
             // デバッグ出力
             Debug.WriteLine("\nMoveNode後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ノードが移動されていないことを確認
             Assert.IsTrue(vs.NodeExists("/sourceDir"));
@@ -4592,16 +4592,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // デバッグ出力
             Debug.WriteLine("MoveNode前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ソースディレクトリを移動
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
             // デバッグ出力
             Debug.WriteLine("\nMoveNode後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ノードが適切に移動されたことを確認
             Assert.IsFalse(vs.NodeExists("/sourceDir"));
@@ -4645,16 +4645,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // デバッグ出力
             Debug.WriteLine("MoveNode前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ソースディレクトリを移動
             vs.MoveNode("/sourceDir", "/destinationDir/sourceDir");
 
             // デバッグ出力
             Debug.WriteLine("\nMoveNode後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // ノードが適切に移動されたことを確認
             Assert.IsFalse(vs.NodeExists("/sourceDir"));
@@ -4956,22 +4956,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.AddSymbolicLink("/link1", link);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.IsTrue(vs.SymbolicLinkExists("/dir1/newLink"));
@@ -5310,12 +5310,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/linkToDir2", NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5351,12 +5351,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5381,12 +5381,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5412,12 +5412,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5447,14 +5447,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // メソッドを実行
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/link1/link2/item", NotifyNode, null, true, false);
 
             // 結果を検証
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5478,7 +5478,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // メソッドを実行
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, ActionNode, true, false);
@@ -5486,9 +5486,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_actionNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_actionNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5512,18 +5512,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // メソッドを実行
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, ActionNodeNotContinue, true, false);
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(nodeContext));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(nodeContext));
 
             // 結果を検証
             // ActionNodeNotContinueは、"dir2" まで作成して終了する ("dir2" のタイミングで false を返す)
@@ -5553,14 +5553,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // メソッドを実行
             VirtualNodeContext nodeContext = vs.WalkPathToTarget("/dir1/link1", NotifyNode, null, true, false);
 
             // コンテキストのデバッグ出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(nodeContext));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(nodeContext));
 
             // 結果を検証
             // ただし、TraversalPathは処理したとこまで返される
@@ -5584,7 +5584,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // メソッドを実行
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, ActionNode, true, false);
@@ -5592,9 +5592,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_actionNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_actionNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5621,7 +5621,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // メソッドを実行
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/null-link", NotifyNode, null, true, true);
@@ -5629,9 +5629,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_notifyNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(_actionNodeInfos));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_actionNodeInfos));
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5760,29 +5760,29 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造の出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // コンテキストの出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
 
             // ノードの出力
             Debug.WriteLine("ノード(/dir1):");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetDirectory("/dir1")));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetDirectory("/dir1")));
 
             Debug.WriteLine("ノード(/dir1/item1):");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetItem("/dir1/item1")));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetItem("/dir1/item1")));
 
             Debug.WriteLine("ノード(/dir1/item2):");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetItem("/dir1/item2")));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetItem("/dir1/item2")));
 
             Debug.WriteLine("ノード(/all-dir/item1):");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetSymbolicLink("/all-dir/item1")));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetSymbolicLink("/all-dir/item1")));
 
             Debug.WriteLine("ノード(/all-dir/item2):");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(vs.GetSymbolicLink("/all-dir/item2")));
+            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetSymbolicLink("/all-dir/item2")));
 
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
+            string tree = vs.GenerateTreeDebugText("/", true, true);
             Debug.WriteLine(tree);
         }
 
@@ -6249,7 +6249,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 Debug.WriteLine(nodeContext);
             }
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "dir2/dir3/link1"));
         }
@@ -7013,7 +7013,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // デバッグ出力でツリー構造を表示
             Debug.WriteLine("Virtual vs tree structure:");
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
+            string tree = vs.GenerateTreeDebugText("/", true, true);
             Debug.WriteLine(tree);
 
             // パフォーマンス計測の開始
@@ -7072,7 +7072,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // デバッグ出力でツリー構造を表示
             Debug.WriteLine("Virtual vs tree structure:");
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
+            string tree = vs.GenerateTreeDebugText("/", true, true);
             Debug.WriteLine(tree);
 
             // 深い階層構造のパスを構築
@@ -7124,7 +7124,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ツリー構造の表示
             Debug.WriteLine("Virtual vs tree structure:");
-            string tree = vs.GenerateTextBasedTreeStructure(BaseDir, true, true);
+            string tree = vs.GenerateTreeDebugText(BaseDir, true, true);
             Debug.WriteLine(tree);
 
             // パスのデバッグ出力
@@ -7249,112 +7249,112 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_RecursiveWithLinksFromRoot()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_RecursiveWithLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, true);
+            string tree = vs.GenerateTreeDebugText("/", true, true);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_RecursiveNoLinksFromRoot()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_RecursiveNoLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            string tree = vs.GenerateTreeDebugText("/", true, false);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_NonRecursiveWithLinksFromRoot()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_NonRecursiveWithLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/", false, true);
+            string tree = vs.GenerateTreeDebugText("/", false, true);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_NonRecursiveNoLinksFromRoot()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_NonRecursiveNoLinksFromRoot()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/", false, false);
+            string tree = vs.GenerateTreeDebugText("/", false, false);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_NonExistentPathWithLinks()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_NonExistentPathWithLinks()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
             Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
             {
-                string tree = vs.GenerateTextBasedTreeStructure("/nonexistent", true, true);
+                string tree = vs.GenerateTreeDebugText("/nonexistent", true, true);
             });
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_RecursiveWithLinksFromSubDirectory()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_RecursiveWithLinksFromSubDirectory()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/dir1", true, true);
+            string tree = vs.GenerateTreeDebugText("/dir1", true, true);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_NonRecursiveWithLinksFromSubDirectory()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_NonRecursiveWithLinksFromSubDirectory()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/dir1", false, true);
+            string tree = vs.GenerateTreeDebugText("/dir1", false, true);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_BasePathIsItem()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_BasePathIsItem()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/item1", true, true);
+            string tree = vs.GenerateTreeDebugText("/item1", true, true);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_LinkToItem_NoFollow()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_LinkToItem_NoFollow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/link-to-item", true, false);
+            string tree = vs.GenerateTreeDebugText("/link-to-item", true, false);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_LinkToItem_Follow()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_LinkToItem_Follow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/link-to-item", true, true);
+            string tree = vs.GenerateTreeDebugText("/link-to-item", true, true);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_LinkToDirectory_NoFollow()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_LinkToDirectory_NoFollow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/link-to-dir", true, false);
+            string tree = vs.GenerateTreeDebugText("/link-to-dir", true, false);
             Debug.WriteLine(tree);
         }
 
         [TestMethod]
-        [TestCategory("GenerateTextBasedTreeStructure")]
-        public void GenerateTextBasedTreeStructure_LinkToDirectory_Follow()
+        [TestCategory("GenerateTreeDebugText")]
+        public void GenerateTreeDebugText_LinkToDirectory_Follow()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            string tree = vs.GenerateTextBasedTreeStructure("/link-to-dir", true, true);
+            string tree = vs.GenerateTreeDebugText("/link-to-dir", true, true);
             Debug.WriteLine(tree);
         }
 
@@ -7371,7 +7371,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ツリー構造の表示
             Debug.WriteLine("tree structure (SetupVirtualStorage):");
-            string tree = vs.GenerateTextBasedTreeStructure("/", true, false);
+            string tree = vs.GenerateTreeDebugText("/", true, false);
             Debug.WriteLine(tree);
 
             return vs;
@@ -7390,18 +7390,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/item1", "/item2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
@@ -7431,18 +7431,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/item1", "/dir1/dir2/item2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/dir2/item2");
@@ -7473,18 +7473,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行: "/item1"を"/item2"に overwrite オプションを true でコピー
             vs.CopyNode("/item1", "/item2", true, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
@@ -7509,7 +7509,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: 存在しない "/item1" をコピーしようとする
             var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
@@ -7535,7 +7535,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: 同じパスへのコピーを試みる
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -7562,7 +7562,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: overwriteを指定せずに"/item1"を"/item2"にコピー
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -7586,18 +7586,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行: アイテムが存在しないディレクトリ "/dir1" にコピー
             vs.CopyNode("/item1", "/dir1/item2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7626,7 +7626,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: 上書きなしで "/item1" を "/dir1" にコピーしようとする
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -7656,18 +7656,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
             vs.CopyNode("/item1", "/link/item2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7698,18 +7698,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
             vs.CopyNode("/item1", "/dir1/link/dir3/item2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1", true);
@@ -7741,7 +7741,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // ターゲットディレクトリに既存のアイテムを追加
             vs.AddItem("/dir1/item2", existingData);
@@ -7773,18 +7773,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由してアイテムにコピー
             vs.CopyNode("/linkToItem", "/dir1/item2", false, false, true, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory originalDir = vs.GetDirectory("/dir1");
@@ -7817,18 +7817,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由してアイテムにコピーする
             vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7863,18 +7863,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由してアイテムにコピーする
             vs.CopyNode("/item1", "/linkToItem", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7909,7 +7909,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由して、アイテムに上書きなしでコピーを試みる
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -7940,18 +7940,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 上書きを許可してシンボリックリンクを経由してアイテムにコピー
             vs.CopyNode("/item1", "/linkToItem", true, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7988,18 +7988,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 上書きを許可してシンボリックリンクを経由してアイテムにコピー
             vs.CopyNode("/item1", "/linkToItem", true, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -8027,18 +8027,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dir2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2");
@@ -8068,18 +8068,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dir2/dir3/dir4", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2/dir3/dir4");
@@ -8112,7 +8112,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8139,7 +8139,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8169,7 +8169,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8197,18 +8197,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dst", true, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -8243,18 +8243,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dst", true, true, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -8286,7 +8286,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8313,7 +8313,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8337,18 +8337,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/link1", "/link2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/link2");
@@ -8378,18 +8378,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/link1", "/dir1/dir2/link2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dir1/dir2/link2");
@@ -8420,18 +8420,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/link1", "/link2", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dst/link1");
@@ -8455,7 +8455,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
@@ -8479,7 +8479,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8505,18 +8505,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/link1", "/dir2", false, false, true, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir2/item1");
@@ -8548,18 +8548,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1/item1", "/dst/link", false, false, true, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dst/link/item1", true);
@@ -8589,18 +8589,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dst", false, true, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -8641,18 +8641,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dst1/dst2", false, true, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");
@@ -8697,18 +8697,18 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
             vs.CopyNode("/dir1", "/dst1/dst2", false, true, true, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");
@@ -8740,7 +8740,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: コピー先がコピー元のサブディレクトリであり、 recursive パラメータが true の場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8765,7 +8765,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8790,7 +8790,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: コピー先がコピー元のサブディレクトリであり、 recursive パラメータが true の場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8815,7 +8815,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: コピー先がコピー元の親ディレクトリである場合
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
@@ -8840,7 +8840,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: recursive が false でコピーした場合、コピー先にルートの名前で作成できないので例外が発生する
             var err = Assert.ThrowsException<ArgumentException>(() =>
@@ -8864,14 +8864,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行: コピー先がコピー元の親ディレクトリである場合
             vs.CopyNode("/dir1/subdir1", "/", false, false, false, contexts);
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(contexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
 
             // 検査
             Assert.IsTrue(vs.NodeExists("/dir1/subdir1/item1"));
@@ -8903,7 +8903,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の中身をデバッグ出力
             Debug.WriteLine("Step1:");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // リンクの作成
             vs.AddSymbolicLink("/data/linkToItem2", "/dir1/item1");
@@ -8914,7 +8914,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // リンク辞書の中身をデバッグ出力
             Debug.WriteLine("Step2:");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // 絶対パスのターゲットパスとリンクパスを追加するテスト
@@ -8938,7 +8938,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(link.TargetNodeType, vs.GetNodeType(targetPath, true));
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // 相対パスのリンクパスを正しく変換して追加するテスト
@@ -8962,7 +8962,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(links.Contains(absoluteLinkPath));
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // 既に存在するターゲットパスに新しいリンクパスを追加するテスト
@@ -8987,7 +8987,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(links.Contains(linkPath2));
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // リンクパスが正しく正規化されることを確認するテスト
@@ -9010,7 +9010,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(links.Contains(normalizedLinkPath));
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // リンクのターゲットノードタイプが正しく設定されることを確認するテスト
@@ -9040,11 +9040,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.AddSymbolicLink(linkToDirPath, dir1Path);
@@ -9054,11 +9054,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             var directoryLink = vs.GetSymbolicLink(linkToDirPath);
@@ -9118,7 +9118,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // ターゲットパスが存在しないシンボリックリンクを作成し、アイテムを追加してリンクノードタイプを更新するテスト
@@ -9139,7 +9139,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             // アイテムを追加してリンクノードタイプを更新
@@ -9151,7 +9151,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // ターゲットパスが存在しないシンボリックリンクを作成し、シンボリックリンクを追加してリンクノードタイプを更新するテスト
@@ -9174,11 +9174,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             // シンボリックリンクを追加してリンクノードタイプを更新
@@ -9186,11 +9186,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/absolute/link -> /absolute/dir1 追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/absolute/link -> /absolute/dir1 追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             // リンクのノードタイプが SymbolicLink に更新されていることを確認
@@ -9202,11 +9202,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/absolute/dir1 追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/absolute/dir1 追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             // リンクのノードタイプが SymbolicLink に更新されていることを確認
@@ -9231,7 +9231,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             // 中間ディレクトリを追加してリンクノードタイプを更新
@@ -9242,7 +9242,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // アイテム削除時のリンク辞書更新のテスト
@@ -9267,7 +9267,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             // アイテムを削除
@@ -9278,7 +9278,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // ディレクトリツリー削除時のリンク辞書更新のテスト
@@ -9316,7 +9316,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkToDirectoryPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             // ディレクトリツリーを削除
@@ -9329,7 +9329,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToDirectoryPath).TargetNodeType);
 
             // Debug print
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // シンボリックリンク削除時のリンク辞書更新のテスト
@@ -9356,11 +9356,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // linkToLinkのターゲットノードタイプがアイテムであることを確認
             Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
@@ -9374,11 +9374,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/dir1/linkToItem1 削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/dir1/linkToItem1 削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.AreEqual(VirtualNodeType.None, vs.GetSymbolicLink(linkToLinkPath).TargetNodeType);
@@ -9406,7 +9406,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink(linkToItemPath2, itemPath);
 
             // Debug print before Act
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             // 最初のシンボリックリンクを削除
@@ -9422,7 +9422,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.LinkDictionary.ContainsKey(itemPath));
 
             // Debug print after Act
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         // シンボリックリンクを考慮した再帰的削除のテスト
@@ -9466,11 +9466,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             // シンボリックリンクを考慮した再帰的削除
@@ -9478,11 +9478,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/dir1/dir2 削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/dir1/dir2 削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             // 各リンクのターゲットノードタイプがNoneに更新されていることを確認
@@ -9775,14 +9775,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
 
             // Act
             vs[dir1Path] = dir2;
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
 
             // Assert
             VirtualDirectory retrievedDir = (VirtualDirectory)vs[dir1Path];
@@ -9974,7 +9974,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10001,14 +10001,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
 
             // Assert
             Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10033,14 +10033,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
 
             // Assert
             Assert.AreEqual(0, vs.CycleDetectorForTree.Count);
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10074,7 +10074,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10110,7 +10110,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10143,7 +10143,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10170,7 +10170,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
 
             // Assert
             Assert.AreEqual(0, vs.CycleDetectorForTree.Count);
@@ -10199,7 +10199,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
 
             // Assert
             Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
@@ -10227,7 +10227,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(TextFormatter.GenerateTextBasedTable(nodeContexts));
+            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
 
             // Assert
             Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
@@ -10264,7 +10264,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10303,7 +10303,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造出力
             Debug.WriteLine("ディレクトリ構造:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
         }
 
         [TestMethod]
@@ -10437,7 +10437,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 if (node is VirtualItem<BinaryData> item)
                 {
-                    Debug.WriteLine(TextFormatter.GenerateTextBasedTableBySingle(item));
+                    Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(item));
                 }
             }
 
@@ -10458,22 +10458,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.AddItem("/item1");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後:)");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Assert
             Assert.AreEqual(VirtualNodeType.Item, vs.GetSymbolicLink("/link1").TargetNodeType);
@@ -10495,11 +10495,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (処理前):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.AddSymbolicLink("/link1ToItem1", "/dir1/dir2/item1");
@@ -10507,66 +10507,66 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/link1ToItem1, /link2ToItem1 追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/link1ToItem1, /link2ToItem1 リンク追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.RemoveNode("/dir1/dir2/item1");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/dir1/dir2/item1 アイテム削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/dir1/dir2/item1 アイテム削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.AddDirectory("/dir1/dir2/item1");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/dir1/dir2/item1 ディレクトリ追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/dir1/dir2/item1 ディレクトリ追加後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.RemoveNode("/dir1/linkToDir2", false, false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/dir1/linkToDir2 シンボリックリンク削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/dir1/linkToDir2 シンボリックリンク削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.RemoveNode("/link2ToItem1", false, false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/link2ToItem1 シンボリックリンク削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/link2ToItem1 シンボリックリンク削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // Act
             vs.RemoveNode("/link1ToItem1", false, false, false);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (/link1ToItem1 シンボリックリンク削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure(VirtualPath.Root, true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // リンク辞書のデバッグ出力
             Debug.WriteLine("リンク辞書 (/link1ToItem1 シンボリックリンク削除後):");
-            Debug.WriteLine(vs.GenerateTextBasedTableForLinkDictionary());
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
         [TestMethod]

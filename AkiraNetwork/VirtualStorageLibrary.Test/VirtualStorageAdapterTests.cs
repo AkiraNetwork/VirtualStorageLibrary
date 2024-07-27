@@ -316,14 +316,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
 
             // Act
             vs.Dir[dir1Path] = dir2;
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/"));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
 
             // Assert
             VirtualDirectory retrievedDir = vs.Dir[dir1Path];
@@ -549,7 +549,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // Act
             vs.Dir["/"] += dir1;
@@ -559,7 +559,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // Assert
             Assert.AreEqual(dir1.Name, vs.Dir["/dir1"].Name);
@@ -593,7 +593,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理前:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // Act - ノードを追加
             vs.Dir["/"] += dir1;
@@ -603,7 +603,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("追加後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // ノードを取得
             VirtualDirectory retrievedDir2 = vs.Dir["/dir1/dir2"];
@@ -617,7 +617,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("削除後:");
-            Debug.WriteLine(vs.GenerateTextBasedTreeStructure("/", true, false));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             // Assert - ノードが削除されたことを確認
             Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.Dir["/dir1/dir2"]);

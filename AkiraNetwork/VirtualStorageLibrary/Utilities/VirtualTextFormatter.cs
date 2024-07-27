@@ -2,7 +2,7 @@
 
 namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 {
-    public static class TextFormatter
+    public static class VirtualTextFormatter
     {
         public static string FormatTable(IEnumerable<IEnumerable<string>> tableData)
         {
@@ -84,7 +84,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                    c >= 0xFFE0 && c <= 0xFFE6;
         }
 
-        public static string GenerateTextBasedTable<T>(IEnumerable<T> enumerableObject)
+        public static string GenerateTableDebugText<T>(IEnumerable<T> enumerableObject)
         {
             if (enumerableObject == null || !enumerableObject.Any())
             {
@@ -111,7 +111,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return FormatTable(tableData);
         }
 
-        public static string GenerateTextBasedTableBySingle<T>(T singleObject)
+        public static string GenerateSingleTableDebugText<T>(T singleObject)
         {
             Type type = typeof(T);
             List<PropertyInfo> properties = [];

@@ -1729,7 +1729,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         // 　├item3
         // 　├item4
         // 　└item5
-        public string GenerateTextBasedTreeStructure(VirtualPath basePath, bool recursive = true, bool followLinks = true)
+        public string GenerateTreeDebugText(VirtualPath basePath, bool recursive = true, bool followLinks = true)
         {
             const char FullWidthSpaceChar = '\u3000';
             StringBuilder tree = new();
@@ -1811,7 +1811,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return tree.ToString();
         }
 
-        public string GenerateTextBasedTableForLinkDictionary()
+        public string GenerateLinkTableDebugText()
         {
             if (LinkDictionary == null || LinkDictionary.Count == 0)
             {
@@ -1842,7 +1842,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 ]);
             }
 
-            return TextFormatter.FormatTable(tableData);
+            return VirtualTextFormatter.FormatTable(tableData);
         }
 
         [DebuggerStepThrough]
