@@ -2229,6 +2229,24 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("RemoveNode")]
+        public void RemoveNode_RecursiveDeletionWithSymbolicLinkFollowLinksTrueWithNoneTarget_ThrowsException()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/test/nested", true);
+            vs.AddSymbolicLink("/test/nested/link", "/nonexistent");
+
+            // Act
+            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            {
+                vs.RemoveNode("/test", true, true);
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_RecursiveDeletionWithSymbolicLinkToFileFollowLinksFalse_RemovesDirectoryAndLinkOnly()
         {
             // Arrange
@@ -2693,6 +2711,21 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsFalse(exists); // シンボリックリンクのターゲットが存在しないため、falseを返す
+        }
+
+        [TestMethod]
+        [TestCategory("DirectoryExists")]
+        public void DirectoryExists_ReturnsTrue_WhenRootDirectory()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualPath path = "/";
+
+            // Act
+            bool exists = vs.DirectoryExists(path);
+
+            // Assert
+            Assert.IsTrue(exists);
         }
 
         [TestMethod]
@@ -4682,6 +4715,23 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        [TestCategory("SymbolicLinkExists")]
+        public void SymbolicLinkExists_NoParentDirectory_ReturnsFalse()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/dir1/link1", "/nonexistent");
+
+            // Act
+            // 親ディレクトリである"/dir1/link1"をパス解決しても存在しない場合
+            bool exists = vs.SymbolicLinkExists("/dir1/link1/link2");
+
+            // Assert
+            Assert.IsFalse(exists);
         }
 
         [TestMethod]

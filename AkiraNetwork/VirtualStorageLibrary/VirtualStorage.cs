@@ -1367,10 +1367,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
                             {
                                 RemoveLinkFromDictionary(resolvedTargetPath, linkPath);
                             }
-                            else
-                            {
-                                RemoveLinkByLinkPath(resolvedNodePath);
-                            }
                         }
 
                         // リンクターゲットも削除する
