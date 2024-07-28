@@ -175,5 +175,99 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             MethodInfo? toStringMethod = type.GetMethod("ToString", Type.EmptyTypes);
             return toStringMethod?.DeclaringType != typeof(object);
         }
+
+        // 仮想ストレージのツリー構造をテキストベースで作成し返却する拡張メソッド
+        // 返却するテストは以下の出力の形式とする。
+        // 出力:
+        // /
+        // ├dir1/
+        // │├subdir1/
+        // ││└item3
+        // │└item2
+        // ├link-to-dir -> /dir1
+        // ├item1
+        // └link-to-item -> /item1
+        public static string GenerateTreeDebugText<T>(this VirtualStorage<T> vs, VirtualPath basePath, bool recursive = true, bool followLinks = false)
+        {
+            const char FullWidthSpaceChar = '\u3000';
+            StringBuilder tree = new();
+
+            basePath = vs.ConvertToAbsolutePath(basePath).NormalizePath();
+            IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree(basePath, VirtualNodeTypeFilter.All, recursive, followLinks);
+            StringBuilder line = new();
+            string previous = string.Empty;
+
+            VirtualNodeContext nodeFirstContext = nodeContexts.First();
+            VirtualPath baseAbsolutePath = basePath + nodeFirstContext.TraversalPath;
+
+            if (basePath.IsRoot)
+            {
+                tree.AppendLine("/");
+            }
+            else
+            {
+                tree.AppendLine(baseAbsolutePath);
+            }
+
+            foreach (var nodeInfo in nodeContexts.Skip(1))
+            {
+                VirtualNode? node = nodeInfo.Node;
+                string nodeName = nodeInfo.TraversalPath.NodeName;
+                int depth = nodeInfo.Depth;
+                int count = nodeInfo.ParentDirectory?.Count ?? 0;
+                int index = nodeInfo.Index;
+
+                line.Clear();
+
+                if (depth > 0)
+                {
+                    for (int i = 0; i < depth - 1; i++)
+                    {
+                        if (i < previous.Length)
+                        {
+                            switch (previous[i])
+                            {
+                                case FullWidthSpaceChar:
+                                    line.Append(FullWidthSpaceChar);
+                                    break;
+                                case '│':
+                                    line.Append('│');
+                                    break;
+                                case '└':
+                                    line.Append(FullWidthSpaceChar);
+                                    break;
+                                case '├':
+                                    line.Append('│');
+                                    break;
+                                default:
+                                    line.Append(FullWidthSpaceChar);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            line.Append(FullWidthSpaceChar);
+                        }
+                    }
+
+                    if (index == count - 1)
+                    {
+                        line.Append('└');
+                    }
+                    else
+                    {
+                        line.Append('├');
+                    }
+                }
+
+                line.Append(node?.ToString());
+
+                previous = line.ToString();
+                tree.AppendLine(line.ToString());
+            }
+
+            return tree.ToString();
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
+using AkiraNetwork.VirtualStorageLibrary.Utilities;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
@@ -316,14 +317,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理前:");
-            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"), true, false);
 
             // Act
             vs.Dir[dir1Path] = dir2;
 
             // ディレクトリ構造を出力
             Debug.WriteLine("処理後:");
-            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"), true, false);
 
             // Assert
             VirtualDirectory retrievedDir = vs.Dir[dir1Path];

@@ -5,6 +5,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
     public class VirtualItemTest
+
     {
         [TestInitialize]
         public void TestInitialize()
