@@ -182,6 +182,28 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             Type type = typeof(T);
             List<PropertyInfo> properties = [];
 
+            if (type == typeof(string))
+            {
+                List<IEnumerable<string>> stringTable =
+                [
+                    ["Value"],
+                    [singleObject?.ToString() ?? "(null)"]
+                ];
+                return FormatTable(stringTable);
+            }
+
+            bool isSimpleType = Nullable.GetUnderlyingType(type) != null || type.IsPrimitive;
+
+            if (isSimpleType)
+            {
+                List<IEnumerable<string>> simpleTable =
+                [
+                    ["Value"],
+                    [singleObject?.ToString() ?? "(null)"]
+                ];
+                return FormatTable(simpleTable);
+            }
+
             // Get properties from base classes first
             Type? currentType = type;
             while (currentType != null)
@@ -190,27 +212,19 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                 currentType = currentType.BaseType;
             }
 
-            // Ensure properties are unique by name
             var uniqueProperties = properties.GroupBy(p => p.Name).Select(g => g.First()).ToList();
-
-            List<string> headers = [];
+            List<string> headers = uniqueProperties.Select(p => p.Name).ToList();
             List<string> row = [];
 
             foreach (var property in uniqueProperties)
             {
-                headers.Add(property.Name);
-
                 try
                 {
-                    // Get the property value
                     object? value = property.GetValue(singleObject);
-
-                    // Skip collections and dictionaries
                     if (value != null && IsToStringOverridden(value.GetType()))
                     {
                         row.Add(value?.ToString() ?? "(null)");
                     }
-                    // Skip collections and dictionaries
                     else if (value is IEnumerable && value is not string)
                     {
                         row.Add("(no output)");
@@ -222,15 +236,20 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                 }
                 catch
                 {
-                    // If any exception occurs, replace with "(no output)"
                     row.Add("(no output)");
                 }
+            }
+
+            if (headers.Count == 0)
+            {
+                headers.Add("Value");
+                row.Add(singleObject?.ToString() ?? "(null)");
             }
 
             List<IEnumerable<string>> tableData =
             [
                 headers,
-                row
+            row
             ];
 
             return FormatTable(tableData);
