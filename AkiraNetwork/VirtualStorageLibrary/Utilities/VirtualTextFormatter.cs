@@ -262,7 +262,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 
         public static string GenerateLinkTableDebugText<T>(this VirtualStorage<T> vs)
         {
-            if (vs.LinkDictionary == null || vs.LinkDictionary.Count == 0)
+            if (vs.LinkDictionary.Count == 0)
             {
                 return "(リンク辞書は空です。)";
             }
