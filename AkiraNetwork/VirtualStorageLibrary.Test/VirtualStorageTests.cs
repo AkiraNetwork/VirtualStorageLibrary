@@ -1296,7 +1296,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem(path);
 
             // デバッグ出力
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetItem(path)));
+            Debug.WriteLine(vs.GetItem(path).GenerateSingleTableDebugText());
 
             // Assert
             Assert.IsTrue(vs.ItemExists(path));
@@ -5315,7 +5315,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/linkToDir2", NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5356,7 +5356,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5386,7 +5386,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5417,7 +5417,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5454,7 +5454,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 結果を検証
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5486,9 +5486,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_actionNodeInfos));
+            Debug.WriteLine(_actionNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5523,7 +5523,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(nodeContext));
+            Debug.WriteLine(nodeContext.GenerateSingleTableDebugText());
 
             // 結果を検証
             // ActionNodeNotContinueは、"dir2" まで作成して終了する ("dir2" のタイミングで false を返す)
@@ -5560,7 +5560,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストのデバッグ出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(nodeContext));
+            Debug.WriteLine(nodeContext.GenerateSingleTableDebugText());
 
             // 結果を検証
             // ただし、TraversalPathは処理したとこまで返される
@@ -5592,9 +5592,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_actionNodeInfos));
+            Debug.WriteLine(_actionNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5629,9 +5629,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_notifyNodeInfos));
+            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(_actionNodeInfos));
+            Debug.WriteLine(_actionNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5764,23 +5764,23 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
+            Debug.WriteLine(nodeContexts.GenerateTableDebugText());
 
             // ノードの出力
             Debug.WriteLine("ノード(/dir1):");
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetDirectory("/dir1")));
+            Debug.WriteLine(vs.GetDirectory("/dir1").GenerateSingleTableDebugText());
 
             Debug.WriteLine("ノード(/dir1/item1):");
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetItem("/dir1/item1")));
+            Debug.WriteLine(vs.GetItem("/dir1/item1").GenerateSingleTableDebugText());
 
             Debug.WriteLine("ノード(/dir1/item2):");
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetItem("/dir1/item2")));
+            Debug.WriteLine(vs.GetItem("/dir1/item2").GenerateSingleTableDebugText());
 
             Debug.WriteLine("ノード(/all-dir/item1):");
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetSymbolicLink("/all-dir/item1")));
+            Debug.WriteLine(vs.GetSymbolicLink("/all-dir/item1").GenerateSingleTableDebugText());
 
             Debug.WriteLine("ノード(/all-dir/item2):");
-            Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(vs.GetSymbolicLink("/all-dir/item2")));
+            Debug.WriteLine(vs.GetSymbolicLink("/all-dir/item2").GenerateSingleTableDebugText());
 
             string tree = vs.GenerateTreeDebugText("/", true, true);
             Debug.WriteLine(tree);
@@ -7272,7 +7272,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
@@ -7313,7 +7313,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/dir2/item2");
@@ -7355,7 +7355,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
@@ -7468,7 +7468,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7538,7 +7538,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7580,7 +7580,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1", true);
@@ -7655,7 +7655,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory originalDir = vs.GetDirectory("/dir1");
@@ -7699,7 +7699,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7745,7 +7745,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7822,7 +7822,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7870,7 +7870,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
@@ -7909,7 +7909,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2");
@@ -7950,7 +7950,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dir2/dir3/dir4");
@@ -8079,7 +8079,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -8125,7 +8125,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -8219,7 +8219,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/link2");
@@ -8260,7 +8260,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dir1/dir2/link2");
@@ -8302,7 +8302,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualSymbolicLink copiedLink = vs.GetSymbolicLink("/dst/link1");
@@ -8387,7 +8387,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir2/item1");
@@ -8430,7 +8430,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualItem<BinaryData> copiedItem = vs.GetItem("/dst/link/item1", true);
@@ -8471,7 +8471,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
@@ -8523,7 +8523,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");
@@ -8579,7 +8579,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst1/dst2/dir1");
@@ -8742,7 +8742,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキストの表示
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(contexts));
+            Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
             Assert.IsTrue(vs.NodeExists("/dir1/subdir1/item1"));
@@ -9872,7 +9872,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
+            Debug.WriteLine(nodeContexts.GenerateTableDebugText());
 
             // Assert
             Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
@@ -9904,7 +9904,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
+            Debug.WriteLine(nodeContexts.GenerateTableDebugText());
 
             // Assert
             Assert.AreEqual(0, vs.CycleDetectorForTree.Count);
@@ -10041,7 +10041,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
+            Debug.WriteLine(nodeContexts.GenerateTableDebugText());
 
             // Assert
             Assert.AreEqual(0, vs.CycleDetectorForTree.Count);
@@ -10070,7 +10070,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
+            Debug.WriteLine(nodeContexts.GenerateTableDebugText());
 
             // Assert
             Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
@@ -10098,7 +10098,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // コンテキスト出力
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine(VirtualTextFormatter.GenerateTableDebugText(nodeContexts));
+            Debug.WriteLine(nodeContexts.GenerateTableDebugText());
 
             // Assert
             Assert.AreEqual(1, vs.CycleDetectorForTree.Count);
@@ -10308,7 +10308,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             {
                 if (node is VirtualItem<BinaryData> item)
                 {
-                    Debug.WriteLine(VirtualTextFormatter.GenerateSingleTableDebugText(item));
+                    Debug.WriteLine(item.GenerateSingleTableDebugText());
                 }
             }
 

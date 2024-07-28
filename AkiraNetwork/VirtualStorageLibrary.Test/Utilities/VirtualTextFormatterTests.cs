@@ -135,5 +135,99 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             string tree = vs.GenerateTreeDebugText("/link-to-dir", true, true);
             Debug.WriteLine(tree);
         }
+
+        [TestMethod]
+        public void GenerateLinkTableDebugText_EmptyLinkDictionary_ReturnsEmptyMessage()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+
+            // Act
+            string result = vs.GenerateLinkTableDebugText();
+
+            // Assert
+            Assert.AreEqual("(リンク辞書は空です。)", result);
+        }
+
+        [TestMethod]
+        public void GenerateLinkTableDebugText_WithLinks1_ReturnsLinkTable()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddItem("/item1");
+            vs.AddSymbolicLink("/linkToItem1", "/item1");
+
+            // Act
+            string result = vs.GenerateLinkTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateLinkTableDebugText_WithLinks2_ReturnsLinkTable()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddItem("/item1");
+            vs.AddSymbolicLink("/linkToItem1", "/item1");
+            vs.AddSymbolicLink("/linkToItem2", "/item1");
+
+            // Act
+            string result = vs.GenerateLinkTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateLinkTableDebugText_WithFullWidth1_ReturnsLinkTable()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddItem("/アイテム1");
+            vs.AddSymbolicLink("/アイテム1へのリンク1", "/アイテム1");
+
+            // Act
+            string result = vs.GenerateLinkTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateLinkTableDebugText_WithFullWidth2_ReturnsLinkTable()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddItem("/アイテム1");
+            vs.AddSymbolicLink("/アイテム1へのリンク1", "/アイテム1");
+            vs.AddSymbolicLink("/アイテム1へのリンク2", "/アイテム1");
+
+            // Act
+            string result = vs.GenerateLinkTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateLinkTableDebugText_Test1_ReturnsLinkTable()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            vs.AddItem("/item1");
+            vs.AddSymbolicLink("/linkToItem1", "/item1");
+            vs.AddSymbolicLink("/linkToItem2", "/item1");
+            vs.AddItem("/アイテム1");
+            vs.AddSymbolicLink("/アイテム1へのリンク1", "/アイテム1");
+            vs.AddSymbolicLink("/アイテム1へのリンク2", "/アイテム1");
+
+            // Act
+            string result = vs.GenerateLinkTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
     }
 }
