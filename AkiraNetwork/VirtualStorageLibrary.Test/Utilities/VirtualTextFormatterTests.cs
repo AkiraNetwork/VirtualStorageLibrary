@@ -229,5 +229,32 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             // Assert
             Debug.WriteLine(result);
         }
+
+        [TestMethod]
+        public void GenerateTableDebugText_EmptyTable_ReturnsEmptyMessage()
+        {
+            // Arrange
+            List<string> messages = [];
+
+            // Act
+            string result = messages.GenerateTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            Assert.AreEqual("(コレクションは空です。)", result);
+        }
+
+        [TestMethod]
+        public void GenerateTableDebugText_AnyTable_ReturnsEmptyMessage()
+        {
+            // Arrange
+            List<string> messages = ["Hello, ", "World!"];
+
+            // Act
+            string result = messages.GenerateTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
     }
 }

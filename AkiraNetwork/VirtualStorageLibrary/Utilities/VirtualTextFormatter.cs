@@ -126,7 +126,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
         {
             if (!enumerableObject.Any())
             {
-                return string.Empty;
+                return "(コレクションは空です。)";
             }
 
             Type type = typeof(T);
