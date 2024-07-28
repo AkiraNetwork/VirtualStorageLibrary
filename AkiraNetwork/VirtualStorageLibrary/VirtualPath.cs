@@ -87,7 +87,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 if (_fixedPath == null)
                 {
-                    (_fixedPath, _baseDepth) = CalculateFixedPathAndBaseDepth();
+                    (_fixedPath, _baseDepth) = GetFixedPath();
                 }
                 return _fixedPath;
             }
@@ -99,7 +99,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 if (_baseDepth == null)
                 {
-                    (_fixedPath, _baseDepth) = CalculateFixedPathAndBaseDepth();
+                    (_fixedPath, _baseDepth) = GetFixedPath();
                 }
                 return _baseDepth.Value;
             }
@@ -587,7 +587,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(string.Join(VirtualPath.Separator, relativePath));
         }
 
-        private (VirtualPath, int) CalculateFixedPathAndBaseDepth()
+        private (VirtualPath, int) GetFixedPath()
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
 
