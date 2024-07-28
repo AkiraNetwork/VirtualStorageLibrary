@@ -18,17 +18,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
         public string? Name { get; set; }
         public int Age { get; set; }
         public Address? Address { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Name}, {Age}";
-        }
     }
 
     public class Address
     {
         public string? Street { get; set; }
         public string? City { get; set; }
+        public override string ToString()
+        {
+            return $"Street: {Street}; City: {City}";
+        }
     }
 
     public class EmptyClass
@@ -359,6 +358,27 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
         }
 
         [TestMethod]
+        public void GenerateSingleTableDebugText_PersonWithNull_ReturnsFormattedTable()
+        {
+            // Arrange
+            var person = new Person
+            {
+                Name = null,
+                Age = 30,
+                Address = null
+            };
+
+            // Act
+            string result = person.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // Name, Age, Address
+            // John Doe, 30, 123 Main St, Anytown
+        }
+
+        [TestMethod]
         public void GenerateSingleTableDebugText_EmptyClass_ReturnsFormattedTable()
         {
             // Arrange
@@ -390,10 +410,42 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
         }
 
         [TestMethod]
+        public void GenerateSingleTableDebugText_NullableIntWithNull_ReturnsFormattedTable()
+        {
+            // Arrange
+            int? nullableInt = null;
+
+            // Act
+            string result = nullableInt.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // Value
+            // 42
+        }
+
+        [TestMethod]
         public void GenerateSingleTableDebugText_SimpleString_ReturnsFormattedTable()
         {
             // Arrange
             string simpleString = "Hello, world!";
+
+            // Act
+            string result = simpleString.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // Value
+            // Hello, world!
+        }
+
+        [TestMethod]
+        public void GenerateSingleTableDebugText_SimpleStringWithNull_ReturnsFormattedTable()
+        {
+            // Arrange
+            string? simpleString = null;
 
             // Act
             string result = simpleString.GenerateSingleTableDebugText();
