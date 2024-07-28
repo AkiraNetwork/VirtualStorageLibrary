@@ -129,21 +129,49 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                 return "(コレクションは空です。)";
             }
 
-            Type type = typeof(T);
-            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
             List<IEnumerable<string>> tableData = [];
-            tableData.Add(properties.Select(p => p.Name));
 
-            foreach (var obj in enumerableObject)
+            Type type = typeof(T);
+            bool isSimpleType = type == typeof(string) || Nullable.GetUnderlyingType(type) != null || type.IsPrimitive;
+
+            if (isSimpleType)
             {
-                List<string> row = [];
-                foreach (var property in properties)
+                // Handle simple types (string, nullable types, and primitives)
+                tableData.Add(["Value"]);
+
+                foreach (var obj in enumerableObject)
                 {
-                    object? value = property.GetValue(obj);
-                    row.Add(value?.ToString() ?? "(null)");
+                    tableData.Add([obj?.ToString() ?? "(null)"]);
                 }
-                tableData.Add(row);
+            }
+            else
+            {
+                PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+                if (properties.Length > 0)
+                {
+                    tableData.Add(properties.Select(p => p.Name));
+
+                    foreach (var obj in enumerableObject)
+                    {
+                        List<string> row = [];
+                        foreach (var property in properties)
+                        {
+                            object? value = property.GetValue(obj);
+                            row.Add(value?.ToString() ?? "(null)");
+                        }
+                        tableData.Add(row);
+                    }
+                }
+                else
+                {
+                    tableData.Add(["Value"]);
+
+                    foreach (var obj in enumerableObject)
+                    {
+                        tableData.Add([obj?.ToString() ?? "(null)"]);
+                    }
+                }
             }
 
             return FormatTable(tableData);

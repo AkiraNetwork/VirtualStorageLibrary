@@ -1,8 +1,44 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Net;
 using AkiraNetwork.VirtualStorageLibrary.Utilities;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 {
+    public class CustomClassWithoutProperties
+    {
+        public override string ToString()
+        {
+            return "CustomClassWithoutProperties";
+        }
+    }
+
+    public class Person
+    {
+        public string? Name { get; set; }
+        public int Age { get; set; }
+        public Address? Address { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name}, {Age}";
+        }
+    }
+
+    public class Address
+    {
+        public string? Street { get; set; }
+        public string? City { get; set; }
+    }
+
+    public class EmptyClass
+    {
+        public override string ToString()
+        {
+            return "EmptyClassInstance";
+        }
+    }
+
     [TestClass]
     public class VirtualTextFormatterTests
     {
@@ -245,16 +281,144 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
         }
 
         [TestMethod]
-        public void GenerateTableDebugText_AnyTable_ReturnsEmptyMessage()
+        public void GenerateTableDebugText_StringTable_ReturnsEmptyMessage()
         {
             // Arrange
-            List<string> messages = ["Hello, ", "World!"];
+            List<string> messages = ["Hello, ", "World!", null];
 
             // Act
             string result = messages.GenerateTableDebugText();
 
             // Assert
             Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateTableDebugText_IntTable_ReturnsEmptyMessage()
+        {
+            // Arrange
+            List<int> numbers = [100, 200, 300];
+
+            // Act
+            string result = numbers.GenerateTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateTableDebugText_NullableTable_ReturnsEmptyMessage()
+        {
+            // Arrange
+            List<int?> numbers = [100, 200, 300, null];
+
+            // Act
+            string result = numbers.GenerateTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateTableDebugText_NoProperty_ReturnsEmptyMessage()
+        {
+            // Arrange
+            List<CustomClassWithoutProperties?> customs =
+            [
+                new CustomClassWithoutProperties(),
+                new CustomClassWithoutProperties(),
+                null
+            ];
+
+            // Act
+            string result = customs.GenerateTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void GenerateSingleTableDebugText_Person_ReturnsFormattedTable()
+        {
+            // Arrange
+            var person = new Person
+            {
+                Name = "John Doe",
+                Age = 30,
+                Address = new Address { Street = "123 Main St", City = "Anytown" }
+            };
+
+            // Act
+            string result = person.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // Name, Age, Address
+            // John Doe, 30, 123 Main St, Anytown
+        }
+
+        [TestMethod]
+        public void GenerateSingleTableDebugText_EmptyClass_ReturnsFormattedTable()
+        {
+            // Arrange
+            var emptyClass = new EmptyClass();
+
+            // Act
+            string result = emptyClass.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // (Empty)
+        }
+
+        [TestMethod]
+        public void GenerateSingleTableDebugText_NullableInt_ReturnsFormattedTable()
+        {
+            // Arrange
+            int? nullableInt = 42;
+
+            // Act
+            string result = nullableInt.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // Value
+            // 42
+        }
+
+        [TestMethod]
+        public void GenerateSingleTableDebugText_SimpleString_ReturnsFormattedTable()
+        {
+            // Arrange
+            string simpleString = "Hello, world!";
+
+            // Act
+            string result = simpleString.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // Value
+            // Hello, world!
+        }
+
+        [TestMethod]
+        public void GenerateSingleTableDebugText_SimpleInt_ReturnsFormattedTable()
+        {
+            // Arrange
+            int simpleInt = 123;
+
+            // Act
+            string result = simpleInt.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            // Expected output:
+            // Value
+            // 123
         }
     }
 }
