@@ -196,7 +196,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             basePath = vs.ConvertToAbsolutePath(basePath).NormalizePath();
             IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree(basePath, VirtualNodeTypeFilter.All, recursive, followLinks);
             StringBuilder line = new();
-            string previous = string.Empty;
+            string prevLine = string.Empty;
 
             VirtualNodeContext nodeFirstContext = nodeContexts.First();
             VirtualPath baseAbsolutePath = basePath + nodeFirstContext.TraversalPath;
@@ -224,30 +224,20 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                 {
                     for (int i = 0; i < depth - 1; i++)
                     {
-                        if (i < previous.Length)
+                        switch (prevLine[i])
                         {
-                            switch (previous[i])
-                            {
-                                case FullWidthSpaceChar:
-                                    line.Append(FullWidthSpaceChar);
-                                    break;
-                                case '│':
-                                    line.Append('│');
-                                    break;
-                                case '└':
-                                    line.Append(FullWidthSpaceChar);
-                                    break;
-                                case '├':
-                                    line.Append('│');
-                                    break;
-                                default:
-                                    line.Append(FullWidthSpaceChar);
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            line.Append(FullWidthSpaceChar);
+                            case FullWidthSpaceChar:
+                                line.Append(FullWidthSpaceChar);
+                                break;
+                            case '│':
+                                line.Append('│');
+                                break;
+                            case '├':
+                                line.Append('│');
+                                break;
+                            default:
+                                line.Append(FullWidthSpaceChar);
+                                break;
                         }
                     }
 
@@ -263,7 +253,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 
                 line.Append(node?.ToString());
 
-                previous = line.ToString();
+                prevLine = line.ToString();
                 tree.AppendLine(line.ToString());
             }
 

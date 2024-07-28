@@ -135,6 +135,5 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             string tree = vs.GenerateTreeDebugText("/link-to-dir", true, true);
             Debug.WriteLine(tree);
         }
-
     }
 }
