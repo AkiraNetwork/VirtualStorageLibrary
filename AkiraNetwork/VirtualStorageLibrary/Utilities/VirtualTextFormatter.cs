@@ -212,10 +212,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 
             foreach (var nodeInfo in nodeContexts.Skip(1))
             {
-                VirtualNode? node = nodeInfo.Node;
+                VirtualNode node = nodeInfo.Node!;
                 string nodeName = nodeInfo.TraversalPath.NodeName;
                 int depth = nodeInfo.Depth;
-                int count = nodeInfo.ParentDirectory?.Count ?? 0;
+                int count = nodeInfo.ParentDirectory!.Count;
                 int index = nodeInfo.Index;
 
                 line.Clear();
@@ -251,7 +251,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                     }
                 }
 
-                line.Append(node?.ToString());
+                line.Append(node.ToString());
 
                 prevLine = line.ToString();
                 tree.AppendLine(line.ToString());
