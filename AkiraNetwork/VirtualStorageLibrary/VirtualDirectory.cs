@@ -31,6 +31,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         public int SymbolicLinkViewCount => NodesView.Count(n => n is VirtualSymbolicLink);
 
+        private static readonly Dictionary<VirtualNodeType, VirtualNodeTypeFilter> _nodeTypeToFilterMap = new()
+        {
+            { VirtualNodeType.Directory, VirtualNodeTypeFilter.Directory },
+            { VirtualNodeType.Item, VirtualNodeTypeFilter.Item },
+            { VirtualNodeType.SymbolicLink, VirtualNodeTypeFilter.SymbolicLink }
+        };
+        
         public bool NodeExists(VirtualNodeName name) => _nodes.ContainsKey(name);
 
         public bool ItemExists(VirtualNodeName name)
@@ -147,7 +154,9 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     return true;
                 }
 
-                return filter.HasFlag(link.TargetNodeType.ToFilter());
+                VirtualNodeTypeFilter targetFilter = _nodeTypeToFilterMap[link.TargetNodeType];
+
+                return filter.HasFlag(targetFilter);
             }
 
             return false;
