@@ -204,6 +204,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                 return FormatTable(simpleTable);
             }
 
+            // Handle IEnumerable separately
+            if (typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string))
+            {
+                List<IEnumerable<string>> enumerableTable =
+                [
+                    ["Value"],
+                    ["(no output)"]
+                ];
+                return FormatTable(enumerableTable);
+            }
+
             // Get properties from base classes first
             Type? currentType = type;
             while (currentType != null)
@@ -221,29 +232,44 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                 try
                 {
                     object? value = property.GetValue(singleObject);
-                    if (value != null && IsToStringOverridden(value.GetType()))
+                    if (value != null)
                     {
-                        row.Add(value?.ToString() ?? "(null)");
-                    }
-                    else if (value is IEnumerable && value is not string)
-                    {
-                        row.Add("(no output)");
+                        if (IsToStringOverridden(value.GetType()))
+                        {
+                            row.Add(value.ToString()!);
+                        }
+                        else if (value is IEnumerable && value is not string)
+                        {
+                            row.Add("(no output)");
+                        }
+                        else
+                        {
+                            row.Add(value.ToString()!);
+                        }
                     }
                     else
                     {
-                        row.Add(value?.ToString() ?? "(null)");
+                        row.Add("(null)");
                     }
                 }
                 catch
                 {
-                    row.Add("(no output)");
+                    row.Add("(exception)");
                 }
             }
 
             if (headers.Count == 0)
             {
                 headers.Add("Value");
-                row.Add(singleObject?.ToString() ?? "(null)");
+                if (singleObject != null)
+                {
+                    row.Add(singleObject.ToString()!);
+                }
+                else
+                {
+                    row.Add("(null)");
+                }
+                //row.Add(singleObject?.ToString()!);
             }
 
             List<IEnumerable<string>> tableData =

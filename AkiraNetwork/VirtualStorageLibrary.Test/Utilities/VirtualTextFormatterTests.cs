@@ -38,6 +38,29 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
         }
     }
 
+    public class ObjectWithEnumerableProperty
+    {
+        public IEnumerable<int>? Values { get; set; }
+    }
+
+    public class ObjectWithNonOverriddenToString
+    {
+        public NonOverriddenToString? Value { get; set; }
+    }
+
+    public class NonOverriddenToString
+    {
+        // このクラスでは ToString メソッドをオーバーライドしない
+    }
+
+    public class ObjectWithExceptionInGetter
+    {
+        public string Value
+        {
+            get { throw new InvalidOperationException("Exception in getter"); }
+        }
+    }
+
     [TestClass]
     public class VirtualTextFormatterTests
     {
@@ -171,6 +194,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(tree);
         }
 
+        [TestCategory("GenerateLinkTableDebugText")]
         [TestMethod]
         public void GenerateLinkTableDebugText_EmptyLinkDictionary_ReturnsEmptyMessage()
         {
@@ -184,6 +208,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Assert.AreEqual("(リンク辞書は空です。)", result);
         }
 
+        [TestCategory("GenerateLinkTableDebugText")]
         [TestMethod]
         public void GenerateLinkTableDebugText_WithLinks1_ReturnsLinkTable()
         {
@@ -199,6 +224,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateLinkTableDebugText")]
         [TestMethod]
         public void GenerateLinkTableDebugText_WithLinks2_ReturnsLinkTable()
         {
@@ -215,6 +241,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateLinkTableDebugText")]
         [TestMethod]
         public void GenerateLinkTableDebugText_WithFullWidth1_ReturnsLinkTable()
         {
@@ -230,6 +257,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateLinkTableDebugText")]
         [TestMethod]
         public void GenerateLinkTableDebugText_WithFullWidth2_ReturnsLinkTable()
         {
@@ -246,6 +274,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateLinkTableDebugText")]
         [TestMethod]
         public void GenerateLinkTableDebugText_Test1_ReturnsLinkTable()
         {
@@ -265,6 +294,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateTableDebugText")]
         [TestMethod]
         public void GenerateTableDebugText_EmptyTable_ReturnsEmptyMessage()
         {
@@ -279,6 +309,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Assert.AreEqual("(コレクションは空です。)", result);
         }
 
+        [TestCategory("GenerateTableDebugText")]
         [TestMethod]
         public void GenerateTableDebugText_StringTable_ReturnsEmptyMessage()
         {
@@ -292,6 +323,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateTableDebugText")]
         [TestMethod]
         public void GenerateTableDebugText_IntTable_ReturnsEmptyMessage()
         {
@@ -305,6 +337,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateTableDebugText")]
         [TestMethod]
         public void GenerateTableDebugText_NullableTable_ReturnsEmptyMessage()
         {
@@ -318,8 +351,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateTableDebugText")]
         [TestMethod]
-        public void GenerateTableDebugText_NoProperty_ReturnsEmptyMessage()
+        public void GenerateTableDebugText_NoPropertyList_ReturnsEmptyMessage()
         {
             // Arrange
             List<CustomClassWithoutProperties?> customs =
@@ -336,6 +370,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             Debug.WriteLine(result);
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_Person_ReturnsFormattedTable()
         {
@@ -352,11 +387,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("John"));
+            Assert.IsTrue(result.Contains("30"));
+            Assert.IsTrue(result.Contains("123 Main St"));
+            Assert.IsTrue(result.Contains("Anytown"));
             // Expected output:
             // Name, Age, Address
             // John Doe, 30, 123 Main St, Anytown
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_PersonWithNull_ReturnsFormattedTable()
         {
@@ -373,11 +413,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("(null)"));
+            Assert.IsTrue(result.Contains("30"));
             // Expected output:
             // Name, Age, Address
-            // John Doe, 30, 123 Main St, Anytown
+            // (null), 30, (null)
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_EmptyClass_ReturnsFormattedTable()
         {
@@ -389,10 +432,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("EmptyClassInstance"));
             // Expected output:
-            // (Empty)
+            // EmptyClassInstance
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_NullableInt_ReturnsFormattedTable()
         {
@@ -404,11 +449,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("42"));
             // Expected output:
             // Value
             // 42
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_NullableIntWithNull_ReturnsFormattedTable()
         {
@@ -420,11 +467,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("(null)"));
             // Expected output:
             // Value
-            // 42
+            // (null))
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_SimpleString_ReturnsFormattedTable()
         {
@@ -436,11 +485,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("Hello, world!"));
             // Expected output:
             // Value
             // Hello, world!
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_SimpleStringWithNull_ReturnsFormattedTable()
         {
@@ -452,11 +503,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("(null)"));
             // Expected output:
             // Value
-            // Hello, world!
+            // (null)
         }
 
+        [TestCategory("GenerateSingleTableDebugText")]
         [TestMethod]
         public void GenerateSingleTableDebugText_SimpleInt_ReturnsFormattedTable()
         {
@@ -468,9 +521,117 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("123"));
             // Expected output:
             // Value
             // 123
+        }
+
+        [TestCategory("GenerateSingleTableDebugText")]
+        [TestMethod]
+        public void GenerateSingleTableDebugText_Enumerable_ReturnsFormattedTable()
+        {
+            // Arrange
+            IEnumerable<int> intList = [123, 456, 789];
+
+            // Act
+            string result = intList.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("(no output)"));
+            // Expected output:
+            // (no output)
+        }
+
+        [TestCategory("GenerateSingleTableDebugText")]
+        [TestMethod]
+        public void GenerateSingleTableDebugText_ObjectWithEnumerableProperty_ReturnsNoOutput()
+        {
+            // Arrange
+            var obj = new ObjectWithEnumerableProperty
+            {
+                Values = new List<int> { 1, 2, 3 }
+            };
+
+            // Act
+            string result = obj.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("(no output)"));
+            // Expected output:
+            // Values
+            // (no output)
+        }
+
+        [TestCategory("GenerateSingleTableDebugText")]
+        [TestMethod]
+        public void GenerateSingleTableDebugText_ObjectWithNonOverriddenToString_ReturnsFormattedTable()
+        {
+            // Arrange
+            var obj = new ObjectWithNonOverriddenToString
+            {
+                Value = new NonOverriddenToString()
+            };
+
+            // Act
+            string result = obj.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("AkiraNetwork.VirtualStorageLibrary.Test.Utilities.NonOverriddenToString"));
+            // Expected output:
+            // Value
+            // AkiraNetwork.VirtualStorageLibrary.Test.Utilities.NonOverriddenToString
+        }
+
+        [TestCategory("GenerateSingleTableDebugText")]
+        [TestMethod]
+        public void GenerateSingleTableDebugText_ObjectWithExceptionInGetter_ReturnsNoOutput()
+        {
+            // Arrange
+            var obj = new ObjectWithExceptionInGetter();
+
+            // Act
+            string result = obj.GenerateSingleTableDebugText();
+
+            // Assert
+            Debug.WriteLine(result);
+            Assert.IsTrue(result.Contains("(exception)"));
+            // Expected output:
+            // Value
+            // (exception)
+        }
+
+        [TestCategory("GenerateSingleTableDebugText")]
+        [TestMethod]
+        public void GenerateTableDebugText_NoProperty_ReturnsEmptyMessage()
+        {
+            // Arrange
+            CustomClassWithoutProperties custom = new();
+
+            // Act
+            string result = custom.GenerateSingleTableDebugText();
+
+            // Assert
+            Assert.IsTrue(result.Contains("CustomClassWithoutProperties"));
+            Debug.WriteLine(result);
+        }
+
+        [TestCategory("GenerateSingleTableDebugText")]
+        [TestMethod]
+        public void GenerateTableDebugText_Null_ReturnsEmptyMessage()
+        {
+            // Arrange
+            CustomClassWithoutProperties? custom = null;
+
+            // Act
+            string result = custom.GenerateSingleTableDebugText();
+
+            // Assert
+            //Assert.IsTrue(result.Contains("CustomClassWithoutProperties"));
+            Debug.WriteLine(result);
         }
     }
 }
