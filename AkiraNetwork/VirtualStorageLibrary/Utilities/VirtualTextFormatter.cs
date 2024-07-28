@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Specialized;
+using System.Reflection;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 {
@@ -269,5 +270,38 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return tree.ToString();
         }
 
+        public static string GenerateLinkTableDebugText<T>(this VirtualStorage<T> vs)
+        {
+            if (vs.LinkDictionary == null || vs.LinkDictionary.Count == 0)
+            {
+                return "(リンク辞書は空です。)";
+            }
+
+            List<IEnumerable<string>> tableData =
+            [
+                ["TargetPath", "LinkPath"]
+            ];
+
+            foreach (var entry in vs.LinkDictionary)
+            {
+                var targetPath = entry.Key;
+                var linkPathsWithTypes = entry.Value
+                    .Select(vp =>
+                    {
+                        var symbolicLinkNode = vs.TryGetSymbolicLink(vp);
+                        var targetNodeType = symbolicLinkNode?.TargetNodeType.ToString() ?? "Unknown";
+                        return $"{vp}({targetNodeType})";
+                    })
+                    .ToList();
+
+                tableData.Add(
+                [
+                    targetPath.ToString(),
+                    string.Join(", ", linkPathsWithTypes)
+                ]);
+            }
+
+            return VirtualTextFormatter.FormatTable(tableData);
+        }
     }
 }

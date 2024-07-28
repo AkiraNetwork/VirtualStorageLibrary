@@ -1717,40 +1717,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             UpdateAllTargetNodeTypesInDictionary();
         }
 
-        public string GenerateLinkTableDebugText()
-        {
-            if (LinkDictionary == null || LinkDictionary.Count == 0)
-            {
-                return "(リンク辞書は空です。)";
-            }
-
-            List<IEnumerable<string>> tableData =
-            [
-                ["TargetPath", "LinkPath"]
-            ];
-
-            foreach (var entry in LinkDictionary)
-            {
-                var targetPath = entry.Key;
-                var linkPathsWithTypes = entry.Value
-                    .Select(vp =>
-                    {
-                        var symbolicLinkNode = TryGetSymbolicLink(vp);
-                        var targetNodeType = symbolicLinkNode?.TargetNodeType.ToString() ?? "Unknown";
-                        return $"{vp}({targetNodeType})";
-                    })
-                    .ToList();
-
-                tableData.Add(
-                [
-                    targetPath.ToString(),
-                    string.Join(", ", linkPathsWithTypes)
-                ]);
-            }
-
-            return VirtualTextFormatter.FormatTable(tableData);
-        }
-
         [DebuggerStepThrough]
         private struct WalkPathToTargetParameters(
             VirtualPath targetPath,
