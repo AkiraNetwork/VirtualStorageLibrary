@@ -19,19 +19,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
     }
 
     [TestClass]
-    public class VirtualStorageTests
+    public class VirtualStorageTests : VirtualTestBase
     {
         private List<NotifyNodeInfo> _notifyNodeInfos = [];
 
         private List<ActionNodeInfo> _actionNodeInfos = [];
 
         [TestInitialize]
-        public void TestInitialize()
+        public override void TestInitialize()
         {
+            base.TestInitialize();
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
+
             _notifyNodeInfos = [];
             _actionNodeInfos = [];
         }
