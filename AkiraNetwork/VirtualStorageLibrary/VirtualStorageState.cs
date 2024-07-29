@@ -12,8 +12,6 @@
             InvalidFullNodeNames = [PathDot, PathDotDot];
         }
 
-        public static void Initialize() => _state = new();
-
         public char PathSeparator { get; set; } = '/';
 
         public string PathRoot { get; set; } = "/";
@@ -56,7 +54,7 @@
                 PathDotDot = settings.PathDotDot,
                 InvalidNodeNameCharacters = (char[])settings.InvalidNodeNameCharacters.Clone(),
                 InvalidFullNodeNames = (string[])settings.InvalidFullNodeNames.Clone(),
-                WildcardMatcher = settings.WildcardMatcher?.DeepClone(),
+                WildcardMatcher = settings.WildcardMatcher,
                 NodeListConditions = stateConditions,
                 PrefixItem = settings.PrefixItem,
                 PrefixDirectory = settings.PrefixDirectory,

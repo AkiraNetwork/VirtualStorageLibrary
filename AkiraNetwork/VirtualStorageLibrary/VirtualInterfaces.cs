@@ -1,4 +1,6 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary
+﻿using System.Collections.ObjectModel;
+
+namespace AkiraNetwork.VirtualStorageLibrary
 {
     public interface IVirtualDeepCloneable<T>
     {
@@ -7,14 +9,14 @@
 
     public interface IVirtualWildcardMatcher
     {
-        Dictionary<string, string> WildcardDictionary { get; }
+        ReadOnlyDictionary<string, string> WildcardDictionary { get; }
 
         IEnumerable<string> Wildcards { get; }
 
         IEnumerable<string> Patterns { get; }
 
-        bool PatternMatcher(string nodeName, string pattern);
+        int Count { get; }
 
-        public IVirtualWildcardMatcher DeepClone();
+        bool PatternMatcher(string nodeName, string pattern);
     }
 }

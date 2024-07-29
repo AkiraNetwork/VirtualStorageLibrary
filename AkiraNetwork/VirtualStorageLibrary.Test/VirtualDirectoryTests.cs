@@ -1136,10 +1136,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/dir3", "/dir1");
 
             // 条件を設定
-            VirtualStorageState.SetNodeListConditions(
+            VirtualNodeListConditions conditions = new(
                 VirtualNodeTypeFilter.Item | VirtualNodeTypeFilter.SymbolicLink,
                 new(node => node.ResolveNodeType(), true),
                 [new(node => node.Name, true)]);
+            VirtualStorageState.SetNodeListConditions(conditions);
 
             // テスト対象のディレクトリを取得
             VirtualDirectory directory = vs.GetDirectory("/");

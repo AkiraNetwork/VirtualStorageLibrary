@@ -1,21 +1,26 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+﻿using System.Collections.ObjectModel;
+
+namespace AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
 {
     public class PowerShellWildcardMatcher : IVirtualWildcardMatcher
     {
         // ワイルドカードとそれに対応する正規表現のパターンの配列
-        private static readonly Dictionary<string, string> _wildcardDictionary = new()
-        {
-            { "*", ".*" },  // 0文字以上に一致
-            { "?", "." },   // 任意の1文字に一致
-            { "[", "[" },   // 文字クラスの開始
-            { "]", "]" }    // 文字クラスの終了
-        };
+        private static readonly ReadOnlyDictionary<string, string> _wildcardDictionary = new(
+            new Dictionary<string, string>
+            {
+                { "*", ".*" },  // 0文字以上に一致
+                { "?", "." },   // 任意の1文字に一致
+                { "[", "[" },   // 文字クラスの開始
+                { "]", "]" }    // 文字クラスの終了
+            });
 
-        public Dictionary<string, string> WildcardDictionary => _wildcardDictionary;
+        public ReadOnlyDictionary<string, string> WildcardDictionary => _wildcardDictionary;
 
         public IEnumerable<string> Wildcards => _wildcardDictionary.Keys;
 
         public IEnumerable<string> Patterns => _wildcardDictionary.Values;
+
+        public int Count => _wildcardDictionary.Count;
 
         // ワイルドカードの実装（PowerShell）
         public bool PatternMatcher(string nodeName, string pattern)
@@ -47,16 +52,6 @@
 
             // 正規表現を用いてマッチングを行う
             return Regex.IsMatch(nodeName, regexPattern);
-        }
-
-        public IVirtualWildcardMatcher DeepClone()
-        {
-            // まずは浅いクローンを作成
-            PowerShellWildcardMatcher clone = (PowerShellWildcardMatcher)this.MemberwiseClone();
-
-            // 次に他のインスタンスメンバーが追加された場合はここでクローンする
-
-            return clone;
         }
     }
 }
