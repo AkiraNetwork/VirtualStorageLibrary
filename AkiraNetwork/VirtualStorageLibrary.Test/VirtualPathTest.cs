@@ -39,6 +39,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void ImplicitConversion_ToStringWithNull_ReturnsPath()
+        {
+            VirtualPath? virtualPath = null;
+
+            string result = virtualPath;
+
+            Assert.AreEqual(string.Empty, result);
+        }
+
+        [TestMethod]
         public void NormalizePath_WithAbsolutePath_ReturnsNormalizedPath()
         {
             VirtualPath path = "/path/to/../directory/./";
@@ -620,6 +630,122 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void OperatorEquals_ShouldReturnTrueForBothNull()
+        {
+            // Arrange
+            VirtualPath? path1 = null;
+            VirtualPath? path2 = null;
+
+            // Act
+            bool result = path1 == path2;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void OperatorEquals_ShouldReturnFalseForOneNull()
+        {
+            // Arrange
+            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path2 = null;
+
+            // Act
+            bool result1 = path1 == path2;
+            bool result2 = path2 == path1;
+
+            // Assert
+            Assert.IsFalse(result1);
+            Assert.IsFalse(result2);
+        }
+
+        [TestMethod]
+        public void OperatorEquals_ShouldReturnTrueForEqualPaths()
+        {
+            // Arrange
+            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path2 = new("/test/path");
+
+            // Act
+            bool result = path1 == path2;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void OperatorEquals_ShouldReturnFalseForDifferentPaths()
+        {
+            // Arrange
+            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path2 = new("/different/path");
+
+            // Act
+            bool result = path1 == path2;
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void OperatorNotEquals_ShouldReturnFalseForBothNull()
+        {
+            // Arrange
+            VirtualPath? path1 = null;
+            VirtualPath? path2 = null;
+
+            // Act
+            bool result = path1 != path2;
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void OperatorNotEquals_ShouldReturnTrueForOneNull()
+        {
+            // Arrange
+            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path2 = null;
+
+            // Act
+            bool result1 = path1 != path2;
+            bool result2 = path2 != path1;
+
+            // Assert
+            Assert.IsTrue(result1);
+            Assert.IsTrue(result2);
+        }
+
+        [TestMethod]
+        public void OperatorNotEquals_ShouldReturnFalseForEqualPaths()
+        {
+            // Arrange
+            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path2 = new("/test/path");
+
+            // Act
+            bool result = path1 != path2;
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void OperatorNotEquals_ShouldReturnTrueForDifferentPaths()
+        {
+            // Arrange
+            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path2 = new("/different/path");
+
+            // Act
+            bool result = path1 != path2;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void GetParentPath_WithSingleLevelPath_ReturnsRoot()
         {
             VirtualPath path = "/level1";
@@ -709,11 +835,66 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Equals_WithSamePath_ReturnsTrue()
+        public void Equals_ObjectVersion_ShouldReturnTrueForEqualPaths()
         {
             // Arrange
-            VirtualPath path1 = "/path/to/resource";
-            VirtualPath path2 = "/path/to/resource";
+            VirtualPath path1 = new("/test/path");
+            VirtualPath path2 = new("/test/path");
+
+            // Act
+            bool result = path1.Equals((object)path2);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void Equals_ObjectVersion_ShouldReturnFalseForDifferentPaths()
+        {
+            // Arrange
+            VirtualPath path1 = new("/test/path");
+            VirtualPath path2 = new("/different/path");
+
+            // Act
+            bool result = path1.Equals((object)path2);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void Equals_ObjectVersion_ShouldReturnFalseForNonVirtualPathObject()
+        {
+            // Arrange
+            VirtualPath path = new("/test/path");
+            object nonVirtualPathObject = "/test/path";
+
+            // Act
+            bool result = path.Equals(nonVirtualPathObject);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void Equals_ObjectVersion_ShouldReturnFalseForNull()
+        {
+            // Arrange
+            VirtualPath path = new("/test/path");
+
+            // Act
+            bool result = path.Equals((object?)null);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void Equals_VirtualPathVersion_ShouldReturnTrueForEqualPaths()
+        {
+            // Arrange
+            VirtualPath path1 = new("/test/path");
+            VirtualPath path2 = new("/test/path");
 
             // Act
             bool result = path1.Equals(path2);
@@ -723,11 +904,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Equals_WithDifferentPath_ReturnsFalse()
+        public void Equals_VirtualPathVersion_ShouldReturnFalseForDifferentPaths()
         {
             // Arrange
-            VirtualPath path1 = "/path/to/resource";
-            VirtualPath path2 = "/path/to/another/resource";
+            VirtualPath path1 = new("/test/path");
+            VirtualPath path2 = new("/different/path");
 
             // Act
             bool result = path1.Equals(path2);
@@ -737,14 +918,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        public void Equals_WithNull_ReturnsFalse()
+        public void Equals_VirtualPathVersion_ShouldReturnFalseForNull()
         {
             // Arrange
-            VirtualPath path1 = "/path/to/resource";
-            VirtualPath? path2 = null;
+            VirtualPath path = new("/test/path");
 
             // Act
-            bool result = path1.Equals(path2);
+            bool result = path.Equals((VirtualPath?)null);
 
             // Assert
             Assert.IsFalse(result);
@@ -1328,6 +1508,259 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
             Assert.AreEqual(expectedDepth, resultDepth);
+        }
+
+        [TestMethod]
+        public void Separator_ShouldReturnExpectedValue()
+        {
+            // Arrange & Act
+            char separator = VirtualPath.Separator;
+
+            // Assert
+            Assert.AreEqual('/', separator);
+        }
+
+        [TestMethod]
+        public void Root_ShouldReturnExpectedValue()
+        {
+            // Arrange & Act
+            string root = VirtualPath.Root;
+
+            // Assert
+            Assert.AreEqual("/", root);
+        }
+
+        [TestMethod]
+        public void Dot_ShouldReturnExpectedValue()
+        {
+            // Arrange & Act
+            string dot = VirtualPath.Dot;
+
+            // Assert
+            Assert.AreEqual(".", dot);
+        }
+
+        [TestMethod]
+        public void DotDot_ShouldReturnExpectedValue()
+        {
+            // Arrange & Act
+            string dotDot = VirtualPath.DotDot;
+
+            // Assert
+            Assert.AreEqual("..", dotDot);
+        }
+
+        [TestMethod]
+        public void ToString_ShouldReturnPath()
+        {
+            // Arrange
+            string expectedPath = "/test/path";
+            VirtualPath path = new(expectedPath);
+
+            // Act
+            string result = path.ToString();
+
+            // Assert
+            Assert.AreEqual(expectedPath, result);
+        }
+
+        [TestMethod]
+        public void IsEmpty_ShouldReturnTrueForEmptyPath()
+        {
+            // Arrange
+            VirtualPath path = new("");
+
+            // Act
+            bool result = path.IsEmpty;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsRoot_ShouldReturnTrueForRootPath()
+        {
+            // Arrange
+            VirtualPath path = new("/");
+
+            // Act
+            bool result = path.IsRoot;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsAbsolute_ShouldReturnTrueForAbsolutePath()
+        {
+            // Arrange
+            VirtualPath path = new("/absolute/path");
+
+            // Act
+            bool result = path.IsAbsolute;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsEndsWithSlash_ShouldReturnTrueForPathEndingWithSlash()
+        {
+            // Arrange
+            VirtualPath path = new("/path/ends/with/slash/");
+
+            // Act
+            bool result = path.IsEndsWithSlash;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsDot_ShouldReturnTrueForDotPath()
+        {
+            // Arrange
+            VirtualPath path = new(".");
+
+            // Act
+            bool result = path.IsDot;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsDotDot_ShouldReturnTrueForDotDotPath()
+        {
+            // Arrange
+            VirtualPath path = new("..");
+
+            // Act
+            bool result = path.IsDotDot;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void GetHashCode_ShouldReturnExpectedHashCode()
+        {
+            // Arrange
+            string expectedPath = "/test/path";
+            VirtualPath path = new(expectedPath);
+            int expectedHashCode = expectedPath.GetHashCode();
+
+            // Act
+            int result = path.GetHashCode();
+
+            // Assert
+            Assert.AreEqual(expectedHashCode, result);
+        }
+
+        [TestMethod]
+        public void TrimEndSlash_ShouldRemoveTrailingSlash()
+        {
+            // Arrange
+            VirtualPath path = new("/path/with/slash/");
+
+            // Act
+            VirtualPath result = path.TrimEndSlash();
+
+            // Assert
+            Assert.AreEqual("/path/with/slash", result.Path);
+        }
+
+        [TestMethod]
+        public void TrimEndSlash_ShouldReturnSamePathIfNoTrailingSlash()
+        {
+            // Arrange
+            VirtualPath path = new("/path/without/slash");
+
+            // Act
+            VirtualPath result = path.TrimEndSlash();
+
+            // Assert
+            Assert.AreEqual("/path/without/slash", result.Path);
+        }
+
+        [TestMethod]
+        public void AddEndSlash_ShouldAddTrailingSlash()
+        {
+            // Arrange
+            VirtualPath path = new("/path/without/slash");
+
+            // Act
+            VirtualPath result = path.AddEndSlash();
+
+            // Assert
+            Assert.AreEqual("/path/without/slash/", result.Path);
+        }
+
+        [TestMethod]
+        public void AddEndSlash_ShouldReturnSamePathIfAlreadyHasTrailingSlash()
+        {
+            // Arrange
+            VirtualPath path = new("/path/with/slash/");
+
+            // Act
+            VirtualPath result = path.AddEndSlash();
+
+            // Assert
+            Assert.AreEqual("/path/with/slash/", result.Path);
+        }
+
+        [TestMethod]
+        public void AddStartSlash_ShouldAddLeadingSlash()
+        {
+            // Arrange
+            VirtualPath path = new("path/without/leading/slash");
+
+            // Act
+            VirtualPath result = path.AddStartSlash();
+
+            // Assert
+            Assert.AreEqual("/path/without/leading/slash", result.Path);
+        }
+
+        [TestMethod]
+        public void AddStartSlash_ShouldReturnSamePathIfAlreadyHasLeadingSlash()
+        {
+            // Arrange
+            VirtualPath path = new("/path/with/leading/slash");
+
+            // Act
+            VirtualPath result = path.AddStartSlash();
+
+            // Assert
+            Assert.AreEqual("/path/with/leading/slash", result.Path);
+        }
+
+        [TestMethod]
+        public void StartsWith_ShouldReturnTrueIfPathStartsWithSpecifiedPath()
+        {
+            // Arrange
+            VirtualPath path1 = new("/path/with/prefix");
+            VirtualPath path2 = new("/path/with");
+
+            // Act
+            bool result = path1.StartsWith(path2);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void StartsWith_ShouldReturnFalseIfPathDoesNotStartWithSpecifiedPath()
+        {
+            // Arrange
+            VirtualPath path1 = new("/path/with/prefix");
+            VirtualPath path2 = new("/different/path");
+
+            // Act
+            bool result = path1.StartsWith(path2);
+
+            // Assert
+            Assert.IsFalse(result);
         }
     }
 }
