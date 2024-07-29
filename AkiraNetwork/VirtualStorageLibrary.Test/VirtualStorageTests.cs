@@ -5460,10 +5460,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
-            Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
-            Debug.WriteLine($"ParentDirectory = {nodeContext.ParentDirectory?.Name}");
-            Debug.WriteLine($"TraversalPath = {nodeContext.TraversalPath}");
-            Debug.WriteLine($"ResolvedPath = {nodeContext.ResolvedPath}");
+            Debug.WriteLine(nodeContext);
+            //Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
+            //Debug.WriteLine($"ParentDirectory = {nodeContext.ParentDirectory?.Name}");
+            //Debug.WriteLine($"TraversalPath = {nodeContext.TraversalPath}");
+            //Debug.WriteLine($"ResolvedPath = {nodeContext.ResolvedPath}");
 
             Assert.IsNotNull(nodeContext.Node);
             Assert.AreEqual("item", (string)nodeContext.Node.Name);

@@ -4,11 +4,13 @@ using System.Globalization;
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
-    public class VirtualSymbolicLinkTests
+    public class VirtualSymbolicLinkTests : VirtualTestBase
     {
         [TestInitialize]
-        public void TestInitialize()
+        public override void TestInitialize()
         {
+            base.TestInitialize();
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             VirtualStorageSettings.Initialize();

@@ -1,8 +1,22 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary.Test
+﻿using System.Globalization;
+
+namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
-    public class VirtualCycleDetectorTests
+    public class VirtualCycleDetectorTests : VirtualTestBase
     {
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
+
+        }
+
         [TestMethod]
         public void IsNodeInCycle_NodeNotInCycle_ReturnsFalseAndAddsNode()
         {

@@ -5,11 +5,13 @@ using AkiraNetwork.VirtualStorageLibrary.Utilities;
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
-    public class VirtualStorageAdapterTests
+    public class VirtualStorageAdapterTests : VirtualTestBase
     {
         [TestInitialize]
-        public void TestInitialize()
+        public override void TestInitialize()
         {
+            base.TestInitialize();
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             VirtualStorageSettings.Initialize();

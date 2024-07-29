@@ -4,11 +4,13 @@ using System.Globalization;
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
-    public class VirtualNodeNameTests
+    public class VirtualNodeNameTests : VirtualTestBase
     {
         [TestInitialize]
-        public void TestInitialize()
+        public override void TestInitialize()
         {
+            base.TestInitialize();
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             VirtualStorageSettings.Initialize();
@@ -176,7 +178,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualNodeName nodeName = "Node";
-            object obj = new object();
+            object obj = new();
 
             // Act & Assert
             var ex = Assert.ThrowsException<ArgumentException>(() => nodeName.CompareTo(obj));

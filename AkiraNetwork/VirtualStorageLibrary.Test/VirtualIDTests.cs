@@ -1,9 +1,22 @@
-﻿namespace AkiraNetwork.VirtualStorageLibrary.Test
+﻿using System.Globalization;
+
+namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
     [TestClass]
-    public class VirtualIDTests
+    public class VirtualIDTests : VirtualTestBase
     {
         private const int GuidCount = 10000;
+
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
+        }
 
         [TestMethod]
         public void VirtualID_ShouldReturnValidGuid()
