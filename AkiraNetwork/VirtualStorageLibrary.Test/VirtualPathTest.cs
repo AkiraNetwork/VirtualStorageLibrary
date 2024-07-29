@@ -1,4 +1,5 @@
 ﻿using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -98,6 +99,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             VirtualPath path = "aaa/../..";
             VirtualPath expected = VirtualPath.DotDot;
+
+            VirtualPath result = path.NormalizePath();
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void NormalizePath_WithPathEndingSeparator_ReturnsNormalizedPath()
+        {
+            VirtualPath path = "/dir1/";
+            VirtualPath expected = "/dir1";
 
             VirtualPath result = path.NormalizePath();
 
@@ -341,6 +353,95 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             VirtualPath result = path1.Combine(path2);
 
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_NoPaths_ReturnsEmptyString()
+        {
+            string result = VirtualPath.Combine();
+            Assert.AreEqual(string.Empty, result);
+        }
+
+        [TestMethod]
+        public void Combine_SingleAbsolutePath_ReturnsSamePath()
+        {
+            string path = "/single/path";
+            string result = VirtualPath.Combine(path);
+            Assert.AreEqual(path, result);
+        }
+
+        [TestMethod]
+        public void Combine_MultipleRelativePaths_ReturnsCombinedPath()
+        {
+            string path1 = "path";
+            string path2 = "to";
+            string path3 = "directory";
+            string expected = "path/to/directory";
+            string result = VirtualPath.Combine(path1, path2, path3);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_MultiplePathsWithEmptyStrings_IgnoresEmptyStrings()
+        {
+            string path1 = "path";
+            string path2 = "";
+            string path3 = "to/directory";
+            string expected = "path/to/directory";
+            string result = VirtualPath.Combine(path1, path2, path3);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_AbsoluteAndRelativePaths_ReturnsCombinedAbsolutePath()
+        {
+            string path1 = "/absolute";
+            string path2 = "path";
+            string path3 = "to/directory";
+            string expected = "/absolute/path/to/directory";
+            string result = VirtualPath.Combine(path1, path2, path3);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_PathsEndingWithSeparators_TrimsAndCombinesCorrectly()
+        {
+            string path1 = "path/";
+            string path2 = "to/";
+            string path3 = "directory/";
+            string expected = "path/to/directory";
+            string result = VirtualPath.Combine(path1, path2, path3);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_PathsStartingAndEndingWithSeparators_TrimsAndCombinesCorrectly()
+        {
+            string path1 = "/path/";
+            string path2 = "/to/";
+            string path3 = "/directory/";
+            string expected = "/path/to/directory";
+            string result = VirtualPath.Combine(path1, path2, path3);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_PathEndingWithSeparator_ReturnsPathWithoutTrailingSeparator()
+        {
+            string path1 = "/path/to/directory/";
+            string expected = "/path/to/directory";
+            string result = VirtualPath.Combine(path1);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Combine_EmptyPaths_ReturnsEmptyString()
+        {
+            string path1 = "";
+            string path2 = "";
+            string expected = string.Empty;
+            string result = VirtualPath.Combine(path1, path2);
             Assert.AreEqual(expected, result);
         }
 
@@ -647,7 +748,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void OperatorEquals_ShouldReturnFalseForOneNull()
         {
             // Arrange
-            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path1 = "/test/path";
             VirtualPath? path2 = null;
 
             // Act
@@ -663,8 +764,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void OperatorEquals_ShouldReturnTrueForEqualPaths()
         {
             // Arrange
-            VirtualPath? path1 = new("/test/path");
-            VirtualPath? path2 = new("/test/path");
+            VirtualPath? path1 = "/test/path";
+            VirtualPath? path2 = "/test/path";
 
             // Act
             bool result = path1 == path2;
@@ -677,8 +778,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void OperatorEquals_ShouldReturnFalseForDifferentPaths()
         {
             // Arrange
-            VirtualPath? path1 = new("/test/path");
-            VirtualPath? path2 = new("/different/path");
+            VirtualPath? path1 = "/test/path";
+            VirtualPath? path2 = "/different/path";
 
             // Act
             bool result = path1 == path2;
@@ -705,7 +806,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void OperatorNotEquals_ShouldReturnTrueForOneNull()
         {
             // Arrange
-            VirtualPath? path1 = new("/test/path");
+            VirtualPath? path1 = "/test/path";
             VirtualPath? path2 = null;
 
             // Act
@@ -721,8 +822,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void OperatorNotEquals_ShouldReturnFalseForEqualPaths()
         {
             // Arrange
-            VirtualPath? path1 = new("/test/path");
-            VirtualPath? path2 = new("/test/path");
+            VirtualPath? path1 = "/test/path";
+            VirtualPath? path2 = "/test/path";
 
             // Act
             bool result = path1 != path2;
@@ -735,8 +836,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void OperatorNotEquals_ShouldReturnTrueForDifferentPaths()
         {
             // Arrange
-            VirtualPath? path1 = new("/test/path");
-            VirtualPath? path2 = new("/different/path");
+            VirtualPath? path1 = "/test/path";
+            VirtualPath? path2 = "/different/path";
 
             // Act
             bool result = path1 != path2;
@@ -1761,6 +1862,103 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Assert
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void GetNodeName_RootDirectory_ReturnsRootSeparator()
+        {
+            VirtualPath virtualPath = "/";
+            VirtualNodeName result = virtualPath.GetNodeName();
+            Assert.AreEqual("/", result.ToString());
+        }
+
+        [TestMethod]
+        public void GetNodeName_PathEndsWithSeparator_ReturnsNodeNameWithoutTrailingSeparator()
+        {
+            VirtualPath virtualPath = "/path/to/directory/";
+            VirtualNodeName result = virtualPath.GetNodeName();
+            Assert.AreEqual("directory", result.ToString());
+        }
+
+        [TestMethod]
+        public void GetNodeName_PathWithoutTrailingSeparator_ReturnsNodeName()
+        {
+            VirtualPath virtualPath = "/path/to/directory";
+            VirtualNodeName result = virtualPath.GetNodeName();
+            Assert.AreEqual("directory", result.ToString());
+        }
+
+        [TestMethod]
+        public void GetNodeName_PathWithoutSeparator_ReturnsWholePath()
+        {
+            VirtualPath virtualPath = "directory";
+            VirtualNodeName result = virtualPath.GetNodeName();
+            Assert.AreEqual("directory", result.ToString());
+        }
+
+        [TestMethod]
+        public void GetNodeName_EmptyPath_ReturnsEmptyString()
+        {
+            VirtualPath virtualPath = "";
+            VirtualNodeName result = virtualPath.GetNodeName();
+            Assert.AreEqual("", result.ToString());
+        }
+
+        [TestMethod]
+        public void GetNodeName_PathWithMultipleSeparators_ReturnsLastNodeName()
+        {
+            VirtualPath virtualPath = "/path/to/multiple/directory/names/";
+            VirtualNodeName result = virtualPath.GetNodeName();
+            Assert.AreEqual("names", result.ToString());
+        }
+
+        [TestMethod]
+        public void CompareTo_OtherVirtualPathIsNull_ReturnsOne()
+        {
+            VirtualPath virtualPath = "/path/to/directory";
+            int result = virtualPath.CompareTo((VirtualPath?)null);
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void CompareTo_OtherVirtualPathIsNotNull_ReturnsComparisonResult()
+        {
+            VirtualPath virtualPath1 = "/path/to/directory";
+            VirtualPath virtualPath2 = "/path/to/anotherDirectory";
+            int result = virtualPath1.CompareTo(virtualPath2);
+            Assert.AreEqual(string.Compare(virtualPath1.Path, virtualPath2.Path, StringComparison.Ordinal), result);
+        }
+
+        [TestMethod]
+        public void CompareTo_ObjectIsNull_ReturnsOne()
+        {
+            VirtualPath virtualPath = "/path/to/directory";
+            int result = virtualPath.CompareTo((object?)null);
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void CompareTo_ObjectIsNotVirtualPath_ThrowsArgumentException()
+        {
+            VirtualPath virtualPath = "/path/to/directory";
+            object obj = "not a VirtualPath";
+
+            var ex = Assert.ThrowsException<ArgumentException>(() => virtualPath.CompareTo(obj));
+
+            Debug.WriteLine(ex.Message);
+
+            Assert.AreEqual("The object specified by the parameter is not of type VirtualPath. (Parameter 'obj')", ex.Message);
+        }
+
+        [TestMethod]
+        public void CompareTo_ObjectIsVirtualPath_ReturnsComparisonResult()
+        {
+            VirtualPath virtualPath1 = "/path/to/directory";
+            VirtualPath virtualPath2 = "/path/to/anotherDirectory";
+            object obj = virtualPath2;
+
+            int result = virtualPath1.CompareTo(obj);
+            Assert.AreEqual(string.Compare(virtualPath1.Path, virtualPath2.Path, StringComparison.Ordinal), result);
         }
     }
 }

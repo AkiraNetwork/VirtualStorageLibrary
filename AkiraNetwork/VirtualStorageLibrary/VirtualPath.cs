@@ -330,12 +330,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 normalizedPath = Separator + normalizedPath;
             }
 
-            // 末尾の PathSeparator を取り除く
-            if (normalizedPath.Length > 1 && normalizedPath.EndsWith(Separator))
-            {
-                normalizedPath = normalizedPath[..^1];
-            }
-
             return normalizedPath;
         }
 
@@ -361,7 +355,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        private VirtualNodeName GetNodeName()
+        public VirtualNodeName GetNodeName()
         {
             if (_path == VirtualPath.Separator.ToString())
             {
@@ -449,7 +443,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
 
             // 末尾のPathSeparatorを取り除く
-            if (combinedPath.Length > 1 && combinedPath.EndsWith(VirtualPath.Separator))
+            if (combinedPath.EndsWith(VirtualPath.Separator))
             {
                 combinedPath = combinedPath[..^1];
             }
@@ -471,7 +465,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // パスが空になった場合は、ルートを返します
             if (string.IsNullOrEmpty(parentPath))
             {
-                return VirtualPath.Root;
+                return Root;
             }
 
             return new VirtualPath(parentPath);
