@@ -15,10 +15,6 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         public BinaryData(IEnumerable<byte> data)
         {
-            if (data == null)
-            {
-                throw new ArgumentNullException(nameof(data), "data can not be null.");
-            }
             _data = data.ToArray();
         }
 

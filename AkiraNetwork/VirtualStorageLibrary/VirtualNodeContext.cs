@@ -33,7 +33,7 @@
             [
                 $"Node: {Node}",
                 $"TraversalPath: {TraversalPath}",
-                $"ParentDirectory: {ParentDirectory?.Name}",
+                $"ParentDirectory: {ParentDirectory}",
                 $"Depth: {Depth}",
                 $"Index: {Index}"
             ];

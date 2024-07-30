@@ -1,6 +1,6 @@
 ﻿namespace AkiraNetwork.VirtualStorageLibrary
 {
-    public class VirtualNodeListConditions
+    public struct VirtualNodeListConditions
     {
         public VirtualNodeTypeFilter Filter { get; set; }
 
