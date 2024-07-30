@@ -55,9 +55,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
     public class ObjectWithExceptionInGetter
     {
+        private readonly int i = 0;
         public string Value
         {
-            get { throw new InvalidOperationException("Exception in getter"); }
+            get { throw new InvalidOperationException($"Exception in getter:{i}"); }
         }
     }
 
@@ -551,7 +552,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             // Arrange
             var obj = new ObjectWithEnumerableProperty
             {
-                Values = new List<int> { 1, 2, 3 }
+                Values = [1, 2, 3]
             };
 
             // Act
@@ -632,6 +633,73 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             // Assert
             //Assert.IsTrue(result.Contains("CustomClassWithoutProperties"));
             Debug.WriteLine(result);
+        }
+
+        [TestMethod]
+        public void IsFullWidthTest_FullWidthRanges()
+        {
+            // Arrange
+            string fullWidthChars1 = "\u1100\u1101\u1102"; // Range: 0x1100 - 0x115F
+            string fullWidthChars2 = "\u2E80\u2E81\u2E82"; // Range: 0x2E80 - 0xA4CF (excluding 0x303F)
+            string fullWidthChars3 = "\uAC00\uAC01\uAC02"; // Range: 0xAC00 - 0xD7A3
+            string fullWidthChars4 = "\uF900\uF901\uF902"; // Range: 0xF900 - 0xFAFF
+            string fullWidthChars5 = "\uFE10\uFE11\uFE12"; // Range: 0xFE10 - 0xFE19
+            string fullWidthChars6 = "\uFE30\uFE31\uFE32"; // Range: 0xFE30 - 0xFE6F
+            string fullWidthChars7 = "\uFF01\uFF02\uFF03"; // Range: 0xFF00 - 0xFF60 (excluding 0xFF00)
+            string fullWidthChars8 = "\uFFE0\uFFE1\uFFE2"; // Range: 0xFFE0 - 0xFFE6
+
+            // Act
+            string result1 = fullWidthChars1.GenerateSingleTableDebugText();
+            string result2 = fullWidthChars2.GenerateSingleTableDebugText();
+            string result3 = fullWidthChars3.GenerateSingleTableDebugText();
+            string result4 = fullWidthChars4.GenerateSingleTableDebugText();
+            string result5 = fullWidthChars5.GenerateSingleTableDebugText();
+            string result6 = fullWidthChars6.GenerateSingleTableDebugText();
+            string result7 = fullWidthChars7.GenerateSingleTableDebugText();
+            string result8 = fullWidthChars8.GenerateSingleTableDebugText();
+
+            // Debug output
+            Debug.WriteLine("Range 0x1100 - 0x115F:\n" + result1);
+            Debug.WriteLine("Range 0x2E80 - 0xA4CF (excluding 0x303F):\n" + result2);
+            Debug.WriteLine("Range 0xAC00 - 0xD7A3:\n" + result3);
+            Debug.WriteLine("Range 0xF900 - 0xFAFF:\n" + result4);
+            Debug.WriteLine("Range 0xFE10 - 0xFE19:\n" + result5);
+            Debug.WriteLine("Range 0xFE30 - 0xFE6F:\n" + result6);
+            Debug.WriteLine("Range 0xFF01 - 0xFF60:\n" + result7);
+            Debug.WriteLine("Range 0xFFE0 - 0xFFE6:\n" + result8);
+
+            // Assert
+            Assert.IsTrue(result1.Contains('ᄀ'));
+            Assert.IsTrue(result1.Contains('ᄁ'));
+            Assert.IsTrue(result1.Contains('ᄂ'));
+
+            Assert.IsTrue(result2.Contains('⺀'));
+            Assert.IsTrue(result2.Contains('⺁'));
+            Assert.IsTrue(result2.Contains('⺂'));
+
+            Assert.IsTrue(result3.Contains('가'));
+            Assert.IsTrue(result3.Contains('각'));
+            Assert.IsTrue(result3.Contains('갂'));
+
+            Assert.IsTrue(result4.Contains('豈'));
+            Assert.IsTrue(result4.Contains('更'));
+            Assert.IsTrue(result4.Contains('車'));
+
+            Assert.IsTrue(result5.Contains('︐'));
+            Assert.IsTrue(result5.Contains('︑'));
+            Assert.IsTrue(result5.Contains('︒'));
+
+            Assert.IsTrue(result6.Contains('︰'));
+            Assert.IsTrue(result6.Contains('︱'));
+            Assert.IsTrue(result6.Contains('︲'));
+
+            Assert.IsTrue(result7.Contains('！'));
+            Assert.IsTrue(result7.Contains('＂'));
+            Assert.IsTrue(result7.Contains('＃'));
+
+            Assert.IsTrue(result8.Contains('￠'));
+            Assert.IsTrue(result8.Contains('￡'));
+            Assert.IsTrue(result8.Contains('￢'));
         }
     }
 }

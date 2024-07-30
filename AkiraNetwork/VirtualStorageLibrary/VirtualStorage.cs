@@ -714,12 +714,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public IEnumerable<VirtualNodeContext> ExpandPathTree(
             VirtualPath path,
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
-            bool followLinks = true)
+            bool followLinks = true,
+            bool resolveLinks = true)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualPath fixedPath = path.FixedPath;
             int baseDepth = path.BaseDepth;
-            VirtualNode node = GetNode(fixedPath, true);
+            VirtualNode node = GetNode(fixedPath, resolveLinks);
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
 
@@ -1136,11 +1137,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return paths;
         }
 
-        public IEnumerable<VirtualPath> ExpandPath(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true)
+        public IEnumerable<VirtualPath> ExpandPath(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true, bool resolveLinks = true)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualPath fixedPath = path.FixedPath;
-            IEnumerable<VirtualNodeContext> nodeContexts = ExpandPathTree(path, filter, followLinks);
+            IEnumerable<VirtualNodeContext> nodeContexts = ExpandPathTree(path, filter, followLinks, resolveLinks);
             IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (fixedPath + info.TraversalPath).NormalizePath());
 
             return resolvedPaths;

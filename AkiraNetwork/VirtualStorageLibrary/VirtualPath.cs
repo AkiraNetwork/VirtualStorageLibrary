@@ -2,6 +2,7 @@
 
 namespace AkiraNetwork.VirtualStorageLibrary
 {
+    [DebuggerStepThrough]
     public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>, IComparable
     {
         private readonly string _path;
@@ -587,7 +588,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (wildcardMatcher == null)
             {
-                return (this, PartsList.Count);
+                return (_path, PartsList.Count);
             }
 
             IEnumerable<string> wildcards = wildcardMatcher.Wildcards;
@@ -595,7 +596,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (parts.Count == PartsList.Count)
             {
-                return (DirectoryPath, DirectoryPath.PartsList.Count);
+                return (_path, PartsList.Count);
             }
 
             return (new VirtualPath(parts), parts.Count);

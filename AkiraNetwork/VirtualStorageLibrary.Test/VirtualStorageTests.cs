@@ -6686,7 +6686,35 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
             Assert.IsTrue(result[0] == "/dir1/file1.txt");
-            Assert.IsTrue(result[1] == "/dir1/file2.txt");
+            Assert.IsTrue(result[1] == "/dir1/file2.txt");  // リンク: /dir1/file2.txt -> /dir1/nonexistent
+        }
+
+        [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithDoNotFollowLinksWithNonWildcardPath()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData2(vs);
+
+            // ワイルドカードマッチャーを使用しない場合
+            VirtualStorageState.State.WildcardMatcher = null;
+
+            // followLinks を false で指定したパターン
+            // /dir1/file2.txt -> /dir1/nonexistent だけど、リンクを辿らないのでそのままリンクを返すパターン
+            List<VirtualPath> result = vs.ExpandPath("/dir1/file2.txt", VirtualNodeTypeFilter.All, false, false).ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("Resolved paths:");
+            foreach (VirtualPath path in result)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 期待される結果の確認
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsTrue(result[0] == "/dir1/file2.txt");  // リンク: /dir1/file2.txt -> /dir1/nonexistent
         }
 
         [TestMethod]

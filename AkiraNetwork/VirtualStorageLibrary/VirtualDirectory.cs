@@ -242,16 +242,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
         internal void SetNodeName(VirtualNodeName oldName, VirtualNodeName newName)
         {
-            if (!NodeExists(oldName))
-            {
-                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, oldName));
-            }
-
-            if (NodeExists(newName))
-            {
-                throw new InvalidOperationException(string.Format(Resources.NodeAlreadyExists, newName));
-            }
-
             VirtualNode node = _nodes[oldName];
             _nodes.Remove(oldName);
             _nodes[newName] = node;

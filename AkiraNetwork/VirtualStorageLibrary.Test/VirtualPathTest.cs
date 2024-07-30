@@ -1,6 +1,4 @@
-﻿using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
@@ -1513,8 +1511,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualPath path = "/dir1/dir2/file.txt";
-            VirtualPath expectedPath = "/dir1/dir2";
-            int expectedDepth = 2;
+            VirtualPath expectedPath = "/dir1/dir2/file.txt";
+            int expectedDepth = 3;
 
             // Act
             VirtualPath resultPath = path.FixedPath;
@@ -1582,8 +1580,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             // Arrange
             VirtualPath path = "/dir1/dir2/dir3";
-            VirtualPath expectedPath = "/dir1/dir2";
-            int expectedDepth = 2;
+            VirtualPath expectedPath = "/dir1/dir2/dir3";
+            int expectedDepth = 3;
 
             // Act
             VirtualPath resultPath = path.FixedPath;

@@ -45,6 +45,25 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualDirectoryConstructorWithDates_CreatesObjectCorrectly()
+        {
+            // テストデータ
+            VirtualNodeName name = "TestDirectory";
+            DateTime createdDate = new(2024, 1, 1);
+            DateTime updatedDate = new(2024, 1, 2);
+
+            // VirtualDirectory オブジェクトを作成
+            VirtualDirectory directory = new(name, createdDate, updatedDate);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(directory);
+            Assert.AreEqual(name, directory.Name);
+            Assert.AreEqual(createdDate, directory.CreatedDate);
+            Assert.AreEqual(updatedDate, directory.UpdatedDate);
+            Assert.AreEqual(0, directory.Count);
+        }
+
+        [TestMethod]
         public void VirtualDirectoryDeepClone_CreatesDistinctCopyWithSameData()
         {
             // VirtualDirectory オブジェクトを作成し、いくつかのノードを追加
@@ -2190,6 +2209,123 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(originalDirectory.UpdatedDate > beforeDate);
             Assert.IsTrue(originalDirectory.NodeExists("SubDirectory"));
             Assert.IsFalse(originalDirectory.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void GetEnumerator_EnumeratesAllNodes()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> node1 = ("Node1", [1, 2, 3]);
+            VirtualItem<BinaryData> node2 = ("Node2", [4, 5, 6]);
+            directory.Add(node1);
+            directory.Add(node2);
+
+            // Act
+            var enumerator = directory.GetEnumerator();
+            List<VirtualNode> nodes = [];
+
+            while (enumerator.MoveNext())
+            {
+                nodes.Add(enumerator.Current);
+            }
+
+            // Assert
+            CollectionAssert.Contains(nodes, node1);
+            CollectionAssert.Contains(nodes, node2);
+        }
+
+        [TestMethod]
+        public void IEnumerableGetEnumerator_EnumeratesAllNodes()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> node1 = ("Node1", [1, 2, 3]);
+            VirtualItem<BinaryData> node2 = ("Node2", [4, 5, 6]);
+            directory.Add(node1);
+            directory.Add(node2);
+
+            // Act
+            var enumerator = ((IEnumerable<VirtualNode>)directory).GetEnumerator();
+            List<VirtualNode> nodes = [];
+
+            while (enumerator.MoveNext())
+            {
+                nodes.Add(enumerator.Current);
+            }
+
+            // Assert
+            CollectionAssert.Contains(nodes, node1);
+            CollectionAssert.Contains(nodes, node2);
+        }
+
+        [TestMethod]
+        public void GetEnumerator_EmptyDirectory_ReturnsNoNodes()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+
+            // Act
+            var enumerator = directory.GetEnumerator();
+            List<VirtualNode> nodes = [];
+
+            // Assert
+            Assert.AreEqual(0, nodes.Count);
+        }
+
+        [TestMethod]
+        public void IEnumerableGetEnumerator_EmptyDirectory_ReturnsNoNodes()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+
+            // Act
+            var enumerator = ((IEnumerable<VirtualNode>)directory).GetEnumerator();
+            List<VirtualNode> nodes = [];
+
+            // Assert
+            Assert.AreEqual(0, nodes.Count);
+        }
+
+        [TestMethod]
+        public void ExplicitIEnumerableGetEnumerator_EnumeratesAllNodes()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+            VirtualItem<BinaryData> node1 = ("Node1", [1, 2, 3]);
+            VirtualItem<BinaryData> node2 = ("Node2", [4, 5, 6]);
+            directory.Add(node1);
+            directory.Add(node2);
+
+            // Act
+            var enumerator = ((System.Collections.IEnumerable)directory).GetEnumerator();
+            List<VirtualNode> nodes = new();
+
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current is VirtualNode node)
+                {
+                    nodes.Add(node);
+                }
+            }
+
+            // Assert
+            CollectionAssert.Contains(nodes, node1);
+            CollectionAssert.Contains(nodes, node2);
+        }
+
+        [TestMethod]
+        public void ExplicitIEnumerableGetEnumerator_EmptyDirectory_ReturnsNoNodes()
+        {
+            // Arrange
+            VirtualDirectory directory = new("TestDirectory");
+
+            // Act
+            var enumerator = ((System.Collections.IEnumerable)directory).GetEnumerator();
+            List<VirtualNode> nodes = new();
+
+            // Assert
+            Assert.AreEqual(0, nodes.Count);
         }
     }
 }

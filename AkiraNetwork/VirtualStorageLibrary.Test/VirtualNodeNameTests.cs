@@ -174,6 +174,19 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void CompareTo_WithNullObject_ReturnsPositive()
+        {
+            // Arrange
+            VirtualNodeName nodeName = "Node";
+
+            // Act
+            int result = nodeName.CompareTo((object?)null);
+
+            // Assert
+            Assert.IsTrue(result > 0, "CompareTo(object?) should return a positive number when compared with null.");
+        }
+
+        [TestMethod]
         public void CompareTo_ThrowsArgumentExceptionWhenComparedWithDifferentType()
         {
             // Arrange
@@ -274,6 +287,47 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(nodeName1 != nodeName2, "Operator != should return true for different names.");
         }
 
+        [TestMethod]
+        public void OperatorEquals_BothNull_ReturnsTrue()
+        {
+            // Arrange
+            VirtualNodeName? nodeName1 = null;
+            VirtualNodeName? nodeName2 = null;
+
+            // Act
+            bool result = nodeName1 == nodeName2;
+
+            // Assert
+            Assert.IsTrue(result, "Operator == should return true when both left and right are null.");
+        }
+
+        [TestMethod]
+        public void OperatorEquals_LeftNull_ReturnsFalse()
+        {
+            // Arrange
+            VirtualNodeName? nodeName1 = null;
+            VirtualNodeName nodeName2 = "Node";
+
+            // Act
+            bool result = nodeName1 == nodeName2;
+
+            // Assert
+            Assert.IsFalse(result, "Operator == should return false when left is null and right is not.");
+        }
+
+        [TestMethod]
+        public void OperatorEquals_RightNull_ReturnsFalse()
+        {
+            // Arrange
+            VirtualNodeName nodeName1 = "Node";
+            VirtualNodeName? nodeName2 = null;
+
+            // Act
+            bool result = nodeName1 == nodeName2;
+
+            // Assert
+            Assert.IsFalse(result, "Operator == should return false when right is null and left is not.");
+        }
         [TestMethod]
         public void IsValidNodeName_ReturnsFalseForEmptyName()
         {
@@ -384,6 +438,89 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Assert
             StringAssert.StartsWith(result.ToString(), prefix);
+        }
+
+        [TestMethod]
+        public void Equals_WithVirtualNodeName_ReturnsTrueForSameName()
+        {
+            // Arrange
+            VirtualNodeName nodeName1 = "Node";
+            VirtualNodeName nodeName2 = "Node";
+
+            // Act
+            bool result = nodeName1.Equals(nodeName2);
+
+            // Assert
+            Assert.IsTrue(result, "Equals(VirtualNodeName) should return true for same name.");
+        }
+
+        [TestMethod]
+        public void Equals_WithVirtualNodeName_ReturnsFalseForDifferentName()
+        {
+            // Arrange
+            VirtualNodeName nodeName1 = "Node1";
+            VirtualNodeName nodeName2 = "Node2";
+
+            // Act
+            bool result = nodeName1.Equals(nodeName2);
+
+            // Assert
+            Assert.IsFalse(result, "Equals(VirtualNodeName) should return false for different name.");
+        }
+
+        [TestMethod]
+        public void Equals_WithObject_ReturnsTrueForSameName()
+        {
+            // Arrange
+            VirtualNodeName nodeName1 = "Node";
+            VirtualNodeName nodeName2 = "Node";
+
+            // Act
+            bool result = nodeName1.Equals((object)nodeName2);
+
+            // Assert
+            Assert.IsTrue(result, "Equals(object) should return true for same name.");
+        }
+
+        [TestMethod]
+        public void Equals_WithObject_ReturnsFalseForDifferentName()
+        {
+            // Arrange
+            VirtualNodeName nodeName1 = "Node1";
+            VirtualNodeName nodeName2 = "Node2";
+
+            // Act
+            bool result = nodeName1.Equals((object)nodeName2);
+
+            // Assert
+            Assert.IsFalse(result, "Equals(object) should return false for different name.");
+        }
+
+        [TestMethod]
+        public void Equals_WithObject_ReturnsFalseForNull()
+        {
+            // Arrange
+            VirtualNodeName nodeName = "Node";
+
+            // Act
+            bool result = nodeName.Equals((object?)null);
+
+            // Assert
+            Assert.IsFalse(result, "Equals(object) should return false when compared to null.");
+        }
+
+        [TestMethod]
+        public void Equals_WithNullOther_ReturnsFalse()
+        {
+            // Arrange
+            VirtualNodeName nodeName = "Node";
+            VirtualNodeName? other = null;
+
+            // Act
+            bool result = nodeName.Equals(other);
+
+            // Assert
+            Assert.IsFalse(result, "Equals(VirtualNodeName?) should return false when other is null.");
         }
     }
 }

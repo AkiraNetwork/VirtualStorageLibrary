@@ -283,11 +283,6 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 
         private static string FormatTable(IEnumerable<IEnumerable<string>> tableData)
         {
-            if (!tableData.Any())
-            {
-                return string.Empty;
-            }
-
             var tableDataList = tableData.Select(row => row.ToList()).ToList(); // Convert to List<List<string>>
             int[] columnWidths = GetColumnWidths(tableDataList);
 
@@ -363,8 +358,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 
         private static bool IsToStringOverridden(Type type)
         {
-            MethodInfo? toStringMethod = type.GetMethod("ToString", Type.EmptyTypes);
-            return toStringMethod?.DeclaringType != typeof(object);
+            MethodInfo toStringMethod = type.GetMethod("ToString", Type.EmptyTypes)!;
+            return toStringMethod.DeclaringType != typeof(object);
         }
     }
 }
