@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  id: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher
+  langs:
+  - csharp
+  - vb
+  name: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  type: Namespace
+  assemblies:
+  - VirtualStorageLibrary
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html
+  name: DefaultWildcardMatcher
+  nameWithType: DefaultWildcardMatcher
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.html
+  name: PowerShellWildcardMatcher
+  nameWithType: PowerShellWildcardMatcher
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher

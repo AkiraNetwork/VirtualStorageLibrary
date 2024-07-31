@@ -1,0 +1,695 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  id: VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0})
+  - AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  - AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  - AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0},AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  type: Class
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: VirtualTextFormatter
+    path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+    startLine: 5
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
+  syntax:
+    content: public static class VirtualTextFormatter
+    content.vb: Public Module VirtualTextFormatter
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0},AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0},AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
+  id: GenerateTreeDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0},AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
+  isExtensionMethod: true
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  langs:
+  - csharp
+  - vb
+  name: GenerateTreeDebugText<T>(VirtualStorage<T>, VirtualPath, bool, bool)
+  nameWithType: VirtualTextFormatter.GenerateTreeDebugText<T>(VirtualStorage<T>, VirtualPath, bool, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText<T>(AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>, AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GenerateTreeDebugText
+    path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+    startLine: 18
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
+  syntax:
+    content: public static string GenerateTreeDebugText<T>(this VirtualStorage<T> vs, VirtualPath basePath, bool recursive = true, bool followLinks = false)
+    parameters:
+    - id: vs
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualStorage{{T}}
+    - id: basePath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: recursive
+      type: System.Boolean
+    - id: followLinks
+      type: System.Boolean
+    typeParameters:
+    - id: T
+    return:
+      type: System.String
+    content.vb: Public Shared Function GenerateTreeDebugText(Of T)(vs As VirtualStorage(Of T), basePath As VirtualPath, recursive As Boolean = True, followLinks As Boolean = False) As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText*
+  nameWithType.vb: VirtualTextFormatter.GenerateTreeDebugText(Of T)(VirtualStorage(Of T), VirtualPath, Boolean, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText(Of T)(AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T), AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean)
+  name.vb: GenerateTreeDebugText(Of T)(VirtualStorage(Of T), VirtualPath, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0})
+  id: GenerateLinkTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0})
+  isExtensionMethod: true
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  langs:
+  - csharp
+  - vb
+  name: GenerateLinkTableDebugText<T>(VirtualStorage<T>)
+  nameWithType: VirtualTextFormatter.GenerateLinkTableDebugText<T>(VirtualStorage<T>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText<T>(AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GenerateLinkTableDebugText
+    path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+    startLine: 90
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
+  syntax:
+    content: public static string GenerateLinkTableDebugText<T>(this VirtualStorage<T> vs)
+    parameters:
+    - id: vs
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualStorage{{T}}
+    typeParameters:
+    - id: T
+    return:
+      type: System.String
+    content.vb: Public Shared Function GenerateLinkTableDebugText(Of T)(vs As VirtualStorage(Of T)) As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText*
+  nameWithType.vb: VirtualTextFormatter.GenerateLinkTableDebugText(Of T)(VirtualStorage(Of T))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText(Of T)(AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T))
+  name.vb: GenerateLinkTableDebugText(Of T)(VirtualStorage(Of T))
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  id: GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  isExtensionMethod: true
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  langs:
+  - csharp
+  - vb
+  name: GenerateTableDebugText<T>(IEnumerable<T>)
+  nameWithType: VirtualTextFormatter.GenerateTableDebugText<T>(IEnumerable<T>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText<T>(System.Collections.Generic.IEnumerable<T>)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GenerateTableDebugText
+    path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+    startLine: 124
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
+  syntax:
+    content: public static string GenerateTableDebugText<T>(this IEnumerable<T> enumerableObject)
+    parameters:
+    - id: enumerableObject
+      type: System.Collections.Generic.IEnumerable{{T}}
+    typeParameters:
+    - id: T
+    return:
+      type: System.String
+    content.vb: Public Shared Function GenerateTableDebugText(Of T)(enumerableObject As IEnumerable(Of T)) As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText*
+  nameWithType.vb: VirtualTextFormatter.GenerateTableDebugText(Of T)(IEnumerable(Of T))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText(Of T)(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: GenerateTableDebugText(Of T)(IEnumerable(Of T))
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  id: GenerateSingleTableDebugText``1(``0)
+  isExtensionMethod: true
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  langs:
+  - csharp
+  - vb
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GenerateSingleTableDebugText
+    path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
+    startLine: 179
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
+  syntax:
+    content: public static string GenerateSingleTableDebugText<T>(this T singleObject)
+    parameters:
+    - id: singleObject
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: System.String
+    content.vb: Public Shared Function GenerateSingleTableDebugText(Of T)(singleObject As T) As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText*
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTreeDebugText__1_AkiraNetwork_VirtualStorageLibrary_VirtualStorage___0__AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_
+  name: GenerateTreeDebugText
+  nameWithType: VirtualTextFormatter.GenerateTreeDebugText
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage{{T}}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage{`0}
+  parent: AkiraNetwork.VirtualStorageLibrary
+  definition: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
+  name: VirtualStorage<T>
+  nameWithType: VirtualStorage<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>
+  nameWithType.vb: VirtualStorage(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T)
+  name.vb: VirtualStorage(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+    name: VirtualStorage
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+    name: VirtualStorage
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  name: VirtualPath
+  nameWithType: VirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
+  name: VirtualStorage<T>
+  nameWithType: VirtualStorage<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>
+  nameWithType.vb: VirtualStorage(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T)
+  name.vb: VirtualStorage(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+    name: VirtualStorage
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+    name: VirtualStorage
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateLinkTableDebugText__1_AkiraNetwork_VirtualStorageLibrary_VirtualStorage___0__
+  name: GenerateLinkTableDebugText
+  nameWithType: VirtualTextFormatter.GenerateLinkTableDebugText
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__
+  name: GenerateTableDebugText
+  nameWithType: VirtualTextFormatter.GenerateTableDebugText
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText
+- uid: System.Collections.Generic.IEnumerable{{T}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

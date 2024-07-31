@@ -1,0 +1,435 @@
+{
+  "source_base_path": "C:/Users/shimo/source/repos/shimodateakira/VirtualStorageLibrary/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.PatternMatch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.PatternMatch.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.Utilities.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualID.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualID.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualItem.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNode.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

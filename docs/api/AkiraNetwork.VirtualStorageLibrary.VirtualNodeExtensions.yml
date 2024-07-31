@@ -1,0 +1,351 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  id: VirtualNodeExtensions
+  parent: AkiraNetwork.VirtualStorageLibrary
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  langs:
+  - csharp
+  - vb
+  name: VirtualNodeExtensions
+  nameWithType: VirtualNodeExtensions
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  type: Class
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: VirtualNodeExtensions
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
+    startLine: 62
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public static class VirtualNodeExtensions
+    content.vb: Public Module VirtualNodeExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  id: ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  isExtensionMethod: true
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  langs:
+  - csharp
+  - vb
+  name: ResolveNodeType(VirtualNode)
+  nameWithType: VirtualNodeExtensions.ResolveNodeType(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ResolveNodeType
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
+    startLine: 64
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public static VirtualNodeType ResolveNodeType(this VirtualNode node)
+    parameters:
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+    content.vb: Public Shared Function ResolveNodeType(node As VirtualNode) As VirtualNodeType
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType*
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: ResolveNodeType
+  nameWithType: VirtualNodeExtensions.ResolveNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  name: VirtualNode
+  nameWithType: VirtualNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html
+  name: VirtualNodeType
+  nameWithType: VirtualNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType

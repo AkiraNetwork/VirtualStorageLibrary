@@ -1,0 +1,304 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  id: VirtualNodeTypeFilter
+  parent: AkiraNetwork.VirtualStorageLibrary
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Directory
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Item
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.None
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.SymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: VirtualNodeTypeFilter
+  nameWithType: VirtualNodeTypeFilter
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  type: Enum
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: VirtualNodeTypeFilter
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+    startLine: 10
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public enum VirtualNodeTypeFilter
+    content.vb: Public Enum VirtualNodeTypeFilter
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.None
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.None
+  id: None
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: VirtualNodeTypeFilter.None
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.None
+  type: Field
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: None
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+    startLine: 12
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: None = 0
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Item
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Item
+  id: Item
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  langs:
+  - csharp
+  - vb
+  name: Item
+  nameWithType: VirtualNodeTypeFilter.Item
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Item
+  type: Field
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Item
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+    startLine: 13
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: Item = 1
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Directory
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Directory
+  id: Directory
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  langs:
+  - csharp
+  - vb
+  name: Directory
+  nameWithType: VirtualNodeTypeFilter.Directory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.Directory
+  type: Field
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Directory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+    startLine: 14
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: Directory = 2
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.SymbolicLink
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.SymbolicLink
+  id: SymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  langs:
+  - csharp
+  - vb
+  name: SymbolicLink
+  nameWithType: VirtualNodeTypeFilter.SymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.SymbolicLink
+  type: Field
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+    startLine: 15
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: SymbolicLink = 4
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All
+  id: All
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  langs:
+  - csharp
+  - vb
+  name: All
+  nameWithType: VirtualNodeTypeFilter.All
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All
+  type: Field
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: All
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
+    startLine: 16
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: All = 7
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<VirtualNodeTypeFilter>(VirtualNodeTypeFilter)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<VirtualNodeTypeFilter>(VirtualNodeTypeFilter)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter>(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of VirtualNodeTypeFilter)(VirtualNodeTypeFilter)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter)(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter)
+  name.vb: GenerateSingleTableDebugText(Of VirtualNodeTypeFilter)(VirtualNodeTypeFilter)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+    name: VirtualNodeTypeFilter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+    name: VirtualNodeTypeFilter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+    name: VirtualNodeTypeFilter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+    name: VirtualNodeTypeFilter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html
+  name: VirtualNodeTypeFilter
+  nameWithType: VirtualNodeTypeFilter
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter

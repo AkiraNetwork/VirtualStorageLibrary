@@ -1,0 +1,1244 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  id: VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime,System.DateTime)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone(System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  type: Class
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: VirtualSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 4
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: 'public class VirtualSymbolicLink : VirtualNode, IVirtualDeepCloneable<VirtualNode>'
+    content.vb: Public Class VirtualSymbolicLink Inherits VirtualNode Implements IVirtualDeepCloneable(Of VirtualNode)
+  inheritance:
+  - System.Object
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  inheritedMembers:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath
+  id: TargetPath
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: TargetPath
+  nameWithType: VirtualSymbolicLink.TargetPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: TargetPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 8
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualPath? TargetPath { get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Property TargetPath As VirtualPath
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType
+  id: NodeType
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: NodeType
+  nameWithType: VirtualSymbolicLink.NodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeType
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 14
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the node type of node.
+  example: []
+  syntax:
+    content: public override VirtualNodeType NodeType { get; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+    content.vb: Public Overrides ReadOnly Property NodeType As VirtualNodeType
+  overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType
+  id: TargetNodeType
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: TargetNodeType
+  nameWithType: VirtualSymbolicLink.TargetNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: TargetNodeType
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 16
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualNodeType TargetNodeType { get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+    content.vb: Public Property TargetNodeType As VirtualNodeType
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor
+  id: '#ctor'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: VirtualSymbolicLink()
+  nameWithType: VirtualSymbolicLink.VirtualSymbolicLink()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.VirtualSymbolicLink()
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 18
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualSymbolicLink()
+    content.vb: Public Sub New()
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
+  nameWithType.vb: VirtualSymbolicLink.New()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New()
+  name.vb: New()
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: VirtualSymbolicLink(VirtualNodeName)
+  nameWithType: VirtualSymbolicLink.VirtualSymbolicLink(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.VirtualSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 23
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualSymbolicLink(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    content.vb: Public Sub New(name As VirtualNodeName)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
+  nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name.vb: New(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: VirtualSymbolicLink(VirtualNodeName, VirtualPath?)
+  nameWithType: VirtualSymbolicLink.VirtualSymbolicLink(VirtualNodeName, VirtualPath?)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.VirtualSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath?)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 27
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub New(name As VirtualNodeName, targetPath As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
+  nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName, VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name.vb: New(VirtualNodeName, VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime,System.DateTime)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime,System.DateTime)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime,System.DateTime)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: VirtualSymbolicLink(VirtualNodeName, VirtualPath?, DateTime, DateTime)
+  nameWithType: VirtualSymbolicLink.VirtualSymbolicLink(VirtualNodeName, VirtualPath?, DateTime, DateTime)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.VirtualSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, System.DateTime, System.DateTime)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 32
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath, DateTime createdDate, DateTime updatedDate)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: createdDate
+      type: System.DateTime
+    - id: updatedDate
+      type: System.DateTime
+    content.vb: Public Sub New(name As VirtualNodeName, targetPath As VirtualPath, createdDate As Date, updatedDate As Date)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
+  nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName, VirtualPath, Date, Date)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Date, Date)
+  name.vb: New(VirtualNodeName, VirtualPath, Date, Date)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  id: op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: implicit operator VirtualSymbolicLink((VirtualNodeName nodeName, VirtualPath? targetPath))
+  nameWithType: VirtualSymbolicLink.implicit operator VirtualSymbolicLink((VirtualNodeName nodeName, VirtualPath? targetPath))
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink((AkiraNetwork.VirtualStorageLibrary.VirtualNodeName nodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath? targetPath))
+  type: Operator
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: op_Implicit
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 38
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public static implicit operator VirtualSymbolicLink((VirtualNodeName nodeName, VirtualPath? targetPath) tuple)
+    parameters:
+    - id: tuple
+      type: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    content.vb: Public Shared Widening Operator CType(tuple As (nodeName As VirtualNodeName, targetPath As VirtualPath)) As VirtualSymbolicLink
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit*
+  nameWithType.vb: VirtualSymbolicLink.CType((nodeName As VirtualNodeName, targetPath As VirtualPath))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType((nodeName As AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, targetPath As AkiraNetwork.VirtualStorageLibrary.VirtualPath))
+  name.vb: CType((nodeName As VirtualNodeName, targetPath As VirtualPath))
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  id: op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: implicit operator VirtualSymbolicLink(VirtualPath?)
+  nameWithType: VirtualSymbolicLink.implicit operator VirtualSymbolicLink(VirtualPath?)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath?)
+  type: Operator
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: op_Implicit
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 44
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public static implicit operator VirtualSymbolicLink(VirtualPath? targetPath)
+    parameters:
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    content.vb: Public Shared Widening Operator CType(targetPath As VirtualPath) As VirtualSymbolicLink
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit*
+  nameWithType.vb: VirtualSymbolicLink.CType(VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name.vb: CType(VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString
+  id: ToString
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: VirtualSymbolicLink.ToString()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString()
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ToString
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 51
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone(System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone(System.Boolean)
+  id: DeepClone(System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: DeepClone(bool)
+  nameWithType: VirtualSymbolicLink.DeepClone(bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone(bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DeepClone
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 53
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate 
+
+    should not be cloned as they are set to the current date and time at the time
+
+    of cloning.
+  example: []
+  syntax:
+    content: public override VirtualNode DeepClone(bool recursive = false)
+    parameters:
+    - id: recursive
+      type: System.Boolean
+      description: >-
+        When true, all child nodes are also cloned, creating a
+
+        deep copy of the entire tree. The default is false.
+
+        The CreatedDate and UpdatedDate properties are not preserved.
+
+        They are set to the current date and time at the moment of instantiation or cloning.
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: Cloned <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> instance
+    content.vb: Public Overrides Function DeepClone(recursive As Boolean = False) As VirtualNode
+  overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone*
+  nameWithType.vb: VirtualSymbolicLink.DeepClone(Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone(Boolean)
+  name.vb: DeepClone(Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  id: Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  langs:
+  - csharp
+  - vb
+  name: Update(VirtualNode)
+  nameWithType: VirtualSymbolicLink.Update(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Update
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
+    startLine: 58
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override void Update(VirtualNode node)
+    parameters:
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: Value to update
+    content.vb: Public Overrides Sub Update(node As VirtualNode)
+  overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update*
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  name: VirtualNode
+  nameWithType: VirtualNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  parent: AkiraNetwork.VirtualStorageLibrary
+  definition: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  name: IVirtualDeepCloneable<VirtualNode>
+  nameWithType: IVirtualDeepCloneable<VirtualNode>
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>
+  nameWithType.vb: IVirtualDeepCloneable(Of VirtualNode)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  name.vb: IVirtualDeepCloneable(Of VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Name
+  name: Name
+  nameWithType: VirtualNode.Name
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_CreatedDate
+  name: CreatedDate
+  nameWithType: VirtualNode.CreatedDate
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_UpdatedDate
+  name: UpdatedDate
+  nameWithType: VirtualNode.UpdatedDate
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_VID
+  name: VID
+  nameWithType: VirtualNode.VID
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_IsReferencedInStorage
+  name: IsReferencedInStorage
+  nameWithType: VirtualNode.IsReferencedInStorage
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  definition: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: ResolveNodeType(VirtualNode)
+  nameWithType: VirtualNodeExtensions.ResolveNodeType(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<VirtualSymbolicLink>(VirtualSymbolicLink)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<VirtualSymbolicLink>(VirtualSymbolicLink)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink>(AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of VirtualSymbolicLink)(VirtualSymbolicLink)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)(AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  name.vb: GenerateSingleTableDebugText(Of VirtualSymbolicLink)(VirtualSymbolicLink)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    name: VirtualSymbolicLink
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    name: VirtualSymbolicLink
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    name: VirtualSymbolicLink
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    name: VirtualSymbolicLink
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  name: IVirtualDeepCloneable<T>
+  nameWithType: IVirtualDeepCloneable<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>
+  nameWithType.vb: IVirtualDeepCloneable(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T)
+  name.vb: IVirtualDeepCloneable(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: ResolveNodeType(VirtualNode)
+  nameWithType: VirtualNodeExtensions.ResolveNodeType(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html
+  name: VirtualNodeExtensions
+  nameWithType: VirtualNodeExtensions
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetPath
+  name: TargetPath
+  nameWithType: VirtualSymbolicLink.TargetPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  name: VirtualPath
+  nameWithType: VirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_NodeType
+  name: NodeType
+  nameWithType: VirtualNode.NodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_NodeType
+  name: NodeType
+  nameWithType: VirtualSymbolicLink.NodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html
+  name: VirtualNodeType
+  nameWithType: VirtualNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetNodeType
+  name: TargetNodeType
+  nameWithType: VirtualSymbolicLink.TargetNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink.VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.VirtualSymbolicLink
+  nameWithType.vb: VirtualSymbolicLink.New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New
+  name.vb: New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  name: VirtualNodeName
+  nameWithType: VirtualNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit
+  name: implicit operator
+  nameWithType: VirtualSymbolicLink.implicit operator
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.implicit operator
+  nameWithType.vb: VirtualSymbolicLink.CType
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+  commentId: T:System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+  parent: System
+  definition: System.ValueTuple`2
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  name: (VirtualNodeName nodeName, VirtualPath targetPath)
+  nameWithType: (VirtualNodeName nodeName, VirtualPath targetPath)
+  fullName: (AkiraNetwork.VirtualStorageLibrary.VirtualNodeName nodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath targetPath)
+  nameWithType.vb: (nodeName As VirtualNodeName, targetPath As VirtualPath)
+  fullName.vb: (nodeName As AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, targetPath As AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name.vb: (nodeName As VirtualNodeName, targetPath As VirtualPath)
+  spec.csharp:
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    name: VirtualNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  - name: " "
+  - uid: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}.nodeName
+    name: nodeName
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,akiranetwork.virtualstoragelibrary.virtualpath-.nodename
+  - name: ','
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: " "
+  - uid: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}.targetPath
+    name: targetPath
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,akiranetwork.virtualstoragelibrary.virtualpath-.targetpath
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}.nodeName
+    name: nodeName
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,akiranetwork.virtualstoragelibrary.virtualpath-.nodename
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    name: VirtualNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}.targetPath
+    name: targetPath
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,akiranetwork.virtualstoragelibrary.virtualpath-.targetpath
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_ToString
+  name: ToString
+  nameWithType: VirtualSymbolicLink.ToString
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  isExternal: true
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_DeepClone_System_Boolean_
+  name: DeepClone(bool)
+  nameWithType: VirtualNode.DeepClone(bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(bool)
+  nameWithType.vb: VirtualNode.DeepClone(Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(Boolean)
+  name.vb: DeepClone(Boolean)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+    name: DeepClone
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_DeepClone_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+    name: DeepClone
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_DeepClone_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_DeepClone_System_Boolean_
+  name: DeepClone
+  nameWithType: VirtualSymbolicLink.DeepClone
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: Update(VirtualNode)
+  nameWithType: VirtualNode.Update(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: Update
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: Update
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: Update
+  nameWithType: VirtualSymbolicLink.Update
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update

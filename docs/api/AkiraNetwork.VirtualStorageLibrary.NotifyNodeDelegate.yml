@@ -1,0 +1,181 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+  id: NotifyNodeDelegate
+  parent: AkiraNetwork.VirtualStorageLibrary
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: NotifyNodeDelegate
+  nameWithType: NotifyNodeDelegate
+  fullName: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+  type: Delegate
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NotifyNodeDelegate
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
+    startLine: 2
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node)
+    parameters:
+    - id: path
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    content.vb: Public Delegate Sub NotifyNodeDelegate(path As VirtualPath, node As VirtualNode)
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<NotifyNodeDelegate>(NotifyNodeDelegate)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<NotifyNodeDelegate>(NotifyNodeDelegate)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate>(AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of NotifyNodeDelegate)(NotifyNodeDelegate)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate)(AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate)
+  name.vb: GenerateSingleTableDebugText(Of NotifyNodeDelegate)(NotifyNodeDelegate)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    name: NotifyNodeDelegate
+    href: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    name: NotifyNodeDelegate
+    href: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    name: NotifyNodeDelegate
+    href: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    name: NotifyNodeDelegate
+    href: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  name: VirtualPath
+  nameWithType: VirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  name: VirtualNode
+  nameWithType: VirtualNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html

@@ -1,0 +1,78 @@
+### YamlMime:TableOfContent
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  name: AkiraNetwork.VirtualStorageLibrary
+  items:
+  - uid: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+    name: ActionNodeDelegate
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable<T>
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+    name: IVirtualWildcardMatcher
+  - uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    name: NotifyNodeDelegate
+  - uid: AkiraNetwork.VirtualStorageLibrary.PatternMatch
+    name: PatternMatch
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
+    name: VirtualCycleDetector
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    name: VirtualDirectory
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
+    name: VirtualDirectoryAdapter<T>
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualException
+    name: VirtualException
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+    name: VirtualGroupCondition<T, TKey>
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualID
+    name: VirtualID
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem
+    name: VirtualItem
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+    name: VirtualItemAdapter<T>
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem<T>
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+    name: VirtualNodeContext
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+    name: VirtualNodeExtensions
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions
+    name: VirtualNodeListConditions
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    name: VirtualNodeName
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    name: VirtualNodeNotFoundException
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+    name: VirtualNodeType
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+    name: VirtualNodeTypeFilter
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition<T>
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
+    name: VirtualStorageExtensions
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
+    name: VirtualStorageSettings
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState
+    name: VirtualStorageState
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+    name: VirtualStorage<T>
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    name: VirtualSymbolicLink
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
+    name: VirtualSymbolicLinkAdapter<T>
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  items:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+    name: VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  name: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  items:
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+    name: DefaultWildcardMatcher
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher
+    name: PowerShellWildcardMatcher
+memberLayout: SamePage

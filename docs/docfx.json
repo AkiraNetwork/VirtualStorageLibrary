@@ -1,0 +1,48 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "..",
+          "files": [
+            "**/*.csproj"
+          ],
+          "exclude": [
+            "AkiraNetwork/VirtualStorageLibrary.Test/**"  // VirtualStorageLibrary.TestÇèúäO
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "AkiraNetwork",
+      "_appTitle": "AkiraNetwork",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}

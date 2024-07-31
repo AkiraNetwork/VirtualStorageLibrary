@@ -1,0 +1,3045 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  id: VirtualDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone(System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  langs:
+  - csharp
+  - vb
+  name: VirtualDirectory
+  nameWithType: VirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  type: Class
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: VirtualDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 5
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: 'public class VirtualDirectory : VirtualNode, IVirtualDeepCloneable<VirtualNode>, IEnumerable<VirtualNode>, IEnumerable'
+    content.vb: Public Class VirtualDirectory Inherits VirtualNode Implements IVirtualDeepCloneable(Of VirtualNode), IEnumerable(Of VirtualNode), IEnumerable
+  inheritance:
+  - System.Object
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  - System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNode.AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType
+  - System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1
+  - System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+  - System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType
+  id: NodeType
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: NodeType
+  nameWithType: VirtualDirectory.NodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeType
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 9
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the node type of node.
+  example: []
+  syntax:
+    content: public override VirtualNodeType NodeType { get; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+    content.vb: Public Overrides ReadOnly Property NodeType As VirtualNodeType
+  overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames
+  id: NodeNames
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: NodeNames
+  nameWithType: VirtualDirectory.NodeNames
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeNames
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 11
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public IEnumerable<VirtualNodeName> NodeNames { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
+    content.vb: Public ReadOnly Property NodeNames As IEnumerable(Of VirtualNodeName)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes
+  id: Nodes
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: Nodes
+  nameWithType: VirtualDirectory.Nodes
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Nodes
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 13
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public IEnumerable<VirtualNode> Nodes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+    content.vb: Public ReadOnly Property Nodes As IEnumerable(Of VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count
+  id: Count
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: VirtualDirectory.Count
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Count
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 15
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount
+  id: DirectoryCount
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: DirectoryCount
+  nameWithType: VirtualDirectory.DirectoryCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DirectoryCount
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 17
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int DirectoryCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property DirectoryCount As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount
+  id: ItemCount
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: ItemCount
+  nameWithType: VirtualDirectory.ItemCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ItemCount
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 19
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int ItemCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ItemCount As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount
+  id: SymbolicLinkCount
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: SymbolicLinkCount
+  nameWithType: VirtualDirectory.SymbolicLinkCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SymbolicLinkCount
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 21
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int SymbolicLinkCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SymbolicLinkCount As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView
+  id: NodesView
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: NodesView
+  nameWithType: VirtualDirectory.NodesView
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodesView
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 23
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public IEnumerable<VirtualNode> NodesView { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+    content.vb: Public ReadOnly Property NodesView As IEnumerable(Of VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount
+  id: NodesViewCount
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: NodesViewCount
+  nameWithType: VirtualDirectory.NodesViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodesViewCount
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 25
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int NodesViewCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property NodesViewCount As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount
+  id: DirectoryViewCount
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: DirectoryViewCount
+  nameWithType: VirtualDirectory.DirectoryViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DirectoryViewCount
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 27
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int DirectoryViewCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property DirectoryViewCount As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount
+  id: ItemViewCount
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: ItemViewCount
+  nameWithType: VirtualDirectory.ItemViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ItemViewCount
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 29
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int ItemViewCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ItemViewCount As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount
+  id: SymbolicLinkViewCount
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: SymbolicLinkViewCount
+  nameWithType: VirtualDirectory.SymbolicLinkViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SymbolicLinkViewCount
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 31
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int SymbolicLinkViewCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SymbolicLinkViewCount As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: NodeExists(VirtualNodeName)
+  nameWithType: VirtualDirectory.NodeExists(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeExists
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 40
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public bool NodeExists(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: System.Boolean
+    content.vb: Public Function NodeExists(name As VirtualNodeName) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: ItemExists(VirtualNodeName)
+  nameWithType: VirtualDirectory.ItemExists(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ItemExists
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 42
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public bool ItemExists(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: System.Boolean
+    content.vb: Public Function ItemExists(name As VirtualNodeName) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: DirectoryExists(VirtualNodeName)
+  nameWithType: VirtualDirectory.DirectoryExists(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DirectoryExists
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 56
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public bool DirectoryExists(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: System.Boolean
+    content.vb: Public Function DirectoryExists(name As VirtualNodeName) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: SymbolicLinkExists(VirtualNodeName)
+  nameWithType: VirtualDirectory.SymbolicLinkExists(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SymbolicLinkExists
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 66
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public bool SymbolicLinkExists(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: System.Boolean
+    content.vb: Public Function SymbolicLinkExists(name As VirtualNodeName) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor
+  id: '#ctor'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: VirtualDirectory()
+  nameWithType: VirtualDirectory.VirtualDirectory()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.VirtualDirectory()
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 77
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualDirectory()
+    content.vb: Public Sub New()
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
+  nameWithType.vb: VirtualDirectory.New()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New()
+  name.vb: New()
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: VirtualDirectory(VirtualNodeName)
+  nameWithType: VirtualDirectory.VirtualDirectory(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.VirtualDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 83
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualDirectory(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    content.vb: Public Sub New(name As VirtualNodeName)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
+  nameWithType.vb: VirtualDirectory.New(VirtualNodeName)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name.vb: New(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: VirtualDirectory(VirtualNodeName, DateTime, DateTime)
+  nameWithType: VirtualDirectory.VirtualDirectory(VirtualNodeName, DateTime, DateTime)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.VirtualDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, System.DateTime, System.DateTime)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 88
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: createdDate
+      type: System.DateTime
+    - id: updatedDate
+      type: System.DateTime
+    content.vb: Public Sub New(name As VirtualNodeName, createdDate As Date, updatedDate As Date)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
+  nameWithType.vb: VirtualDirectory.New(VirtualNodeName, Date, Date)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, Date, Date)
+  name.vb: New(VirtualNodeName, Date, Date)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  id: op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: implicit operator VirtualDirectory(VirtualNodeName)
+  nameWithType: VirtualDirectory.implicit operator VirtualDirectory(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Operator
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: op_Implicit
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 94
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public static implicit operator VirtualDirectory(VirtualNodeName nodeName)
+    parameters:
+    - id: nodeName
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    content.vb: Public Shared Widening Operator CType(nodeName As VirtualNodeName) As VirtualDirectory
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit*
+  nameWithType.vb: VirtualDirectory.CType(VirtualNodeName)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.CType(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name.vb: CType(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString
+  id: ToString
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: VirtualDirectory.ToString()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString()
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ToString
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 99
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone(System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone(System.Boolean)
+  id: DeepClone(System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: DeepClone(bool)
+  nameWithType: VirtualDirectory.DeepClone(bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone(bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DeepClone
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 101
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate 
+
+    should not be cloned as they are set to the current date and time at the time
+
+    of cloning.
+  example: []
+  syntax:
+    content: public override VirtualNode DeepClone(bool recursive = false)
+    parameters:
+    - id: recursive
+      type: System.Boolean
+      description: >-
+        When true, all child nodes are also cloned, creating a
+
+        deep copy of the entire tree. The default is false.
+
+        The CreatedDate and UpdatedDate properties are not preserved.
+
+        They are set to the current date and time at the moment of instantiation or cloning.
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: Cloned <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> instance
+    content.vb: Public Overrides Function DeepClone(recursive As Boolean = False) As VirtualNode
+  overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone*
+  nameWithType.vb: VirtualDirectory.DeepClone(Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone(Boolean)
+  name.vb: DeepClone(Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView
+  id: GetNodesView
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: GetNodesView()
+  nameWithType: VirtualDirectory.GetNodesView()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView()
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GetNodesView
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 114
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public IEnumerable<VirtualNode> GetNodesView()
+    return:
+      type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+    content.vb: Public Function GetNodesView() As IEnumerable(Of VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
+  id: Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: Add(VirtualNode, bool)
+  nameWithType: VirtualDirectory.Add(VirtualNode, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Add
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 164
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualNode Add(VirtualNode node, bool allowOverwrite = false)
+    parameters:
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    - id: allowOverwrite
+      type: System.Boolean
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    content.vb: Public Function Add(node As VirtualNode, allowOverwrite As Boolean = False) As VirtualNode
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add*
+  nameWithType.vb: VirtualDirectory.Add(VirtualNode, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode, Boolean)
+  name.vb: Add(VirtualNode, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
+  id: AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: AddItem<T>(VirtualNodeName, T?, bool)
+  nameWithType: VirtualDirectory.AddItem<T>(VirtualNodeName, T?, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem<T>(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, T?, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddItem
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 207
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualItem<T> AddItem<T>(VirtualNodeName name, T? itemData = default, bool allowOverwrite = false)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: itemData
+      type: '{T}'
+    - id: allowOverwrite
+      type: System.Boolean
+    typeParameters:
+    - id: T
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+    content.vb: Public Function AddItem(Of T)(name As VirtualNodeName, itemData As T = Nothing, allowOverwrite As Boolean = False) As VirtualItem(Of T)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem*
+  nameWithType.vb: VirtualDirectory.AddItem(Of T)(VirtualNodeName, T, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem(Of T)(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, T, Boolean)
+  name.vb: AddItem(Of T)(VirtualNodeName, T, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  id: AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: AddSymbolicLink(VirtualNodeName, VirtualPath, bool)
+  nameWithType: VirtualDirectory.AddSymbolicLink(VirtualNodeName, VirtualPath, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 213
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualSymbolicLink AddSymbolicLink(VirtualNodeName name, VirtualPath targetPath, bool allowOverwrite = false)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: allowOverwrite
+      type: System.Boolean
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    content.vb: Public Function AddSymbolicLink(name As VirtualNodeName, targetPath As VirtualPath, allowOverwrite As Boolean = False) As VirtualSymbolicLink
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink*
+  nameWithType.vb: VirtualDirectory.AddSymbolicLink(VirtualNodeName, VirtualPath, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
+  name.vb: AddSymbolicLink(VirtualNodeName, VirtualPath, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  id: AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: AddDirectory(VirtualNodeName, bool)
+  nameWithType: VirtualDirectory.AddDirectory(VirtualNodeName, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 219
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualDirectory AddDirectory(VirtualNodeName name, bool allowOverwrite = false)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: allowOverwrite
+      type: System.Boolean
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    content.vb: Public Function AddDirectory(name As VirtualNodeName, allowOverwrite As Boolean = False) As VirtualDirectory
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory*
+  nameWithType.vb: VirtualDirectory.AddDirectory(VirtualNodeName, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, Boolean)
+  name.vb: AddDirectory(VirtualNodeName, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: this[VirtualNodeName]
+  nameWithType: VirtualDirectory.this[VirtualNodeName]
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.this[AkiraNetwork.VirtualStorageLibrary.VirtualNodeName]
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: this[]
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 225
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualNode this[VirtualNodeName name] { get; set; }
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    content.vb: Public Default Property this[](name As VirtualNodeName) As VirtualNode
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer*
+  nameWithType.vb: VirtualDirectory.this[](VirtualNodeName)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.this[](AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name.vb: this[](VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  id: Remove(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: Remove(VirtualNode)
+  nameWithType: VirtualDirectory.Remove(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Remove
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 254
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void Remove(VirtualNode node)
+    parameters:
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    content.vb: Public Sub Remove(node As VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  id: Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: Get(VirtualNodeName, bool)
+  nameWithType: VirtualDirectory.Get(VirtualNodeName, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Get
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 270
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualNode? Get(VirtualNodeName name, bool exceptionEnabled = true)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: exceptionEnabled
+      type: System.Boolean
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    content.vb: Public Function [Get](name As VirtualNodeName, exceptionEnabled As Boolean = True) As VirtualNode
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get*
+  nameWithType.vb: VirtualDirectory.Get(VirtualNodeName, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, Boolean)
+  name.vb: Get(VirtualNodeName, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator
+  id: GetEnumerator
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: VirtualDirectory.GetEnumerator()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GetEnumerator
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 286
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Returns an enumerator that iterates through the collection.
+  example: []
+  syntax:
+    content: public IEnumerator<VirtualNode> GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+      description: An enumerator that can be used to iterate through the collection.
+    content.vb: Public Function GetEnumerator() As IEnumerator(Of VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.GetEnumerator
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: GetItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: GetItem<T>(VirtualNodeName)
+  nameWithType: VirtualDirectory.GetItem<T>(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem<T>(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GetItem
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 290
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualItem<T> GetItem<T>(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    typeParameters:
+    - id: T
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+    content.vb: Public Function GetItem(Of T)(name As VirtualNodeName) As VirtualItem(Of T)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem*
+  nameWithType.vb: VirtualDirectory.GetItem(Of T)(VirtualNodeName)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem(Of T)(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name.vb: GetItem(Of T)(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: GetDirectory(VirtualNodeName)
+  nameWithType: VirtualDirectory.GetDirectory(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GetDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 306
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualDirectory GetDirectory(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    content.vb: Public Function GetDirectory(name As VirtualNodeName) As VirtualDirectory
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  id: GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: GetSymbolicLink(VirtualNodeName)
+  nameWithType: VirtualDirectory.GetSymbolicLink(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GetSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 321
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualSymbolicLink GetSymbolicLink(VirtualNodeName name)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    content.vb: Public Function GetSymbolicLink(name As VirtualNodeName) As VirtualSymbolicLink
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  id: op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: operator +(VirtualDirectory, VirtualNode)
+  nameWithType: VirtualDirectory.operator +(VirtualDirectory, VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.operator +(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  type: Operator
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: op_Addition
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 337
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNode node)
+    parameters:
+    - id: directory
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    content.vb: Public Shared Operator +(directory As VirtualDirectory, node As VirtualNode) As VirtualDirectory
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*
+  nameWithType.vb: VirtualDirectory.+(VirtualDirectory, VirtualNode)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  name.vb: +(VirtualDirectory, VirtualNode)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  id: op_Subtraction(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: operator -(VirtualDirectory, VirtualNode)
+  nameWithType: VirtualDirectory.operator -(VirtualDirectory, VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.operator -(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  type: Operator
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: op_Subtraction
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 347
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public static VirtualDirectory operator -(VirtualDirectory directory, VirtualNode node)
+    parameters:
+    - id: directory
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    content.vb: Public Shared Operator -(directory As VirtualDirectory, node As VirtualNode) As VirtualDirectory
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction*
+  nameWithType.vb: VirtualDirectory.-(VirtualDirectory, VirtualNode)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.-(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  name.vb: -(VirtualDirectory, VirtualNode)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  id: Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: Update(VirtualNode)
+  nameWithType: VirtualDirectory.Update(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Update
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 366
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override void Update(VirtualNode node)
+    parameters:
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: Value to update
+    content.vb: Public Overrides Sub Update(node As VirtualNode)
+  overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update*
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  name: VirtualNode
+  nameWithType: VirtualNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  parent: AkiraNetwork.VirtualStorageLibrary
+  definition: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  name: IVirtualDeepCloneable<VirtualNode>
+  nameWithType: IVirtualDeepCloneable<VirtualNode>
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>
+  nameWithType.vb: IVirtualDeepCloneable(Of VirtualNode)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  name.vb: IVirtualDeepCloneable(Of VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  commentId: T:System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<VirtualNode>
+  nameWithType: IEnumerable<VirtualNode>
+  fullName: System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>
+  nameWithType.vb: IEnumerable(Of VirtualNode)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  name.vb: IEnumerable(Of VirtualNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Name
+  name: Name
+  nameWithType: VirtualNode.Name
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Name
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_CreatedDate
+  name: CreatedDate
+  nameWithType: VirtualNode.CreatedDate
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.CreatedDate
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_UpdatedDate
+  name: UpdatedDate
+  nameWithType: VirtualNode.UpdatedDate
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.UpdatedDate
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_VID
+  name: VID
+  nameWithType: VirtualNode.VID
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.VID
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_IsReferencedInStorage
+  name: IsReferencedInStorage
+  nameWithType: VirtualNode.IsReferencedInStorage
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.IsReferencedInStorage
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<VirtualDirectory>(VirtualDirectory)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<VirtualDirectory>(VirtualDirectory)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.VirtualDirectory>(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of VirtualDirectory)(VirtualDirectory)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+  name.vb: GenerateSingleTableDebugText(Of VirtualDirectory)(VirtualDirectory)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    name: VirtualDirectory
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    name: VirtualDirectory
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    name: VirtualDirectory
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    name: VirtualDirectory
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  definition: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: ResolveNodeType(VirtualNode)
+  nameWithType: VirtualNodeExtensions.ResolveNodeType(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__
+  name: GenerateTableDebugText<VirtualNode>(IEnumerable<VirtualNode>)
+  nameWithType: VirtualTextFormatter.GenerateTableDebugText<VirtualNode>(IEnumerable<VirtualNode>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText<AkiraNetwork.VirtualStorageLibrary.VirtualNode>(System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>)
+  nameWithType.vb: VirtualTextFormatter.GenerateTableDebugText(Of VirtualNode)(IEnumerable(Of VirtualNode))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)(System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode))
+  name.vb: GenerateTableDebugText(Of VirtualNode)(IEnumerable(Of VirtualNode))
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
+    name: GenerateTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
+    name: GenerateTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
+  definition: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_ApplySortConditions__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  name: ApplySortConditions<VirtualNode>(IEnumerable<VirtualNode>, List<VirtualSortCondition<VirtualNode>>)
+  nameWithType: VirtualStorageExtensions.ApplySortConditions<VirtualNode>(IEnumerable<VirtualNode>, List<VirtualSortCondition<VirtualNode>>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions<AkiraNetwork.VirtualStorageLibrary.VirtualNode>(System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>, System.Collections.Generic.List<AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition<AkiraNetwork.VirtualStorageLibrary.VirtualNode>>)
+  nameWithType.vb: VirtualStorageExtensions.ApplySortConditions(Of VirtualNode)(IEnumerable(Of VirtualNode), List(Of VirtualSortCondition(Of VirtualNode)))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)(System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode), System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)))
+  name.vb: ApplySortConditions(Of VirtualNode)(IEnumerable(Of VirtualNode), List(Of VirtualSortCondition(Of VirtualNode)))
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+    name: ApplySortConditions
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_ApplySortConditions__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+    name: ApplySortConditions
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_ApplySortConditions__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{``0},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{``0,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
+  definition: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{``0},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{``0,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  name: GroupAndSort<VirtualNode>(IEnumerable<VirtualNode>, VirtualGroupCondition<VirtualNode, object>, List<VirtualSortCondition<VirtualNode>>)
+  nameWithType: VirtualStorageExtensions.GroupAndSort<VirtualNode>(IEnumerable<VirtualNode>, VirtualGroupCondition<VirtualNode, object>, List<VirtualSortCondition<VirtualNode>>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort<AkiraNetwork.VirtualStorageLibrary.VirtualNode>(System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>, AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition<AkiraNetwork.VirtualStorageLibrary.VirtualNode, object>, System.Collections.Generic.List<AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition<AkiraNetwork.VirtualStorageLibrary.VirtualNode>>)
+  nameWithType.vb: VirtualStorageExtensions.GroupAndSort(Of VirtualNode)(IEnumerable(Of VirtualNode), VirtualGroupCondition(Of VirtualNode, Object), List(Of VirtualSortCondition(Of VirtualNode)))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)(System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode), AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode, Object), System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)))
+  name.vb: GroupAndSort(Of VirtualNode)(IEnumerable(Of VirtualNode), VirtualGroupCondition(Of VirtualNode, Object), List(Of VirtualSortCondition(Of VirtualNode)))
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+    name: GroupAndSort
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+    name: VirtualGroupCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+    name: GroupAndSort
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+    name: VirtualGroupCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  - name: )
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  name: IVirtualDeepCloneable<T>
+  nameWithType: IVirtualDeepCloneable<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>
+  nameWithType.vb: IVirtualDeepCloneable(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T)
+  name.vb: IVirtualDeepCloneable(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: ResolveNodeType(VirtualNode)
+  nameWithType: VirtualNodeExtensions.ResolveNodeType(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: ResolveNodeType
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html
+  name: VirtualNodeExtensions
+  nameWithType: VirtualNodeExtensions
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+  isExternal: true
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__
+  name: GenerateTableDebugText<T>(IEnumerable<T>)
+  nameWithType: VirtualTextFormatter.GenerateTableDebugText<T>(IEnumerable<T>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText<T>(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: VirtualTextFormatter.GenerateTableDebugText(Of T)(IEnumerable(Of T))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText(Of T)(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: GenerateTableDebugText(Of T)(IEnumerable(Of T))
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+    name: GenerateTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})
+    name: GenerateTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  isExternal: true
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_ApplySortConditions__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  name: ApplySortConditions<T>(IEnumerable<T>, List<VirtualSortCondition<T>>)
+  nameWithType: VirtualStorageExtensions.ApplySortConditions<T>(IEnumerable<T>, List<VirtualSortCondition<T>>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions<T>(System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.List<AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition<T>>)
+  nameWithType.vb: VirtualStorageExtensions.ApplySortConditions(Of T)(IEnumerable(Of T), List(Of VirtualSortCondition(Of T)))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition(Of T)))
+  name.vb: ApplySortConditions(Of T)(IEnumerable(Of T), List(Of VirtualSortCondition(Of T)))
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+    name: ApplySortConditions
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_ApplySortConditions__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+    name: ApplySortConditions
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_ApplySortConditions__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html
+  name: VirtualStorageExtensions
+  nameWithType: VirtualStorageExtensions
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{``0},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{``0,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{``0},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{``0,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+  isExternal: true
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  name: GroupAndSort<T>(IEnumerable<T>, VirtualGroupCondition<T, object>, List<VirtualSortCondition<T>>)
+  nameWithType: VirtualStorageExtensions.GroupAndSort<T>(IEnumerable<T>, VirtualGroupCondition<T, object>, List<VirtualSortCondition<T>>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort<T>(System.Collections.Generic.IEnumerable<T>, AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition<T, object>, System.Collections.Generic.List<AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition<T>>)
+  nameWithType.vb: VirtualStorageExtensions.GroupAndSort(Of T)(IEnumerable(Of T), VirtualGroupCondition(Of T, Object), List(Of VirtualSortCondition(Of T)))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort(Of T)(System.Collections.Generic.IEnumerable(Of T), AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition(Of T, Object), System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition(Of T)))
+  name.vb: GroupAndSort(Of T)(IEnumerable(Of T), VirtualGroupCondition(Of T, Object), List(Of VirtualSortCondition(Of T)))
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{``0},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{``0,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+    name: GroupAndSort
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+    name: VirtualGroupCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort``1(System.Collections.Generic.IEnumerable{``0},AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{``0,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{``0}})
+    name: GroupAndSort
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+    name: VirtualGroupCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_NodeType
+  name: NodeType
+  nameWithType: VirtualNode.NodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.NodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeType
+  name: NodeType
+  nameWithType: VirtualDirectory.NodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html
+  name: VirtualNodeType
+  nameWithType: VirtualNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeNames
+  name: NodeNames
+  nameWithType: VirtualDirectory.NodeNames
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames
+- uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
+  commentId: T:System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<VirtualNodeName>
+  nameWithType: IEnumerable<VirtualNodeName>
+  fullName: System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNodeName>
+  nameWithType.vb: IEnumerable(Of VirtualNodeName)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name.vb: IEnumerable(Of VirtualNodeName)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    name: VirtualNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    name: VirtualNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Nodes
+  name: Nodes
+  nameWithType: VirtualDirectory.Nodes
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Count
+  name: Count
+  nameWithType: VirtualDirectory.Count
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryCount
+  name: DirectoryCount
+  nameWithType: VirtualDirectory.DirectoryCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemCount
+  name: ItemCount
+  nameWithType: VirtualDirectory.ItemCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkCount
+  name: SymbolicLinkCount
+  nameWithType: VirtualDirectory.SymbolicLinkCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodesView
+  name: NodesView
+  nameWithType: VirtualDirectory.NodesView
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodesViewCount
+  name: NodesViewCount
+  nameWithType: VirtualDirectory.NodesViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryViewCount
+  name: DirectoryViewCount
+  nameWithType: VirtualDirectory.DirectoryViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemViewCount
+  name: ItemViewCount
+  nameWithType: VirtualDirectory.ItemViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkViewCount
+  name: SymbolicLinkViewCount
+  nameWithType: VirtualDirectory.SymbolicLinkViewCount
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: NodeExists
+  nameWithType: VirtualDirectory.NodeExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  name: VirtualNodeName
+  nameWithType: VirtualNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: ItemExists
+  nameWithType: VirtualDirectory.ItemExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: DirectoryExists
+  nameWithType: VirtualDirectory.DirectoryExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: SymbolicLinkExists
+  nameWithType: VirtualDirectory.SymbolicLinkExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor
+  name: VirtualDirectory
+  nameWithType: VirtualDirectory.VirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.VirtualDirectory
+  nameWithType.vb: VirtualDirectory.New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New
+  name.vb: New
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit
+  name: implicit operator
+  nameWithType: VirtualDirectory.implicit operator
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.implicit operator
+  nameWithType.vb: VirtualDirectory.CType
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  name: VirtualDirectory
+  nameWithType: VirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ToString
+  name: ToString
+  nameWithType: VirtualDirectory.ToString
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  isExternal: true
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_DeepClone_System_Boolean_
+  name: DeepClone(bool)
+  nameWithType: VirtualNode.DeepClone(bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(bool)
+  nameWithType.vb: VirtualNode.DeepClone(Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(Boolean)
+  name.vb: DeepClone(Boolean)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+    name: DeepClone
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_DeepClone_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
+    name: DeepClone
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_DeepClone_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DeepClone_System_Boolean_
+  name: DeepClone
+  nameWithType: VirtualDirectory.DeepClone
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetNodesView
+  name: GetNodesView
+  nameWithType: VirtualDirectory.GetNodesView
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Add_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Boolean_
+  name: Add
+  nameWithType: VirtualDirectory.Add
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddItem__1_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName___0_System_Boolean_
+  name: AddItem
+  nameWithType: VirtualDirectory.AddItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  parent: AkiraNetwork.VirtualStorageLibrary
+  definition: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  name: VirtualItem<T>
+  nameWithType: VirtualItem<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
+  nameWithType.vb: VirtualItem(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
+  name.vb: VirtualItem(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  name: VirtualItem<T>
+  nameWithType: VirtualItem<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
+  nameWithType.vb: VirtualItem(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
+  name.vb: VirtualItem(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
+  name: AddSymbolicLink
+  nameWithType: VirtualDirectory.AddSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  name: VirtualPath
+  nameWithType: VirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_Boolean_
+  name: AddDirectory
+  nameWithType: VirtualDirectory.AddDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Indexer_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: this
+  nameWithType: VirtualDirectory.this
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.this
+  nameWithType.vb: VirtualDirectory.this[]
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.this[]
+  name.vb: this[]
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Remove_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: Remove
+  nameWithType: VirtualDirectory.Remove
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Get_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_Boolean_
+  name: Get
+  nameWithType: VirtualDirectory.Get
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetEnumerator
+  name: GetEnumerator
+  nameWithType: VirtualDirectory.GetEnumerator
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<VirtualNode>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of VirtualNode).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  commentId: T:System.Collections.Generic.IEnumerator{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<VirtualNode>
+  nameWithType: IEnumerator<VirtualNode>
+  fullName: System.Collections.Generic.IEnumerator<AkiraNetwork.VirtualStorageLibrary.VirtualNode>
+  nameWithType.vb: IEnumerator(Of VirtualNode)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  name.vb: IEnumerator(Of VirtualNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetItem__1_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: GetItem
+  nameWithType: VirtualDirectory.GetItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: GetDirectory
+  nameWithType: VirtualDirectory.GetDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: GetSymbolicLink
+  nameWithType: VirtualDirectory.GetSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: operator +
+  nameWithType: VirtualDirectory.operator +
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.operator +
+  nameWithType.vb: VirtualDirectory.+
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*
+    name: +
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Subtraction_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: operator -
+  nameWithType: VirtualDirectory.operator -
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.operator -
+  nameWithType.vb: VirtualDirectory.-
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction*
+    name: '-'
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Subtraction_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: Update(VirtualNode)
+  nameWithType: VirtualNode.Update(VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: Update
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+    name: Update
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: Update
+  nameWithType: VirtualDirectory.Update
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update

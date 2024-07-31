@@ -1,0 +1,972 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  id: DefaultWildcardMatcher
+  parent: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher(System.String,System.String)
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards
+  langs:
+  - csharp
+  - vb
+  name: DefaultWildcardMatcher
+  nameWithType: DefaultWildcardMatcher
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  type: Class
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DefaultWildcardMatcher
+    path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+    startLine: 4
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  syntax:
+    content: 'public class DefaultWildcardMatcher : IVirtualWildcardMatcher'
+    content.vb: Public Class DefaultWildcardMatcher Implements IVirtualWildcardMatcher
+  inheritance:
+  - System.Object
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary
+  id: WildcardDictionary
+  parent: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  langs:
+  - csharp
+  - vb
+  name: WildcardDictionary
+  nameWithType: DefaultWildcardMatcher.WildcardDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: WildcardDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+    startLine: 26
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  example: []
+  syntax:
+    content: public ReadOnlyDictionary<string, string> WildcardDictionary { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+    content.vb: Public ReadOnly Property WildcardDictionary As ReadOnlyDictionary(Of String, String)
+  overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary*
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.WildcardDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards
+  id: Wildcards
+  parent: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  langs:
+  - csharp
+  - vb
+  name: Wildcards
+  nameWithType: DefaultWildcardMatcher.Wildcards
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Wildcards
+    path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+    startLine: 28
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  example: []
+  syntax:
+    content: public IEnumerable<string> Wildcards { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+    content.vb: Public ReadOnly Property Wildcards As IEnumerable(Of String)
+  overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards*
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Wildcards
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns
+  id: Patterns
+  parent: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  langs:
+  - csharp
+  - vb
+  name: Patterns
+  nameWithType: DefaultWildcardMatcher.Patterns
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Patterns
+    path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+    startLine: 30
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  example: []
+  syntax:
+    content: public IEnumerable<string> Patterns { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+    content.vb: Public ReadOnly Property Patterns As IEnumerable(Of String)
+  overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns*
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Patterns
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count
+  id: Count
+  parent: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: DefaultWildcardMatcher.Count
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Count
+    path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+    startLine: 32
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  example: []
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count*
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher(System.String,System.String)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher(System.String,System.String)
+  id: PatternMatcher(System.String,System.String)
+  parent: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+  langs:
+  - csharp
+  - vb
+  name: PatternMatcher(string, string)
+  nameWithType: DefaultWildcardMatcher.PatternMatcher(string, string)
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher(string, string)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: PatternMatcher
+    path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
+    startLine: 35
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  example: []
+  syntax:
+    content: public bool PatternMatcher(string nodeName, string pattern)
+    parameters:
+    - id: nodeName
+      type: System.String
+    - id: pattern
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function PatternMatcher(nodeName As String, pattern As String) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher*
+  implements:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
+  nameWithType.vb: DefaultWildcardMatcher.PatternMatcher(String, String)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher(String, String)
+  name.vb: PatternMatcher(String, String)
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+    name: WildcardMatchers
+    href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+    name: WildcardMatchers
+    href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html
+  name: IVirtualWildcardMatcher
+  nameWithType: IVirtualWildcardMatcher
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<DefaultWildcardMatcher>(DefaultWildcardMatcher)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<DefaultWildcardMatcher>(DefaultWildcardMatcher)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher>(AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of DefaultWildcardMatcher)(DefaultWildcardMatcher)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher)(AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher)
+  name.vb: GenerateSingleTableDebugText(Of DefaultWildcardMatcher)(DefaultWildcardMatcher)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+    name: DefaultWildcardMatcher
+    href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+    name: DefaultWildcardMatcher
+    href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+    name: DefaultWildcardMatcher
+    href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher
+    name: DefaultWildcardMatcher
+    href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_WildcardDictionary
+  name: WildcardDictionary
+  nameWithType: DefaultWildcardMatcher.WildcardDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.WildcardDictionary
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.WildcardDictionary
+  parent: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_WildcardDictionary
+  name: WildcardDictionary
+  nameWithType: IVirtualWildcardMatcher.WildcardDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.WildcardDictionary
+- uid: System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+  commentId: T:System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlydictionary-2
+  name: ReadOnlyDictionary<string, string>
+  nameWithType: ReadOnlyDictionary<string, string>
+  fullName: System.Collections.ObjectModel.ReadOnlyDictionary<string, string>
+  nameWithType.vb: ReadOnlyDictionary(Of String, String)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyDictionary(Of String, String)
+  name.vb: ReadOnlyDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlydictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+  commentId: T:System.Collections.ObjectModel.ReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlydictionary-2
+  name: ReadOnlyDictionary<TKey, TValue>
+  nameWithType: ReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.ObjectModel.ReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: ReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyDictionary(Of TKey, TValue)
+  name.vb: ReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyDictionary`2
+    name: ReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards
+  href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Wildcards
+  name: Wildcards
+  nameWithType: DefaultWildcardMatcher.Wildcards
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Wildcards
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Wildcards
+  parent: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_Wildcards
+  name: Wildcards
+  nameWithType: IVirtualWildcardMatcher.Wildcards
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Wildcards
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns
+  href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Patterns
+  name: Patterns
+  nameWithType: DefaultWildcardMatcher.Patterns
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Patterns
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Patterns
+  parent: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_Patterns
+  name: Patterns
+  nameWithType: IVirtualWildcardMatcher.Patterns
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Patterns
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count
+  href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Count
+  name: Count
+  nameWithType: DefaultWildcardMatcher.Count
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count
+  parent: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_Count
+  name: Count
+  nameWithType: IVirtualWildcardMatcher.Count
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_PatternMatcher_System_String_System_String_
+  name: PatternMatcher
+  nameWithType: DefaultWildcardMatcher.PatternMatcher
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
+  parent: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  isExternal: true
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_PatternMatcher_System_String_System_String_
+  name: PatternMatcher(string, string)
+  nameWithType: IVirtualWildcardMatcher.PatternMatcher(string, string)
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(string, string)
+  nameWithType.vb: IVirtualWildcardMatcher.PatternMatcher(String, String)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(String, String)
+  name.vb: PatternMatcher(String, String)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
+    name: PatternMatcher
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_PatternMatcher_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
+    name: PatternMatcher
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_PatternMatcher_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

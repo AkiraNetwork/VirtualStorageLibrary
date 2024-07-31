@@ -1,0 +1,2297 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class VirtualStorage&lt;T&gt; | AkiraNetwork </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class VirtualStorage&lt;T&gt; | AkiraNetwork ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualStorage%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="AkiraNetwork">
+            AkiraNetwork
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1">
+
+
+
+  <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1" class="text-break">
+Class VirtualStorage&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="AkiraNetwork.html">AkiraNetwork</a>.<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.html">VirtualStorageLibrary</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>VirtualStorageLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class VirtualStorage&lt;T&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">VirtualStorage&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateLinkTableDebugText__1_AkiraNetwork_VirtualStorageLibrary_VirtualStorage___0__">VirtualTextFormatter.GenerateLinkTableDebugText&lt;T&gt;(VirtualStorage&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_">VirtualTextFormatter.GenerateSingleTableDebugText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTreeDebugText__1_AkiraNetwork_VirtualStorageLibrary_VirtualStorage___0__AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_">VirtualTextFormatter.GenerateTreeDebugText&lt;T&gt;(VirtualStorage&lt;T&gt;, VirtualPath, bool, bool)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.#ctor*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1__ctor" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.#ctor">
+  VirtualStorage()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualStorage()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CurrentPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CurrentPath*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CurrentPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CurrentPath">
+  CurrentPath
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualPath CurrentPath { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTarget" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget">
+  CycleDetectorForTarget
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualCycleDetector CycleDetectorForTarget { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html">VirtualCycleDetector</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTree_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTree*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTree" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTree">
+  CycleDetectorForTree
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualCycleDetector CycleDetectorForTree { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html">VirtualCycleDetector</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Dir_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Dir" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir">
+  Dir
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectoryAdapter&lt;T&gt; Dir { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html">VirtualDirectoryAdapter</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Indexer_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Indexer_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  this[VirtualPath, bool]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L241"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNode this[VirtualPath path, bool followLinks = true] { get; set; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item">
+  Item
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualItemAdapter&lt;T&gt; Item { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html">VirtualItemAdapter</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Link_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Link" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link">
+  Link
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualSymbolicLinkAdapter&lt;T&gt; Link { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html">VirtualSymbolicLinkAdapter</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary">
+  LinkDictionary
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;VirtualPath, HashSet&lt;VirtualPath&gt;&gt; LinkDictionary { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Root_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Root*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Root" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Root">
+  Root
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory Root { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Boolean)">
+  AddDirectory(VirtualPath, VirtualDirectory, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L325"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddDirectory(VirtualPath directoryPath, VirtualDirectory directory, bool createSubdirectories = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directoryPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>directory</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+    <dt><code>createSubdirectories</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  AddDirectory(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L361"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddDirectory(VirtualPath path, bool createSubdirectories = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>createSubdirectories</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualItem__0__System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0},System.Boolean)">
+  AddItem(VirtualPath, VirtualItem&lt;T&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L390"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddItem(VirtualPath itemDirectoryPath, VirtualItem&lt;T&gt; item, bool overwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>itemDirectoryPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>item</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>overwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath__0_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,`0,System.Boolean)">
+  AddItem(VirtualPath, T?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L424"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddItem(VirtualPath itemPath, T? data = default, bool overwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>itemPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <span class="xref">T</span></dt>
+    <dd></dd>
+    <dt><code>overwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddLinkToDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddLinkToDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  AddLinkToDictionary(VirtualPath, VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>targetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>linkPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)">
+  AddNode(VirtualPath, VirtualNode, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L305"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodeDirectoryPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+    <dt><code>overwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  AddSymbolicLink(VirtualPath, VirtualPath?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L483"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddSymbolicLink(VirtualPath linkPath, VirtualPath? targetPath = null, bool overwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>targetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>overwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink,System.Boolean)">
+  AddSymbolicLink(VirtualPath, VirtualSymbolicLink, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L440"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddSymbolicLink(VirtualPath linkDirectoryPath, VirtualSymbolicLink link, bool overwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkDirectoryPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>link</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></dt>
+    <dd></dd>
+    <dt><code>overwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ChangeDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ChangeDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  ChangeDirectory(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ChangeDirectory(VirtualPath path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ConvertToAbsolutePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ConvertToAbsolutePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  ConvertToAbsolutePath(VirtualPath?, VirtualPath?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualPath ConvertToAbsolutePath(VirtualPath? relativePath, VirtualPath? basePath = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relativePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>basePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext})">
+  CopyNode(VirtualPath, VirtualPath, bool, bool, bool, List&lt;VirtualNodeContext&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1180"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool recursive = false, bool followLinks = false, List&lt;VirtualNodeContext&gt;? destinationContextList = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourcePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>destinationPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>overwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>destinationContextList</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html">VirtualNodeContext</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_DirectoryExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.DirectoryExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_DirectoryExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  DirectoryExists(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1454"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DirectoryExists(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">
+  ExpandPath(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualPath&gt; ExpandPath(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true, bool resolveLinks = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>filter</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>resolveLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPathTree_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPathTree_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">
+  ExpandPathTree(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L714"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNodeContext&gt; ExpandPathTree(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true, bool resolveLinks = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>filter</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>resolveLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html">VirtualNodeContext</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  GetDirectory(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1019"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetItem*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  GetItem(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1046"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualItem&lt;T&gt; GetItem(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetLinksFromDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetLinksFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  GetLinksFromDictionary(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;VirtualPath&gt; GetLinksFromDictionary(VirtualPath targetPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>targetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  GetNode(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L979"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNode GetNode(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  GetNodeType(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNodeType GetNodeType(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html">VirtualNodeType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">
+  GetNodes(VirtualNodeTypeFilter, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNode&gt; GetNodes(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodeType</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></dt>
+    <dd></dd>
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">
+  GetNodes(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNode&gt; GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>basePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>nodeType</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></dt>
+    <dd></dd>
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">
+  GetNodesWithPaths(VirtualNodeTypeFilter, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualPath&gt; GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodeType</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></dt>
+    <dd></dd>
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">
+  GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualPath&gt; GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>basePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>nodeType</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></dt>
+    <dd></dd>
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  GetSymbolicLink(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1073"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink GetSymbolicLink(VirtualPath path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ItemExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ItemExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  ItemExists(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1466"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ItemExists(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_MoveNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_MoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)">
+  MoveNode(VirtualPath, VirtualPath, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1526"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool resolveLinks = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourcePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>destinationPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>overwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>resolveLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_NodeExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_NodeExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  NodeExists(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1447"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NodeExists(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkByLinkPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkByLinkPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  RemoveLinkByLinkPath(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveLinkByLinkPath(VirtualPath linkPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkFromDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  RemoveLinkFromDictionary(VirtualPath, VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveLinkFromDictionary(VirtualPath targetPath, VirtualPath linkPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>targetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>linkPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)">
+  RemoveNode(VirtualPath, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveNode(VirtualPath nodePath, bool recursive = false, bool followLinks = false, bool resolveLinks = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>resolveLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ResolveLinkTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ResolveLinkTarget*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ResolveLinkTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ResolveLinkTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  ResolveLinkTarget(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1000"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualPath ResolveLinkTarget(VirtualPath path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetNodeType_System_Collections_Generic_HashSet_AkiraNetwork_VirtualStorageLibrary_VirtualPath__AkiraNetwork_VirtualStorageLibrary_VirtualNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)">
+  SetLinkTargetNodeType(HashSet&lt;VirtualPath&gt;, VirtualNodeType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLinkTargetNodeType(HashSet&lt;VirtualPath&gt; linkPathSet, VirtualNodeType nodeType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkPathSet</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>nodeType</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html">VirtualNodeType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)">
+  SetNode(VirtualPath, VirtualNode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetNode(VirtualPath destinationPath, VirtualNode node)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>destinationPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)">
+  SetNodeName(VirtualPath, VirtualNodeName, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1489"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetNodeName(VirtualPath nodePath, VirtualNodeName newName, bool resolveLinks = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>newName</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+    <dt><code>resolveLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SymbolicLinkExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SymbolicLinkExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SymbolicLinkExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  SymbolicLinkExists(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1475"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SymbolicLinkExists(VirtualPath path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  TryGetDirectory(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1034"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory? TryGetDirectory(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetItem*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  TryGetItem(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1061"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualItem&lt;T&gt;? TryGetItem(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetNode*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  TryGetNode(VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L986"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNode? TryGetNode(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetSymbolicLink*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  TryGetSymbolicLink(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1092"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryResolveLinkTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryResolveLinkTarget*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryResolveLinkTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryResolveLinkTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  TryResolveLinkTarget(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L1007"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualPath? TryResolveLinkTarget(VirtualPath path)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateAllTargetNodeTypesInDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateAllTargetNodeTypesInDictionary" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary">
+  UpdateAllTargetNodeTypesInDictionary()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateAllTargetNodeTypesInDictionary()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)">
+  UpdateDirectory(VirtualPath, VirtualDirectory)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateDirectory(VirtualPath directoryPath, VirtualDirectory newDirectory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directoryPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>newDirectory</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualItem__0__" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0})">
+  UpdateItem(VirtualPath, VirtualItem&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateItem(VirtualPath itemPath, VirtualItem&lt;T&gt; newItem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>itemPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>newItem</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinkInDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinkInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  UpdateLinkInDictionary(VirtualPath, VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateLinkInDictionary(VirtualPath linkPath, VirtualPath newTargetPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>newTargetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinksToTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinksToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  UpdateLinksToTarget(VirtualPath, VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateLinksToTarget(VirtualPath oldTargetPath, VirtualPath newTargetPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldTargetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>newTargetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateSymbolicLInk_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateSymbolicLInk_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)">
+  UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L292"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>linkPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>newLink</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateTargetNodeTypesInDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateTargetNodeTypesInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
+  UpdateTargetNodeTypesInDictionary(VirtualPath)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateTargetNodeTypesInDictionary(VirtualPath targetPath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>targetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_NotifyNodeDelegate_AkiraNetwork_VirtualStorageLibrary_ActionNodeDelegate_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)">
+  WalkPathToTarget(VirtualPath, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L499"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNodeContext WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode = null, ActionNodeDelegate? actionNode = null, bool followLinks = true, bool exceptionEnabled = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>targetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>notifyNode</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html">NotifyNodeDelegate</a></dt>
+    <dd></dd>
+    <dt><code>actionNode</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate.html">ActionNodeDelegate</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>exceptionEnabled</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html">VirtualNodeContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTree_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTree*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTree_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Boolean)">
+  WalkPathTree(VirtualPath, VirtualNodeTypeFilter, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L750"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNodeContext&gt; WalkPathTree(VirtualPath basePath, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool recursive = true, bool followLinks = true, bool resolveLinks = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>basePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>filter</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></dt>
+    <dd></dd>
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>resolveLinks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html">VirtualNodeContext</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs/#L7" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1506 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class VirtualDirectory | AkiraNetwork </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class VirtualDirectory | AkiraNetwork ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualDirectory.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualDirectory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="AkiraNetwork">
+            AkiraNetwork
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory">
+
+
+
+  <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" class="text-break">
+Class VirtualDirectory  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="AkiraNetwork.html">AkiraNetwork</a>.<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.html">VirtualStorageLibrary</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>VirtualStorageLibrary.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class VirtualDirectory : VirtualNode, IVirtualDeepCloneable&lt;VirtualNode&gt;, IEnumerable&lt;VirtualNode&gt;, IEnumerable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></div>
+      <div><span class="xref">VirtualDirectory</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html">IVirtualDeepCloneable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Name">VirtualNode.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_CreatedDate">VirtualNode.CreatedDate</a>
+    </div>
+    <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_UpdatedDate">VirtualNode.UpdatedDate</a>
+    </div>
+    <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_VID">VirtualNode.VID</a>
+    </div>
+    <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_IsReferencedInStorage">VirtualNode.IsReferencedInStorage</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_">VirtualTextFormatter.GenerateSingleTableDebugText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeExtensions_ResolveNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualNode_">VirtualNodeExtensions.ResolveNodeType(VirtualNode)</a>
+  </div>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__">VirtualTextFormatter.GenerateTableDebugText&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_ApplySortConditions__1_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___">VirtualStorageExtensions.ApplySortConditions&lt;T&gt;(IEnumerable&lt;T&gt;, List&lt;VirtualSortCondition&lt;T&gt;&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___">VirtualStorageExtensions.GroupAndSort&lt;T&gt;(IEnumerable&lt;T&gt;, VirtualGroupCondition&lt;T, object&gt;?, List&lt;VirtualSortCondition&lt;T&gt;&gt;?)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor">
+  VirtualDirectory()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  VirtualDirectory(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_DateTime_System_DateTime_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)">
+  VirtualDirectory(VirtualNodeName, DateTime, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+    <dt><code>createdDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+    <dt><code>updatedDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Count_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Count" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count">
+  Count
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryCount_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryCount" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryCount">
+  DirectoryCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DirectoryCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryViewCount_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryViewCount" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryViewCount">
+  DirectoryViewCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DirectoryViewCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Indexer_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Indexer_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  this[VirtualNodeName]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNode this[VirtualNodeName name] { get; set; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemCount_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemCount" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemCount">
+  ItemCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ItemCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemViewCount_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemViewCount" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemViewCount">
+  ItemViewCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ItemViewCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeNames_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeNames" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeNames">
+  NodeNames
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNodeName&gt; NodeNames { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeType" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeType">
+  NodeType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the node type of node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override VirtualNodeType NodeType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html">VirtualNodeType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Nodes_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Nodes" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Nodes">
+  Nodes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNode&gt; Nodes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodesView_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodesView" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesView">
+  NodesView
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNode&gt; NodesView { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodesViewCount_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodesViewCount" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodesViewCount">
+  NodesViewCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int NodesViewCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkCount_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkCount" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkCount">
+  SymbolicLinkCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SymbolicLinkCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkViewCount_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkViewCount" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkViewCount">
+  SymbolicLinkViewCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SymbolicLinkViewCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Add_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Add_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)">
+  Add(VirtualNode, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNode Add(VirtualNode node, bool allowOverwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+    <dt><code>allowOverwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)">
+  AddDirectory(VirtualNodeName, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory AddDirectory(VirtualNodeName name, bool allowOverwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+    <dt><code>allowOverwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddItem__1_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName___0_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)">
+  AddItem&lt;T&gt;(VirtualNodeName, T?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualItem&lt;T&gt; AddItem&lt;T&gt;(VirtualNodeName name, T? itemData = default, bool allowOverwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+    <dt><code>itemData</code> <span class="xref">T</span></dt>
+    <dd></dd>
+    <dt><code>allowOverwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">
+  AddSymbolicLink(VirtualNodeName, VirtualPath, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink AddSymbolicLink(VirtualNodeName name, VirtualPath targetPath, bool allowOverwrite = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+    <dt><code>targetPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
+    <dd></dd>
+    <dt><code>allowOverwrite</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DeepClone_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DeepClone_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone(System.Boolean)">
+  DeepClone(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate
+should not be cloned as they are set to the current date and time at the time
+of cloning.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override VirtualNode DeepClone(bool recursive = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>When true, all child nodes are also cloned, creating a
+deep copy of the entire tree. The default is false.
+The CreatedDate and UpdatedDate properties are not preserved.
+They are set to the current date and time at the moment of instantiation or cloning.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd><p>Cloned <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a> instance</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_DirectoryExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  DirectoryExists(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DirectoryExists(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Get_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Get_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)">
+  Get(VirtualNodeName, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualNode? Get(VirtualNodeName name, bool exceptionEnabled = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+    <dt><code>exceptionEnabled</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  GetDirectory(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L307"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualDirectory GetDirectory(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetEnumerator_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetEnumerator" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator">
+  GetEnumerator()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L287"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;VirtualNode&gt; GetEnumerator()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</dt>
+    <dd><p>An enumerator that can be used to iterate through the collection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetItem__1_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  GetItem&lt;T&gt;(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualItem&lt;T&gt; GetItem&lt;T&gt;(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetNodesView_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetNodesView" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView">
+  GetNodesView()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;VirtualNode&gt; GetNodesView()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_GetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  GetSymbolicLink(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L322"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink GetSymbolicLink(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ItemExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  ItemExists(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ItemExists(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_NodeExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  NodeExists(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NodeExists(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Remove_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Remove_AkiraNetwork_VirtualStorageLibrary_VirtualNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove(AkiraNetwork.VirtualStorageLibrary.VirtualNode)">
+  Remove(VirtualNode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(VirtualNode node)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_SymbolicLinkExists_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
+  SymbolicLinkExists(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SymbolicLinkExists(VirtualNodeName name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ToString_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_ToString" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string that represents the current object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Update_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)">
+  Update(VirtualNode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L367"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Update(VirtualNode node)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd><p>Value to update</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)">
+  operator +(VirtualDirectory, VirtualNode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L338"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNode node)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directory</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+    <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Implicit_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__AkiraNetwork_VirtualStorageLibrary_VirtualDirectory" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory">
+  implicit operator VirtualDirectory(VirtualNodeName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator VirtualDirectory(VirtualNodeName nodeName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodeName</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Subtraction_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction*"></a>
+
+  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Subtraction_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)">
+  operator -(VirtualDirectory, VirtualNode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L348"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static VirtualDirectory operator -(VirtualDirectory directory, VirtualNode node)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>directory</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+    <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs/#L6" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

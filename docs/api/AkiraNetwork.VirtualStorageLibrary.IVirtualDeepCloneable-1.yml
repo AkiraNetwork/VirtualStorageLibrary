@@ -1,0 +1,254 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  id: IVirtualDeepCloneable`1
+  parent: AkiraNetwork.VirtualStorageLibrary
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.DeepClone(System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: IVirtualDeepCloneable<T>
+  nameWithType: IVirtualDeepCloneable<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>
+  type: Interface
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: IVirtualDeepCloneable
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
+    startLine: 4
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public interface IVirtualDeepCloneable<T>
+    typeParameters:
+    - id: T
+    content.vb: Public Interface IVirtualDeepCloneable(Of T)
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  nameWithType.vb: IVirtualDeepCloneable(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T)
+  name.vb: IVirtualDeepCloneable(Of T)
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.DeepClone(System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.DeepClone(System.Boolean)
+  id: DeepClone(System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  langs:
+  - csharp
+  - vb
+  name: DeepClone(bool)
+  nameWithType: IVirtualDeepCloneable<T>.DeepClone(bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>.DeepClone(bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DeepClone
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
+    startLine: 6
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: T DeepClone(bool recursive = false)
+    parameters:
+    - id: recursive
+      type: System.Boolean
+    return:
+      type: '{T}'
+    content.vb: Function DeepClone(recursive As Boolean = False) As T
+  overload: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.DeepClone*
+  nameWithType.vb: IVirtualDeepCloneable(Of T).DeepClone(Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T).DeepClone(Boolean)
+  name.vb: DeepClone(Boolean)
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<IVirtualDeepCloneable<T>>(IVirtualDeepCloneable<T>)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<IVirtualDeepCloneable<T>>(IVirtualDeepCloneable<T>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>>(AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of IVirtualDeepCloneable(Of T))(IVirtualDeepCloneable(Of T))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T))(AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T))
+  name.vb: GenerateSingleTableDebugText(Of IVirtualDeepCloneable(Of T))(IVirtualDeepCloneable(Of T))
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{`0})
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable{`0})
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.DeepClone*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.DeepClone
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html#AkiraNetwork_VirtualStorageLibrary_IVirtualDeepCloneable_1_DeepClone_System_Boolean_
+  name: DeepClone
+  nameWithType: IVirtualDeepCloneable<T>.DeepClone
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>.DeepClone
+  nameWithType.vb: IVirtualDeepCloneable(Of T).DeepClone
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T).DeepClone
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
