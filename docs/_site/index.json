@@ -186,8 +186,8 @@
   },
   "index.html": {
     "href": "index.html",
-    "title": "This is the HOMEPAGE. | AkiraNetwork",
-    "keywords": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+    "title": "AkiraNetwork HOMEPAGE. | AkiraNetwork",
+    "keywords": "AkiraNetwork HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
   },
   "introduction.html": {
     "href": "introduction.html",

@@ -23,4 +23,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+	<Target Name="GenerateDocumentation" AfterTargets="Build">
+		<Exec WorkingDirectory="$(SolutionDir)docs" Command="docfx metadata" />
+		<Exec WorkingDirectory="$(SolutionDir)docs" Command="docfx build" />
+	</Target>
+
 </Project>
