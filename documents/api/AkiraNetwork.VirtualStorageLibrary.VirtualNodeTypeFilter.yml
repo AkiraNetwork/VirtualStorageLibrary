@@ -24,10 +24,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeTypeFilter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 10
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Specifies the filters for virtual node types.
+  example: []
   syntax:
     content: public enum VirtualNodeTypeFilter
     content.vb: Public Enum VirtualNodeTypeFilter
@@ -51,10 +53,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: None
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 12
+    startLine: 26
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: No specific node type is specified.
+  example: []
   syntax:
     content: None = 0
     return:
@@ -77,10 +81,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Item
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 13
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Filter for item nodes with a user-defined type T.
+  example: []
   syntax:
     content: Item = 1
     return:
@@ -103,10 +109,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Directory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 14
+    startLine: 32
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Filter for directory nodes.
+  example: []
   syntax:
     content: Directory = 2
     return:
@@ -129,10 +137,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 15
+    startLine: 35
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Filter for symbolic link nodes.
+  example: []
   syntax:
     content: SymbolicLink = 4
     return:
@@ -155,10 +165,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: All
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 16
+    startLine: 38
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Filter for all node types.
+  example: []
   syntax:
     content: All = 7
     return:

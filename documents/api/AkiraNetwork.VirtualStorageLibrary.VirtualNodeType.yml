@@ -23,10 +23,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Specifies the types of virtual nodes.
+  example: []
   syntax:
     content: public enum VirtualNodeType
     content.vb: Public Enum VirtualNodeType
@@ -50,10 +52,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Directory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents a directory node.
+  example: []
   syntax:
     content: Directory = 0
     return:
@@ -76,10 +80,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Item
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 5
+    startLine: 11
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents an item node with a user-defined type T.
+  example: []
   syntax:
     content: Item = 1
     return:
@@ -102,10 +108,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 6
+    startLine: 14
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents a symbolic link node.
+  example: []
   syntax:
     content: SymbolicLink = 2
     return:
@@ -128,10 +136,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: None
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 7
+    startLine: 17
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents an unspecified or unknown node type.
+  example: []
   syntax:
     content: None = 3
     return:

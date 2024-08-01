@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class VirtualItem&lt;T&gt; | AkiraNetwork ">
       
-      <meta name="description" content="The virtual item.">
+      <meta name="description" content="Represents an item with data of a user-defined type T in the virtual storage.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1" class="text-break">
-Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L43"><i class="bi bi-code-slash"></i></a>
+Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <dl><dt>Assembly</dt><dd>VirtualStorageLibrary.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>The virtual item.</p>
+  <div class="markdown summary"><p>Represents an item with data of a user-defined type T in the virtual storage.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -110,7 +110,8 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd></dd>
+    <dd><p>The user-defined type that can be freely specified by the user of this library.</p>
+</dd>
   </dl>
 
   <dl class="typelist inheritance">
@@ -193,10 +194,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1__ctor" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor">
   VirtualItem()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem.html">VirtualItem</a> class.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -220,10 +221,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
   VirtualItem(VirtualNodeName)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem.html">VirtualItem</a> class.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -234,7 +235,7 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd><p>The name.</p>
+    <dd><p>The name of the item.</p>
 </dd>
   </dl>
 
@@ -253,24 +254,24 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__0_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,`0)">
   VirtualItem(VirtualNodeName, T?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem.html">VirtualItem</a> class.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualItem(VirtualNodeName name, T? item)</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualItem(VirtualNodeName name, T? itemData)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd><p>The name.</p>
+    <dd><p>The name of the item.</p>
 </dd>
-    <dt><code>item</code> <span class="xref">T</span></dt>
-    <dd><p>The item.</p>
+    <dt><code>itemData</code> <span class="xref">T</span></dt>
+    <dd><p>The data associated with this item. It is user-defined and can hold any type of data.</p>
 </dd>
   </dl>
 
@@ -289,27 +290,27 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__0_System_DateTime_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,`0,System.DateTime)">
   VirtualItem(VirtualNodeName, T?, DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem.html">VirtualItem</a> class.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate)</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualItem(VirtualNodeName name, T? itemData, DateTime createdDate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd><p>The name.</p>
+    <dd><p>The name of the item.</p>
 </dd>
-    <dt><code>item</code> <span class="xref">T</span></dt>
-    <dd><p>The item.</p>
+    <dt><code>itemData</code> <span class="xref">T</span></dt>
+    <dd><p>The data associated with this item. It is user-defined and can hold any type of data.</p>
 </dd>
     <dt><code>createdDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>The created date.</p>
+    <dd><p>The creation date of the item.</p>
 </dd>
   </dl>
 
@@ -328,30 +329,30 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__0_System_DateTime_System_DateTime_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,`0,System.DateTime,System.DateTime)">
   VirtualItem(VirtualNodeName, T?, DateTime, DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem.html">VirtualItem</a> class.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate, DateTime updatedDate)</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualItem(VirtualNodeName name, T? itemData, DateTime createdDate, DateTime updatedDate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd><p>The name.</p>
+    <dd><p>The name of the item.</p>
 </dd>
-    <dt><code>item</code> <span class="xref">T</span></dt>
-    <dd><p>The item.</p>
+    <dt><code>itemData</code> <span class="xref">T</span></dt>
+    <dd><p>The data associated with this item. It is user-defined and can hold any type of data.</p>
 </dd>
     <dt><code>createdDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>The created date.</p>
+    <dd><p>The creation date of the item.</p>
 </dd>
     <dt><code>updatedDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>The updated date.</p>
+    <dd><p>The last update date of the item.</p>
 </dd>
   </dl>
 
@@ -374,10 +375,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_ItemData" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.ItemData">
   ItemData
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the item data.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the data associated with this item. This value can be null.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -406,10 +407,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_NodeType" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.NodeType">
   NodeType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the node type.</p>
+  <div class="markdown level1 summary"><p>Gets the type of the node.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -442,10 +443,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_DeepClone_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.DeepClone(System.Boolean)">
   DeepClone(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L182"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Deeps the clone.</p>
+  <div class="markdown level1 summary"><p>Creates a deep clone of this item.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -456,14 +457,14 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>If true, recursive.</p>
+    <dd><p>If true, perform a deep clone recursively.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
-    <dd><p>A VirtualNode</p>
+    <dd><p>A deep clone of the current item as a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>.</p>
 </dd>
   </dl>
 
@@ -481,10 +482,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_Dispose" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L198"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Disposes this instance.</p>
+  <div class="markdown level1 summary"><p>Releases the resources used by the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -508,10 +509,12 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_Dispose_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.Dispose(System.Boolean)">
   Dispose(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L211"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> and optionally
+releases the managed resources.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -521,7 +524,8 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</dd>
   </dl>
 
 
@@ -539,10 +543,11 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_Finalize" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.Finalize">
   ~VirtualItem()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L210"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L229"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Finalizer for the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> class.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -565,10 +570,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_ToString" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L175"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Converts to the string.</p>
+  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -580,7 +585,7 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A string</p>
+    <dd><p>A string that represents the current object.</p>
 </dd>
   </dl>
 
@@ -598,10 +603,10 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)">
   Update(VirtualNode)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L241"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Updates the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>.</p>
+  <div class="markdown level1 summary"><p>Updates the current item with the specified node's data.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -612,7 +617,7 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>node</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
-    <dd><p>Value to update</p>
+    <dd><p>The node containing the data to update.</p>
 </dd>
   </dl>
 
@@ -624,6 +629,12 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if the specified node is not of the same type as the current item.</p>
+</dd>
+  </dl>
 
 
 
@@ -635,10 +646,11 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__AkiraNetwork_VirtualStorageLibrary_VirtualItem__0_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}">
   implicit operator VirtualItem&lt;T&gt;(VirtualNodeName)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Implicitly converts the specified node name to a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -648,13 +660,15 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd></dd>
+    <dd><p>The name of the node.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
-    <dd></dd>
+    <dd><p>A <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> initialized with the specified node name.</p>
+</dd>
   </dl>
 
 
@@ -671,10 +685,11 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_op_Implicit_System_ValueTuple_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__0___AkiraNetwork_VirtualStorageLibrary_VirtualItem__0_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,`0})~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}">
   implicit operator VirtualItem&lt;T&gt;((VirtualNodeName nodeName, T? itemData))
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a tuple (nodeName, itemData) to a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -684,13 +699,15 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>tuple</code> (<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,-0-.nodename">nodeName</a>, T <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,-0-.itemdata">itemData</a>)</dt>
-    <dd></dd>
+    <dd><p>A tuple containing the node name and item data.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
-    <dd></dd>
+    <dd><p>A <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> initialized with the specified values.</p>
+</dd>
   </dl>
 
 
@@ -707,10 +724,11 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_op_Implicit__0__AkiraNetwork_VirtualStorageLibrary_VirtualItem__0_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(`0)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}">
   implicit operator VirtualItem&lt;T&gt;(T?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Implicitly converts the specified data of type T to a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -720,13 +738,15 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>itemData</code> <span class="xref">T</span></dt>
-    <dd></dd>
+    <dd><p>The data associated with this item. It is user-defined and can hold any type of data.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</dt>
-    <dd></dd>
+    <dd><p>A <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> initialized with the specified data.</p>
+</dd>
   </dl>
 
 
@@ -743,7 +763,7 @@ Class VirtualItem&lt;T&gt;  <a class="header-action link-secondary" title="View 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L43" class="edit-link">Edit this page</a>
+          <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L47" class="edit-link">Edit this page</a>
         </div>
 
 

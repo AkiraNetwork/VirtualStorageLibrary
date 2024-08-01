@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class VirtualItem | AkiraNetwork ">
       
-      <meta name="description" content="The virtual item.">
+      <meta name="description" content="Represents an item with data in the virtual storage.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Class VirtualItem  <a class="header-action link-secondary" title="View source" h
   <dl><dt>Assembly</dt><dd>VirtualStorageLibrary.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>The virtual item.</p>
+  <div class="markdown summary"><p>Represents an item with data in the virtual storage.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -215,7 +215,7 @@ Class VirtualItem  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd><p>The name.</p>
+    <dd><p>The name of the item.</p>
 </dd>
   </dl>
 
@@ -248,10 +248,10 @@ Class VirtualItem  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd><p>The name.</p>
+    <dd><p>The name of the item.</p>
 </dd>
     <dt><code>createdDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>The created date.</p>
+    <dd><p>The creation date of the item.</p>
 </dd>
   </dl>
 
@@ -284,13 +284,13 @@ Class VirtualItem  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>name</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd><p>The name.</p>
+    <dd><p>The name of the item.</p>
 </dd>
     <dt><code>createdDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>The created date.</p>
+    <dd><p>The creation date of the item.</p>
 </dd>
     <dt><code>updatedDate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>The updated date.</p>
+    <dd><p>The last update date of the item.</p>
 </dd>
   </dl>
 
@@ -313,10 +313,12 @@ Class VirtualItem  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualItem_DeepClone_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualItem.DeepClone(System.Boolean)">
   DeepClone(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Deeps the clone.</p>
+  <div class="markdown level1 summary"><p>Creates a deep clone of this item. If the data of type T held by the item
+implements the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html">IVirtualDeepCloneable&lt;T&gt;</a> interface, the
+DeepClone method of the data type is called.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -327,14 +329,14 @@ Class VirtualItem  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>recursive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>If true, recursive.</p>
+    <dd><p>In the case of items, this parameter is ignored.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></dt>
-    <dd><p>A VirtualNode</p>
+    <dd><p>A deep clone of the current item as a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>.</p>
 </dd>
   </dl>
 
