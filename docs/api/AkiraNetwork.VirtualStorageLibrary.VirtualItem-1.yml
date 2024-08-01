@@ -35,14 +35,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 15
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: The virtual item.
+  example: []
   syntax:
     content: 'public class VirtualItem<T> : VirtualItem, IVirtualDeepCloneable<VirtualNode>, IDisposable'
     typeParameters:
     - id: T
+      description: ''
     content.vb: Public Class VirtualItem(Of T) Inherits VirtualItem Implements IVirtualDeepCloneable(Of VirtualNode), IDisposable
   inheritance:
   - System.Object
@@ -87,10 +90,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemData
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 19
+    startLine: 52
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the item data.
+  example: []
   syntax:
     content: public T? ItemData { get; set; }
     parameters: []
@@ -118,11 +123,11 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 27
+    startLine: 66
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the node type of node.
+  summary: Gets the node type.
   example: []
   syntax:
     content: public override VirtualNodeType NodeType { get; }
@@ -152,10 +157,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 29
+    startLine: 71
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualItem()
     content.vb: Public Sub New()
@@ -181,15 +188,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 36
+    startLine: 82
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualItem(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name.
     content.vb: Public Sub New(name As VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor*
   nameWithType.vb: VirtualItem(Of T).New(VirtualNodeName)
@@ -213,17 +223,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 42
+    startLine: 93
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualItem(VirtualNodeName name, T? item)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name.
     - id: item
       type: '{T}'
+      description: The item.
     content.vb: Public Sub New(name As VirtualNodeName, item As T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor*
   nameWithType.vb: VirtualItem(Of T).New(VirtualNodeName, T)
@@ -247,19 +261,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 48
+    startLine: 105
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name.
     - id: item
       type: '{T}'
+      description: The item.
     - id: createdDate
       type: System.DateTime
+      description: The created date.
     content.vb: Public Sub New(name As VirtualNodeName, item As T, createdDate As Date)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor*
   nameWithType.vb: VirtualItem(Of T).New(VirtualNodeName, T, Date)
@@ -283,21 +302,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 54
+    startLine: 118
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate, DateTime updatedDate)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name.
     - id: item
       type: '{T}'
+      description: The item.
     - id: createdDate
       type: System.DateTime
+      description: The created date.
     - id: updatedDate
       type: System.DateTime
+      description: The updated date.
     content.vb: Public Sub New(name As VirtualNodeName, item As T, createdDate As Date, updatedDate As Date)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.#ctor*
   nameWithType.vb: VirtualItem(Of T).New(VirtualNodeName, T, Date, Date)
@@ -321,7 +346,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 61
+    startLine: 125
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -355,7 +380,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 67
+    startLine: 131
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -389,7 +414,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 75
+    startLine: 139
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -423,17 +448,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 80
+    startLine: 148
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns a string that represents the current object.
+  summary: Converts to the string.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: A string that represents the current object.
+      description: A string
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.ToString*
@@ -457,33 +482,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 82
+    startLine: 155
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: >-
-    Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate 
-
-    should not be cloned as they are set to the current date and time at the time
-
-    of cloning.
+  summary: Deeps the clone.
   example: []
   syntax:
     content: public override VirtualNode DeepClone(bool recursive = false)
     parameters:
     - id: recursive
       type: System.Boolean
-      description: >-
-        When true, all child nodes are also cloned, creating a
-
-        deep copy of the entire tree. The default is false.
-
-        The CreatedDate and UpdatedDate properties are not preserved.
-
-        They are set to the current date and time at the moment of instantiation or cloning.
+      description: If true, recursive.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-      description: Cloned <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> instance
+      description: A VirtualNode
     content.vb: Public Overrides Function DeepClone(recursive As Boolean = False) As VirtualNode
   overridden: AkiraNetwork.VirtualStorageLibrary.VirtualItem.DeepClone(System.Boolean)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.DeepClone*
@@ -508,11 +521,11 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 95
+    startLine: 171
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+  summary: Disposes this instance.
   example: []
   syntax:
     content: public void Dispose()
@@ -540,7 +553,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 101
+    startLine: 177
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -572,7 +585,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 116
+    startLine: 192
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -607,7 +620,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Finalize
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 133
+    startLine: 209
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

@@ -2,31 +2,73 @@
 
 namespace AkiraNetwork.VirtualStorageLibrary
 {
+    /// <summary>
+    /// The virtual item.
+    /// </summary>
     public abstract class VirtualItem : VirtualNode
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
         protected VirtualItem(VirtualNodeName name) : base(name) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="createdDate">The created date.</param>
         protected VirtualItem(VirtualNodeName name, DateTime createdDate) : base(name, createdDate) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="createdDate">The created date.</param>
+        /// <param name="updatedDate">The updated date.</param>
         protected VirtualItem(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate) { }
 
+        /// <summary>
+        /// Deeps the clone.
+        /// </summary>
+        /// <param name="recursive">If true, recursive.</param>
+        /// <returns>A VirtualNode</returns>
         public override abstract VirtualNode DeepClone(bool recursive = false);
     }
 
+    /// <summary>
+    /// The virtual item.
+    /// </summary>
+    /// <typeparam name="T"/>
     public class VirtualItem<T> : VirtualItem, IDisposable
     {
+        /// <summary>
+        /// The item data.
+        /// </summary>
         private T? _itemData;
 
+        /// <summary>
+        /// Gets or sets the item data.
+        /// </summary>
         public T? ItemData
         {
             get => _itemData;
             set => _itemData = value;
         }
 
+        /// <summary>
+        /// The disposed.
+        /// </summary>
         private bool _disposed;
 
+        /// <summary>
+        /// Gets the node type.
+        /// </summary>
         public override VirtualNodeType NodeType => VirtualNodeType.Item;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
         public VirtualItem()
             : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixItem))
         {
@@ -34,24 +76,46 @@ namespace AkiraNetwork.VirtualStorageLibrary
             _disposed = false;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
         public VirtualItem(VirtualNodeName name) : base(name)
         {
             ItemData = default;
             _disposed = false;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="item">The item.</param>
         public VirtualItem(VirtualNodeName name, T? item) : base(name)
         {
             ItemData = item;
             _disposed = false;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="item">The item.</param>
+        /// <param name="createdDate">The created date.</param>
         public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate) : base(name, createdDate)
         {
             ItemData = item;
             _disposed = false;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualItem"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="item">The item.</param>
+        /// <param name="createdDate">The created date.</param>
+        /// <param name="updatedDate">The updated date.</param>
         public VirtualItem(VirtualNodeName name, T? item, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
             ItemData = item;
@@ -78,8 +142,17 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualItem<T>(name);
         }
 
+        /// <summary>
+        /// Converts to the string.
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString() => $"{Name}";
 
+        /// <summary>
+        /// Deeps the clone.
+        /// </summary>
+        /// <param name="recursive">If true, recursive.</param>
+        /// <returns>A VirtualNode</returns>
         public override VirtualNode DeepClone(bool recursive = false)
         {
             T? newItemData = ItemData;
@@ -93,6 +166,9 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualItem<T>(Name, newItemData);
         }
 
+        /// <summary>
+        /// Disposes this instance.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

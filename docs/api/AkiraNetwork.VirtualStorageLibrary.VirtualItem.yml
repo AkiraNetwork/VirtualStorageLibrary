@@ -23,10 +23,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 4
+    startLine: 7
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: The virtual item.
+  example: []
   syntax:
     content: 'public abstract class VirtualItem : VirtualNode, IVirtualDeepCloneable<VirtualNode>'
     content.vb: Public MustInherit Class VirtualItem Inherits VirtualNode Implements IVirtualDeepCloneable(Of VirtualNode)
@@ -73,15 +75,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 6
+    startLine: 13
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: protected VirtualItem(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name.
     content.vb: Protected Sub New(name As VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem.#ctor*
   nameWithType.vb: VirtualItem.New(VirtualNodeName)
@@ -105,17 +110,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 8
+    startLine: 20
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: protected VirtualItem(VirtualNodeName name, DateTime createdDate)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name.
     - id: createdDate
       type: System.DateTime
+      description: The created date.
     content.vb: Protected Sub New(name As VirtualNodeName, createdDate As Date)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem.#ctor*
   nameWithType.vb: VirtualItem.New(VirtualNodeName, Date)
@@ -139,19 +148,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 10
+    startLine: 28
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: protected VirtualItem(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name.
     - id: createdDate
       type: System.DateTime
+      description: The created date.
     - id: updatedDate
       type: System.DateTime
+      description: The updated date.
     content.vb: Protected Sub New(name As VirtualNodeName, createdDate As Date, updatedDate As Date)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem.#ctor*
   nameWithType.vb: VirtualItem.New(VirtualNodeName, Date, Date)
@@ -175,33 +189,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 12
+    startLine: 35
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: >-
-    Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate 
-
-    should not be cloned as they are set to the current date and time at the time
-
-    of cloning.
+  summary: Deeps the clone.
   example: []
   syntax:
     content: public override abstract VirtualNode DeepClone(bool recursive = false)
     parameters:
     - id: recursive
       type: System.Boolean
-      description: >-
-        When true, all child nodes are also cloned, creating a
-
-        deep copy of the entire tree. The default is false.
-
-        The CreatedDate and UpdatedDate properties are not preserved.
-
-        They are set to the current date and time at the moment of instantiation or cloning.
+      description: If true, recursive.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-      description: Cloned <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> instance
+      description: A VirtualNode
     content.vb: Public MustOverride Overrides Function DeepClone(recursive As Boolean = False) As VirtualNode
   overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem.DeepClone*
@@ -764,6 +766,13 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem.html
+  name: VirtualItem
+  nameWithType: VirtualItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualItem.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualItem.html#AkiraNetwork_VirtualStorageLibrary_VirtualItem__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
