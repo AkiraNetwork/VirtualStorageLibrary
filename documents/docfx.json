@@ -36,7 +36,8 @@
     "output": "../docs",
     "template": [
       "default",
-      "modern"
+      "modern",
+      "templates/material"
     ],
     "globalMetadata": {
       "_appName": "AkiraNetwork",

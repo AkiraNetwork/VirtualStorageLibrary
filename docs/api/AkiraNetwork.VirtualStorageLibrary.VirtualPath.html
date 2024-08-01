@@ -1,133 +1,101 @@
 ﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
 <html>
+
   <head>
     <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class VirtualPath | AkiraNetwork </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class VirtualPath | AkiraNetwork ">
-      
-      
-      <link rel="icon" href="../favicon.ico">
-      <link rel="stylesheet" href="../public/docfx.min.css">
-      <link rel="stylesheet" href="../public/main.css">
-      <meta name="docfx:navrel" content="../toc.html">
-      <meta name="docfx:tocrel" content="toc.html">
-      
-      <meta name="docfx:rel" content="../">
-      
-      
-      <meta name="docfx:docurl" content="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
-      <meta name="loc:inThisArticle" content="In this article">
-      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
-      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
-      <meta name="loc:tocFilter" content="Filter by title">
-      <meta name="loc:nextArticle" content="Next">
-      <meta name="loc:prevArticle" content="Previous">
-      <meta name="loc:themeLight" content="Light">
-      <meta name="loc:themeDark" content="Dark">
-      <meta name="loc:themeAuto" content="Auto">
-      <meta name="loc:changeTheme" content="Change theme">
-      <meta name="loc:copy" content="Copy">
-      <meta name="loc:downloadPdf" content="Download PDF">
-
-      <script type="module" src="./../public/docfx.min.js"></script>
-
-      <script>
-        const theme = localStorage.getItem('theme') || 'auto'
-        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-      </script>
-
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
   </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
-    <header class="bg-body border-bottom">
-      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
-        <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="AkiraNetwork">
-            AkiraNetwork
-          </a>
-          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="bi bi-three-dots"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navpanel">
-            <div id="navbar">
-              <form class="search" role="search" id="search">
-                <i class="bi bi-search"></i>
-                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="AkiraNetwork">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
               </form>
             </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
 
-    <main class="container-xxl">
-      <div class="toc-offcanvas">
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
           </div>
-          <div class="offcanvas-body">
-            <nav class="toc" id="toc"></nav>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
         </div>
       </div>
+      <div role="main" class="container body-content hide-when-search">
 
-      <div class="content">
-        <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
-
-          <nav id="breadcrumb"></nav>
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
         </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath">
 
-        <article data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath">
 
 
-
-  <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath" class="text-break">
-Class VirtualPath  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L5"><i class="bi bi-code-slash"></i></a>
-  </h1>
-
-  <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="AkiraNetwork.html">AkiraNetwork</a>.<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.html">VirtualStorageLibrary</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>VirtualStorageLibrary.dll</dd></dl>
+  <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath" class="text-break">Class VirtualPath</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">VirtualPath</span></div>
   </div>
-
-  <div class="markdown summary"></div>
-  <div class="markdown conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class VirtualPath : IEquatable&lt;VirtualPath&gt;, IComparable&lt;VirtualPath&gt;, IComparable</code></pre>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></div>
   </div>
-
-
-
-
-  <dl class="typelist inheritance">
-    <dt>Inheritance</dt>
-    <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">VirtualPath</span></div>
-    </dd>
-  </dl>
-
-  <dl class="typelist implements">
-    <dt>Implements</dt>
-    <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></div>
-    </dd>
-  </dl>
-
-
-  <dl class="typelist inheritedMembers">
-    <dt>Inherited Members</dt>
-    <dd>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
@@ -140,1794 +108,2074 @@ Class VirtualPath  <a class="header-action link-secondary" title="View source" h
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
-  </dd></dl>
-
-  <dl class="typelist extensionMethods">
-    <dt>Extension Methods</dt>
-    <dd>
-  <div>
-      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_">VirtualTextFormatter.GenerateSingleTableDebugText&lt;T&gt;(T)</a>
   </div>
-  </dd></dl>
-
-
-
-
-
-  <h2 class="section" id="constructors">Constructors
-</h2>
-
-
+  <h6><strong>Namespace</strong>: <a class="xref" href="AkiraNetwork.html">AkiraNetwork</a>.<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.html">VirtualStorageLibrary</a></h6>
+  <h6><strong>Assembly</strong>: VirtualStorageLibrary.dll</h6>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class VirtualPath : IEquatable&lt;VirtualPath&gt;, IComparable&lt;VirtualPath&gt;, IComparable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_System_Collections_Generic_IEnumerable_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.%23ctor(System.Collections.Generic.IEnumerable%7BAkiraNetwork.VirtualStorageLibrary.VirtualNodeName%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L168">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_System_Collections_Generic_IEnumerable_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName})">
-  VirtualPath(IEnumerable&lt;VirtualNodeName&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L168"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_System_Collections_Generic_IEnumerable_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName})">VirtualPath(IEnumerable&lt;VirtualNodeName&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath(IEnumerable&lt;VirtualNodeName&gt; parts)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>parts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</td>
+        <td><span class="parametername">parts</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_System_String_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.%23ctor(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L163">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor(System.String)">
-  VirtualPath(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L163"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath__ctor_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor(System.String)">VirtualPath(string)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath(string path)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_BaseDepth.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L97">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_BaseDepth_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_BaseDepth" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth">
-  BaseDepth
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L97"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_BaseDepth" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth">BaseDepth</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int BaseDepth { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Depth.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Depth%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L76">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Depth_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Depth*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Depth" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Depth">
-  Depth
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L76"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Depth" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Depth">Depth</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int Depth { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_DirectoryPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L43">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_DirectoryPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_DirectoryPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath">
-  DirectoryPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L43"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_DirectoryPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath">DirectoryPath</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath DirectoryPath { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Dot.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Dot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L119">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Dot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Dot*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Dot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Dot">
-  Dot
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L119"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Dot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Dot">Dot</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static string Dot { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_DotDot.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.DotDot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L124">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_DotDot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.DotDot*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_DotDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.DotDot">
-  DotDot
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L124"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_DotDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.DotDot">DotDot</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static string DotDot { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L85">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath">
-  FixedPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L85"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath">FixedPath</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath FixedPath { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsAbsolute.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L141">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsAbsolute_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsAbsolute" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute">
-  IsAbsolute
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L141"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsAbsolute" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute">IsAbsolute</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsAbsolute { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDot.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L151">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot">
-  IsDot
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L151"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot">IsDot</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsDot { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDotDot.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L156">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDotDot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDotDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot">
-  IsDotDot
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L156"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsDotDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot">IsDotDot</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsDotDot { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEmpty.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEmpty%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L131">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEmpty_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEmpty*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEmpty" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEmpty">
-  IsEmpty
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L131"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEmpty" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEmpty">IsEmpty</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsEmpty { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEndsWithSlash.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L146">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEndsWithSlash_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEndsWithSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash">
-  IsEndsWithSlash
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L146"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsEndsWithSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash">IsEndsWithSlash</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsEndsWithSlash { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsRoot.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L136">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsRoot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsRoot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot">
-  IsRoot
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L136"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsRoot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot">IsRoot</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsRoot { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_NodeName.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L55">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NodeName" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName">
-  NodeName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L55"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NodeName" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName">NodeName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualNodeName NodeName { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_PartsList.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L67">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_PartsList_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_PartsList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList">
-  PartsList
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L67"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_PartsList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList">PartsList</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;VirtualNodeName&gt; PartsList { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Path.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Path%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L20">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Path_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Path*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Path" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Path">
-  Path
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L20"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Path" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Path">Path</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Path { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Root.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Root%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L114">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Root_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Root*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Root" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Root">
-  Root
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L114"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Root" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Root">Root</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static string Root { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Separator.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L109">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Separator_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Separator" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator">
-  Separator
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L109"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Separator" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator">Separator</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static char Separator { get; }</code></pre>
   </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddEndSlash.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L261">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddEndSlash_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddEndSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash">
-  AddEndSlash()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L261"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddEndSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash">AddEndSlash()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath AddEndSlash()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddStartSlash.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L270">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddStartSlash_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddStartSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash">
-  AddStartSlash()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L270"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddStartSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash">AddStartSlash()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath AddStartSlash()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_ArePathsSubdirectories_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L605">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ArePathsSubdirectories_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ArePathsSubdirectories_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  ArePathsSubdirectories(VirtualPath, VirtualPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L605"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ArePathsSubdirectories_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">ArePathsSubdirectories(VirtualPath, VirtualPath)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static bool ArePathsSubdirectories(VirtualPath path1, VirtualPath path2)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path1</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>path2</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_AkiraNetwork_VirtualStorageLibrary_VirtualPath___.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(AkiraNetwork.VirtualStorageLibrary.VirtualPath%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L388">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_AkiraNetwork_VirtualStorageLibrary_VirtualPath___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(AkiraNetwork.VirtualStorageLibrary.VirtualPath[])">
-  Combine(params VirtualPath[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L388"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_AkiraNetwork_VirtualStorageLibrary_VirtualPath___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(AkiraNetwork.VirtualStorageLibrary.VirtualPath[])">Combine(params VirtualPath[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath Combine(params VirtualPath[] paths)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>paths</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>[]</dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>[]</td>
+        <td><span class="parametername">paths</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_System_String___.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(System.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L398">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_System_String___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(System.String[])">
-  Combine(params string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L398"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_System_String___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(System.String[])">Combine(params string[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static string Combine(params string[] paths)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>paths</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">paths</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_CombineFromIndex_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Int32_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L491">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CombineFromIndex_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CombineFromIndex_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Int32_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32)">
-  CombineFromIndex(VirtualPath, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L491"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CombineFromIndex_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Int32_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32)">CombineFromIndex(VirtualPath, int)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath CombineFromIndex(VirtualPath path, int index)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(AkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L506">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  CompareTo(VirtualPath?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L506"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">CompareTo(VirtualPath?)</h4>
   <div class="markdown level1 summary"><p>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int CompareTo(VirtualPath? other)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>other</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd><p>An object to compare with this instance.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>An object to compare with this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
  <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">other</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">other</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">other</code> in the sort order.</td></tr></tbody></table>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_System_Object_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L516">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_System_Object_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(System.Object)">
-  CompareTo(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L516"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_System_Object_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(System.Object)">CompareTo(object?)</h4>
   <div class="markdown level1 summary"><p>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int CompareTo(object? obj)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd><p>An object to compare with this instance.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>An object to compare with this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
  <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">obj</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">obj</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">obj</code> in the sort order.</td></tr></tbody></table>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd><p><code class="paramref">obj</code> is not the same type as this instance.</p>
-</dd>
-  </dl>
-
-
-
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code class="paramref">obj</code> is not the same type as this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(AkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L189">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  Equals(VirtualPath?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L189"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">Equals(VirtualPath?)</h4>
   <div class="markdown level1 summary"><p>Indicates whether the current object is equal to another object of the same type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool Equals(VirtualPath? other)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>other</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd><p>An object to compare with this object.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>An object to compare with this object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_System_Object_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L180">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_System_Object_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(System.Object)">
-  Equals(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L180"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Equals_System_Object_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(System.Object)">Equals(object?)</h4>
   <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd><p>The object to compare with the current object.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to compare with the current object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetHashCode.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L161">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetHashCode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetHashCode" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode">
-  GetHashCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L161"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetHashCode" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode">GetHashCode()</h4>
   <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>A hash code for the current object.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>A hash code for the current object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetNodeName.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L359">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetNodeName" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName">
-  GetNodeName()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L359"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetNodeName" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName">GetNodeName()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualNodeName GetNodeName()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetParentPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L455">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetParentPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetParentPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath">
-  GetParentPath()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L455"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetParentPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath">GetParentPath()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath GetParentPath()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsLinkedList.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L475">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsLinkedList_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsLinkedList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList">
-  GetPartsLinkedList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L475"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsLinkedList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList">GetPartsLinkedList()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LinkedList&lt;VirtualNodeName&gt; GetPartsLinkedList()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1">LinkedList</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1">LinkedList</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L486">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList">
-  GetPartsList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L486"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList">GetPartsList()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;VirtualNodeName&gt; GetPartsList()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetRelativePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetRelativePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L531">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetRelativePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetRelativePath*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetRelativePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetRelativePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  GetRelativePath(VirtualPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L531"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetRelativePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetRelativePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">GetRelativePath(VirtualPath)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath GetRelativePath(VirtualPath basePath)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>basePath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">basePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsSubdirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L648">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsSubdirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsSubdirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  IsSubdirectory(VirtualPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L648"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsSubdirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">IsSubdirectory(VirtualPath)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsSubdirectory(VirtualPath parentPath)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>parentPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">parentPath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L284">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath">
-  NormalizePath()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L284"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath">NormalizePath()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath NormalizePath()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_System_String_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L293">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath(System.String)">
-  NormalizePath(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L293"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath(System.String)">NormalizePath(string)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static string NormalizePath(string path)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_StartsWith_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith(AkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L279">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_StartsWith_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_StartsWith_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  StartsWith(VirtualPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L279"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_StartsWith_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">StartsWith(VirtualPath)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool StartsWith(VirtualPath path)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_ToString.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L129">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ToString_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ToString*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ToString" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ToString">
-  ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L129"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ToString" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ToString">ToString()</h4>
   <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A string that represents the current object.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>A string that represents the current object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_TrimEndSlash.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.TrimEndSlash%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L252">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_TrimEndSlash_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.TrimEndSlash*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_TrimEndSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.TrimEndSlash">
-  TrimEndSlash()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L252"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_TrimEndSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.TrimEndSlash">TrimEndSlash()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VirtualPath TrimEndSlash()</code></pre>
   </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="operators">Operators
-</h2>
-
-
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CAkiraNetwork.VirtualStorageLibrary.VirtualNodeName)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L222">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">
-  operator +(VirtualPath, VirtualNodeName)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L222"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">operator +(VirtualPath, VirtualNodeName)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>nodeName</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
+        <td><span class="parametername">nodeName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L217">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  operator +(VirtualPath, VirtualPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L217"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator +(VirtualPath, VirtualPath)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path1</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>path2</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Char_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CSystem.Char)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L240">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Char_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Char)">
-  operator +(VirtualPath, char)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L240"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Char_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Char)">operator +(VirtualPath, char)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static VirtualPath operator +(VirtualPath path, char chr)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>chr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">chr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_String_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L228">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.String)">
-  operator +(VirtualPath, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L228"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.String)">operator +(VirtualPath, string)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static VirtualPath operator +(VirtualPath path, string str)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_Char_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.Char%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L246">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_Char_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.Char,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  operator +(char, VirtualPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L246"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_Char_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.Char,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator +(char, VirtualPath)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static VirtualPath operator +(char chr, VirtualPath path)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>chr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
-    <dd></dd>
-    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">chr</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_String_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.String%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L234">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_String_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.String,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  operator +(string, VirtualPath)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L234"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_String_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.String,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator +(string, VirtualPath)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static VirtualPath operator +(string str, VirtualPath path)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>path</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Equality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Equality(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L194">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Equality_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Equality*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Equality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Equality(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  operator ==(VirtualPath?, VirtualPath?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L194"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Equality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Equality(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator ==(VirtualPath?, VirtualPath?)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static bool operator ==(VirtualPath? left, VirtualPath? right)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>left</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>right</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualPath__System_String.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~System.String%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L33">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualPath__System_String" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~System.String">
-  implicit operator string(VirtualPath?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L33"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualPath__System_String" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~System.String">implicit operator string(VirtualPath?)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static implicit operator string(VirtualPath? virtualPath)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>virtualPath</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">virtualPath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L28">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualPath">
-  implicit operator VirtualPath(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L28"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Implicit_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualPath">implicit operator VirtualPath(string)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static implicit operator VirtualPath(string path)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Inequality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Inequality(AkiraNetwork.VirtualStorageLibrary.VirtualPath%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L212">View Source</a>
+  </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Inequality_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Inequality*"></a>
-
-  <h3 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Inequality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Inequality(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">
-  operator !=(VirtualPath?, VirtualPath?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L212"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Inequality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Inequality(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator !=(VirtualPath?, VirtualPath?)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static bool operator !=(VirtualPath? left, VirtualPath? right)</code></pre>
   </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>left</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-    <dt><code>right</code> <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_">VirtualTextFormatter.GenerateSingleTableDebugText&lt;T&gt;(T)</a>
+  </div>
 
 </article>
+          </div>
 
-        <div class="contribution d-print-none">
-          <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L5" class="edit-link">Edit this page</a>
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs/#L5" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
         </div>
-
-
       </div>
 
-      <div class="affix">
-        <nav id="affix"></nav>
-      </div>
-    </main>
-
-    <div class="container-xxl search-results" id="search-results"></div>
-
-    <footer class="border-top text-secondary">
-      <div class="container-xxl">
-        <div class="flex-fill">
-          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
   </body>
 </html>
