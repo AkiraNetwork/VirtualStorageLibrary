@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class VirtualNodeContext | AkiraNetwork ">
     
-    
+    <meta name="description" content="A class that holds context information for a node. It is returned during or after path traversal, providing information about the node, path, parent directory, depth, index, resolved path, and symbolic link.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,10 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext" class="text-break">Class VirtualNodeContext</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>A class that holds context information for a node.
+It is returned during or after path traversal, providing information about the node, path,
+parent directory, depth, index, resolved path, and symbolic link.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -122,11 +125,12 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.%23ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath%2CAkiraNetwork.VirtualStorageLibrary.VirtualDirectory%2CSystem.Int32%2CSystem.Int32%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath%2CSystem.Boolean%2CAkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L3">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L90">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)">VirtualNodeContext(VirtualNode?, VirtualPath, VirtualDirectory?, int, int, VirtualPath?, bool, VirtualSymbolicLink?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html">VirtualNodeContext</a> class.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -145,42 +149,50 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
         <td><span class="parametername">node</span></td>
-        <td></td>
+        <td><p>The node being traversed.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">traversalPath</span></td>
-        <td></td>
+        <td><p>The path used for node traversal.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></td>
         <td><span class="parametername">parentNode</span></td>
-        <td></td>
+        <td><p>The parent directory of the node.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">depth</span></td>
-        <td></td>
+        <td><p>The depth of the node. The root is considered 0.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td></td>
+        <td><p>The index of the node. Corresponds to the enumeration order within the directory.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">resolvedPath</span></td>
-        <td></td>
+        <td><p>The result of resolving a symbolic link.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">resolved</span></td>
-        <td></td>
+        <td><p>Indicates whether the symbolic link has been resolved.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></td>
         <td><span class="parametername">resolvedLink</span></td>
-        <td></td>
+        <td><p>The resolved symbolic link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -191,15 +203,17 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Depth.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L20">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L42">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Depth_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Depth" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth">Depth</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the depth of the node and can only be set within the assembly.
+The root is considered 0.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Depth { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Depth { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -212,7 +226,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
+        <td><p>The depth of the node.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -221,15 +236,17 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Index.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Index%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L22">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L51">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Index_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Index*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Index" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Index">Index</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the index of the node and can only be set within the assembly.
+This is the index corresponding to the enumeration order within the directory.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Index { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Index { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -242,7 +259,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
+        <td><p>The index of the node.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -251,15 +269,16 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Node.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L14">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L17">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Node_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Node" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node">Node</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the node and can only be set within the assembly.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualNode? Node { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualNode? Node { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -272,7 +291,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
-        <td></td>
+        <td><p>The current node.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -281,15 +301,16 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ParentDirectory.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L18">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L33">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ParentDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ParentDirectory" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory">ParentDirectory</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the parent directory of the node and can only be set within the assembly.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualDirectory? ParentDirectory { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualDirectory? ParentDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -302,7 +323,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></td>
-        <td></td>
+        <td><p>The instance of the parent directory.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -311,15 +333,17 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Resolved.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Resolved%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L26">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L69">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Resolved_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Resolved*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Resolved" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Resolved">Resolved</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the symbolic link has been resolved and can only
+be set within the assembly.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Resolved { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Resolved { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -332,7 +356,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>True if the link is resolved; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -341,15 +366,16 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ResolvedLink.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L28">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L77">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ResolvedLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ResolvedLink" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink">ResolvedLink</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the resolved symbolic link and can only be set within the assembly.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink? ResolvedLink { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink? ResolvedLink { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -362,7 +388,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></td>
-        <td></td>
+        <td><p>The resolved symbolic link, or null.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -371,15 +398,17 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ResolvedPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L24">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L60">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ResolvedPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedPath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ResolvedPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedPath">ResolvedPath</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the resolved path and can only be set within the assembly.
+This represents the result of resolving a symbolic link.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualPath? ResolvedPath { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualPath? ResolvedPath { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -392,7 +421,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>The resolved path, or null.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -401,15 +431,16 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_TraversalPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L16">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L25">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_TraversalPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_TraversalPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath">TraversalPath</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the traversal path and can only be set within the assembly.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualPath TraversalPath { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualPath TraversalPath { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -422,7 +453,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>The path used for node traversal.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -433,11 +465,11 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ToString.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L30">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L114">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ToString_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ToString*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ToString" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ToString">ToString()</h4>
-  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+  <div class="markdown level1 summary"><p>Returns a string representation of this instance's information.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -455,7 +487,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>A string that represents the current object.</p>
+        <td><p>A string representing this instance's information.</p>
 </td>
       </tr>
     </tbody>
@@ -478,7 +510,7 @@
                     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L3" class="contribution-link">View Source</a>
+                    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

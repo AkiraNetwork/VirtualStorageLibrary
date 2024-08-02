@@ -29,10 +29,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeContext
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 2
+    startLine: 7
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    A class that holds context information for a node.
+
+    It is returned during or after path traversal, providing information about the node, path,
+
+    parent directory, depth, index, resolved path, and symbolic link.
+  example: []
   syntax:
     content: public class VirtualNodeContext
     content.vb: Public Class VirtualNodeContext
@@ -47,52 +54,6 @@ items:
   - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)'
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
-  langs:
-  - csharp
-  - vb
-  name: VirtualNodeContext(VirtualNode?, VirtualPath, VirtualDirectory?, int, int, VirtualPath?, bool, VirtualSymbolicLink?)
-  nameWithType: VirtualNodeContext.VirtualNodeContext(VirtualNode?, VirtualPath, VirtualDirectory?, int, int, VirtualPath?, bool, VirtualSymbolicLink?)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.VirtualNodeContext(AkiraNetwork.VirtualStorageLibrary.VirtualNode?, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory?, int, int, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, bool, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink?)
-  type: Constructor
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: .ctor
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 2
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public VirtualNodeContext(VirtualNode? node, VirtualPath traversalPath, VirtualDirectory? parentNode = null, int depth = 0, int index = 0, VirtualPath? resolvedPath = null, bool resolved = false, VirtualSymbolicLink? resolvedLink = null)
-    parameters:
-    - id: node
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-    - id: traversalPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: parentNode
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-    - id: depth
-      type: System.Int32
-    - id: index
-      type: System.Int32
-    - id: resolvedPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: resolved
-      type: System.Boolean
-    - id: resolvedLink
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-    content.vb: Public Sub New(node As VirtualNode, traversalPath As VirtualPath, parentNode As VirtualDirectory = Nothing, depth As Integer = 0, index As Integer = 0, resolvedPath As VirtualPath = Nothing, resolved As Boolean = False, resolvedLink As VirtualSymbolicLink = Nothing)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor*
-  nameWithType.vb: VirtualNodeContext.New(VirtualNode, VirtualPath, VirtualDirectory, Integer, Integer, VirtualPath, Boolean, VirtualSymbolicLink)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.New(AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, Integer, Integer, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  name.vb: New(VirtualNode, VirtualPath, VirtualDirectory, Integer, Integer, VirtualPath, Boolean, VirtualSymbolicLink)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node
   id: Node
@@ -111,15 +72,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Node
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the node and can only be set within the assembly.
+  example: []
   syntax:
-    content: public VirtualNode? Node { get; set; }
+    content: public VirtualNode? Node { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The current node.
     content.vb: Public Property Node As VirtualNode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath
@@ -140,15 +104,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TraversalPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 15
+    startLine: 24
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the traversal path and can only be set within the assembly.
+  example: []
   syntax:
-    content: public VirtualPath TraversalPath { get; set; }
+    content: public VirtualPath TraversalPath { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path used for node traversal.
     content.vb: Public Property TraversalPath As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory
@@ -169,15 +136,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ParentDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 17
+    startLine: 32
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the parent directory of the node and can only be set within the assembly.
+  example: []
   syntax:
-    content: public VirtualDirectory? ParentDirectory { get; set; }
+    content: public VirtualDirectory? ParentDirectory { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The instance of the parent directory.
     content.vb: Public Property ParentDirectory As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth
@@ -198,15 +168,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Depth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 19
+    startLine: 41
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets the depth of the node and can only be set within the assembly.
+
+    The root is considered 0.
+  example: []
   syntax:
-    content: public int Depth { get; set; }
+    content: public int Depth { get; }
     parameters: []
     return:
       type: System.Int32
+      description: The depth of the node.
     content.vb: Public Property Depth As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Index
@@ -227,15 +203,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Index
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 21
+    startLine: 50
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets the index of the node and can only be set within the assembly.
+
+    This is the index corresponding to the enumeration order within the directory.
+  example: []
   syntax:
-    content: public int Index { get; set; }
+    content: public int Index { get; }
     parameters: []
     return:
       type: System.Int32
+      description: The index of the node.
     content.vb: Public Property Index As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Index*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedPath
@@ -256,15 +238,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolvedPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 23
+    startLine: 59
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets the resolved path and can only be set within the assembly.
+
+    This represents the result of resolving a symbolic link.
+  example: []
   syntax:
-    content: public VirtualPath? ResolvedPath { get; set; }
+    content: public VirtualPath? ResolvedPath { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The resolved path, or null.
     content.vb: Public Property ResolvedPath As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedPath*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Resolved
@@ -285,15 +273,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Resolved
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 25
+    startLine: 68
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets a value indicating whether the symbolic link has been resolved and can only
+
+    be set within the assembly.
+  example: []
   syntax:
-    content: public bool Resolved { get; set; }
+    content: public bool Resolved { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: True if the link is resolved; otherwise, false.
     content.vb: Public Property Resolved As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Resolved*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink
@@ -314,17 +308,76 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolvedLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 27
+    startLine: 76
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the resolved symbolic link and can only be set within the assembly.
+  example: []
   syntax:
-    content: public VirtualSymbolicLink? ResolvedLink { get; set; }
+    content: public VirtualSymbolicLink? ResolvedLink { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The resolved symbolic link, or null.
     content.vb: Public Property ResolvedLink As VirtualSymbolicLink
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+  langs:
+  - csharp
+  - vb
+  name: VirtualNodeContext(VirtualNode?, VirtualPath, VirtualDirectory?, int, int, VirtualPath?, bool, VirtualSymbolicLink?)
+  nameWithType: VirtualNodeContext.VirtualNodeContext(VirtualNode?, VirtualPath, VirtualDirectory?, int, int, VirtualPath?, bool, VirtualSymbolicLink?)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.VirtualNodeContext(AkiraNetwork.VirtualStorageLibrary.VirtualNode?, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory?, int, int, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, bool, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink?)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
+    startLine: 89
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public VirtualNodeContext(VirtualNode? node, VirtualPath traversalPath, VirtualDirectory? parentNode = null, int depth = 0, int index = 0, VirtualPath? resolvedPath = null, bool resolved = false, VirtualSymbolicLink? resolvedLink = null)
+    parameters:
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The node being traversed.
+    - id: traversalPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path used for node traversal.
+    - id: parentNode
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The parent directory of the node.
+    - id: depth
+      type: System.Int32
+      description: The depth of the node. The root is considered 0.
+    - id: index
+      type: System.Int32
+      description: The index of the node. Corresponds to the enumeration order within the directory.
+    - id: resolvedPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The result of resolving a symbolic link.
+    - id: resolved
+      type: System.Boolean
+      description: Indicates whether the symbolic link has been resolved.
+    - id: resolvedLink
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The resolved symbolic link.
+    content.vb: Public Sub New(node As VirtualNode, traversalPath As VirtualPath, parentNode As VirtualDirectory = Nothing, depth As Integer = 0, index As Integer = 0, resolvedPath As VirtualPath = Nothing, resolved As Boolean = False, resolvedLink As VirtualSymbolicLink = Nothing)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor*
+  nameWithType.vb: VirtualNodeContext.New(VirtualNode, VirtualPath, VirtualDirectory, Integer, Integer, VirtualPath, Boolean, VirtualSymbolicLink)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.New(AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, Integer, Integer, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  name.vb: New(VirtualNode, VirtualPath, VirtualDirectory, Integer, Integer, VirtualPath, Boolean, VirtualSymbolicLink)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ToString
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ToString
   id: ToString
@@ -343,17 +396,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 29
+    startLine: 113
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns a string that represents the current object.
+  summary: Returns a string representation of this instance's information.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: A string that represents the current object.
+      description: A string representing this instance's information.
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ToString*
@@ -702,15 +755,12 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_
-  name: VirtualNodeContext
-  nameWithType: VirtualNodeContext.VirtualNodeContext
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.VirtualNodeContext
-  nameWithType.vb: VirtualNodeContext.New
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.New
-  name.vb: New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Node
+  name: Node
+  nameWithType: VirtualNodeContext.Node
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -718,6 +768,12 @@ references:
   name: VirtualNode
   nameWithType: VirtualNode
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_TraversalPath
+  name: TraversalPath
+  nameWithType: VirtualNodeContext.TraversalPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -725,6 +781,12 @@ references:
   name: VirtualPath
   nameWithType: VirtualPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ParentDirectory
+  name: ParentDirectory
+  nameWithType: VirtualNodeContext.ParentDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -732,6 +794,12 @@ references:
   name: VirtualDirectory
   nameWithType: VirtualDirectory
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Depth
+  name: Depth
+  nameWithType: VirtualNodeContext.Depth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -743,48 +811,6 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
-  name: VirtualSymbolicLink
-  nameWithType: VirtualSymbolicLink
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Node
-  name: Node
-  nameWithType: VirtualNodeContext.Node
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Node
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_TraversalPath
-  name: TraversalPath
-  nameWithType: VirtualNodeContext.TraversalPath
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.TraversalPath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ParentDirectory
-  name: ParentDirectory
-  nameWithType: VirtualNodeContext.ParentDirectory
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ParentDirectory
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Depth
-  name: Depth
-  nameWithType: VirtualNodeContext.Depth
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Depth
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Index*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Index
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_Index
@@ -803,12 +829,46 @@ references:
   name: Resolved
   nameWithType: VirtualNodeContext.Resolved
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.Resolved
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext_ResolvedLink
   name: ResolvedLink
   nameWithType: VirtualNodeContext.ResolvedLink
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.ResolvedLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html
+  name: VirtualNodeContext
+  nameWithType: VirtualNodeContext
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_
+  name: VirtualNodeContext
+  nameWithType: VirtualNodeContext.VirtualNodeContext
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.VirtualNodeContext
+  nameWithType.vb: VirtualNodeContext.New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.New
+  name.vb: New
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
