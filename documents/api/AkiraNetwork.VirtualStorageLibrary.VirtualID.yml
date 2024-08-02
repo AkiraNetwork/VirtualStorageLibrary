@@ -22,10 +22,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualID
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 2
+    startLine: 7
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    A structure representing a unique identifier within the virtual storage library.
+
+    This identifier is based on a randomly generated UUID version 4 (UUIDv4). UUIDv4 is a 128-bit value
+
+    that ensures high uniqueness and has strong cryptographic properties.
+  example: []
   syntax:
     content: 'public readonly record struct VirtualID : IEquatable<VirtualID>'
     content.vb: Public Structure VirtualID Implements IEquatable(Of VirtualID)
@@ -57,10 +64,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ID
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 6
+    startLine: 14
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the unique identifier.
+  example: []
   syntax:
     content: public Guid ID { get; }
     parameters: []
@@ -86,17 +95,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 8
+    startLine: 20
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns the fully qualified type name of this instance.
+  summary: Returns a string representation of this instance's unique identifier.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: The fully qualified type name.
+      description: A string that represents the unique identifier.
     content.vb: Public Overrides Function ToString() As String
   overridden: System.ValueType.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualID.ToString*
@@ -118,10 +127,15 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 10
+    startLine: 26
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualID" data-throw-if-not-resolved="false"></xref> structure,
+
+    generating a unique identifier.
+  example: []
   syntax:
     content: public VirtualID()
     content.vb: Public Sub New()
@@ -570,6 +584,13 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualID
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualID
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualID.html
+  name: VirtualID
+  nameWithType: VirtualID
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualID
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualID.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualID.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualID.html#AkiraNetwork_VirtualStorageLibrary_VirtualID__ctor
