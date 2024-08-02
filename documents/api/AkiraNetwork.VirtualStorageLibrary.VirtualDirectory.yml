@@ -56,10 +56,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents a virtual directory. The directory can contain nodes.
+  example: []
   syntax:
     content: 'public class VirtualDirectory : VirtualNode, IVirtualDeepCloneable<VirtualNode>, IEnumerable<VirtualNode>, IEnumerable'
     content.vb: Public Class VirtualDirectory Inherits VirtualNode Implements IVirtualDeepCloneable(Of VirtualNode), IEnumerable(Of VirtualNode), IEnumerable
@@ -106,11 +108,11 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 9
+    startLine: 18
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the node type of node.
+  summary: Gets the type of the node. This class always returns Directory.
   example: []
   syntax:
     content: public override VirtualNodeType NodeType { get; }
@@ -138,10 +140,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeNames
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 11
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Enumerates all node names within the directory.
+  example: []
   syntax:
     content: public IEnumerable<VirtualNodeName> NodeNames { get; }
     parameters: []
@@ -167,10 +171,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Nodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 13
+    startLine: 28
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Enumerates all nodes within the directory.
+  example: []
   syntax:
     content: public IEnumerable<VirtualNode> Nodes { get; }
     parameters: []
@@ -196,10 +202,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 15
+    startLine: 33
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the total number of nodes within the directory.
+  example: []
   syntax:
     content: public int Count { get; }
     parameters: []
@@ -225,10 +233,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 17
+    startLine: 38
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of directories within the directory.
+  example: []
   syntax:
     content: public int DirectoryCount { get; }
     parameters: []
@@ -254,10 +264,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 19
+    startLine: 43
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of items within the directory.
+  example: []
   syntax:
     content: public int ItemCount { get; }
     parameters: []
@@ -283,10 +295,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 21
+    startLine: 48
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of symbolic links within the directory.
+  example: []
   syntax:
     content: public int SymbolicLinkCount { get; }
     parameters: []
@@ -312,10 +326,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodesView
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 23
+    startLine: 53
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a view of nodes based on the current display conditions.
+  example: []
   syntax:
     content: public IEnumerable<VirtualNode> NodesView { get; }
     parameters: []
@@ -341,10 +357,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodesViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 25
+    startLine: 58
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of nodes based on the current display conditions.
+  example: []
   syntax:
     content: public int NodesViewCount { get; }
     parameters: []
@@ -370,10 +388,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 27
+    startLine: 63
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of directories based on the current display conditions.
+  example: []
   syntax:
     content: public int DirectoryViewCount { get; }
     parameters: []
@@ -399,10 +419,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 29
+    startLine: 68
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of items based on the current display conditions.
+  example: []
   syntax:
     content: public int ItemViewCount { get; }
     parameters: []
@@ -428,10 +450,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 31
+    startLine: 73
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of symbolic links based on the current display conditions.
+  example: []
   syntax:
     content: public int SymbolicLinkViewCount { get; }
     parameters: []
@@ -457,17 +481,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 40
+    startLine: 90
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks whether a node with the specified name exists.
+  example: []
   syntax:
     content: public bool NodeExists(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the node to check.
     return:
       type: System.Boolean
+      description: True if the node exists; otherwise, false.
     content.vb: Public Function NodeExists(name As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.NodeExists*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
@@ -488,17 +516,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 42
+    startLine: 97
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks whether an item with the specified name exists.
+  example: []
   syntax:
     content: public bool ItemExists(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the item to check.
     return:
       type: System.Boolean
+      description: True if the item exists; otherwise, false.
     content.vb: Public Function ItemExists(name As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ItemExists*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
@@ -519,17 +551,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 56
+    startLine: 116
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks whether a directory with the specified name exists.
+  example: []
   syntax:
     content: public bool DirectoryExists(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the directory to check.
     return:
       type: System.Boolean
+      description: True if the directory exists; otherwise, false.
     content.vb: Public Function DirectoryExists(name As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DirectoryExists*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
@@ -550,17 +586,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 66
+    startLine: 131
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks whether a symbolic link with the specified name exists.
+  example: []
   syntax:
     content: public bool SymbolicLinkExists(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the symbolic link to check.
     return:
       type: System.Boolean
+      description: True if the symbolic link exists; otherwise, false.
     content.vb: Public Function SymbolicLinkExists(name As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor
@@ -581,10 +621,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 77
+    startLine: 145
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualDirectory()
     content.vb: Public Sub New()
@@ -610,15 +652,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 83
+    startLine: 155
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref> class with the specified name.
+  example: []
   syntax:
     content: public VirtualDirectory(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the directory.
     content.vb: Public Sub New(name As VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
   nameWithType.vb: VirtualDirectory.New(VirtualNodeName)
@@ -642,19 +687,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 88
+    startLine: 166
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref> class with the specified name, creation date, and update date.
+  example: []
   syntax:
     content: public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the directory.
     - id: createdDate
       type: System.DateTime
+      description: The creation date.
     - id: updatedDate
       type: System.DateTime
+      description: The update date.
     content.vb: Public Sub New(name As VirtualNodeName, createdDate As Date, updatedDate As Date)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
   nameWithType.vb: VirtualDirectory.New(VirtualNodeName, Date, Date)
@@ -678,15 +728,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 94
+    startLine: 175
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Performs an implicit conversion from <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static implicit operator VirtualDirectory(VirtualNodeName nodeName)
     parameters:
     - id: nodeName
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The node name to convert.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
     content.vb: Public Shared Widening Operator CType(nodeName As VirtualNodeName) As VirtualDirectory
@@ -712,17 +765,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 99
+    startLine: 184
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns a string that represents the current object.
+  summary: Returns a string representation of the directory.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: A string that represents the current object.
+      description: A string representation of the directory.
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.ToString*
@@ -744,33 +797,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 101
+    startLine: 191
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: >-
-    Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate 
-
-    should not be cloned as they are set to the current date and time at the time
-
-    of cloning.
+  summary: Creates a deep clone of the directory.
   example: []
   syntax:
     content: public override VirtualNode DeepClone(bool recursive = false)
     parameters:
     - id: recursive
       type: System.Boolean
-      description: >-
-        When true, all child nodes are also cloned, creating a
-
-        deep copy of the entire tree. The default is false.
-
-        The CreatedDate and UpdatedDate properties are not preserved.
-
-        They are set to the current date and time at the moment of instantiation or cloning.
+      description: If true, all nodes within the directory are recursively cloned.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-      description: Cloned <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> instance
+      description: A deep clone of the directory.
     content.vb: Public Overrides Function DeepClone(recursive As Boolean = False) As VirtualNode
   overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone*
@@ -795,14 +836,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesView
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 114
+    startLine: 208
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a view of nodes based on the current display conditions.
+  example: []
   syntax:
     content: public IEnumerable<VirtualNode> GetNodesView()
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+      description: An enumeration of nodes based on the display conditions.
     content.vb: Public Function GetNodesView() As IEnumerable(Of VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
@@ -823,21 +867,33 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Add
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 164
+    startLine: 272
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a node to the directory.
+  example: []
   syntax:
     content: public VirtualNode Add(VirtualNode node, bool allowOverwrite = false)
     parameters:
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The node to add.
     - id: allowOverwrite
       type: System.Boolean
+      description: If true, allows overwriting an existing node with the same name.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The added node.
     content.vb: Public Function Add(node As VirtualNode, allowOverwrite As Boolean = False) As VirtualNode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if an invalid node name is specified.
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if a node with the same name already exists.
   nameWithType.vb: VirtualDirectory.Add(VirtualNode, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode, Boolean)
   name.vb: Add(VirtualNode, Boolean)
@@ -859,23 +915,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 207
+    startLine: 323
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds an item with the specified name.
+  example: []
   syntax:
     content: public VirtualItem<T> AddItem<T>(VirtualNodeName name, T? itemData = default, bool allowOverwrite = false)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the item.
     - id: itemData
       type: '{T}'
+      description: The data of the item.
     - id: allowOverwrite
       type: System.Boolean
+      description: If true, allows overwriting an existing node with the same name.
     typeParameters:
     - id: T
+      description: The data type of the item.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+      description: The added item.
     content.vb: Public Function AddItem(Of T)(name As VirtualNodeName, itemData As T = Nothing, allowOverwrite As Boolean = False) As VirtualItem(Of T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem*
   nameWithType.vb: VirtualDirectory.AddItem(Of T)(VirtualNodeName, T, Boolean)
@@ -899,21 +962,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 213
+    startLine: 336
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a symbolic link with the specified name.
+  example: []
   syntax:
     content: public VirtualSymbolicLink AddSymbolicLink(VirtualNodeName name, VirtualPath targetPath, bool allowOverwrite = false)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the symbolic link.
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path of the symbolic link.
     - id: allowOverwrite
       type: System.Boolean
+      description: If true, allows overwriting an existing node with the same name.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The added symbolic link.
     content.vb: Public Function AddSymbolicLink(name As VirtualNodeName, targetPath As VirtualPath, allowOverwrite As Boolean = False) As VirtualSymbolicLink
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink*
   nameWithType.vb: VirtualDirectory.AddSymbolicLink(VirtualNodeName, VirtualPath, Boolean)
@@ -937,19 +1006,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 219
+    startLine: 348
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a directory with the specified name.
+  example: []
   syntax:
     content: public VirtualDirectory AddDirectory(VirtualNodeName name, bool allowOverwrite = false)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the directory.
     - id: allowOverwrite
       type: System.Boolean
+      description: If true, allows overwriting an existing node with the same name.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The added directory.
     content.vb: Public Function AddDirectory(name As VirtualNodeName, allowOverwrite As Boolean = False) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory*
   nameWithType.vb: VirtualDirectory.AddDirectory(VirtualNodeName, Boolean)
@@ -973,19 +1047,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 225
+    startLine: 360
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the node with the specified name using the indexer.
+  example: []
   syntax:
     content: public VirtualNode this[VirtualNodeName name] { get; set; }
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the node.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The node with the specified name.
     content.vb: Public Default Property this[](name As VirtualNodeName) As VirtualNode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node is not found.
   nameWithType.vb: VirtualDirectory.this[](VirtualNodeName)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.this[](AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   name.vb: this[](VirtualNodeName)
@@ -1007,17 +1089,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Remove
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 254
+    startLine: 399
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Removes the specified node from the directory.
+  example: []
   syntax:
     content: public void Remove(VirtualNode node)
     parameters:
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The node to remove.
     content.vb: Public Sub Remove(node As VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Remove*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node is not found.
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
   id: Get(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
@@ -1036,19 +1125,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Get
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 270
+    startLine: 421
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the node with the specified name.
+  example: []
   syntax:
     content: public VirtualNode? Get(VirtualNodeName name, bool exceptionEnabled = true)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the node.
     - id: exceptionEnabled
       type: System.Boolean
+      description: If true, throws an exception if the node is not found.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The node with the specified name, or null if the node does not exist.
     content.vb: Public Function [Get](name As VirtualNodeName, exceptionEnabled As Boolean = True) As VirtualNode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Get*
   nameWithType.vb: VirtualDirectory.Get(VirtualNodeName, Boolean)
@@ -1072,17 +1166,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetEnumerator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 286
+    startLine: 441
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns an enumerator that iterates through the collection.
+  summary: Gets an enumerator for nodes based on the current display conditions.
   example: []
   syntax:
     content: public IEnumerator<VirtualNode> GetEnumerator()
     return:
       type: System.Collections.Generic.IEnumerator{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
-      description: An enumerator that can be used to iterate through the collection.
+      description: An enumerator for filtered nodes.
     content.vb: Public Function GetEnumerator() As IEnumerator(Of VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetEnumerator*
   implements:
@@ -1105,21 +1199,33 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 290
+    startLine: 457
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the item with the specified name.
+  example: []
   syntax:
     content: public VirtualItem<T> GetItem<T>(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the item.
     typeParameters:
     - id: T
+      description: The data type of the item.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+      description: The item with the specified name.
     content.vb: Public Function GetItem(Of T)(name As VirtualNodeName) As VirtualItem(Of T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node is not found.
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the specified node is not an item.
   nameWithType.vb: VirtualDirectory.GetItem(Of T)(VirtualNodeName)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetItem(Of T)(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   name.vb: GetItem(Of T)(VirtualNodeName)
@@ -1141,19 +1247,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 306
+    startLine: 480
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the directory with the specified name.
+  example: []
   syntax:
     content: public VirtualDirectory GetDirectory(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the directory.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The directory with the specified name.
     content.vb: Public Function GetDirectory(name As VirtualNodeName) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetDirectory*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node is not found.
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the specified node is not a directory.
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   id: GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
@@ -1172,19 +1289,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 321
+    startLine: 502
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the symbolic link with the specified name.
+  example: []
   syntax:
     content: public VirtualSymbolicLink GetSymbolicLink(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the symbolic link.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The symbolic link with the specified name.
     content.vb: Public Function GetSymbolicLink(name As VirtualNodeName) As VirtualSymbolicLink
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetSymbolicLink*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node is not found.
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the specified node is not a symbolic link.
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   id: op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
@@ -1203,19 +1331,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 337
+    startLine: 524
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Overloads the addition operator to add a node to the directory.
+  example: []
   syntax:
     content: public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNode node)
     parameters:
     - id: directory
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The directory to which the node is added.
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The node to add.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The directory with the added node.
     content.vb: Public Shared Operator +(directory As VirtualDirectory, node As VirtualNode) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*
   nameWithType.vb: VirtualDirectory.+(VirtualDirectory, VirtualNode)
@@ -1239,19 +1372,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Subtraction
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 347
+    startLine: 540
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Overloads the subtraction operator to remove a node from the directory.
+  example: []
   syntax:
     content: public static VirtualDirectory operator -(VirtualDirectory directory, VirtualNode node)
     parameters:
     - id: directory
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The directory from which the node is removed.
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The node to remove.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The directory with the removed node.
     content.vb: Public Shared Operator -(directory As VirtualDirectory, node As VirtualNode) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction*
   nameWithType.vb: VirtualDirectory.-(VirtualDirectory, VirtualNode)
@@ -1275,21 +1413,25 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 366
+    startLine: 569
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Updates the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref>.
+  summary: Updates the current directory with the data from the specified node.
   example: []
   syntax:
     content: public override void Update(VirtualNode node)
     parameters:
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-      description: Value to update
+      description: The node used for the update.
     content.vb: Public Overrides Sub Update(node As VirtualNode)
   overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the specified node is not a VirtualDirectory.
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -2605,6 +2747,13 @@ references:
   name: SymbolicLinkExists
   nameWithType: VirtualDirectory.SymbolicLinkExists
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.SymbolicLinkExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  name: VirtualDirectory
+  nameWithType: VirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor
@@ -2637,13 +2786,6 @@ references:
   - name: implicit
   - name: " "
   - name: operator
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
-  name: VirtualDirectory
-  nameWithType: VirtualDirectory
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -2728,6 +2870,20 @@ references:
   name: GetNodesView
   nameWithType: VirtualDirectory.GetNodesView
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.GetNodesView
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add
   href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Add_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Boolean_
@@ -2829,6 +2985,12 @@ references:
   name: AddDirectory
   nameWithType: VirtualDirectory.AddDirectory
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  name: VirtualNodeNotFoundException
+  nameWithType: VirtualNodeNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Indexer
   href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_Indexer_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
