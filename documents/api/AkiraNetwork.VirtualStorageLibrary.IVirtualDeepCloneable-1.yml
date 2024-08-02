@@ -20,14 +20,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IVirtualDeepCloneable
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Provides functionality to create deep clones of type T.
+  example: []
   syntax:
     content: public interface IVirtualDeepCloneable<T>
     typeParameters:
     - id: T
+      description: The type of the object to clone.
     content.vb: Public Interface IVirtualDeepCloneable(Of T)
   extensionMethods:
   - AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
@@ -52,17 +55,28 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 6
+    startLine: 20
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Creates a deep clone of the object.
+  example: []
   syntax:
     content: T DeepClone(bool recursive = false)
     parameters:
     - id: recursive
       type: System.Boolean
+      description: >-
+        Indicates whether to recursively clone nested objects. If true, a recursive
+
+        clone is performed; if false, only the object itself is cloned. This parameter
+
+        is only relevant for VirtualDirectory, and is ignored for VirtualItem{T} and
+
+        VirtualSymbolicLink.
     return:
       type: '{T}'
+      description: The cloned object.
     content.vb: Function DeepClone(recursive As Boolean = False) As T
   overload: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1.DeepClone*
   nameWithType.vb: IVirtualDeepCloneable(Of T).DeepClone(Boolean)

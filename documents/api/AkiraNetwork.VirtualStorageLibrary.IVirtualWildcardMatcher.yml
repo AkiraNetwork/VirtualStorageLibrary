@@ -24,10 +24,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IVirtualWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 9
+    startLine: 26
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Provides functionality for wildcard matching.
+  example: []
   syntax:
     content: public interface IVirtualWildcardMatcher
     content.vb: Public Interface IVirtualWildcardMatcher
@@ -51,15 +53,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 11
+    startLine: 35
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a dictionary of wildcards and their corresponding regex patterns.
+  example: []
   syntax:
     content: ReadOnlyDictionary<string, string> WildcardDictionary { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+      description: >-
+        A read-only dictionary containing wildcards as keys and their corresponding
+
+        regex patterns as values.
     content.vb: ReadOnly Property WildcardDictionary As ReadOnlyDictionary(Of String, String)
   overload: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.WildcardDictionary*
 - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Wildcards
@@ -80,15 +88,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 13
+    startLine: 43
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a collection of available wildcards.
+  example: []
   syntax:
     content: IEnumerable<string> Wildcards { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
+      description: An enumerable collection of strings representing the available wildcards.
     content.vb: ReadOnly Property Wildcards As IEnumerable(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Wildcards*
 - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Patterns
@@ -109,15 +120,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 15
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a collection of available patterns.
+  example: []
   syntax:
     content: IEnumerable<string> Patterns { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
+      description: An enumerable collection of strings representing the available patterns.
     content.vb: ReadOnly Property Patterns As IEnumerable(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Patterns*
 - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count
@@ -138,15 +152,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 17
+    startLine: 59
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of wildcards.
+  example: []
   syntax:
     content: int Count { get; }
     parameters: []
     return:
       type: System.Int32
+      description: An integer representing the number of wildcards available.
     content.vb: ReadOnly Property Count As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count*
 - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
@@ -167,19 +184,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 19
+    startLine: 67
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether the specified node name matches the specified pattern.
+  example: []
   syntax:
     content: bool PatternMatcher(string nodeName, string pattern)
     parameters:
     - id: nodeName
       type: System.String
+      description: The node name to check.
     - id: pattern
       type: System.String
+      description: The pattern to compare against.
     return:
       type: System.Boolean
+      description: True if the node name matches the pattern; otherwise, false.
     content.vb: Function PatternMatcher(nodeName As String, pattern As String) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher*
   nameWithType.vb: IVirtualWildcardMatcher.PatternMatcher(String, String)

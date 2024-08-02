@@ -67,12 +67,17 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  summary: Gets a dictionary of wildcards and their corresponding regex patterns.
   example: []
   syntax:
     content: public ReadOnlyDictionary<string, string> WildcardDictionary { get; }
     parameters: []
     return:
       type: System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
+      description: >-
+        A read-only dictionary containing wildcards as keys and their corresponding
+
+        regex patterns as values.
     content.vb: Public ReadOnly Property WildcardDictionary As ReadOnlyDictionary(Of String, String)
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary*
   implements:
@@ -99,12 +104,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  summary: Gets a collection of available wildcards.
   example: []
   syntax:
     content: public IEnumerable<string> Wildcards { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
+      description: An enumerable collection of strings representing the available wildcards.
     content.vb: Public ReadOnly Property Wildcards As IEnumerable(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards*
   implements:
@@ -131,12 +138,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  summary: Gets a collection of available patterns.
   example: []
   syntax:
     content: public IEnumerable<string> Patterns { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
+      description: An enumerable collection of strings representing the available patterns.
     content.vb: Public ReadOnly Property Patterns As IEnumerable(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns*
   implements:
@@ -163,12 +172,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  summary: Gets the number of wildcards.
   example: []
   syntax:
     content: public int Count { get; }
     parameters: []
     return:
       type: System.Int32
+      description: An integer representing the number of wildcards available.
     content.vb: Public ReadOnly Property Count As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count*
   implements:
@@ -195,16 +206,20 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  summary: Determines whether the specified node name matches the specified pattern.
   example: []
   syntax:
     content: public bool PatternMatcher(string nodeName, string pattern)
     parameters:
     - id: nodeName
       type: System.String
+      description: The node name to check.
     - id: pattern
       type: System.String
+      description: The pattern to compare against.
     return:
       type: System.Boolean
+      description: True if the node name matches the pattern; otherwise, false.
     content.vb: Public Function PatternMatcher(nodeName As String, pattern As String) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher*
   implements:
