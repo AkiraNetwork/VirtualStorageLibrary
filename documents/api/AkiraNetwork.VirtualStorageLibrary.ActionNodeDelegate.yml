@@ -19,21 +19,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ActionNodeDelegate
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
-    startLine: 4
+    startLine: 18
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: A delegate used to perform an action on a specific node during node traversal.
+  example: []
   syntax:
     content: public delegate bool ActionNodeDelegate(VirtualDirectory parentDirectory, VirtualNodeName nodeName, VirtualPath nodePath)
     parameters:
     - id: parentDirectory
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The parent directory of the target node.
     - id: nodeName
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the target node.
     - id: nodePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the target node.
     return:
       type: System.Boolean
+      description: Returns true to continue node traversal, or false to stop node traversal.
     content.vb: Public Delegate Function ActionNodeDelegate(parentDirectory As VirtualDirectory, nodeName As VirtualNodeName, nodePath As VirtualPath) As Boolean
   extensionMethods:
   - AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1

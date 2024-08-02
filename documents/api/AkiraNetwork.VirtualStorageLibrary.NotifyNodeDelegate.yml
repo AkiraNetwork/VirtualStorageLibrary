@@ -19,17 +19,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NotifyNodeDelegate
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
-    startLine: 2
+    startLine: 7
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: A delegate used to notify the status of a specific node during node traversal.
+  example: []
   syntax:
     content: public delegate void NotifyNodeDelegate(VirtualPath path, VirtualNode? node)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The virtual path of the node being notified.
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The instance of the node being notified.
     content.vb: Public Delegate Sub NotifyNodeDelegate(path As VirtualPath, node As VirtualNode)
   extensionMethods:
   - AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1

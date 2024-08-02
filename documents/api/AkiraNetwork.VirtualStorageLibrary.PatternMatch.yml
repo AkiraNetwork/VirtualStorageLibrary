@@ -19,19 +19,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatch
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
-    startLine: 6
+    startLine: 26
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: A delegate used to determine if a node name matches a pattern.
+  example: []
   syntax:
     content: public delegate bool PatternMatch(string nodeName, string pattern)
     parameters:
     - id: nodeName
       type: System.String
+      description: The name of the node to be matched.
     - id: pattern
       type: System.String
+      description: The pattern to match against.
     return:
       type: System.Boolean
+      description: True if the node name matches the pattern; otherwise, false.
     content.vb: Public Delegate Function PatternMatch(nodeName As String, pattern As String) As Boolean
   extensionMethods:
   - AkiraNetwork.VirtualStorageLibrary.PatternMatch.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
