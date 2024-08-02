@@ -24,10 +24,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents the conditions for creating a list of virtual nodes.
+  example: []
   syntax:
     content: public struct VirtualNodeListConditions
     content.vb: Public Structure VirtualNodeListConditions
@@ -58,15 +60,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Filter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 4
+    startLine: 15
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Specifies the filter criteria, determining which types of virtual nodes
+
+    to include.
+  example: []
   syntax:
     content: public VirtualNodeTypeFilter Filter { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: >-
+        The filter specifying the types of virtual nodes. The default value is
+
+        <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Property Filter As VirtualNodeTypeFilter
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.Filter*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.GroupCondition
@@ -87,15 +98,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 6
+    startLine: 25
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Specifies the grouping condition, determining how to group the virtual
+
+    nodes.
+  example: []
   syntax:
     content: public VirtualGroupCondition<VirtualNode, object>? GroupCondition { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object}
+      description: >-
+        The condition for grouping virtual nodes. The default value is <code>null</code>.
+
+        You can specify <code>null</code> if no grouping condition is needed.
     content.vb: Public Property GroupCondition As VirtualGroupCondition(Of VirtualNode, Object)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.GroupCondition*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.SortConditions
@@ -116,15 +136,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SortConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 8
+    startLine: 35
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Specifies the sorting conditions, determining the order in which the
+
+    virtual nodes are arranged.
+  example: []
   syntax:
     content: public List<VirtualSortCondition<VirtualNode>>? SortConditions { readonly get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}}
+      description: >-
+        A list of conditions for sorting the virtual nodes. The default value is
+
+        <code>null</code>. You can specify <code>null</code> if no sorting condition is needed.
     content.vb: Public Property SortConditions As List(Of VirtualSortCondition(Of VirtualNode))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.SortConditions*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor
@@ -145,10 +174,15 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 10
+    startLine: 41
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions" data-throw-if-not-resolved="false"></xref>
+
+    class with default conditions.
+  example: []
   syntax:
     content: public VirtualNodeListConditions()
     content.vb: Public Sub New()
@@ -174,19 +208,31 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 17
+    startLine: 57
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions" data-throw-if-not-resolved="false"></xref>
+
+    class with the specified conditions.
+  example: []
   syntax:
     content: public VirtualNodeListConditions(VirtualNodeTypeFilter filter, VirtualGroupCondition<VirtualNode, object>? groupCondition, List<VirtualSortCondition<VirtualNode>>? sortConditions)
     parameters:
     - id: filter
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The filter criteria for the virtual nodes.
     - id: groupCondition
       type: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object}
+      description: >-
+        The grouping condition for the virtual
+            nodes.
     - id: sortConditions
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}}
+      description: >-
+        The sorting conditions for the virtual
+            nodes.
     content.vb: Public Sub New(filter As VirtualNodeTypeFilter, groupCondition As VirtualGroupCondition(Of VirtualNode, Object), sortConditions As List(Of VirtualSortCondition(Of VirtualNode)))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor*
   nameWithType.vb: VirtualNodeListConditions.New(VirtualNodeTypeFilter, VirtualGroupCondition(Of VirtualNode, Object), List(Of VirtualSortCondition(Of VirtualNode)))
@@ -541,6 +587,12 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_All
+  name: All
+  nameWithType: VirtualNodeTypeFilter.All
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.All
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.Filter*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.Filter
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_Filter
@@ -750,6 +802,13 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html
+  name: VirtualNodeListConditions
+  nameWithType: VirtualNodeListConditions
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions__ctor

@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Struct VirtualNodeListConditions | AkiraNetwork ">
     
-    
+    <meta name="description" content="Represents the conditions for creating a list of virtual nodes.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,8 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions" class="text-break">Struct VirtualNodeListConditions</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Represents the conditions for creating a list of virtual nodes.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -114,7 +115,9 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions__ctor" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor">VirtualNodeListConditions()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html">VirtualNodeListConditions</a>
+class with default conditions.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -122,7 +125,9 @@
   </div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition_AkiraNetwork_VirtualStorageLibrary_VirtualNode___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})">VirtualNodeListConditions(VirtualNodeTypeFilter, VirtualGroupCondition&lt;VirtualNode, object&gt;?, List&lt;VirtualSortCondition&lt;VirtualNode&gt;&gt;?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html">VirtualNodeListConditions</a>
+class with the specified conditions.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -141,17 +146,22 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">filter</span></td>
-        <td></td>
+        <td><p>The filter criteria for the virtual nodes.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html">VirtualGroupCondition</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
         <td><span class="parametername">groupCondition</span></td>
-        <td></td>
+        <td><p>The grouping condition for the virtual
+nodes.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html">VirtualSortCondition</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;&gt;</td>
         <td><span class="parametername">sortConditions</span></td>
-        <td></td>
+        <td><p>The sorting conditions for the virtual
+nodes.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -159,7 +169,9 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_Filter_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.Filter*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_Filter" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.Filter">Filter</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Specifies the filter criteria, determining which types of virtual nodes
+to include.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -176,13 +188,17 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
-        <td></td>
+        <td><p>The filter specifying the types of virtual nodes. The default value is
+<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_All">All</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_GroupCondition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.GroupCondition*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_GroupCondition" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.GroupCondition">GroupCondition</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Specifies the grouping condition, determining how to group the virtual
+nodes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -199,13 +215,17 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html">VirtualGroupCondition</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
-        <td></td>
+        <td><p>The condition for grouping virtual nodes. The default value is <code>null</code>.
+You can specify <code>null</code> if no grouping condition is needed.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_SortConditions_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.SortConditions*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_SortConditions" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.SortConditions">SortConditions</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Specifies the sorting conditions, determining the order in which the
+virtual nodes are arranged.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -222,7 +242,9 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html">VirtualSortCondition</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;&gt;</td>
-        <td></td>
+        <td><p>A list of conditions for sorting the virtual nodes. The default value is
+<code>null</code>. You can specify <code>null</code> if no sorting condition is needed.</p>
+</td>
       </tr>
     </tbody>
   </table>
