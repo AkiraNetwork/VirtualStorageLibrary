@@ -69,19 +69,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 7
+    startLine: 14
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Represents the conditions for grouping data, holding the property to group by and the order (ascending or descending).
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition%602" data-throw-if-not-resolved="false"></xref> class with the specified grouping property and order.
   example: []
   syntax:
     content: public VirtualGroupCondition(Expression<Func<T, TKey>> groupBy, bool ascending = true)
     parameters:
     - id: groupBy
       type: System.Linq.Expressions.Expression{System.Func{{T},{TKey}}}
+      description: The property to group by.
     - id: ascending
       type: System.Boolean
+      description: A value indicating whether the grouping order is ascending.
     content.vb: Public Sub New(groupBy As Expression(Of Func(Of T, TKey)), ascending As Boolean = True)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2.#ctor*
   nameWithType.vb: VirtualGroupCondition(Of T, TKey).New(Expression(Of Func(Of T, TKey)), Boolean)
@@ -105,7 +107,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupBy
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 12
+    startLine: 26
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -116,6 +118,7 @@ items:
     parameters: []
     return:
       type: System.Linq.Expressions.Expression{System.Func{{T},{TKey}}}
+      description: An expression that specifies the property to use for grouping.
     content.vb: Public Property GroupBy As Expression(Of Func(Of T, TKey))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2.GroupBy*
   nameWithType.vb: VirtualGroupCondition(Of T, TKey).GroupBy
@@ -138,20 +141,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Ascending
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 18
+    startLine: 35
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
   summary: >-
     Gets or sets a value indicating whether the grouping order is ascending.
 
-    True for ascending, false for descending.
+    True if the order is ascending; otherwise, false.
   example: []
   syntax:
     content: public bool Ascending { get; set; }
     parameters: []
     return:
       type: System.Boolean
+      description: A boolean value indicating whether the grouping order is ascending.
     content.vb: Public Property Ascending As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2.Ascending*
   nameWithType.vb: VirtualGroupCondition(Of T, TKey).Ascending
@@ -553,6 +557,37 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html
+  name: VirtualGroupCondition<T, TKey>
+  nameWithType: VirtualGroupCondition<T, TKey>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition<T, TKey>
+  nameWithType.vb: VirtualGroupCondition(Of T, TKey)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition(Of T, TKey)
+  name.vb: VirtualGroupCondition(Of T, TKey)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+    name: VirtualGroupCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TKey
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
+    name: VirtualGroupCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TKey
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html#AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition_2__ctor_System_Linq_Expressions_Expression_System_Func__0__1___System_Boolean_
