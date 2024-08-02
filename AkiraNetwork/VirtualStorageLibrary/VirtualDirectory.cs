@@ -4,7 +4,17 @@ using System.Runtime.CompilerServices;
 namespace AkiraNetwork.VirtualStorageLibrary
 {
     /// <summary>
-    /// Represents a virtual directory. The directory can contain nodes.
+    /// Represents a virtual directory. A virtual directory functions as a container
+    /// for other nodes. It can contain <see cref="VirtualItem{T}"/>, 
+    /// <see cref="VirtualDirectory"/>, and <see cref="VirtualSymbolicLink"/>, 
+    /// providing a centralized way to manage these entities.
+    ///
+    /// This class supports operations such as adding, removing, updating, 
+    /// checking the existence of, and enumerating nodes within the directory. 
+    /// It serves as a fundamental component for efficiently managing the structure 
+    /// of the virtual storage.
+    ///
+    /// Additionally, nodes can be enumerated according to the specified display conditions.
     /// </summary>
     public class VirtualDirectory : VirtualNode, IEnumerable<VirtualNode>
     {

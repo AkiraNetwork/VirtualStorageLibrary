@@ -88,7 +88,15 @@ Classes
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html">VirtualCycleDetector</a></h4>
       <section></section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></h4>
-      <section><p>Represents a virtual directory. The directory can contain nodes.</p>
+      <section><p>Represents a virtual directory. A virtual directory functions as a container
+for other nodes. It can contain <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a>,
+<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a>, and <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a>,
+providing a centralized way to manage these entities.</p>
+<p>This class supports operations such as adding, removing, updating,
+checking the existence of, and enumerating nodes within the directory.
+It serves as a fundamental component for efficiently managing the structure
+of the virtual storage.</p>
+<p>Additionally, nodes can be enumerated according to the specified display conditions.</p>
 </section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html">VirtualDirectoryAdapter&lt;T&gt;</a></h4>
       <section></section>
