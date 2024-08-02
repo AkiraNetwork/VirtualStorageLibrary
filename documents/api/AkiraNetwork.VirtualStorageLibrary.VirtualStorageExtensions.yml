@@ -21,10 +21,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualStorageExtensions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Provides extension methods for various operations on collections in the Virtual Storage Library.
+  example: []
   syntax:
     content: public static class VirtualStorageExtensions
     content.vb: Public Module VirtualStorageExtensions
@@ -57,23 +59,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupAndSort
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 4
+    startLine: 19
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Groups and sorts the elements of the source sequence based on the specified conditions.
+  example: []
   syntax:
     content: public static IEnumerable<T> GroupAndSort<T>(this IEnumerable<T> source, VirtualGroupCondition<T, object>? groupCondition = null, List<VirtualSortCondition<T>>? sortConditions = null)
     parameters:
     - id: source
       type: System.Collections.Generic.IEnumerable{{T}}
+      description: The sequence of elements to group and sort.
     - id: groupCondition
       type: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{{T},System.Object}
+      description: The condition that defines how to group the elements. If null, no grouping is applied.
     - id: sortConditions
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{{T}}}
+      description: A list of conditions that define the sort order. If null or empty, no sorting is applied.
     typeParameters:
     - id: T
+      description: The type of elements in the source sequence.
     return:
       type: System.Collections.Generic.IEnumerable{{T}}
+      description: An <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref> containing the grouped and sorted elements.
     content.vb: Public Shared Function GroupAndSort(Of T)(source As IEnumerable(Of T), groupCondition As VirtualGroupCondition(Of T, Object) = Nothing, sortConditions As List(Of VirtualSortCondition(Of T)) = Nothing) As IEnumerable(Of T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort*
   nameWithType.vb: VirtualStorageExtensions.GroupAndSort(Of T)(IEnumerable(Of T), VirtualGroupCondition(Of T, Object), List(Of VirtualSortCondition(Of T)))
@@ -98,21 +107,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ApplySortConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 27
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Applies the specified sort conditions to the elements of the source sequence.
+  example: []
   syntax:
     content: public static IEnumerable<T> ApplySortConditions<T>(this IEnumerable<T> source, List<VirtualSortCondition<T>>? sortConditions = null)
     parameters:
     - id: source
       type: System.Collections.Generic.IEnumerable{{T}}
+      description: The sequence of elements to sort.
     - id: sortConditions
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{{T}}}
+      description: A list of conditions that define the sort order. If null or empty, no sorting is applied.
     typeParameters:
     - id: T
+      description: The type of elements in the source sequence.
     return:
       type: System.Collections.Generic.IEnumerable{{T}}
+      description: An <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref> containing the sorted elements.
     content.vb: Public Shared Function ApplySortConditions(Of T)(source As IEnumerable(Of T), sortConditions As List(Of VirtualSortCondition(Of T)) = Nothing) As IEnumerable(Of T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.ApplySortConditions*
   nameWithType.vb: VirtualStorageExtensions.ApplySortConditions(Of T)(IEnumerable(Of T), List(Of VirtualSortCondition(Of T)))
@@ -378,6 +393,34 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.GroupAndSort
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageExtensions_GroupAndSort__1_System_Collections_Generic_IEnumerable___0__AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition___0_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition___0___
@@ -492,34 +535,6 @@ references:
   - name: " "
   - name: T
   - name: )
-  - name: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic

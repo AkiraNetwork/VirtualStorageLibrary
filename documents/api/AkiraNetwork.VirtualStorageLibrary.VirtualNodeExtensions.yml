@@ -20,10 +20,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeExtensions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 62
+    startLine: 89
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Provides extension methods for operations on virtual nodes in the Virtual Storage Library.
+  example: []
   syntax:
     content: public static class VirtualNodeExtensions
     content.vb: Public Module VirtualNodeExtensions
@@ -56,17 +58,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolveNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 64
+    startLine: 99
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Resolves the type of the specified virtual node. If the node is a symbolic link, 
+
+    returns the type of the target node. Otherwise, returns the type of the node itself.
+  example: []
   syntax:
     content: public static VirtualNodeType ResolveNodeType(this VirtualNode node)
     parameters:
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The virtual node to resolve the type for.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+      description: The type of the node or, if the node is a symbolic link, the type of the target node.
     content.vb: Public Shared Function ResolveNodeType(node As VirtualNode) As VirtualNodeType
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeExtensions.ResolveNodeType*
 references:
