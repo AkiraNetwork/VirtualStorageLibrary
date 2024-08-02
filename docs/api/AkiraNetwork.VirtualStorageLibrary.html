@@ -97,12 +97,22 @@ Classes
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html">VirtualGroupCondition&lt;T, TKey&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem.html">VirtualItem</a></h4>
-      <section><p>Represents an item with data in the virtual storage.</p>
+      <section><p>Represents a virtual item. This class serves as the base class for the
+<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> type and is used solely for type checking of
+<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem.html">VirtualItem</a>.</p>
 </section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html">VirtualItemAdapter&lt;T&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a></h4>
-      <section><p>Represents an item with data of a user-defined type T in the virtual storage.</p>
+      <section><p>Represents a virtual item. A virtual item is an object used to manage
+item data within the virtual storage. It holds item data based on the
+user-defined type T, facilitating the management and manipulation of
+various types of content.</p>
+<p>Virtual items ensure that the actual data is distinctly present. If the
+user-defined type T implements the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html">IVirtualDeepCloneable&lt;T&gt;</a>
+interface, a deep clone of the item data is created, ensuring separate
+instances. If this interface is not implemented, shallow copies may result
+in multiple virtual items referencing the same instance of the item data.</p>
 </section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></h4>
       <section><p>Represents an abstract class for nodes.</p>
@@ -128,7 +138,13 @@ Classes
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html">VirtualStorage&lt;T&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></h4>
-      <section></section>
+      <section><p>Represents a virtual symbolic link. A virtual symbolic link provides a virtual reference
+to other nodes (directories, items, or other symbolic links). This class represents
+symbolic links within the virtual storage library and manages paths to other nodes.</p>
+<p>The virtual symbolic link supports the concept of NULL links. When the TargetPath is null,
+the link resolution is not performed during path traversal. This feature can be useful when
+the target is undefined or dynamically determined.</p>
+</section>
       <h4><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html">VirtualSymbolicLinkAdapter&lt;T&gt;</a></h4>
       <section></section>
     <h3 id="structs">

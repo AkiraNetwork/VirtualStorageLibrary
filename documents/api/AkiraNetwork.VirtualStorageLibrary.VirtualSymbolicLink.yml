@@ -31,10 +31,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 4
+    startLine: 13
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Represents a virtual symbolic link. A virtual symbolic link provides a virtual reference 
+
+    to other nodes (directories, items, or other symbolic links). This class represents 
+
+    symbolic links within the virtual storage library and manages paths to other nodes.
+
+
+    The virtual symbolic link supports the concept of NULL links. When the TargetPath is null, 
+
+    the link resolution is not performed during path traversal. This feature can be useful when 
+
+    the target is undefined or dynamically determined.
+  example: []
   syntax:
     content: 'public class VirtualSymbolicLink : VirtualNode, IVirtualDeepCloneable<VirtualNode>'
     content.vb: Public Class VirtualSymbolicLink Inherits VirtualNode Implements IVirtualDeepCloneable(Of VirtualNode)
@@ -76,10 +90,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TargetPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 8
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the target path of the symbolic link.
+  example: []
   syntax:
     content: public VirtualPath? TargetPath { get; set; }
     parameters: []
@@ -105,11 +121,11 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 14
+    startLine: 32
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the node type of node.
+  summary: Gets the type of the node. This class always returns SymbolicLink.
   example: []
   syntax:
     content: public override VirtualNodeType NodeType { get; }
@@ -137,10 +153,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TargetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 16
+    startLine: 37
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the type of the target node of the symbolic link.
+  example: []
   syntax:
     content: public VirtualNodeType TargetNodeType { get; set; }
     parameters: []
@@ -166,10 +184,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 18
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> class. The node name is automatically generated using the VirtualNodeName.GenerateNodeName method.
+  example: []
   syntax:
     content: public VirtualSymbolicLink()
     content.vb: Public Sub New()
@@ -195,15 +215,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 23
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> class with the specified name.
+  example: []
   syntax:
     content: public VirtualSymbolicLink(VirtualNodeName name)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the symbolic link.
     content.vb: Public Sub New(name As VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
   nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName)
@@ -227,17 +250,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 27
+    startLine: 60
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> class with the specified name and target path.
+  example: []
   syntax:
     content: public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the symbolic link.
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path of the symbolic link.
     content.vb: Public Sub New(name As VirtualNodeName, targetPath As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
   nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName, VirtualPath)
@@ -261,21 +288,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 32
+    startLine: 72
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> class with the specified name, target path, creation date, and update date.
+  example: []
   syntax:
     content: public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath, DateTime createdDate, DateTime updatedDate)
     parameters:
     - id: name
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the symbolic link.
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path of the symbolic link.
     - id: createdDate
       type: System.DateTime
+      description: The creation date.
     - id: updatedDate
       type: System.DateTime
+      description: The update date.
     content.vb: Public Sub New(name As VirtualNodeName, targetPath As VirtualPath, createdDate As Date, updatedDate As Date)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
   nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName, VirtualPath, Date, Date)
@@ -299,15 +332,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 38
+    startLine: 81
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Performs an implicit conversion from a tuple to <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static implicit operator VirtualSymbolicLink((VirtualNodeName nodeName, VirtualPath? targetPath) tuple)
     parameters:
     - id: tuple
       type: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+      description: The tuple to convert.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
     content.vb: Public Shared Widening Operator CType(tuple As (nodeName As VirtualNodeName, targetPath As VirtualPath)) As VirtualSymbolicLink
@@ -333,15 +369,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 44
+    startLine: 90
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Performs an implicit conversion from <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> to <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref>. The node name is automatically generated using the VirtualNodeName.GenerateNodeName method.
+  example: []
   syntax:
     content: public static implicit operator VirtualSymbolicLink(VirtualPath? targetPath)
     parameters:
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path to convert.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
     content.vb: Public Shared Widening Operator CType(targetPath As VirtualPath) As VirtualSymbolicLink
@@ -367,17 +406,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 51
+    startLine: 101
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns a string that represents the current object.
+  summary: Returns a string representation of the symbolic link.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: A string that represents the current object.
+      description: A string representation of the symbolic link.
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString*
@@ -399,33 +438,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 53
+    startLine: 108
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: >-
-    Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate 
-
-    should not be cloned as they are set to the current date and time at the time
-
-    of cloning.
+  summary: Creates a deep clone of the symbolic link.
   example: []
   syntax:
     content: public override VirtualNode DeepClone(bool recursive = false)
     parameters:
     - id: recursive
       type: System.Boolean
-      description: >-
-        When true, all child nodes are also cloned, creating a
-
-        deep copy of the entire tree. The default is false.
-
-        The CreatedDate and UpdatedDate properties are not preserved.
-
-        They are set to the current date and time at the moment of instantiation or cloning.
+      description: If true, all links are recursively cloned.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-      description: Cloned <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> instance
+      description: A deep clone of the symbolic link.
     content.vb: Public Overrides Function DeepClone(recursive As Boolean = False) As VirtualNode
   overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone*
@@ -450,21 +477,25 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 58
+    startLine: 118
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Updates the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref>.
+  summary: Updates the current symbolic link with the data from the specified node.
   example: []
   syntax:
     content: public override void Update(VirtualNode node)
     parameters:
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-      description: Value to update
+      description: The node to use for the update.
     content.vb: Public Overrides Sub Update(node As VirtualNode)
   overridden: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the specified node is not a VirtualSymbolicLink.
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -1004,6 +1035,13 @@ references:
   name: TargetNodeType
   nameWithType: VirtualSymbolicLink.TargetNodeType
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor
@@ -1096,13 +1134,6 @@ references:
     name: VirtualPath
     href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
   - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
-  name: VirtualSymbolicLink
-  nameWithType: VirtualSymbolicLink
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
 - uid: System.ValueTuple`2
   commentId: T:System.ValueTuple`2
   name: (T1, T2)
@@ -1211,6 +1242,13 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNode.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode

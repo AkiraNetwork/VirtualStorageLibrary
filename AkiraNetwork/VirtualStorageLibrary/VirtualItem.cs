@@ -3,7 +3,9 @@
 namespace AkiraNetwork.VirtualStorageLibrary
 {
     /// <summary>
-    /// Represents an item with data in the virtual storage.
+    /// Represents a virtual item. This class serves as the base class for the 
+    /// <see cref="VirtualItem{T}"/> type and is used solely for type checking of 
+    /// <see cref="VirtualItem"/>.
     /// </summary>
     public abstract class VirtualItem : VirtualNode
     {
@@ -39,7 +41,16 @@ namespace AkiraNetwork.VirtualStorageLibrary
     }
 
     /// <summary>
-    /// Represents an item with data of a user-defined type T in the virtual storage.
+    /// Represents a virtual item. A virtual item is an object used to manage 
+    /// item data within the virtual storage. It holds item data based on the 
+    /// user-defined type T, facilitating the management and manipulation of 
+    /// various types of content.
+    ///
+    /// Virtual items ensure that the actual data is distinctly present. If the 
+    /// user-defined type T implements the <see cref="IVirtualDeepCloneable{T}"/> 
+    /// interface, a deep clone of the item data is created, ensuring separate 
+    /// instances. If this interface is not implemented, shallow copies may result 
+    /// in multiple virtual items referencing the same instance of the item data.
     /// </summary>
     /// <typeparam name="T">
     /// The user-defined type that can be freely specified by the user of this library.

@@ -35,11 +35,29 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 46
+    startLine: 57
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Represents an item with data of a user-defined type T in the virtual storage.
+  summary: >-
+    Represents a virtual item. A virtual item is an object used to manage 
+
+    item data within the virtual storage. It holds item data based on the 
+
+    user-defined type T, facilitating the management and manipulation of 
+
+    various types of content.
+
+
+    Virtual items ensure that the actual data is distinctly present. If the 
+
+    user-defined type T implements the <xref href="AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable%601" data-throw-if-not-resolved="false"></xref> 
+
+    interface, a deep clone of the item data is created, ensuring separate 
+
+    instances. If this interface is not implemented, shallow copies may result 
+
+    in multiple virtual items referencing the same instance of the item data.
   example: []
   syntax:
     content: 'public class VirtualItem<T> : VirtualItem, IVirtualDeepCloneable<VirtualNode>, IDisposable'
@@ -90,7 +108,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemData
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 57
+    startLine: 68
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -123,7 +141,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 72
+    startLine: 83
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -157,7 +175,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 78
+    startLine: 89
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -191,7 +209,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 89
+    startLine: 100
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -226,7 +244,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 102
+    startLine: 113
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -264,7 +282,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 116
+    startLine: 127
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -305,7 +323,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 131
+    startLine: 142
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -349,7 +367,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 142
+    startLine: 153
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -387,7 +405,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 155
+    startLine: 166
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -428,7 +446,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 167
+    startLine: 178
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -466,7 +484,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 176
+    startLine: 187
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -500,7 +518,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 183
+    startLine: 194
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -539,7 +557,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 199
+    startLine: 210
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -571,7 +589,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 212
+    startLine: 223
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -609,7 +627,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Finalize
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 230
+    startLine: 241
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -640,7 +658,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 242
+    startLine: 253
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -662,6 +680,31 @@ items:
   nameWithType.vb: VirtualItem(Of T).Update(VirtualNode)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T).Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
 references:
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  name: IVirtualDeepCloneable<T>
+  nameWithType: IVirtualDeepCloneable<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>
+  nameWithType.vb: IVirtualDeepCloneable(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T)
+  name.vb: IVirtualDeepCloneable(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
+    name: IVirtualDeepCloneable
+    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
   href: AkiraNetwork.html
@@ -1068,31 +1111,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
-  href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
-  name: IVirtualDeepCloneable<T>
-  nameWithType: IVirtualDeepCloneable<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable<T>
-  nameWithType.vb: IVirtualDeepCloneable(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable(Of T)
-  name.vb: IVirtualDeepCloneable(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
-    name: IVirtualDeepCloneable
-    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable`1
-    name: IVirtualDeepCloneable
-    href: AkiraNetwork.VirtualStorageLibrary.IVirtualDeepCloneable-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
   href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_

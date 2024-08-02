@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class VirtualSymbolicLink | AkiraNetwork ">
     
-    
+    <meta name="description" content="Represents a virtual symbolic link. A virtual symbolic link provides a virtual reference to other nodes (directories, items, or other symbolic links). This class represents symbolic links within the virtual storage library and manages paths to other nodes. The virtual symbolic link supports the concept of NULL links. When the TargetPath is null, the link resolution is not performed during path traversal. This feature can be useful when the target is undefined or dynamically determined.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,13 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" class="text-break">Class VirtualSymbolicLink</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Represents a virtual symbolic link. A virtual symbolic link provides a virtual reference
+to other nodes (directories, items, or other symbolic links). This class represents
+symbolic links within the virtual storage library and manages paths to other nodes.</p>
+<p>The virtual symbolic link supports the concept of NULL links. When the TargetPath is null,
+the link resolution is not performed during path traversal. This feature can be useful when
+the target is undefined or dynamically determined.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -142,11 +148,12 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L19">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L43">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor">VirtualSymbolicLink()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a> class. The node name is automatically generated using the VirtualNodeName.GenerateNodeName method.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -157,11 +164,12 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.%23ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L24">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L52">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">VirtualSymbolicLink(VirtualNodeName)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a> class with the specified name.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -180,7 +188,8 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">name</span></td>
-        <td></td>
+        <td><p>The name of the symbolic link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -189,11 +198,12 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.%23ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L28">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L61">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">VirtualSymbolicLink(VirtualNodeName, VirtualPath?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a> class with the specified name and target path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -212,12 +222,14 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">name</span></td>
-        <td></td>
+        <td><p>The name of the symbolic link.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">targetPath</span></td>
-        <td></td>
+        <td><p>The target path of the symbolic link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -226,11 +238,12 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_DateTime_System_DateTime_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.%23ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath%2CSystem.DateTime%2CSystem.DateTime)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L33">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L73">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_DateTime_System_DateTime_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime,System.DateTime)">VirtualSymbolicLink(VirtualNodeName, VirtualPath?, DateTime, DateTime)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a> class with the specified name, target path, creation date, and update date.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -249,22 +262,26 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">name</span></td>
-        <td></td>
+        <td><p>The name of the symbolic link.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">targetPath</span></td>
-        <td></td>
+        <td><p>The target path of the symbolic link.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td><span class="parametername">createdDate</span></td>
-        <td></td>
+        <td><p>The creation date.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td><span class="parametername">updatedDate</span></td>
-        <td></td>
+        <td><p>The update date.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -275,11 +292,11 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_NodeType.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L15">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L33">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_NodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_NodeType" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.NodeType">NodeType</h4>
-  <div class="markdown level1 summary"><p>Gets the node type of node.</p>
+  <div class="markdown level1 summary"><p>Gets the type of the node. This class always returns SymbolicLink.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -308,11 +325,12 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetNodeType.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L17">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L38">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetNodeType" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetNodeType">TargetNodeType</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the type of the target node of the symbolic link.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -338,11 +356,12 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetPath.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L9">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L24">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_TargetPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath">TargetPath</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the target path of the symbolic link.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -370,13 +389,11 @@
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_DeepClone_System_Boolean_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L54">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L109">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_DeepClone_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_DeepClone_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.DeepClone(System.Boolean)">DeepClone(bool)</h4>
-  <div class="markdown level1 summary"><p>Creates a deep clone of the entity. However, the CreatedDate and UpdatedDate
-should not be cloned as they are set to the current date and time at the time
-of cloning.</p>
+  <div class="markdown level1 summary"><p>Creates a deep clone of the symbolic link.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -396,10 +413,7 @@ of cloning.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td><p>When true, all child nodes are also cloned, creating a
-deep copy of the entire tree. The default is false.
-The CreatedDate and UpdatedDate properties are not preserved.
-They are set to the current date and time at the moment of instantiation or cloning.</p>
+        <td><p>If true, all links are recursively cloned.</p>
 </td>
       </tr>
     </tbody>
@@ -415,7 +429,7 @@ They are set to the current date and time at the moment of instantiation or clon
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
-        <td><p>Cloned <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a> instance</p>
+        <td><p>A deep clone of the symbolic link.</p>
 </td>
       </tr>
     </tbody>
@@ -427,11 +441,11 @@ They are set to the current date and time at the moment of instantiation or clon
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_ToString.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L52">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L102">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_ToString_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_ToString" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString">ToString()</h4>
-  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+  <div class="markdown level1 summary"><p>Returns a string representation of the symbolic link.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -449,7 +463,7 @@ They are set to the current date and time at the moment of instantiation or clon
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>A string that represents the current object.</p>
+        <td><p>A string representation of the symbolic link.</p>
 </td>
       </tr>
     </tbody>
@@ -461,11 +475,11 @@ They are set to the current date and time at the moment of instantiation or clon
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L59">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L119">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_Update_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)">Update(VirtualNode)</h4>
-  <div class="markdown level1 summary"><p>Updates the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>.</p>
+  <div class="markdown level1 summary"><p>Updates the current symbolic link with the data from the specified node.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -485,13 +499,29 @@ They are set to the current date and time at the moment of instantiation or clon
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
         <td><span class="parametername">node</span></td>
-        <td><p>Value to update</p>
+        <td><p>The node to use for the update.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_">VirtualNode.Update(VirtualNode)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown if the specified node is not a VirtualSymbolicLink.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="operators">Operators
 </h3>
   <span class="small pull-right mobile-hide">
@@ -499,11 +529,12 @@ They are set to the current date and time at the moment of instantiation or clon
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualPath__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L45">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L91">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualPath__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink">implicit operator VirtualSymbolicLink(VirtualPath?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Performs an implicit conversion from <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> to <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a>. The node name is automatically generated using the VirtualNodeName.GenerateNodeName method.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -522,7 +553,8 @@ They are set to the current date and time at the moment of instantiation or clon
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">targetPath</span></td>
-        <td></td>
+        <td><p>The target path to convert.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -546,11 +578,12 @@ They are set to the current date and time at the moment of instantiation or clon
     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_System_ValueTuple_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath___AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple%7BAkiraNetwork.VirtualStorageLibrary.VirtualNodeName%2CAkiraNetwork.VirtualStorageLibrary.VirtualPath%7D)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L39">View Source</a>
+    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L82">View Source</a>
   </span>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_System_ValueTuple_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath___AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink">implicit operator VirtualSymbolicLink((VirtualNodeName nodeName, VirtualPath? targetPath))</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Performs an implicit conversion from a tuple to <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -569,7 +602,8 @@ They are set to the current date and time at the moment of instantiation or clon
       <tr>
         <td>(<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,akiranetwork.virtualstoragelibrary.virtualpath-.nodename">nodeName</a>, <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-akiranetwork.virtualstoragelibrary.virtualnodename,akiranetwork.virtualstoragelibrary.virtualpath-.targetpath">targetPath</a>)</td>
         <td><span class="parametername">tuple</span></td>
-        <td></td>
+        <td><p>The tuple to convert.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -611,7 +645,7 @@ They are set to the current date and time at the moment of instantiation or clon
                     <a href="https://github.com/shimodateakira/VirtualStorageLibrary/new/docs/issue-138-initial/apiSpec/new?filename=AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink.md&amp;value=---%0Auid%3A%20AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L5" class="contribution-link">View Source</a>
+                    <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/docs/issue-138-initial/AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
