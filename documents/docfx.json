@@ -43,7 +43,8 @@
       "_appName": "AkiraNetwork",
       "_appTitle": "AkiraNetwork",
       "_enableSearch": true,
-      "pdf": true
+      "pdf": true,
+      "_disableContribution": true
     }
   }
 }
