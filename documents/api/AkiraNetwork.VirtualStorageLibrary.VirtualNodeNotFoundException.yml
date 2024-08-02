@@ -22,10 +22,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeNotFoundException
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 11
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: The exception that is thrown when a node is not found in the virtual storage.
+  example: []
   syntax:
     content: 'public class VirtualNodeNotFoundException : VirtualException, ISerializable'
     content.vb: Public Class VirtualNodeNotFoundException Inherits VirtualException Implements ISerializable
@@ -73,10 +75,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 13
+    startLine: 34
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualNodeNotFoundException()
     content.vb: Public Sub New()
@@ -102,15 +106,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 15
+    startLine: 40
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException" data-throw-if-not-resolved="false"></xref> class with a specified error message.
+  example: []
   syntax:
     content: public VirtualNodeNotFoundException(string message)
     parameters:
     - id: message
       type: System.String
+      description: The error message.
     content.vb: Public Sub New(message As String)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor*
   nameWithType.vb: VirtualNodeNotFoundException.New(String)
@@ -134,17 +141,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 17
+    startLine: 47
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException" data-throw-if-not-resolved="false"></xref> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+  example: []
   syntax:
     content: public VirtualNodeNotFoundException(string message, Exception innerException)
     parameters:
     - id: message
       type: System.String
+      description: The error message.
     - id: innerException
       type: System.Exception
+      description: The exception that is the cause of this exception.
     content.vb: Public Sub New(message As String, innerException As Exception)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor*
   nameWithType.vb: VirtualNodeNotFoundException.New(String, Exception)
@@ -669,6 +680,12 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  name: VirtualNodeNotFoundException
+  nameWithType: VirtualNodeNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeNotFoundException__ctor

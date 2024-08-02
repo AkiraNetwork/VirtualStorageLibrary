@@ -22,10 +22,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualException
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: The base class for exceptions that occur within the virtual storage library.
+  example: []
   syntax:
     content: 'public abstract class VirtualException : Exception, ISerializable'
     content.vb: Public MustInherit Class VirtualException Inherits Exception Implements ISerializable
@@ -74,10 +76,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 4
+    startLine: 10
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualException" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualException()
     content.vb: Public Sub New()
@@ -103,15 +107,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 6
+    startLine: 16
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualException" data-throw-if-not-resolved="false"></xref> class with a specified error message.
+  example: []
   syntax:
     content: public VirtualException(string message)
     parameters:
     - id: message
       type: System.String
+      description: The error message.
     content.vb: Public Sub New(message As String)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor*
   nameWithType.vb: VirtualException.New(String)
@@ -135,17 +142,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 8
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualException" data-throw-if-not-resolved="false"></xref> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+  example: []
   syntax:
     content: public VirtualException(string message, Exception innerException)
     parameters:
     - id: message
       type: System.String
+      description: The error message.
     - id: innerException
       type: System.Exception
+      description: The exception that is the cause of this exception.
     content.vb: Public Sub New(message As String, innerException As Exception)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor*
   nameWithType.vb: VirtualException.New(String, Exception)
@@ -663,6 +674,13 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualException
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualException.html
+  name: VirtualException
+  nameWithType: VirtualException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualException.html#AkiraNetwork_VirtualStorageLibrary_VirtualException__ctor
