@@ -22,15 +22,19 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualGroupCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 2
+    startLine: 7
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents the conditions for grouping data, holding the property to group by and the order (ascending or descending).
+  example: []
   syntax:
     content: public class VirtualGroupCondition<T, TKey>
     typeParameters:
     - id: T
+      description: The type of the entity to be grouped.
     - id: TKey
+      description: The type of the key used for grouping.
     content.vb: Public Class VirtualGroupCondition(Of T, TKey)
   inheritance:
   - System.Object
@@ -65,10 +69,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 2
+    startLine: 7
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents the conditions for grouping data, holding the property to group by and the order (ascending or descending).
+  example: []
   syntax:
     content: public VirtualGroupCondition(Expression<Func<T, TKey>> groupBy, bool ascending = true)
     parameters:
@@ -99,10 +105,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupBy
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 4
+    startLine: 12
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the property used for grouping.
+  example: []
   syntax:
     content: public Expression<Func<T, TKey>> GroupBy { get; set; }
     parameters: []
@@ -130,10 +138,15 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Ascending
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 6
+    startLine: 18
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets or sets a value indicating whether the grouping order is ascending.
+
+    True for ascending, false for descending.
+  example: []
   syntax:
     content: public bool Ascending { get; set; }
     parameters: []
