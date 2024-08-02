@@ -29,9 +29,9 @@ items:
   summary: >-
     A structure representing a unique identifier within the virtual storage library.
 
-    This identifier is based on a randomly generated UUID version 4 (UUIDv4). UUIDv4 is a 128-bit value
+    This identifier is based on a randomly generated UUID version 4 (UUIDv4). UUIDv4
 
-    that ensures high uniqueness and has strong cryptographic properties.
+    is a 128-bit value that ensures high uniqueness and has strong cryptographic properties.
   example: []
   syntax:
     content: 'public readonly record struct VirtualID : IEquatable<VirtualID>'
@@ -64,7 +64,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ID
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 14
+    startLine: 17
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -75,6 +75,7 @@ items:
     parameters: []
     return:
       type: System.Guid
+      description: A <xref href="System.Guid" data-throw-if-not-resolved="false"></xref> value representing the unique identifier.
     content.vb: Public ReadOnly Property ID As Guid
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualID.ID*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualID.ToString
@@ -95,7 +96,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 20
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -127,7 +128,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 26
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -531,12 +532,6 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualID.ID*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualID.ID
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualID.html#AkiraNetwork_VirtualStorageLibrary_VirtualID_ID
-  name: ID
-  nameWithType: VirtualID.ID
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualID.ID
 - uid: System.Guid
   commentId: T:System.Guid
   parent: System
@@ -545,6 +540,12 @@ references:
   name: Guid
   nameWithType: Guid
   fullName: System.Guid
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualID.ID*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualID.ID
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualID.html#AkiraNetwork_VirtualStorageLibrary_VirtualID_ID
+  name: ID
+  nameWithType: VirtualID.ID
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualID.ID
 - uid: System.ValueType.ToString
   commentId: M:System.ValueType.ToString
   parent: System.ValueType

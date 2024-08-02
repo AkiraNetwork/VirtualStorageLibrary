@@ -2,8 +2,8 @@
 {
     /// <summary>
     /// A structure representing a unique identifier within the virtual storage library.
-    /// This identifier is based on a randomly generated UUID version 4 (UUIDv4). UUIDv4 is a 128-bit value
-    /// that ensures high uniqueness and has strong cryptographic properties.
+    /// This identifier is based on a randomly generated UUID version 4 (UUIDv4). UUIDv4
+    /// is a 128-bit value that ensures high uniqueness and has strong cryptographic properties.
     /// </summary>
     public readonly record struct VirtualID
     {
@@ -12,6 +12,9 @@
         /// <summary>
         /// Gets the unique identifier.
         /// </summary>
+        /// <value>
+        /// A <see cref="Guid"/> value representing the unique identifier.
+        /// </value>
         public Guid ID => _id;
 
         /// <summary>
