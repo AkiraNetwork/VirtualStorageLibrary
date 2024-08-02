@@ -22,14 +22,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualSortCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 2
+    startLine: 6
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Represents the conditions for sorting data, holding the property to sort by and the order (ascending or descending).
+  example: []
   syntax:
     content: public class VirtualSortCondition<T>
     typeParameters:
     - id: T
+      description: The type of the entity to be sorted.
     content.vb: Public Class VirtualSortCondition(Of T)
   inheritance:
   - System.Object
@@ -64,17 +67,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 2
+    startLine: 13
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition%601" data-throw-if-not-resolved="false"></xref> class with the specified sorting property and order.
+  example: []
   syntax:
     content: public VirtualSortCondition(Expression<Func<T, object>> sortBy, bool ascending = true)
     parameters:
     - id: sortBy
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}
+      description: The property to sort by.
     - id: ascending
       type: System.Boolean
+      description: A value indicating whether the sorting order is ascending.
     content.vb: Public Sub New(sortBy As Expression(Of Func(Of T, Object)), ascending As Boolean = True)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1.#ctor*
   nameWithType.vb: VirtualSortCondition(Of T).New(Expression(Of Func(Of T, Object)), Boolean)
@@ -98,15 +105,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SortBy
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 4
+    startLine: 25
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the property used for sorting.
+  example: []
   syntax:
     content: public Expression<Func<T, object>> SortBy { get; set; }
     parameters: []
     return:
       type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}
+      description: An expression that specifies the property to use for sorting.
     content.vb: Public Property SortBy As Expression(Of Func(Of T, Object))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1.SortBy*
   nameWithType.vb: VirtualSortCondition(Of T).SortBy
@@ -129,15 +139,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Ascending
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 6
+    startLine: 34
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets or sets a value indicating whether the sorting order is ascending.
+
+    True if the order is ascending; otherwise, false.
+  example: []
   syntax:
     content: public bool Ascending { get; set; }
     parameters: []
     return:
       type: System.Boolean
+      description: A boolean value indicating whether the sorting order is ascending.
     content.vb: Public Property Ascending As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1.Ascending*
   nameWithType.vb: VirtualSortCondition(Of T).Ascending
@@ -527,6 +543,31 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  name: VirtualSortCondition<T>
+  nameWithType: VirtualSortCondition<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition<T>
+  nameWithType.vb: VirtualSortCondition(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition(Of T)
+  name.vb: VirtualSortCondition(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
+    name: VirtualSortCondition
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition_1__ctor_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Boolean_
