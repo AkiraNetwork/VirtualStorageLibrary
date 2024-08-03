@@ -1482,7 +1482,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = dir1.FixedPath;
-            int resultDepth = dir1.BaseDepth;
+            int resultDepth = dir1.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
@@ -1499,7 +1499,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = path.FixedPath;
-            int resultDepth = path.BaseDepth;
+            int resultDepth = path.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
@@ -1516,7 +1516,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = path.FixedPath;
-            int resultDepth = path.BaseDepth;
+            int resultDepth = path.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
@@ -1533,7 +1533,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = path.FixedPath;
-            int resultDepth = path.BaseDepth;
+            int resultDepth = path.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
@@ -1551,7 +1551,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = rootPath.FixedPath;
-            int resultDepth = rootPath.BaseDepth;
+            int resultDepth = rootPath.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
@@ -1568,7 +1568,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = rootPath.FixedPath;
-            int resultDepth = rootPath.BaseDepth;
+            int resultDepth = rootPath.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
@@ -1585,7 +1585,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = path.FixedPath;
-            int resultDepth = path.BaseDepth;
+            int resultDepth = path.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);
@@ -1602,7 +1602,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             VirtualPath resultPath = path.FixedPath;
-            int resultDepth = path.BaseDepth;
+            int resultDepth = path.FixedDepth;
 
             // Assert
             Assert.AreEqual(expectedPath, resultPath);

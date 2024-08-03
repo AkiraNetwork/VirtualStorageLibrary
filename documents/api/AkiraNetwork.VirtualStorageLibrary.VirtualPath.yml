@@ -10,7 +10,6 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  - AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(AkiraNetwork.VirtualStorageLibrary.VirtualPath[])
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(System.String[])
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32)
@@ -22,6 +21,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.DotDot
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals(System.Object)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName
@@ -70,10 +70,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 4
+    startLine: 9
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Represents a path within the virtual storage.
+
+    Provides functionality for manipulating, comparing, 
+
+    normalizing, and splitting paths.
+  example: []
   syntax:
     content: 'public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>, IComparable'
     content.vb: Public Class VirtualPath Implements IEquatable(Of VirtualPath), IComparable(Of VirtualPath), IComparable
@@ -108,15 +115,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Path
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 19
+    startLine: 46
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the path string.
+  example: []
   syntax:
     content: public string Path { get; }
     parameters: []
     return:
       type: System.String
+      description: The string representation of the path.
     content.vb: Public ReadOnly Property Path As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Path*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualPath
@@ -137,17 +147,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 27
+    startLine: 68
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Implicitly converts a <xref href="System.String" data-throw-if-not-resolved="false"></xref> to a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static implicit operator VirtualPath(string path)
     parameters:
     - id: path
       type: System.String
+      description: The string representation of the path.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object representing the given string path.
     content.vb: Public Shared Widening Operator CType(path As String) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit*
   nameWithType.vb: VirtualPath.CType(String)
@@ -171,17 +185,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 32
+    startLine: 78
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Implicitly converts a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> to a <xref href="System.String" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static implicit operator string(VirtualPath? virtualPath)
     parameters:
     - id: virtualPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object.
     return:
       type: System.String
+      description: The string representation of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>, or an empty string if the path is null.
     content.vb: Public Shared Widening Operator CType(virtualPath As VirtualPath) As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit*
   nameWithType.vb: VirtualPath.CType(VirtualPath)
@@ -205,15 +223,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 42
+    startLine: 92
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the directory part of the path.
+  example: []
   syntax:
     content: public VirtualPath DirectoryPath { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the directory part of the path.
     content.vb: Public ReadOnly Property DirectoryPath As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName
@@ -234,15 +255,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 54
+    startLine: 108
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the node name of the path.
+  example: []
   syntax:
     content: public VirtualNodeName NodeName { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> representing the node name of the path.
     content.vb: Public ReadOnly Property NodeName As VirtualNodeName
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList
@@ -263,15 +287,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 66
+    startLine: 124
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the list of parts that make up the path.
+  example: []
   syntax:
     content: public List<VirtualNodeName> PartsList { get; }
     parameters: []
     return:
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
+      description: A list of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> objects representing the parts of the path.
     content.vb: Public ReadOnly Property PartsList As List(Of VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Depth
@@ -292,15 +319,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Depth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 75
+    startLine: 137
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the depth of the path.
+  example: []
   syntax:
     content: public int Depth { get; }
     parameters: []
     return:
       type: System.Int32
+      description: An integer representing the depth of the path.
     content.vb: Public ReadOnly Property Depth As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Depth*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath
@@ -321,46 +351,57 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: FixedPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 84
+    startLine: 146
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the fixed path after applying wildcard matching.
+  remarks: The fixed path excludes parts containing wildcards.
+  example: []
   syntax:
     content: public VirtualPath FixedPath { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object representing the fixed path.
     content.vb: Public ReadOnly Property FixedPath As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath*
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  id: BaseDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  id: FixedDepth
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualPath
   langs:
   - csharp
   - vb
-  name: BaseDepth
-  nameWithType: VirtualPath.BaseDepth
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
+  name: FixedDepth
+  nameWithType: VirtualPath.FixedDepth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
   type: Property
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: BaseDepth
+    id: FixedDepth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 96
+    startLine: 166
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the depth of the fixed path.
+  remarks: >-
+    The fixed depth indicates the number of parts in the path, 
+
+    excluding those with wildcards.
+  example: []
   syntax:
-    content: public int BaseDepth { get; }
+    content: public int FixedDepth { get; }
     parameters: []
     return:
       type: System.Int32
-    content.vb: Public ReadOnly Property BaseDepth As Integer
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth*
+      description: An integer representing the depth of the fixed path.
+    content.vb: Public ReadOnly Property FixedDepth As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator
   id: Separator
@@ -379,15 +420,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Separator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 108
+    startLine: 182
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the path separator character.
+  example: []
   syntax:
     content: public static char Separator { get; }
     parameters: []
     return:
       type: System.Char
+      description: A character representing the path separator.
     content.vb: Public Shared ReadOnly Property Separator As Char
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Root
@@ -408,15 +452,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Root
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 113
+    startLine: 188
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the root path.
+  example: []
   syntax:
     content: public static string Root { get; }
     parameters: []
     return:
       type: System.String
+      description: A string representing the root path.
     content.vb: Public Shared ReadOnly Property Root As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Root*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Dot
@@ -437,15 +484,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 118
+    startLine: 197
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the dot (".") symbol.
+  example: []
   syntax:
     content: public static string Dot { get; }
     parameters: []
     return:
       type: System.String
+      description: A string representing the dot symbol.
     content.vb: Public Shared ReadOnly Property Dot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Dot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.DotDot
@@ -466,15 +516,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 123
+    startLine: 206
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the double dot ("..") symbol.
+  example: []
   syntax:
     content: public static string DotDot { get; }
     parameters: []
     return:
       type: System.String
+      description: A string representing the double dot symbol.
     content.vb: Public Shared ReadOnly Property DotDot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.DotDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ToString
@@ -495,17 +548,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 128
+    startLine: 215
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns a string that represents the current object.
+  summary: Returns a string that represents the current path.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: A string that represents the current object.
+      description: A string that represents the current path.
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ToString*
@@ -527,15 +580,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsEmpty
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 130
+    startLine: 221
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a value indicating whether the current path is empty.
+  example: []
   syntax:
     content: public bool IsEmpty { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: <code>true</code> if the current path is empty; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsEmpty As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEmpty*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot
@@ -556,15 +612,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 135
+    startLine: 230
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a value indicating whether the current path is the root path.
+  example: []
   syntax:
     content: public bool IsRoot { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: <code>true</code> if the current path is the root path; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsRoot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute
@@ -585,15 +644,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsAbsolute
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 140
+    startLine: 239
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a value indicating whether the current path is absolute.
+  example: []
   syntax:
     content: public bool IsAbsolute { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: <code>true</code> if the current path is absolute; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsAbsolute As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash
@@ -614,15 +676,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsEndsWithSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 145
+    startLine: 248
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a value indicating whether the current path ends with a slash.
+  example: []
   syntax:
     content: public bool IsEndsWithSlash { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: <code>true</code> if the current path ends with a slash; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsEndsWithSlash As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot
@@ -643,15 +708,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 150
+    startLine: 257
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a value indicating whether the current path is a dot.
+  example: []
   syntax:
     content: public bool IsDot { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: <code>true</code> if the current path is a dot; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsDot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot
@@ -672,15 +740,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsDotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 155
+    startLine: 266
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets a value indicating whether the current path is a double dot.
+  example: []
   syntax:
     content: public bool IsDotDot { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: <code>true</code> if the current path is a double dot; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsDotDot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode
@@ -701,17 +772,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetHashCode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 160
+    startLine: 275
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Serves as the default hash function.
+  summary: Returns the hash code for this path.
   example: []
   syntax:
     content: public override int GetHashCode()
     return:
       type: System.Int32
-      description: A hash code for the current object.
+      description: The hash code for this path.
     content.vb: Public Overrides Function GetHashCode() As Integer
   overridden: System.Object.GetHashCode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode*
@@ -733,15 +804,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 162
+    startLine: 281
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> class with the specified path string.
+  example: []
   syntax:
     content: public VirtualPath(string path)
     parameters:
     - id: path
       type: System.String
+      description: The initial path string.
     content.vb: Public Sub New(path As String)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor*
   nameWithType.vb: VirtualPath.New(String)
@@ -765,15 +839,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 167
+    startLine: 290
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> class with the specified collection of path parts.
+  example: []
   syntax:
     content: public VirtualPath(IEnumerable<VirtualNodeName> parts)
     parameters:
     - id: parts
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
+      description: The collection of path parts.
     content.vb: Public Sub New(parts As IEnumerable(Of VirtualNodeName))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.#ctor*
   nameWithType.vb: VirtualPath.New(IEnumerable(Of VirtualNodeName))
@@ -797,21 +874,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 179
+    startLine: 310
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Determines whether the specified object is equal to the current object.
+  summary: Indicates whether this path is equal to the specified object.
   example: []
   syntax:
     content: public override bool Equals(object? obj)
     parameters:
     - id: obj
       type: System.Object
-      description: The object to compare with the current object.
+      description: The object to compare with the current path.
     return:
       type: System.Boolean
-      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+      description: true if the specified object is equal to the current path; otherwise, false.
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
   overridden: System.Object.Equals(System.Object)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals*
@@ -836,21 +913,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 188
+    startLine: 324
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Indicates whether the current object is equal to another object of the same type.
+  summary: Indicates whether this path is equal to the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object.
   example: []
   syntax:
     content: public bool Equals(VirtualPath? other)
     parameters:
     - id: other
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-      description: An object to compare with this object.
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object to compare with the current path.
     return:
       type: System.Boolean
-      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+      description: true if the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> is equal to the current path; otherwise, false.
     content.vb: Public Function Equals(other As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals*
   implements:
@@ -876,7 +953,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Equality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 193
+    startLine: 329
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -912,7 +989,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Inequality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 211
+    startLine: 347
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -948,7 +1025,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 216
+    startLine: 352
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -984,7 +1061,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 221
+    startLine: 357
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1020,7 +1097,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 227
+    startLine: 363
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1056,7 +1133,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 233
+    startLine: 369
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1092,7 +1169,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 239
+    startLine: 375
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1128,7 +1205,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 245
+    startLine: 381
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1164,7 +1241,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TrimEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 251
+    startLine: 387
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1192,7 +1269,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 260
+    startLine: 396
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1220,7 +1297,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddStartSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 269
+    startLine: 405
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1248,7 +1325,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: StartsWith
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 278
+    startLine: 414
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1279,7 +1356,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 283
+    startLine: 419
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1307,7 +1384,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 292
+    startLine: 428
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1341,7 +1418,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 358
+    startLine: 494
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1369,7 +1446,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 387
+    startLine: 523
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1403,7 +1480,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 397
+    startLine: 533
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1437,7 +1514,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetParentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 454
+    startLine: 590
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1465,7 +1542,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsLinkedList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 474
+    startLine: 610
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1493,7 +1570,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 485
+    startLine: 621
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1521,7 +1598,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CombineFromIndex
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 490
+    startLine: 626
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1557,7 +1634,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 505
+    startLine: 641
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1600,7 +1677,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 515
+    startLine: 651
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1647,7 +1724,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetRelativePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 530
+    startLine: 666
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1678,7 +1755,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ArePathsSubdirectories
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 604
+    startLine: 740
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1711,7 +1788,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsSubdirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 647
+    startLine: 783
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2159,6 +2236,13 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  name: VirtualPath
+  nameWithType: VirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Implicit
   name: implicit operator
@@ -2171,25 +2255,12 @@ references:
   - name: implicit
   - name: " "
   - name: operator
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
-  name: VirtualPath
-  nameWithType: VirtualPath
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath
   href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_DirectoryPath
   name: DirectoryPath
   nameWithType: VirtualPath.DirectoryPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.DirectoryPath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_NodeName
-  name: NodeName
-  nameWithType: VirtualPath.NodeName
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -2197,6 +2268,12 @@ references:
   name: VirtualNodeName
   nameWithType: VirtualNodeName
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_NodeName
+  name: NodeName
+  nameWithType: VirtualPath.NodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.PartsList
   href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_PartsList
@@ -2324,12 +2401,12 @@ references:
   name: FixedPath
   nameWithType: VirtualPath.FixedPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_BaseDepth
-  name: BaseDepth
-  nameWithType: VirtualPath.BaseDepth
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedDepth
+  name: FixedDepth
+  nameWithType: VirtualPath.FixedDepth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.Separator
   href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_Separator

@@ -2672,19 +2672,6 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories
   nameWithType: VirtualPath.ArePathsSubdirectories
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  name: BaseDepth
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_BaseDepth
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  nameWithType: VirtualPath.BaseDepth
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth*
-  name: BaseDepth
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_BaseDepth_
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  isSpec: "True"
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.BaseDepth
-  nameWithType: VirtualPath.BaseDepth
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(AkiraNetwork.VirtualStorageLibrary.VirtualPath[])
   name: Combine(params VirtualPath[])
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_AkiraNetwork_VirtualStorageLibrary_VirtualPath___
@@ -2828,6 +2815,19 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals
   nameWithType: VirtualPath.Equals
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  name: FixedDepth
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedDepth
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  nameWithType: VirtualPath.FixedDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth*
+  name: FixedDepth
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedDepth_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedDepth
+  nameWithType: VirtualPath.FixedDepth
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.FixedPath
   name: FixedPath
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_FixedPath

@@ -719,7 +719,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
             VirtualPath fixedPath = path.FixedPath;
-            int baseDepth = path.BaseDepth;
+            int baseDepth = path.FixedDepth;
             VirtualNode node = GetNode(fixedPath, resolveLinks);
 
             List<string> patternList = path.PartsList.Select(node => node.Name).ToList();
@@ -755,7 +755,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             bool resolveLinks = true)
         {
             basePath = ConvertToAbsolutePath(basePath).NormalizePath();
-            int baseDepth = basePath.BaseDepth;
+            int baseDepth = basePath.FixedDepth;
             VirtualNode baseNode = GetNode(basePath, followLinks);
 
             VirtualNodeContext nodeContext = WalkPathToTarget(basePath, null, null, resolveLinks, true);

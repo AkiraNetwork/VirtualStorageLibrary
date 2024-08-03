@@ -2,34 +2,80 @@
 
 namespace AkiraNetwork.VirtualStorageLibrary
 {
+    /// <summary>
+    /// Represents a path within the virtual storage.
+    /// Provides functionality for manipulating, comparing, 
+    /// normalizing, and splitting paths.
+    /// </summary>
     [DebuggerStepThrough]
     public class VirtualPath : IEquatable<VirtualPath>, IComparable<VirtualPath>, IComparable
     {
+        /// <summary>
+        /// The internal string representing the path.
+        /// </summary>
         private readonly string _path;
 
+        /// <summary>
+        /// The cached directory path for this path.
+        /// </summary>
         private VirtualPath? _directoryPath;
 
+        /// <summary>
+        /// The cached node name for this path.
+        /// </summary>
         private VirtualNodeName? _nodeName;
 
+        /// <summary>
+        /// The root path value.
+        /// </summary>
         private static readonly string _root;
 
+        /// <summary>
+        /// The dot symbol (".") used in paths.
+        /// </summary>
         private static readonly string _dot;
 
+        /// <summary>
+        /// The double dot symbol ("..") used in paths.
+        /// </summary>
         private static readonly string _dotDot;
 
+        /// <summary>
+        /// Gets the path string.
+        /// </summary>
+        /// <value>The string representation of the path.</value>
         public string Path { get => _path; }
 
+        /// <summary>
+        /// The cached list of parts that make up this path.
+        /// </summary>
         private List<VirtualNodeName>? _partsList;
 
+        /// <summary>
+        /// The cached fixed path after applying wildcard matching.
+        /// </summary>
         private VirtualPath? _fixedPath;
 
-        private int? _baseDepth;
+        /// <summary>
+        /// The cached fixed depth of this path.
+        /// </summary>
+        private int? _fixedDepth;
 
+        /// <summary>
+        /// Implicitly converts a <see cref="string"/> to a <see cref="VirtualPath"/>.
+        /// </summary>
+        /// <param name="path">The string representation of the path.</param>
+        /// <returns>A <see cref="VirtualPath"/> object representing the given string path.</returns>
         public static implicit operator VirtualPath(string path)
         {
             return new VirtualPath(path);
         }
 
+        /// <summary>
+        /// Implicitly converts a <see cref="VirtualPath"/> to a <see cref="string"/>.
+        /// </summary>
+        /// <param name="virtualPath">The <see cref="VirtualPath"/> object.</param>
+        /// <returns>The string representation of the <see cref="VirtualPath"/>, or an empty string if the path is null.</returns>
         public static implicit operator string(VirtualPath? virtualPath)
         {
             if (virtualPath == null)
@@ -40,6 +86,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return virtualPath._path;
         }
 
+        /// <summary>
+        /// Gets the directory part of the path.
+        /// </summary>
+        /// <value>A <see cref="VirtualPath"/> representing the directory part of the path.</value>
         public VirtualPath DirectoryPath
         {
             get
@@ -52,6 +102,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Gets the node name of the path.
+        /// </summary>
+        /// <value>A <see cref="VirtualNodeName"/> representing the node name of the path.</value>
         public VirtualNodeName NodeName
         {
             get
@@ -64,6 +118,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Gets the list of parts that make up the path.
+        /// </summary>
+        /// <value>A list of <see cref="VirtualNodeName"/> objects representing the parts of the path.</value>
         public List<VirtualNodeName> PartsList
         {
             get
@@ -73,103 +131,171 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        public int Depth
-        {
-            get
-            {
-                // パスの深さを返す
-                return this.PartsList.Count;
-            }
-        }
+        /// <summary>
+        /// Gets the depth of the path.
+        /// </summary>
+        /// <value>An integer representing the depth of the path.</value>
+        public int Depth => this.PartsList.Count;
 
+        /// <summary>
+        /// Gets the fixed path after applying wildcard matching.
+        /// </summary>
+        /// <remarks>
+        /// The fixed path excludes parts containing wildcards.
+        /// </remarks>
+        /// <value>A <see cref="VirtualPath"/> object representing the fixed path.</value>
         public VirtualPath FixedPath
         {
             get
             {
                 if (_fixedPath == null)
                 {
-                    (_fixedPath, _baseDepth) = GetFixedPath();
+                    (_fixedPath, _fixedDepth) = GetFixedPath();
                 }
                 return _fixedPath;
             }
         }
 
-        public int BaseDepth
+        /// <summary>
+        /// Gets the depth of the fixed path.
+        /// </summary>
+        /// <remarks>
+        /// The fixed depth indicates the number of parts in the path, 
+        /// excluding those with wildcards.
+        /// </remarks>
+        /// <value>An integer representing the depth of the fixed path.</value>
+        public int FixedDepth
         {
             get
             {
-                if (_baseDepth == null)
+                if (_fixedDepth == null)
                 {
-                    (_fixedPath, _baseDepth) = GetFixedPath();
+                    (_fixedPath, _fixedDepth) = GetFixedPath();
                 }
-                return _baseDepth.Value;
+                return _fixedDepth.Value;
             }
         }
 
-        public static char Separator
-        {
-            get => VirtualStorageSettings.Settings.PathSeparator;
-        }
+        /// <summary>
+        /// Gets the path separator character.
+        /// </summary>
+        /// <value>A character representing the path separator.</value>
+        public static char Separator => VirtualStorageSettings.Settings.PathSeparator;
 
+        /// <summary>
+        /// Gets the root path.
+        /// </summary>
+        /// <value>A string representing the root path.</value>
         public static string Root
         {
             get => _root;
         }
 
+        /// <summary>
+        /// Gets the dot (".") symbol.
+        /// </summary>
+        /// <value>A string representing the dot symbol.</value>
         public static string Dot
         {
             get => _dot;
         }
 
+        /// <summary>
+        /// Gets the double dot ("..") symbol.
+        /// </summary>
+        /// <value>A string representing the double dot symbol.</value>
         public static string DotDot
         {
             get => _dotDot;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current path.
+        /// </summary>
+        /// <returns>A string that represents the current path.</returns>
         public override string ToString() => _path;
 
+        /// <summary>
+        /// Gets a value indicating whether the current path is empty.
+        /// </summary>
+        /// <value><c>true</c> if the current path is empty; otherwise, <c>false</c>.</value>
         public bool IsEmpty
         {
             get => _path == string.Empty;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the current path is the root path.
+        /// </summary>
+        /// <value><c>true</c> if the current path is the root path; otherwise, <c>false</c>.</value>
         public bool IsRoot
         {
             get => _path == Separator.ToString();
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the current path is absolute.
+        /// </summary>
+        /// <value><c>true</c> if the current path is absolute; otherwise, <c>false</c>.</value>
         public bool IsAbsolute
         {
             get => _path.StartsWith(Separator);
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the current path ends with a slash.
+        /// </summary>
+        /// <value><c>true</c> if the current path ends with a slash; otherwise, <c>false</c>.</value>
         public bool IsEndsWithSlash
         {
             get => _path.EndsWith(Separator);
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the current path is a dot.
+        /// </summary>
+        /// <value><c>true</c> if the current path is a dot; otherwise, <c>false</c>.</value>
         public bool IsDot
         {
             get => _path == Dot;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the current path is a double dot.
+        /// </summary>
+        /// <value><c>true</c> if the current path is a double dot; otherwise, <c>false</c>.</value>
         public bool IsDotDot
         {
             get => _path == DotDot;
         }
 
+        /// <summary>
+        /// Returns the hash code for this path.
+        /// </summary>
+        /// <returns>The hash code for this path.</returns>
         public override int GetHashCode() => _path.GetHashCode();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualPath"/> class with the specified path string.
+        /// </summary>
+        /// <param name="path">The initial path string.</param>
         public VirtualPath(string path)
         {
             _path = path;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualPath"/> class with the specified collection of path parts.
+        /// </summary>
+        /// <param name="parts">The collection of path parts.</param>
         public VirtualPath(IEnumerable<VirtualNodeName> parts)
         {
             _path = Separator + string.Join(Separator, parts.Select(node => node.Name));
         }
 
+        /// <summary>
+        /// Initializes static members of the <see cref="VirtualPath"/> class.
+        /// </summary>
         static VirtualPath()
         {
             _root = VirtualStorageSettings.Settings.PathRoot;
@@ -177,6 +303,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             _dotDot = VirtualStorageSettings.Settings.PathDotDot;
         }
 
+        /// <summary>
+        /// Indicates whether this path is equal to the specified object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current path.</param>
+        /// <returns>true if the specified object is equal to the current path; otherwise, false.</returns>
         public override bool Equals(object? obj)
         {
             if (obj is VirtualPath other)
@@ -186,6 +317,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return false;
         }
 
+        /// <summary>
+        /// Indicates whether this path is equal to the specified <see cref="VirtualPath"/> object.
+        /// </summary>
+        /// <param name="other">The <see cref="VirtualPath"/> object to compare with the current path.</param>
+        /// <returns>true if the specified <see cref="VirtualPath"/> is equal to the current path; otherwise, false.</returns>
         public bool Equals(VirtualPath? other)
         {
             return _path == other?._path;
