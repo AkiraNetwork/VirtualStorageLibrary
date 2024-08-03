@@ -35,10 +35,15 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Represents the name of a virtual node. This class handles the generation,
+
+    validation, and comparison of node names.
+  example: []
   syntax:
     content: 'public class VirtualNodeName : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable'
     content.vb: Public Class VirtualNodeName Implements IEquatable(Of VirtualNodeName), IComparable(Of VirtualNodeName), IComparable
@@ -73,15 +78,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 5
+    startLine: 21
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> class
+
+    with the specified name.
+  example: []
   syntax:
     content: public VirtualNodeName(string name)
     parameters:
     - id: name
       type: System.String
+      description: The name of the node.
     content.vb: Public Sub New(name As String)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.#ctor*
   nameWithType.vb: VirtualNodeName.New(String)
@@ -105,15 +116,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Name
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 12
+    startLine: 32
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the name of the node.
+  example: []
   syntax:
     content: public string Name { get; }
     parameters: []
     return:
       type: System.String
+      description: The name of this node.
     content.vb: Public ReadOnly Property Name As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Name*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ToString
@@ -134,17 +148,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 20
+    startLine: 38
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns a string that represents the current object.
+  summary: Returns the name of the node as a string.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: A string that represents the current object.
+      description: The name of the node as a string.
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ToString*
@@ -166,15 +180,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 22
+    startLine: 46
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Indicates whether the node is the root node.
+  example: []
   syntax:
     content: public bool IsRoot { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: <code>true</code> if this is the root node; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsRoot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsRoot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName(System.String)
@@ -195,19 +212,33 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 31
+    startLine: 61
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Generates a new node name using the specified prefix.
+  remarks: >-
+    The current implementation may be improved for better usability, including
+
+    a possible re-implementation of the node name generation. Users are advised
+
+    to check for updates in the documentation regularly.
+  example: []
   syntax:
     content: public static VirtualNodeName GenerateNodeName(string prefix)
     parameters:
     - id: prefix
       type: System.String
+      description: The prefix for the node name.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The generated node name.
     content.vb: Public Shared Function GenerateNodeName(prefix As String) As VirtualNodeName
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown when the prefix is an empty string.
   nameWithType.vb: VirtualNodeName.GenerateNodeName(String)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName(String)
   name.vb: GenerateNodeName(String)
@@ -229,10 +260,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResetCounter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 45
+    startLine: 77
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Resets the counter used for node name generation.
+  example: []
   syntax:
     content: public static void ResetCounter()
     content.vb: Public Shared Sub ResetCounter()
@@ -255,17 +288,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 51
+    startLine: 87
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks if a node name is valid.
+  example: []
   syntax:
     content: public static bool IsValidNodeName(VirtualNodeName nodeName)
     parameters:
     - id: nodeName
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The node name to check.
     return:
       type: System.Boolean
+      description: <code>true</code> if the node name is valid; otherwise, <code>false</code>.
     content.vb: Public Shared Function IsValidNodeName(nodeName As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
@@ -286,15 +323,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 77
+    startLine: 117
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Implicitly converts a string to a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static implicit operator VirtualNodeName(string name)
     parameters:
     - id: name
       type: System.String
+      description: The string to convert.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
     content.vb: Public Shared Widening Operator CType(name As String) As VirtualNodeName
@@ -320,15 +360,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 82
+    startLine: 126
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Implicitly converts a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to a string.
+  example: []
   syntax:
     content: public static implicit operator string(VirtualNodeName nodeName)
     parameters:
     - id: nodeName
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to convert.
     return:
       type: System.String
     content.vb: Public Shared Widening Operator CType(nodeName As VirtualNodeName) As String
@@ -354,21 +397,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 87
+    startLine: 139
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Indicates whether the current object is equal to another object of the same type.
+  summary: Determines whether the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> is equal to this instance.
   example: []
   syntax:
     content: public bool Equals(VirtualNodeName? other)
     parameters:
     - id: other
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-      description: An object to compare with this object.
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to compare with this instance.
     return:
       type: System.Boolean
-      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+      description: >-
+        <code>true</code> if the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> is equal to this instance;
+
+        otherwise, <code>false</code>.
     content.vb: Public Function Equals(other As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Equals*
   implements:
@@ -394,21 +440,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 92
+    startLine: 152
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Determines whether the specified object is equal to the current object.
+  summary: Determines whether the specified object is equal to this instance.
   example: []
   syntax:
     content: public override bool Equals(object? obj)
     parameters:
     - id: obj
       type: System.Object
-      description: The object to compare with the current object.
+      description: The object to compare with this instance.
     return:
       type: System.Boolean
-      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+      description: >-
+        <code>true</code> if the specified object is equal to this instance;
+
+        otherwise, <code>false</code>.
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
   overridden: System.Object.Equals(System.Object)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Equals*
@@ -433,17 +482,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetHashCode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 101
+    startLine: 165
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Serves as the default hash function.
+  summary: Returns a hash code for this instance.
   example: []
   syntax:
     content: public override int GetHashCode()
     return:
       type: System.Int32
-      description: A hash code for the current object.
+      description: A hash code for this instance.
     content.vb: Public Overrides Function GetHashCode() As Integer
   overridden: System.Object.GetHashCode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GetHashCode*
@@ -465,24 +514,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 103
+    startLine: 174
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+  summary: Compares this instance with a specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: public int CompareTo(VirtualNodeName? other)
     parameters:
     - id: other
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-      description: An object to compare with this instance.
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to compare with.
     return:
       type: System.Int32
-      description: >-
-        A value that indicates the relative order of the objects being compared. The return value has these meanings:  
-
-         <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">other</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">other</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">other</code> in the sort order.</td></tr></tbody></table>
+      description: A value indicating the relative order of the instances being compared.
     content.vb: Public Function CompareTo(other As VirtualNodeName) As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.CompareTo*
   implements:
@@ -508,30 +554,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 113
+    startLine: 194
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+  summary: Compares this instance with a specified object.
   example: []
   syntax:
     content: public int CompareTo(object? obj)
     parameters:
     - id: obj
       type: System.Object
-      description: An object to compare with this instance.
+      description: The object to compare with.
     return:
       type: System.Int32
-      description: >-
-        A value that indicates the relative order of the objects being compared. The return value has these meanings:  
-
-         <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">obj</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">obj</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">obj</code> in the sort order.</td></tr></tbody></table>
+      description: A value indicating the relative order of the instances being compared.
     content.vb: Public Function CompareTo(obj As Object) As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.CompareTo*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: <code class="paramref">obj</code> is not the same type as this instance.
+    description: Thrown when the object is not a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref>.
   implements:
   - System.IComparable.CompareTo(System.Object)
   nameWithType.vb: VirtualNodeName.CompareTo(Object)
@@ -555,19 +598,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Equality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 128
+    startLine: 218
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether two <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> instances are equal.
+  example: []
   syntax:
     content: public static bool operator ==(VirtualNodeName? left, VirtualNodeName? right)
     parameters:
     - id: left
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The left <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to compare.
     - id: right
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The right <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to compare.
     return:
       type: System.Boolean
+      description: <code>true</code> if the specified instances are equal; otherwise, <code>false</code>.
     content.vb: Public Shared Operator =(left As VirtualNodeName, right As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Equality*
   nameWithType.vb: VirtualNodeName.=(VirtualNodeName, VirtualNodeName)
@@ -591,19 +639,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Inequality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 146
+    startLine: 244
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether two <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> instances are not equal.
+  example: []
   syntax:
     content: public static bool operator !=(VirtualNodeName? left, VirtualNodeName? right)
     parameters:
     - id: left
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The left <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to compare.
     - id: right
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The right <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> to compare.
     return:
       type: System.Boolean
+      description: <code>true</code> if the specified instances are not equal; otherwise, <code>false</code>.
     content.vb: Public Shared Operator <>(left As VirtualNodeName, right As VirtualNodeName) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Inequality*
   nameWithType.vb: VirtualNodeName.<>(VirtualNodeName, VirtualNodeName)
@@ -1027,6 +1080,13 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  name: VirtualNodeName
+  nameWithType: VirtualNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__ctor_System_String_
@@ -1100,19 +1160,19 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_GenerateNodeName_System_String_
   name: GenerateNodeName
   nameWithType: VirtualNodeName.GenerateNodeName
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
-  name: VirtualNodeName
-  nameWithType: VirtualNodeName
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ResetCounter*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ResetCounter
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_ResetCounter
@@ -1333,13 +1393,6 @@ references:
   - name: (
   - name: T
   - name: )
-- uid: System.ArgumentException
-  commentId: T:System.ArgumentException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
-  name: ArgumentException
-  nameWithType: ArgumentException
-  fullName: System.ArgumentException
 - uid: System.IComparable.CompareTo(System.Object)
   commentId: M:System.IComparable.CompareTo(System.Object)
   parent: System.IComparable

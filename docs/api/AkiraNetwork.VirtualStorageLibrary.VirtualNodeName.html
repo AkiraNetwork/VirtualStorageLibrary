@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class VirtualNodeName | AkiraNetwork ">
     
-    
+    <meta name="description" content="Represents the name of a virtual node. This class handles the generation, validation, and comparison of node names.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,9 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" class="text-break">Class VirtualNodeName</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Represents the name of a virtual node. This class handles the generation,
+validation, and comparison of node names.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -119,7 +121,9 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__ctor_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.#ctor(System.String)">VirtualNodeName(string)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> class
+with the specified name.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -138,7 +142,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">name</span></td>
-        <td></td>
+        <td><p>The name of the node.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -146,7 +151,8 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsRoot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsRoot*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsRoot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsRoot">IsRoot</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Indicates whether the node is the root node.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -163,13 +169,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p><code>true</code> if this is the root node; otherwise, <code>false</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_Name_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Name*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_Name" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Name">Name</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the name of the node.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -186,7 +194,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The name of this node.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -194,7 +203,7 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_CompareTo_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.CompareTo*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_CompareTo_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.CompareTo(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">CompareTo(VirtualNodeName?)</h4>
-  <div class="markdown level1 summary"><p>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</p>
+  <div class="markdown level1 summary"><p>Compares this instance with a specified <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -214,7 +223,7 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">other</span></td>
-        <td><p>An object to compare with this instance.</p>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to compare with.</p>
 </td>
       </tr>
     </tbody>
@@ -230,15 +239,14 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
- <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">other</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">other</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">other</code> in the sort order.</td></tr></tbody></table>
+        <td><p>A value indicating the relative order of the instances being compared.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_CompareTo_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.CompareTo*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_CompareTo_System_Object_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.CompareTo(System.Object)">CompareTo(object?)</h4>
-  <div class="markdown level1 summary"><p>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</p>
+  <div class="markdown level1 summary"><p>Compares this instance with a specified object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -258,7 +266,7 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">obj</span></td>
-        <td><p>An object to compare with this instance.</p>
+        <td><p>The object to compare with.</p>
 </td>
       </tr>
     </tbody>
@@ -274,8 +282,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
- <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">obj</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">obj</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">obj</code> in the sort order.</td></tr></tbody></table>
+        <td><p>A value indicating the relative order of the instances being compared.</p>
 </td>
       </tr>
     </tbody>
@@ -291,14 +298,14 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code class="paramref">obj</code> is not the same type as this instance.</p>
+        <td><p>Thrown when the object is not a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_Equals_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Equals*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_Equals_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Equals(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">Equals(VirtualNodeName?)</h4>
-  <div class="markdown level1 summary"><p>Indicates whether the current object is equal to another object of the same type.</p>
+  <div class="markdown level1 summary"><p>Determines whether the specified <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> is equal to this instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -318,7 +325,7 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">other</span></td>
-        <td><p>An object to compare with this object.</p>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to compare with this instance.</p>
 </td>
       </tr>
     </tbody>
@@ -334,14 +341,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+        <td><p><code>true</code> if the specified <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> is equal to this instance;
+otherwise, <code>false</code>.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_Equals_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Equals*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_Equals_System_Object_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Equals(System.Object)">Equals(object?)</h4>
-  <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
+  <div class="markdown level1 summary"><p>Determines whether the specified object is equal to this instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -361,7 +369,7 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">obj</span></td>
-        <td><p>The object to compare with the current object.</p>
+        <td><p>The object to compare with this instance.</p>
 </td>
       </tr>
     </tbody>
@@ -377,7 +385,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the specified object  is equal to the current object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+        <td><p><code>true</code> if the specified object is equal to this instance;
+otherwise, <code>false</code>.</p>
 </td>
       </tr>
     </tbody>
@@ -386,7 +395,8 @@
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a></div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_GenerateNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_GenerateNodeName_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName(System.String)">GenerateNodeName(string)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Generates a new node name using the specified prefix.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -405,7 +415,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">prefix</span></td>
-        <td></td>
+        <td><p>The prefix for the node name.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -420,13 +431,35 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
-        <td></td>
+        <td><p>The generated node name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_GenerateNodeName_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The current implementation may be improved for better usability, including
+a possible re-implementation of the node name generation. Users are advised
+to check for updates in the documentation regularly.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the prefix is an empty string.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_GetHashCode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GetHashCode*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_GetHashCode" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GetHashCode">GetHashCode()</h4>
-  <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
+  <div class="markdown level1 summary"><p>Returns a hash code for this instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -444,7 +477,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>A hash code for the current object.</p>
+        <td><p>A hash code for this instance.</p>
 </td>
       </tr>
     </tbody>
@@ -453,7 +486,8 @@
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a></div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsValidNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsValidNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">IsValidNodeName(VirtualNodeName)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if a node name is valid.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -472,7 +506,8 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">nodeName</span></td>
-        <td></td>
+        <td><p>The node name to check.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -487,13 +522,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p><code>true</code> if the node name is valid; otherwise, <code>false</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_ResetCounter_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ResetCounter*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_ResetCounter" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ResetCounter">ResetCounter()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Resets the counter used for node name generation.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -501,7 +538,7 @@
   </div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_ToString_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ToString*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_ToString" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.ToString">ToString()</h4>
-  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+  <div class="markdown level1 summary"><p>Returns the name of the node as a string.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -519,7 +556,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>A string that represents the current object.</p>
+        <td><p>The name of the node as a string.</p>
 </td>
       </tr>
     </tbody>
@@ -530,7 +567,8 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Equality_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Equality*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Equality_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Equality(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">operator ==(VirtualNodeName?, VirtualNodeName?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> instances are equal.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -549,12 +587,14 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">left</span></td>
-        <td></td>
+        <td><p>The left <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to compare.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">right</span></td>
-        <td></td>
+        <td><p>The right <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to compare.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -569,13 +609,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p><code>true</code> if the specified instances are equal; otherwise, <code>false</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Implicit_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Implicit*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__System_String" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~System.String">implicit operator string(VirtualNodeName)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Implicitly converts a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to a string.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -594,7 +636,8 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">nodeName</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to convert.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -615,7 +658,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Implicit_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Implicit*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Implicit_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualNodeName" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualNodeName">implicit operator VirtualNodeName(string)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Implicitly converts a string to a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -634,7 +678,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">name</span></td>
-        <td></td>
+        <td><p>The string to convert.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -655,7 +700,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Inequality_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Inequality*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_op_Inequality_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.op_Inequality(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">operator !=(VirtualNodeName?, VirtualNodeName?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> instances are not equal.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -674,12 +720,14 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">left</span></td>
-        <td></td>
+        <td><p>The left <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to compare.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">right</span></td>
-        <td></td>
+        <td><p>The right <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> to compare.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -694,7 +742,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p><code>true</code> if the specified instances are not equal; otherwise, <code>false</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>

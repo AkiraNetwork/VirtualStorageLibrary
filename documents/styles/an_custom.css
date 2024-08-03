@@ -1,0 +1,10 @@
+.remarks {
+    background-color: #f0f8ff; /* 背景色を指定 */
+    border-left: 4px solid #007acc; /* 左側のボーダーを指定 */
+    padding: 10px; /* 内側の余白を指定 */
+    margin-bottom: 10px; /* 下部の余白を指定 */
+}
+
+.remarks p {
+    margin: 0; /* 段落の余白をリセット */
+}
