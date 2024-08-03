@@ -21,14 +21,22 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualDirectoryAdapter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 26
+    startLine: 56
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Adapter class to simplify operations on virtual directories.
+
+    Reduces the need for casting and simplifies code, allowing
+
+    users to easily manage specific node types.
+  example: []
   syntax:
     content: public class VirtualDirectoryAdapter<T>
     typeParameters:
     - id: T
+      description: The type of item stored in the virtual storage.
     content.vb: Public Class VirtualDirectoryAdapter(Of T)
   inheritance:
   - System.Object
@@ -63,15 +71,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 26
+    startLine: 64
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter%601" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualDirectoryAdapter(VirtualStorage<T> storage)
     parameters:
     - id: storage
       type: AkiraNetwork.VirtualStorageLibrary.VirtualStorage{{T}}
+      description: The virtual storage instance.
     content.vb: Public Sub New(storage As VirtualStorage(Of T))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1.#ctor*
   nameWithType.vb: VirtualDirectoryAdapter(Of T).New(VirtualStorage(Of T))
@@ -95,21 +106,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 30
+    startLine: 78
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the virtual directory corresponding to the specified path.
+  example: []
   syntax:
     content: public VirtualDirectory this[VirtualPath path, bool followLinks = true] { get; set; }
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory.
     - id: followLinks
       type: System.Boolean
+      description: A flag indicating whether to follow links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref> corresponding to the specified path.
     content.vb: Public Default Property this[](path As VirtualPath, followLinks As Boolean = True) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1.Item*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown when the node is not a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref>.
   nameWithType.vb: VirtualDirectoryAdapter(Of T).this[](VirtualPath, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter(Of T).this[](AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
   name.vb: this[](VirtualPath, Boolean)
@@ -498,6 +518,31 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
+  name: VirtualDirectoryAdapter<T>
+  nameWithType: VirtualDirectoryAdapter<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter<T>
+  nameWithType.vb: VirtualDirectoryAdapter(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter(Of T)
+  name.vb: VirtualDirectoryAdapter(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
+    name: VirtualDirectoryAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
+    name: VirtualDirectoryAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectoryAdapter_1__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualStorage__0__
@@ -559,6 +604,20 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  name: VirtualDirectory
+  nameWithType: VirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1.Item*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1.Item
   href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectoryAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -586,10 +645,3 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
-  name: VirtualDirectory
-  nameWithType: VirtualDirectory
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory

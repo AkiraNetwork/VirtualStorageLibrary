@@ -21,14 +21,22 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualItemAdapter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 4
+    startLine: 10
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Adapter class to simplify operations on virtual items.
+
+    Reduces the need for casting and simplifies code, allowing
+
+    users to easily manage specific node types.
+  example: []
   syntax:
     content: public class VirtualItemAdapter<T>
     typeParameters:
     - id: T
+      description: The type of item stored in the virtual storage.
     content.vb: Public Class VirtualItemAdapter(Of T)
   inheritance:
   - System.Object
@@ -63,15 +71,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 4
+    startLine: 18
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter%601" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualItemAdapter(VirtualStorage<T> storage)
     parameters:
     - id: storage
       type: AkiraNetwork.VirtualStorageLibrary.VirtualStorage{{T}}
+      description: The virtual storage instance.
     content.vb: Public Sub New(storage As VirtualStorage(Of T))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1.#ctor*
   nameWithType.vb: VirtualItemAdapter(Of T).New(VirtualStorage(Of T))
@@ -95,21 +106,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 8
+    startLine: 32
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the virtual item corresponding to the specified path.
+  example: []
   syntax:
     content: public VirtualItem<T> this[VirtualPath path, bool followLinks = true] { get; set; }
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the item.
     - id: followLinks
       type: System.Boolean
+      description: A flag indicating whether to follow links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem%601" data-throw-if-not-resolved="false"></xref> corresponding to the specified path.
     content.vb: Public Default Property this[](path As VirtualPath, followLinks As Boolean = True) As VirtualItem(Of T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1.Item*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown when the node is not a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem%601" data-throw-if-not-resolved="false"></xref>.
   nameWithType.vb: VirtualItemAdapter(Of T).this[](VirtualPath, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter(Of T).this[](AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
   name.vb: this[](VirtualPath, Boolean)
@@ -498,6 +518,31 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
+  name: VirtualItemAdapter<T>
+  nameWithType: VirtualItemAdapter<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter<T>
+  nameWithType.vb: VirtualItemAdapter(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter(Of T)
+  name.vb: VirtualItemAdapter(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+    name: VirtualItemAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+    name: VirtualItemAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualItemAdapter_1__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualStorage__0__
@@ -559,6 +604,39 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  name: VirtualItem<T>
+  nameWithType: VirtualItem<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
+  nameWithType.vb: VirtualItem(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
+  name.vb: VirtualItem(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1.Item*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1.Item
   href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualItemAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -590,32 +668,6 @@ references:
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
   parent: AkiraNetwork.VirtualStorageLibrary
   definition: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  name: VirtualItem<T>
-  nameWithType: VirtualItem<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
-  nameWithType.vb: VirtualItem(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
-  name.vb: VirtualItem(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-    name: VirtualItem
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-    name: VirtualItem
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-  parent: AkiraNetwork.VirtualStorageLibrary
   href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
   name: VirtualItem<T>
   nameWithType: VirtualItem<T>
