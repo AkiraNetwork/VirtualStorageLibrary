@@ -210,60 +210,60 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Returns a string that represents the current path.
+        /// Returns a string that represents the instance's path.
         /// </summary>
-        /// <returns>A string that represents the current path.</returns>
+        /// <returns>A string that represents the instance's path.</returns>
         public override string ToString() => _path;
 
         /// <summary>
-        /// Gets a value indicating whether the current path is empty.
+        /// Gets a value indicating whether the instance's path is empty.
         /// </summary>
-        /// <value><c>true</c> if the current path is empty; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the instance's path is empty; otherwise, <c>false</c>.</value>
         public bool IsEmpty
         {
             get => _path == string.Empty;
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current path is the root path.
+        /// Gets a value indicating whether the instance's path is the root path.
         /// </summary>
-        /// <value><c>true</c> if the current path is the root path; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the instance's path is the root path; otherwise, <c>false</c>.</value>
         public bool IsRoot
         {
             get => _path == Separator.ToString();
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current path is absolute.
+        /// Gets a value indicating whether the instance's path is absolute.
         /// </summary>
-        /// <value><c>true</c> if the current path is absolute; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the instance's path is absolute; otherwise, <c>false</c>.</value>
         public bool IsAbsolute
         {
             get => _path.StartsWith(Separator);
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current path ends with a slash.
+        /// Gets a value indicating whether the instance's path ends with a slash.
         /// </summary>
-        /// <value><c>true</c> if the current path ends with a slash; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the instance's path ends with a slash; otherwise, <c>false</c>.</value>
         public bool IsEndsWithSlash
         {
             get => _path.EndsWith(Separator);
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current path is a dot.
+        /// Gets a value indicating whether the instance's path is a dot.
         /// </summary>
-        /// <value><c>true</c> if the current path is a dot; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the instance's path is a dot; otherwise, <c>false</c>.</value>
         public bool IsDot
         {
             get => _path == Dot;
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current path is a double dot.
+        /// Gets a value indicating whether the instance's path is a double dot.
         /// </summary>
-        /// <value><c>true</c> if the current path is a double dot; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the instance's path is a double dot; otherwise, <c>false</c>.</value>
         public bool IsDotDot
         {
             get => _path == DotDot;
@@ -306,8 +306,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <summary>
         /// Indicates whether this path is equal to the specified object.
         /// </summary>
-        /// <param name="obj">The object to compare with the current path.</param>
-        /// <returns>true if the specified object is equal to the current path; otherwise, false.</returns>
+        /// <param name="obj">The object to compare with the instance's path.</param>
+        /// <returns>true if the specified object is equal to the instance's path; otherwise, false.</returns>
         public override bool Equals(object? obj)
         {
             if (obj is VirtualPath other)
@@ -320,8 +320,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <summary>
         /// Indicates whether this path is equal to the specified <see cref="VirtualPath"/> object.
         /// </summary>
-        /// <param name="other">The <see cref="VirtualPath"/> object to compare with the current path.</param>
-        /// <returns>true if the specified <see cref="VirtualPath"/> is equal to the current path; otherwise, false.</returns>
+        /// <param name="other">The <see cref="VirtualPath"/> object to compare with the instance's path.</param>
+        /// <returns>true if the specified <see cref="VirtualPath"/> is equal to the instance's path; otherwise, false.</returns>
         public bool Equals(VirtualPath? other)
         {
             return _path == other?._path;
@@ -473,17 +473,17 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Determines whether the current path starts with the specified path.
+        /// Determines whether the instance's path starts with the specified path.
         /// </summary>
         /// <param name="path">The <see cref="VirtualPath"/> to compare with.</param>
-        /// <returns>true if the current path starts with the specified path; otherwise, false.</returns>
+        /// <returns>true if the instance's path starts with the specified path; otherwise, false.</returns>
         public bool StartsWith(VirtualPath path)
         {
             return _path.StartsWith(path.Path);
         }
 
         /// <summary>
-        /// Normalizes the current path.
+        /// Normalizes the instance's path.
         /// </summary>
         /// <returns>A new <see cref="VirtualPath"/> instance with the normalized path.</returns>
         public VirtualPath NormalizePath()
@@ -548,7 +548,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Retrieves the directory part of the current path.
+        /// Retrieves the directory part of the instance's path.
         /// </summary>
         /// <returns>A string representing the directory part of the path.</returns>
         private string GetDirectoryPath()
@@ -574,7 +574,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Retrieves the node name from the current path.
+        /// Retrieves the node name from the instance's path.
         /// </summary>
         /// <returns>A <see cref="VirtualNodeName"/> object representing the node name.</returns>
         public VirtualNodeName GetNodeName()
@@ -607,7 +607,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Combines the current path with the specified paths.
+        /// Combines the instance's path with the specified paths.
         /// </summary>
         /// <param name="paths">An array of <see cref="VirtualPath"/> objects to combine.</param>
         /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
@@ -684,7 +684,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Gets the parent path of the current path.
+        /// Gets the parent path of the instance's path.
         /// </summary>
         /// <returns>A <see cref="VirtualPath"/> representing the parent path.</returns>
         public VirtualPath GetParentPath()
@@ -736,7 +736,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Combines the current path with the parts of another path starting from a specified index.
+        /// Combines the instance's path with the parts of another path starting from a specified index.
         /// </summary>
         /// <param name="path">The <see cref="VirtualPath"/> whose parts to combine.</param>
         /// <param name="index">The starting index from which to combine the parts.</param>
@@ -746,7 +746,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // Get the parts of the path from the specified index
             var partsFromIndex = path.PartsList.Skip(index).ToList();
 
-            // Combine the current path (this) with the parts from the specified index
+            // Combine the instance's path (this) with the parts from the specified index
             VirtualPath combinedPath = this;
             foreach (var part in partsFromIndex)
             {
@@ -757,7 +757,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Compares the current path with another <see cref="VirtualPath"/>.
+        /// Compares the instance's path with another <see cref="VirtualPath"/>.
         /// </summary>
         /// <param name="other">The other <see cref="VirtualPath"/> to compare with.</param>
         /// <returns>An integer indicating the relative order of the paths.</returns>
@@ -772,7 +772,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Compares the current path with another object.
+        /// Compares the instance's path with another object.
         /// </summary>
         /// <param name="obj">The object to compare with.</param>
         /// <returns>An integer indicating the relative order of the paths.</returns>
@@ -798,19 +798,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="basePath">The base path.</param>
         /// <returns>A <see cref="VirtualPath"/> representing the relative path.</returns>
         /// <exception cref="InvalidOperationException">
-        /// Thrown if the current path is not absolute: This exception occurs when
+        /// Thrown if the instance's path is not absolute: This exception occurs when
         /// the method is called on a <see cref="VirtualPath"/> instance that does
         /// not start with the root path separator, indicating that it is not an
         /// absolute path.
         /// Thrown if the base path is not absolute: This exception occurs when
         /// the <paramref name="basePath"/> argument does not start with the root
         /// path separator, indicating that it is not an absolute path.
-        /// Both the current path and the base path must be absolute paths to
+        /// Both the instance's path and the base path must be absolute paths to
         /// compute a relative path.
         /// </exception>
         public VirtualPath GetRelativePath(VirtualPath basePath)
         {
-            // Throws an exception if the current path is not absolute
+            // Throws an exception if the instance's path is not absolute
             if (!IsAbsolute)
             {
                 throw new InvalidOperationException(string.Format(Resources.PathIsNotAbsolutePath, _path));
@@ -937,11 +937,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Determines whether the current path is a subdirectory of the specified parent path.
+        /// Determines whether this instance's path is a subdirectory of the specified parent path.
         /// </summary>
         /// <param name="parentPath">The parent <see cref="VirtualPath"/>.</param>
-        /// <returns>true if the current path is a subdirectory of the parent path; otherwise, false.</returns>
-        /// <exception cref="ArgumentException">Thrown if either path is empty.</exception>
+        /// <returns>true if this instance's path is a subdirectory of the parent path; otherwise, false.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown if this instance's path or the parent path is empty.
+        /// </exception>
         public bool IsSubdirectory(VirtualPath parentPath)
         {
             if (IsEmpty)
@@ -968,7 +970,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 return true;
             }
 
-            // Check if the parentPath is the parent directory of the current path
+            // Check if the parentPath is the parent directory of the instance's path
             if (sourceParts.Count <= destinationParts.Count &&
                 sourceParts.SequenceEqual(destinationParts.Take(sourceParts.Count)))
             {

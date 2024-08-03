@@ -552,13 +552,13 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Returns a string that represents the current path.
+  summary: Returns a string that represents the instance's path.
   example: []
   syntax:
     content: public override string ToString()
     return:
       type: System.String
-      description: A string that represents the current path.
+      description: A string that represents the instance's path.
     content.vb: Public Overrides Function ToString() As String
   overridden: System.Object.ToString
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ToString*
@@ -584,14 +584,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets a value indicating whether the current path is empty.
+  summary: Gets a value indicating whether the instance's path is empty.
   example: []
   syntax:
     content: public bool IsEmpty { get; }
     parameters: []
     return:
       type: System.Boolean
-      description: <code>true</code> if the current path is empty; otherwise, <code>false</code>.
+      description: <code>true</code> if the instance's path is empty; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsEmpty As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEmpty*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot
@@ -616,14 +616,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets a value indicating whether the current path is the root path.
+  summary: Gets a value indicating whether the instance's path is the root path.
   example: []
   syntax:
     content: public bool IsRoot { get; }
     parameters: []
     return:
       type: System.Boolean
-      description: <code>true</code> if the current path is the root path; otherwise, <code>false</code>.
+      description: <code>true</code> if the instance's path is the root path; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsRoot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute
@@ -648,14 +648,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets a value indicating whether the current path is absolute.
+  summary: Gets a value indicating whether the instance's path is absolute.
   example: []
   syntax:
     content: public bool IsAbsolute { get; }
     parameters: []
     return:
       type: System.Boolean
-      description: <code>true</code> if the current path is absolute; otherwise, <code>false</code>.
+      description: <code>true</code> if the instance's path is absolute; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsAbsolute As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsAbsolute*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash
@@ -680,14 +680,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets a value indicating whether the current path ends with a slash.
+  summary: Gets a value indicating whether the instance's path ends with a slash.
   example: []
   syntax:
     content: public bool IsEndsWithSlash { get; }
     parameters: []
     return:
       type: System.Boolean
-      description: <code>true</code> if the current path ends with a slash; otherwise, <code>false</code>.
+      description: <code>true</code> if the instance's path ends with a slash; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsEndsWithSlash As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot
@@ -712,14 +712,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets a value indicating whether the current path is a dot.
+  summary: Gets a value indicating whether the instance's path is a dot.
   example: []
   syntax:
     content: public bool IsDot { get; }
     parameters: []
     return:
       type: System.Boolean
-      description: <code>true</code> if the current path is a dot; otherwise, <code>false</code>.
+      description: <code>true</code> if the instance's path is a dot; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsDot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot
@@ -744,14 +744,14 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets a value indicating whether the current path is a double dot.
+  summary: Gets a value indicating whether the instance's path is a double dot.
   example: []
   syntax:
     content: public bool IsDotDot { get; }
     parameters: []
     return:
       type: System.Boolean
-      description: <code>true</code> if the current path is a double dot; otherwise, <code>false</code>.
+      description: <code>true</code> if the instance's path is a double dot; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsDotDot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsDotDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetHashCode
@@ -885,10 +885,10 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object to compare with the current path.
+      description: The object to compare with the instance's path.
     return:
       type: System.Boolean
-      description: true if the specified object is equal to the current path; otherwise, false.
+      description: true if the specified object is equal to the instance's path; otherwise, false.
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
   overridden: System.Object.Equals(System.Object)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals*
@@ -924,10 +924,10 @@ items:
     parameters:
     - id: other
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object to compare with the current path.
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object to compare with the instance's path.
     return:
       type: System.Boolean
-      description: true if the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> is equal to the current path; otherwise, false.
+      description: true if the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> is equal to the instance's path; otherwise, false.
     content.vb: Public Function Equals(other As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Equals*
   implements:
@@ -1378,7 +1378,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Determines whether the current path starts with the specified path.
+  summary: Determines whether the instance's path starts with the specified path.
   example: []
   syntax:
     content: public bool StartsWith(VirtualPath path)
@@ -1388,7 +1388,7 @@ items:
       description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> to compare with.
     return:
       type: System.Boolean
-      description: true if the current path starts with the specified path; otherwise, false.
+      description: true if the instance's path starts with the specified path; otherwise, false.
     content.vb: Public Function StartsWith(path As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath
@@ -1413,7 +1413,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Normalizes the current path.
+  summary: Normalizes the instance's path.
   example: []
   syntax:
     content: public VirtualPath NormalizePath()
@@ -1486,7 +1486,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Retrieves the node name from the current path.
+  summary: Retrieves the node name from the instance's path.
   example: []
   syntax:
     content: public VirtualNodeName GetNodeName()
@@ -1517,7 +1517,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Combines the current path with the specified paths.
+  summary: Combines the instance's path with the specified paths.
   example: []
   syntax:
     content: public VirtualPath Combine(params VirtualPath[] paths)
@@ -1593,7 +1593,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the parent path of the current path.
+  summary: Gets the parent path of the instance's path.
   example: []
   syntax:
     content: public VirtualPath GetParentPath()
@@ -1695,7 +1695,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Combines the current path with the parts of another path starting from a specified index.
+  summary: Combines the instance's path with the parts of another path starting from a specified index.
   example: []
   syntax:
     content: public VirtualPath CombineFromIndex(VirtualPath path, int index)
@@ -1736,7 +1736,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Compares the current path with another <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
+  summary: Compares the instance's path with another <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: public int CompareTo(VirtualPath? other)
@@ -1776,7 +1776,7 @@ items:
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Compares the current path with another object.
+  summary: Compares the instance's path with another object.
   example: []
   syntax:
     content: public int CompareTo(object? obj)
@@ -1837,7 +1837,7 @@ items:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: >-
-      Thrown if the current path is not absolute: This exception occurs when
+      Thrown if the instance's path is not absolute: This exception occurs when
 
       the method is called on a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> instance that does
 
@@ -1851,7 +1851,7 @@ items:
 
       path separator, indicating that it is not an absolute path.
 
-      Both the current path and the base path must be absolute paths to
+      Both the instance's path and the base path must be absolute paths to
 
       compute a relative path.
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -1914,11 +1914,11 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsSubdirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 944
+    startLine: 946
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Determines whether the current path is a subdirectory of the specified parent path.
+  summary: Determines whether this instance's path is a subdirectory of the specified parent path.
   example: []
   syntax:
     content: public bool IsSubdirectory(VirtualPath parentPath)
@@ -1928,13 +1928,13 @@ items:
       description: The parent <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: System.Boolean
-      description: true if the current path is a subdirectory of the parent path; otherwise, false.
+      description: true if this instance's path is a subdirectory of the parent path; otherwise, false.
     content.vb: Public Function IsSubdirectory(parentPath As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: Thrown if either path is empty.
+    description: Thrown if this instance's path or the parent path is empty.
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
