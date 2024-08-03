@@ -142,7 +142,7 @@ and holds default settings and various parameters.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>[]</td>
-        <td><p>An array of characters that are invalid in node names.</p>
+        <td><p>An array of characters that cannot be used in node names.</p>
 </td>
       </tr>
     </tbody>
@@ -167,7 +167,7 @@ and holds default settings and various parameters.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
-        <td><p>An array of invalid node names.</p>
+        <td><p>An array of node names that are not allowed in the virtual storage.</p>
 </td>
       </tr>
     </tbody>
@@ -192,7 +192,7 @@ and holds default settings and various parameters.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html">VirtualNodeListConditions</a></td>
-        <td><p>The conditions for listing nodes.</p>
+        <td><p>The conditions used to filter, group, and sort nodes.</p>
 </td>
       </tr>
     </tbody>
@@ -218,7 +218,7 @@ is &quot;.&quot;.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The path representing the current directory.</p>
+        <td><p>The representation of the current directory.</p>
 </td>
       </tr>
     </tbody>
@@ -244,7 +244,7 @@ is &quot;..&quot;.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The path representing the parent directory.</p>
+        <td><p>The representation of the parent directory.</p>
 </td>
       </tr>
     </tbody>
@@ -269,7 +269,7 @@ is &quot;..&quot;.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The root path.</p>
+        <td><p>The root directory path in the virtual storage.</p>
 </td>
       </tr>
     </tbody>
@@ -294,7 +294,7 @@ is &quot;..&quot;.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
-        <td><p>The path separator character.</p>
+        <td><p>The character used to separate path segments.</p>
 </td>
       </tr>
     </tbody>
@@ -320,7 +320,7 @@ Used for auto-generating node names.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The prefix used for directory names.</p>
+        <td><p>The prefix added to auto-generated directory names.</p>
 </td>
       </tr>
     </tbody>
@@ -346,7 +346,7 @@ Used for auto-generating node names.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The prefix used for item names.</p>
+        <td><p>The prefix added to auto-generated item names.</p>
 </td>
       </tr>
     </tbody>
@@ -372,7 +372,7 @@ Used for auto-generating node names.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The prefix used for symbolic link names.</p>
+        <td><p>The prefix added to auto-generated symbolic link names.</p>
 </td>
       </tr>
     </tbody>
@@ -397,7 +397,8 @@ Used for auto-generating node names.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html">VirtualStorageSettings</a></td>
-        <td></td>
+        <td><p>The current instance of <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html">VirtualStorageSettings</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -421,7 +422,7 @@ Used for auto-generating node names.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html">IVirtualWildcardMatcher</a></td>
-        <td><p>The wildcard matcher.</p>
+        <td><p>The implementation of wildcard matching used in the storage.</p>
 </td>
       </tr>
     </tbody>

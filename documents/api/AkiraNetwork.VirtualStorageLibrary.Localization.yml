@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Localization
+  id: AkiraNetwork.VirtualStorageLibrary.Localization
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: AkiraNetwork.VirtualStorageLibrary.Localization
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Localization
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization
+  type: Namespace
+  assemblies:
+  - VirtualStorageLibrary
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html
+  name: Resources
+  nameWithType: Resources
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources

@@ -114,6 +114,530 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Wildcards
   nameWithType: IVirtualWildcardMatcher.Wildcards
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization
+  name: AkiraNetwork.VirtualStorageLibrary.Localization
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.html
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Localization
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Localization
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  name: Resources
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  nameWithType: Resources
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor
+  name: Resources()
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources__ctor
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor
+  name.vb: New()
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Resources()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.New()
+  nameWithType: Resources.Resources()
+  nameWithType.vb: Resources.New()
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor*
+  name: Resources
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources__ctor_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Resources
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.New
+  nameWithType: Resources.Resources
+  nameWithType.vb: Resources.New
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  name: BasePathIsNotAbsolute
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_BasePathIsNotAbsolute
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  nameWithType: Resources.BasePathIsNotAbsolute
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute*
+  name: BasePathIsNotAbsolute
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_BasePathIsNotAbsolute_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  nameWithType: Resources.BasePathIsNotAbsolute
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  name: CannotAddRoot
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotAddRoot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  nameWithType: Resources.CannotAddRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot*
+  name: CannotAddRoot
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotAddRoot_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  nameWithType: Resources.CannotAddRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  name: CannotMoveRootDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotMoveRootDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  nameWithType: Resources.CannotMoveRootDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory*
+  name: CannotMoveRootDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotMoveRootDirectory_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  nameWithType: Resources.CannotMoveRootDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  name: CannotReachBecauseNodeItem
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotReachBecauseNodeItem
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  nameWithType: Resources.CannotReachBecauseNodeItem
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem*
+  name: CannotReachBecauseNodeItem
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotReachBecauseNodeItem_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  nameWithType: Resources.CannotReachBecauseNodeItem
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  name: CannotReachBecauseNodeSymbolicLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotReachBecauseNodeSymbolicLink
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  nameWithType: Resources.CannotReachBecauseNodeSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink*
+  name: CannotReachBecauseNodeSymbolicLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotReachBecauseNodeSymbolicLink_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  nameWithType: Resources.CannotReachBecauseNodeSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  name: CannotRemoveNonEmptyDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotRemoveNonEmptyDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  nameWithType: Resources.CannotRemoveNonEmptyDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory*
+  name: CannotRemoveNonEmptyDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotRemoveNonEmptyDirectory_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  nameWithType: Resources.CannotRemoveNonEmptyDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  name: CannotRemoveRoot
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotRemoveRoot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  nameWithType: Resources.CannotRemoveRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot*
+  name: CannotRemoveRoot
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotRemoveRoot_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  nameWithType: Resources.CannotRemoveRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  name: CircularReferenceDetected
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CircularReferenceDetected
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  nameWithType: Resources.CircularReferenceDetected
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected*
+  name: CircularReferenceDetected
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CircularReferenceDetected_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  nameWithType: Resources.CircularReferenceDetected
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  name: Culture
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_Culture
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  nameWithType: Resources.Culture
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture*
+  name: Culture
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_Culture_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  nameWithType: Resources.Culture
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  name: DestinationIsSubdirectoryOfSource
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_DestinationIsSubdirectoryOfSource
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  nameWithType: Resources.DestinationIsSubdirectoryOfSource
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource*
+  name: DestinationIsSubdirectoryOfSource
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_DestinationIsSubdirectoryOfSource_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  nameWithType: Resources.DestinationIsSubdirectoryOfSource
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  name: DestinationNodeIsItemOrSymbolicLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_DestinationNodeIsItemOrSymbolicLink
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  nameWithType: Resources.DestinationNodeIsItemOrSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink*
+  name: DestinationNodeIsItemOrSymbolicLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_DestinationNodeIsItemOrSymbolicLink_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  nameWithType: Resources.DestinationNodeIsItemOrSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  name: InvalidNodeName
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_InvalidNodeName
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  nameWithType: Resources.InvalidNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName*
+  name: InvalidNodeName
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_InvalidNodeName_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  nameWithType: Resources.InvalidNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  name: LinkPathIsNotAbsolutePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_LinkPathIsNotAbsolutePath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  nameWithType: Resources.LinkPathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath*
+  name: LinkPathIsNotAbsolutePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_LinkPathIsNotAbsolutePath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  nameWithType: Resources.LinkPathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  name: NegativeDepthValue
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NegativeDepthValue
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  nameWithType: Resources.NegativeDepthValue
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue*
+  name: NegativeDepthValue
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NegativeDepthValue_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  nameWithType: Resources.NegativeDepthValue
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  name: NewNameNodeAlreadyExists
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NewNameNodeAlreadyExists
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  nameWithType: Resources.NewNameNodeAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists*
+  name: NewNameNodeAlreadyExists
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NewNameNodeAlreadyExists_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  nameWithType: Resources.NewNameNodeAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  name: NewNameSameAsCurrent
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NewNameSameAsCurrent
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  nameWithType: Resources.NewNameSameAsCurrent
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent*
+  name: NewNameSameAsCurrent
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NewNameSameAsCurrent_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  nameWithType: Resources.NewNameSameAsCurrent
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  name: NodeAlreadyExists
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeAlreadyExists
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  nameWithType: Resources.NodeAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists*
+  name: NodeAlreadyExists
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeAlreadyExists_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  nameWithType: Resources.NodeAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  name: NodeIsNotVirtualDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  nameWithType: Resources.NodeIsNotVirtualDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory*
+  name: NodeIsNotVirtualDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualDirectory_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  nameWithType: Resources.NodeIsNotVirtualDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  name: NodeIsNotVirtualItem
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualItem
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  nameWithType: Resources.NodeIsNotVirtualItem
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem*
+  name: NodeIsNotVirtualItem
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualItem_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  nameWithType: Resources.NodeIsNotVirtualItem
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  name: NodeIsNotVirtualSymbolicLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualSymbolicLink
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  nameWithType: Resources.NodeIsNotVirtualSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink*
+  name: NodeIsNotVirtualSymbolicLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualSymbolicLink_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  nameWithType: Resources.NodeIsNotVirtualSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  name: NodeNotFound
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeNotFound
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  nameWithType: Resources.NodeNotFound
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound*
+  name: NodeNotFound
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeNotFound_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  nameWithType: Resources.NodeNotFound
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  name: NodeWithSameNameAtDestination
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeWithSameNameAtDestination
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  nameWithType: Resources.NodeWithSameNameAtDestination
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination*
+  name: NodeWithSameNameAtDestination
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeWithSameNameAtDestination_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  nameWithType: Resources.NodeWithSameNameAtDestination
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  name: ParameterIsEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  nameWithType: Resources.ParameterIsEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty*
+  name: ParameterIsEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsEmpty_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  nameWithType: Resources.ParameterIsEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  name: ParameterIsNotVirtualNodeName
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNotVirtualNodeName
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  nameWithType: Resources.ParameterIsNotVirtualNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName*
+  name: ParameterIsNotVirtualNodeName
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNotVirtualNodeName_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  nameWithType: Resources.ParameterIsNotVirtualNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  name: ParameterIsNotVirtualPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNotVirtualPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  nameWithType: Resources.ParameterIsNotVirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath*
+  name: ParameterIsNotVirtualPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNotVirtualPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  nameWithType: Resources.ParameterIsNotVirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  name: ParameterIsNullOrEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNullOrEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  nameWithType: Resources.ParameterIsNullOrEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty*
+  name: ParameterIsNullOrEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNullOrEmpty_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  nameWithType: Resources.ParameterIsNullOrEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  name: PathCannotBeEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathCannotBeEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  nameWithType: Resources.PathCannotBeEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty*
+  name: PathCannotBeEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathCannotBeEmpty_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  nameWithType: Resources.PathCannotBeEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  name: PathIsNotAbsolutePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathIsNotAbsolutePath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  nameWithType: Resources.PathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath*
+  name: PathIsNotAbsolutePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathIsNotAbsolutePath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  nameWithType: Resources.PathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  name: PathNormalizationAboveRoot
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathNormalizationAboveRoot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  nameWithType: Resources.PathNormalizationAboveRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot*
+  name: PathNormalizationAboveRoot
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathNormalizationAboveRoot_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  nameWithType: Resources.PathNormalizationAboveRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  name: PathNotFound
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathNotFound
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  nameWithType: Resources.PathNotFound
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound*
+  name: PathNotFound
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathNotFound_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  nameWithType: Resources.PathNotFound
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  name: PrefixIsEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PrefixIsEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  nameWithType: Resources.PrefixIsEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty*
+  name: PrefixIsEmpty
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PrefixIsEmpty_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  nameWithType: Resources.PrefixIsEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  name: RecursiveSubdirectoryConflict
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_RecursiveSubdirectoryConflict
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  nameWithType: Resources.RecursiveSubdirectoryConflict
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict*
+  name: RecursiveSubdirectoryConflict
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_RecursiveSubdirectoryConflict_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  nameWithType: Resources.RecursiveSubdirectoryConflict
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  name: ResourceManager
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ResourceManager
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  nameWithType: Resources.ResourceManager
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager*
+  name: ResourceManager
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ResourceManager_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  nameWithType: Resources.ResourceManager
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  name: RootAlreadyExists
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_RootAlreadyExists
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  nameWithType: Resources.RootAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists*
+  name: RootAlreadyExists
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_RootAlreadyExists_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  nameWithType: Resources.RootAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  name: SourceAndDestinationPathSameForCopy
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_SourceAndDestinationPathSameForCopy
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  nameWithType: Resources.SourceAndDestinationPathSameForCopy
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy*
+  name: SourceAndDestinationPathSameForCopy
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_SourceAndDestinationPathSameForCopy_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  nameWithType: Resources.SourceAndDestinationPathSameForCopy
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  name: SourceAndDestinationPathSameForMove
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_SourceAndDestinationPathSameForMove
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  nameWithType: Resources.SourceAndDestinationPathSameForMove
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove*
+  name: SourceAndDestinationPathSameForMove
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_SourceAndDestinationPathSameForMove_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  nameWithType: Resources.SourceAndDestinationPathSameForMove
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  name: TargetPathIsNotAbsolutePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_TargetPathIsNotAbsolutePath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  nameWithType: Resources.TargetPathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath*
+  name: TargetPathIsNotAbsolutePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_TargetPathIsNotAbsolutePath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  nameWithType: Resources.TargetPathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceCulture
+  name: resourceCulture
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_resourceCulture
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceCulture
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceCulture
+  nameWithType: Resources.resourceCulture
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceMan
+  name: resourceMan
+  href: api/AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_resourceMan
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceMan
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceMan
+  nameWithType: Resources.resourceMan
 - uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
   name: NotifyNodeDelegate
   href: api/AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
@@ -3023,19 +3547,6 @@ references:
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState
   nameWithType: VirtualStorageState
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  name: InvalidFullNodeNames
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidFullNodeNames
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  nameWithType: VirtualStorageState.InvalidFullNodeNames
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames*
-  name: InvalidFullNodeNames
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidFullNodeNames_
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  isSpec: "True"
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  nameWithType: VirtualStorageState.InvalidFullNodeNames
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters
   name: InvalidNodeNameCharacters
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNameCharacters
@@ -3049,6 +3560,19 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters
   nameWithType: VirtualStorageState.InvalidNodeNameCharacters
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  name: InvalidNodeNames
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNames
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  nameWithType: VirtualStorageState.InvalidNodeNames
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames*
+  name: InvalidNodeNames
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNames_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  nameWithType: VirtualStorageState.InvalidNodeNames
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.NodeListConditions
   name: NodeListConditions
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_NodeListConditions
@@ -4186,6 +4710,204 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTarget
   nameWithType: VirtualStorage<T>.WalkPathToTarget
   nameWithType.vb: VirtualStorage(Of T).WalkPathToTarget
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  name: VirtualStorage<T>.WalkPathToTargetParameters
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  name.vb: VirtualStorage(Of T).WalkPathToTargetParameters
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean,System.Boolean)
+  name: WalkPathToTargetParameters(VirtualPath, int, VirtualPath, VirtualPath?, VirtualDirectory, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool, bool)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_NotifyNodeDelegate_AkiraNetwork_VirtualStorageLibrary_ActionNodeDelegate_System_Boolean_System_Boolean_System_Boolean_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean,System.Boolean)
+  name.vb: New(VirtualPath, Integer, VirtualPath, VirtualPath, VirtualDirectory, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean, Boolean)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters(AkiraNetwork.VirtualStorageLibrary.VirtualPath, int, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate?, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate?, bool, bool, bool)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.New(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Integer, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate, Boolean, Boolean, Boolean)
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters(VirtualPath, int, VirtualPath, VirtualPath?, VirtualDirectory, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool, bool)
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.New(VirtualPath, Integer, VirtualPath, VirtualPath, VirtualDirectory, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor*
+  name: WalkPathToTargetParameters
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters__ctor_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.New
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode
+  name: ActionNode
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ActionNode
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode*
+  name: ActionNode
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ActionNode_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled
+  name: ExceptionEnabled
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ExceptionEnabled
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled*
+  name: ExceptionEnabled
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ExceptionEnabled_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks
+  name: FollowLinks
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_FollowLinks
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks*
+  name: FollowLinks
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_FollowLinks_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode
+  name: NotifyNode
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_NotifyNode
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode*
+  name: NotifyNode
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_NotifyNode_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved
+  name: Resolved
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_Resolved
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.Resolved
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.Resolved
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved*
+  name: Resolved
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_Resolved_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.Resolved
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.Resolved
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath
+  name: ResolvedPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ResolvedPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath*
+  name: ResolvedPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ResolvedPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath
+  name: TargetPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TargetPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath*
+  name: TargetPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TargetPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory
+  name: TraversalDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory*
+  name: TraversalDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalDirectory_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex
+  name: TraversalIndex
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalIndex
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex*
+  name: TraversalIndex
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalIndex_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath
+  name: TraversalPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath*
+  name: TraversalPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Boolean)
   name: WalkPathTree(VirtualPath, VirtualNodeTypeFilter, bool, bool, bool)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTree_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_System_Boolean_
@@ -4204,6 +4926,238 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTree
   nameWithType: VirtualStorage<T>.WalkPathTree
   nameWithType.vb: VirtualStorage(Of T).WalkPathTree
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters
+  name: VirtualStorage<T>.WalkPathTreeParameters
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters
+  name.vb: VirtualStorage(Of T).WalkPathTreeParameters
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  name: WalkPathTreeParameters(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory?, int, int, int, VirtualNodeTypeFilter, bool, bool, List<string>?, VirtualSymbolicLink?)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_System_Collections_Generic_List_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  name.vb: New(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory, Integer, Integer, Integer, VirtualNodeTypeFilter, Boolean, Boolean, List(Of String), VirtualSymbolicLink)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory?, int, int, int, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool, System.Collections.Generic.List<string>?, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink?)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.New(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, Integer, Integer, Integer, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean, System.Collections.Generic.List(Of String), AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory?, int, int, int, VirtualNodeTypeFilter, bool, bool, List<string>?, VirtualSymbolicLink?)
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.New(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory, Integer, Integer, Integer, VirtualNodeTypeFilter, Boolean, Boolean, List(Of String), VirtualSymbolicLink)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor*
+  name: WalkPathTreeParameters
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters__ctor_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.New
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth
+  name: BaseDepth
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseDepth
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth*
+  name: BaseDepth
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseDepth_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode
+  name: BaseNode
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseNode
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode*
+  name: BaseNode
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseNode_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath
+  name: BasePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BasePath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BasePath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BasePath
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BasePath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BasePath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath*
+  name: BasePath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BasePath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BasePath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BasePath
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BasePath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BasePath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth
+  name: CurrentDepth
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentDepth
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth*
+  name: CurrentDepth
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentDepth_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex
+  name: CurrentIndex
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentIndex
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex*
+  name: CurrentIndex
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentIndex_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath
+  name: CurrentPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath*
+  name: CurrentPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter
+  name: Filter
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Filter
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Filter
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Filter
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Filter
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Filter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter*
+  name: Filter
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Filter_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Filter
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Filter
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Filter
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Filter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks
+  name: FollowLinks
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_FollowLinks
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks*
+  name: FollowLinks
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_FollowLinks_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory
+  name: ParentDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ParentDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory*
+  name: ParentDirectory
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ParentDirectory_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList
+  name: PatternList
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_PatternList
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.PatternList
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.PatternList
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.PatternList
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.PatternList
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList*
+  name: PatternList
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_PatternList_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.PatternList
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.PatternList
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.PatternList
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.PatternList
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive
+  name: Recursive
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Recursive
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Recursive
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Recursive
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Recursive
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Recursive
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive*
+  name: Recursive
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Recursive_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Recursive
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Recursive
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Recursive
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Recursive
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink
+  name: ResolvedLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ResolvedLink
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.ResolvedLink
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.ResolvedLink
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink*
+  name: ResolvedLink
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ResolvedLink_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.ResolvedLink
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.ResolvedLink
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   name: VirtualSymbolicLink
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html

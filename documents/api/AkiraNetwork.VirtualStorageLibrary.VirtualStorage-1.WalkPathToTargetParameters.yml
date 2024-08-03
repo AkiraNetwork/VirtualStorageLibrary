@@ -1,0 +1,899 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  id: VirtualStorage`1.WalkPathToTargetParameters
+  parent: AkiraNetwork.VirtualStorageLibrary
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath
+  langs:
+  - csharp
+  - vb
+  name: VirtualStorage<T>.WalkPathToTargetParameters
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters
+  type: Struct
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: WalkPathToTargetParameters
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1720
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: private struct VirtualStorage<T>.WalkPathToTargetParameters
+    content.vb: Private Structure VirtualStorage(Of T).WalkPathToTargetParameters
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters
+  name.vb: VirtualStorage(Of T).WalkPathToTargetParameters
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean,System.Boolean)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean,System.Boolean)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: WalkPathToTargetParameters(VirtualPath, int, VirtualPath, VirtualPath?, VirtualDirectory, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool, bool)
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters(VirtualPath, int, VirtualPath, VirtualPath?, VirtualDirectory, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters(AkiraNetwork.VirtualStorageLibrary.VirtualPath, int, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate?, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate?, bool, bool, bool)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1720
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public WalkPathToTargetParameters(VirtualPath targetPath, int traversalIndex, VirtualPath traversalPath, VirtualPath? resolvedPath, VirtualDirectory traversalDirectory, NotifyNodeDelegate? notifyNode, ActionNodeDelegate? actionNode, bool followLinks, bool exceptionEnabled, bool resolved)
+    parameters:
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: traversalIndex
+      type: System.Int32
+    - id: traversalPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: resolvedPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: traversalDirectory
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    - id: notifyNode
+      type: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    - id: actionNode
+      type: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+    - id: followLinks
+      type: System.Boolean
+    - id: exceptionEnabled
+      type: System.Boolean
+    - id: resolved
+      type: System.Boolean
+    content.vb: Public Sub New(targetPath As VirtualPath, traversalIndex As Integer, traversalPath As VirtualPath, resolvedPath As VirtualPath, traversalDirectory As VirtualDirectory, notifyNode As NotifyNodeDelegate, actionNode As ActionNodeDelegate, followLinks As Boolean, exceptionEnabled As Boolean, resolved As Boolean)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.New(VirtualPath, Integer, VirtualPath, VirtualPath, VirtualDirectory, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.New(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Integer, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate, Boolean, Boolean, Boolean)
+  name.vb: New(VirtualPath, Integer, VirtualPath, VirtualPath, VirtualDirectory, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath
+  id: TargetPath
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: TargetPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: TargetPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1733
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualPath TargetPath { readonly get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Property TargetPath As VirtualPath
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex
+  id: TraversalIndex
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: TraversalIndex
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: TraversalIndex
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1734
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public int TraversalIndex { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TraversalIndex As Integer
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath
+  id: TraversalPath
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: TraversalPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: TraversalPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1735
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualPath TraversalPath { readonly get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Property TraversalPath As VirtualPath
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath
+  id: ResolvedPath
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: ResolvedPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ResolvedPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1736
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualPath? ResolvedPath { readonly get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Property ResolvedPath As VirtualPath
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory
+  id: TraversalDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: TraversalDirectory
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: TraversalDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1737
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualDirectory TraversalDirectory { readonly get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    content.vb: Public Property TraversalDirectory As VirtualDirectory
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode
+  id: NotifyNode
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: NotifyNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NotifyNode
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1738
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public NotifyNodeDelegate? NotifyNode { readonly get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    content.vb: Public Property NotifyNode As NotifyNodeDelegate
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode
+  id: ActionNode
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: ActionNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ActionNode
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1739
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public ActionNodeDelegate? ActionNode { readonly get; set; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+    content.vb: Public Property ActionNode As ActionNodeDelegate
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks
+  id: FollowLinks
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: FollowLinks
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: FollowLinks
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1740
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public bool FollowLinks { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property FollowLinks As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled
+  id: ExceptionEnabled
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: ExceptionEnabled
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ExceptionEnabled
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1741
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public bool ExceptionEnabled { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ExceptionEnabled As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved
+  id: Resolved
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+  langs:
+  - csharp
+  - vb
+  name: Resolved
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Resolved
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+    startLine: 1742
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public bool Resolved { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Resolved As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.Resolved
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.Resolved
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary
+  commentId: N:AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary
+  nameWithType: AkiraNetwork.VirtualStorageLibrary
+  fullName: AkiraNetwork.VirtualStorageLibrary
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<WalkPathToTargetParameters>(WalkPathToTargetParameters)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<VirtualStorage<T>.WalkPathToTargetParameters>(VirtualStorage<T>.WalkPathToTargetParameters)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters>(AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of VirtualStorage(Of T).WalkPathToTargetParameters)(VirtualStorage(Of T).WalkPathToTargetParameters)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters)(AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters)
+  name.vb: GenerateSingleTableDebugText(Of WalkPathToTargetParameters)(WalkPathToTargetParameters)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{`0}.WalkPathToTargetParameters)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+    name: WalkPathToTargetParameters
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+    name: WalkPathToTargetParameters
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{`0}.WalkPathToTargetParameters)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+    name: WalkPathToTargetParameters
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+    name: WalkPathToTargetParameters
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_NotifyNodeDelegate_AkiraNetwork_VirtualStorageLibrary_ActionNodeDelegate_System_Boolean_System_Boolean_System_Boolean_
+  name: WalkPathToTargetParameters
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.WalkPathToTargetParameters
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.New
+  name.vb: New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  name: VirtualPath
+  nameWithType: VirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html
+  name: VirtualDirectory
+  nameWithType: VirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
+  name: NotifyNodeDelegate
+  nameWithType: NotifyNodeDelegate
+  fullName: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+- uid: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate.html
+  name: ActionNodeDelegate
+  nameWithType: ActionNodeDelegate
+  fullName: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TargetPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TargetPath
+  name: TargetPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TargetPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TargetPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalIndex
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalIndex
+  name: TraversalIndex
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalIndex
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalIndex
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalPath
+  name: TraversalPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ResolvedPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ResolvedPath
+  name: ResolvedPath
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ResolvedPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ResolvedPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.TraversalDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_TraversalDirectory
+  name: TraversalDirectory
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.TraversalDirectory
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.TraversalDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.NotifyNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_NotifyNode
+  name: NotifyNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.NotifyNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.NotifyNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ActionNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ActionNode
+  name: ActionNode
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ActionNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ActionNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.FollowLinks
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_FollowLinks
+  name: FollowLinks
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.FollowLinks
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.FollowLinks
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.ExceptionEnabled
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_ExceptionEnabled
+  name: ExceptionEnabled
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.ExceptionEnabled
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.ExceptionEnabled
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters.Resolved
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTargetParameters_Resolved
+  name: Resolved
+  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters.Resolved
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters.Resolved
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters.Resolved

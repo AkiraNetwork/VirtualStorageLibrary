@@ -12,8 +12,14 @@
         /// <summary>
         /// Gets the current instance of the settings.
         /// </summary>
+        /// <value>
+        /// The current instance of <see cref="VirtualStorageSettings"/>.
+        /// </value>
         public static VirtualStorageSettings Settings => _settings;
 
+        /// <summary>
+        /// Initializes a new instance of the <c>VirtualStorageSettings</c> class with default settings.
+        /// </summary>
         private VirtualStorageSettings()
         {
             InvalidNodeNameCharacters = [PathSeparator];
@@ -48,7 +54,7 @@
         /// Gets or sets the path separator character. The default value is '/'.
         /// </summary>
         /// <value>
-        /// The path separator character.
+        /// The character used to separate path segments.
         /// </value>
         public char PathSeparator { get; set; } = '/';
 
@@ -56,7 +62,7 @@
         /// Gets or sets the root path. The default value is "/".
         /// </summary>
         /// <value>
-        /// The root path.
+        /// The root directory path in the virtual storage.
         /// </value>
         public string PathRoot { get; set; } = "/";
 
@@ -65,7 +71,7 @@
         /// is ".".
         /// </summary>
         /// <value>
-        /// The path representing the current directory.
+        /// The representation of the current directory.
         /// </value>
         public string PathDot { get; set; } = ".";
 
@@ -74,7 +80,7 @@
         /// is "..".
         /// </summary>
         /// <value>
-        /// The path representing the parent directory.
+        /// The representation of the parent directory.
         /// </value>
         public string PathDotDot { get; set; } = "..";
 
@@ -82,7 +88,7 @@
         /// Gets or sets an array of characters that are invalid in node names.
         /// </summary>
         /// <value>
-        /// An array of characters that are invalid in node names.
+        /// An array of characters that cannot be used in node names.
         /// </value>
         public char[] InvalidNodeNameCharacters { get; set; }
 
@@ -90,7 +96,7 @@
         /// Gets or sets an array of invalid node names.
         /// </summary>
         /// <value>
-        /// An array of invalid node names.
+        /// An array of node names that are not allowed in the virtual storage.
         /// </value>
         public string[] InvalidNodeNames { get; set; }
 
@@ -98,7 +104,7 @@
         /// Gets or sets the wildcard matcher.
         /// </summary>
         /// <value>
-        /// The wildcard matcher.
+        /// The implementation of wildcard matching used in the storage.
         /// </value>
         public IVirtualWildcardMatcher? WildcardMatcher { get; set; }
 
@@ -106,16 +112,16 @@
         /// Gets or sets the conditions for listing nodes.
         /// </summary>
         /// <value>
-        /// The conditions for listing nodes.
+        /// The conditions used to filter, group, and sort nodes.
         /// </value>
         public VirtualNodeListConditions NodeListConditions { get; set; }
 
         /// <summary>
-        /// Gets or sets the prefix used for item names. The default value is "item". 
+        /// Gets or sets the prefix used for item names. The default value is "item".
         /// Used for auto-generating node names.
         /// </summary>
         /// <value>
-        /// The prefix used for item names.
+        /// The prefix added to auto-generated item names.
         /// </value>
         public string PrefixItem { get; set; } = "item";
 
@@ -124,7 +130,7 @@
         /// Used for auto-generating node names.
         /// </summary>
         /// <value>
-        /// The prefix used for directory names.
+        /// The prefix added to auto-generated directory names.
         /// </value>
         public string PrefixDirectory { get; set; } = "dir";
 
@@ -133,7 +139,7 @@
         /// "link". Used for auto-generating node names.
         /// </summary>
         /// <value>
-        /// The prefix used for symbolic link names.
+        /// The prefix added to auto-generated symbolic link names.
         /// </value>
         public string PrefixSymbolicLink { get; set; } = "link";
     }

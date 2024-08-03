@@ -74,7 +74,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Settings
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 14
+    startLine: 17
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -85,6 +85,7 @@ items:
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
+      description: The current instance of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Shared ReadOnly Property Settings As VirtualStorageSettings
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Settings*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Initialize
@@ -105,7 +106,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Initialize
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 38
+    startLine: 44
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -136,7 +137,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathSeparator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 52
+    startLine: 58
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -147,7 +148,7 @@ items:
     parameters: []
     return:
       type: System.Char
-      description: The path separator character.
+      description: The character used to separate path segments.
     content.vb: Public Property PathSeparator As Char
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PathSeparator*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PathRoot
@@ -168,7 +169,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 60
+    startLine: 66
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -179,7 +180,7 @@ items:
     parameters: []
     return:
       type: System.String
-      description: The root path.
+      description: The root directory path in the virtual storage.
     content.vb: Public Property PathRoot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PathRoot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PathDot
@@ -200,7 +201,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 69
+    startLine: 75
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -214,7 +215,7 @@ items:
     parameters: []
     return:
       type: System.String
-      description: The path representing the current directory.
+      description: The representation of the current directory.
     content.vb: Public Property PathDot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PathDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PathDotDot
@@ -235,7 +236,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 78
+    startLine: 84
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -249,7 +250,7 @@ items:
     parameters: []
     return:
       type: System.String
-      description: The path representing the parent directory.
+      description: The representation of the parent directory.
     content.vb: Public Property PathDotDot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PathDotDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNameCharacters
@@ -270,7 +271,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: InvalidNodeNameCharacters
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 86
+    startLine: 92
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -281,7 +282,7 @@ items:
     parameters: []
     return:
       type: System.Char[]
-      description: An array of characters that are invalid in node names.
+      description: An array of characters that cannot be used in node names.
     content.vb: Public Property InvalidNodeNameCharacters As Char()
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNameCharacters*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
@@ -302,7 +303,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: InvalidNodeNames
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 94
+    startLine: 100
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -313,7 +314,7 @@ items:
     parameters: []
     return:
       type: System.String[]
-      description: An array of invalid node names.
+      description: An array of node names that are not allowed in the virtual storage.
     content.vb: Public Property InvalidNodeNames As String()
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.WildcardMatcher
@@ -334,7 +335,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 102
+    startLine: 108
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -345,7 +346,7 @@ items:
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
-      description: The wildcard matcher.
+      description: The implementation of wildcard matching used in the storage.
     content.vb: Public Property WildcardMatcher As IVirtualWildcardMatcher
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.WildcardMatcher*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.NodeListConditions
@@ -366,7 +367,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 110
+    startLine: 116
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -377,7 +378,7 @@ items:
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions
-      description: The conditions for listing nodes.
+      description: The conditions used to filter, group, and sort nodes.
     content.vb: Public Property NodeListConditions As VirtualNodeListConditions
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.NodeListConditions*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PrefixItem
@@ -398,12 +399,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 119
+    startLine: 125
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
   summary: >-
-    Gets or sets the prefix used for item names. The default value is "item". 
+    Gets or sets the prefix used for item names. The default value is "item".
 
     Used for auto-generating node names.
   example: []
@@ -412,7 +413,7 @@ items:
     parameters: []
     return:
       type: System.String
-      description: The prefix used for item names.
+      description: The prefix added to auto-generated item names.
     content.vb: Public Property PrefixItem As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PrefixItem*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PrefixDirectory
@@ -433,7 +434,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 128
+    startLine: 134
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -447,7 +448,7 @@ items:
     parameters: []
     return:
       type: System.String
-      description: The prefix used for directory names.
+      description: The prefix added to auto-generated directory names.
     content.vb: Public Property PrefixDirectory As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PrefixDirectory*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PrefixSymbolicLink
@@ -468,7 +469,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageSettings.cs
-    startLine: 137
+    startLine: 143
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -482,7 +483,7 @@ items:
     parameters: []
     return:
       type: System.String
-      description: The prefix used for symbolic link names.
+      description: The prefix added to auto-generated symbolic link names.
     content.vb: Public Property PrefixSymbolicLink As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.PrefixSymbolicLink*
 references:
@@ -854,12 +855,6 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Settings*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Settings
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_Settings
-  name: Settings
-  nameWithType: VirtualStorageSettings.Settings
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Settings
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -867,6 +862,12 @@ references:
   name: VirtualStorageSettings
   nameWithType: VirtualStorageSettings
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Settings*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Settings
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_Settings
+  name: Settings
+  nameWithType: VirtualStorageSettings.Settings
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Settings
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Initialize*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Initialize
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_Initialize

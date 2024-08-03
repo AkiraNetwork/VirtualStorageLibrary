@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class VirtualStorageState | AkiraNetwork ">
     
-    
+    <meta name="description" content="Manages the state of the virtual storage. This class implements the singleton pattern and maintains the current settings and state.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,9 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState" class="text-break">Class VirtualStorageState</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Manages the state of the virtual storage. This class implements the singleton pattern
+and maintains the current settings and state.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -120,32 +122,10 @@
   </div>
   <h3 id="properties">Properties
 </h3>
-  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidFullNodeNames_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames*"></a>
-  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidFullNodeNames" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames">InvalidFullNodeNames</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] InvalidFullNodeNames { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNameCharacters_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNameCharacters" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters">InvalidNodeNameCharacters</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets an array of characters that are invalid in node names.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -162,13 +142,40 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>[]</td>
-        <td></td>
+        <td><p>An array of characters that are invalid in node names.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNames_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNames" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames">InvalidNodeNames</h4>
+  <div class="markdown level1 summary"><p>Gets or sets an array of invalid node names.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] InvalidNodeNames { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><p>An array of invalid node names.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_NodeListConditions_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.NodeListConditions*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_NodeListConditions" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.NodeListConditions">NodeListConditions</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the conditions for listing nodes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -185,13 +192,16 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html">VirtualNodeListConditions</a></td>
-        <td></td>
+        <td><p>The conditions for listing nodes.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathDot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDot*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDot">PathDot</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the path representing the current directory. The default value
+is &quot;.&quot;.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -208,13 +218,16 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The path representing the current directory.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathDotDot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDotDot*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathDotDot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDotDot">PathDotDot</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the path representing the parent directory. The default value
+is &quot;..&quot;.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -231,13 +244,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The path representing the parent directory.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathRoot_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathRoot*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathRoot" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathRoot">PathRoot</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the root path. The default value is &quot;/&quot;.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -254,13 +269,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The root path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathSeparator_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathSeparator*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PathSeparator" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathSeparator">PathSeparator</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the path separator character. The default value is '/'.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -277,13 +294,16 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
-        <td></td>
+        <td><p>The path separator character.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PrefixDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixDirectory*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PrefixDirectory" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixDirectory">PrefixDirectory</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the prefix used for directory names. The default value is &quot;dir&quot;.
+Used for auto-generating node names.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -300,13 +320,16 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The prefix used for directory names.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PrefixItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixItem*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PrefixItem" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixItem">PrefixItem</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the prefix used for item names. The default value is &quot;item&quot;.
+Used for auto-generating node names.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -323,13 +346,16 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The prefix used for item names.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PrefixSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixSymbolicLink*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_PrefixSymbolicLink" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixSymbolicLink">PrefixSymbolicLink</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the prefix used for symbolic link names. The default value is &quot;link&quot;.
+Used for auto-generating node names.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -346,13 +372,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The prefix used for symbolic link names.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_State_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.State*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_State" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.State">State</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the current instance of the state.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -375,7 +403,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_WildcardMatcher_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_WildcardMatcher" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher">WildcardMatcher</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the wildcard matcher.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -392,7 +421,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html">IVirtualWildcardMatcher</a></td>
-        <td></td>
+        <td><p>The wildcard matcher.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -400,7 +430,8 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetNodeListConditions_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetNodeListConditions_AkiraNetwork_VirtualStorageLibrary_VirtualNodeListConditions_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions(AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions)">SetNodeListConditions(VirtualNodeListConditions)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the conditions for listing nodes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -419,13 +450,15 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions.html">VirtualNodeListConditions</a></td>
         <td><span class="parametername">conditions</span></td>
-        <td></td>
+        <td><p>The conditions for listing nodes.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetNodeListConditions_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetNodeListConditions_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_AkiraNetwork_VirtualStorageLibrary_VirtualGroupCondition_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Object__System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualSortCondition_AkiraNetwork_VirtualStorageLibrary_VirtualNode___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})">SetNodeListConditions(VirtualNodeTypeFilter, VirtualGroupCondition&lt;VirtualNode, object&gt;?, List&lt;VirtualSortCondition&lt;VirtualNode&gt;&gt;?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the conditions for listing nodes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -444,17 +477,20 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">filter</span></td>
-        <td></td>
+        <td><p>The filter for node types.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition-2.html">VirtualGroupCondition</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
         <td><span class="parametername">groupCondition</span></td>
-        <td></td>
+        <td><p>The condition for grouping nodes.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html">VirtualSortCondition</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;&gt;</td>
         <td><span class="parametername">sortConditions</span></td>
-        <td></td>
+        <td><p>The conditions for sorting nodes.</p>
+</td>
       </tr>
     </tbody>
   </table>

@@ -5,8 +5,8 @@ items:
   id: VirtualStorageState
   parent: AkiraNetwork.VirtualStorageLibrary
   children:
-  - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.NodeListConditions
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDot
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDotDot
@@ -33,10 +33,15 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualStorageState
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 2
+    startLine: 6
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Manages the state of the virtual storage. This class implements the singleton pattern
+
+    and maintains the current settings and state.
+  example: []
   syntax:
     content: public class VirtualStorageState
     content.vb: Public Class VirtualStorageState
@@ -70,10 +75,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: State
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 6
+    startLine: 13
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the current instance of the state.
+  example: []
   syntax:
     content: public static VirtualStorageState State { get; }
     parameters: []
@@ -99,15 +106,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathSeparator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 14
+    startLine: 30
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the path separator character. The default value is '/'.
+  example: []
   syntax:
     content: public char PathSeparator { get; set; }
     parameters: []
     return:
       type: System.Char
+      description: The path separator character.
     content.vb: Public Property PathSeparator As Char
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathSeparator*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathRoot
@@ -128,15 +138,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 16
+    startLine: 38
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the root path. The default value is "/".
+  example: []
   syntax:
     content: public string PathRoot { get; set; }
     parameters: []
     return:
       type: System.String
+      description: The root path.
     content.vb: Public Property PathRoot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathRoot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDot
@@ -157,15 +170,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 18
+    startLine: 47
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets or sets the path representing the current directory. The default value
+
+    is ".".
+  example: []
   syntax:
     content: public string PathDot { get; set; }
     parameters: []
     return:
       type: System.String
+      description: The path representing the current directory.
     content.vb: Public Property PathDot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDotDot
@@ -186,15 +205,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 20
+    startLine: 56
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets or sets the path representing the parent directory. The default value
+
+    is "..".
+  example: []
   syntax:
     content: public string PathDotDot { get; set; }
     parameters: []
     return:
       type: System.String
+      description: The path representing the parent directory.
     content.vb: Public Property PathDotDot As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PathDotDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters
@@ -215,46 +240,52 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: InvalidNodeNameCharacters
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 22
+    startLine: 64
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets an array of characters that are invalid in node names.
+  example: []
   syntax:
     content: public char[] InvalidNodeNameCharacters { get; set; }
     parameters: []
     return:
       type: System.Char[]
+      description: An array of characters that are invalid in node names.
     content.vb: Public Property InvalidNodeNameCharacters As Char()
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters*
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  id: InvalidFullNodeNames
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  id: InvalidNodeNames
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState
   langs:
   - csharp
   - vb
-  name: InvalidFullNodeNames
-  nameWithType: VirtualStorageState.InvalidFullNodeNames
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
+  name: InvalidNodeNames
+  nameWithType: VirtualStorageState.InvalidNodeNames
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
   type: Property
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: InvalidFullNodeNames
+    id: InvalidNodeNames
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 24
+    startLine: 72
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets an array of invalid node names.
+  example: []
   syntax:
-    content: public string[] InvalidFullNodeNames { get; set; }
+    content: public string[] InvalidNodeNames { get; set; }
     parameters: []
     return:
       type: System.String[]
-    content.vb: Public Property InvalidFullNodeNames As String()
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames*
+      description: An array of invalid node names.
+    content.vb: Public Property InvalidNodeNames As String()
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher
   id: WildcardMatcher
@@ -273,15 +304,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 26
+    startLine: 80
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the wildcard matcher.
+  example: []
   syntax:
     content: public IVirtualWildcardMatcher? WildcardMatcher { get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+      description: The wildcard matcher.
     content.vb: Public Property WildcardMatcher As IVirtualWildcardMatcher
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.NodeListConditions
@@ -302,15 +336,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 28
+    startLine: 88
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the conditions for listing nodes.
+  example: []
   syntax:
     content: public VirtualNodeListConditions NodeListConditions { get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions
+      description: The conditions for listing nodes.
     content.vb: Public Property NodeListConditions As VirtualNodeListConditions
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.NodeListConditions*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixItem
@@ -331,15 +368,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 30
+    startLine: 97
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets or sets the prefix used for item names. The default value is "item".
+
+    Used for auto-generating node names.
+  example: []
   syntax:
     content: public string PrefixItem { get; set; }
     parameters: []
     return:
       type: System.String
+      description: The prefix used for item names.
     content.vb: Public Property PrefixItem As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixItem*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixDirectory
@@ -360,15 +403,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 32
+    startLine: 106
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets or sets the prefix used for directory names. The default value is "dir".
+
+    Used for auto-generating node names.
+  example: []
   syntax:
     content: public string PrefixDirectory { get; set; }
     parameters: []
     return:
       type: System.String
+      description: The prefix used for directory names.
     content.vb: Public Property PrefixDirectory As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixDirectory*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixSymbolicLink
@@ -389,15 +438,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 34
+    startLine: 115
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Gets or sets the prefix used for symbolic link names. The default value is "link".
+
+    Used for auto-generating node names.
+  example: []
   syntax:
     content: public string PrefixSymbolicLink { get; set; }
     parameters: []
     return:
       type: System.String
+      description: The prefix used for symbolic link names.
     content.vb: Public Property PrefixSymbolicLink As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixSymbolicLink*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions(AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions)
@@ -418,15 +473,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 54
+    startLine: 143
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Sets the conditions for listing nodes.
+  example: []
   syntax:
     content: public static void SetNodeListConditions(VirtualNodeListConditions conditions)
     parameters:
     - id: conditions
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions
+      description: The conditions for listing nodes.
     content.vb: Public Shared Sub SetNodeListConditions(conditions As VirtualNodeListConditions)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
@@ -447,19 +505,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 59
+    startLine: 154
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Sets the conditions for listing nodes.
+  example: []
   syntax:
     content: public static void SetNodeListConditions(VirtualNodeTypeFilter filter, VirtualGroupCondition<VirtualNode, object>? groupCondition = null, List<VirtualSortCondition<VirtualNode>>? sortConditions = null)
     parameters:
     - id: filter
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The filter for node types.
     - id: groupCondition
       type: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object}
+      description: The condition for grouping nodes.
     - id: sortConditions
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}}
+      description: The conditions for sorting nodes.
     content.vb: Public Shared Sub SetNodeListConditions(filter As VirtualNodeTypeFilter, groupCondition As VirtualGroupCondition(Of VirtualNode, Object) = Nothing, sortConditions As List(Of VirtualSortCondition(Of VirtualNode)) = Nothing)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions*
   nameWithType.vb: VirtualStorageState.SetNodeListConditions(VirtualNodeTypeFilter, VirtualGroupCondition(Of VirtualNode, Object), List(Of VirtualSortCondition(Of VirtualNode)))
@@ -922,12 +985,12 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.char
   - name: (
   - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidFullNodeNames
-  name: InvalidFullNodeNames
-  nameWithType: VirtualStorageState.InvalidFullNodeNames
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidFullNodeNames
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNames
+  name: InvalidNodeNames
+  nameWithType: VirtualStorageState.InvalidNodeNames
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
 - uid: System.String[]
   isExternal: true
   href: https://learn.microsoft.com/dotnet/api/system.string

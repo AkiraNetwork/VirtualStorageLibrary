@@ -1,0 +1,2004 @@
+### YamlMime:ManagedReference
+items:
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  id: Resources
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization
+  children:
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceCulture
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceMan
+  langs:
+  - csharp
+  - vb
+  name: Resources
+  nameWithType: Resources
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  type: Class
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Resources
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 21
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+  example: []
+  syntax:
+    content: internal class Resources
+    content.vb: Friend Class Resources
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - AkiraNetwork.VirtualStorageLibrary.Localization.Resources.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceMan
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceMan
+  id: resourceMan
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: resourceMan
+  nameWithType: Resources.resourceMan
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceMan
+  type: Field
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: resourceMan
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 26
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  syntax:
+    content: private static ResourceManager resourceMan
+    return:
+      type: System.Resources.ResourceManager
+    content.vb: Private Shared resourceMan As ResourceManager
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceCulture
+  commentId: F:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceCulture
+  id: resourceCulture
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: resourceCulture
+  nameWithType: Resources.resourceCulture
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.resourceCulture
+  type: Field
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: resourceCulture
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 28
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  syntax:
+    content: private static CultureInfo resourceCulture
+    return:
+      type: System.Globalization.CultureInfo
+    content.vb: Private Shared resourceCulture As CultureInfo
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor
+  id: '#ctor'
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: Resources()
+  nameWithType: Resources.Resources()
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Resources()
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 30
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  syntax:
+    content: internal Resources()
+    content.vb: Friend Sub New()
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor*
+  nameWithType.vb: Resources.New()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.New()
+  name.vb: New()
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  id: ResourceManager
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: ResourceManager
+  nameWithType: Resources.ResourceManager
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ResourceManager
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 37
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+  example: []
+  syntax:
+    content: internal static ResourceManager ResourceManager { get; }
+    parameters: []
+    return:
+      type: System.Resources.ResourceManager
+    content.vb: Friend Shared ReadOnly Property ResourceManager As ResourceManager
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  id: Culture
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: Culture
+  nameWithType: Resources.Culture
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Culture
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 52
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: >-
+    すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
+
+    現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+  example: []
+  syntax:
+    content: internal static CultureInfo Culture { get; set; }
+    parameters: []
+    return:
+      type: System.Globalization.CultureInfo
+    content.vb: Friend Shared Property Culture As CultureInfo
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  id: BasePathIsNotAbsolute
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: BasePathIsNotAbsolute
+  nameWithType: Resources.BasePathIsNotAbsolute
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: BasePathIsNotAbsolute
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 65
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The specified base path is not an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string BasePathIsNotAbsolute { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property BasePathIsNotAbsolute As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  id: CannotAddRoot
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: CannotAddRoot
+  nameWithType: Resources.CannotAddRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: CannotAddRoot
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 74
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Cannot add the root to a directory. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string CannotAddRoot { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property CannotAddRoot As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  id: CannotMoveRootDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: CannotMoveRootDirectory
+  nameWithType: Resources.CannotMoveRootDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: CannotMoveRootDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 83
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Cannot move the root directory. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string CannotMoveRootDirectory { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property CannotMoveRootDirectory As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  id: CannotReachBecauseNodeItem
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: CannotReachBecauseNodeItem
+  nameWithType: Resources.CannotReachBecauseNodeItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: CannotReachBecauseNodeItem
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 92
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Cannot reach node [{0}]. Node [{1}] is an item. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string CannotReachBecauseNodeItem { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property CannotReachBecauseNodeItem As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  id: CannotReachBecauseNodeSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: CannotReachBecauseNodeSymbolicLink
+  nameWithType: Resources.CannotReachBecauseNodeSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: CannotReachBecauseNodeSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 101
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Cannot reach node [{0}]. Node [{1}] is a symbolic link, and the followLinks parameter is set to false. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string CannotReachBecauseNodeSymbolicLink { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property CannotReachBecauseNodeSymbolicLink As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  id: CannotRemoveNonEmptyDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: CannotRemoveNonEmptyDirectory
+  nameWithType: Resources.CannotRemoveNonEmptyDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: CannotRemoveNonEmptyDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 110
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Cannot remove the directory because it is not empty and the recursive parameter is set to false. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string CannotRemoveNonEmptyDirectory { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property CannotRemoveNonEmptyDirectory As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  id: CannotRemoveRoot
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: CannotRemoveRoot
+  nameWithType: Resources.CannotRemoveRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: CannotRemoveRoot
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 119
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Cannot remove the root directory. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string CannotRemoveRoot { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property CannotRemoveRoot As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  id: CircularReferenceDetected
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: CircularReferenceDetected
+  nameWithType: Resources.CircularReferenceDetected
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: CircularReferenceDetected
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 128
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Circular reference detected. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string CircularReferenceDetected { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property CircularReferenceDetected As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  id: DestinationIsSubdirectoryOfSource
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: DestinationIsSubdirectoryOfSource
+  nameWithType: Resources.DestinationIsSubdirectoryOfSource
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DestinationIsSubdirectoryOfSource
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 137
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The destination path is a subdirectory of the source path. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string DestinationIsSubdirectoryOfSource { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property DestinationIsSubdirectoryOfSource As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  id: DestinationNodeIsItemOrSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: DestinationNodeIsItemOrSymbolicLink
+  nameWithType: Resources.DestinationNodeIsItemOrSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: DestinationNodeIsItemOrSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 146
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The destination node is an item or a symbolic link. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string DestinationNodeIsItemOrSymbolicLink { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property DestinationNodeIsItemOrSymbolicLink As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  id: InvalidNodeName
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: InvalidNodeName
+  nameWithType: Resources.InvalidNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: InvalidNodeName
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 155
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Node name [{0}] is invalid. Forbidden characters are used. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string InvalidNodeName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property InvalidNodeName As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  id: LinkPathIsNotAbsolutePath
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: LinkPathIsNotAbsolutePath
+  nameWithType: Resources.LinkPathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: LinkPathIsNotAbsolutePath
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 164
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The symbolic link path specified in the parameter must be an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string LinkPathIsNotAbsolutePath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property LinkPathIsNotAbsolutePath As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  id: NegativeDepthValue
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NegativeDepthValue
+  nameWithType: Resources.NegativeDepthValue
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NegativeDepthValue
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 173
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Depth has become a negative value. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NegativeDepthValue { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NegativeDepthValue As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  id: NewNameNodeAlreadyExists
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NewNameNodeAlreadyExists
+  nameWithType: Resources.NewNameNodeAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NewNameNodeAlreadyExists
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 182
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Cannot rename because a node with the new name already exists. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NewNameNodeAlreadyExists { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NewNameNodeAlreadyExists As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  id: NewNameSameAsCurrent
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NewNameSameAsCurrent
+  nameWithType: Resources.NewNameSameAsCurrent
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NewNameSameAsCurrent
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 191
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The new name is the same as the current name. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NewNameSameAsCurrent { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NewNameSameAsCurrent As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  id: NodeAlreadyExists
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NodeAlreadyExists
+  nameWithType: Resources.NodeAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeAlreadyExists
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 200
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Node [{0}] already exists. Overwriting is not allowed. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NodeAlreadyExists { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NodeAlreadyExists As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  id: NodeIsNotVirtualDirectory
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NodeIsNotVirtualDirectory
+  nameWithType: Resources.NodeIsNotVirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeIsNotVirtualDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 209
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The specified node [{0}] is not of type VirtualDirectory. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NodeIsNotVirtualDirectory { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NodeIsNotVirtualDirectory As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  id: NodeIsNotVirtualItem
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NodeIsNotVirtualItem
+  nameWithType: Resources.NodeIsNotVirtualItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeIsNotVirtualItem
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 218
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The specified node [{0}] is not of type VirtualItem&lt;{1}&gt;. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NodeIsNotVirtualItem { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NodeIsNotVirtualItem As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  id: NodeIsNotVirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NodeIsNotVirtualSymbolicLink
+  nameWithType: Resources.NodeIsNotVirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeIsNotVirtualSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 227
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The specified node [{0}] is not of type VirtualSymbolicLink. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NodeIsNotVirtualSymbolicLink { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NodeIsNotVirtualSymbolicLink As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  id: NodeNotFound
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NodeNotFound
+  nameWithType: Resources.NodeNotFound
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeNotFound
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 236
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Node not found. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NodeNotFound { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NodeNotFound As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  id: NodeWithSameNameAtDestination
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: NodeWithSameNameAtDestination
+  nameWithType: Resources.NodeWithSameNameAtDestination
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: NodeWithSameNameAtDestination
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 245
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: A node with the same name already exists at the destination path. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string NodeWithSameNameAtDestination { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property NodeWithSameNameAtDestination As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  id: ParameterIsEmpty
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: ParameterIsEmpty
+  nameWithType: Resources.ParameterIsEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ParameterIsEmpty
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 254
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The values ​​specified in the parameters are empty. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string ParameterIsEmpty { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property ParameterIsEmpty As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  id: ParameterIsNotVirtualNodeName
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: ParameterIsNotVirtualNodeName
+  nameWithType: Resources.ParameterIsNotVirtualNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ParameterIsNotVirtualNodeName
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 263
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The object specified by the parameter is not of type VirtualNodeName. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string ParameterIsNotVirtualNodeName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property ParameterIsNotVirtualNodeName As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  id: ParameterIsNotVirtualPath
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: ParameterIsNotVirtualPath
+  nameWithType: Resources.ParameterIsNotVirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ParameterIsNotVirtualPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 272
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The object specified by the parameter is not of type VirtualPath. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string ParameterIsNotVirtualPath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property ParameterIsNotVirtualPath As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  id: ParameterIsNullOrEmpty
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: ParameterIsNullOrEmpty
+  nameWithType: Resources.ParameterIsNullOrEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ParameterIsNullOrEmpty
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 281
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The values ​​specified in the parameters are null or empty. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string ParameterIsNullOrEmpty { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property ParameterIsNullOrEmpty As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  id: PathCannotBeEmpty
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: PathCannotBeEmpty
+  nameWithType: Resources.PathCannotBeEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: PathCannotBeEmpty
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 290
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: An empty string cannot be specified as a path. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string PathCannotBeEmpty { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property PathCannotBeEmpty As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  id: PathIsNotAbsolutePath
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: PathIsNotAbsolutePath
+  nameWithType: Resources.PathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: PathIsNotAbsolutePath
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 299
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: This path is not an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string PathIsNotAbsolutePath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property PathIsNotAbsolutePath As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  id: PathNormalizationAboveRoot
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: PathNormalizationAboveRoot
+  nameWithType: Resources.PathNormalizationAboveRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: PathNormalizationAboveRoot
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 308
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Due to path normalization, it is above the root directory. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string PathNormalizationAboveRoot { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property PathNormalizationAboveRoot As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  id: PathNotFound
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: PathNotFound
+  nameWithType: Resources.PathNotFound
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: PathNotFound
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 317
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Path not found. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string PathNotFound { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property PathNotFound As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  id: PrefixIsEmpty
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: PrefixIsEmpty
+  nameWithType: Resources.PrefixIsEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: PrefixIsEmpty
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 326
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: Prefix cannot be empty. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string PrefixIsEmpty { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property PrefixIsEmpty As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  id: RecursiveSubdirectoryConflict
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: RecursiveSubdirectoryConflict
+  nameWithType: Resources.RecursiveSubdirectoryConflict
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: RecursiveSubdirectoryConflict
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 335
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: If the recursive parameter is set to true, the source or destination cannot be a subdirectory of each other. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string RecursiveSubdirectoryConflict { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property RecursiveSubdirectoryConflict As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  id: RootAlreadyExists
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: RootAlreadyExists
+  nameWithType: Resources.RootAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: RootAlreadyExists
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 344
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The root directory already exists. に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string RootAlreadyExists { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property RootAlreadyExists As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  id: SourceAndDestinationPathSameForCopy
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: SourceAndDestinationPathSameForCopy
+  nameWithType: Resources.SourceAndDestinationPathSameForCopy
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SourceAndDestinationPathSameForCopy
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 353
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The source path and the destination path for the copy operation are the same. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string SourceAndDestinationPathSameForCopy { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property SourceAndDestinationPathSameForCopy As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  id: SourceAndDestinationPathSameForMove
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: SourceAndDestinationPathSameForMove
+  nameWithType: Resources.SourceAndDestinationPathSameForMove
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SourceAndDestinationPathSameForMove
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 362
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The source path and the destination path for the move operation are the same. [{0}] [{1}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string SourceAndDestinationPathSameForMove { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property SourceAndDestinationPathSameForMove As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove*
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  id: TargetPathIsNotAbsolutePath
+  parent: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+  langs:
+  - csharp
+  - vb
+  name: TargetPathIsNotAbsolutePath
+  nameWithType: Resources.TargetPathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: TargetPathIsNotAbsolutePath
+    path: ../AkiraNetwork/VirtualStorageLibrary/Localization/Resources.Designer.cs
+    startLine: 371
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary.Localization
+  summary: The target path specified in the parameter must be an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
+  example: []
+  syntax:
+    content: internal static string TargetPathIsNotAbsolutePath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Friend Shared ReadOnly Property TargetPathIsNotAbsolutePath As String
+  overload: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath*
+references:
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Localization
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Localization
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Localization
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Localization
+    name: Localization
+    href: AkiraNetwork.VirtualStorageLibrary.Localization.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Localization
+    name: Localization
+    href: AkiraNetwork.VirtualStorageLibrary.Localization.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<Resources>(Resources)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<Resources>(Resources)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.Localization.Resources>(AkiraNetwork.VirtualStorageLibrary.Localization.Resources)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of Resources)(Resources)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.Localization.Resources)(AkiraNetwork.VirtualStorageLibrary.Localization.Resources)
+  name.vb: GenerateSingleTableDebugText(Of Resources)(Resources)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.Localization.Resources)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+    name: Resources
+    href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html
+  - name: '>'
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+    name: Resources
+    href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.Localization.Resources)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+    name: Resources
+    href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html
+  - name: )
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources
+    name: Resources
+    href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  name: GenerateSingleTableDebugText<T>(T)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<T>(T)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of T)(T)
+  name.vb: GenerateSingleTableDebugText(Of T)(T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
+    name: GenerateSingleTableDebugText
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+  parent: AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html
+  name: VirtualTextFormatter
+  nameWithType: VirtualTextFormatter
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
+- uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+  commentId: N:AkiraNetwork.VirtualStorageLibrary.Utilities
+  href: AkiraNetwork.html
+  name: AkiraNetwork.VirtualStorageLibrary.Utilities
+  nameWithType: AkiraNetwork.VirtualStorageLibrary.Utilities
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities
+  spec.csharp:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+  spec.vb:
+  - uid: AkiraNetwork
+    name: AkiraNetwork
+    href: AkiraNetwork.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary
+    name: VirtualStorageLibrary
+    href: AkiraNetwork.VirtualStorageLibrary.html
+  - name: .
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
+    name: Utilities
+    href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: System.Resources.ResourceManager
+  commentId: T:System.Resources.ResourceManager
+  parent: System.Resources
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.resources.resourcemanager
+  name: ResourceManager
+  nameWithType: ResourceManager
+  fullName: System.Resources.ResourceManager
+- uid: System.Resources
+  commentId: N:System.Resources
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Resources
+  nameWithType: System.Resources
+  fullName: System.Resources
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Resources
+    name: Resources
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.resources
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Resources
+    name: Resources
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.resources
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources__ctor
+  name: Resources
+  nameWithType: Resources.Resources
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Resources
+  nameWithType.vb: Resources.New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.New
+  name.vb: New
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ResourceManager
+  name: ResourceManager
+  nameWithType: Resources.ResourceManager
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ResourceManager
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_Culture
+  name: Culture
+  nameWithType: Resources.Culture
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.Culture
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_BasePathIsNotAbsolute
+  name: BasePathIsNotAbsolute
+  nameWithType: Resources.BasePathIsNotAbsolute
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.BasePathIsNotAbsolute
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotAddRoot
+  name: CannotAddRoot
+  nameWithType: Resources.CannotAddRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotAddRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotMoveRootDirectory
+  name: CannotMoveRootDirectory
+  nameWithType: Resources.CannotMoveRootDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotMoveRootDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotReachBecauseNodeItem
+  name: CannotReachBecauseNodeItem
+  nameWithType: Resources.CannotReachBecauseNodeItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeItem
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotReachBecauseNodeSymbolicLink
+  name: CannotReachBecauseNodeSymbolicLink
+  nameWithType: Resources.CannotReachBecauseNodeSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotReachBecauseNodeSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotRemoveNonEmptyDirectory
+  name: CannotRemoveNonEmptyDirectory
+  nameWithType: Resources.CannotRemoveNonEmptyDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveNonEmptyDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CannotRemoveRoot
+  name: CannotRemoveRoot
+  nameWithType: Resources.CannotRemoveRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CannotRemoveRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_CircularReferenceDetected
+  name: CircularReferenceDetected
+  nameWithType: Resources.CircularReferenceDetected
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.CircularReferenceDetected
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_DestinationIsSubdirectoryOfSource
+  name: DestinationIsSubdirectoryOfSource
+  nameWithType: Resources.DestinationIsSubdirectoryOfSource
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationIsSubdirectoryOfSource
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_DestinationNodeIsItemOrSymbolicLink
+  name: DestinationNodeIsItemOrSymbolicLink
+  nameWithType: Resources.DestinationNodeIsItemOrSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.DestinationNodeIsItemOrSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_InvalidNodeName
+  name: InvalidNodeName
+  nameWithType: Resources.InvalidNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.InvalidNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_LinkPathIsNotAbsolutePath
+  name: LinkPathIsNotAbsolutePath
+  nameWithType: Resources.LinkPathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.LinkPathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NegativeDepthValue
+  name: NegativeDepthValue
+  nameWithType: Resources.NegativeDepthValue
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NegativeDepthValue
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NewNameNodeAlreadyExists
+  name: NewNameNodeAlreadyExists
+  nameWithType: Resources.NewNameNodeAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameNodeAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NewNameSameAsCurrent
+  name: NewNameSameAsCurrent
+  nameWithType: Resources.NewNameSameAsCurrent
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NewNameSameAsCurrent
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeAlreadyExists
+  name: NodeAlreadyExists
+  nameWithType: Resources.NodeAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualDirectory
+  name: NodeIsNotVirtualDirectory
+  nameWithType: Resources.NodeIsNotVirtualDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualItem
+  name: NodeIsNotVirtualItem
+  nameWithType: Resources.NodeIsNotVirtualItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualItem
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeIsNotVirtualSymbolicLink
+  name: NodeIsNotVirtualSymbolicLink
+  nameWithType: Resources.NodeIsNotVirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeIsNotVirtualSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeNotFound
+  name: NodeNotFound
+  nameWithType: Resources.NodeNotFound
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeNotFound
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_NodeWithSameNameAtDestination
+  name: NodeWithSameNameAtDestination
+  nameWithType: Resources.NodeWithSameNameAtDestination
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.NodeWithSameNameAtDestination
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsEmpty
+  name: ParameterIsEmpty
+  nameWithType: Resources.ParameterIsEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNotVirtualNodeName
+  name: ParameterIsNotVirtualNodeName
+  nameWithType: Resources.ParameterIsNotVirtualNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNotVirtualPath
+  name: ParameterIsNotVirtualPath
+  nameWithType: Resources.ParameterIsNotVirtualPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNotVirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_ParameterIsNullOrEmpty
+  name: ParameterIsNullOrEmpty
+  nameWithType: Resources.ParameterIsNullOrEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.ParameterIsNullOrEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathCannotBeEmpty
+  name: PathCannotBeEmpty
+  nameWithType: Resources.PathCannotBeEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathCannotBeEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathIsNotAbsolutePath
+  name: PathIsNotAbsolutePath
+  nameWithType: Resources.PathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathIsNotAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathNormalizationAboveRoot
+  name: PathNormalizationAboveRoot
+  nameWithType: Resources.PathNormalizationAboveRoot
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNormalizationAboveRoot
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PathNotFound
+  name: PathNotFound
+  nameWithType: Resources.PathNotFound
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PathNotFound
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_PrefixIsEmpty
+  name: PrefixIsEmpty
+  nameWithType: Resources.PrefixIsEmpty
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.PrefixIsEmpty
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_RecursiveSubdirectoryConflict
+  name: RecursiveSubdirectoryConflict
+  nameWithType: Resources.RecursiveSubdirectoryConflict
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RecursiveSubdirectoryConflict
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_RootAlreadyExists
+  name: RootAlreadyExists
+  nameWithType: Resources.RootAlreadyExists
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.RootAlreadyExists
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_SourceAndDestinationPathSameForCopy
+  name: SourceAndDestinationPathSameForCopy
+  nameWithType: Resources.SourceAndDestinationPathSameForCopy
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForCopy
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_SourceAndDestinationPathSameForMove
+  name: SourceAndDestinationPathSameForMove
+  nameWithType: Resources.SourceAndDestinationPathSameForMove
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.SourceAndDestinationPathSameForMove
+- uid: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
+  href: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.html#AkiraNetwork_VirtualStorageLibrary_Localization_Resources_TargetPathIsNotAbsolutePath
+  name: TargetPathIsNotAbsolutePath
+  nameWithType: Resources.TargetPathIsNotAbsolutePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.Localization.Resources.TargetPathIsNotAbsolutePath
