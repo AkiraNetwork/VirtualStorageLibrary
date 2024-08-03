@@ -34,7 +34,7 @@
         /// </summary>
         public VirtualCycleDetector()
         {
-            _cycleDictionary = new Dictionary<VirtualID, VirtualSymbolicLink>();
+            _cycleDictionary = [];
         }
 
         /// <summary>

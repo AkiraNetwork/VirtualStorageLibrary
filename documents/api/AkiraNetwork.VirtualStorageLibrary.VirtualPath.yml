@@ -953,19 +953,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Equality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 329
+    startLine: 335
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether two <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> instances are equal.
+  example: []
   syntax:
     content: public static bool operator ==(VirtualPath? left, VirtualPath? right)
     parameters:
     - id: left
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The left <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     - id: right
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The right <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: System.Boolean
+      description: true if the paths are equal; otherwise, false.
     content.vb: Public Shared Operator =(left As VirtualPath, right As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Equality*
   nameWithType.vb: VirtualPath.=(VirtualPath, VirtualPath)
@@ -989,19 +994,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Inequality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 347
+    startLine: 359
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether two <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> instances are not equal.
+  example: []
   syntax:
     content: public static bool operator !=(VirtualPath? left, VirtualPath? right)
     parameters:
     - id: left
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The left <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     - id: right
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The right <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: System.Boolean
+      description: true if the paths are not equal; otherwise, false.
     content.vb: Public Shared Operator <>(left As VirtualPath, right As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Inequality*
   nameWithType.vb: VirtualPath.<>(VirtualPath, VirtualPath)
@@ -1025,19 +1035,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 352
+    startLine: 370
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines two <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> instances.
+  example: []
   syntax:
     content: public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
     parameters:
     - id: path1
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The first <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     - id: path2
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The second <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Shared Operator +(path1 As VirtualPath, path2 As VirtualPath) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*
   nameWithType.vb: VirtualPath.+(VirtualPath, VirtualPath)
@@ -1061,19 +1076,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 357
+    startLine: 381
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> with a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     - id: nodeName
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref>.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Shared Operator +(path As VirtualPath, nodeName As VirtualNodeName) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*
   nameWithType.vb: VirtualPath.+(VirtualPath, VirtualNodeName)
@@ -1097,19 +1117,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 363
+    startLine: 393
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> with a string.
+  example: []
   syntax:
     content: public static VirtualPath operator +(VirtualPath path, string str)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     - id: str
       type: System.String
+      description: The string to combine with the path.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Shared Operator +(path As VirtualPath, str As String) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*
   nameWithType.vb: VirtualPath.+(VirtualPath, String)
@@ -1133,19 +1158,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 369
+    startLine: 405
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines a string with a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static VirtualPath operator +(string str, VirtualPath path)
     parameters:
     - id: str
       type: System.String
+      description: The string to combine with the path.
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Shared Operator +(str As String, path As VirtualPath) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*
   nameWithType.vb: VirtualPath.+(String, VirtualPath)
@@ -1169,19 +1199,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 375
+    startLine: 417
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> with a character.
+  example: []
   syntax:
     content: public static VirtualPath operator +(VirtualPath path, char chr)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     - id: chr
       type: System.Char
+      description: The character to combine with the path.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Shared Operator +(path As VirtualPath, chr As Char) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*
   nameWithType.vb: VirtualPath.+(VirtualPath, Char)
@@ -1205,19 +1240,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 381
+    startLine: 429
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines a character with a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static VirtualPath operator +(char chr, VirtualPath path)
     parameters:
     - id: chr
       type: System.Char
+      description: The character to combine with the path.
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Shared Operator +(chr As Char, path As VirtualPath) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*
   nameWithType.vb: VirtualPath.+(Char, VirtualPath)
@@ -1241,14 +1281,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TrimEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 387
+    startLine: 439
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Removes the trailing slash from the path.
+  example: []
   syntax:
     content: public VirtualPath TrimEndSlash()
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> without the trailing slash.
     content.vb: Public Function TrimEndSlash() As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.TrimEndSlash*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash
@@ -1269,14 +1312,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 396
+    startLine: 452
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a trailing slash to the path if it doesn't already have one.
+  example: []
   syntax:
     content: public VirtualPath AddEndSlash()
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> with a trailing slash.
     content.vb: Public Function AddEndSlash() As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash
@@ -1297,14 +1343,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddStartSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 405
+    startLine: 465
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a leading slash to the path if it doesn't already have one.
+  example: []
   syntax:
     content: public VirtualPath AddStartSlash()
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> with a leading slash.
     content.vb: Public Function AddStartSlash() As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -1325,17 +1374,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: StartsWith
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 414
+    startLine: 479
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether the current path starts with the specified path.
+  example: []
   syntax:
     content: public bool StartsWith(VirtualPath path)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> to compare with.
     return:
       type: System.Boolean
+      description: true if the current path starts with the specified path; otherwise, false.
     content.vb: Public Function StartsWith(path As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath
@@ -1356,14 +1409,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 419
+    startLine: 488
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Normalizes the current path.
+  example: []
   syntax:
     content: public VirtualPath NormalizePath()
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> instance with the normalized path.
     content.vb: Public Function NormalizePath() As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath(System.String)
@@ -1384,19 +1440,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 428
+    startLine: 505
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Normalizes the specified path string.
+  example: []
   syntax:
     content: public static string NormalizePath(string path)
     parameters:
     - id: path
       type: System.String
+      description: The path string to normalize.
     return:
       type: System.String
+      description: A normalized path string.
     content.vb: Public Shared Function NormalizePath(path As String) As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown when attempting to navigate above the root directory.
   nameWithType.vb: VirtualPath.NormalizePath(String)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath(String)
   name.vb: NormalizePath(String)
@@ -1418,14 +1482,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 494
+    startLine: 579
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Retrieves the node name from the current path.
+  example: []
   syntax:
     content: public VirtualNodeName GetNodeName()
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> object representing the node name.
     content.vb: Public Function GetNodeName() As VirtualNodeName
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(AkiraNetwork.VirtualStorageLibrary.VirtualPath[])
@@ -1446,17 +1513,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 523
+    startLine: 613
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines the current path with the specified paths.
+  example: []
   syntax:
     content: public VirtualPath Combine(params VirtualPath[] paths)
     parameters:
     - id: paths
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath[]
+      description: An array of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> objects to combine.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Function Combine(ParamArray paths As VirtualPath()) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine*
   nameWithType.vb: VirtualPath.Combine(ParamArray VirtualPath())
@@ -1480,17 +1551,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 533
+    startLine: 628
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines the specified paths into a single path.
+  example: []
   syntax:
     content: public static string Combine(params string[] paths)
     parameters:
     - id: paths
       type: System.String[]
+      description: An array of path strings to combine.
     return:
       type: System.String
+      description: A combined path string.
     content.vb: Public Shared Function Combine(ParamArray paths As String()) As String
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine*
   nameWithType.vb: VirtualPath.Combine(ParamArray String())
@@ -1514,14 +1589,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetParentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 590
+    startLine: 689
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the parent path of the current path.
+  example: []
   syntax:
     content: public VirtualPath GetParentPath()
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the parent path.
     content.vb: Public Function GetParentPath() As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList
@@ -1542,14 +1620,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsLinkedList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 610
+    startLine: 713
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the parts of the path as a linked list.
+  example: []
   syntax:
     content: public LinkedList<VirtualNodeName> GetPartsLinkedList()
     return:
       type: System.Collections.Generic.LinkedList{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
+      description: A <xref href="System.Collections.Generic.LinkedList%601" data-throw-if-not-resolved="false"></xref> of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> objects representing the path parts.
     content.vb: Public Function GetPartsLinkedList() As LinkedList(Of VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList
@@ -1570,14 +1651,17 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 621
+    startLine: 728
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the parts of the path as a list.
+  example: []
   syntax:
     content: public List<VirtualNodeName> GetPartsList()
     return:
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
+      description: A <xref href="System.Collections.Generic.List%601" data-throw-if-not-resolved="false"></xref> of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> objects representing the path parts.
     content.vb: Public Function GetPartsList() As List(Of VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32)
@@ -1598,19 +1682,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CombineFromIndex
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 626
+    startLine: 739
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Combines the current path with the parts of another path starting from a specified index.
+  example: []
   syntax:
     content: public VirtualPath CombineFromIndex(VirtualPath path, int index)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> whose parts to combine.
     - id: index
       type: System.Int32
+      description: The starting index from which to combine the parts.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A new <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the combined path.
     content.vb: Public Function CombineFromIndex(path As VirtualPath, index As Integer) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex*
   nameWithType.vb: VirtualPath.CombineFromIndex(VirtualPath, Integer)
@@ -1634,24 +1723,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 641
+    startLine: 759
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+  summary: Compares the current path with another <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
   example: []
   syntax:
     content: public int CompareTo(VirtualPath? other)
     parameters:
     - id: other
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-      description: An object to compare with this instance.
+      description: The other <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> to compare with.
     return:
       type: System.Int32
-      description: >-
-        A value that indicates the relative order of the objects being compared. The return value has these meanings:  
-
-         <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">other</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">other</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">other</code> in the sort order.</td></tr></tbody></table>
+      description: An integer indicating the relative order of the paths.
     content.vb: Public Function CompareTo(other As VirtualPath) As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo*
   implements:
@@ -1677,30 +1763,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 651
+    startLine: 775
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+  summary: Compares the current path with another object.
   example: []
   syntax:
     content: public int CompareTo(object? obj)
     parameters:
     - id: obj
       type: System.Object
-      description: An object to compare with this instance.
+      description: The object to compare with.
     return:
       type: System.Int32
-      description: >-
-        A value that indicates the relative order of the objects being compared. The return value has these meanings:  
-
-         <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">obj</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">obj</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">obj</code> in the sort order.</td></tr></tbody></table>
+      description: An integer indicating the relative order of the paths.
     content.vb: Public Function CompareTo(obj As Object) As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: <code class="paramref">obj</code> is not the same type as this instance.
+    description: Thrown if the object is not a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
   implements:
   - System.IComparable.CompareTo(System.Object)
   nameWithType.vb: VirtualPath.CompareTo(Object)
@@ -1724,19 +1807,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetRelativePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 666
+    startLine: 796
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the relative path from the specified base path.
+  example: []
   syntax:
     content: public VirtualPath GetRelativePath(VirtualPath basePath)
     parameters:
     - id: basePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The base path.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> representing the relative path.
     content.vb: Public Function GetRelativePath(basePath As VirtualPath) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetRelativePath*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the current path or the base path is not absolute.
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   id: ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -1755,21 +1846,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ArePathsSubdirectories
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 740
+    startLine: 881
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether one path is a subdirectory of another path.
+  example: []
   syntax:
     content: public static bool ArePathsSubdirectories(VirtualPath path1, VirtualPath path2)
     parameters:
     - id: path1
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The first <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     - id: path2
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The second <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: System.Boolean
+      description: true if one path is a subdirectory of the other; otherwise, false.
     content.vb: Public Shared Function ArePathsSubdirectories(path1 As VirtualPath, path2 As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if either path is empty.
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   id: IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -1788,19 +1888,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsSubdirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 783
+    startLine: 930
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether the current path is a subdirectory of the specified parent path.
+  example: []
   syntax:
     content: public bool IsSubdirectory(VirtualPath parentPath)
     parameters:
     - id: parentPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The parent <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     return:
       type: System.Boolean
+      description: true if the current path is a subdirectory of the parent path; otherwise, false.
     content.vb: Public Function IsSubdirectory(parentPath As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if either path is empty.
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -2788,6 +2896,13 @@ references:
   name: NormalizePath
   nameWithType: VirtualPath.NormalizePath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName
   href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetNodeName
@@ -2850,6 +2965,34 @@ references:
   name: GetParentPath
   nameWithType: VirtualPath.GetParentPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath
+- uid: System.Collections.Generic.LinkedList`1
+  commentId: T:System.Collections.Generic.LinkedList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1
+  name: LinkedList<T>
+  nameWithType: LinkedList<T>
+  fullName: System.Collections.Generic.LinkedList<T>
+  nameWithType.vb: LinkedList(Of T)
+  fullName.vb: System.Collections.Generic.LinkedList(Of T)
+  name.vb: LinkedList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.LinkedList`1
+    name: LinkedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.LinkedList`1
+    name: LinkedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList
   href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsLinkedList
@@ -2888,34 +3031,6 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
     name: VirtualNodeName
     href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
-  - name: )
-- uid: System.Collections.Generic.LinkedList`1
-  commentId: T:System.Collections.Generic.LinkedList`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1
-  name: LinkedList<T>
-  nameWithType: LinkedList<T>
-  fullName: System.Collections.Generic.LinkedList<T>
-  nameWithType.vb: LinkedList(Of T)
-  fullName.vb: System.Collections.Generic.LinkedList(Of T)
-  name.vb: LinkedList(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.LinkedList`1
-    name: LinkedList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.LinkedList`1
-    name: LinkedList
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList

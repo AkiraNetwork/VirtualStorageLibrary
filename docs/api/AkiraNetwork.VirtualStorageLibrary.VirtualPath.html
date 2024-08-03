@@ -612,7 +612,8 @@ excluding those with wildcards.</p>
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddEndSlash_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddEndSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddEndSlash">AddEndSlash()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds a trailing slash to the path if it doesn't already have one.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -629,13 +630,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> with a trailing slash.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddStartSlash_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_AddStartSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.AddStartSlash">AddStartSlash()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds a leading slash to the path if it doesn't already have one.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -652,13 +655,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> with a leading slash.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ArePathsSubdirectories_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_ArePathsSubdirectories_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">ArePathsSubdirectories(VirtualPath, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether one path is a subdirectory of another path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -677,12 +682,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path1</span></td>
-        <td></td>
+        <td><p>The first <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path2</span></td>
-        <td></td>
+        <td><p>The second <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -697,13 +704,31 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>true if one path is a subdirectory of the other; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown if either path is empty.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_AkiraNetwork_VirtualStorageLibrary_VirtualPath___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(AkiraNetwork.VirtualStorageLibrary.VirtualPath[])">Combine(params VirtualPath[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines the current path with the specified paths.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -722,7 +747,8 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>[]</td>
         <td><span class="parametername">paths</span></td>
-        <td></td>
+        <td><p>An array of <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> objects to combine.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -737,13 +763,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_Combine_System_String___" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.Combine(System.String[])">Combine(params string[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines the specified paths into a single path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -762,7 +790,8 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
         <td><span class="parametername">paths</span></td>
-        <td></td>
+        <td><p>An array of path strings to combine.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -777,13 +806,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>A combined path string.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CombineFromIndex_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CombineFromIndex_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Int32_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32)">CombineFromIndex(VirtualPath, int)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines the current path with the parts of another path starting from a specified index.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -802,12 +833,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> whose parts to combine.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">index</span></td>
-        <td></td>
+        <td><p>The starting index from which to combine the parts.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -822,13 +855,14 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">CompareTo(VirtualPath?)</h4>
-  <div class="markdown level1 summary"><p>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</p>
+  <div class="markdown level1 summary"><p>Compares the current path with another <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -848,7 +882,7 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">other</span></td>
-        <td><p>An object to compare with this instance.</p>
+        <td><p>The other <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> to compare with.</p>
 </td>
       </tr>
     </tbody>
@@ -864,15 +898,14 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
- <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">other</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">other</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">other</code> in the sort order.</td></tr></tbody></table>
+        <td><p>An integer indicating the relative order of the paths.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_CompareTo_System_Object_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo(System.Object)">CompareTo(object?)</h4>
-  <div class="markdown level1 summary"><p>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</p>
+  <div class="markdown level1 summary"><p>Compares the current path with another object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -892,7 +925,7 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">obj</span></td>
-        <td><p>An object to compare with this instance.</p>
+        <td><p>The object to compare with.</p>
 </td>
       </tr>
     </tbody>
@@ -908,8 +941,7 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
- <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">obj</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">obj</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">obj</code> in the sort order.</td></tr></tbody></table>
+        <td><p>An integer indicating the relative order of the paths.</p>
 </td>
       </tr>
     </tbody>
@@ -925,7 +957,7 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code class="paramref">obj</code> is not the same type as this instance.</p>
+        <td><p>Thrown if the object is not a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -1047,7 +1079,8 @@ excluding those with wildcards.</p>
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a></div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetNodeName" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetNodeName">GetNodeName()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Retrieves the node name from the current path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1064,13 +1097,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
-        <td></td>
+        <td><p>A <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> object representing the node name.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetParentPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetParentPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetParentPath">GetParentPath()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the parent path of the current path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1087,13 +1122,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the parent path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsLinkedList_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsLinkedList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsLinkedList">GetPartsLinkedList()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the parts of the path as a linked list.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1110,13 +1147,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1">LinkedList</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</td>
-        <td></td>
+        <td><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.linkedlist-1">LinkedList&lt;T&gt;</a> of <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> objects representing the path parts.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList">GetPartsList()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the parts of the path as a list.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1133,13 +1172,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</td>
-        <td></td>
+        <td><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List&lt;T&gt;</a> of <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> objects representing the path parts.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetRelativePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetRelativePath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetRelativePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetRelativePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">GetRelativePath(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the relative path from the specified base path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1158,7 +1199,8 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">basePath</span></td>
-        <td></td>
+        <td><p>The base path.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1173,13 +1215,31 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the relative path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown if the current path or the base path is not absolute.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsSubdirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsSubdirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">IsSubdirectory(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether the current path is a subdirectory of the specified parent path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1198,7 +1258,8 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">parentPath</span></td>
-        <td></td>
+        <td><p>The parent <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1213,13 +1274,31 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>true if the current path is a subdirectory of the parent path; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown if either path is empty.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath">NormalizePath()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Normalizes the current path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1236,13 +1315,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> instance with the normalized path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_NormalizePath_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath(System.String)">NormalizePath(string)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Normalizes the specified path string.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1261,7 +1342,8 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path string to normalize.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1276,13 +1358,31 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>A normalized path string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when attempting to navigate above the root directory.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_StartsWith_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_StartsWith_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.StartsWith(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">StartsWith(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether the current path starts with the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1301,7 +1401,8 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> to compare with.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1316,7 +1417,8 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>true if the current path starts with the specified path; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1349,7 +1451,8 @@ excluding those with wildcards.</p>
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_TrimEndSlash_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.TrimEndSlash*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_TrimEndSlash" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.TrimEndSlash">TrimEndSlash()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Removes the trailing slash from the path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1366,7 +1469,8 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> without the trailing slash.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1374,7 +1478,8 @@ excluding those with wildcards.</p>
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)">operator +(VirtualPath, VirtualNodeName)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> with a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1393,12 +1498,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a></td>
         <td><span class="parametername">nodeName</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1413,13 +1520,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator +(VirtualPath, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines two <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> instances.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1438,12 +1547,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path1</span></td>
-        <td></td>
+        <td><p>The first <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path2</span></td>
-        <td></td>
+        <td><p>The second <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1458,13 +1569,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Char_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Char)">operator +(VirtualPath, char)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> with a character.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1483,12 +1596,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
         <td><span class="parametername">chr</span></td>
-        <td></td>
+        <td><p>The character to combine with the path.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1503,13 +1618,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.String)">operator +(VirtualPath, string)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> with a string.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1528,12 +1645,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">str</span></td>
-        <td></td>
+        <td><p>The string to combine with the path.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1548,13 +1667,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_Char_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.Char,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator +(char, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines a character with a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1573,12 +1694,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
         <td><span class="parametername">chr</span></td>
-        <td></td>
+        <td><p>The character to combine with the path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1593,13 +1716,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Addition_System_String_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Addition(System.String,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator +(string, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Combines a string with a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1618,12 +1743,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">str</span></td>
-        <td></td>
+        <td><p>The string to combine with the path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1638,13 +1765,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>A new <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the combined path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Equality_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Equality*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Equality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Equality(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator ==(VirtualPath?, VirtualPath?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> instances are equal.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1663,12 +1792,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">left</span></td>
-        <td></td>
+        <td><p>The left <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">right</span></td>
-        <td></td>
+        <td><p>The right <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1683,7 +1814,8 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>true if the paths are equal; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1775,7 +1907,8 @@ excluding those with wildcards.</p>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Inequality_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Inequality*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_op_Inequality_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.op_Inequality(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">operator !=(VirtualPath?, VirtualPath?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> instances are not equal.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1794,12 +1927,14 @@ excluding those with wildcards.</p>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">left</span></td>
-        <td></td>
+        <td><p>The left <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">right</span></td>
-        <td></td>
+        <td><p>The right <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1814,7 +1949,8 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>true if the paths are not equal; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>

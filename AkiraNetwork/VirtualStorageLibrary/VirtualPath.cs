@@ -327,64 +327,116 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return _path == other?._path;
         }
 
+        /// <summary>
+        /// Determines whether two <see cref="VirtualPath"/> instances are equal.
+        /// </summary>
+        /// <param name="left">The left <see cref="VirtualPath"/>.</param>
+        /// <param name="right">The right <see cref="VirtualPath"/>.</param>
+        /// <returns>true if the paths are equal; otherwise, false.</returns>
         public static bool operator ==(VirtualPath? left, VirtualPath? right)
         {
-            // 両方が null の場合は true
+            // Returns true if both are null
             if (left is null && right is null)
             {
                 return true;
             }
 
-            // 一方が null の場合は false
+            // Returns false if one is null
             if (left is null || right is null)
             {
                 return false;
             }
 
-            // 実際のパスの比較
+            // Compare the actual paths
             return left._path == right._path;
         }
 
+        /// <summary>
+        /// Determines whether two <see cref="VirtualPath"/> instances are not equal.
+        /// </summary>
+        /// <param name="left">The left <see cref="VirtualPath"/>.</param>
+        /// <param name="right">The right <see cref="VirtualPath"/>.</param>
+        /// <returns>true if the paths are not equal; otherwise, false.</returns>
         public static bool operator !=(VirtualPath? left, VirtualPath? right)
         {
             return !(left == right);
         }
 
+        /// <summary>
+        /// Combines two <see cref="VirtualPath"/> instances.
+        /// </summary>
+        /// <param name="path1">The first <see cref="VirtualPath"/>.</param>
+        /// <param name="path2">The second <see cref="VirtualPath"/>.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public static VirtualPath operator +(VirtualPath path1, VirtualPath path2)
         {
             return path1.Combine(path2).NormalizePath();
         }
 
+        /// <summary>
+        /// Combines a <see cref="VirtualPath"/> with a <see cref="VirtualNodeName"/>.
+        /// </summary>
+        /// <param name="path">The <see cref="VirtualPath"/>.</param>
+        /// <param name="nodeName">The <see cref="VirtualNodeName"/>.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public static VirtualPath operator +(VirtualPath path, VirtualNodeName nodeName)
         {
             string combinedPath = VirtualPath.Combine(path.Path, nodeName.Name);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
+        /// <summary>
+        /// Combines a <see cref="VirtualPath"/> with a string.
+        /// </summary>
+        /// <param name="path">The <see cref="VirtualPath"/>.</param>
+        /// <param name="str">The string to combine with the path.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public static VirtualPath operator +(VirtualPath path, string str)
         {
             string combinedPath = VirtualPath.Combine(path.Path, str);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
+        /// <summary>
+        /// Combines a string with a <see cref="VirtualPath"/>.
+        /// </summary>
+        /// <param name="str">The string to combine with the path.</param>
+        /// <param name="path">The <see cref="VirtualPath"/>.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public static VirtualPath operator +(string str, VirtualPath path)
         {
             string combinedPath = VirtualPath.Combine(str, path.Path);
             return new VirtualPath(combinedPath).NormalizePath();
         }
 
+        /// <summary>
+        /// Combines a <see cref="VirtualPath"/> with a character.
+        /// </summary>
+        /// <param name="path">The <see cref="VirtualPath"/>.</param>
+        /// <param name="chr">The character to combine with the path.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public static VirtualPath operator +(VirtualPath path, char chr)
         {
             string combinedPath = path.Path + chr;
-            return new VirtualPath(combinedPath); // 正規化せずに結合
+            return new VirtualPath(combinedPath); // Combine without normalization
         }
 
+        /// <summary>
+        /// Combines a character with a <see cref="VirtualPath"/>.
+        /// </summary>
+        /// <param name="chr">The character to combine with the path.</param>
+        /// <param name="path">The <see cref="VirtualPath"/>.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public static VirtualPath operator +(char chr, VirtualPath path)
         {
             string combinedPath = chr + path.Path;
-            return new VirtualPath(combinedPath); // 正規化せずに結合
+            return new VirtualPath(combinedPath); // Combine without normalization
         }
 
+        /// <summary>
+        /// Removes the trailing slash from the path.
+        /// </summary>
+        /// <returns>A new <see cref="VirtualPath"/> without the trailing slash.</returns>
         public VirtualPath TrimEndSlash()
         {
             if (_path.EndsWith(Separator))
@@ -394,6 +446,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return this;
         }
 
+        /// <summary>
+        /// Adds a trailing slash to the path if it doesn't already have one.
+        /// </summary>
+        /// <returns>A new <see cref="VirtualPath"/> with a trailing slash.</returns>
         public VirtualPath AddEndSlash()
         {
             if (!_path.EndsWith(Separator))
@@ -403,6 +459,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return this;
         }
 
+        /// <summary>
+        /// Adds a leading slash to the path if it doesn't already have one.
+        /// </summary>
+        /// <returns>A new <see cref="VirtualPath"/> with a leading slash.</returns>
         public VirtualPath AddStartSlash()
         {
             if (!_path.StartsWith(Separator))
@@ -412,23 +472,40 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return this;
         }
 
+        /// <summary>
+        /// Determines whether the current path starts with the specified path.
+        /// </summary>
+        /// <param name="path">The <see cref="VirtualPath"/> to compare with.</param>
+        /// <returns>true if the current path starts with the specified path; otherwise, false.</returns>
         public bool StartsWith(VirtualPath path)
         {
             return _path.StartsWith(path.Path);
         }
 
+        /// <summary>
+        /// Normalizes the current path.
+        /// </summary>
+        /// <returns>A new <see cref="VirtualPath"/> instance with the normalized path.</returns>
         public VirtualPath NormalizePath()
         {
-            // string型でパスを正規化する静的メソッドを呼び出す。
+            // Call the static method to normalize the path as a string
             string normalizedPathString = NormalizePath(_path);
 
-            // 正規化されたパス文字列を使用して新しいVirtualPathインスタンスを作成し、返す。
+            // Create and return a new VirtualPath instance using the normalized path string
             return new VirtualPath(normalizedPathString);
         }
 
+        /// <summary>
+        /// Normalizes the specified path string.
+        /// </summary>
+        /// <param name="path">The path string to normalize.</param>
+        /// <returns>A normalized path string.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when attempting to navigate above the root directory.
+        /// </exception>
         public static string NormalizePath(string path)
         {
-            // パスが空文字列、または PathSeparator の場合はそのまま返す
+            // Return as is if the path is an empty string or the PathSeparator
             if (path == string.Empty || path == Separator.ToString())
             {
                 return path;
@@ -470,9 +547,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return normalizedPath;
         }
 
+        /// <summary>
+        /// Retrieves the directory part of the current path.
+        /// </summary>
+        /// <returns>A string representing the directory part of the path.</returns>
         private string GetDirectoryPath()
         {
-            // パスが PathSeparator で始まっていない場合、それは相対パスなのでそのまま返す
+            // Return as is if the path does not start with PathSeparator, indicating it is a relative path
             if (!_path.StartsWith(Separator))
             {
                 return _path;
@@ -480,23 +561,27 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             int lastSlashIndex = _path.LastIndexOf(Separator);
 
-            // PathSeparator が見つからない場合は、ルートディレクトリを示す PathSeparator を返す
+            // Return PathSeparator if it is not found, indicating the root directory
             if (lastSlashIndex <= 0)
             {
                 return Separator.ToString();
             }
             else
             {
-                // フルパスから最後の PathSeparator までの部分を抜き出して返す
+                // Extract and return the part up to the last PathSeparator in the full path
                 return _path[..lastSlashIndex];
             }
         }
 
+        /// <summary>
+        /// Retrieves the node name from the current path.
+        /// </summary>
+        /// <returns>A <see cref="VirtualNodeName"/> object representing the node name.</returns>
         public VirtualNodeName GetNodeName()
         {
             if (_path == VirtualPath.Separator.ToString())
             {
-                // ルートディレクトリの場合は、そのままの文字列を返す
+                // Return as is if the path represents the root directory
                 return new VirtualNodeName(VirtualPath.Separator.ToString());
             }
 
@@ -504,23 +589,28 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (path.Length > 0 && path[^1] == VirtualPath.Separator)
             {
-                // 末尾の PathSeparator を取り除く
+                // Remove the trailing PathSeparator
                 path.Remove(path.Length - 1, 1);
             }
 
             int lastSlashIndex = path.ToString().LastIndexOf(VirtualPath.Separator);
             if (lastSlashIndex < 0)
             {
-                // PathSeparator が見つからない場合は、そのままの文字列を返す
+                // Return as is if no PathSeparator is found
                 return new VirtualNodeName(_path);
             }
             else
             {
-                // 最後の PathSeparator 以降の部分を抜き出して返す
+                // Extract and return the part after the last PathSeparator
                 return new VirtualNodeName(path.ToString()[(lastSlashIndex + 1)..]);
             }
         }
 
+        /// <summary>
+        /// Combines the current path with the specified paths.
+        /// </summary>
+        /// <param name="paths">An array of <see cref="VirtualPath"/> objects to combine.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public VirtualPath Combine(params VirtualPath[] paths)
         {
             string[] currentPathArray = [_path];
@@ -531,6 +621,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(combinedPathString);
         }
 
+        /// <summary>
+        /// Combines the specified paths into a single path.
+        /// </summary>
+        /// <param name="paths">An array of path strings to combine.</param>
+        /// <returns>A combined path string.</returns>
         public static string Combine(params string[] paths)
         {
             if (paths.Length == 0)
@@ -567,19 +662,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             var combinedPath = newPathBuilder.ToString();
 
-            // 結果が空文字列の場合、そのまま返す
+            // Return as is if the result is an empty string
             if (string.IsNullOrEmpty(combinedPath))
             {
                 return string.Empty;
             }
 
-            // 絶対パスの場合、先頭にセパレータを追加
+            // Add a leading separator if it is an absolute path
             if (isAbsolutePath)
             {
                 combinedPath = VirtualPath.Separator + combinedPath;
             }
 
-            // 末尾のPathSeparatorを取り除く
+            // Remove the trailing PathSeparator
             if (combinedPath.EndsWith(VirtualPath.Separator))
             {
                 combinedPath = combinedPath[..^1];
@@ -588,18 +683,22 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return combinedPath;
         }
 
+        /// <summary>
+        /// Gets the parent path of the current path.
+        /// </summary>
+        /// <returns>A <see cref="VirtualPath"/> representing the parent path.</returns>
         public VirtualPath GetParentPath()
         {
-            // パスの最後の PathSeparator を取り除きます
+            // Remove the trailing PathSeparator
             string trimmedPath = _path.TrimEnd(VirtualPath.Separator);
-            // パスを PathSeparator で分割します
+            // Split the path by PathSeparator
             string[] pathParts = trimmedPath.Split(VirtualPath.Separator);
-            // 最後の部分を除去します
+            // Remove the last part
             string[] parentPathParts = pathParts.Take(pathParts.Length - 1).ToArray();
-            // パスを再構築します
+            // Reconstruct the path
             string parentPath = string.Join(VirtualPath.Separator, parentPathParts);
 
-            // パスが空になった場合は、ルートを返します
+            // Return the root if the path is empty
             if (string.IsNullOrEmpty(parentPath))
             {
                 return Root;
@@ -608,6 +707,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return new VirtualPath(parentPath);
         }
 
+        /// <summary>
+        /// Gets the parts of the path as a linked list.
+        /// </summary>
+        /// <returns>A <see cref="LinkedList{T}"/> of <see cref="VirtualNodeName"/> objects representing the path parts.</returns>
         public LinkedList<VirtualNodeName> GetPartsLinkedList()
         {
             LinkedList<VirtualNodeName> parts = new();
@@ -619,17 +722,27 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return parts;
         }
 
+        /// <summary>
+        /// Gets the parts of the path as a list.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of <see cref="VirtualNodeName"/> objects representing the path parts.</returns>
         public List<VirtualNodeName> GetPartsList()
         {
             return [.. GetPartsLinkedList()];
         }
 
+        /// <summary>
+        /// Combines the current path with the parts of another path starting from a specified index.
+        /// </summary>
+        /// <param name="path">The <see cref="VirtualPath"/> whose parts to combine.</param>
+        /// <param name="index">The starting index from which to combine the parts.</param>
+        /// <returns>A new <see cref="VirtualPath"/> representing the combined path.</returns>
         public VirtualPath CombineFromIndex(VirtualPath path, int index)
         {
-            // 指定されたインデックスからのパスのパーツを取得
+            // Get the parts of the path from the specified index
             var partsFromIndex = path.PartsList.Skip(index).ToList();
 
-            // 現在のパス（this）と指定されたインデックスからのパーツを結合
+            // Combine the current path (this) with the parts from the specified index
             VirtualPath combinedPath = this;
             foreach (var part in partsFromIndex)
             {
@@ -639,6 +752,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return combinedPath;
         }
 
+        /// <summary>
+        /// Compares the current path with another <see cref="VirtualPath"/>.
+        /// </summary>
+        /// <param name="other">The other <see cref="VirtualPath"/> to compare with.</param>
+        /// <returns>An integer indicating the relative order of the paths.</returns>
         public int CompareTo(VirtualPath? other)
         {
             if (other == null)
@@ -649,6 +767,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return string.Compare(_path, other._path, StringComparison.Ordinal);
         }
 
+        /// <summary>
+        /// Compares the current path with another object.
+        /// </summary>
+        /// <param name="obj">The object to compare with.</param>
+        /// <returns>An integer indicating the relative order of the paths.</returns>
+        /// <exception cref="ArgumentException">Thrown if the object is not a <see cref="VirtualPath"/>.</exception>
         public int CompareTo(object? obj)
         {
             if (obj == null)
@@ -664,27 +788,33 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return CompareTo((VirtualPath)obj);
         }
 
+        /// <summary>
+        /// Gets the relative path from the specified base path.
+        /// </summary>
+        /// <param name="basePath">The base path.</param>
+        /// <returns>A <see cref="VirtualPath"/> representing the relative path.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the current path or the base path is not absolute.</exception>
         public VirtualPath GetRelativePath(VirtualPath basePath)
         {
-            // このパスが絶対パスでない場合は例外をスロー
+            // Throws an exception if the current path is not absolute
             if (!IsAbsolute)
             {
                 throw new InvalidOperationException(string.Format(Resources.PathIsNotAbsolutePath, _path));
             }
 
-            // ベースパスが絶対パスでない場合も例外をスロー
+            // Throws an exception if the base path is not absolute
             if (!basePath.IsAbsolute)
             {
                 throw new InvalidOperationException(string.Format(Resources.BasePathIsNotAbsolute, basePath.Path));
             }
 
-            // 両方のパスが等しい場合は"."を返却
+            // Return "." if both paths are equal
             if (_path == basePath.Path)
             {
                 return VirtualPath.Dot;
             }
 
-            // ベースパスがルートの場合、先頭のスラッシュを除去して返す
+            // Remove the leading slash if the base path is the root
             if (basePath.Path == VirtualPath.Root)
             {
                 return new VirtualPath(_path.TrimStart('/'));
@@ -703,21 +833,25 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 commonLength++;
             }
 
-            // ベースパスとターゲットパスに共通の部分がない場合
+            // Return the absolute path if there are no common parts between the base and target paths
             if (commonLength == 0)
             {
-                return new VirtualPath(_path);  // 絶対パスをそのまま返却
+                return new VirtualPath(_path);
             }
 
-            // ベースパスの残りの部分に対して ".." を追加
+            // Add ".." for the remaining parts in the base path
             IEnumerable<string> relativePath = Enumerable.Repeat("..", baseParts.Count - commonLength);
 
-            // ターゲットパスの非共通部分を追加
+            // Add the remaining parts from the target path
             relativePath = relativePath.Concat(targetParts.Skip(commonLength).Select(p => p.Name));
 
             return new VirtualPath(string.Join(VirtualPath.Separator, relativePath));
         }
 
+        /// <summary>
+        /// Gets the fixed path and depth after applying wildcard matching.
+        /// </summary>
+        /// <returns>A tuple containing the <see cref="VirtualPath"/> representing the fixed path and an integer representing the depth.</returns>
         private (VirtualPath, int) GetFixedPath()
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
@@ -738,6 +872,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return (new VirtualPath(parts), parts.Count);
         }
 
+        /// <summary>
+        /// Determines whether one path is a subdirectory of another path.
+        /// </summary>
+        /// <param name="path1">The first <see cref="VirtualPath"/>.</param>
+        /// <param name="path2">The second <see cref="VirtualPath"/>.</param>
+        /// <returns>true if one path is a subdirectory of the other; otherwise, false.</returns>
+        /// <exception cref="ArgumentException">Thrown if either path is empty.</exception>
         public static bool ArePathsSubdirectories(VirtualPath path1, VirtualPath path2)
         {
             if (path1.IsEmpty)
@@ -749,7 +890,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 throw new ArgumentException(Resources.PathCannotBeEmpty, nameof(path2));
             }
 
-            // パスがルートであるかを確認
+            // Check if either path is the root
             if (path1.IsRoot || path2.IsRoot)
             {
                 return true;
@@ -758,20 +899,20 @@ namespace AkiraNetwork.VirtualStorageLibrary
             var sourceParts = path1.PartsList;
             var destinationParts = path2.PartsList;
 
-            // パスが完全に一致するか確認
+            // Check if the paths are identical
             if (sourceParts.SequenceEqual(destinationParts))
             {
                 return true;
             }
 
-            // path1 が path2 のサブディレクトリか確認
+            // Check if path1 is a subdirectory of path2
             if (sourceParts.Count <= destinationParts.Count &&
                 sourceParts.SequenceEqual(destinationParts.Take(sourceParts.Count)))
             {
                 return true;
             }
 
-            // path2 が path1 のサブディレクトリか確認
+            // Check if path2 is a subdirectory of path1
             if (destinationParts.Count <= sourceParts.Count &&
                 destinationParts.SequenceEqual(sourceParts.Take(destinationParts.Count)))
             {
@@ -781,6 +922,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return false;
         }
 
+        /// <summary>
+        /// Determines whether the current path is a subdirectory of the specified parent path.
+        /// </summary>
+        /// <param name="parentPath">The parent <see cref="VirtualPath"/>.</param>
+        /// <returns>true if the current path is a subdirectory of the parent path; otherwise, false.</returns>
+        /// <exception cref="ArgumentException">Thrown if either path is empty.</exception>
         public bool IsSubdirectory(VirtualPath parentPath)
         {
             if (IsEmpty)
@@ -795,19 +942,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
             var sourceParts = parentPath.PartsList;
             var destinationParts = PartsList;
 
-            // パスが完全に一致するか確認
+            // Check if the paths are identical
             if (sourceParts.SequenceEqual(destinationParts))
             {
                 return false;
             }
 
-            // parentPath がルートディレクトリの場合、destinationPartsがルート以下か確認
+            // Check if the parentPath is the root directory and the destinationParts are under the root
             if (parentPath.IsRoot)
             {
                 return true;
             }
 
-            // parentPath が現在のパスの親ディレクトリか確認
+            // Check if the parentPath is the parent directory of the current path
             if (sourceParts.Count <= destinationParts.Count &&
                 sourceParts.SequenceEqual(destinationParts.Take(sourceParts.Count)))
             {
