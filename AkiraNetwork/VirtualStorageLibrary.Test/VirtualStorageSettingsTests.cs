@@ -31,7 +31,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(".", settings.PathDot);
             Assert.AreEqual("..", settings.PathDotDot);
             CollectionAssert.AreEqual(new char[] { settings.PathSeparator }, settings.InvalidNodeNameCharacters);
-            CollectionAssert.AreEqual(new string[] { settings.PathDot, settings.PathDotDot }, settings.InvalidFullNodeNames);
+            CollectionAssert.AreEqual(new string[] { settings.PathDot, settings.PathDotDot }, settings.InvalidNodeNames);
             Assert.IsNotNull(settings.WildcardMatcher);
             Assert.AreEqual("item", settings.PrefixItem);
             Assert.AreEqual("dir", settings.PrefixDirectory);

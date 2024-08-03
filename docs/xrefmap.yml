@@ -2861,19 +2861,6 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.Initialize
   nameWithType: VirtualStorageSettings.Initialize
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidFullNodeNames
-  name: InvalidFullNodeNames
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_InvalidFullNodeNames
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidFullNodeNames
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidFullNodeNames
-  nameWithType: VirtualStorageSettings.InvalidFullNodeNames
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidFullNodeNames*
-  name: InvalidFullNodeNames
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_InvalidFullNodeNames_
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidFullNodeNames
-  isSpec: "True"
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidFullNodeNames
-  nameWithType: VirtualStorageSettings.InvalidFullNodeNames
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNameCharacters
   name: InvalidNodeNameCharacters
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_InvalidNodeNameCharacters
@@ -2887,6 +2874,19 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNameCharacters
   nameWithType: VirtualStorageSettings.InvalidNodeNameCharacters
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
+  name: InvalidNodeNames
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_InvalidNodeNames
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
+  nameWithType: VirtualStorageSettings.InvalidNodeNames
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames*
+  name: InvalidNodeNames
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_InvalidNodeNames_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
+  nameWithType: VirtualStorageSettings.InvalidNodeNames
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.NodeListConditions
   name: NodeListConditions
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_NodeListConditions

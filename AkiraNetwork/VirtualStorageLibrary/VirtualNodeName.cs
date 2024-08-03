@@ -100,7 +100,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 }
             }
 
-            foreach (string invalidFullNodeName in VirtualStorageSettings.Settings.InvalidFullNodeNames)
+            foreach (string invalidFullNodeName in VirtualStorageSettings.Settings.InvalidNodeNames)
             {
                 if (nodeName.Name == invalidFullNodeName)
                 {

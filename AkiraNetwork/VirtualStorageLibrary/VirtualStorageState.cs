@@ -43,7 +43,7 @@
                 PathDot = settings.PathDot,
                 PathDotDot = settings.PathDotDot,
                 InvalidNodeNameCharacters = (char[])settings.InvalidNodeNameCharacters.Clone(),
-                InvalidFullNodeNames = (string[])settings.InvalidFullNodeNames.Clone(),
+                InvalidFullNodeNames = (string[])settings.InvalidNodeNames.Clone(),
                 WildcardMatcher = settings.WildcardMatcher,
                 NodeListConditions = settings.NodeListConditions,
                 PrefixItem = settings.PrefixItem,
