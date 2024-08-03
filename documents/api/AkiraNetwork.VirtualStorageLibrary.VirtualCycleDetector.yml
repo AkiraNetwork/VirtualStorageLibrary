@@ -24,10 +24,15 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualCycleDetector
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 2
+    startLine: 6
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Class for detecting cycles in virtual symbolic links.
+
+    Determines if a given link is part of a cycle.
+  example: []
   syntax:
     content: public class VirtualCycleDetector
     content.vb: Public Class VirtualCycleDetector
@@ -61,15 +66,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 6
+    startLine: 21
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the dictionary of detected cycles.
+  example: []
   syntax:
     content: public Dictionary<VirtualID, VirtualSymbolicLink> CycleDictionary { get; }
     parameters: []
     return:
       type: System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualID,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink}
+      description: >-
+        A dictionary where the keys are <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualID" data-throw-if-not-resolved="false"></xref>s and the values are the corresponding 
+
+        <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref>s.
     content.vb: Public ReadOnly Property CycleDictionary As Dictionary(Of VirtualID, VirtualSymbolicLink)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.CycleDictionary*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.Count
@@ -90,15 +101,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 8
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the number of detected cycles.
+  example: []
   syntax:
     content: public int Count { get; }
     parameters: []
     return:
       type: System.Int32
+      description: The number of detected cycles.
     content.vb: Public ReadOnly Property Count As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.Count*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.#ctor
@@ -119,10 +133,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 10
+    startLine: 34
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector" data-throw-if-not-resolved="false"></xref> class.
+  example: []
   syntax:
     content: public VirtualCycleDetector()
     content.vb: Public Sub New()
@@ -148,10 +164,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Clear
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 15
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Clears the dictionary of detected cycles.
+  example: []
   syntax:
     content: public void Clear()
     content.vb: Public Sub Clear()
@@ -174,17 +192,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsNodeInCycle
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 20
+    startLine: 52
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Determines whether the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> is part of a cycle.
+  example: []
   syntax:
     content: public bool IsNodeInCycle(VirtualSymbolicLink link)
     parameters:
     - id: link
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> to check.
     return:
       type: System.Boolean
+      description: True if the link is part of a cycle; otherwise, false.
     content.vb: Public Function IsNodeInCycle(link As VirtualSymbolicLink) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.IsNodeInCycle*
 references:
@@ -556,6 +578,20 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualID
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualID
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualID.html
+  name: VirtualID
+  nameWithType: VirtualID
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualID
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.CycleDictionary*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.CycleDictionary
   href: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html#AkiraNetwork_VirtualStorageLibrary_VirtualCycleDetector_CycleDictionary
@@ -693,6 +729,13 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html
+  name: VirtualCycleDetector
+  nameWithType: VirtualCycleDetector
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.#ctor*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.#ctor
   href: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html#AkiraNetwork_VirtualStorageLibrary_VirtualCycleDetector__ctor
@@ -714,13 +757,6 @@ references:
   name: IsNodeInCycle
   nameWithType: VirtualCycleDetector.IsNodeInCycle
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.IsNodeInCycle
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
-  name: VirtualSymbolicLink
-  nameWithType: VirtualSymbolicLink
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
