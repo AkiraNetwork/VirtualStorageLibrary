@@ -24,10 +24,15 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DefaultWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
+  summary: >-
+    Implements default wildcard matching using regular expression patterns.
+
+    Provides a straightforward mapping of regular expression symbols.
+  example: []
   syntax:
     content: 'public class DefaultWildcardMatcher : IVirtualWildcardMatcher'
     content.vb: Public Class DefaultWildcardMatcher Implements IVirtualWildcardMatcher
@@ -63,11 +68,11 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-    startLine: 26
+    startLine: 43
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
-  summary: Gets a dictionary of wildcards and their corresponding regex patterns.
+  summary: Gets the dictionary of regular expression symbols and their corresponding literals.
   example: []
   syntax:
     content: public ReadOnlyDictionary<string, string> WildcardDictionary { get; }
@@ -75,9 +80,9 @@ items:
     return:
       type: System.Collections.ObjectModel.ReadOnlyDictionary{System.String,System.String}
       description: >-
-        A read-only dictionary containing wildcards as keys and their corresponding
+        A read-only dictionary where the keys are regular expression symbols and the values
 
-        regex patterns as values.
+        are their literal equivalents.
     content.vb: Public ReadOnly Property WildcardDictionary As ReadOnlyDictionary(Of String, String)
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary*
   implements:
@@ -100,18 +105,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-    startLine: 28
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
-  summary: Gets a collection of available wildcards.
+  summary: Gets the list of supported wildcard characters.
   example: []
   syntax:
     content: public IEnumerable<string> Wildcards { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
-      description: An enumerable collection of strings representing the available wildcards.
+      description: A collection of supported wildcard characters.
     content.vb: Public ReadOnly Property Wildcards As IEnumerable(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards*
   implements:
@@ -134,18 +139,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-    startLine: 30
+    startLine: 59
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
-  summary: Gets a collection of available patterns.
+  summary: Gets the list of regular expression patterns corresponding to the wildcard characters.
   example: []
   syntax:
     content: public IEnumerable<string> Patterns { get; }
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
-      description: An enumerable collection of strings representing the available patterns.
+      description: A collection of regular expression patterns corresponding to the wildcard characters.
     content.vb: Public ReadOnly Property Patterns As IEnumerable(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns*
   implements:
@@ -168,18 +173,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-    startLine: 32
+    startLine: 67
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
-  summary: Gets the number of wildcards.
+  summary: Gets the number of supported wildcard characters.
   example: []
   syntax:
     content: public int Count { get; }
     parameters: []
     return:
       type: System.Int32
-      description: An integer representing the number of wildcards available.
+      description: The number of supported wildcard characters.
     content.vb: Public ReadOnly Property Count As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count*
   implements:
@@ -202,21 +207,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-    startLine: 35
+    startLine: 75
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
-  summary: Determines whether the specified node name matches the specified pattern.
+  summary: Performs simple regular expression-based wildcard matching.
   example: []
   syntax:
     content: public bool PatternMatcher(string nodeName, string pattern)
     parameters:
     - id: nodeName
       type: System.String
-      description: The node name to check.
+      description: The name of the node to match against the pattern.
     - id: pattern
       type: System.String
-      description: The pattern to compare against.
+      description: The regular expression pattern to use for matching.
     return:
       type: System.Boolean
       description: True if the node name matches the pattern; otherwise, false.

@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class DefaultWildcardMatcher | AkiraNetwork ">
     
-    
+    <meta name="description" content="Implements default wildcard matching using regular expression patterns. Provides a straightforward mapping of regular expression symbols.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,9 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher" class="text-break">Class DefaultWildcardMatcher</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Implements default wildcard matching using regular expression patterns.
+Provides a straightforward mapping of regular expression symbols.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -126,7 +128,7 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Count_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Count" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count">Count</h4>
-  <div class="markdown level1 summary"><p>Gets the number of wildcards.</p>
+  <div class="markdown level1 summary"><p>Gets the number of supported wildcard characters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -144,14 +146,14 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>An integer representing the number of wildcards available.</p>
+        <td><p>The number of supported wildcard characters.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Patterns_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Patterns" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Patterns">Patterns</h4>
-  <div class="markdown level1 summary"><p>Gets a collection of available patterns.</p>
+  <div class="markdown level1 summary"><p>Gets the list of regular expression patterns corresponding to the wildcard characters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -169,14 +171,14 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
-        <td><p>An enumerable collection of strings representing the available patterns.</p>
+        <td><p>A collection of regular expression patterns corresponding to the wildcard characters.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_WildcardDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_WildcardDictionary" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.WildcardDictionary">WildcardDictionary</h4>
-  <div class="markdown level1 summary"><p>Gets a dictionary of wildcards and their corresponding regex patterns.</p>
+  <div class="markdown level1 summary"><p>Gets the dictionary of regular expression symbols and their corresponding literals.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -194,15 +196,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlydictionary-2">ReadOnlyDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
-        <td><p>A read-only dictionary containing wildcards as keys and their corresponding
-regex patterns as values.</p>
+        <td><p>A read-only dictionary where the keys are regular expression symbols and the values
+are their literal equivalents.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Wildcards_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_Wildcards" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Wildcards">Wildcards</h4>
-  <div class="markdown level1 summary"><p>Gets a collection of available wildcards.</p>
+  <div class="markdown level1 summary"><p>Gets the list of supported wildcard characters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -220,7 +222,7 @@ regex patterns as values.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
-        <td><p>An enumerable collection of strings representing the available wildcards.</p>
+        <td><p>A collection of supported wildcard characters.</p>
 </td>
       </tr>
     </tbody>
@@ -229,7 +231,7 @@ regex patterns as values.</p>
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_PatternMatcher_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_PatternMatcher_System_String_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher(System.String,System.String)">PatternMatcher(string, string)</h4>
-  <div class="markdown level1 summary"><p>Determines whether the specified node name matches the specified pattern.</p>
+  <div class="markdown level1 summary"><p>Performs simple regular expression-based wildcard matching.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -249,13 +251,13 @@ regex patterns as values.</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">nodeName</span></td>
-        <td><p>The node name to check.</p>
+        <td><p>The name of the node to match against the pattern.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">pattern</span></td>
-        <td><p>The pattern to compare against.</p>
+        <td><p>The regular expression pattern to use for matching.</p>
 </td>
       </tr>
     </tbody>
