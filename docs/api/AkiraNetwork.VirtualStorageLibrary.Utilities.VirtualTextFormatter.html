@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class VirtualTextFormatter | AkiraNetwork ">
     
-    
+    <meta name="description" content="Utility class for generating text-based representations of the virtual storage&#39;s tree structure. Provides static methods for generating various debug texts.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,9 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter" class="text-break">Class VirtualTextFormatter</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Utility class for generating text-based representations of the virtual storage's tree
+structure. Provides static methods for generating various debug texts.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -118,11 +120,31 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class VirtualTextFormatter</code></pre>
   </div>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This class distinguishes between full-width and half-width characters based on specific
+character code ranges. The following ranges are considered full-width characters:</p>
+<ul>
+<li>0x1100 to 0x115F: Korean Hangul Jamo characters</li>
+<li>0x2E80 to 0xA4CF (excluding 0x303F): CJK Unified Ideographs and compatibility characters</li>
+<li>0xAC00 to 0xD7A3: Korean Hangul syllables</li>
+<li>0xF900 to 0xFAFF: CJK compatibility ideographs</li>
+<li>0xFE10 to 0xFE19: Vertical forms punctuation</li>
+<li>0xFE30 to 0xFE6F: CJK compatibility forms</li>
+<li>0xFF00 to 0xFF60: Full-width ASCII and symbols</li>
+<li>0xFFE0 to 0xFFE6: Full-width special symbols</li>
+</ul>
+<p>The distinction between full-width and half-width characters is important for ensuring proper
+alignment and formatting in text-based representations, especially when working with mixed-language
+data or presenting data in a tabular format. This classification helps in correctly calculating
+string widths and aligning elements in debug text outputs, such as file paths or tabular data,
+where accurate spacing is crucial.</p>
+</div>
   <h3 id="methods">Methods
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateLinkTableDebugText_" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateLinkTableDebugText__1_AkiraNetwork_VirtualStorageLibrary_VirtualStorage___0__" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateLinkTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0})">GenerateLinkTableDebugText&lt;T&gt;(VirtualStorage&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Generates and returns a table representation of symbolic link information.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -141,7 +163,8 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html">VirtualStorage</a>&lt;T&gt;</td>
         <td><span class="parametername">vs</span></td>
-        <td></td>
+        <td><p>The instance of the virtual storage.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -156,7 +179,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The generated debug text of the link table.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -171,13 +195,15 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The type of data in the storage.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText_" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)">GenerateSingleTableDebugText&lt;T&gt;(T)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Generates and returns a table representation of a single object's properties.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -196,7 +222,8 @@
       <tr>
         <td><span class="xref">T</span></td>
         <td><span class="parametername">singleObject</span></td>
-        <td></td>
+        <td><p>The object to be represented.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -211,7 +238,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The generated debug text of the table.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -226,13 +254,15 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The type of the object.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText_" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTableDebugText__1_System_Collections_Generic_IEnumerable___0__" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTableDebugText``1(System.Collections.Generic.IEnumerable{``0})">GenerateTableDebugText&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Generates and returns a table representation of the collection's contents.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -251,7 +281,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
         <td><span class="parametername">enumerableObject</span></td>
-        <td></td>
+        <td><p>The collection to be represented.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -266,7 +297,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The generated debug text of the table.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -281,13 +313,15 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The type of objects in the collection.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTreeDebugText_" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTreeDebugText__1_AkiraNetwork_VirtualStorageLibrary_VirtualStorage___0__AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0},AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)">GenerateTreeDebugText&lt;T&gt;(VirtualStorage&lt;T&gt;, VirtualPath, bool, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Generates and returns a text-based representation of the virtual storage tree structure.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -306,22 +340,26 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html">VirtualStorage</a>&lt;T&gt;</td>
         <td><span class="parametername">vs</span></td>
-        <td></td>
+        <td><p>The instance of the virtual storage.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">basePath</span></td>
-        <td></td>
+        <td><p>The base path from which to start.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td></td>
+        <td><p>Whether to list subdirectories recursively.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -336,7 +374,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
+        <td><p>The generated debug text of the tree structure.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -351,10 +390,33 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The type of data in the storage.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateTreeDebugText__1_AkiraNetwork_VirtualStorageLibrary_VirtualStorage___0__AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The generated text represents the tree structure starting from the specified base path.
+Each node is represented by the result of the ToString method overridden in the specific
+derived class of the node.</p>
+<p>
+When `recursive` is true, subdirectories are listed recursively. If false, 
+subdirectories are not included in the output.
+</p><p>
+When `followLinks` is true, symbolic links are replaced with their target paths 
+in the output. If false, the symbolic links themselves are displayed.
+</p>
+<p>The output format includes indents and special characters to denote directory
+hierarchies and symbolic links. Example:</p>
+<pre><code class="lang-csharp">/
+├dir1/
+│├subdir1/
+││└item3
+│└item2
+├link-to-dir -&gt; /dir1
+├item1
+└link-to-item -&gt; /item1</code></pre>
+</div>
 
 </article>
           </div>

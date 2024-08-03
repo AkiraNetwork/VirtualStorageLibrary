@@ -1,21 +1,68 @@
-﻿using System.Collections.Specialized;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Utilities
 {
+    /// <summary>
+    /// Utility class for generating text-based representations of the virtual storage's tree
+    /// structure. Provides static methods for generating various debug texts.
+    /// </summary>
+    /// <remarks>
+    /// This class distinguishes between full-width and half-width characters based on specific
+    /// character code ranges. The following ranges are considered full-width characters:
+    /// - 0x1100 to 0x115F: Korean Hangul Jamo characters
+    /// - 0x2E80 to 0xA4CF (excluding 0x303F): CJK Unified Ideographs and compatibility characters
+    /// - 0xAC00 to 0xD7A3: Korean Hangul syllables
+    /// - 0xF900 to 0xFAFF: CJK compatibility ideographs
+    /// - 0xFE10 to 0xFE19: Vertical forms punctuation
+    /// - 0xFE30 to 0xFE6F: CJK compatibility forms
+    /// - 0xFF00 to 0xFF60: Full-width ASCII and symbols
+    /// - 0xFFE0 to 0xFFE6: Full-width special symbols
+    /// 
+    /// The distinction between full-width and half-width characters is important for ensuring proper
+    /// alignment and formatting in text-based representations, especially when working with mixed-language
+    /// data or presenting data in a tabular format. This classification helps in correctly calculating
+    /// string widths and aligning elements in debug text outputs, such as file paths or tabular data,
+    /// where accurate spacing is crucial.
+    /// </remarks>
     public static class VirtualTextFormatter
     {
-        // 仮想ストレージのツリー構造をテキストベースで作成し返却する拡張メソッド
-        // 返却するテストは以下の出力の形式とする。
-        // 出力例:
-        // /
-        // ├dir1/
-        // │├subdir1/
-        // ││└item3
-        // │└item2
-        // ├link-to-dir -> /dir1
-        // ├item1
-        // └link-to-item -> /item1
+        /// <summary>
+        /// Generates and returns a text-based representation of the virtual storage tree structure.
+        /// </summary>
+        /// <typeparam name="T">The type of data in the storage.</typeparam>
+        /// <param name="vs">The instance of the virtual storage.</param>
+        /// <param name="basePath">The base path from which to start.</param>
+        /// <param name="recursive">Whether to list subdirectories recursively.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The generated debug text of the tree structure.</returns>
+        /// <remarks>
+        /// The generated text represents the tree structure starting from the specified base path.
+        /// Each node is represented by the result of the ToString method overridden in the specific 
+        /// derived class of the node.
+        ///
+        /// <para>
+        /// When `recursive` is true, subdirectories are listed recursively. If false, 
+        /// subdirectories are not included in the output.
+        /// </para>
+        ///
+        /// <para>
+        /// When `followLinks` is true, symbolic links are replaced with their target paths 
+        /// in the output. If false, the symbolic links themselves are displayed.
+        /// </para>
+        ///
+        /// The output format includes indents and special characters to denote directory 
+        /// hierarchies and symbolic links. Example:
+        /// <code>
+        /// /
+        /// ├dir1/
+        /// │├subdir1/
+        /// ││└item3
+        /// │└item2
+        /// ├link-to-dir -> /dir1
+        /// ├item1
+        /// └link-to-item -> /item1
+        /// </code>
+        /// </remarks>
         public static string GenerateTreeDebugText<T>(this VirtualStorage<T> vs, VirtualPath basePath, bool recursive = true, bool followLinks = false)
         {
             const char FullWidthSpaceChar = '\u3000';
@@ -88,11 +135,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return tree.ToString();
         }
 
+        /// <summary>
+        /// Generates and returns a table representation of symbolic link information.
+        /// </summary>
+        /// <typeparam name="T">The type of data in the storage.</typeparam>
+        /// <param name="vs">The instance of the virtual storage.</param>
+        /// <returns>The generated debug text of the link table.</returns>
         public static string GenerateLinkTableDebugText<T>(this VirtualStorage<T> vs)
         {
             if (vs.LinkDictionary.Count == 0)
             {
-                return "(リンク辞書は空です。)";
+                return "(Link dictionary is empty.)";
             }
 
             List<IEnumerable<string>> tableData =
@@ -122,11 +175,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return VirtualTextFormatter.FormatTable(tableData);
         }
 
+        /// <summary>
+        /// Generates and returns a table representation of the collection's contents.
+        /// </summary>
+        /// <typeparam name="T">The type of objects in the collection.</typeparam>
+        /// <param name="enumerableObject">The collection to be represented.</param>
+        /// <returns>The generated debug text of the table.</returns>
         public static string GenerateTableDebugText<T>(this IEnumerable<T> enumerableObject)
         {
             if (!enumerableObject.Any())
             {
-                return "(コレクションは空です。)";
+                return "(Collection is empty.)";
             }
 
             List<IEnumerable<string>> tableData = [];
@@ -177,6 +236,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return FormatTable(tableData);
         }
 
+        /// <summary>
+        /// Generates and returns a table representation of a single object's properties.
+        /// </summary>
+        /// <typeparam name="T">The type of the object.</typeparam>
+        /// <param name="singleObject">The object to be represented.</param>
+        /// <returns>The generated debug text of the table.</returns>
         public static string GenerateSingleTableDebugText<T>(this T singleObject)
         {
             Type type = typeof(T);
@@ -281,6 +346,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return FormatTable(tableData);
         }
 
+        /// <summary>
+        /// Formats the table data and returns it as a text string.
+        /// </summary>
+        /// <param name="tableData">The table data.</param>
+        /// <returns>The formatted table data as text.</returns>
         private static string FormatTable(IEnumerable<IEnumerable<string>> tableData)
         {
             var tableDataList = tableData.Select(row => row.ToList()).ToList(); // Convert to List<List<string>>
@@ -304,6 +374,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return formattedTable.ToString();
         }
 
+        /// <summary>
+        /// Gets the column widths for the table data.
+        /// </summary>
+        /// <param name="tableData">The table data.</param>
+        /// <returns>The width of each column.</returns>
         private static int[] GetColumnWidths(IEnumerable<IEnumerable<string>> tableData)
         {
             var tableDataList = tableData.Select(row => row.ToList()).ToList();
@@ -325,6 +400,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return columnWidths;
         }
 
+        /// <summary>
+        /// Gets the width of a string.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns>The width of the string.</returns>
         private static int GetStringWidth(string str)
         {
             int width = 0;
@@ -342,7 +422,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
             return width;
         }
 
-        // Custom method to check if a character is full-width
+        /// <summary>
+        /// Determines if a character is full-width.
+        /// </summary>
+        /// <param name="c">The character to check.</param>
+        /// <returns>True if the character is full-width; otherwise, false.</returns>
         private static bool IsFullWidth(char c)
         {
             // Full-width character ranges
@@ -356,6 +440,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Utilities
                    c >= 0xFFE0 && c <= 0xFFE6;
         }
 
+        /// <summary>
+        /// Determines if the <c>ToString</c> method is overridden.
+        /// </summary>
+        /// <param name="type">The type to check.</param>
+        /// <returns>True if <c>ToString</c> is overridden; otherwise, false.</returns>
         private static bool IsToStringOverridden(Type type)
         {
             MethodInfo toStringMethod = type.GetMethod("ToString", Type.EmptyTypes)!;

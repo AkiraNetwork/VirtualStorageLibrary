@@ -1,2 +1,5 @@
 [*.cs]
 dotnet_diagnostic.IDE0290.severity = none
+
+[*]
+spelling_exclusion_path = .\project-specific-exclusion.dic

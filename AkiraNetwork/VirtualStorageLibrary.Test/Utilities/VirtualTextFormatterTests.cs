@@ -206,7 +206,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
             string result = vs.GenerateLinkTableDebugText();
 
             // Assert
-            Assert.AreEqual("(リンク辞書は空です。)", result);
+            Assert.AreEqual("(Link dictionary is empty.)", result);
         }
 
         [TestCategory("GenerateLinkTableDebugText")]
@@ -307,7 +307,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
 
             // Assert
             Debug.WriteLine(result);
-            Assert.AreEqual("(コレクションは空です。)", result);
+            Assert.AreEqual("(Collection is empty.)", result);
         }
 
         [TestCategory("GenerateTableDebugText")]
