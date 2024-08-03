@@ -1154,7 +1154,10 @@ excluding those with wildcards.</p>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualPath_GetPartsList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList">GetPartsList()</h4>
-  <div class="markdown level1 summary"><p>Gets the parts of the path as a list.</p>
+  <div class="markdown level1 summary"><p>Retrieves the node parts of the path as a list.
+This method converts the node parts stored in a linked list structure
+into a list structure, making it more convenient for sequential access
+and operations that require indexing.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1172,7 +1175,8 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>&gt;</td>
-        <td><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List&lt;T&gt;</a> of <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a> objects representing the path parts.</p>
+        <td><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List&lt;T&gt;</a> of <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html">VirtualNodeName</a>
+objects representing the node parts of the path.</p>
 </td>
       </tr>
     </tbody>
@@ -1231,7 +1235,15 @@ excluding those with wildcards.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown if the current path or the base path is not absolute.</p>
+        <td><p>Thrown if the current path is not absolute: This exception occurs when
+the method is called on a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> instance that does
+not start with the root path separator, indicating that it is not an
+absolute path.
+Thrown if the base path is not absolute: This exception occurs when
+the <code class="paramref">basePath</code> argument does not start with the root
+path separator, indicating that it is not an absolute path.
+Both the current path and the base path must be absolute paths to
+compute a relative path.</p>
 </td>
       </tr>
     </tbody>

@@ -723,9 +723,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Gets the parts of the path as a list.
+        /// Retrieves the node parts of the path as a list.
+        /// This method converts the node parts stored in a linked list structure
+        /// into a list structure, making it more convenient for sequential access
+        /// and operations that require indexing.
         /// </summary>
-        /// <returns>A <see cref="List{T}"/> of <see cref="VirtualNodeName"/> objects representing the path parts.</returns>
+        /// <returns>A <see cref="List{T}"/> of <see cref="VirtualNodeName"/>
+        /// objects representing the node parts of the path.</returns>
         public List<VirtualNodeName> GetPartsList()
         {
             return [.. GetPartsLinkedList()];
@@ -793,7 +797,17 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// </summary>
         /// <param name="basePath">The base path.</param>
         /// <returns>A <see cref="VirtualPath"/> representing the relative path.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if the current path or the base path is not absolute.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the current path is not absolute: This exception occurs when
+        /// the method is called on a <see cref="VirtualPath"/> instance that does
+        /// not start with the root path separator, indicating that it is not an
+        /// absolute path.
+        /// Thrown if the base path is not absolute: This exception occurs when
+        /// the <paramref name="basePath"/> argument does not start with the root
+        /// path separator, indicating that it is not an absolute path.
+        /// Both the current path and the base path must be absolute paths to
+        /// compute a relative path.
+        /// </exception>
         public VirtualPath GetRelativePath(VirtualPath basePath)
         {
             // Throws an exception if the current path is not absolute

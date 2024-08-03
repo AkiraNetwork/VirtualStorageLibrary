@@ -1651,17 +1651,26 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 728
+    startLine: 732
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the parts of the path as a list.
+  summary: >-
+    Retrieves the node parts of the path as a list.
+
+    This method converts the node parts stored in a linked list structure
+
+    into a list structure, making it more convenient for sequential access
+
+    and operations that require indexing.
   example: []
   syntax:
     content: public List<VirtualNodeName> GetPartsList()
     return:
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName}
-      description: A <xref href="System.Collections.Generic.List%601" data-throw-if-not-resolved="false"></xref> of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref> objects representing the path parts.
+      description: >-
+        A <xref href="System.Collections.Generic.List%601" data-throw-if-not-resolved="false"></xref> of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName" data-throw-if-not-resolved="false"></xref>
+            objects representing the node parts of the path.
     content.vb: Public Function GetPartsList() As List(Of VirtualNodeName)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.GetPartsList*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.CombineFromIndex(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Int32)
@@ -1682,7 +1691,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CombineFromIndex
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 739
+    startLine: 743
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1723,7 +1732,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 759
+    startLine: 763
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1763,7 +1772,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 775
+    startLine: 779
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1807,7 +1816,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetRelativePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 796
+    startLine: 810
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1827,7 +1836,24 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: Thrown if the current path or the base path is not absolute.
+    description: >-
+      Thrown if the current path is not absolute: This exception occurs when
+
+      the method is called on a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> instance that does
+
+      not start with the root path separator, indicating that it is not an
+
+      absolute path.
+
+      Thrown if the base path is not absolute: This exception occurs when
+
+      the <code class="paramref">basePath</code> argument does not start with the root
+
+      path separator, indicating that it is not an absolute path.
+
+      Both the current path and the base path must be absolute paths to
+
+      compute a relative path.
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPath.ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   id: ArePathsSubdirectories(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -1846,7 +1872,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ArePathsSubdirectories
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 881
+    startLine: 895
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1888,7 +1914,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsSubdirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 930
+    startLine: 944
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
