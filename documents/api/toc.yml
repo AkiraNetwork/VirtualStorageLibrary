@@ -59,6 +59,8 @@ items:
     name: VirtualStorageState
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
     name: VirtualStorage<T>
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
+    name: VirtualStorage<T>.WalkPathToTargetParameters
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
     name: VirtualSymbolicLink
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1

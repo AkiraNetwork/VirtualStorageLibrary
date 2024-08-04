@@ -4,6 +4,15 @@ namespace AkiraNetwork.VirtualStorageLibrary
 {
     public partial class VirtualStorage<T>
     {
+        /// <summary>
+        /// Traverses the path to the target node specified by the virtual path.
+        /// </summary>
+        /// <param name="targetPath">The target virtual path</param>
+        /// <param name="notifyNode">A delegate to notify information about the node when each node is reached</param>
+        /// <param name="actionNode">A delegate to perform actions when each node is reached</param>
+        /// <param name="followLinks">A flag indicating whether to follow symbolic links</param>
+        /// <param name="exceptionEnabled">A flag indicating whether to enable exceptions. If true, exceptions are thrown; if false, the Node in <see cref="VirtualNodeContext"/> will be returned as null.</param>
+        /// <returns>An instance of <see cref="VirtualNodeContext"/> containing information about the target node</returns>
         public VirtualNodeContext WalkPathToTarget(
             VirtualPath targetPath,
             NotifyNodeDelegate? notifyNode = null,
@@ -25,7 +34,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 exceptionEnabled,
                 false);
 
-            // 循環参照のクリア
+            // Clear cycle detection
             CycleDetectorForTarget.Clear();
 
             VirtualNodeContext? nodeContext = WalkPathToTargetInternal(p);
@@ -33,9 +42,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return nodeContext;
         }
 
+        /// <summary>
+        /// Internal method for traversing to the target node.
+        /// </summary>
+        /// <param name="p">A structure containing parameters for the WalkPathToTarget method</param>
+        /// <returns>An instance of <see cref="VirtualNodeContext"/> containing information about the target node</returns>
         private VirtualNodeContext WalkPathToTargetInternal(WalkPathToTargetParameters p)
         {
-            // ターゲットがルートディレクトリの場合は、ルートノードを通知して終了
+            // If the target is the root directory, notify the root node and finish
             if (p.TargetPath.IsRoot)
             {
                 p.NotifyNode?.Invoke(VirtualPath.Root, _root);
@@ -56,7 +70,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     }
                 }
 
-                // 例外が有効な場合は例外をスロー
+                // If exceptions are enabled, throw an exception
                 if (p.ExceptionEnabled)
                 {
                     throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, traversalPath));
@@ -67,48 +81,47 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             VirtualNodeContext nodeContext;
 
-            // 探索ノードを取得
+            // Retrieve the traversal node
             VirtualNode node = p.TraversalDirectory[traversalNodeName];
 
-            // 探索パスを更新
+            // Update the traversal path
             p.TraversalPath += traversalNodeName;
 
-            // 次のノードへ
+            // Move to the next node
             p.TraversalIndex++;
 
             if (node is VirtualDirectory directory)
             {
-                // ディレクトリの場合
+                // If the node is a directory
 
-                // 最後のノードに到達したかチェック
+                // Check if the last node has been reached
                 if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                 {
-                    // 末端のノードを通知
+                    // Notify the terminal node
                     p.NotifyNode?.Invoke(p.TraversalPath, directory);
                     p.ResolvedPath ??= p.TraversalPath;
                     return new VirtualNodeContext(directory, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
                 }
 
-                // 途中のノードを通知
+                // Notify the intermediate node
                 p.NotifyNode?.Invoke(p.TraversalPath, directory);
 
-                // 探索ディレクトリを取得
+                // Retrieve the traversal directory
                 p.TraversalDirectory = directory;
 
-                // 再帰的に探索
+                // Recursively traverse
                 nodeContext = WalkPathToTargetInternal(p);
 
                 return nodeContext;
-
             }
             else if (node is VirtualItem<T> item)
             {
-                // アイテムの場合
+                // If the node is an item
 
-                // 末端のノードを通知
+                // Notify the terminal node
                 p.NotifyNode?.Invoke(p.TraversalPath, item);
 
-                // 最後のノードに到達したかチェック
+                // Check if the last node has been reached
                 if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                 {
                     p.ResolvedPath ??= p.TraversalPath;
@@ -117,7 +130,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
                 p.ResolvedPath ??= p.TraversalPath;
 
-                // 例外が有効な場合は例外をスロー
+                // If exceptions are enabled, throw an exception
                 if (p.ExceptionEnabled)
                 {
                     throw new VirtualNodeNotFoundException(string.Format(Resources.CannotReachBecauseNodeItem, p.TargetPath, p.TraversalPath));
@@ -127,15 +140,15 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                // シンボリックリンクの場合
+                // If the node is a symbolic link
 
                 VirtualSymbolicLink link = (VirtualSymbolicLink)node;
                 if (!p.FollowLinks || link.TargetPath == null)
                 {
-                    // シンボリックリンクを通知
+                    // Notify the symbolic link
                     p.NotifyNode?.Invoke(p.TraversalPath, link);
 
-                    // 最後のノードに到達したかチェック
+                    // Check if the last node has been reached
                     if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                     {
                         p.ResolvedPath ??= p.TargetPath;
@@ -144,7 +157,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
                     p.ResolvedPath ??= p.TraversalPath;
 
-                    // 例外が有効な場合は例外をスロー
+                    // If exceptions are enabled, throw an exception
                     if (p.ExceptionEnabled)
                     {
                         throw new VirtualNodeNotFoundException(string.Format(Resources.CannotReachBecauseNodeSymbolicLink, p.TargetPath, p.TraversalPath));
@@ -153,19 +166,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     return new VirtualNodeContext(null, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved, link);
                 }
 
-                // パス探索中、一度でもシンボリックリンクを解決したら true を設定
+                // Set to true if a symbolic link was resolved during path traversal
                 p.Resolved = true;
 
                 VirtualPath? linkTargetPath = link.TargetPath;
                 VirtualPath parentTraversalPath = p.TraversalPath.DirectoryPath;
 
-                // シンボリックリンクのリンク先パスを絶対パスに変換
+                // Convert the symbolic link's target path to an absolute path
                 linkTargetPath = ConvertToAbsolutePath(linkTargetPath, parentTraversalPath);
 
-                // リンク先のパスを正規化する
+                // Normalize the symbolic link's target path
                 linkTargetPath = linkTargetPath.NormalizePath();
 
-                // シンボリックリンクのリンク先パスを再帰的に探索
+                // Recursively traverse the symbolic link's target path
                 WalkPathToTargetParameters p2 = new(
                     linkTargetPath,
                     0,
@@ -178,7 +191,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     p.ExceptionEnabled,
                     p.Resolved);
 
-                // 循環参照チェック
+                // Cycle detection check
                 if (CycleDetectorForTarget.IsNodeInCycle(link))
                 {
                     throw new InvalidOperationException(string.Format(Resources.CircularReferenceDetected, p.TraversalPath, link));
@@ -188,28 +201,28 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
                 VirtualNode? resolvedNode = nodeContext.Node;
 
-                // 解決済みのパスに未探索のパスを追加
+                // Add the unexplored path to the resolved path
                 p.ResolvedPath = nodeContext.ResolvedPath!.CombineFromIndex(p.TargetPath, p.TraversalIndex);
 
-                // シンボリックリンクを通知
+                // Notify the symbolic link
                 p.NotifyNode?.Invoke(p.TraversalPath, resolvedNode);
 
                 if (resolvedNode != null && resolvedNode is VirtualDirectory linkDirectory)
                 {
-                    // 最後のノードに到達したかチェック
+                    // Check if the last node has been reached
                     if (p.TargetPath.PartsList.Count <= p.TraversalIndex)
                     {
-                        // 末端のノードを通知
+                        // Notify the terminal node
                         nodeContext.TraversalPath = p.TraversalPath;
                         nodeContext.ResolvedPath = p.ResolvedPath;
 
                         return nodeContext;
                     }
 
-                    // 探索ディレクトリを取得
+                    // Retrieve the traversal directory
                     p.TraversalDirectory = linkDirectory;
 
-                    // 再帰的に探索
+                    // Recursively traverse
                     nodeContext = WalkPathToTargetInternal(p);
 
                     return nodeContext;
@@ -219,29 +232,108 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        [DebuggerStepThrough]
-        private struct WalkPathToTargetParameters(
-            VirtualPath targetPath,
-            int traversalIndex,
-            VirtualPath traversalPath,
-            VirtualPath? resolvedPath,
-            VirtualDirectory traversalDirectory,
-            NotifyNodeDelegate? notifyNode,
-            ActionNodeDelegate? actionNode,
-            bool followLinks,
-            bool exceptionEnabled,
-            bool resolved)
+        /// <summary>
+        /// A structure that holds parameters for the WalkPathToTarget method.
+        /// </summary>
+        public struct WalkPathToTargetParameters
         {
-            public VirtualPath TargetPath { get; set; } = targetPath;
-            public int TraversalIndex { get; set; } = traversalIndex;
-            public VirtualPath TraversalPath { get; set; } = traversalPath;
-            public VirtualPath? ResolvedPath { get; set; } = resolvedPath;
-            public VirtualDirectory TraversalDirectory { get; set; } = traversalDirectory;
-            public NotifyNodeDelegate? NotifyNode { get; set; } = notifyNode;
-            public ActionNodeDelegate? ActionNode { get; set; } = actionNode;
-            public bool FollowLinks { get; set; } = followLinks;
-            public bool ExceptionEnabled { get; set; } = exceptionEnabled;
-            public bool Resolved { get; set; } = resolved;
+            /// <summary>
+            /// Gets or sets the target path.
+            /// </summary>
+            /// <value>The target path</value>
+            public VirtualPath TargetPath { get; set; }
+
+            /// <summary>
+            /// Gets or sets the current traversal index.
+            /// </summary>
+            /// <value>The current traversal index</value>
+            public int TraversalIndex { get; set; }
+
+            /// <summary>
+            /// Gets or sets the current traversal path.
+            /// </summary>
+            /// <value>The current traversal path</value>
+            public VirtualPath TraversalPath { get; set; }
+
+            /// <summary>
+            /// Gets or sets the resolved path.
+            /// </summary>
+            /// <value>The resolved path</value>
+            public VirtualPath? ResolvedPath { get; set; }
+
+            /// <summary>
+            /// Gets or sets the current traversal directory.
+            /// </summary>
+            /// <value>The current traversal directory</value>
+            public VirtualDirectory TraversalDirectory { get; set; }
+
+            /// <summary>
+            /// Gets or sets the delegate for notifying information about the node when each node is reached.
+            /// </summary>
+            /// <value>The notify delegate</value>
+            public NotifyNodeDelegate? NotifyNode { get; set; }
+
+            /// <summary>
+            /// Gets or sets the delegate for performing actions when each node is reached.
+            /// </summary>
+            /// <value>The action delegate</value>
+            public ActionNodeDelegate? ActionNode { get; set; }
+
+            /// <summary>
+            /// Gets or sets the flag indicating whether to follow symbolic links.
+            /// </summary>
+            /// <value>The flag indicating whether to follow symbolic links</value>
+            public bool FollowLinks { get; set; }
+
+            /// <summary>
+            /// Gets or sets the flag indicating whether to enable exceptions.
+            /// If true, exceptions are thrown; if false, the Node in <see cref="VirtualNodeContext"/> will be returned as null.
+            /// </summary>
+            /// <value>The flag indicating whether to enable exceptions</value>
+            public bool ExceptionEnabled { get; set; }
+
+            /// <summary>
+            /// Gets or sets the flag indicating whether a symbolic link was resolved during path traversal.
+            /// </summary>
+            /// <value>The flag indicating whether a symbolic link was resolved</value>
+            public bool Resolved { get; set; }
+
+            /// <summary>
+            /// Initializes a new instance of the WalkPathToTargetParameters structure.
+            /// </summary>
+            /// <param name="targetPath">The target path</param>
+            /// <param name="traversalIndex">The current traversal index</param>
+            /// <param name="traversalPath">The current traversal path</param>
+            /// <param name="resolvedPath">The resolved path</param>
+            /// <param name="traversalDirectory">The current traversal directory</param>
+            /// <param name="notifyNode">The notify delegate</param>
+            /// <param name="actionNode">The action delegate</param>
+            /// <param name="followLinks">The flag indicating whether to follow symbolic links</param>
+            /// <param name="exceptionEnabled">The flag indicating whether to enable exceptions</param>
+            /// <param name="resolved">The flag indicating whether a symbolic link was resolved</param>
+            public WalkPathToTargetParameters(
+                VirtualPath targetPath,
+                int traversalIndex,
+                VirtualPath traversalPath,
+                VirtualPath? resolvedPath,
+                VirtualDirectory traversalDirectory,
+                NotifyNodeDelegate? notifyNode,
+                ActionNodeDelegate? actionNode,
+                bool followLinks,
+                bool exceptionEnabled,
+                bool resolved)
+            {
+                TargetPath = targetPath;
+                TraversalIndex = traversalIndex;
+                TraversalPath = traversalPath;
+                ResolvedPath = resolvedPath;
+                TraversalDirectory = traversalDirectory;
+                NotifyNode = notifyNode;
+                ActionNode = actionNode;
+                FollowLinks = followLinks;
+                ExceptionEnabled = exceptionEnabled;
+                Resolved = resolved;
+            }
         }
     }
 }
