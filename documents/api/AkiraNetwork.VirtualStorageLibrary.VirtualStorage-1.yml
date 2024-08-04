@@ -350,48 +350,6 @@ items:
   nameWithType.vb: VirtualStorage(Of T).New()
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New()
   name.vb: New()
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
-  id: WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: WalkPathToTarget(VirtualPath, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool)
-  nameWithType: VirtualStorage<T>.WalkPathToTarget(VirtualPath, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate?, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate?, bool, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: WalkPathToTarget
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 40
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public VirtualNodeContext WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode = null, ActionNodeDelegate? actionNode = null, bool followLinks = true, bool exceptionEnabled = true)
-    parameters:
-    - id: targetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: notifyNode
-      type: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
-    - id: actionNode
-      type: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
-    - id: followLinks
-      type: System.Boolean
-    - id: exceptionEnabled
-      type: System.Boolean
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
-    content.vb: Public Function WalkPathToTarget(targetPath As VirtualPath, notifyNode As NotifyNodeDelegate = Nothing, actionNode As ActionNodeDelegate = Nothing, followLinks As Boolean = True, exceptionEnabled As Boolean = True) As VirtualNodeContext
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget*
-  nameWithType.vb: VirtualStorage(Of T).WalkPathToTarget(VirtualPath, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate, Boolean, Boolean)
-  name.vb: WalkPathToTarget(VirtualPath, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   id: ExpandPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
@@ -410,7 +368,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 255
+    startLine: 40
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -450,7 +408,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 291
+    startLine: 76
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -492,7 +450,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CopyNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 550
+    startLine: 335
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -534,7 +492,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 689
+    startLine: 474
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -572,7 +530,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 817
+    startLine: 602
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2155,6 +2113,48 @@ items:
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SymbolicLinkExists*
   nameWithType.vb: VirtualStorage(Of T).SymbolicLinkExists(VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
+  id: WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: WalkPathToTarget(VirtualPath, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool)
+  nameWithType: VirtualStorage<T>.WalkPathToTarget(VirtualPath, NotifyNodeDelegate?, ActionNodeDelegate?, bool, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate?, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate?, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathToTarget.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: WalkPathToTarget
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathToTarget.cs
+    startLine: 6
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualNodeContext WalkPathToTarget(VirtualPath targetPath, NotifyNodeDelegate? notifyNode = null, ActionNodeDelegate? actionNode = null, bool followLinks = true, bool exceptionEnabled = true)
+    parameters:
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: notifyNode
+      type: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+    - id: actionNode
+      type: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+    - id: followLinks
+      type: System.Boolean
+    - id: exceptionEnabled
+      type: System.Boolean
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+    content.vb: Public Function WalkPathToTarget(targetPath As VirtualPath, notifyNode As NotifyNodeDelegate = Nothing, actionNode As ActionNodeDelegate = Nothing, followLinks As Boolean = True, exceptionEnabled As Boolean = True) As VirtualNodeContext
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTarget(VirtualPath, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate, AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate, Boolean, Boolean)
+  name.vb: WalkPathToTarget(VirtualPath, NotifyNodeDelegate, ActionNodeDelegate, Boolean, Boolean)
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -3027,46 +3027,6 @@ references:
   nameWithType.vb: VirtualStorage(Of T).New
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New
   name.vb: New
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_NotifyNodeDelegate_AkiraNetwork_VirtualStorageLibrary_ActionNodeDelegate_System_Boolean_System_Boolean_
-  name: WalkPathToTarget
-  nameWithType: VirtualStorage<T>.WalkPathToTarget
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTarget
-  nameWithType.vb: VirtualStorage(Of T).WalkPathToTarget
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTarget
-- uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
-  name: NotifyNodeDelegate
-  nameWithType: NotifyNodeDelegate
-  fullName: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
-- uid: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate.html
-  name: ActionNodeDelegate
-  nameWithType: ActionNodeDelegate
-  fullName: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html
-  name: VirtualNodeContext
-  nameWithType: VirtualNodeContext
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPathTree_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
@@ -3082,6 +3042,17 @@ references:
   name: VirtualNodeTypeFilter
   nameWithType: VirtualNodeTypeFilter
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
   commentId: T:System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
   parent: System.Collections.Generic
@@ -3903,3 +3874,32 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SymbolicLinkExists
   nameWithType.vb: VirtualStorage(Of T).SymbolicLinkExists
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SymbolicLinkExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_NotifyNodeDelegate_AkiraNetwork_VirtualStorageLibrary_ActionNodeDelegate_System_Boolean_System_Boolean_
+  name: WalkPathToTarget
+  nameWithType: VirtualStorage<T>.WalkPathToTarget
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTarget
+  nameWithType.vb: VirtualStorage(Of T).WalkPathToTarget
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTarget
+- uid: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate.html
+  name: NotifyNodeDelegate
+  nameWithType: NotifyNodeDelegate
+  fullName: AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate
+- uid: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate.html
+  name: ActionNodeDelegate
+  nameWithType: ActionNodeDelegate
+  fullName: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html
+  name: VirtualNodeContext
+  nameWithType: VirtualNodeContext
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
