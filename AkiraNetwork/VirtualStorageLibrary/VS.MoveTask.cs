@@ -4,63 +4,83 @@ namespace AkiraNetwork.VirtualStorageLibrary
 {
     public partial class VirtualStorage<T>
     {
+        /// <summary>
+        /// Moves the node at the specified path to a new location.
+        /// </summary>
+        /// <param name="sourcePath">The source path of the node.</param>
+        /// <param name="destinationPath">The destination path for the node.</param>
+        /// <param name="overwrite">Whether to overwrite existing nodes.</param>
+        /// <param name="resolveLinks">Whether to resolve symbolic links.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the source and destination paths are the same, if attempting to 
+        /// move the root directory, or if the destination is a subdirectory of the source.
+        /// </exception>
+        /// <exception cref="VirtualNodeNotFoundException">
+        /// Thrown if the source node is not found.
+        /// </exception>
+        /// <remarks>
+        /// <para>
+        /// resolveLinks indicates whether to resolve links when non-terminal nodes 
+        /// (from the top node to the parent of the terminal node) in the path are symbolic links.
+        /// </para>
+        /// </remarks>
         public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool resolveLinks = true)
         {
             sourcePath = ConvertToAbsolutePath(sourcePath);
             destinationPath = ConvertToAbsolutePath(destinationPath);
 
-            // 移動元パスのパス解決をする
+            // Resolve the source path if resolveLinks is true
             if (resolveLinks)
             {
-                // パス解決を指定した場合は、移動元パスの全体をパス解決する
+                // If resolveLinks is specified, resolve the entire source path
                 sourcePath = ResolveLinkTarget(sourcePath);
             }
             else
             {
-                // パス解決を指定しない場合は、移動元パスの親のパスだけをパス解決する
+                // If not resolving links, resolve only the parent of the source path
                 sourcePath = ResolveLinkTarget(sourcePath.DirectoryPath) + sourcePath.NodeName;
             }
 
-            // 移動先パスのパス解決をする
+            // Resolve the destination path
             VirtualPath? path = TryResolveLinkTarget(destinationPath);
             if (path != null)
             {
-                // 全体がパス解決された場合は、移動先パスをそのまま使う
+                // If the entire path is resolved, use it as the destination path
                 destinationPath = path;
             }
             else
             {
-                // パス解決されなかった場合は、ディレクトリパスだけをパス解決する
+                // If not resolved, resolve only the directory path
                 destinationPath = ResolveLinkTarget(destinationPath.DirectoryPath) + destinationPath.NodeName;
             }
 
-            // 移動先と移動元が同じかどうかのチェック
+            // Check if the source and destination paths are the same
             if (sourcePath == destinationPath)
             {
                 throw new InvalidOperationException(string.Format(Resources.SourceAndDestinationPathSameForMove, sourcePath, destinationPath));
             }
 
-            // 移動元のルートディレクトリチェック
+            // Check if the source is the root directory
             if (sourcePath.IsRoot)
             {
-                // ルートディレクトリの場合は例外をスロー
+                // Throw an exception if the root directory is being moved
                 throw new InvalidOperationException(Resources.CannotMoveRootDirectory);
             }
 
-            // 移動先が移動元のサブディレクトリになっていないかどうかのチェック
+            // Check if the destination is a subdirectory of the source
             if (destinationPath.IsSubdirectory(sourcePath))
             {
                 throw new InvalidOperationException(string.Format(Resources.DestinationIsSubdirectoryOfSource, sourcePath, destinationPath));
             }
 
-            // 移動元の存在チェック
+            // Check if the source node exists
             if (!NodeExists(sourcePath))
             {
-                // 存在しない場合は例外をスロー
+                // Throw an exception if the source node does not exist
                 throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, sourcePath.NodeName));
             }
 
-            // 移動処理
+            // Move the node
             if (DirectoryExists(sourcePath))
             {
                 MoveDirectoryInternal(sourcePath, destinationPath);
@@ -71,6 +91,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Internally moves the directory from the source path to the destination path.
+        /// </summary>
+        /// <param name="sourcePath">The source path of the directory.</param>
+        /// <param name="destinationPath">The destination path for the directory.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if a node with the same name exists at the destination.
+        /// </exception>
         private void MoveDirectoryInternal(VirtualPath sourcePath, VirtualPath destinationPath)
         {
             VirtualDirectory sourceDirectory = GetDirectory(sourcePath);
@@ -105,40 +133,48 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 throw new InvalidOperationException(string.Format(Resources.NodeWithSameNameAtDestination, destinationPath, destinationNodeName));
             }
 
-            // 移動前のパスリストを取得
+            // Get the list of paths before moving
             var sourceNodes = WalkPathTree(sourcePath, VirtualNodeTypeFilter.All, true, true)
                                 .Select(context => context.TraversalPath)
                                 .ToList();
 
-            // 移動後のパスリストを作成し、タプルとして管理
+            // Create a list of pairs of source and destination paths after moving
             var nodePairs = sourceNodes
                             .Select(path =>
                                 (Source: sourcePath + path,
                                  Destination: destinationBasePath + path))
                             .ToList();
 
-            // リンク辞書の更新
+            // Update link dictionary (if symbolic links are present)
             foreach (var (sourceNodePath, destinationNodePath) in nodePairs)
             {
-                // リンク辞書の更新（シンボリックリンクの場合）
                 if (GetNode(sourceNodePath) is VirtualSymbolicLink)
                 {
                     UpdateLinkNameInDictionary(sourceNodePath, destinationNodePath);
                 }
 
-                // リンク辞書の更新（ターゲットパスの変更）
+                // Update link dictionary (target path changes)
                 UpdateLinksToTarget(sourceNodePath, destinationNodePath);
             }
 
-            // ノードを移動
+            // Move the node
             sourceDirectory.Name = destinationNodeName;
             destinationParentDirectory.Add(sourceDirectory);
             sourceParentDirectory.Remove(sourceDirectory);
 
-            // 全てのターゲットノードタイプを更新
+            // Update all target node types in the dictionary
             UpdateAllTargetNodeTypesInDictionary();
         }
 
+        /// <summary>
+        /// Internally moves the item or link from the source path to the destination path.
+        /// </summary>
+        /// <param name="sourcePath">The source path of the item or link.</param>
+        /// <param name="destinationPath">The destination path for the item or link.</param>
+        /// <param name="overwrite">Whether to overwrite existing nodes.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if a node with the same name exists at the destination.
+        /// </exception>
         private void MoveItemOrLinkInternal(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite)
         {
             VirtualNode sourceNode = GetNode(sourcePath);
@@ -181,21 +217,21 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 }
             }
 
-            // リンク辞書の更新（シンボリックリンクの場合）
+            // Update link dictionary (if symbolic links are present)
             if (sourceNode is VirtualSymbolicLink)
             {
                 UpdateLinkNameInDictionary(sourcePath, destinationPath);
             }
 
-            // リンク辞書の更新（ターゲットパスの変更）
+            // Update link dictionary (target path changes)
             UpdateLinksToTarget(sourcePath, destinationPath);
 
-            // ノードを移動
+            // Move the node
             sourceParentDirectory.Remove(sourceNode);
             sourceNode.Name = destinationNodeName;
             destinationParentDirectory.Add(sourceNode);
 
-            // 全てのターゲットノードタイプを更新
+            // Update all target node types in the dictionary
             UpdateAllTargetNodeTypesInDictionary();
         }
     }

@@ -797,23 +797,47 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.MoveTask.cs
-    startLine: 6
+    startLine: 26
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Moves the node at the specified path to a new location.
+  remarks: >-
+    <p>
+
+    resolveLinks indicates whether to resolve links when non-terminal nodes 
+
+    (from the top node to the parent of the terminal node) in the path are symbolic links.
+
+    </p>
+  example: []
   syntax:
     content: public void MoveNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool resolveLinks = true)
     parameters:
     - id: sourcePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The source path of the node.
     - id: destinationPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The destination path for the node.
     - id: overwrite
       type: System.Boolean
+      description: Whether to overwrite existing nodes.
     - id: resolveLinks
       type: System.Boolean
+      description: Whether to resolve symbolic links.
     content.vb: Public Sub MoveNode(sourcePath As VirtualPath, destinationPath As VirtualPath, overwrite As Boolean = False, resolveLinks As Boolean = True)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: >-
+      Thrown if the source and destination paths are the same, if attempting to 
+
+      move the root directory, or if the destination is a subdirectory of the source.
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the source node is not found.
   nameWithType.vb: VirtualStorage(Of T).MoveNode(VirtualPath, VirtualPath, Boolean, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean)
   name.vb: MoveNode(VirtualPath, VirtualPath, Boolean, Boolean)
@@ -3723,6 +3747,19 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkByLinkPath
   nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  name: VirtualNodeNotFoundException
+  nameWithType: VirtualNodeNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_MoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_
@@ -3903,12 +3940,6 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ConvertToAbsolutePath
   nameWithType.vb: VirtualStorage(Of T).ConvertToAbsolutePath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ConvertToAbsolutePath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
-  name: VirtualNodeNotFoundException
-  nameWithType: VirtualNodeNotFoundException
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -4154,13 +4185,6 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SymbolicLinkExists
   nameWithType.vb: VirtualStorage(Of T).SymbolicLinkExists
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SymbolicLinkExists
-- uid: System.InvalidOperationException
-  commentId: T:System.InvalidOperationException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
-  name: InvalidOperationException
-  nameWithType: InvalidOperationException
-  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_
