@@ -350,44 +350,6 @@ items:
   nameWithType.vb: VirtualStorage(Of T).New()
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New()
   name.vb: New()
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)
-  id: RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: RemoveNode(VirtualPath, bool, bool, bool)
-  nameWithType: VirtualStorage<T>.RemoveNode(VirtualPath, bool, bool, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool, bool, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: RemoveNode
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 40
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void RemoveNode(VirtualPath nodePath, bool recursive = false, bool followLinks = false, bool resolveLinks = true)
-    parameters:
-    - id: nodePath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: recursive
-      type: System.Boolean
-    - id: followLinks
-      type: System.Boolean
-    - id: resolveLinks
-      type: System.Boolean
-    content.vb: Public Sub RemoveNode(nodePath As VirtualPath, recursive As Boolean = False, followLinks As Boolean = False, resolveLinks As Boolean = True)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*
-  nameWithType.vb: VirtualStorage(Of T).RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean, Boolean)
-  name.vb: RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
   id: MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
@@ -406,7 +368,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 168
+    startLine: 40
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2031,6 +1993,44 @@ items:
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SymbolicLinkExists*
   nameWithType.vb: VirtualStorage(Of T).SymbolicLinkExists(VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)
+  id: RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: RemoveNode(VirtualPath, bool, bool, bool)
+  nameWithType: VirtualStorage<T>.RemoveNode(VirtualPath, bool, bool, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool, bool, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: RemoveNode
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
+    startLine: 6
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void RemoveNode(VirtualPath nodePath, bool recursive = false, bool followLinks = false, bool resolveLinks = true)
+    parameters:
+    - id: nodePath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: recursive
+      type: System.Boolean
+    - id: followLinks
+      type: System.Boolean
+    - id: resolveLinks
+      type: System.Boolean
+    content.vb: Public Sub RemoveNode(nodePath As VirtualPath, recursive As Boolean = False, followLinks As Boolean = False, resolveLinks As Boolean = True)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*
+  nameWithType.vb: VirtualStorage(Of T).RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean, Boolean)
+  name.vb: RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
   id: WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
@@ -3027,14 +3027,14 @@ references:
   nameWithType.vb: VirtualStorage(Of T).New
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New
   name.vb: New
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_
-  name: RemoveNode
-  nameWithType: VirtualStorage<T>.RemoveNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveNode
-  nameWithType.vb: VirtualStorage(Of T).RemoveNode
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_MoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_
+  name: MoveNode
+  nameWithType: VirtualStorage<T>.MoveNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.MoveNode
+  nameWithType.vb: VirtualStorage(Of T).MoveNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).MoveNode
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -3046,14 +3046,6 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_MoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_
-  name: MoveNode
-  nameWithType: VirtualStorage<T>.MoveNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.MoveNode
-  nameWithType.vb: VirtualStorage(Of T).MoveNode
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).MoveNode
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__
@@ -3825,6 +3817,14 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SymbolicLinkExists
   nameWithType.vb: VirtualStorage(Of T).SymbolicLinkExists
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SymbolicLinkExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_
+  name: RemoveNode
+  nameWithType: VirtualStorage<T>.RemoveNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveNode
+  nameWithType.vb: VirtualStorage(Of T).RemoveNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveNode
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_NotifyNodeDelegate_AkiraNetwork_VirtualStorageLibrary_ActionNodeDelegate_System_Boolean_System_Boolean_
