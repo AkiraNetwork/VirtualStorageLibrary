@@ -350,420 +350,6 @@ items:
   nameWithType.vb: VirtualStorage(Of T).New()
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New()
   name.vb: New()
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: ChangeDirectory(VirtualPath)
-  nameWithType: VirtualStorage<T>.ChangeDirectory(VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: ChangeDirectory
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 40
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void ChangeDirectory(VirtualPath path)
-    parameters:
-    - id: path
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    content.vb: Public Sub ChangeDirectory(path As VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory*
-  nameWithType.vb: VirtualStorage(Of T).ChangeDirectory(VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
-  id: SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: SetNode(VirtualPath, VirtualNode)
-  nameWithType: VirtualStorage<T>.SetNode(VirtualPath, VirtualNode)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: SetNode
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 49
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void SetNode(VirtualPath destinationPath, VirtualNode node)
-    parameters:
-    - id: destinationPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: node
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-    content.vb: Public Sub SetNode(destinationPath As VirtualPath, node As VirtualNode)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode*
-  nameWithType.vb: VirtualStorage(Of T).SetNode(VirtualPath, VirtualNode)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0})
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0})
-  id: UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0})
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: UpdateItem(VirtualPath, VirtualItem<T>)
-  nameWithType: VirtualStorage<T>.UpdateItem(VirtualPath, VirtualItem<T>)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: UpdateItem
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 69
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void UpdateItem(VirtualPath itemPath, VirtualItem<T> newItem)
-    parameters:
-    - id: itemPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: newItem
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
-    content.vb: Public Sub UpdateItem(itemPath As VirtualPath, newItem As VirtualItem(Of T))
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem*
-  nameWithType.vb: VirtualStorage(Of T).UpdateItem(VirtualPath, VirtualItem(Of T))
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T))
-  name.vb: UpdateItem(VirtualPath, VirtualItem(Of T))
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
-  id: UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: UpdateDirectory(VirtualPath, VirtualDirectory)
-  nameWithType: VirtualStorage<T>.UpdateDirectory(VirtualPath, VirtualDirectory)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: UpdateDirectory
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 81
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void UpdateDirectory(VirtualPath directoryPath, VirtualDirectory newDirectory)
-    parameters:
-    - id: directoryPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: newDirectory
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-    content.vb: Public Sub UpdateDirectory(directoryPath As VirtualPath, newDirectory As VirtualDirectory)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory*
-  nameWithType.vb: VirtualStorage(Of T).UpdateDirectory(VirtualPath, VirtualDirectory)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  id: UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
-  nameWithType: VirtualStorage<T>.UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: UpdateSymbolicLInk
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 93
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink)
-    parameters:
-    - id: linkPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: newLink
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-    content.vb: Public Sub UpdateSymbolicLInk(linkPath As VirtualPath, newLink As VirtualSymbolicLink)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk*
-  nameWithType.vb: VirtualStorage(Of T).UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
-  id: AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddNode(VirtualPath, VirtualNode, bool)
-  nameWithType: VirtualStorage<T>.AddNode(VirtualPath, VirtualNode, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddNode
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 106
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)
-    parameters:
-    - id: nodeDirectoryPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: node
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-    - id: overwrite
-      type: System.Boolean
-    content.vb: Public Sub AddNode(nodeDirectoryPath As VirtualPath, node As VirtualNode, overwrite As Boolean = False)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode*
-  nameWithType.vb: VirtualStorage(Of T).AddNode(VirtualPath, VirtualNode, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, Boolean)
-  name.vb: AddNode(VirtualPath, VirtualNode, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Boolean)
-  id: AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddDirectory(VirtualPath, VirtualDirectory, bool)
-  nameWithType: VirtualStorage<T>.AddDirectory(VirtualPath, VirtualDirectory, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddDirectory
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 126
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddDirectory(VirtualPath directoryPath, VirtualDirectory directory, bool createSubdirectories = false)
-    parameters:
-    - id: directoryPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: directory
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-    - id: createSubdirectories
-      type: System.Boolean
-    content.vb: Public Sub AddDirectory(directoryPath As VirtualPath, directory As VirtualDirectory, createSubdirectories As Boolean = False)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
-  nameWithType.vb: VirtualStorage(Of T).AddDirectory(VirtualPath, VirtualDirectory, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, Boolean)
-  name.vb: AddDirectory(VirtualPath, VirtualDirectory, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  id: AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddDirectory(VirtualPath, bool)
-  nameWithType: VirtualStorage<T>.AddDirectory(VirtualPath, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddDirectory
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 162
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
-    parameters:
-    - id: path
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: createSubdirectories
-      type: System.Boolean
-    content.vb: Public Sub AddDirectory(path As VirtualPath, createSubdirectories As Boolean = False)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
-  nameWithType.vb: VirtualStorage(Of T).AddDirectory(VirtualPath, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
-  name.vb: AddDirectory(VirtualPath, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0},System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0},System.Boolean)
-  id: AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0},System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddItem(VirtualPath, VirtualItem<T>, bool)
-  nameWithType: VirtualStorage<T>.AddItem(VirtualPath, VirtualItem<T>, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddItem
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 191
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddItem(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
-    parameters:
-    - id: itemDirectoryPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: item
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
-    - id: overwrite
-      type: System.Boolean
-    content.vb: Public Sub AddItem(itemDirectoryPath As VirtualPath, item As VirtualItem(Of T), overwrite As Boolean = False)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
-  nameWithType.vb: VirtualStorage(Of T).AddItem(VirtualPath, VirtualItem(Of T), Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T), Boolean)
-  name.vb: AddItem(VirtualPath, VirtualItem(Of T), Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,`0,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,`0,System.Boolean)
-  id: AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,`0,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddItem(VirtualPath, T?, bool)
-  nameWithType: VirtualStorage<T>.AddItem(VirtualPath, T?, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, T?, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddItem
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 225
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddItem(VirtualPath itemPath, T? data = default, bool overwrite = false)
-    parameters:
-    - id: itemPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: data
-      type: '{T}'
-    - id: overwrite
-      type: System.Boolean
-    content.vb: Public Sub AddItem(itemPath As VirtualPath, data As T = Nothing, overwrite As Boolean = False)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
-  nameWithType.vb: VirtualStorage(Of T).AddItem(VirtualPath, T, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, T, Boolean)
-  name.vb: AddItem(VirtualPath, T, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink,System.Boolean)
-  id: AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddSymbolicLink(VirtualPath, VirtualSymbolicLink, bool)
-  nameWithType: VirtualStorage<T>.AddSymbolicLink(VirtualPath, VirtualSymbolicLink, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddSymbolicLink
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 241
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddSymbolicLink(VirtualPath linkDirectoryPath, VirtualSymbolicLink link, bool overwrite = false)
-    parameters:
-    - id: linkDirectoryPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: link
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-    - id: overwrite
-      type: System.Boolean
-    content.vb: Public Sub AddSymbolicLink(linkDirectoryPath As VirtualPath, link As VirtualSymbolicLink, overwrite As Boolean = False)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
-  nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink(VirtualPath, VirtualSymbolicLink, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink, Boolean)
-  name.vb: AddSymbolicLink(VirtualPath, VirtualSymbolicLink, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  id: AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddSymbolicLink(VirtualPath, VirtualPath?, bool)
-  nameWithType: VirtualStorage<T>.AddSymbolicLink(VirtualPath, VirtualPath?, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddSymbolicLink
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 284
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddSymbolicLink(VirtualPath linkPath, VirtualPath? targetPath = null, bool overwrite = false)
-    parameters:
-    - id: linkPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: targetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: overwrite
-      type: System.Boolean
-    content.vb: Public Sub AddSymbolicLink(linkPath As VirtualPath, targetPath As VirtualPath = Nothing, overwrite As Boolean = False)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
-  nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink(VirtualPath, VirtualPath, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
-  name.vb: AddSymbolicLink(VirtualPath, VirtualPath, Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
   id: WalkPathToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.NotifyNodeDelegate,AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate,System.Boolean,System.Boolean)
@@ -782,7 +368,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 300
+    startLine: 40
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -824,7 +410,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 515
+    startLine: 255
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -864,7 +450,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 551
+    startLine: 291
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -906,7 +492,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CopyNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 810
+    startLine: 550
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -948,7 +534,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 949
+    startLine: 689
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -968,42 +554,6 @@ items:
   nameWithType.vb: VirtualStorage(Of T).RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean, Boolean)
   name.vb: RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
-  id: SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: SetNodeName(VirtualPath, VirtualNodeName, bool)
-  nameWithType: VirtualStorage<T>.SetNodeName(VirtualPath, VirtualNodeName, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, bool)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: SetNodeName
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1077
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void SetNodeName(VirtualPath nodePath, VirtualNodeName newName, bool resolveLinks = true)
-    parameters:
-    - id: nodePath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: newName
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-    - id: resolveLinks
-      type: System.Boolean
-    content.vb: Public Sub SetNodeName(nodePath As VirtualPath, newName As VirtualNodeName, resolveLinks As Boolean = True)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName*
-  nameWithType.vb: VirtualStorage(Of T).SetNodeName(VirtualPath, VirtualNodeName, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, Boolean)
-  name.vb: SetNodeName(VirtualPath, VirtualNodeName, Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
   id: MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
@@ -1022,7 +572,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1114
+    startLine: 817
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1398,6 +948,456 @@ items:
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*
   nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath(VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: ChangeDirectory(VirtualPath)
+  nameWithType: VirtualStorage<T>.ChangeDirectory(VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: ChangeDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 6
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void ChangeDirectory(VirtualPath path)
+    parameters:
+    - id: path
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub ChangeDirectory(path As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory*
+  nameWithType.vb: VirtualStorage(Of T).ChangeDirectory(VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  id: SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: SetNode(VirtualPath, VirtualNode)
+  nameWithType: VirtualStorage<T>.SetNode(VirtualPath, VirtualNode)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SetNode
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 15
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void SetNode(VirtualPath destinationPath, VirtualNode node)
+    parameters:
+    - id: destinationPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    content.vb: Public Sub SetNode(destinationPath As VirtualPath, node As VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode*
+  nameWithType.vb: VirtualStorage(Of T).SetNode(VirtualPath, VirtualNode)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0})
+  id: UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0})
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: UpdateItem(VirtualPath, VirtualItem<T>)
+  nameWithType: VirtualStorage<T>.UpdateItem(VirtualPath, VirtualItem<T>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: UpdateItem
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 35
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void UpdateItem(VirtualPath itemPath, VirtualItem<T> newItem)
+    parameters:
+    - id: itemPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: newItem
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+    content.vb: Public Sub UpdateItem(itemPath As VirtualPath, newItem As VirtualItem(Of T))
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem*
+  nameWithType.vb: VirtualStorage(Of T).UpdateItem(VirtualPath, VirtualItem(Of T))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T))
+  name.vb: UpdateItem(VirtualPath, VirtualItem(Of T))
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+  id: UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: UpdateDirectory(VirtualPath, VirtualDirectory)
+  nameWithType: VirtualStorage<T>.UpdateDirectory(VirtualPath, VirtualDirectory)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: UpdateDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 47
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void UpdateDirectory(VirtualPath directoryPath, VirtualDirectory newDirectory)
+    parameters:
+    - id: directoryPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: newDirectory
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    content.vb: Public Sub UpdateDirectory(directoryPath As VirtualPath, newDirectory As VirtualDirectory)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory*
+  nameWithType.vb: VirtualStorage(Of T).UpdateDirectory(VirtualPath, VirtualDirectory)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  id: UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
+  nameWithType: VirtualStorage<T>.UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: UpdateSymbolicLInk
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 59
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink)
+    parameters:
+    - id: linkPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: newLink
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    content.vb: Public Sub UpdateSymbolicLInk(linkPath As VirtualPath, newLink As VirtualSymbolicLink)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk*
+  nameWithType.vb: VirtualStorage(Of T).UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateSymbolicLInk(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
+  id: AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddNode(VirtualPath, VirtualNode, bool)
+  nameWithType: VirtualStorage<T>.AddNode(VirtualPath, VirtualNode, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddNode
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 72
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)
+    parameters:
+    - id: nodeDirectoryPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: node
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    - id: overwrite
+      type: System.Boolean
+    content.vb: Public Sub AddNode(nodeDirectoryPath As VirtualPath, node As VirtualNode, overwrite As Boolean = False)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode*
+  nameWithType.vb: VirtualStorage(Of T).AddNode(VirtualPath, VirtualNode, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, Boolean)
+  name.vb: AddNode(VirtualPath, VirtualNode, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Boolean)
+  id: AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddDirectory(VirtualPath, VirtualDirectory, bool)
+  nameWithType: VirtualStorage<T>.AddDirectory(VirtualPath, VirtualDirectory, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 92
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddDirectory(VirtualPath directoryPath, VirtualDirectory directory, bool createSubdirectories = false)
+    parameters:
+    - id: directoryPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: directory
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+    - id: createSubdirectories
+      type: System.Boolean
+    content.vb: Public Sub AddDirectory(directoryPath As VirtualPath, directory As VirtualDirectory, createSubdirectories As Boolean = False)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
+  nameWithType.vb: VirtualStorage(Of T).AddDirectory(VirtualPath, VirtualDirectory, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, Boolean)
+  name.vb: AddDirectory(VirtualPath, VirtualDirectory, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  id: AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddDirectory(VirtualPath, bool)
+  nameWithType: VirtualStorage<T>.AddDirectory(VirtualPath, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddDirectory
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 128
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
+    parameters:
+    - id: path
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: createSubdirectories
+      type: System.Boolean
+    content.vb: Public Sub AddDirectory(path As VirtualPath, createSubdirectories As Boolean = False)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
+  nameWithType.vb: VirtualStorage(Of T).AddDirectory(VirtualPath, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
+  name.vb: AddDirectory(VirtualPath, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0},System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0},System.Boolean)
+  id: AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0},System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddItem(VirtualPath, VirtualItem<T>, bool)
+  nameWithType: VirtualStorage<T>.AddItem(VirtualPath, VirtualItem<T>, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddItem
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 157
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddItem(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
+    parameters:
+    - id: itemDirectoryPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: item
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+    - id: overwrite
+      type: System.Boolean
+    content.vb: Public Sub AddItem(itemDirectoryPath As VirtualPath, item As VirtualItem(Of T), overwrite As Boolean = False)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
+  nameWithType.vb: VirtualStorage(Of T).AddItem(VirtualPath, VirtualItem(Of T), Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T), Boolean)
+  name.vb: AddItem(VirtualPath, VirtualItem(Of T), Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,`0,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,`0,System.Boolean)
+  id: AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,`0,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddItem(VirtualPath, T?, bool)
+  nameWithType: VirtualStorage<T>.AddItem(VirtualPath, T?, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, T?, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddItem
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 191
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddItem(VirtualPath itemPath, T? data = default, bool overwrite = false)
+    parameters:
+    - id: itemPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: data
+      type: '{T}'
+    - id: overwrite
+      type: System.Boolean
+    content.vb: Public Sub AddItem(itemPath As VirtualPath, data As T = Nothing, overwrite As Boolean = False)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
+  nameWithType.vb: VirtualStorage(Of T).AddItem(VirtualPath, T, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, T, Boolean)
+  name.vb: AddItem(VirtualPath, T, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink,System.Boolean)
+  id: AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddSymbolicLink(VirtualPath, VirtualSymbolicLink, bool)
+  nameWithType: VirtualStorage<T>.AddSymbolicLink(VirtualPath, VirtualSymbolicLink, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 207
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddSymbolicLink(VirtualPath linkDirectoryPath, VirtualSymbolicLink link, bool overwrite = false)
+    parameters:
+    - id: linkDirectoryPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: link
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+    - id: overwrite
+      type: System.Boolean
+    content.vb: Public Sub AddSymbolicLink(linkDirectoryPath As VirtualPath, link As VirtualSymbolicLink, overwrite As Boolean = False)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
+  nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink(VirtualPath, VirtualSymbolicLink, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink, Boolean)
+  name.vb: AddSymbolicLink(VirtualPath, VirtualSymbolicLink, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  id: AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddSymbolicLink(VirtualPath, VirtualPath?, bool)
+  nameWithType: VirtualStorage<T>.AddSymbolicLink(VirtualPath, VirtualPath?, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddSymbolicLink
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 250
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddSymbolicLink(VirtualPath linkPath, VirtualPath? targetPath = null, bool overwrite = false)
+    parameters:
+    - id: linkPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: overwrite
+      type: System.Boolean
+    content.vb: Public Sub AddSymbolicLink(linkPath As VirtualPath, targetPath As VirtualPath = Nothing, overwrite As Boolean = False)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
+  nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink(VirtualPath, VirtualPath, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
+  name.vb: AddSymbolicLink(VirtualPath, VirtualPath, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  id: SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: SetNodeName(VirtualPath, VirtualNodeName, bool)
+  nameWithType: VirtualStorage<T>.SetNodeName(VirtualPath, VirtualNodeName, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SetNodeName
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
+    startLine: 266
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void SetNodeName(VirtualPath nodePath, VirtualNodeName newName, bool resolveLinks = true)
+    parameters:
+    - id: nodePath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: newName
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    - id: resolveLinks
+      type: System.Boolean
+    content.vb: Public Sub SetNodeName(nodePath As VirtualPath, newName As VirtualNodeName, resolveLinks As Boolean = True)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName*
+  nameWithType.vb: VirtualStorage(Of T).SetNodeName(VirtualPath, VirtualNodeName, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, Boolean)
+  name.vb: SetNodeName(VirtualPath, VirtualNodeName, Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   id: ConvertToAbsolutePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -3027,166 +3027,6 @@ references:
   nameWithType.vb: VirtualStorage(Of T).New
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New
   name.vb: New
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ChangeDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: ChangeDirectory
-  nameWithType: VirtualStorage<T>.ChangeDirectory
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ChangeDirectory
-  nameWithType.vb: VirtualStorage(Of T).ChangeDirectory
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ChangeDirectory
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
-  name: SetNode
-  nameWithType: VirtualStorage<T>.SetNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNode
-  nameWithType.vb: VirtualStorage(Of T).SetNode
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNode
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
-  name: VirtualNode
-  nameWithType: VirtualNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualItem__0__
-  name: UpdateItem
-  nameWithType: VirtualStorage<T>.UpdateItem
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateItem
-  nameWithType.vb: VirtualStorage(Of T).UpdateItem
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateItem
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
-  parent: AkiraNetwork.VirtualStorageLibrary
-  definition: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  name: VirtualItem<T>
-  nameWithType: VirtualItem<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
-  nameWithType.vb: VirtualItem(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
-  name.vb: VirtualItem(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-    name: VirtualItem
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-    name: VirtualItem
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  name: VirtualItem<T>
-  nameWithType: VirtualItem<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
-  nameWithType.vb: VirtualItem(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
-  name.vb: VirtualItem(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-    name: VirtualItem
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
-    name: VirtualItem
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_
-  name: UpdateDirectory
-  nameWithType: VirtualStorage<T>.UpdateDirectory
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateDirectory
-  nameWithType.vb: VirtualStorage(Of T).UpdateDirectory
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateDirectory
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateSymbolicLInk_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_
-  name: UpdateSymbolicLInk
-  nameWithType: VirtualStorage<T>.UpdateSymbolicLInk
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateSymbolicLInk
-  nameWithType.vb: VirtualStorage(Of T).UpdateSymbolicLInk
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateSymbolicLInk
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
-  name: VirtualSymbolicLink
-  nameWithType: VirtualSymbolicLink
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Boolean_
-  name: AddNode
-  nameWithType: VirtualStorage<T>.AddNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddNode
-  nameWithType.vb: VirtualStorage(Of T).AddNode
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddNode
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Boolean_
-  name: AddDirectory
-  nameWithType: VirtualStorage<T>.AddDirectory
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddDirectory
-  nameWithType.vb: VirtualStorage(Of T).AddDirectory
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddDirectory
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualItem__0__System_Boolean_
-  name: AddItem
-  nameWithType: VirtualStorage<T>.AddItem
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddItem
-  nameWithType.vb: VirtualStorage(Of T).AddItem
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddItem
-- uid: '{T}'
-  commentId: '!:T'
-  definition: T
-  name: T
-  nameWithType: T
-  fullName: T
-- uid: T
-  name: T
-  nameWithType: T
-  fullName: T
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_System_Boolean_
-  name: AddSymbolicLink
-  nameWithType: VirtualStorage<T>.AddSymbolicLink
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddSymbolicLink
-  nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddSymbolicLink
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTarget
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_NotifyNodeDelegate_AkiraNetwork_VirtualStorageLibrary_ActionNodeDelegate_System_Boolean_System_Boolean_
@@ -3209,6 +3049,17 @@ references:
   name: ActionNodeDelegate
   nameWithType: ActionNodeDelegate
   fullName: AkiraNetwork.VirtualStorageLibrary.ActionNodeDelegate
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -3414,21 +3265,6 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveNode
   nameWithType.vb: VirtualStorage(Of T).RemoveNode
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveNode
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_Boolean_
-  name: SetNodeName
-  nameWithType: VirtualStorage<T>.SetNodeName
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNodeName
-  nameWithType.vb: VirtualStorage(Of T).SetNodeName
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNodeName
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
-  name: VirtualNodeName
-  nameWithType: VirtualNodeName
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_MoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_
@@ -3446,6 +3282,13 @@ references:
   nameWithType.vb: VirtualStorage(Of T).this[]
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).this[]
   name.vb: this[]
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  name: VirtualNode
+  nameWithType: VirtualNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary
@@ -3685,6 +3528,163 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkByLinkPath
   nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ChangeDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: ChangeDirectory
+  nameWithType: VirtualStorage<T>.ChangeDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ChangeDirectory
+  nameWithType.vb: VirtualStorage(Of T).ChangeDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ChangeDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
+  name: SetNode
+  nameWithType: VirtualStorage<T>.SetNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNode
+  nameWithType.vb: VirtualStorage(Of T).SetNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualItem__0__
+  name: UpdateItem
+  nameWithType: VirtualStorage<T>.UpdateItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateItem
+  nameWithType.vb: VirtualStorage(Of T).UpdateItem
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateItem
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  parent: AkiraNetwork.VirtualStorageLibrary
+  definition: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  name: VirtualItem<T>
+  nameWithType: VirtualItem<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
+  nameWithType.vb: VirtualItem(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
+  name.vb: VirtualItem(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  name: VirtualItem<T>
+  nameWithType: VirtualItem<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>
+  nameWithType.vb: VirtualItem(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T)
+  name.vb: VirtualItem(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+    name: VirtualItem
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_
+  name: UpdateDirectory
+  nameWithType: VirtualStorage<T>.UpdateDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateDirectory
+  nameWithType.vb: VirtualStorage(Of T).UpdateDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateSymbolicLInk_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_
+  name: UpdateSymbolicLInk
+  nameWithType: VirtualStorage<T>.UpdateSymbolicLInk
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateSymbolicLInk
+  nameWithType.vb: VirtualStorage(Of T).UpdateSymbolicLInk
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateSymbolicLInk
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_System_Boolean_
+  name: AddNode
+  nameWithType: VirtualStorage<T>.AddNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddNode
+  nameWithType.vb: VirtualStorage(Of T).AddNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Boolean_
+  name: AddDirectory
+  nameWithType: VirtualStorage<T>.AddDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddDirectory
+  nameWithType.vb: VirtualStorage(Of T).AddDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualItem__0__System_Boolean_
+  name: AddItem
+  nameWithType: VirtualStorage<T>.AddItem
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddItem
+  nameWithType.vb: VirtualStorage(Of T).AddItem
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddItem
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_System_Boolean_
+  name: AddSymbolicLink
+  nameWithType: VirtualStorage<T>.AddSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddSymbolicLink
+  nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_Boolean_
+  name: SetNodeName
+  nameWithType: VirtualStorage<T>.SetNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetNodeName
+  nameWithType.vb: VirtualStorage(Of T).SetNodeName
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetNodeName
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  name: VirtualNodeName
+  nameWithType: VirtualNodeName
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ConvertToAbsolutePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
