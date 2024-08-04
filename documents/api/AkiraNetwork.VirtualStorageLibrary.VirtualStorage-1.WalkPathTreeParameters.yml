@@ -27,18 +27,20 @@ items:
   type: Struct
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathTreeParameters
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1745
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 327
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: A structure that holds parameters for the WalkPathTree method.
+  example: []
   syntax:
-    content: private struct VirtualStorage<T>.WalkPathTreeParameters
-    content.vb: Private Structure VirtualStorage(Of T).WalkPathTreeParameters
+    content: public struct VirtualStorage<T>.WalkPathTreeParameters
+    content.vb: Public Structure VirtualStorage(Of T).WalkPathTreeParameters
   inheritedMembers:
   - System.ValueType.Equals(System.Object)
   - System.ValueType.GetHashCode
@@ -51,60 +53,6 @@ items:
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters
   name.vb: VirtualStorage(Of T).WalkPathTreeParameters
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)'
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters
-  langs:
-  - csharp
-  - vb
-  name: WalkPathTreeParameters(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory?, int, int, int, VirtualNodeTypeFilter, bool, bool, List<string>?, VirtualSymbolicLink?)
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory?, int, int, int, VirtualNodeTypeFilter, bool, bool, List<string>?, VirtualSymbolicLink?)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory?, int, int, int, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool, System.Collections.Generic.List<string>?, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink?)
-  type: Constructor
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: .ctor
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1745
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public WalkPathTreeParameters(VirtualPath basePath, VirtualPath currentPath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int baseDepth, int currentDepth, int currentIndex, VirtualNodeTypeFilter filter, bool recursive, bool followLinks, List<string>? patternList, VirtualSymbolicLink? resolvedLink)
-    parameters:
-    - id: basePath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: currentPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: baseNode
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-    - id: parentDirectory
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
-    - id: baseDepth
-      type: System.Int32
-    - id: currentDepth
-      type: System.Int32
-    - id: currentIndex
-      type: System.Int32
-    - id: filter
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
-    - id: recursive
-      type: System.Boolean
-    - id: followLinks
-      type: System.Boolean
-    - id: patternList
-      type: System.Collections.Generic.List{System.String}
-    - id: resolvedLink
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-    content.vb: Public Sub New(basePath As VirtualPath, currentPath As VirtualPath, baseNode As VirtualNode, parentDirectory As VirtualDirectory, baseDepth As Integer, currentDepth As Integer, currentIndex As Integer, filter As VirtualNodeTypeFilter, recursive As Boolean, followLinks As Boolean, patternList As List(Of String), resolvedLink As VirtualSymbolicLink)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor*
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.New(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory, Integer, Integer, Integer, VirtualNodeTypeFilter, Boolean, Boolean, List(Of String), VirtualSymbolicLink)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.New(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, Integer, Integer, Integer, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean, System.Collections.Generic.List(Of String), AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
-  name.vb: New(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory, Integer, Integer, Integer, VirtualNodeTypeFilter, Boolean, Boolean, List(Of String), VirtualSymbolicLink)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath
   id: BasePath
@@ -118,20 +66,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: BasePath
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1760
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 333
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the base path.
+  example: []
   syntax:
     content: public VirtualPath BasePath { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The base path
     content.vb: Public Property BasePath As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BasePath
@@ -149,20 +100,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CurrentPath
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1761
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 339
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the current path being traversed.
+  example: []
   syntax:
     content: public VirtualPath CurrentPath { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The current path being traversed
     content.vb: Public Property CurrentPath As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
@@ -180,20 +134,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: BaseNode
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1762
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 345
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the base node.
+  example: []
   syntax:
     content: public VirtualNode BaseNode { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The base node
     content.vb: Public Property BaseNode As VirtualNode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
@@ -211,20 +168,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ParentDirectory
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1763
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 351
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the parent directory of the base node.
+  example: []
   syntax:
     content: public VirtualDirectory? ParentDirectory { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The parent directory of the base node
     content.vb: Public Property ParentDirectory As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
@@ -242,20 +202,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: BaseDepth
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1764
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 357
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the base depth.
+  example: []
   syntax:
     content: public int BaseDepth { readonly get; set; }
     parameters: []
     return:
       type: System.Int32
+      description: The base depth
     content.vb: Public Property BaseDepth As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
@@ -273,20 +236,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CurrentDepth
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1765
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 363
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the current depth.
+  example: []
   syntax:
     content: public int CurrentDepth { readonly get; set; }
     parameters: []
     return:
       type: System.Int32
+      description: The current depth
     content.vb: Public Property CurrentDepth As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
@@ -304,20 +270,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CurrentIndex
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1766
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 369
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the current index.
+  example: []
   syntax:
     content: public int CurrentIndex { readonly get; set; }
     parameters: []
     return:
       type: System.Int32
+      description: The current index
     content.vb: Public Property CurrentIndex As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
@@ -335,20 +304,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Filter
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1767
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 375
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the filter for node types.
+  example: []
   syntax:
     content: public VirtualNodeTypeFilter Filter { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The filter for node types
     content.vb: Public Property Filter As VirtualNodeTypeFilter
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Filter
@@ -366,20 +338,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Recursive
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1768
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 381
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the flag indicating whether to traverse recursively.
+  example: []
   syntax:
     content: public bool Recursive { readonly get; set; }
     parameters: []
     return:
       type: System.Boolean
+      description: The flag indicating whether to traverse recursively
     content.vb: Public Property Recursive As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Recursive
@@ -397,20 +372,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: FollowLinks
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1769
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 387
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the flag indicating whether to follow symbolic links.
+  example: []
   syntax:
     content: public bool FollowLinks { readonly get; set; }
     parameters: []
     return:
       type: System.Boolean
+      description: The flag indicating whether to follow symbolic links
     content.vb: Public Property FollowLinks As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
@@ -428,20 +406,23 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternList
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1770
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 393
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the pattern list.
+  example: []
   syntax:
     content: public List<string>? PatternList { readonly get; set; }
     parameters: []
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The pattern list
     content.vb: Public Property PatternList As List(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.PatternList
@@ -459,24 +440,99 @@ items:
   type: Property
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolvedLink
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1771
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 399
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets or sets the resolved symbolic link.
+  example: []
   syntax:
     content: public VirtualSymbolicLink? ResolvedLink { readonly get; set; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The resolved symbolic link
     content.vb: Public Property ResolvedLink As VirtualSymbolicLink
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters
+  langs:
+  - csharp
+  - vb
+  name: WalkPathTreeParameters(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory?, int, int, int, VirtualNodeTypeFilter, bool, bool, List<string>?, VirtualSymbolicLink?)
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory?, int, int, int, VirtualNodeTypeFilter, bool, bool, List<string>?, VirtualSymbolicLink?)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory?, int, int, int, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool, System.Collections.Generic.List<string>?, AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink?)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 419
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the WalkPathTreeParameters structure.
+  example: []
+  syntax:
+    content: public WalkPathTreeParameters(VirtualPath basePath, VirtualPath currentPath, VirtualNode baseNode, VirtualDirectory? parentDirectory, int baseDepth, int currentDepth, int currentIndex, VirtualNodeTypeFilter filter, bool recursive, bool followLinks, List<string>? patternList, VirtualSymbolicLink? resolvedLink)
+    parameters:
+    - id: basePath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The base path
+    - id: currentPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The current path being traversed
+    - id: baseNode
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The base node
+    - id: parentDirectory
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The parent directory of the base node
+    - id: baseDepth
+      type: System.Int32
+      description: The base depth
+    - id: currentDepth
+      type: System.Int32
+      description: The current depth
+    - id: currentIndex
+      type: System.Int32
+      description: The current index
+    - id: filter
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The filter for node types
+    - id: recursive
+      type: System.Boolean
+      description: >-
+        The flag indicating whether to traverse
+            recursively
+    - id: followLinks
+      type: System.Boolean
+      description: >-
+        The flag indicating whether to follow
+            symbolic links
+    - id: patternList
+      type: System.Collections.Generic.List{System.String}
+      description: The pattern list
+    - id: resolvedLink
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The resolved symbolic link
+    content.vb: Public Sub New(basePath As VirtualPath, currentPath As VirtualPath, baseNode As VirtualNode, parentDirectory As VirtualDirectory, baseDepth As Integer, currentDepth As Integer, currentIndex As Integer, filter As VirtualNodeTypeFilter, recursive As Boolean, followLinks As Boolean, patternList As List(Of String), resolvedLink As VirtualSymbolicLink)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor*
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.New(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory, Integer, Integer, Integer, VirtualNodeTypeFilter, Boolean, Boolean, List(Of String), VirtualSymbolicLink)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.New(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNode, AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, Integer, Integer, Integer, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean, System.Collections.Generic.List(Of String), AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)
+  name.vb: New(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory, Integer, Integer, Integer, VirtualNodeTypeFilter, Boolean, Boolean, List(Of String), VirtualSymbolicLink)
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -826,15 +882,14 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_System_Collections_Generic_List_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_
-  name: WalkPathTreeParameters
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.New
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.New
-  name.vb: New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BasePath
+  name: BasePath
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BasePath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BasePath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BasePath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BasePath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPath
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -842,6 +897,22 @@ references:
   name: VirtualPath
   nameWithType: VirtualPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentPath
+  name: CurrentPath
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseNode
+  name: BaseNode
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseNode
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -849,6 +920,14 @@ references:
   name: VirtualNode
   nameWithType: VirtualNode
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ParentDirectory
+  name: ParentDirectory
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -856,6 +935,14 @@ references:
   name: VirtualDirectory
   nameWithType: VirtualDirectory
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseDepth
+  name: BaseDepth
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -867,6 +954,30 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentDepth
+  name: CurrentDepth
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentIndex
+  name: CurrentIndex
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Filter
+  name: Filter
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Filter
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Filter
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Filter
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Filter
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
   parent: AkiraNetwork.VirtualStorageLibrary
@@ -874,6 +985,14 @@ references:
   name: VirtualNodeTypeFilter
   nameWithType: VirtualNodeTypeFilter
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Recursive
+  name: Recursive
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Recursive
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Recursive
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Recursive
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Recursive
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -885,6 +1004,22 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_FollowLinks
+  name: FollowLinks
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_PatternList
+  name: PatternList
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.PatternList
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.PatternList
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.PatternList
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.PatternList
 - uid: System.Collections.Generic.List{System.String}
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic
@@ -920,13 +1055,6 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
   - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
-  name: VirtualSymbolicLink
-  nameWithType: VirtualSymbolicLink
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
   isExternal: true
@@ -992,94 +1120,6 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BasePath
-  name: BasePath
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BasePath
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BasePath
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BasePath
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BasePath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentPath
-  name: CurrentPath
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentPath
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentPath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseNode
-  name: BaseNode
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseNode
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseNode
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ParentDirectory
-  name: ParentDirectory
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.ParentDirectory
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ParentDirectory
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseDepth
-  name: BaseDepth
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.BaseDepth
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.BaseDepth
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentDepth
-  name: CurrentDepth
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentDepth
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentDepth
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentIndex
-  name: CurrentIndex
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.CurrentIndex
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.CurrentIndex
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Filter
-  name: Filter
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Filter
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Filter
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Filter
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Filter
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Recursive
-  name: Recursive
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.Recursive
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.Recursive
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.Recursive
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.Recursive
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_FollowLinks
-  name: FollowLinks
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.FollowLinks
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.FollowLinks
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_PatternList
-  name: PatternList
-  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.PatternList
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.PatternList
-  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.PatternList
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.PatternList
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ResolvedLink
@@ -1088,3 +1128,19 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.ResolvedLink
   nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.ResolvedLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html
+  name: VirtualSymbolicLink
+  nameWithType: VirtualSymbolicLink
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathTreeParameters.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_System_Collections_Generic_List_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_
+  name: WalkPathTreeParameters
+  nameWithType: VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathTreeParameters.WalkPathTreeParameters
+  nameWithType.vb: VirtualStorage(Of T).WalkPathTreeParameters.New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathTreeParameters.New
+  name.vb: New

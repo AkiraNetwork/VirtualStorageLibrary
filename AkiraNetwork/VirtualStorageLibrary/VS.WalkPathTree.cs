@@ -4,6 +4,25 @@ namespace AkiraNetwork.VirtualStorageLibrary
 {
     public partial class VirtualStorage<T>
     {
+        /// <summary>
+        /// Expands the virtual path containing wildcards.
+        /// </summary>
+        /// <param name="path">The virtual path containing wildcards</param>
+        /// <param name="filter">The filter to apply for node types</param>
+        /// <param name="followLinks">A flag indicating whether to follow
+        /// symbolic links</param>
+        /// <param name="resolveLinks">A flag indicating whether to resolve
+        /// symbolic links</param>
+        /// <returns>An enumerable of <see cref="VirtualNodeContext"/> containing
+        /// information about the expanded nodes</returns>
+        /// <remarks>
+        /// <para>followLinks indicates whether to follow links during the
+        /// recursive traversal process when the terminal node in the virtual
+        /// path is a symbolic link.</para>
+        /// <para>resolveLinks indicates whether to resolve links when nodes
+        /// other than the terminal node in the virtual path are symbolic links.
+        /// </para>
+        /// </remarks>
         public IEnumerable<VirtualNodeContext> ExpandPathTree(
             VirtualPath path,
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
@@ -31,7 +50,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 patternList,
                 null);
 
-            // 循環参照のクリア
+            // Clear cycle detection
             CycleDetectorForTree.Clear();
 
             foreach (var result in WalkPathTreeInternal(p))
@@ -40,6 +59,27 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Traverses the path tree starting from the specified path.
+        /// </summary>
+        /// <param name="basePath">The base virtual path</param>
+        /// <param name="filter">The filter to apply for node types</param>
+        /// <param name="recursive">A flag indicating whether to traverse
+        /// recursively</param>
+        /// <param name="followLinks">A flag indicating whether to follow
+        /// symbolic links</param>
+        /// <param name="resolveLinks">A flag indicating whether to resolve
+        /// symbolic links</param>
+        /// <returns>An enumerable of <see cref="VirtualNodeContext"/> containing
+        /// information about the traversed nodes</returns>
+        /// <remarks>
+        /// <para>followLinks indicates whether to follow links during the
+        /// recursive traversal process when the terminal node in the virtual
+        /// path is a symbolic link.</para>
+        /// <para>resolveLinks indicates whether to resolve links when nodes
+        /// other than the terminal node in the virtual path are symbolic links.
+        /// </para>
+        /// </remarks>
         public IEnumerable<VirtualNodeContext> WalkPathTree(
             VirtualPath basePath,
             VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All,
@@ -77,7 +117,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 null,
                 link);
 
-            // 循環参照のクリア
+            // Clear cycle detection
             CycleDetectorForTree.Clear();
 
             foreach (var result in WalkPathTreeInternal(p))
@@ -86,6 +126,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Internal method for traversing the path tree.
+        /// </summary>
+        /// <param name="p">A structure containing parameters for the WalkPathTree
+        /// method</param>
+        /// <returns>An enumerable of <see cref="VirtualNodeContext"/> containing
+        /// information about the traversed nodes</returns>
         private IEnumerable<VirtualNodeContext> WalkPathTreeInternal(WalkPathTreeParameters p)
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
@@ -99,7 +146,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 patternMatcher = wildcardMatcher.PatternMatcher;
             }
 
-            // ノードの種類に応じて処理を分岐
+            // Process based on the node type
             if (p.BaseNode is VirtualDirectory directory)
             {
                 if (p.Filter.HasFlag(VirtualNodeTypeFilter.Directory))
@@ -112,7 +159,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                             {
                                 VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
 
-                                // ディレクトリを通知
+                                // Notify directory
                                 yield return new VirtualNodeContext(directory, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                             }
                         }
@@ -121,14 +168,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     {
                         VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
 
-                        // ディレクトリを通知
+                        // Notify directory
                         yield return new VirtualNodeContext(directory, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                     }
                 }
 
                 if (p.Recursive || 0 == p.CurrentDepth)
                 {
-                    // ディレクトリ内のノードを再帰的に探索
+                    // Recursively traverse nodes in the directory
                     int index = 0;
                     foreach (var node in directory.NodesView)
                     {
@@ -168,7 +215,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                             {
                                 VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
 
-                                // アイテムを通知
+                                // Notify item
                                 yield return new VirtualNodeContext(item, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                             }
                         }
@@ -177,7 +224,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     {
                         VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
 
-                        // アイテムを通知
+                        // Notify item
                         yield return new VirtualNodeContext(item, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                     }
                 }
@@ -188,13 +235,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 {
                     VirtualPath? linkTargetPath = link.TargetPath;
 
-                    // シンボリックリンクのリンク先パスを絶対パスに変換
+                    // Convert the symbolic link's target path to an absolute path
                     linkTargetPath = ConvertToAbsolutePath(linkTargetPath, p.CurrentPath).NormalizePath();
 
-                    // リンク先のノードを取得
+                    // Retrieve the target node of the link
                     VirtualNode? linkTargetNode = GetNode(linkTargetPath, p.FollowLinks);
 
-                    // リンク先のノードに対して再帰的に探索
+                    // Recursively traverse the target node of the link
                     WalkPathTreeParameters p2 = new(
                         p.BasePath,
                         p.CurrentPath,
@@ -212,7 +259,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
                     VirtualPath traversalFullPath = p.BasePath + traversalPath;
 
-                    // 循環参照チェック
+                    // Cycle detection check
                     if (CycleDetectorForTree.IsNodeInCycle(link))
                     {
                         throw new InvalidOperationException(string.Format(Resources.CircularReferenceDetected, traversalFullPath, link));
@@ -235,7 +282,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                                 {
                                     VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
 
-                                    // シンボリックリンクを通知
+                                    // Notify symbolic link
                                     yield return new VirtualNodeContext(link, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                                 }
                             }
@@ -244,7 +291,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                         {
                             VirtualPath traversalPath = p.CurrentPath.GetRelativePath(p.BasePath);
 
-                            // シンボリックリンクを通知
+                            // Notify symbolic link
                             yield return new VirtualNodeContext(link, traversalPath, p.ParentDirectory, p.CurrentDepth, p.CurrentIndex, null, false, p.ResolvedLink);
                         }
                     }
@@ -252,6 +299,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Matches the parts of the path with the pattern list.
+        /// </summary>
+        /// <param name="parts">The list of node parts</param>
+        /// <param name="patternList">The list of patterns to match against</param>
+        /// <returns>True if the parts match the patterns; otherwise, false</returns>
         static bool MatchPatterns(List<VirtualNodeName> parts, List<string> patternList)
         {
             IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher!;
@@ -269,33 +322,128 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return true;
         }
 
-        [DebuggerStepThrough]
-        private struct WalkPathTreeParameters(
-            VirtualPath basePath,
-            VirtualPath currentPath,
-            VirtualNode baseNode,
-            VirtualDirectory? parentDirectory,
-            int baseDepth,
-            int currentDepth,
-            int currentIndex,
-            VirtualNodeTypeFilter filter,
-            bool recursive,
-            bool followLinks,
-            List<string>? patternList,
-            VirtualSymbolicLink? resolvedLink)
+        /// <summary>
+        /// A structure that holds parameters for the WalkPathTree method.
+        /// </summary>
+        private struct WalkPathTreeParameters
         {
-            public VirtualPath BasePath { get; set; } = basePath;
-            public VirtualPath CurrentPath { get; set; } = currentPath;
-            public VirtualNode BaseNode { get; set; } = baseNode;
-            public VirtualDirectory? ParentDirectory { get; set; } = parentDirectory;
-            public int BaseDepth { get; set; } = baseDepth;
-            public int CurrentDepth { get; set; } = currentDepth;
-            public int CurrentIndex { get; set; } = currentIndex;
-            public VirtualNodeTypeFilter Filter { get; set; } = filter;
-            public bool Recursive { get; set; } = recursive;
-            public bool FollowLinks { get; set; } = followLinks;
-            public List<string>? PatternList { get; set; } = patternList;
-            public VirtualSymbolicLink? ResolvedLink { get; set; } = resolvedLink;
+            /// <summary>
+            /// Gets or sets the base path.
+            /// </summary>
+            /// <value>The base path</value>
+            public VirtualPath BasePath { get; set; }
+
+            /// <summary>
+            /// Gets or sets the current path being traversed.
+            /// </summary>
+            /// <value>The current path being traversed</value>
+            public VirtualPath CurrentPath { get; set; }
+
+            /// <summary>
+            /// Gets or sets the base node.
+            /// </summary>
+            /// <value>The base node</value>
+            public VirtualNode BaseNode { get; set; }
+
+            /// <summary>
+            /// Gets or sets the parent directory of the base node.
+            /// </summary>
+            /// <value>The parent directory of the base node</value>
+            public VirtualDirectory? ParentDirectory { get; set; }
+
+            /// <summary>
+            /// Gets or sets the base depth.
+            /// </summary>
+            /// <value>The base depth</value>
+            public int BaseDepth { get; set; }
+
+            /// <summary>
+            /// Gets or sets the current depth.
+            /// </summary>
+            /// <value>The current depth</value>
+            public int CurrentDepth { get; set; }
+
+            /// <summary>
+            /// Gets or sets the current index.
+            /// </summary>
+            /// <value>The current index</value>
+            public int CurrentIndex { get; set; }
+
+            /// <summary>
+            /// Gets or sets the filter for node types.
+            /// </summary>
+            /// <value>The filter for node types</value>
+            public VirtualNodeTypeFilter Filter { get; set; }
+
+            /// <summary>
+            /// Gets or sets the flag indicating whether to traverse recursively.
+            /// </summary>
+            /// <value>The flag indicating whether to traverse recursively</value>
+            public bool Recursive { get; set; }
+
+            /// <summary>
+            /// Gets or sets the flag indicating whether to follow symbolic links.
+            /// </summary>
+            /// <value>The flag indicating whether to follow symbolic links</value>
+            public bool FollowLinks { get; set; }
+
+            /// <summary>
+            /// Gets or sets the pattern list.
+            /// </summary>
+            /// <value>The pattern list</value>
+            public List<string>? PatternList { get; set; }
+
+            /// <summary>
+            /// Gets or sets the resolved symbolic link.
+            /// </summary>
+            /// <value>The resolved symbolic link</value>
+            public VirtualSymbolicLink? ResolvedLink { get; set; }
+
+            /// <summary>
+            /// Initializes a new instance of the WalkPathTreeParameters structure.
+            /// </summary>
+            /// <param name="basePath">The base path</param>
+            /// <param name="currentPath">The current path being traversed</param>
+            /// <param name="baseNode">The base node</param>
+            /// <param name="parentDirectory">The parent directory of the base node
+            /// </param>
+            /// <param name="baseDepth">The base depth</param>
+            /// <param name="currentDepth">The current depth</param>
+            /// <param name="currentIndex">The current index</param>
+            /// <param name="filter">The filter for node types</param>
+            /// <param name="recursive">The flag indicating whether to traverse
+            /// recursively</param>
+            /// <param name="followLinks">The flag indicating whether to follow
+            /// symbolic links</param>
+            /// <param name="patternList">The pattern list</param>
+            /// <param name="resolvedLink">The resolved symbolic link</param>
+            public WalkPathTreeParameters(
+                VirtualPath basePath,
+                VirtualPath currentPath,
+                VirtualNode baseNode,
+                VirtualDirectory? parentDirectory,
+                int baseDepth,
+                int currentDepth,
+                int currentIndex,
+                VirtualNodeTypeFilter filter,
+                bool recursive,
+                bool followLinks,
+                List<string>? patternList,
+                VirtualSymbolicLink? resolvedLink)
+            {
+                BasePath = basePath;
+                CurrentPath = currentPath;
+                BaseNode = baseNode;
+                ParentDirectory = parentDirectory;
+                BaseDepth = baseDepth;
+                CurrentDepth = currentDepth;
+                CurrentIndex = currentIndex;
+                Filter = filter;
+                Recursive = recursive;
+                FollowLinks = followLinks;
+                PatternList = patternList;
+                ResolvedLink = resolvedLink;
+            }
         }
     }
 }

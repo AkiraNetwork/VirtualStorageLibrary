@@ -2130,23 +2130,48 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-    startLine: 6
+    startLine: 25
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Expands the virtual path containing wildcards.
+  remarks: >-
+    <p>followLinks indicates whether to follow links during the
+
+    recursive traversal process when the terminal node in the virtual
+
+    path is a symbolic link.</p>
+
+    <p>resolveLinks indicates whether to resolve links when nodes
+
+    other than the terminal node in the virtual path are symbolic links.
+
+    </p>
+  example: []
   syntax:
     content: public IEnumerable<VirtualNodeContext> ExpandPathTree(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true, bool resolveLinks = true)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The virtual path containing wildcards
     - id: filter
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The filter to apply for node types
     - id: followLinks
       type: System.Boolean
+      description: >-
+        A flag indicating whether to follow
+            symbolic links
     - id: resolveLinks
       type: System.Boolean
+      description: >-
+        A flag indicating whether to resolve
+            symbolic links
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
+      description: >-
+        An enumerable of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext" data-throw-if-not-resolved="false"></xref> containing
+            information about the expanded nodes
     content.vb: Public Function ExpandPathTree(path As VirtualPath, filter As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, followLinks As Boolean = True, resolveLinks As Boolean = True) As IEnumerable(Of VirtualNodeContext)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree*
   nameWithType.vb: VirtualStorage(Of T).ExpandPathTree(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
@@ -2170,25 +2195,53 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-    startLine: 42
+    startLine: 82
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Traverses the path tree starting from the specified path.
+  remarks: >-
+    <p>followLinks indicates whether to follow links during the
+
+    recursive traversal process when the terminal node in the virtual
+
+    path is a symbolic link.</p>
+
+    <p>resolveLinks indicates whether to resolve links when nodes
+
+    other than the terminal node in the virtual path are symbolic links.
+
+    </p>
+  example: []
   syntax:
     content: public IEnumerable<VirtualNodeContext> WalkPathTree(VirtualPath basePath, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool recursive = true, bool followLinks = true, bool resolveLinks = true)
     parameters:
     - id: basePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The base virtual path
     - id: filter
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The filter to apply for node types
     - id: recursive
       type: System.Boolean
+      description: >-
+        A flag indicating whether to traverse
+            recursively
     - id: followLinks
       type: System.Boolean
+      description: >-
+        A flag indicating whether to follow
+            symbolic links
     - id: resolveLinks
       type: System.Boolean
+      description: >-
+        A flag indicating whether to resolve
+            symbolic links
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
+      description: >-
+        An enumerable of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext" data-throw-if-not-resolved="false"></xref> containing
+            information about the traversed nodes
     content.vb: Public Function WalkPathTree(basePath As VirtualPath, filter As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = True, followLinks As Boolean = True, resolveLinks As Boolean = True) As IEnumerable(Of VirtualNodeContext)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTree*
   nameWithType.vb: VirtualStorage(Of T).WalkPathTree(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean, Boolean)

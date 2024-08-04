@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Struct VirtualStorage&lt;T&gt;.WalkPathTreeParameters | AkiraNetwork ">
     
-    
+    <meta name="description" content="A structure that holds parameters for the WalkPathTree method.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,7 +81,8 @@
 
 
   <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters" class="text-break">Struct VirtualStorage&lt;T&gt;.WalkPathTreeParameters</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>A structure that holds parameters for the WalkPathTree method.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -108,13 +109,14 @@
   <h6><strong>Assembly</strong>: VirtualStorageLibrary.dll</h6>
   <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">private struct VirtualStorage&lt;T&gt;.WalkPathTreeParameters</code></pre>
+    <pre><code class="lang-csharp hljs">public struct VirtualStorage&lt;T&gt;.WalkPathTreeParameters</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Int32_System_Int32_System_Int32_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_System_Collections_Generic_List_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode,AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Int32,System.Int32,System.Int32,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean,System.Collections.Generic.List{System.String},AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink)">WalkPathTreeParameters(VirtualPath, VirtualPath, VirtualNode, VirtualDirectory?, int, int, int, VirtualNodeTypeFilter, bool, bool, List&lt;string&gt;?, VirtualSymbolicLink?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the WalkPathTreeParameters structure.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -133,62 +135,76 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">basePath</span></td>
-        <td></td>
+        <td><p>The base path</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">currentPath</span></td>
-        <td></td>
+        <td><p>The current path being traversed</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
         <td><span class="parametername">baseNode</span></td>
-        <td></td>
+        <td><p>The base node</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></td>
         <td><span class="parametername">parentDirectory</span></td>
-        <td></td>
+        <td><p>The parent directory of the base node</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">baseDepth</span></td>
-        <td></td>
+        <td><p>The base depth</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">currentDepth</span></td>
-        <td></td>
+        <td><p>The current depth</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">currentIndex</span></td>
-        <td></td>
+        <td><p>The current index</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">filter</span></td>
-        <td></td>
+        <td><p>The filter for node types</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td></td>
+        <td><p>The flag indicating whether to traverse
+recursively</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>The flag indicating whether to follow
+symbolic links</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
         <td><span class="parametername">patternList</span></td>
-        <td></td>
+        <td><p>The pattern list</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></td>
         <td><span class="parametername">resolvedLink</span></td>
-        <td></td>
+        <td><p>The resolved symbolic link</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -196,7 +212,8 @@
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseDepth_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseDepth" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseDepth">BaseDepth</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the base depth.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -213,13 +230,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
+        <td><p>The base depth</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BaseNode" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BaseNode">BaseNode</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the base node.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -236,13 +255,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
-        <td></td>
+        <td><p>The base node</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BasePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_BasePath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.BasePath">BasePath</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the base path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -259,13 +280,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>The base path</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentDepth_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentDepth" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentDepth">CurrentDepth</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the current depth.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -282,13 +305,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
+        <td><p>The current depth</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentIndex_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentIndex" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentIndex">CurrentIndex</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the current index.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -305,13 +330,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
+        <td><p>The current index</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_CurrentPath" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.CurrentPath">CurrentPath</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the current path being traversed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -328,13 +355,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>The current path being traversed</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Filter_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Filter" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Filter">Filter</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the filter for node types.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -351,13 +380,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
-        <td></td>
+        <td><p>The filter for node types</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_FollowLinks_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_FollowLinks" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.FollowLinks">FollowLinks</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the flag indicating whether to follow symbolic links.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -374,13 +405,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>The flag indicating whether to follow symbolic links</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ParentDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ParentDirectory" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ParentDirectory">ParentDirectory</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the parent directory of the base node.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -397,13 +430,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></td>
-        <td></td>
+        <td><p>The parent directory of the base node</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_PatternList_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_PatternList" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.PatternList">PatternList</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the pattern list.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -420,13 +455,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
-        <td></td>
+        <td><p>The pattern list</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Recursive_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_Recursive" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.Recursive">Recursive</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the flag indicating whether to traverse recursively.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -443,13 +480,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>The flag indicating whether to traverse recursively</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ResolvedLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTreeParameters_ResolvedLink" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTreeParameters.ResolvedLink">ResolvedLink</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the resolved symbolic link.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -466,7 +505,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></td>
-        <td></td>
+        <td><p>The resolved symbolic link</p>
+</td>
       </tr>
     </tbody>
   </table>
