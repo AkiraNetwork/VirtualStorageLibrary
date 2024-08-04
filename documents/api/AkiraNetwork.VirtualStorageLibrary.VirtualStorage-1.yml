@@ -73,12 +73,12 @@ items:
   type: Class
   source:
     remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
+      path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
       branch: docs/issue-138-initial
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualStorage
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 6
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
+    startLine: 2
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

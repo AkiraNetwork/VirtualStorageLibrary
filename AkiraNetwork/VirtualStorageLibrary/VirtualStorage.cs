@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace AkiraNetwork.VirtualStorageLibrary
 {
-    public class VirtualStorage<T>
+    public partial class VirtualStorage<T>
     {
         private readonly VirtualDirectory _root;
 
