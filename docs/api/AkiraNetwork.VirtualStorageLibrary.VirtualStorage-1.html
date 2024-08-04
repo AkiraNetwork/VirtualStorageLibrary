@@ -723,7 +723,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ConvertToAbsolutePath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ConvertToAbsolutePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">ConvertToAbsolutePath(VirtualPath?, VirtualPath?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a relative path to an absolute path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -742,12 +743,14 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">relativePath</span></td>
-        <td></td>
+        <td><p>The relative path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">basePath</span></td>
-        <td></td>
+        <td><p>The base path. If not specified, CurrentPath is used.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -762,7 +765,24 @@
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>The absolute path represented by <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown if relativePath is null or an empty string.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -818,7 +838,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_DirectoryExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.DirectoryExists*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_DirectoryExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">DirectoryExists(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if a directory exists at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -837,12 +858,14 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The directory's path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -857,13 +880,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>True if the directory exists; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">ExpandPath(VirtualPath, VirtualNodeTypeFilter, bool, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Expands a path that contains wildcards.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -882,22 +907,26 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">filter</span></td>
-        <td></td>
+        <td><p>The node type filter.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">resolveLinks</span></td>
-        <td></td>
+        <td><p>Whether to resolve symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -912,10 +941,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</td>
-        <td></td>
+        <td><p>The expanded paths <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>followLinks indicates whether to follow links during the recursive traversal of nodes when the terminal node of the path is a symbolic link.</p>
+<p>resolveLinks indicates whether to resolve links when non-terminal nodes of the path are symbolic links.</p>
+</div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPathTree_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ExpandPathTree_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">ExpandPathTree(VirtualPath, VirtualNodeTypeFilter, bool, bool)</h4>
   <div class="markdown level1 summary"><p>Expands the virtual path containing wildcards.</p>
@@ -990,7 +1024,8 @@ other than the terminal node in the virtual path are symbolic links.
 </div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetDirectory*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">GetDirectory(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the directory at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1009,12 +1044,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the directory.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1029,13 +1066,31 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a> at the specified path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html">VirtualNodeNotFoundException</a></td>
+        <td><p>Thrown if the node cannot be found.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetItem*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">GetItem(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the item at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1054,12 +1109,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the item.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1074,7 +1131,24 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a> at the specified path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html">VirtualNodeNotFoundException</a></td>
+        <td><p>Thrown if the node cannot be found.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1120,7 +1194,8 @@ other than the terminal node in the virtual path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">GetNode(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the node at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1139,12 +1214,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The node's path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1159,13 +1236,31 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a> at the specified path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html">VirtualNodeNotFoundException</a></td>
+        <td><p>Thrown if the node cannot be found.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">GetNodeType(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the node type at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1184,12 +1279,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The node's path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1204,13 +1301,15 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html">VirtualNodeType</a></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html">VirtualNodeType</a> of the node.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">GetNodes(VirtualNodeTypeFilter, bool, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the nodes in the path tree starting from the current path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1229,17 +1328,20 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">nodeType</span></td>
-        <td></td>
+        <td><p>The node type filter.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td></td>
+        <td><p>Whether to retrieve nodes recursively.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1254,13 +1356,18 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</td>
-        <td></td>
+        <td><p>The nodes in the path tree starting from the current path <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method may be integrated, reorganized, or deprecated in the near future.</p>
+</div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">GetNodes(VirtualPath, VirtualNodeTypeFilter, bool, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the nodes in the path tree starting from the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1279,22 +1386,26 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">basePath</span></td>
-        <td></td>
+        <td><p>The base path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">nodeType</span></td>
-        <td></td>
+        <td><p>The node type filter.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td></td>
+        <td><p>Whether to retrieve nodes recursively.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1309,13 +1420,18 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;</td>
-        <td></td>
+        <td><p>The nodes in the path tree starting from the specified path <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method may be integrated, reorganized, or deprecated in the near future.</p>
+</div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">GetNodesWithPaths(VirtualNodeTypeFilter, bool, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the paths in the path tree starting from the current path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1334,17 +1450,20 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">nodeType</span></td>
-        <td></td>
+        <td><p>The node type filter.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td></td>
+        <td><p>Whether to retrieve paths recursively.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1359,13 +1478,18 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</td>
-        <td></td>
+        <td><p>The paths in the path tree starting from the current path <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method may be integrated, reorganized, or deprecated in the near future.</p>
+</div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)">GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the paths in the path tree starting from the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1384,22 +1508,26 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">basePath</span></td>
-        <td></td>
+        <td><p>The base path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.html">VirtualNodeTypeFilter</a></td>
         <td><span class="parametername">nodeType</span></td>
-        <td></td>
+        <td><p>The node type filter.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td></td>
+        <td><p>Whether to retrieve paths recursively.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1414,13 +1542,18 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</td>
-        <td></td>
+        <td><p>The paths in the path tree starting from the specified path <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method may be integrated, reorganized, or deprecated in the near future.</p>
+</div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">GetSymbolicLink(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the symbolic link at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1439,7 +1572,8 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the symbolic link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1454,13 +1588,34 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></td>
-        <td></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a> at the specified path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method does not have a followLinks parameter because it retrieves the symbolic link itself.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html">VirtualNodeNotFoundException</a></td>
+        <td><p>Thrown if the node cannot be found.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ItemExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ItemExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">ItemExists(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if an item exists at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1479,12 +1634,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The item's path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1499,7 +1656,8 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>True if the item exists; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1545,7 +1703,8 @@ other than the terminal node in the virtual path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_NodeExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_NodeExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">NodeExists(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if a node exists at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1564,12 +1723,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The node's path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1584,7 +1745,8 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>True if the node exists; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1685,7 +1847,8 @@ other than the terminal node in the virtual path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ResolveLinkTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ResolveLinkTarget*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ResolveLinkTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ResolveLinkTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">ResolveLinkTarget(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Resolves the target of the symbolic link at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1704,7 +1867,8 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the symbolic link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1719,7 +1883,24 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>The target path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html">VirtualNodeNotFoundException</a></td>
+        <td><p>Thrown if the node cannot be found.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1827,7 +2008,8 @@ other than the terminal node in the virtual path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SymbolicLinkExists_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SymbolicLinkExists*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SymbolicLinkExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SymbolicLinkExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">SymbolicLinkExists(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if a symbolic link exists at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1846,7 +2028,8 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The symbolic link's path.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1861,13 +2044,15 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>True if the symbolic link exists; otherwise, false.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetDirectory_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetDirectory*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">TryGetDirectory(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to get the directory at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1886,12 +2071,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the directory.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1906,13 +2093,15 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a></td>
-        <td></td>
+        <td><p>The found <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html">VirtualDirectory</a>, or null if not found.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetItem_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetItem*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetItem_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">TryGetItem(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to get the item at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1931,12 +2120,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the item.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1951,13 +2142,15 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem</a>&lt;T&gt;</td>
-        <td></td>
+        <td><p>The found <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html">VirtualItem&lt;T&gt;</a>, or null if not found.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetNode*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">TryGetNode(VirtualPath, bool)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to get the node at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1976,12 +2169,14 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The node's path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1996,13 +2191,15 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a></td>
-        <td></td>
+        <td><p>The found <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>, or null if not found.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetSymbolicLink_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetSymbolicLink*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">TryGetSymbolicLink(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to get the symbolic link at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -2021,7 +2218,8 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the symbolic link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -2036,13 +2234,18 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a></td>
-        <td></td>
+        <td><p>The found <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a>, or null if not found.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryGetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method does not have a followLinks parameter because it retrieves the symbolic link itself.</p>
+</div>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryResolveLinkTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryResolveLinkTarget*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_TryResolveLinkTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryResolveLinkTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">TryResolveLinkTarget(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Tries to resolve the target of the symbolic link at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -2061,7 +2264,8 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path of the symbolic link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -2076,7 +2280,8 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
-        <td></td>
+        <td><p>The target path, or null if the node cannot be found.</p>
+</td>
       </tr>
     </tbody>
   </table>

@@ -1343,21 +1343,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ConvertToAbsolutePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 6
+    startLine: 13
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Converts a relative path to an absolute path.
+  example: []
   syntax:
     content: public VirtualPath ConvertToAbsolutePath(VirtualPath? relativePath, VirtualPath? basePath = null)
     parameters:
     - id: relativePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The relative path.
     - id: basePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The base path. If not specified, CurrentPath is used.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The absolute path represented by <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function ConvertToAbsolutePath(relativePath As VirtualPath, basePath As VirtualPath = Nothing) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if relativePath is null or an empty string.
   nameWithType.vb: VirtualStorage(Of T).ConvertToAbsolutePath(VirtualPath, VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ConvertToAbsolutePath(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   name.vb: ConvertToAbsolutePath(VirtualPath, VirtualPath)
@@ -1379,21 +1388,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 34
+    startLine: 48
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the node at the specified path.
+  example: []
   syntax:
     content: public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The node's path.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> at the specified path.
     content.vb: Public Function GetNode(path As VirtualPath, followLinks As Boolean = False) As VirtualNode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node cannot be found.
   nameWithType.vb: VirtualStorage(Of T).GetNode(VirtualPath, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
   name.vb: GetNode(VirtualPath, Boolean)
@@ -1415,19 +1433,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 41
+    startLine: 61
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Tries to get the node at the specified path.
+  example: []
   syntax:
     content: public VirtualNode? TryGetNode(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The node's path.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The found <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref>, or null if not found.
     content.vb: Public Function TryGetNode(path As VirtualPath, followLinks As Boolean = False) As VirtualNode
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetNode*
   nameWithType.vb: VirtualStorage(Of T).TryGetNode(VirtualPath, Boolean)
@@ -1451,19 +1474,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 55
+    startLine: 81
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Resolves the target of the symbolic link at the specified path.
+  example: []
   syntax:
     content: public VirtualPath ResolveLinkTarget(VirtualPath path)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the symbolic link.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path.
     content.vb: Public Function ResolveLinkTarget(path As VirtualPath) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ResolveLinkTarget*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node cannot be found.
   nameWithType.vb: VirtualStorage(Of T).ResolveLinkTarget(VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ResolveLinkTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryResolveLinkTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -1484,17 +1515,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 62
+    startLine: 93
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Tries to resolve the target of the symbolic link at the specified path.
+  example: []
   syntax:
     content: public VirtualPath? TryResolveLinkTarget(VirtualPath path)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the symbolic link.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path, or null if the node cannot be found.
     content.vb: Public Function TryResolveLinkTarget(path As VirtualPath) As VirtualPath
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryResolveLinkTarget*
   nameWithType.vb: VirtualStorage(Of T).TryResolveLinkTarget(VirtualPath)
@@ -1517,21 +1552,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 74
+    startLine: 112
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the directory at the specified path.
+  example: []
   syntax:
     content: public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref> at the specified path.
     content.vb: Public Function GetDirectory(path As VirtualPath, followLinks As Boolean = False) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetDirectory*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node cannot be found.
   nameWithType.vb: VirtualStorage(Of T).GetDirectory(VirtualPath, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
   name.vb: GetDirectory(VirtualPath, Boolean)
@@ -1553,19 +1597,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 89
+    startLine: 133
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Tries to get the directory at the specified path.
+  example: []
   syntax:
     content: public VirtualDirectory? TryGetDirectory(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The found <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref>, or null if not found.
     content.vb: Public Function TryGetDirectory(path As VirtualPath, followLinks As Boolean = False) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetDirectory*
   nameWithType.vb: VirtualStorage(Of T).TryGetDirectory(VirtualPath, Boolean)
@@ -1589,21 +1638,30 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 101
+    startLine: 152
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the item at the specified path.
+  example: []
   syntax:
     content: public VirtualItem<T> GetItem(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the item.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem%601" data-throw-if-not-resolved="false"></xref> at the specified path.
     content.vb: Public Function GetItem(path As VirtualPath, followLinks As Boolean = False) As VirtualItem(Of T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetItem*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node cannot be found.
   nameWithType.vb: VirtualStorage(Of T).GetItem(VirtualPath, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetItem(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
   name.vb: GetItem(VirtualPath, Boolean)
@@ -1625,19 +1683,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 116
+    startLine: 173
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Tries to get the item at the specified path.
+  example: []
   syntax:
     content: public VirtualItem<T>? TryGetItem(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the item.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+      description: The found <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem%601" data-throw-if-not-resolved="false"></xref>, or null if not found.
     content.vb: Public Function TryGetItem(path As VirtualPath, followLinks As Boolean = False) As VirtualItem(Of T)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetItem*
   nameWithType.vb: VirtualStorage(Of T).TryGetItem(VirtualPath, Boolean)
@@ -1661,19 +1724,28 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 128
+    startLine: 192
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the symbolic link at the specified path.
+  remarks: This method does not have a followLinks parameter because it retrieves the symbolic link itself.
+  example: []
   syntax:
     content: public VirtualSymbolicLink GetSymbolicLink(VirtualPath path)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the symbolic link.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> at the specified path.
     content.vb: Public Function GetSymbolicLink(path As VirtualPath) As VirtualSymbolicLink
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the node cannot be found.
   nameWithType.vb: VirtualStorage(Of T).GetSymbolicLink(VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -1694,17 +1766,22 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 147
+    startLine: 219
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Tries to get the symbolic link at the specified path.
+  remarks: This method does not have a followLinks parameter because it retrieves the symbolic link itself.
+  example: []
   syntax:
     content: public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the symbolic link.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The found <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref>, or null if not found.
     content.vb: Public Function TryGetSymbolicLink(path As VirtualPath) As VirtualSymbolicLink
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.TryGetSymbolicLink*
   nameWithType.vb: VirtualStorage(Of T).TryGetSymbolicLink(VirtualPath)
@@ -1727,19 +1804,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 159
+    startLine: 237
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the node type at the specified path.
+  example: []
   syntax:
     content: public VirtualNodeType GetNodeType(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The node's path.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType" data-throw-if-not-resolved="false"></xref> of the node.
     content.vb: Public Function GetNodeType(path As VirtualPath, followLinks As Boolean = False) As VirtualNodeType
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType*
   nameWithType.vb: VirtualStorage(Of T).GetNodeType(VirtualPath, Boolean)
@@ -1763,23 +1845,31 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 167
+    startLine: 254
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the nodes in the path tree starting from the specified path.
+  remarks: This method may be integrated, reorganized, or deprecated in the near future.
+  example: []
   syntax:
     content: public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
     parameters:
     - id: basePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The base path.
     - id: nodeType
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The node type filter.
     - id: recursive
       type: System.Boolean
+      description: Whether to retrieve nodes recursively.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+      description: The nodes in the path tree starting from the specified path <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetNodes(basePath As VirtualPath, nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*
   nameWithType.vb: VirtualStorage(Of T).GetNodes(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
@@ -1803,21 +1893,28 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 174
+    startLine: 269
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the nodes in the path tree starting from the current path.
+  remarks: This method may be integrated, reorganized, or deprecated in the near future.
+  example: []
   syntax:
     content: public IEnumerable<VirtualNode> GetNodes(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
     parameters:
     - id: nodeType
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The node type filter.
     - id: recursive
       type: System.Boolean
+      description: Whether to retrieve nodes recursively.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+      description: The nodes in the path tree starting from the current path <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetNodes(nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*
   nameWithType.vb: VirtualStorage(Of T).GetNodes(VirtualNodeTypeFilter, Boolean, Boolean)
@@ -1841,23 +1938,31 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesWithPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 181
+    startLine: 285
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the paths in the path tree starting from the specified path.
+  remarks: This method may be integrated, reorganized, or deprecated in the near future.
+  example: []
   syntax:
     content: public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
     parameters:
     - id: basePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The base path.
     - id: nodeType
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The node type filter.
     - id: recursive
       type: System.Boolean
+      description: Whether to retrieve paths recursively.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+      description: The paths in the path tree starting from the specified path <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetNodesWithPaths(basePath As VirtualPath, nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*
   nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
@@ -1881,21 +1986,28 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesWithPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 188
+    startLine: 300
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the paths in the path tree starting from the current path.
+  remarks: This method may be integrated, reorganized, or deprecated in the near future.
+  example: []
   syntax:
     content: public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
     parameters:
     - id: nodeType
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The node type filter.
     - id: recursive
       type: System.Boolean
+      description: Whether to retrieve paths recursively.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+      description: The paths in the path tree starting from the current path <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function GetNodesWithPaths(nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*
   nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths(VirtualNodeTypeFilter, Boolean, Boolean)
@@ -1919,23 +2031,34 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 195
+    startLine: 319
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Expands a path that contains wildcards.
+  remarks: >-
+    <p>followLinks indicates whether to follow links during the recursive traversal of nodes when the terminal node of the path is a symbolic link.</p>
+
+    <p>resolveLinks indicates whether to resolve links when non-terminal nodes of the path are symbolic links.</p>
+  example: []
   syntax:
     content: public IEnumerable<VirtualPath> ExpandPath(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true, bool resolveLinks = true)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path.
     - id: filter
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+      description: The node type filter.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     - id: resolveLinks
       type: System.Boolean
+      description: Whether to resolve symbolic links.
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+      description: The expanded paths <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref>.
     content.vb: Public Function ExpandPath(path As VirtualPath, filter As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, followLinks As Boolean = True, resolveLinks As Boolean = True) As IEnumerable(Of VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath*
   nameWithType.vb: VirtualStorage(Of T).ExpandPath(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
@@ -1959,19 +2082,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 205
+    startLine: 335
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks if a node exists at the specified path.
+  example: []
   syntax:
     content: public bool NodeExists(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The node's path.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: System.Boolean
+      description: True if the node exists; otherwise, false.
     content.vb: Public Function NodeExists(path As VirtualPath, followLinks As Boolean = False) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists*
   nameWithType.vb: VirtualStorage(Of T).NodeExists(VirtualPath, Boolean)
@@ -1995,19 +2123,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 212
+    startLine: 348
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks if a directory exists at the specified path.
+  example: []
   syntax:
     content: public bool DirectoryExists(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The directory's path.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: System.Boolean
+      description: True if the directory exists; otherwise, false.
     content.vb: Public Function DirectoryExists(path As VirtualPath, followLinks As Boolean = False) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.DirectoryExists*
   nameWithType.vb: VirtualStorage(Of T).DirectoryExists(VirtualPath, Boolean)
@@ -2031,19 +2164,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 224
+    startLine: 366
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks if an item exists at the specified path.
+  example: []
   syntax:
     content: public bool ItemExists(VirtualPath path, bool followLinks = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The item's path.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     return:
       type: System.Boolean
+      description: True if the item exists; otherwise, false.
     content.vb: Public Function ItemExists(path As VirtualPath, followLinks As Boolean = False) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists*
   nameWithType.vb: VirtualStorage(Of T).ItemExists(VirtualPath, Boolean)
@@ -2067,17 +2205,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 233
+    startLine: 380
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks if a symbolic link exists at the specified path.
+  example: []
   syntax:
     content: public bool SymbolicLinkExists(VirtualPath path)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The symbolic link's path.
     return:
       type: System.Boolean
+      description: True if the symbolic link exists; otherwise, false.
     content.vb: Public Function SymbolicLinkExists(path As VirtualPath) As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SymbolicLinkExists*
   nameWithType.vb: VirtualStorage(Of T).SymbolicLinkExists(VirtualPath)
@@ -3714,6 +3856,13 @@ references:
   name: VirtualNodeName
   nameWithType: VirtualNodeName
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ConvertToAbsolutePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
@@ -3722,6 +3871,12 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ConvertToAbsolutePath
   nameWithType.vb: VirtualStorage(Of T).ConvertToAbsolutePath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ConvertToAbsolutePath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  name: VirtualNodeNotFoundException
+  nameWithType: VirtualNodeNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -3810,6 +3965,34 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodeType
   nameWithType.vb: VirtualStorage(Of T).GetNodeType
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodeType
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
@@ -3857,34 +4040,6 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
     name: VirtualNode
     href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
-  - name: )
-- uid: System.Collections.Generic.IEnumerable`1
-  commentId: T:System.Collections.Generic.IEnumerable`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
-  fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
-  name.vb: IEnumerable(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
   - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths

@@ -4,34 +4,48 @@ namespace AkiraNetwork.VirtualStorageLibrary
 {
     public partial class VirtualStorage<T>
     {
+        /// <summary>
+        /// Converts a relative path to an absolute path.
+        /// </summary>
+        /// <param name="relativePath">The relative path.</param>
+        /// <param name="basePath">The base path. If not specified, CurrentPath is used.</param>
+        /// <returns>The absolute path represented by <see cref="VirtualPath"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown if relativePath is null or an empty string.</exception>
         public VirtualPath ConvertToAbsolutePath(VirtualPath? relativePath, VirtualPath? basePath = null)
         {
             basePath ??= CurrentPath;
 
-            // relativePathがnullまたは空文字列の場合は、ArgumentExceptionをスロー
+            // Throw ArgumentException if relativePath is null or empty
             if (relativePath == null || relativePath.IsEmpty)
             {
                 throw new ArgumentException(string.Format(Resources.ParameterIsNullOrEmpty, relativePath), nameof(relativePath));
             }
 
-            // relativePathが既に絶対パスである場合は、そのまま使用
+            // Use relativePath as-is if it is already an absolute path
             if (relativePath.IsAbsolute)
             {
                 return relativePath;
             }
 
-            // basePathが空文字列の場合、ArgumentExceptionをスロー
+            // Throw ArgumentException if basePath is empty
             if (basePath.IsEmpty)
             {
                 throw new ArgumentException(string.Format(Resources.ParameterIsEmpty, basePath), nameof(basePath));
             }
 
-            // relativePathを effectiveBasePath に基づいて絶対パスに変換
+            // Convert relativePath to absolute path based on basePath
             var absolutePath = basePath + relativePath;
 
             return absolutePath;
         }
 
+        /// <summary>
+        /// Gets the node at the specified path.
+        /// </summary>
+        /// <param name="path">The node's path.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The <see cref="VirtualNode"/> at the specified path.</returns>
+        /// <exception cref="VirtualNodeNotFoundException">Thrown if the node cannot be found.</exception>
         public VirtualNode GetNode(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -39,20 +53,32 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return nodeContext.Node!;
         }
 
+        /// <summary>
+        /// Tries to get the node at the specified path.
+        /// </summary>
+        /// <param name="path">The node's path.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The found <see cref="VirtualNode"/>, or null if not found.</returns>
         public VirtualNode? TryGetNode(VirtualPath path, bool followLinks = false)
         {
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
             try
             {
-                // GetNodeメソッドは、ノードが見つからない場合に null を返すか、例外をスローするように実装されていると仮定
+                // Assume GetNode returns null or throws an exception if not found
                 return GetNode(absolutePath, followLinks);
             }
             catch (VirtualNodeNotFoundException)
             {
-                return null; // ノードが存在しない場合はnullを返す
+                return null; // Return null if the node does not exist
             }
         }
 
+        /// <summary>
+        /// Resolves the target of the symbolic link at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the symbolic link.</param>
+        /// <returns>The target path.</returns>
+        /// <exception cref="VirtualNodeNotFoundException">Thrown if the node cannot be found.</exception>
         public VirtualPath ResolveLinkTarget(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -60,6 +86,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return nodeContext.ResolvedPath!;
         }
 
+        /// <summary>
+        /// Tries to resolve the target of the symbolic link at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the symbolic link.</param>
+        /// <returns>The target path, or null if the node cannot be found.</returns>
         public VirtualPath? TryResolveLinkTarget(VirtualPath path)
         {
             try
@@ -72,6 +103,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Gets the directory at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the directory.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The <see cref="VirtualDirectory"/> at the specified path.</returns>
+        /// <exception cref="VirtualNodeNotFoundException">Thrown if the node cannot be found.</exception>
         public VirtualDirectory GetDirectory(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -87,6 +125,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Tries to get the directory at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the directory.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The found <see cref="VirtualDirectory"/>, or null if not found.</returns>
         public VirtualDirectory? TryGetDirectory(VirtualPath path, bool followLinks = false)
         {
             try
@@ -99,6 +143,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Gets the item at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the item.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The <see cref="VirtualItem{T}"/> at the specified path.</returns>
+        /// <exception cref="VirtualNodeNotFoundException">Thrown if the node cannot be found.</exception>
         public VirtualItem<T> GetItem(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -114,6 +165,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Tries to get the item at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the item.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The found <see cref="VirtualItem{T}"/>, or null if not found.</returns>
         public VirtualItem<T>? TryGetItem(VirtualPath path, bool followLinks = false)
         {
             try
@@ -126,6 +183,13 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Gets the symbolic link at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the symbolic link.</param>
+        /// <returns>The <see cref="VirtualSymbolicLink"/> at the specified path.</returns>
+        /// <exception cref="VirtualNodeNotFoundException">Thrown if the node cannot be found.</exception>
+        /// <remarks>This method does not have a followLinks parameter because it retrieves the symbolic link itself.</remarks>
         public VirtualSymbolicLink GetSymbolicLink(VirtualPath path)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -145,6 +209,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Tries to get the symbolic link at the specified path.
+        /// </summary>
+        /// <param name="path">The path of the symbolic link.</param>
+        /// <returns>The found <see cref="VirtualSymbolicLink"/>, or null if not found.</returns>
+        /// <remarks>
+        /// This method does not have a followLinks parameter because it retrieves the symbolic link itself.
+        /// </remarks>
         public VirtualSymbolicLink? TryGetSymbolicLink(VirtualPath path)
         {
             try
@@ -157,6 +229,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Gets the node type at the specified path.
+        /// </summary>
+        /// <param name="path">The node's path.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The <see cref="VirtualNodeType"/> of the node.</returns>
         public VirtualNodeType GetNodeType(VirtualPath path, bool followLinks = false)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -165,6 +243,15 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return node?.NodeType ?? VirtualNodeType.None;
         }
 
+        /// <summary>
+        /// Gets the nodes in the path tree starting from the specified path.
+        /// </summary>
+        /// <param name="basePath">The base path.</param>
+        /// <param name="nodeType">The node type filter.</param>
+        /// <param name="recursive">Whether to retrieve nodes recursively.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The nodes in the path tree starting from the specified path <see cref="IEnumerable{T}"/>.</returns>
+        /// <remarks>This method may be integrated, reorganized, or deprecated in the near future.</remarks>
         public IEnumerable<VirtualNode> GetNodes(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(basePath, nodeType, recursive, followLinks);
@@ -172,6 +259,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return nodes;
         }
 
+        /// <summary>
+        /// Gets the nodes in the path tree starting from the current path.
+        /// </summary>
+        /// <param name="nodeType">The node type filter.</param>
+        /// <param name="recursive">Whether to retrieve nodes recursively.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The nodes in the path tree starting from the current path <see cref="IEnumerable{T}"/>.</returns>
+        /// <remarks>This method may be integrated, reorganized, or deprecated in the near future.</remarks>
         public IEnumerable<VirtualNode> GetNodes(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
@@ -179,6 +274,15 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return nodes;
         }
 
+        /// <summary>
+        /// Gets the paths in the path tree starting from the specified path.
+        /// </summary>
+        /// <param name="basePath">The base path.</param>
+        /// <param name="nodeType">The node type filter.</param>
+        /// <param name="recursive">Whether to retrieve paths recursively.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The paths in the path tree starting from the specified path <see cref="IEnumerable{T}"/>.</returns>
+        /// <remarks>This method may be integrated, reorganized, or deprecated in the near future.</remarks>
         public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(basePath, nodeType, recursive, followLinks);
@@ -186,6 +290,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return paths;
         }
 
+        /// <summary>
+        /// Gets the paths in the path tree starting from the current path.
+        /// </summary>
+        /// <param name="nodeType">The node type filter.</param>
+        /// <param name="recursive">Whether to retrieve paths recursively.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>The paths in the path tree starting from the current path <see cref="IEnumerable{T}"/>.</returns>
+        /// <remarks>This method may be integrated, reorganized, or deprecated in the near future.</remarks>
         public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
@@ -193,6 +305,18 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return paths;
         }
 
+        /// <summary>
+        /// Expands a path that contains wildcards.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="filter">The node type filter.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <param name="resolveLinks">Whether to resolve symbolic links.</param>
+        /// <returns>The expanded paths <see cref="IEnumerable{T}"/>.</returns>
+        /// <remarks>
+        /// <para>followLinks indicates whether to follow links during the recursive traversal of nodes when the terminal node of the path is a symbolic link.</para>
+        /// <para>resolveLinks indicates whether to resolve links when non-terminal nodes of the path are symbolic links.</para>
+        /// </remarks>
         public IEnumerable<VirtualPath> ExpandPath(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true, bool resolveLinks = true)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
@@ -203,18 +327,30 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return resolvedPaths;
         }
 
+        /// <summary>
+        /// Checks if a node exists at the specified path.
+        /// </summary>
+        /// <param name="path">The node's path.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>True if the node exists; otherwise, false.</returns>
         public bool NodeExists(VirtualPath path, bool followLinks = false)
         {
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
             var node = TryGetNode(absolutePath, followLinks);
-            return node != null; // ノードがnullでなければ、存在すると判断
+            return node != null; // Determine existence if the node is not null
         }
 
+        /// <summary>
+        /// Checks if a directory exists at the specified path.
+        /// </summary>
+        /// <param name="path">The directory's path.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>True if the directory exists; otherwise, false.</returns>
         public bool DirectoryExists(VirtualPath path, bool followLinks = false)
         {
             if (path.IsRoot)
             {
-                return true; // ルートディレクトリは常に存在する
+                return true; // The root directory always exists
             }
 
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
@@ -222,6 +358,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return directory != null;
         }
 
+        /// <summary>
+        /// Checks if an item exists at the specified path.
+        /// </summary>
+        /// <param name="path">The item's path.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <returns>True if the item exists; otherwise, false.</returns>
         public bool ItemExists(VirtualPath path, bool followLinks = false)
         {
             VirtualPath absolutePath = ConvertToAbsolutePath(path);
@@ -231,6 +373,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return nodeType.IsGenericType && nodeType.GetGenericTypeDefinition() == typeof(VirtualItem<>);
         }
 
+        /// <summary>
+        /// Checks if a symbolic link exists at the specified path.
+        /// </summary>
+        /// <param name="path">The symbolic link's path.</param>
+        /// <returns>True if the symbolic link exists; otherwise, false.</returns>
         public bool SymbolicLinkExists(VirtualPath path)
         {
             var absolutePath = ConvertToAbsolutePath(path);
