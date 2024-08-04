@@ -835,15 +835,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ChangeDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 6
+    startLine: 10
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Changes the current working directory.
+  example: []
   syntax:
     content: public void ChangeDirectory(VirtualPath path)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the new working directory
     content.vb: Public Sub ChangeDirectory(path As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory*
   nameWithType.vb: VirtualStorage(Of T).ChangeDirectory(VirtualPath)
@@ -866,17 +869,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 15
+    startLine: 24
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Sets a node at the specified path.
+  example: []
   syntax:
     content: public void SetNode(VirtualPath destinationPath, VirtualNode node)
     parameters:
     - id: destinationPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path where the node is set
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> to set
     content.vb: Public Sub SetNode(destinationPath As VirtualPath, node As VirtualNode)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode*
   nameWithType.vb: VirtualStorage(Of T).SetNode(VirtualPath, VirtualNode)
@@ -899,17 +906,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 35
+    startLine: 49
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates an item.
+  example: []
   syntax:
     content: public void UpdateItem(VirtualPath itemPath, VirtualItem<T> newItem)
     parameters:
     - id: itemPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the item to update
     - id: newItem
       type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+      description: The new data for the item
     content.vb: Public Sub UpdateItem(itemPath As VirtualPath, newItem As VirtualItem(Of T))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateItem*
   nameWithType.vb: VirtualStorage(Of T).UpdateItem(VirtualPath, VirtualItem(Of T))
@@ -933,17 +944,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 47
+    startLine: 66
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates a directory.
+  example: []
   syntax:
     content: public void UpdateDirectory(VirtualPath directoryPath, VirtualDirectory newDirectory)
     parameters:
     - id: directoryPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory to update
     - id: newDirectory
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The new data for the directory
     content.vb: Public Sub UpdateDirectory(directoryPath As VirtualPath, newDirectory As VirtualDirectory)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateDirectory*
   nameWithType.vb: VirtualStorage(Of T).UpdateDirectory(VirtualPath, VirtualDirectory)
@@ -966,17 +981,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateSymbolicLInk
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 59
+    startLine: 83
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates a symbolic link.
+  example: []
   syntax:
     content: public void UpdateSymbolicLInk(VirtualPath linkPath, VirtualSymbolicLink newLink)
     parameters:
     - id: linkPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the symbolic link to update
     - id: newLink
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The new data for the symbolic link
     content.vb: Public Sub UpdateSymbolicLInk(linkPath As VirtualPath, newLink As VirtualSymbolicLink)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateSymbolicLInk*
   nameWithType.vb: VirtualStorage(Of T).UpdateSymbolicLInk(VirtualPath, VirtualSymbolicLink)
@@ -999,19 +1018,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 72
+    startLine: 102
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a node to the specified directory.
+  example: []
   syntax:
     content: public void AddNode(VirtualPath nodeDirectoryPath, VirtualNode node, bool overwrite = false)
     parameters:
     - id: nodeDirectoryPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory to add the node to
     - id: node
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNode" data-throw-if-not-resolved="false"></xref> to add
     - id: overwrite
       type: System.Boolean
+      description: Indicates whether to overwrite an existing node
     content.vb: Public Sub AddNode(nodeDirectoryPath As VirtualPath, node As VirtualNode, overwrite As Boolean = False)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddNode*
   nameWithType.vb: VirtualStorage(Of T).AddNode(VirtualPath, VirtualNode, Boolean)
@@ -1035,19 +1059,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 92
+    startLine: 128
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a directory.
+  example: []
   syntax:
     content: public void AddDirectory(VirtualPath directoryPath, VirtualDirectory directory, bool createSubdirectories = false)
     parameters:
     - id: directoryPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory to add
     - id: directory
       type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref> to add
     - id: createSubdirectories
       type: System.Boolean
+      description: Indicates whether to create intermediate directories
     content.vb: Public Sub AddDirectory(directoryPath As VirtualPath, directory As VirtualDirectory, createSubdirectories As Boolean = False)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
   nameWithType.vb: VirtualStorage(Of T).AddDirectory(VirtualPath, VirtualDirectory, Boolean)
@@ -1071,17 +1100,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 128
+    startLine: 169
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a directory.
+  example: []
   syntax:
     content: public void AddDirectory(VirtualPath path, bool createSubdirectories = false)
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory to add
     - id: createSubdirectories
       type: System.Boolean
+      description: Indicates whether to create intermediate directories
     content.vb: Public Sub AddDirectory(path As VirtualPath, createSubdirectories As Boolean = False)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddDirectory*
   nameWithType.vb: VirtualStorage(Of T).AddDirectory(VirtualPath, Boolean)
@@ -1105,19 +1138,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 157
+    startLine: 211
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds an item.
+  example: []
   syntax:
     content: public void AddItem(VirtualPath itemDirectoryPath, VirtualItem<T> item, bool overwrite = false)
     parameters:
     - id: itemDirectoryPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory to add the item to
     - id: item
       type: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem%601" data-throw-if-not-resolved="false"></xref> to add
     - id: overwrite
       type: System.Boolean
+      description: Indicates whether to overwrite an existing node
     content.vb: Public Sub AddItem(itemDirectoryPath As VirtualPath, item As VirtualItem(Of T), overwrite As Boolean = False)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
   nameWithType.vb: VirtualStorage(Of T).AddItem(VirtualPath, VirtualItem(Of T), Boolean)
@@ -1141,19 +1179,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 191
+    startLine: 251
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds an item.
+  example: []
   syntax:
     content: public void AddItem(VirtualPath itemPath, T? data = default, bool overwrite = false)
     parameters:
     - id: itemPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the item to add
     - id: data
       type: '{T}'
+      description: The data for the item
     - id: overwrite
       type: System.Boolean
+      description: Indicates whether to overwrite an existing node
     content.vb: Public Sub AddItem(itemPath As VirtualPath, data As T = Nothing, overwrite As Boolean = False)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddItem*
   nameWithType.vb: VirtualStorage(Of T).AddItem(VirtualPath, T, Boolean)
@@ -1177,19 +1220,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 207
+    startLine: 273
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a symbolic link.
+  example: []
   syntax:
     content: public void AddSymbolicLink(VirtualPath linkDirectoryPath, VirtualSymbolicLink link, bool overwrite = false)
     parameters:
     - id: linkDirectoryPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the directory to add the symbolic link to
     - id: link
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> to add
     - id: overwrite
       type: System.Boolean
+      description: Indicates whether to overwrite an existing node
     content.vb: Public Sub AddSymbolicLink(linkDirectoryPath As VirtualPath, link As VirtualSymbolicLink, overwrite As Boolean = False)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
   nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink(VirtualPath, VirtualSymbolicLink, Boolean)
@@ -1213,19 +1261,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 250
+    startLine: 322
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a symbolic link.
+  example: []
   syntax:
     content: public void AddSymbolicLink(VirtualPath linkPath, VirtualPath? targetPath = null, bool overwrite = false)
     parameters:
     - id: linkPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the symbolic link
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the target
     - id: overwrite
       type: System.Boolean
+      description: Indicates whether to overwrite an existing node
     content.vb: Public Sub AddSymbolicLink(linkPath As VirtualPath, targetPath As VirtualPath = Nothing, overwrite As Boolean = False)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddSymbolicLink*
   nameWithType.vb: VirtualStorage(Of T).AddSymbolicLink(VirtualPath, VirtualPath, Boolean)
@@ -1249,19 +1302,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 266
+    startLine: 344
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Changes the name of a node.
+  example: []
   syntax:
     content: public void SetNodeName(VirtualPath nodePath, VirtualNodeName newName, bool resolveLinks = true)
     parameters:
     - id: nodePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the node to rename
     - id: newName
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The new name
     - id: resolveLinks
       type: System.Boolean
+      description: Indicates whether to resolve symbolic links
     content.vb: Public Sub SetNodeName(nodePath As VirtualPath, newName As VirtualNodeName, resolveLinks As Boolean = True)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNodeName*
   nameWithType.vb: VirtualStorage(Of T).SetNodeName(VirtualPath, VirtualNodeName, Boolean)
