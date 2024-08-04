@@ -4,24 +4,38 @@ namespace AkiraNetwork.VirtualStorageLibrary
 {
     public partial class VirtualStorage<T>
     {
+        /// <summary>
+        /// Checks preconditions before copying.
+        /// </summary>
+        /// <param name="sourcePath">The source path of the copy.</param>
+        /// <param name="destinationPath">The destination path of the copy.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <param name="recursive">Whether to copy recursively.</param>
+        /// <exception cref="VirtualNodeNotFoundException">
+        /// Thrown if the source node is not found.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the source and destination paths are the same or if a recursive copy
+        /// would result in a circular reference.
+        /// </exception>
         private void CheckCopyPreconditions(VirtualPath sourcePath, VirtualPath destinationPath, bool followLinks, bool recursive)
         {
             VirtualPath absoluteSourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
             VirtualPath absoluteDestinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
-            // コピー元の存在確認
+            // Check if the source node exists
             if (!NodeExists(absoluteSourcePath, true))
             {
                 throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, absoluteSourcePath.NodeName));
             }
 
-            // コピー元とコピー先が同じ場合は例外をスロー
+            // Throw an exception if the source and destination paths are the same
             if (absoluteSourcePath == absoluteDestinationPath)
             {
                 throw new InvalidOperationException(string.Format(Resources.SourceAndDestinationPathSameForCopy, absoluteSourcePath, absoluteDestinationPath));
             }
 
-            // 循環参照チェック
+            // Check for circular references
             if (recursive)
             {
                 if (VirtualPath.ArePathsSubdirectories(absoluteSourcePath, absoluteDestinationPath))
@@ -30,10 +44,26 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 }
             }
 
-            // コピー元ツリーの探索 (コピー元の存在確認を行い、問題があれば例外をスロー。返却値は破棄)
+            // Traverse the source tree (check for source existence and throw an exception if necessary. Discard the return value)
             IEnumerable<VirtualNodeContext> _ = WalkPathTree(absoluteSourcePath, VirtualNodeTypeFilter.All, recursive, followLinks).ToList();
         }
 
+        /// <summary>
+        /// Copies the node at the specified path.
+        /// </summary>
+        /// <param name="sourcePath">The source path of the copy.</param>
+        /// <param name="destinationPath">The destination path of the copy.</param>
+        /// <param name="overwrite">Whether to overwrite existing nodes.</param>
+        /// <param name="recursive">Whether to copy recursively.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <param name="destinationContextList">List of destination contexts.</param>
+        /// <exception cref="VirtualNodeNotFoundException">
+        /// Thrown if the source node is not found.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if the source and destination paths are the same or if a recursive copy
+        /// would result in a circular reference.
+        /// </exception>
         public void CopyNode(
             VirtualPath sourcePath,
             VirtualPath destinationPath,
@@ -47,7 +77,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             sourcePath = ConvertToAbsolutePath(sourcePath).NormalizePath();
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
 
-            // コピー元のツリーを取得
+            // Retrieve the source tree
             IEnumerable<VirtualNodeContext> sourceContexts = WalkPathTree(sourcePath, VirtualNodeTypeFilter.All, recursive, followLinks);
 
             VirtualNode sourceNode = sourceContexts.First().Node!;
@@ -69,6 +99,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return;
         }
 
+        /// <summary>
+        /// Copies a single node internally.
+        /// </summary>
+        /// <param name="sourcePath">The source path of the node.</param>
+        /// <param name="sourceNode">The source node.</param>
+        /// <param name="destinationPath">The destination path of the node.</param>
+        /// <param name="linkOriginalPath">The original path of the link.</param>
+        /// <param name="overwrite">Whether to overwrite existing nodes.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <param name="destinationContextList">List of destination contexts.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown if a node with the same name exists at the destination.
+        /// </exception>
         private void CopySingleInternal(
             VirtualPath sourcePath,
             VirtualNode sourceNode,
@@ -95,7 +138,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             bool overwriteDirectory = false;
 
-            // コピー先ノードが存在する場合
+            // If the destination node exists
             switch (destinationNode)
             {
                 case VirtualDirectory directory:
@@ -108,7 +151,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                         {
                             overwriteDirectory = true;
 
-                            // 同名ディレクトリへの上書きの場合、実質、上書きはしないが更新日付は更新する。
+                            // In the case of overwriting a directory with the same name, do not actually overwrite but update the modification date.
                             existingDirectory.UpdatedDate = DateTime.Now;
                         }
                         else
@@ -141,25 +184,25 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     break;
             }
 
-            // コピー先ノードを作成
+            // Create the destination node
             VirtualNode newNode = sourceNode.DeepClone();
             newNode.Name = newNodeName;
 
-            // コピー元ノードをコピー先ディレクトリに追加 (ディレクトリの上書き以外の場合)
+            // Add the source node to the destination directory (unless overwriting a directory)
             if (!overwriteDirectory)
             {
                 destinationDirectory.Add(newNode);
             }
 
-            // リンクオリジナルパスが指定されている場合は設定
+            // Set the link original path if specified
             destinationPath = linkOriginalPath ?? destinationPath;
 
-            // パスの深さを計算
+            // Calculate the depth of the path
             int depth = destinationPath.Depth - 1;
 
             if (destinationContextList != null)
             {
-                // コピー操作の結果を表す VirtualNodeContext を生成して返却
+                // Generate a VirtualNodeContext representing the result of the copy operation and return it
                 VirtualNodeContext context = new(
                     newNode,
                     destinationPath,

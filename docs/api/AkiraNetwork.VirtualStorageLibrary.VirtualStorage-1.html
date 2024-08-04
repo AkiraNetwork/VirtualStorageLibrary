@@ -788,7 +788,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext})">CopyNode(VirtualPath, VirtualPath, bool, bool, bool, List&lt;VirtualNodeContext&gt;?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Copies the node at the specified path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -807,32 +808,60 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">sourcePath</span></td>
-        <td></td>
+        <td><p>The source path of the copy.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">destinationPath</span></td>
-        <td></td>
+        <td><p>The destination path of the copy.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">overwrite</span></td>
-        <td></td>
+        <td><p>Whether to overwrite existing nodes.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">recursive</span></td>
-        <td></td>
+        <td><p>Whether to copy recursively.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">followLinks</span></td>
-        <td></td>
+        <td><p>Whether to follow symbolic links.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html">VirtualNodeContext</a>&gt;</td>
         <td><span class="parametername">destinationContextList</span></td>
-        <td></td>
+        <td><p>List of destination contexts.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html">VirtualNodeNotFoundException</a></td>
+        <td><p>Thrown if the source node is not found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown if the source and destination paths are the same or if a recursive copy
+would result in a circular reference.</p>
+</td>
       </tr>
     </tbody>
   </table>

@@ -292,27 +292,45 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CopyNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.CopyTask.cs
-    startLine: 36
+    startLine: 66
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Copies the node at the specified path.
+  example: []
   syntax:
     content: public void CopyNode(VirtualPath sourcePath, VirtualPath destinationPath, bool overwrite = false, bool recursive = false, bool followLinks = false, List<VirtualNodeContext>? destinationContextList = null)
     parameters:
     - id: sourcePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The source path of the copy.
     - id: destinationPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The destination path of the copy.
     - id: overwrite
       type: System.Boolean
+      description: Whether to overwrite existing nodes.
     - id: recursive
       type: System.Boolean
+      description: Whether to copy recursively.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     - id: destinationContextList
       type: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
+      description: List of destination contexts.
     content.vb: Public Sub CopyNode(sourcePath As VirtualPath, destinationPath As VirtualPath, overwrite As Boolean = False, recursive As Boolean = False, followLinks As Boolean = False, destinationContextList As List(Of VirtualNodeContext) = Nothing)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode*
+  exceptions:
+  - type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+    description: Thrown if the source node is not found.
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: >-
+      Thrown if the source and destination paths are the same or if a recursive copy
+
+      would result in a circular reference.
   nameWithType.vb: VirtualStorage(Of T).CopyNode(VirtualPath, VirtualPath, Boolean, Boolean, Boolean, List(Of VirtualNodeContext))
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CopyNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean, Boolean, System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext))
   name.vb: CopyNode(VirtualPath, VirtualPath, Boolean, Boolean, Boolean, List(Of VirtualNodeContext))
@@ -3195,6 +3213,19 @@ references:
   nameWithType.vb: VirtualStorage(Of T).New
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New
   name.vb: New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  name: VirtualNodeNotFoundException
+  nameWithType: VirtualNodeNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__
@@ -3747,19 +3778,6 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkByLinkPath
   nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath
-- uid: System.InvalidOperationException
-  commentId: T:System.InvalidOperationException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
-  name: InvalidOperationException
-  nameWithType: InvalidOperationException
-  fullName: System.InvalidOperationException
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
-  name: VirtualNodeNotFoundException
-  nameWithType: VirtualNodeNotFoundException
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_MoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_
