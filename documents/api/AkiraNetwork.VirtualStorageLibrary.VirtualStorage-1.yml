@@ -2242,23 +2242,55 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
-    startLine: 6
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Removes the node at the specified path.
+  remarks: >-
+    <p>
+
+    If followLinks is true and the terminal node in the path is a 
+
+    symbolic link, the path tree after resolving the path will be 
+
+    removed, and the symbolic link will also be removed. If false, 
+
+    only the symbolic link itself is removed.
+
+    </p>
+
+    <p>
+
+    resolveLinks indicates whether to resolve links when 
+
+    non-terminal nodes (from the top node to the parent of the 
+
+    terminal node) in the path are symbolic links.
+
+    </p>
+  example: []
   syntax:
     content: public void RemoveNode(VirtualPath nodePath, bool recursive = false, bool followLinks = false, bool resolveLinks = true)
     parameters:
     - id: nodePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the node to remove.
     - id: recursive
       type: System.Boolean
+      description: Whether to remove recursively.
     - id: followLinks
       type: System.Boolean
+      description: Whether to follow symbolic links.
     - id: resolveLinks
       type: System.Boolean
+      description: Whether to resolve link targets.
     content.vb: Public Sub RemoveNode(nodePath As VirtualPath, recursive As Boolean = False, followLinks As Boolean = False, resolveLinks As Boolean = True)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown when trying to remove the root node or a non-empty directory.
   nameWithType.vb: VirtualStorage(Of T).RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean, Boolean)
   name.vb: RemoveNode(VirtualPath, Boolean, Boolean, Boolean)
@@ -4122,6 +4154,13 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SymbolicLinkExists
   nameWithType.vb: VirtualStorage(Of T).SymbolicLinkExists
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SymbolicLinkExists
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_

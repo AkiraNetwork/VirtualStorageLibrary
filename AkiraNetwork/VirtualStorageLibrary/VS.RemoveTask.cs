@@ -4,6 +4,29 @@ namespace AkiraNetwork.VirtualStorageLibrary
 {
     public partial class VirtualStorage<T>
     {
+        /// <summary>
+        /// Removes the node at the specified path.
+        /// </summary>
+        /// <param name="nodePath">The path of the node to remove.</param>
+        /// <param name="recursive">Whether to remove recursively.</param>
+        /// <param name="followLinks">Whether to follow symbolic links.</param>
+        /// <param name="resolveLinks">Whether to resolve link targets.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when trying to remove the root node or a non-empty directory.
+        /// </exception>
+        /// <remarks>
+        /// <para>
+        /// If followLinks is true and the terminal node in the path is a 
+        /// symbolic link, the path tree after resolving the path will be 
+        /// removed, and the symbolic link will also be removed. If false, 
+        /// only the symbolic link itself is removed.
+        /// </para>
+        /// <para>
+        /// resolveLinks indicates whether to resolve links when 
+        /// non-terminal nodes (from the top node to the parent of the 
+        /// terminal node) in the path are symbolic links.
+        /// </para>
+        /// </remarks>
         public void RemoveNode(VirtualPath nodePath, bool recursive = false, bool followLinks = false, bool resolveLinks = true)
         {
             nodePath = ConvertToAbsolutePath(nodePath).NormalizePath();
@@ -23,32 +46,32 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             if (recursive)
             {
-                // ノードコンテキストを逆順に処理するためにリストに変換して逆順にソート
+                // Convert the node contexts to a list and process in reverse order
                 IEnumerable<VirtualNodeContext> reversedContexts = contexts.Reverse();
 
                 foreach (VirtualNodeContext context in reversedContexts)
                 {
                     VirtualDirectory? parentDir = context.ParentDirectory;
 
-                    // シンボリックリンクか判定
+                    // Check if it's a symbolic link
                     if (context.ResolvedLink != null)
                     {
-                        // シンボリックリンクの場合はリンクノードを削除する
+                        // If it's a symbolic link, remove the link node
                         VirtualSymbolicLink link = context.ResolvedLink;
                         VirtualPath linkPath = nodePath + context.TraversalPath;
                         VirtualPath linkParentPath = linkPath.DirectoryPath;
                         parentDir = GetDirectory(linkParentPath, true);
 
-                        // 削除するリンクのストレージ参照フラグをリセット
+                        // Reset storage reference flag for the link to be removed
                         link.IsReferencedInStorage = false;
 
-                        // 辞書からノードを削除
+                        // Remove node from dictionary
                         parentDir?.Remove(link);
 
-                        // 全てのターゲットノードタイプを更新
+                        // Update all target node types in the dictionary
                         UpdateAllTargetNodeTypesInDictionary();
 
-                        // リンク辞書からリンクを削除
+                        // Remove link from dictionary
                         if (link.TargetPath != null)
                         {
                             VirtualPath? resolvedTargetPath = TryResolveLinkTarget(link.TargetPath);
@@ -58,28 +81,28 @@ namespace AkiraNetwork.VirtualStorageLibrary
                             }
                         }
 
-                        // リンクターゲットも削除する
+                        // Remove the target of the link
                         VirtualPath targetPath = ConvertToAbsolutePath(link.TargetPath).NormalizePath();
                         RemoveNode(targetPath, recursive, followLinks);
                     }
                     else
                     {
-                        // 通常のノードの場合はそのまま削除
+                        // If it's a regular node, remove it
 
                         VirtualNode node = context.Node!;
                         if (node is IDisposable disposableNode)
                         {
-                            // 削除対象ノードがIDisposableを実装している場合はDisposeメソッドを呼び出す
+                            // If the node implements IDisposable, call Dispose method
                             disposableNode.Dispose();
                         }
 
-                        // 削除するノードのストレージ参照フラグをリセット
+                        // Reset storage reference flag for the node to be removed
                         node.IsReferencedInStorage = false;
 
-                        // 辞書からノードを削除
+                        // Remove node from dictionary
                         parentDir?.Remove(node);
 
-                        // 全てのターゲットノードタイプを更新
+                        // Update all target node types in the dictionary
                         UpdateAllTargetNodeTypesInDictionary();
                     }
                 }
@@ -100,20 +123,20 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
                 if (node is IDisposable disposableNode)
                 {
-                    // 削除対象ノードがIDisposableを実装している場合はDisposeメソッドを呼び出す
+                    // If the node implements IDisposable, call Dispose method
                     disposableNode.Dispose();
                 }
 
-                // 削除するノードのストレージ参照フラグをリセット
+                // Reset storage reference flag for the node to be removed
                 node.IsReferencedInStorage = false;
 
-                // 辞書からノードを削除
+                // Remove node from dictionary
                 parentDir?.Remove(node);
 
-                // 全てのターゲットノードタイプを更新
+                // Update all target node types in the dictionary
                 UpdateAllTargetNodeTypesInDictionary();
 
-                // ノードがリンクの場合、リンク辞書からリンクを削除
+                // If the node is a link, remove the link from the dictionary
                 if (node is VirtualSymbolicLink link)
                 {
                     if (link.TargetPath != null)
