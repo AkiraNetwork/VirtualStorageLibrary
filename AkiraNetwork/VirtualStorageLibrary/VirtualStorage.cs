@@ -47,14 +47,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return;
         }
 
-        // パスを受け取るインデクサ
-        [IndexerName("Indexer")]
-        public VirtualNode this[VirtualPath path, bool followLinks = true]
-        {
-            get => GetNode(path, followLinks);
-            set => SetNode(path, value);
-        }
-
         public void SetNode(VirtualPath destinationPath, VirtualNode node)
         {
             destinationPath = ConvertToAbsolutePath(destinationPath).NormalizePath();
