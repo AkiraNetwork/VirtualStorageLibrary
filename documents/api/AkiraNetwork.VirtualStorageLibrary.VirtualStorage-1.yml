@@ -122,7 +122,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Root
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 10
+    startLine: 9
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -153,7 +153,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CurrentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 12
+    startLine: 11
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -166,37 +166,6 @@ items:
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CurrentPath*
   nameWithType.vb: VirtualStorage(Of T).CurrentPath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CurrentPath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
-  id: LinkDictionary
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: LinkDictionary
-  nameWithType: VirtualStorage<T>.LinkDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.LinkDictionary
-  type: Property
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: LinkDictionary
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 16
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public Dictionary<VirtualPath, HashSet<VirtualPath>> LinkDictionary { get; }
-    parameters: []
-    return:
-      type: System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}}
-    content.vb: Public ReadOnly Property LinkDictionary As Dictionary(Of VirtualPath, HashSet(Of VirtualPath))
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*
-  nameWithType.vb: VirtualStorage(Of T).LinkDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).LinkDictionary
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
   id: Item
@@ -215,7 +184,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Item
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 19
+    startLine: 14
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -246,7 +215,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dir
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 20
+    startLine: 15
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -277,7 +246,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Link
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 21
+    startLine: 16
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -308,7 +277,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 24
+    startLine: 19
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -339,7 +308,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 27
+    startLine: 22
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -370,7 +339,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 29
+    startLine: 24
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -381,295 +350,6 @@ items:
   nameWithType.vb: VirtualStorage(Of T).New()
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New()
   name.vb: New()
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: AddLinkToDictionary(VirtualPath, VirtualPath)
-  nameWithType: VirtualStorage<T>.AddLinkToDictionary(VirtualPath, VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: AddLinkToDictionary
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 46
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
-    parameters:
-    - id: targetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: linkPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    content.vb: Public Sub AddLinkToDictionary(targetPath As VirtualPath, linkPath As VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*
-  nameWithType.vb: VirtualStorage(Of T).AddLinkToDictionary(VirtualPath, VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: UpdateTargetNodeTypesInDictionary(VirtualPath)
-  nameWithType: VirtualStorage<T>.UpdateTargetNodeTypesInDictionary(VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: UpdateTargetNodeTypesInDictionary
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 62
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void UpdateTargetNodeTypesInDictionary(VirtualPath targetPath)
-    parameters:
-    - id: targetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    content.vb: Public Sub UpdateTargetNodeTypesInDictionary(targetPath As VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary*
-  nameWithType.vb: VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary(VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary
-  id: UpdateAllTargetNodeTypesInDictionary
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: UpdateAllTargetNodeTypesInDictionary()
-  nameWithType: VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary()
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary()
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: UpdateAllTargetNodeTypesInDictionary
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 73
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void UpdateAllTargetNodeTypesInDictionary()
-    content.vb: Public Sub UpdateAllTargetNodeTypesInDictionary()
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary*
-  nameWithType.vb: VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary()
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary()
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: RemoveLinkFromDictionary(VirtualPath, VirtualPath)
-  nameWithType: VirtualStorage<T>.RemoveLinkFromDictionary(VirtualPath, VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: RemoveLinkFromDictionary
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 82
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void RemoveLinkFromDictionary(VirtualPath targetPath, VirtualPath linkPath)
-    parameters:
-    - id: targetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: linkPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    content.vb: Public Sub RemoveLinkFromDictionary(targetPath As VirtualPath, linkPath As VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary*
-  nameWithType.vb: VirtualStorage(Of T).RemoveLinkFromDictionary(VirtualPath, VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: GetLinksFromDictionary(VirtualPath)
-  nameWithType: VirtualStorage<T>.GetLinksFromDictionary(VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: GetLinksFromDictionary
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 99
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public HashSet<VirtualPath> GetLinksFromDictionary(VirtualPath targetPath)
-    parameters:
-    - id: targetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    return:
-      type: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
-    content.vb: Public Function GetLinksFromDictionary(targetPath As VirtualPath) As HashSet(Of VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary*
-  nameWithType.vb: VirtualStorage(Of T).GetLinksFromDictionary(VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
-  id: SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: SetLinkTargetNodeType(HashSet<VirtualPath>, VirtualNodeType)
-  nameWithType: VirtualStorage<T>.SetLinkTargetNodeType(HashSet<VirtualPath>, VirtualNodeType)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetLinkTargetNodeType(System.Collections.Generic.HashSet<AkiraNetwork.VirtualStorageLibrary.VirtualPath>, AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: SetLinkTargetNodeType
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 109
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void SetLinkTargetNodeType(HashSet<VirtualPath> linkPathSet, VirtualNodeType nodeType)
-    parameters:
-    - id: linkPathSet
-      type: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
-    - id: nodeType
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
-    content.vb: Public Sub SetLinkTargetNodeType(linkPathSet As HashSet(Of VirtualPath), nodeType As VirtualNodeType)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType*
-  nameWithType.vb: VirtualStorage(Of T).SetLinkTargetNodeType(HashSet(Of VirtualPath), VirtualNodeType)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetLinkTargetNodeType(System.Collections.Generic.HashSet(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath), AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
-  name.vb: SetLinkTargetNodeType(HashSet(Of VirtualPath), VirtualNodeType)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: UpdateLinkInDictionary(VirtualPath, VirtualPath)
-  nameWithType: VirtualStorage<T>.UpdateLinkInDictionary(VirtualPath, VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: UpdateLinkInDictionary
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 122
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void UpdateLinkInDictionary(VirtualPath linkPath, VirtualPath newTargetPath)
-    parameters:
-    - id: linkPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: newTargetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    content.vb: Public Sub UpdateLinkInDictionary(linkPath As VirtualPath, newTargetPath As VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary*
-  nameWithType.vb: VirtualStorage(Of T).UpdateLinkInDictionary(VirtualPath, VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: UpdateLinksToTarget(VirtualPath, VirtualPath)
-  nameWithType: VirtualStorage<T>.UpdateLinksToTarget(VirtualPath, VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: UpdateLinksToTarget
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 144
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void UpdateLinksToTarget(VirtualPath oldTargetPath, VirtualPath newTargetPath)
-    parameters:
-    - id: oldTargetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    - id: newTargetPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    content.vb: Public Sub UpdateLinksToTarget(oldTargetPath As VirtualPath, newTargetPath As VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget*
-  nameWithType.vb: VirtualStorage(Of T).UpdateLinksToTarget(VirtualPath, VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  id: RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: RemoveLinkByLinkPath(VirtualPath)
-  nameWithType: VirtualStorage<T>.RemoveLinkByLinkPath(VirtualPath)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  type: Method
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: RemoveLinkByLinkPath
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 173
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public void RemoveLinkByLinkPath(VirtualPath linkPath)
-    parameters:
-    - id: linkPath
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    content.vb: Public Sub RemoveLinkByLinkPath(linkPath As VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*
-  nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath(VirtualPath)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   id: ChangeDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -688,7 +368,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ChangeDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 202
+    startLine: 40
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -719,7 +399,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ConvertToAbsolutePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 211
+    startLine: 49
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -755,7 +435,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 240
+    startLine: 78
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -791,7 +471,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 247
+    startLine: 85
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -824,7 +504,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 267
+    startLine: 105
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -858,7 +538,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 279
+    startLine: 117
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -891,7 +571,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateSymbolicLInk
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 291
+    startLine: 129
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -924,7 +604,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 304
+    startLine: 142
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -960,7 +640,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 324
+    startLine: 162
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -996,7 +676,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 360
+    startLine: 198
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1030,7 +710,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 389
+    startLine: 227
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1066,7 +746,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 423
+    startLine: 261
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1102,7 +782,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 439
+    startLine: 277
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1138,7 +818,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 482
+    startLine: 320
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1174,7 +854,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 498
+    startLine: 336
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1216,7 +896,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 713
+    startLine: 551
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1256,7 +936,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 749
+    startLine: 587
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1298,7 +978,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 978
+    startLine: 816
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1334,7 +1014,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 985
+    startLine: 823
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1370,7 +1050,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 999
+    startLine: 837
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1403,7 +1083,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1006
+    startLine: 844
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1436,7 +1116,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1018
+    startLine: 856
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1472,7 +1152,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1033
+    startLine: 871
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1508,7 +1188,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1045
+    startLine: 883
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1544,7 +1224,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1060
+    startLine: 898
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1580,7 +1260,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1072
+    startLine: 910
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1613,7 +1293,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1091
+    startLine: 929
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1646,7 +1326,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1103
+    startLine: 941
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1682,7 +1362,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1111
+    startLine: 949
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1722,7 +1402,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1118
+    startLine: 956
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1760,7 +1440,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesWithPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1125
+    startLine: 963
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1800,7 +1480,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesWithPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1132
+    startLine: 970
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1838,7 +1518,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1139
+    startLine: 977
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1878,7 +1558,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CopyNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1179
+    startLine: 1017
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1920,7 +1600,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1318
+    startLine: 1156
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1958,7 +1638,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1446
+    startLine: 1284
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1994,7 +1674,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1453
+    startLine: 1291
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2030,7 +1710,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1465
+    startLine: 1303
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2066,7 +1746,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1474
+    startLine: 1312
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2099,7 +1779,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1488
+    startLine: 1326
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2135,7 +1815,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 1525
+    startLine: 1363
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2155,6 +1835,326 @@ items:
   nameWithType.vb: VirtualStorage(Of T).MoveNode(VirtualPath, VirtualPath, Boolean, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean)
   name.vb: MoveNode(VirtualPath, VirtualPath, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
+  id: LinkDictionary
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: LinkDictionary
+  nameWithType: VirtualStorage<T>.LinkDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.LinkDictionary
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: LinkDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 8
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public Dictionary<VirtualPath, HashSet<VirtualPath>> LinkDictionary { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}}
+    content.vb: Public ReadOnly Property LinkDictionary As Dictionary(Of VirtualPath, HashSet(Of VirtualPath))
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*
+  nameWithType.vb: VirtualStorage(Of T).LinkDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).LinkDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: AddLinkToDictionary(VirtualPath, VirtualPath)
+  nameWithType: VirtualStorage<T>.AddLinkToDictionary(VirtualPath, VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: AddLinkToDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 11
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
+    parameters:
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: linkPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub AddLinkToDictionary(targetPath As VirtualPath, linkPath As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*
+  nameWithType.vb: VirtualStorage(Of T).AddLinkToDictionary(VirtualPath, VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: UpdateTargetNodeTypesInDictionary(VirtualPath)
+  nameWithType: VirtualStorage<T>.UpdateTargetNodeTypesInDictionary(VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: UpdateTargetNodeTypesInDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 27
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void UpdateTargetNodeTypesInDictionary(VirtualPath targetPath)
+    parameters:
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub UpdateTargetNodeTypesInDictionary(targetPath As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary*
+  nameWithType.vb: VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary(VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary
+  id: UpdateAllTargetNodeTypesInDictionary
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: UpdateAllTargetNodeTypesInDictionary()
+  nameWithType: VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary()
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: UpdateAllTargetNodeTypesInDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 38
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void UpdateAllTargetNodeTypesInDictionary()
+    content.vb: Public Sub UpdateAllTargetNodeTypesInDictionary()
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary*
+  nameWithType.vb: VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary()
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: RemoveLinkFromDictionary(VirtualPath, VirtualPath)
+  nameWithType: VirtualStorage<T>.RemoveLinkFromDictionary(VirtualPath, VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: RemoveLinkFromDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 47
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void RemoveLinkFromDictionary(VirtualPath targetPath, VirtualPath linkPath)
+    parameters:
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: linkPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub RemoveLinkFromDictionary(targetPath As VirtualPath, linkPath As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary*
+  nameWithType.vb: VirtualStorage(Of T).RemoveLinkFromDictionary(VirtualPath, VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: GetLinksFromDictionary(VirtualPath)
+  nameWithType: VirtualStorage<T>.GetLinksFromDictionary(VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: GetLinksFromDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 64
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public HashSet<VirtualPath> GetLinksFromDictionary(VirtualPath targetPath)
+    parameters:
+    - id: targetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    return:
+      type: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+    content.vb: Public Function GetLinksFromDictionary(targetPath As VirtualPath) As HashSet(Of VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary*
+  nameWithType.vb: VirtualStorage(Of T).GetLinksFromDictionary(VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
+  id: SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: SetLinkTargetNodeType(HashSet<VirtualPath>, VirtualNodeType)
+  nameWithType: VirtualStorage<T>.SetLinkTargetNodeType(HashSet<VirtualPath>, VirtualNodeType)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetLinkTargetNodeType(System.Collections.Generic.HashSet<AkiraNetwork.VirtualStorageLibrary.VirtualPath>, AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SetLinkTargetNodeType
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 74
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void SetLinkTargetNodeType(HashSet<VirtualPath> linkPathSet, VirtualNodeType nodeType)
+    parameters:
+    - id: linkPathSet
+      type: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+    - id: nodeType
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+    content.vb: Public Sub SetLinkTargetNodeType(linkPathSet As HashSet(Of VirtualPath), nodeType As VirtualNodeType)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType*
+  nameWithType.vb: VirtualStorage(Of T).SetLinkTargetNodeType(HashSet(Of VirtualPath), VirtualNodeType)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetLinkTargetNodeType(System.Collections.Generic.HashSet(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath), AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)
+  name.vb: SetLinkTargetNodeType(HashSet(Of VirtualPath), VirtualNodeType)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: UpdateLinkInDictionary(VirtualPath, VirtualPath)
+  nameWithType: VirtualStorage<T>.UpdateLinkInDictionary(VirtualPath, VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: UpdateLinkInDictionary
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 87
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void UpdateLinkInDictionary(VirtualPath linkPath, VirtualPath newTargetPath)
+    parameters:
+    - id: linkPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: newTargetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub UpdateLinkInDictionary(linkPath As VirtualPath, newTargetPath As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary*
+  nameWithType.vb: VirtualStorage(Of T).UpdateLinkInDictionary(VirtualPath, VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: UpdateLinksToTarget(VirtualPath, VirtualPath)
+  nameWithType: VirtualStorage<T>.UpdateLinksToTarget(VirtualPath, VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: UpdateLinksToTarget
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 109
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void UpdateLinksToTarget(VirtualPath oldTargetPath, VirtualPath newTargetPath)
+    parameters:
+    - id: oldTargetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    - id: newTargetPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub UpdateLinksToTarget(oldTargetPath As VirtualPath, newTargetPath As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget*
+  nameWithType.vb: VirtualStorage(Of T).UpdateLinksToTarget(VirtualPath, VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: RemoveLinkByLinkPath(VirtualPath)
+  nameWithType: VirtualStorage<T>.RemoveLinkByLinkPath(VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: RemoveLinkByLinkPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
+    startLine: 138
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public void RemoveLinkByLinkPath(VirtualPath linkPath)
+    parameters:
+    - id: linkPath
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    content.vb: Public Sub RemoveLinkByLinkPath(linkPath As VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*
+  nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath(VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -2815,142 +2815,6 @@ references:
   name: VirtualPath
   nameWithType: VirtualPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary
-  name: LinkDictionary
-  nameWithType: VirtualStorage<T>.LinkDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.LinkDictionary
-  nameWithType.vb: VirtualStorage(Of T).LinkDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).LinkDictionary
-- uid: System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}}
-  commentId: T:System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  name: Dictionary<VirtualPath, HashSet<VirtualPath>>
-  nameWithType: Dictionary<VirtualPath, HashSet<VirtualPath>>
-  fullName: System.Collections.Generic.Dictionary<AkiraNetwork.VirtualStorageLibrary.VirtualPath, System.Collections.Generic.HashSet<AkiraNetwork.VirtualStorageLibrary.VirtualPath>>
-  nameWithType.vb: Dictionary(Of VirtualPath, HashSet(Of VirtualPath))
-  fullName.vb: System.Collections.Generic.Dictionary(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath, System.Collections.Generic.HashSet(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath))
-  name.vb: Dictionary(Of VirtualPath, HashSet(Of VirtualPath))
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  - name: <
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    name: VirtualPath
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: <
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    name: VirtualPath
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
-  - name: '>'
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    name: VirtualPath
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
-  - name: ','
-  - name: " "
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    name: VirtualPath
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
-  - name: )
-  - name: )
-- uid: System.Collections.Generic.Dictionary`2
-  commentId: T:System.Collections.Generic.Dictionary`2
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  name: Dictionary<TKey, TValue>
-  nameWithType: Dictionary<TKey, TValue>
-  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
-  nameWithType.vb: Dictionary(Of TKey, TValue)
-  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
-  name.vb: Dictionary(Of TKey, TValue)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  - name: <
-  - name: TKey
-  - name: ','
-  - name: " "
-  - name: TValue
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
-  - name: (
-  - name: Of
-  - name: " "
-  - name: TKey
-  - name: ','
-  - name: " "
-  - name: TValue
-  - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item
@@ -3163,146 +3027,6 @@ references:
   nameWithType.vb: VirtualStorage(Of T).New
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New
   name.vb: New
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddLinkToDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: AddLinkToDictionary
-  nameWithType: VirtualStorage<T>.AddLinkToDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddLinkToDictionary
-  nameWithType.vb: VirtualStorage(Of T).AddLinkToDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddLinkToDictionary
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateTargetNodeTypesInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: UpdateTargetNodeTypesInDictionary
-  nameWithType: VirtualStorage<T>.UpdateTargetNodeTypesInDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateTargetNodeTypesInDictionary
-  nameWithType.vb: VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateAllTargetNodeTypesInDictionary
-  name: UpdateAllTargetNodeTypesInDictionary
-  nameWithType: VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary
-  nameWithType.vb: VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: RemoveLinkFromDictionary
-  nameWithType: VirtualStorage<T>.RemoveLinkFromDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkFromDictionary
-  nameWithType.vb: VirtualStorage(Of T).RemoveLinkFromDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkFromDictionary
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetLinksFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: GetLinksFromDictionary
-  nameWithType: VirtualStorage<T>.GetLinksFromDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetLinksFromDictionary
-  nameWithType.vb: VirtualStorage(Of T).GetLinksFromDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetLinksFromDictionary
-- uid: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
-  commentId: T:System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.HashSet`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  name: HashSet<VirtualPath>
-  nameWithType: HashSet<VirtualPath>
-  fullName: System.Collections.Generic.HashSet<AkiraNetwork.VirtualStorageLibrary.VirtualPath>
-  nameWithType.vb: HashSet(Of VirtualPath)
-  fullName.vb: System.Collections.Generic.HashSet(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath)
-  name.vb: HashSet(Of VirtualPath)
-  spec.csharp:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: <
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    name: VirtualPath
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-    name: VirtualPath
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
-  - name: )
-- uid: System.Collections.Generic.HashSet`1
-  commentId: T:System.Collections.Generic.HashSet`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  name: HashSet<T>
-  nameWithType: HashSet<T>
-  fullName: System.Collections.Generic.HashSet<T>
-  nameWithType.vb: HashSet(Of T)
-  fullName.vb: System.Collections.Generic.HashSet(Of T)
-  name.vb: HashSet(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.HashSet`1
-    name: HashSet
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetNodeType_System_Collections_Generic_HashSet_AkiraNetwork_VirtualStorageLibrary_VirtualPath__AkiraNetwork_VirtualStorageLibrary_VirtualNodeType_
-  name: SetLinkTargetNodeType
-  nameWithType: VirtualStorage<T>.SetLinkTargetNodeType
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetLinkTargetNodeType
-  nameWithType.vb: VirtualStorage(Of T).SetLinkTargetNodeType
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetLinkTargetNodeType
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html
-  name: VirtualNodeType
-  nameWithType: VirtualNodeType
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinkInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: UpdateLinkInDictionary
-  nameWithType: VirtualStorage<T>.UpdateLinkInDictionary
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinkInDictionary
-  nameWithType.vb: VirtualStorage(Of T).UpdateLinkInDictionary
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinkInDictionary
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinksToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: UpdateLinksToTarget
-  nameWithType: VirtualStorage<T>.UpdateLinksToTarget
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinksToTarget
-  nameWithType.vb: VirtualStorage(Of T).UpdateLinksToTarget
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinksToTarget
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkByLinkPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
-  name: RemoveLinkByLinkPath
-  nameWithType: VirtualStorage<T>.RemoveLinkByLinkPath
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkByLinkPath
-  nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ChangeDirectory
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ChangeDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
@@ -3585,6 +3309,43 @@ references:
   - name: " "
   - name: T
   - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTree*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathTree
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_WalkPathTree_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_System_Boolean_
@@ -3681,6 +3442,13 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodeType
   nameWithType.vb: VirtualStorage(Of T).GetNodeType
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html
+  name: VirtualNodeType
+  nameWithType: VirtualNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodes_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
@@ -3903,3 +3671,235 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.MoveNode
   nameWithType.vb: VirtualStorage(Of T).MoveNode
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).MoveNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary
+  name: LinkDictionary
+  nameWithType: VirtualStorage<T>.LinkDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.LinkDictionary
+  nameWithType.vb: VirtualStorage(Of T).LinkDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).LinkDictionary
+- uid: System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}}
+  commentId: T:System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<VirtualPath, HashSet<VirtualPath>>
+  nameWithType: Dictionary<VirtualPath, HashSet<VirtualPath>>
+  fullName: System.Collections.Generic.Dictionary<AkiraNetwork.VirtualStorageLibrary.VirtualPath, System.Collections.Generic.HashSet<AkiraNetwork.VirtualStorageLibrary.VirtualPath>>
+  nameWithType.vb: Dictionary(Of VirtualPath, HashSet(Of VirtualPath))
+  fullName.vb: System.Collections.Generic.Dictionary(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath, System.Collections.Generic.HashSet(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath))
+  name.vb: Dictionary(Of VirtualPath, HashSet(Of VirtualPath))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddLinkToDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: AddLinkToDictionary
+  nameWithType: VirtualStorage<T>.AddLinkToDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.AddLinkToDictionary
+  nameWithType.vb: VirtualStorage(Of T).AddLinkToDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddLinkToDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateTargetNodeTypesInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: UpdateTargetNodeTypesInDictionary
+  nameWithType: VirtualStorage<T>.UpdateTargetNodeTypesInDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateTargetNodeTypesInDictionary
+  nameWithType.vb: VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateAllTargetNodeTypesInDictionary
+  name: UpdateAllTargetNodeTypesInDictionary
+  nameWithType: VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateAllTargetNodeTypesInDictionary
+  nameWithType.vb: VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateAllTargetNodeTypesInDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: RemoveLinkFromDictionary
+  nameWithType: VirtualStorage<T>.RemoveLinkFromDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkFromDictionary
+  nameWithType.vb: VirtualStorage(Of T).RemoveLinkFromDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkFromDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetLinksFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: GetLinksFromDictionary
+  nameWithType: VirtualStorage<T>.GetLinksFromDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetLinksFromDictionary
+  nameWithType.vb: VirtualStorage(Of T).GetLinksFromDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetLinksFromDictionary
+- uid: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+  commentId: T:System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<VirtualPath>
+  nameWithType: HashSet<VirtualPath>
+  fullName: System.Collections.Generic.HashSet<AkiraNetwork.VirtualStorageLibrary.VirtualPath>
+  nameWithType.vb: HashSet(Of VirtualPath)
+  fullName.vb: System.Collections.Generic.HashSet(Of AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name.vb: HashSet(Of VirtualPath)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+    name: VirtualPath
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
+  - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetNodeType_System_Collections_Generic_HashSet_AkiraNetwork_VirtualStorageLibrary_VirtualPath__AkiraNetwork_VirtualStorageLibrary_VirtualNodeType_
+  name: SetLinkTargetNodeType
+  nameWithType: VirtualStorage<T>.SetLinkTargetNodeType
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetLinkTargetNodeType
+  nameWithType.vb: VirtualStorage(Of T).SetLinkTargetNodeType
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetLinkTargetNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinkInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: UpdateLinkInDictionary
+  nameWithType: VirtualStorage<T>.UpdateLinkInDictionary
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinkInDictionary
+  nameWithType.vb: VirtualStorage(Of T).UpdateLinkInDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinkInDictionary
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinksToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: UpdateLinksToTarget
+  nameWithType: VirtualStorage<T>.UpdateLinksToTarget
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.UpdateLinksToTarget
+  nameWithType.vb: VirtualStorage(Of T).UpdateLinksToTarget
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateLinksToTarget
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkByLinkPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: RemoveLinkByLinkPath
+  nameWithType: VirtualStorage<T>.RemoveLinkByLinkPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RemoveLinkByLinkPath
+  nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath
