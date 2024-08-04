@@ -235,7 +235,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <summary>
         /// A structure that holds parameters for the WalkPathToTarget method.
         /// </summary>
-        public struct WalkPathToTargetParameters
+        private struct WalkPathToTargetParameters
         {
             /// <summary>
             /// Gets or sets the target path.

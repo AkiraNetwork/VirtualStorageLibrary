@@ -32,7 +32,6 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
   langs:
@@ -383,39 +382,6 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
-  name: VirtualStorage<T>.WalkPathToTargetParameters
-  nameWithType: VirtualStorage<T>.WalkPathToTargetParameters
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.WalkPathToTargetParameters
-  nameWithType.vb: VirtualStorage(Of T).WalkPathToTargetParameters
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).WalkPathToTargetParameters
-  name.vb: VirtualStorage(Of T).WalkPathToTargetParameters
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-    name: VirtualStorage
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  - name: .
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
-    name: WalkPathToTargetParameters
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-    name: VirtualStorage
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-  - name: .
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.WalkPathToTargetParameters
-    name: WalkPathToTargetParameters
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.WalkPathToTargetParameters.html
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
   parent: AkiraNetwork.VirtualStorageLibrary
