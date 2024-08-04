@@ -218,5 +218,30 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 return new VirtualNodeContext(resolvedNode, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved, link);
             }
         }
+
+        [DebuggerStepThrough]
+        private struct WalkPathToTargetParameters(
+            VirtualPath targetPath,
+            int traversalIndex,
+            VirtualPath traversalPath,
+            VirtualPath? resolvedPath,
+            VirtualDirectory traversalDirectory,
+            NotifyNodeDelegate? notifyNode,
+            ActionNodeDelegate? actionNode,
+            bool followLinks,
+            bool exceptionEnabled,
+            bool resolved)
+        {
+            public VirtualPath TargetPath { get; set; } = targetPath;
+            public int TraversalIndex { get; set; } = traversalIndex;
+            public VirtualPath TraversalPath { get; set; } = traversalPath;
+            public VirtualPath? ResolvedPath { get; set; } = resolvedPath;
+            public VirtualDirectory TraversalDirectory { get; set; } = traversalDirectory;
+            public NotifyNodeDelegate? NotifyNode { get; set; } = notifyNode;
+            public ActionNodeDelegate? ActionNode { get; set; } = actionNode;
+            public bool FollowLinks { get; set; } = followLinks;
+            public bool ExceptionEnabled { get; set; } = exceptionEnabled;
+            public bool Resolved { get; set; } = resolved;
+        }
     }
 }

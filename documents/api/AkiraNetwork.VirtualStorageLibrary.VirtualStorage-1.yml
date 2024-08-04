@@ -166,99 +166,6 @@ items:
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CurrentPath*
   nameWithType.vb: VirtualStorage(Of T).CurrentPath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CurrentPath
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  id: Item
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: Item
-  nameWithType: VirtualStorage<T>.Item
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
-  type: Property
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: Item
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 14
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public VirtualItemAdapter<T> Item { get; }
-    parameters: []
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter{{T}}
-    content.vb: Public ReadOnly Property Item As VirtualItemAdapter(Of T)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
-  nameWithType.vb: VirtualStorage(Of T).Item
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  id: Dir
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: Dir
-  nameWithType: VirtualStorage<T>.Dir
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Dir
-  type: Property
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: Dir
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 15
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public VirtualDirectoryAdapter<T> Dir { get; }
-    parameters: []
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter{{T}}
-    content.vb: Public ReadOnly Property Dir As VirtualDirectoryAdapter(Of T)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir*
-  nameWithType.vb: VirtualStorage(Of T).Dir
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Dir
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  id: Link
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: Link
-  nameWithType: VirtualStorage<T>.Link
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
-  type: Property
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: Link
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 16
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  syntax:
-    content: public VirtualSymbolicLinkAdapter<T> Link { get; }
-    parameters: []
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter{{T}}
-    content.vb: Public ReadOnly Property Link As VirtualSymbolicLinkAdapter(Of T)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link*
-  nameWithType.vb: VirtualStorage(Of T).Link
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget
   id: CycleDetectorForTarget
@@ -277,7 +184,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 19
+    startLine: 14
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -308,7 +215,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 22
+    startLine: 17
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -339,7 +246,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 24
+    startLine: 19
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -392,6 +299,99 @@ items:
   nameWithType.vb: VirtualStorage(Of T).CopyNode(VirtualPath, VirtualPath, Boolean, Boolean, Boolean, List(Of VirtualNodeContext))
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CopyNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean, Boolean, System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext))
   name.vb: CopyNode(VirtualPath, VirtualPath, Boolean, Boolean, Boolean, List(Of VirtualNodeContext))
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
+  id: Item
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: Item
+  nameWithType: VirtualStorage<T>.Item
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Item
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
+    startLine: 6
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualItemAdapter<T> Item { get; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter{{T}}
+    content.vb: Public ReadOnly Property Item As VirtualItemAdapter(Of T)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
+  nameWithType.vb: VirtualStorage(Of T).Item
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
+  id: Dir
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: Dir
+  nameWithType: VirtualStorage<T>.Dir
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Dir
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Dir
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
+    startLine: 8
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualDirectoryAdapter<T> Dir { get; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter{{T}}
+    content.vb: Public ReadOnly Property Dir As VirtualDirectoryAdapter(Of T)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir*
+  nameWithType.vb: VirtualStorage(Of T).Dir
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Dir
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
+  id: Link
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: Link
+  nameWithType: VirtualStorage<T>.Link
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
+      branch: docs/issue-138-initial
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: Link
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
+    startLine: 10
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  syntax:
+    content: public VirtualSymbolicLinkAdapter<T> Link { get; }
+    parameters: []
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter{{T}}
+    content.vb: Public ReadOnly Property Link As VirtualSymbolicLinkAdapter(Of T)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link*
+  nameWithType.vb: VirtualStorage(Of T).Link
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   id: Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
@@ -410,7 +410,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-    startLine: 7
+    startLine: 13
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2815,6 +2815,155 @@ references:
   name: VirtualPath
   nameWithType: VirtualPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTarget
+  name: CycleDetectorForTarget
+  nameWithType: VirtualStorage<T>.CycleDetectorForTarget
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.CycleDetectorForTarget
+  nameWithType.vb: VirtualStorage(Of T).CycleDetectorForTarget
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CycleDetectorForTarget
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html
+  name: VirtualCycleDetector
+  nameWithType: VirtualCycleDetector
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTree*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTree
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTree
+  name: CycleDetectorForTree
+  nameWithType: VirtualStorage<T>.CycleDetectorForTree
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.CycleDetectorForTree
+  nameWithType.vb: VirtualStorage(Of T).CycleDetectorForTree
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CycleDetectorForTree
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1__ctor
+  name: VirtualStorage
+  nameWithType: VirtualStorage<T>.VirtualStorage
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.VirtualStorage
+  nameWithType.vb: VirtualStorage(Of T).New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New
+  name.vb: New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__
+  name: CopyNode
+  nameWithType: VirtualStorage<T>.CopyNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.CopyNode
+  nameWithType.vb: VirtualStorage(Of T).CopyNode
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CopyNode
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
+  commentId: T:System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<VirtualNodeContext>
+  nameWithType: List<VirtualNodeContext>
+  fullName: System.Collections.Generic.List<AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext>
+  nameWithType.vb: List(Of VirtualNodeContext)
+  fullName.vb: System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext)
+  name.vb: List(Of VirtualNodeContext)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+    name: VirtualNodeContext
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
+    name: VirtualNodeContext
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item
@@ -2995,155 +3144,6 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTarget
-  name: CycleDetectorForTarget
-  nameWithType: VirtualStorage<T>.CycleDetectorForTarget
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.CycleDetectorForTarget
-  nameWithType.vb: VirtualStorage(Of T).CycleDetectorForTarget
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CycleDetectorForTarget
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector.html
-  name: VirtualCycleDetector
-  nameWithType: VirtualCycleDetector
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTree*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTree
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CycleDetectorForTree
-  name: CycleDetectorForTree
-  nameWithType: VirtualStorage<T>.CycleDetectorForTree
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.CycleDetectorForTree
-  nameWithType.vb: VirtualStorage(Of T).CycleDetectorForTree
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CycleDetectorForTree
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.#ctor*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.#ctor
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1__ctor
-  name: VirtualStorage
-  nameWithType: VirtualStorage<T>.VirtualStorage
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.VirtualStorage
-  nameWithType.vb: VirtualStorage(Of T).New
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).New
-  name.vb: New
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CopyNode
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_CopyNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_System_Boolean_System_Boolean_System_Collections_Generic_List_AkiraNetwork_VirtualStorageLibrary_VirtualNodeContext__
-  name: CopyNode
-  nameWithType: VirtualStorage<T>.CopyNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.CopyNode
-  nameWithType.vb: VirtualStorage(Of T).CopyNode
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CopyNode
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
-- uid: System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
-  commentId: T:System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<VirtualNodeContext>
-  nameWithType: List<VirtualNodeContext>
-  fullName: System.Collections.Generic.List<AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext>
-  nameWithType.vb: List(Of VirtualNodeContext)
-  fullName.vb: System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext)
-  name.vb: List(Of VirtualNodeContext)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
-    name: VirtualNodeContext
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
-    name: VirtualNodeContext
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext.html
-  - name: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Indexer_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_

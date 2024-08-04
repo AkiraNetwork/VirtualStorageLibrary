@@ -268,5 +268,34 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             return true;
         }
+
+        [DebuggerStepThrough]
+        private struct WalkPathTreeParameters(
+            VirtualPath basePath,
+            VirtualPath currentPath,
+            VirtualNode baseNode,
+            VirtualDirectory? parentDirectory,
+            int baseDepth,
+            int currentDepth,
+            int currentIndex,
+            VirtualNodeTypeFilter filter,
+            bool recursive,
+            bool followLinks,
+            List<string>? patternList,
+            VirtualSymbolicLink? resolvedLink)
+        {
+            public VirtualPath BasePath { get; set; } = basePath;
+            public VirtualPath CurrentPath { get; set; } = currentPath;
+            public VirtualNode BaseNode { get; set; } = baseNode;
+            public VirtualDirectory? ParentDirectory { get; set; } = parentDirectory;
+            public int BaseDepth { get; set; } = baseDepth;
+            public int CurrentDepth { get; set; } = currentDepth;
+            public int CurrentIndex { get; set; } = currentIndex;
+            public VirtualNodeTypeFilter Filter { get; set; } = filter;
+            public bool Recursive { get; set; } = recursive;
+            public bool FollowLinks { get; set; } = followLinks;
+            public List<string>? PatternList { get; set; } = patternList;
+            public VirtualSymbolicLink? ResolvedLink { get; set; } = resolvedLink;
+        }
     }
 }
