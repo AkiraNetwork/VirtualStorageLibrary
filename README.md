@@ -1,3 +1,5 @@
+## Update README.md - Under Construction
+
 #### This Readme is a work in progress. Once it's completed, an English version will be provided.
 ---
 ![Version](https://img.shields.io/badge/version-0.8.0-blue.svg)
@@ -9,5 +11,21 @@
 # VirtualStorageLibraryへようこそ！
 
 VirtualStorageLibraryは、完全にオンメモリで動作するツリー構造のコレクションを提供する.NETのライブラリです。
+
+# 主な機能
+
+- ツリー構造
+- ノード
+  - アイテム
+    - ユーザー定義型&lt;T&gt;
+  - ディレクトリ
+  - シンボリックリンク
+- パス
+- ノードの操作
+- ノードの取得
+- ノードの探索
+- ノードのクローン
+- シンボリックリンクの解決
+- 
 
 
