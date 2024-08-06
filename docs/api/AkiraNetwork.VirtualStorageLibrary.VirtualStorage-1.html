@@ -349,7 +349,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary">LinkDictionary</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the link dictionary.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -366,7 +367,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;&gt;</td>
-        <td></td>
+        <td><p>A dictionary representing the link mappings.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -549,7 +551,8 @@
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddLinkToDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddLinkToDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">AddLinkToDictionary(VirtualPath, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds a new link to the link dictionary.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -568,12 +571,30 @@
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">targetPath</span></td>
-        <td></td>
+        <td><p>The target path of the link.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">linkPath</span></td>
-        <td></td>
+        <td><p>The path of the link.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown if the target path is not an absolute path.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1183,7 +1204,8 @@ other than the terminal node in the virtual path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetLinksFromDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetLinksFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">GetLinksFromDictionary(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Retrieves all link paths associated with the specified target path from the link dictionary.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1202,7 +1224,8 @@ other than the terminal node in the virtual path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">targetPath</span></td>
-        <td></td>
+        <td><p>The target path.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1217,7 +1240,8 @@ other than the terminal node in the virtual path are symbolic links.
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</td>
-        <td></td>
+        <td><p>A set of link paths.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1814,7 +1838,8 @@ move the root directory, or if the destination is a subdirectory of the source.<
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkByLinkPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkByLinkPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">RemoveLinkByLinkPath(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Removes the link with the specified link path from the link dictionary.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1833,13 +1858,31 @@ move the root directory, or if the destination is a subdirectory of the source.<
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">linkPath</span></td>
-        <td></td>
+        <td><p>The link path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown if the link path is not an absolute path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkFromDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkFromDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">RemoveLinkFromDictionary(VirtualPath, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Removes a link from the link dictionary.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1858,12 +1901,14 @@ move the root directory, or if the destination is a subdirectory of the source.<
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">targetPath</span></td>
-        <td></td>
+        <td><p>The target path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">linkPath</span></td>
-        <td></td>
+        <td><p>The path of the link.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -2002,7 +2047,8 @@ terminal node) in the path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetNodeType_System_Collections_Generic_HashSet_AkiraNetwork_VirtualStorageLibrary_VirtualPath__AkiraNetwork_VirtualStorageLibrary_VirtualNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType(System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath},AkiraNetwork.VirtualStorageLibrary.VirtualNodeType)">SetLinkTargetNodeType(HashSet&lt;VirtualPath&gt;, VirtualNodeType)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the target node type for all symbolic links in the specified list of link paths.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -2021,12 +2067,14 @@ terminal node) in the path are symbolic links.
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a>&gt;</td>
         <td><span class="parametername">linkPathSet</span></td>
-        <td></td>
+        <td><p>A set of link paths.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html">VirtualNodeType</a></td>
         <td><span class="parametername">nodeType</span></td>
-        <td></td>
+        <td><p>The target node type.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -2383,7 +2431,8 @@ terminal node) in the path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateAllTargetNodeTypesInDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateAllTargetNodeTypesInDictionary" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateAllTargetNodeTypesInDictionary">UpdateAllTargetNodeTypesInDictionary()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates all target node types in the link dictionary.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -2457,7 +2506,8 @@ terminal node) in the path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinkInDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinkInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">UpdateLinkInDictionary(VirtualPath, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the target path of a specific symbolic link to a new target path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -2476,18 +2526,21 @@ terminal node) in the path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">linkPath</span></td>
-        <td></td>
+        <td><p>The path of the link.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">newTargetPath</span></td>
-        <td></td>
+        <td><p>The new target path.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinksToTarget_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateLinksToTarget_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">UpdateLinksToTarget(VirtualPath, VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the target path of links with a specific target path to a new target path.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -2506,12 +2559,14 @@ terminal node) in the path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">oldTargetPath</span></td>
-        <td></td>
+        <td><p>The old target path.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">newTargetPath</span></td>
-        <td></td>
+        <td><p>The new target path.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -2550,7 +2605,8 @@ terminal node) in the path are symbolic links.
   </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateTargetNodeTypesInDictionary_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_UpdateTargetNodeTypesInDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">UpdateTargetNodeTypesInDictionary(VirtualPath)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates the target node types in the link dictionary.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -2569,7 +2625,8 @@ terminal node) in the path are symbolic links.
       <tr>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">targetPath</span></td>
-        <td></td>
+        <td><p>The target path.</p>
+</td>
       </tr>
     </tbody>
   </table>

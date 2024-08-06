@@ -495,15 +495,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: LinkDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 8
+    startLine: 15
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Gets the link dictionary.
+  example: []
   syntax:
     content: public Dictionary<VirtualPath, HashSet<VirtualPath>> LinkDictionary { get; }
     parameters: []
     return:
       type: System.Collections.Generic.Dictionary{AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}}
+      description: A dictionary representing the link mappings.
     content.vb: Public ReadOnly Property LinkDictionary As Dictionary(Of VirtualPath, HashSet(Of VirtualPath))
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*
   nameWithType.vb: VirtualStorage(Of T).LinkDictionary
@@ -526,19 +529,27 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddLinkToDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 11
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds a new link to the link dictionary.
+  example: []
   syntax:
     content: public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
     parameters:
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path of the link.
     - id: linkPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the link.
     content.vb: Public Sub AddLinkToDictionary(targetPath As VirtualPath, linkPath As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the target path is not an absolute path.
   nameWithType.vb: VirtualStorage(Of T).AddLinkToDictionary(VirtualPath, VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).AddLinkToDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -559,15 +570,18 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 27
+    startLine: 44
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates the target node types in the link dictionary.
+  example: []
   syntax:
     content: public void UpdateTargetNodeTypesInDictionary(VirtualPath targetPath)
     parameters:
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path.
     content.vb: Public Sub UpdateTargetNodeTypesInDictionary(targetPath As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateTargetNodeTypesInDictionary*
   nameWithType.vb: VirtualStorage(Of T).UpdateTargetNodeTypesInDictionary(VirtualPath)
@@ -590,10 +604,12 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateAllTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 38
+    startLine: 57
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates all target node types in the link dictionary.
+  example: []
   syntax:
     content: public void UpdateAllTargetNodeTypesInDictionary()
     content.vb: Public Sub UpdateAllTargetNodeTypesInDictionary()
@@ -618,17 +634,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveLinkFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 47
+    startLine: 70
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Removes a link from the link dictionary.
+  example: []
   syntax:
     content: public void RemoveLinkFromDictionary(VirtualPath targetPath, VirtualPath linkPath)
     parameters:
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path.
     - id: linkPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the link.
     content.vb: Public Sub RemoveLinkFromDictionary(targetPath As VirtualPath, linkPath As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary*
   nameWithType.vb: VirtualStorage(Of T).RemoveLinkFromDictionary(VirtualPath, VirtualPath)
@@ -651,17 +671,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetLinksFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 64
+    startLine: 91
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Retrieves all link paths associated with the specified target path from the link dictionary.
+  example: []
   syntax:
     content: public HashSet<VirtualPath> GetLinksFromDictionary(VirtualPath targetPath)
     parameters:
     - id: targetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The target path.
     return:
       type: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+      description: A set of link paths.
     content.vb: Public Function GetLinksFromDictionary(targetPath As VirtualPath) As HashSet(Of VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetLinksFromDictionary*
   nameWithType.vb: VirtualStorage(Of T).GetLinksFromDictionary(VirtualPath)
@@ -684,17 +708,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetLinkTargetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 74
+    startLine: 105
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Sets the target node type for all symbolic links in the specified list of link paths.
+  example: []
   syntax:
     content: public void SetLinkTargetNodeType(HashSet<VirtualPath> linkPathSet, VirtualNodeType nodeType)
     parameters:
     - id: linkPathSet
       type: System.Collections.Generic.HashSet{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
+      description: A set of link paths.
     - id: nodeType
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
+      description: The target node type.
     content.vb: Public Sub SetLinkTargetNodeType(linkPathSet As HashSet(Of VirtualPath), nodeType As VirtualNodeType)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetNodeType*
   nameWithType.vb: VirtualStorage(Of T).SetLinkTargetNodeType(HashSet(Of VirtualPath), VirtualNodeType)
@@ -718,17 +746,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateLinkInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 87
+    startLine: 122
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates the target path of a specific symbolic link to a new target path.
+  example: []
   syntax:
     content: public void UpdateLinkInDictionary(VirtualPath linkPath, VirtualPath newTargetPath)
     parameters:
     - id: linkPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The path of the link.
     - id: newTargetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The new target path.
     content.vb: Public Sub UpdateLinkInDictionary(linkPath As VirtualPath, newTargetPath As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinkInDictionary*
   nameWithType.vb: VirtualStorage(Of T).UpdateLinkInDictionary(VirtualPath, VirtualPath)
@@ -751,17 +783,21 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateLinksToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 109
+    startLine: 148
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Updates the target path of links with a specific target path to a new target path.
+  example: []
   syntax:
     content: public void UpdateLinksToTarget(VirtualPath oldTargetPath, VirtualPath newTargetPath)
     parameters:
     - id: oldTargetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The old target path.
     - id: newTargetPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The new target path.
     content.vb: Public Sub UpdateLinksToTarget(oldTargetPath As VirtualPath, newTargetPath As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.UpdateLinksToTarget*
   nameWithType.vb: VirtualStorage(Of T).UpdateLinksToTarget(VirtualPath, VirtualPath)
@@ -784,17 +820,24 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveLinkByLinkPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 138
+    startLine: 186
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Removes the link with the specified link path from the link dictionary.
+  example: []
   syntax:
     content: public void RemoveLinkByLinkPath(VirtualPath linkPath)
     parameters:
     - id: linkPath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The link path.
     content.vb: Public Sub RemoveLinkByLinkPath(linkPath As VirtualPath)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the link path is not an absolute path.
   nameWithType.vb: VirtualStorage(Of T).RemoveLinkByLinkPath(VirtualPath)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
@@ -3638,6 +3681,13 @@ references:
   - name: " "
   - name: TValue
   - name: )
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.AddLinkToDictionary
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_AddLinkToDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
@@ -3943,13 +3993,6 @@ references:
   name: VirtualNodeName
   nameWithType: VirtualNodeName
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-- uid: System.ArgumentException
-  commentId: T:System.ArgumentException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
-  name: ArgumentException
-  nameWithType: ArgumentException
-  fullName: System.ArgumentException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ConvertToAbsolutePath
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ConvertToAbsolutePath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_

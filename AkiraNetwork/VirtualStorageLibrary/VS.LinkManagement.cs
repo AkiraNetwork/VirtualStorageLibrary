@@ -4,11 +4,23 @@ namespace AkiraNetwork.VirtualStorageLibrary
 {
     public partial class VirtualStorage<T>
     {
+        /// <summary>
+        /// A dictionary to hold link mappings.
+        /// </summary>
         private readonly Dictionary<VirtualPath, HashSet<VirtualPath>> _linkDictionary;
 
+        /// <summary>
+        /// Gets the link dictionary.
+        /// </summary>
+        /// <value>A dictionary representing the link mappings.</value>
         public Dictionary<VirtualPath, HashSet<VirtualPath>> LinkDictionary => _linkDictionary;
 
-        // リンク辞書に新しいリンクを追加します。
+        /// <summary>
+        /// Adds a new link to the link dictionary.
+        /// </summary>
+        /// <param name="targetPath">The target path of the link.</param>
+        /// <param name="linkPath">The path of the link.</param>
+        /// <exception cref="ArgumentException">Thrown if the target path is not an absolute path.</exception>
         public void AddLinkToDictionary(VirtualPath targetPath, VirtualPath linkPath)
         {
             if (!targetPath.IsAbsolute)
@@ -18,13 +30,18 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
+            // Retrieve the link set from the dictionary, or create a new one
             HashSet<VirtualPath>? linkPathSet = GetLinksFromDictionary(targetPath);
             _linkDictionary[targetPath] = linkPathSet;
 
+            // Add the new link path to the set
             linkPathSet.Add(linkPath);
         }
 
-        // リンク辞書内のリンクターゲットノードのタイプを更新します。
+        /// <summary>
+        /// Updates the target node types in the link dictionary.
+        /// </summary>
+        /// <param name="targetPath">The target path.</param>
         public void UpdateTargetNodeTypesInDictionary(VirtualPath targetPath)
         {
             HashSet<VirtualPath> linkPathSet = GetLinksFromDictionary(targetPath);
@@ -35,7 +52,9 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        // リンク辞書内の全てのリンクのターゲットノードタイプを更新します。
+        /// <summary>
+        /// Updates all target node types in the link dictionary.
+        /// </summary>
         public void UpdateAllTargetNodeTypesInDictionary()
         {
             foreach (var targetPath in _linkDictionary.Keys)
@@ -44,16 +63,20 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        // リンク辞書からリンクを削除します。
+        /// <summary>
+        /// Removes a link from the link dictionary.
+        /// </summary>
+        /// <param name="targetPath">The target path.</param>
+        /// <param name="linkPath">The path of the link.</param>
         public void RemoveLinkFromDictionary(VirtualPath targetPath, VirtualPath linkPath)
         {
-            // GetLinksFromDictionaryを使用してリンクセットを取得
+            // Retrieve the link set from the dictionary
             var links = GetLinksFromDictionary(targetPath);
 
-            // リンクセットから指定されたリンクを削除
+            // Remove the specified link from the set
             if (links.Remove(linkPath))
             {
-                // リンクセットが空になった場合、リンク辞書からエントリを削除
+                // If the link set is empty, remove the entry from the dictionary
                 if (links.Count == 0)
                 {
                     _linkDictionary.Remove(targetPath);
@@ -61,7 +84,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        // 指定されたターゲットパスに関連するすべてのリンクパスをリンク辞書から取得します。
+        /// <summary>
+        /// Retrieves all link paths associated with the specified target path from the link dictionary.
+        /// </summary>
+        /// <param name="targetPath">The target path.</param>
+        /// <returns>A set of link paths.</returns>
         public HashSet<VirtualPath> GetLinksFromDictionary(VirtualPath targetPath)
         {
             if (_linkDictionary.TryGetValue(targetPath, out HashSet<VirtualPath>? linkPathSet))
@@ -71,7 +98,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             return [];
         }
 
-        // 指定されたリンクパスリスト内の全てのシンボリックリンクのターゲットノードタイプを設定します。
+        /// <summary>
+        /// Sets the target node type for all symbolic links in the specified list of link paths.
+        /// </summary>
+        /// <param name="linkPathSet">A set of link paths.</param>
+        /// <param name="nodeType">The target node type.</param>
         public void SetLinkTargetNodeType(HashSet<VirtualPath> linkPathSet, VirtualNodeType nodeType)
         {
             foreach (var linkPath in linkPathSet)
@@ -84,51 +115,63 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
-        // 特定のシンボリックリンクのターゲットパスを新しいターゲットパスに更新します。
+        /// <summary>
+        /// Updates the target path of a specific symbolic link to a new target path.
+        /// </summary>
+        /// <param name="linkPath">The path of the link.</param>
+        /// <param name="newTargetPath">The new target path.</param>
         public void UpdateLinkInDictionary(VirtualPath linkPath, VirtualPath newTargetPath)
         {
             if (GetNode(linkPath) is VirtualSymbolicLink link)
             {
                 if (link.TargetPath != null)
                 {
-                    // 古いターゲットパスを取得
+                    // Retrieve the old target path
                     VirtualPath oldTargetPath = link.TargetPath;
 
-                    // 古いターゲットパスからリンクを削除
+                    // Remove the link from the old target path
                     RemoveLinkFromDictionary(oldTargetPath, linkPath);
 
-                    // 新しいターゲットパスを設定
+                    // Set the new target path
                     link.TargetPath = newTargetPath;
 
-                    // 新しいターゲットパスにリンクを追加
+                    // Add the link to the new target path
                     AddLinkToDictionary(newTargetPath, linkPath);
                 }
             }
         }
 
-        // 特定のターゲットパスを持つリンクのターゲットパスを新しいターゲットパスに更新します。
+        /// <summary>
+        /// Updates the target path of links with a specific target path to a new target path.
+        /// </summary>
+        /// <param name="oldTargetPath">The old target path.</param>
+        /// <param name="newTargetPath">The new target path.</param>
         public void UpdateLinksToTarget(VirtualPath oldTargetPath, VirtualPath newTargetPath)
         {
             var linkPathSet = GetLinksFromDictionary(oldTargetPath);
 
             foreach (var linkPath in linkPathSet)
             {
-                // UpdateLinkInDictionaryを使用してリンクのターゲットパスを更新
+                // Update the target path of the link
                 UpdateLinkInDictionary(linkPath, newTargetPath);
             }
 
-            // 古いターゲットパスからリンクを削除
+            // Remove the links from the old target path
             _linkDictionary.Remove(oldTargetPath);
         }
 
-        // リンク辞書内のリンク名を更新します。
+        /// <summary>
+        /// Updates the link name in the link dictionary.
+        /// </summary>
+        /// <param name="oldLinkPath">The old link path.</param>
+        /// <param name="newLinkPath">The new link path.</param>
         private void UpdateLinkNameInDictionary(VirtualPath oldLinkPath, VirtualPath newLinkPath)
         {
             foreach (var entry in _linkDictionary)
             {
                 var linkPaths = entry.Value;
 
-                // Remove が成功した場合、新しいリンクパスを追加
+                // If the old link path is successfully removed, add the new link path
                 if (linkPaths.Remove(oldLinkPath))
                 {
                     linkPaths.Add(newLinkPath);
@@ -136,6 +179,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
         }
 
+        /// <summary>
+        /// Removes the link with the specified link path from the link dictionary.
+        /// </summary>
+        /// <param name="linkPath">The link path.</param>
+        /// <exception cref="ArgumentException">Thrown if the link path is not an absolute path.</exception>
         public void RemoveLinkByLinkPath(VirtualPath linkPath)
         {
             if (!linkPath.IsAbsolute)
