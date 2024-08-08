@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>AkiraNetwork.VirtualStorageLibrary</RootNamespace>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,9 +23,11 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <!--
   <Target Name="GenerateDocumentation" AfterTargets="Build">
     <Exec WorkingDirectory="$(SolutionDir)documents" Command="docfx metadata" />
     <Exec WorkingDirectory="$(SolutionDir)documents" Command="docfx build" />
   </Target>
+  -->
 
 </Project>
