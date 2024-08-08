@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DefaultWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
@@ -135,7 +135,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
@@ -169,7 +169,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
@@ -203,7 +203,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs

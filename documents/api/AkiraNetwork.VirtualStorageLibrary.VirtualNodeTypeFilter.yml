@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeTypeFilter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
@@ -49,7 +49,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: None
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
@@ -77,7 +77,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Item
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
@@ -105,7 +105,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Directory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
@@ -133,7 +133,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
@@ -161,7 +161,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: All
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs

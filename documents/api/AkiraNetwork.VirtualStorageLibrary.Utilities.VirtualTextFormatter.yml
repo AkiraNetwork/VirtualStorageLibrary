@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualTextFormatter
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -91,7 +91,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateTreeDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -184,7 +184,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateLinkTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -226,7 +226,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -268,7 +268,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateSingleTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs

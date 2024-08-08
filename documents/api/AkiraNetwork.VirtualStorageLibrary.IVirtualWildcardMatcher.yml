@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IVirtualWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
@@ -49,7 +49,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
@@ -148,7 +148,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
@@ -180,7 +180,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs

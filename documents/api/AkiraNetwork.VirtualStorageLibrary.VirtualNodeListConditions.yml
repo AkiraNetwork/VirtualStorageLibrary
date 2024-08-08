@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
@@ -56,7 +56,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Filter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
@@ -132,7 +132,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SortConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
@@ -170,7 +170,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
@@ -204,7 +204,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs

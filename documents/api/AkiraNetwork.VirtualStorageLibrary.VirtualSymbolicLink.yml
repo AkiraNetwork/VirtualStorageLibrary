@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -86,7 +86,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TargetPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -117,7 +117,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TargetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -180,7 +180,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -211,7 +211,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -246,7 +246,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -328,7 +328,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -365,7 +365,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -402,7 +402,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -434,7 +434,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
@@ -473,7 +473,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs

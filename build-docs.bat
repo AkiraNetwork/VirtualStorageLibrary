@@ -14,4 +14,3 @@ cd ..
 REM 終了メッセージ
 echo ドキュメント生成が完了しました。
 endlocal
-pause

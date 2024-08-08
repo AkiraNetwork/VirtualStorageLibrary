@@ -31,7 +31,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -104,7 +104,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemData
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -137,7 +137,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -171,7 +171,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -205,7 +205,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -240,7 +240,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -278,7 +278,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -319,7 +319,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -363,7 +363,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -401,7 +401,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -442,7 +442,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -480,7 +480,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -514,7 +514,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -553,7 +553,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -585,7 +585,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -623,7 +623,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Finalize
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
@@ -654,7 +654,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs

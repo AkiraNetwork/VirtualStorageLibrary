@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ActionNodeDelegate
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs

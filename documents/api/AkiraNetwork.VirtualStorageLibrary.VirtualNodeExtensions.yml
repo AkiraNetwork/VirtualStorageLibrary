@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeExtensions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
@@ -54,7 +54,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolveNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs

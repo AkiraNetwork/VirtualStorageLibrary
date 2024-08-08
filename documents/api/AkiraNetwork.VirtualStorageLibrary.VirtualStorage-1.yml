@@ -74,7 +74,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualStorage
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
@@ -121,7 +121,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Root
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CurrentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
@@ -189,7 +189,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
@@ -223,7 +223,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
@@ -257,7 +257,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
@@ -288,7 +288,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.CopyTask.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CopyNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.CopyTask.cs
@@ -348,7 +348,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Item
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
@@ -382,7 +382,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dir
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
@@ -416,7 +416,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Link
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
@@ -450,7 +450,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
@@ -491,7 +491,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: LinkDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -525,7 +525,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddLinkToDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -566,7 +566,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -600,7 +600,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateAllTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -630,7 +630,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveLinkFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -667,7 +667,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetLinksFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -704,7 +704,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetLinkTargetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -742,7 +742,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateLinkInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -779,7 +779,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateLinksToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -816,7 +816,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveLinkByLinkPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
@@ -854,7 +854,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.MoveTask.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.MoveTask.cs
@@ -916,7 +916,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ChangeDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -950,7 +950,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -987,7 +987,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1025,7 +1025,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1062,7 +1062,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateSymbolicLInk
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1099,7 +1099,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1140,7 +1140,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1181,7 +1181,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1219,7 +1219,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1260,7 +1260,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1301,7 +1301,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1342,7 +1342,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1383,7 +1383,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
@@ -1424,7 +1424,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ConvertToAbsolutePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1469,7 +1469,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1514,7 +1514,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1555,7 +1555,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1596,7 +1596,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1633,7 +1633,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1678,7 +1678,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1719,7 +1719,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1764,7 +1764,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1805,7 +1805,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1847,7 +1847,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1885,7 +1885,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1926,7 +1926,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -1974,7 +1974,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2019,7 +2019,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesWithPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2067,7 +2067,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesWithPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2112,7 +2112,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2163,7 +2163,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2204,7 +2204,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2245,7 +2245,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2286,7 +2286,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
@@ -2323,7 +2323,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
@@ -2393,7 +2393,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathToTarget.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathToTarget.cs
@@ -2443,7 +2443,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
@@ -2508,7 +2508,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs

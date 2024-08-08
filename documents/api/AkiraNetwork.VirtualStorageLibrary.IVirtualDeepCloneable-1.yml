@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IVirtualDeepCloneable
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-      branch: docs/issue-138-initial
+      branch: gh-pages
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
