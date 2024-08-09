@@ -45,10 +45,6 @@
             CurrentPath = VirtualPath.Root;
 
             _linkDictionary = [];
-
-            Item = new(this);
-            Dir = new(this);
-            Link = new(this);
         }
     }
 }
