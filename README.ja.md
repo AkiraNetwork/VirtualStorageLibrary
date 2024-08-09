@@ -3,7 +3,7 @@
 #### This Readme is a work in progress. Once it's completed, an English version will be provided.
 ---
 <details>
-  <summary>Language: English</summary>
+  <summary>Language: Japanese</summary>
   <ul>
     <li><a href="README.md">English</a></li>
     <li><a href="README.ja.md">Japanese</a></li>
