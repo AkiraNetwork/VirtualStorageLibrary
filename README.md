@@ -10,11 +10,11 @@
   </ul>
 </details>
 
-![Version](https://img.shields.io/badge/version-0.8.0-pink.svg)
-![License](<https://img.shields.io/badge/license-MIT-green.svg>)
-![Platform](https://img.shields.io/badge/platform-.NET%208-blue)
-[![Documentation](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/)
-![Maintenance](https://img.shields.io/badge/maintenance-active-blue.svg)
+![Version: 0.8.0](https://img.shields.io/badge/version-0.8.0-pink.svg)
+![License: AGPL-1.0-only](https://img.shields.io/badge/License-AGPL%201.0%20only-red.svg)
+![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)
+[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/)
+![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)
 
 # VirtualStorageLibraryへようこそ！
 
@@ -157,6 +157,8 @@ V0.8.0では、この状態でユーザーの皆様に試用して頂き、フ�
 フィードバックには、バグ報告や機能改善の提案などが含まれます。  
 それと同時に、V0.9.0に向けて残作業を消化していく予定です。  
 V0.9.0のリリースは2024年10月を予定しています。  
+なお、この期間中、ライブラリで提供している機能のクラス名、メソッド名、プロパティ名等は予告なく変更、統合、廃止する事があります。
+その場合、リリースノートに詳細を掲載するのでご確認ください。
 詳細は、[現在の問題点と改善案](https://github.com/users/shimodateakira/projects/3/views/3)を参照してください (日本語)。
 
 ## インストール方法
