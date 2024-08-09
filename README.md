@@ -2,6 +2,14 @@
 
 #### This Readme is a work in progress. Once it's completed, an English version will be provided.
 ---
+<details>
+  <summary>Language</summary>
+  <ul>
+    <li><a href="README.md">English</a></li>
+    <li><a href="README.ja.md">Japanese</a></li>
+  </ul>
+</details>
+
 ![Version](https://img.shields.io/badge/version-0.8.0-pink.svg)
 ![License](<https://img.shields.io/badge/license-MIT-green.svg>)
 ![Platform](https://img.shields.io/badge/platform-.NET%208-blue)
