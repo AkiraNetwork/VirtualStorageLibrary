@@ -10037,9 +10037,37 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
             VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
 
-            vs.AddItem("/", item1);
-            vs.GetDirectory("/")["item1"] = item2;
+            // Act
+            vs["/"] += item1;
+            vs["/"]["item1"] = item2;
+            var item = (VirtualItem<BinaryData>)vs["/"]["item1"];
 
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), vs.GetItem("/item1").ItemData);
+            Assert.AreEqual("item1", (string)item.Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), item.ItemData);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test11()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+            VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
+
+            // Act
+            vs["/"] += item1;
+            vs["/"]["item1"] = item2;
+            var item = (VirtualItem<BinaryData>)vs["/"]["item1"];
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), vs.GetItem("/item1").ItemData);
+            Assert.AreEqual("item1", (string)item.Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), item.ItemData);
         }
 
         [TestMethod]
