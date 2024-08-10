@@ -3,8 +3,9 @@ using System.Diagnostics;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
+    [DebuggerStepThrough]
     public class BinaryData
-        : IVirtualDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>, IDisposable
+        : IVirtualDeepCloneable<BinaryData>, IEnumerable<byte>, IList<byte>, ICollection<byte>, IDisposable, IEquatable<BinaryData>
     {
         private byte[] _data;
 
@@ -161,6 +162,37 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             _data = [];
 
             Debug.WriteLine("BinaryData.Dispose: データを破棄しました。");
+        }
+
+        public bool Equals(BinaryData? other)
+        {
+            if (other == null) return false;
+            return _data.SequenceEqual(other._data);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is BinaryData other)
+            {
+                return Equals(other);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            if (_data == null || _data.Length == 0)
+                return 0;
+
+            unchecked
+            {
+                int hash = 17;
+                foreach (byte b in _data)
+                {
+                    hash = hash * 31 + b;
+                }
+                return hash;
+            }
         }
     }
 }

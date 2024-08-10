@@ -9890,6 +9890,159 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test1()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            VirtualDirectory tempDir = new("tempDir");
+            tempDir.AddItem<BinaryData>("item1");
+            tempDir.AddItem<BinaryData>("item2");
+            tempDir.AddItem<BinaryData>("item3");
+
+            vs["/"] = tempDir;
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual("item2", (string)vs.GetItem("/item2").Name);
+            Assert.AreEqual("item3", (string)vs.GetItem("/item3").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test2()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualNodeName("dir1");
+
+            // Assert
+            Assert.AreEqual("dir1", (string)vs.GetDirectory("/dir1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test3()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += "dir1";
+
+            // Assert
+            Assert.AreEqual("dir1", (string)vs.GetDirectory("/dir1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test4()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualDirectory("dir1");
+
+            // Assert
+            Assert.AreEqual("dir1", (string)vs.GetDirectory("/dir1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test5()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualItem<BinaryData>("item1");
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test6()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualSymbolicLink("link1");
+
+            // Assert
+            Assert.AreEqual("link1", (string)vs.GetSymbolicLink("/link1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test7()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+
+            // Act
+            vs["/"] += item1;
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual(new BinaryData([1, 2, 3]), vs.GetItem("/item1").ItemData);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test8()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualSymbolicLink link1 = new("link1", "/item1");
+
+            // Act
+            vs["/"] += link1;
+
+            // Assert
+            Assert.AreEqual("link1", (string)vs.GetSymbolicLink("/link1").Name);
+            Assert.AreEqual("/item1", (string)vs.GetSymbolicLink("/link1").TargetPath);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test9()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+
+            // Act
+            vs["/"] += item1;
+            vs["/"] -= item1;
+
+            // Assert
+            Assert.AreEqual(0, vs.GetDirectory("/").Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test10()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+            VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
+
+            vs.AddItem("/", item1);
+            vs.GetDirectory("/")["item1"] = item2;
+
+        }
+
+        [TestMethod]
         [TestCategory("Free Test")]
         public void Free_Test_CollectionExpressions()
         {

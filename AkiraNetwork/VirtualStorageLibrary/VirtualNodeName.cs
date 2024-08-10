@@ -6,8 +6,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
     /// Represents the name of a virtual node. This class handles the generation,
     /// validation, and comparison of node names.
     /// </summary>
-    public class VirtualNodeName : IEquatable<VirtualNodeName>,
-        IComparable<VirtualNodeName>, IComparable
+    [DebuggerStepThrough]
+    public class VirtualNodeName : IEquatable<VirtualNodeName>, IComparable<VirtualNodeName>, IComparable
     {
         private readonly string _name;
 
