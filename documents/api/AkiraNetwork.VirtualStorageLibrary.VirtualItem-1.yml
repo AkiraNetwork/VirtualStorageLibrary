@@ -19,6 +19,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.ToString
   - AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   - AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  - AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
   - AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,`0})~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
   - AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(`0)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
   langs:
@@ -466,6 +467,44 @@ items:
   nameWithType.vb: VirtualItem(Of T).CType(VirtualNodeName)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T).CType(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   name.vb: CType(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  id: op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+  langs:
+  - csharp
+  - vb
+  name: implicit operator VirtualItem<T>(string)
+  nameWithType: VirtualItem<T>.implicit operator VirtualItem<T>(string)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>(string)
+  type: Operator
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
+      branch: gh-pages
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: op_Implicit
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
+    startLine: 188
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Implicitly converts the specified node name to a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem%601" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator VirtualItem<T>(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the node.
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
+      description: A <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItem%601" data-throw-if-not-resolved="false"></xref> initialized with the specified node name.
+    content.vb: Public Shared Widening Operator CType(name As String) As VirtualItem(Of T)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit*
+  nameWithType.vb: VirtualItem(Of T).CType(String)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T).CType(String)
+  name.vb: CType(String)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.ToString
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.ToString
   id: ToString
@@ -484,7 +523,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 187
+    startLine: 197
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -518,7 +557,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 194
+    startLine: 204
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -557,7 +596,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 210
+    startLine: 220
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -589,7 +628,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dispose
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 223
+    startLine: 233
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -627,7 +666,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Finalize
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 241
+    startLine: 251
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -658,7 +697,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualItem.cs
-    startLine: 253
+    startLine: 263
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1413,6 +1452,17 @@ references:
   - name: " "
   - name: T2
   - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -1445,17 +1495,6 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>.ToString
   nameWithType.vb: VirtualItem(Of T).ToString
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T).ToString
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem.DeepClone(System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualItem.DeepClone(System.Boolean)
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualItem

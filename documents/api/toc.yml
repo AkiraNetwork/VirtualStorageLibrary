@@ -17,8 +17,6 @@ items:
     name: VirtualCycleDetector
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
     name: VirtualDirectory
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-    name: VirtualDirectoryAdapter<T>
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualException
     name: VirtualException
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
@@ -27,8 +25,6 @@ items:
     name: VirtualID
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem
     name: VirtualItem
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-    name: VirtualItemAdapter<T>
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
     name: VirtualItem<T>
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
@@ -61,8 +57,6 @@ items:
     name: VirtualStorage<T>
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
     name: VirtualSymbolicLink
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-    name: VirtualSymbolicLinkAdapter<T>
 - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
   name: AkiraNetwork.VirtualStorageLibrary.Utilities
   items:

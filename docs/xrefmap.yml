@@ -1285,6 +1285,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   nameWithType: VirtualDirectory.operator +(VirtualDirectory, VirtualNode)
   nameWithType.vb: VirtualDirectory.+(VirtualDirectory, VirtualNode)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name: operator +(VirtualDirectory, VirtualNodeName)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  name.vb: +(VirtualDirectory, VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.operator +(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  nameWithType: VirtualDirectory.operator +(VirtualDirectory, VirtualNodeName)
+  nameWithType.vb: VirtualDirectory.+(VirtualDirectory, VirtualNodeName)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*
   name: operator +
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_
@@ -1304,6 +1313,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.CType(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   nameWithType: VirtualDirectory.implicit operator VirtualDirectory(VirtualNodeName)
   nameWithType.vb: VirtualDirectory.CType(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  name: implicit operator VirtualDirectory(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Implicit_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualDirectory
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  name.vb: CType(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualDirectory(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.CType(String)
+  nameWithType: VirtualDirectory.implicit operator VirtualDirectory(string)
+  nameWithType.vb: VirtualDirectory.CType(String)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit*
   name: implicit operator
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Implicit_
@@ -1843,6 +1861,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T).CType(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   nameWithType: VirtualItem<T>.implicit operator VirtualItem<T>(VirtualNodeName)
   nameWithType.vb: VirtualItem(Of T).CType(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  name: implicit operator VirtualItem<T>(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_op_Implicit_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualItem__0_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  name.vb: CType(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualItem<T>(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItem(Of T).CType(String)
+  nameWithType: VirtualItem<T>.implicit operator VirtualItem<T>(string)
+  nameWithType.vb: VirtualItem(Of T).CType(String)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,`0})~AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
   name: implicit operator VirtualItem<T>((VirtualNodeName nodeName, T? itemData))
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualItem_1_op_Implicit_System_ValueTuple_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__0___AkiraNetwork_VirtualStorageLibrary_VirtualItem__0_
@@ -3973,23 +4000,6 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CycleDetectorForTree
   nameWithType: VirtualStorage<T>.CycleDetectorForTree
   nameWithType.vb: VirtualStorage(Of T).CycleDetectorForTree
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  name: Dir
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Dir
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Dir
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Dir
-  nameWithType: VirtualStorage<T>.Dir
-  nameWithType.vb: VirtualStorage(Of T).Dir
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir*
-  name: Dir
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Dir_
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  isSpec: "True"
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Dir
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Dir
-  nameWithType: VirtualStorage<T>.Dir
-  nameWithType.vb: VirtualStorage(Of T).Dir
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   name: DirectoryExists(VirtualPath, bool)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_DirectoryExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -4223,23 +4233,6 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).this[]
   nameWithType: VirtualStorage<T>.this
   nameWithType.vb: VirtualStorage(Of T).this[]
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  name: Item
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
-  nameWithType: VirtualStorage<T>.Item
-  nameWithType.vb: VirtualStorage(Of T).Item
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
-  name: Item
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item_
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  isSpec: "True"
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
-  nameWithType: VirtualStorage<T>.Item
-  nameWithType.vb: VirtualStorage(Of T).Item
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   name: ItemExists(VirtualPath, bool)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ItemExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -4258,23 +4251,6 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ItemExists
   nameWithType: VirtualStorage<T>.ItemExists
   nameWithType.vb: VirtualStorage(Of T).ItemExists
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  name: Link
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Link
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
-  nameWithType: VirtualStorage<T>.Link
-  nameWithType.vb: VirtualStorage(Of T).Link
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link*
-  name: Link
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Link_
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  isSpec: "True"
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
-  nameWithType: VirtualStorage<T>.Link
-  nameWithType.vb: VirtualStorage(Of T).Link
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
   name: LinkDictionary
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary
@@ -5291,6 +5267,15 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update
   nameWithType: VirtualSymbolicLink.Update
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  name: implicit operator VirtualSymbolicLink(VirtualNodeName)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  name.vb: CType(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  nameWithType: VirtualSymbolicLink.implicit operator VirtualSymbolicLink(VirtualNodeName)
+  nameWithType.vb: VirtualSymbolicLink.CType(VirtualNodeName)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   name: implicit operator VirtualSymbolicLink(VirtualPath?)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_AkiraNetwork_VirtualStorageLibrary_VirtualPath__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink
@@ -5300,6 +5285,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   nameWithType: VirtualSymbolicLink.implicit operator VirtualSymbolicLink(VirtualPath?)
   nameWithType.vb: VirtualSymbolicLink.CType(VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  name: implicit operator VirtualSymbolicLink(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_System_String__AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  name.vb: CType(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType(String)
+  nameWithType: VirtualSymbolicLink.implicit operator VirtualSymbolicLink(string)
+  nameWithType.vb: VirtualSymbolicLink.CType(String)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   name: implicit operator VirtualSymbolicLink((VirtualNodeName nodeName, VirtualPath? targetPath))
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_op_Implicit_System_ValueTuple_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath___AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink

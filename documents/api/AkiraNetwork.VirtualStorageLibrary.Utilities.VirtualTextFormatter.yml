@@ -570,7 +570,7 @@ references:
   nameWithType: VirtualTextFormatter.GenerateTreeDebugText
   fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage{{T}}
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage{`0}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0}
   parent: AkiraNetwork.VirtualStorageLibrary
   definition: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html

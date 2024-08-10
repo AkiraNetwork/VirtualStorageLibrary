@@ -20,7 +20,6 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CurrentPath
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTarget
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.CycleDetectorForTree
-  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.DirectoryExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPathTree(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
@@ -35,9 +34,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
@@ -334,108 +331,6 @@ items:
   nameWithType.vb: VirtualStorage(Of T).CopyNode(VirtualPath, VirtualPath, Boolean, Boolean, Boolean, List(Of VirtualNodeContext))
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).CopyNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean, Boolean, Boolean, System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext))
   name.vb: CopyNode(VirtualPath, VirtualPath, Boolean, Boolean, Boolean, List(Of VirtualNodeContext))
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  id: Item
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: Item
-  nameWithType: VirtualStorage<T>.Item
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
-  type: Property
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: gh-pages
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: Item
-    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-    startLine: 10
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the adapter providing operations for virtual items.
-  example: []
-  syntax:
-    content: public VirtualItemAdapter<T> Item { get; }
-    parameters: []
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter{{T}}
-      description: An instance of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter%601" data-throw-if-not-resolved="false"></xref>
-    content.vb: Public ReadOnly Property Item As VirtualItemAdapter(Of T)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
-  nameWithType.vb: VirtualStorage(Of T).Item
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  id: Dir
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: Dir
-  nameWithType: VirtualStorage<T>.Dir
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Dir
-  type: Property
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: gh-pages
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: Dir
-    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-    startLine: 16
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the adapter providing operations for virtual directories.
-  example: []
-  syntax:
-    content: public VirtualDirectoryAdapter<T> Dir { get; }
-    parameters: []
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter{{T}}
-      description: An instance of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter%601" data-throw-if-not-resolved="false"></xref>
-    content.vb: Public ReadOnly Property Dir As VirtualDirectoryAdapter(Of T)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir*
-  nameWithType.vb: VirtualStorage(Of T).Dir
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Dir
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  id: Link
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
-  langs:
-  - csharp
-  - vb
-  name: Link
-  nameWithType: VirtualStorage<T>.Link
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
-  type: Property
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: gh-pages
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: Link
-    path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-    startLine: 22
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Gets the adapter providing operations for virtual symbolic links.
-  example: []
-  syntax:
-    content: public VirtualSymbolicLinkAdapter<T> Link { get; }
-    parameters: []
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter{{T}}
-      description: An instance of <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter%601" data-throw-if-not-resolved="false"></xref>
-    content.vb: Public ReadOnly Property Link As VirtualSymbolicLinkAdapter(Of T)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link*
-  nameWithType.vb: VirtualStorage(Of T).Link
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   id: Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
@@ -454,14 +349,14 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-    startLine: 30
+    startLine: 12
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
   summary: Gets or sets the virtual node corresponding to the specified virtual path.
   example: []
   syntax:
-    content: public VirtualNode this[VirtualPath path, bool followLinks = true] { get; set; }
+    content: public VirtualDirectory this[VirtualPath path, bool followLinks = true] { get; set; }
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
@@ -470,9 +365,9 @@ items:
       type: System.Boolean
       description: Flag indicating whether to follow symbolic links
     return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
       description: The virtual node corresponding to the specified virtual path
-    content.vb: Public Default Property this[](path As VirtualPath, followLinks As Boolean = True) As VirtualNode
+    content.vb: Public Default Property this[](path As VirtualPath, followLinks As Boolean = True) As VirtualDirectory
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer*
   nameWithType.vb: VirtualStorage(Of T).this[](VirtualPath, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).this[](AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
@@ -3386,186 +3281,6 @@ references:
     name: Generic
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
-  name: VirtualItemAdapter<T>
-  nameWithType: VirtualItemAdapter<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter<T>
-  nameWithType.vb: VirtualItemAdapter(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter(Of T)
-  name.vb: VirtualItemAdapter(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-    name: VirtualItemAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-    name: VirtualItemAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item
-  name: Item
-  nameWithType: VirtualStorage<T>.Item
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
-  nameWithType.vb: VirtualStorage(Of T).Item
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter{{T}}
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter{`0}
-  parent: AkiraNetwork.VirtualStorageLibrary
-  definition: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
-  name: VirtualItemAdapter<T>
-  nameWithType: VirtualItemAdapter<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter<T>
-  nameWithType.vb: VirtualItemAdapter(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter(Of T)
-  name.vb: VirtualItemAdapter(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-    name: VirtualItemAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
-    name: VirtualItemAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
-  name: VirtualDirectoryAdapter<T>
-  nameWithType: VirtualDirectoryAdapter<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter<T>
-  nameWithType.vb: VirtualDirectoryAdapter(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter(Of T)
-  name.vb: VirtualDirectoryAdapter(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-    name: VirtualDirectoryAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-    name: VirtualDirectoryAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Dir
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Dir
-  name: Dir
-  nameWithType: VirtualStorage<T>.Dir
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Dir
-  nameWithType.vb: VirtualStorage(Of T).Dir
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Dir
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter{{T}}
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter{`0}
-  parent: AkiraNetwork.VirtualStorageLibrary
-  definition: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
-  name: VirtualDirectoryAdapter<T>
-  nameWithType: VirtualDirectoryAdapter<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter<T>
-  nameWithType.vb: VirtualDirectoryAdapter(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter(Of T)
-  name.vb: VirtualDirectoryAdapter(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-    name: VirtualDirectoryAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter`1
-    name: VirtualDirectoryAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectoryAdapter-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
-  name: VirtualSymbolicLinkAdapter<T>
-  nameWithType: VirtualSymbolicLinkAdapter<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>
-  nameWithType.vb: VirtualSymbolicLinkAdapter(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T)
-  name.vb: VirtualSymbolicLinkAdapter(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-    name: VirtualSymbolicLinkAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-    name: VirtualSymbolicLinkAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Link
-  name: Link
-  nameWithType: VirtualStorage<T>.Link
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
-  nameWithType.vb: VirtualStorage(Of T).Link
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter{{T}}
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter{`0}
-  parent: AkiraNetwork.VirtualStorageLibrary
-  definition: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
-  name: VirtualSymbolicLinkAdapter<T>
-  nameWithType: VirtualSymbolicLinkAdapter<T>
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>
-  nameWithType.vb: VirtualSymbolicLinkAdapter(Of T)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T)
-  name.vb: VirtualSymbolicLinkAdapter(Of T)
-  spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-    name: VirtualSymbolicLinkAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
-    name: VirtualSymbolicLinkAdapter
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Indexer_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -3575,13 +3290,6 @@ references:
   nameWithType.vb: VirtualStorage(Of T).this[]
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).this[]
   name.vb: this[]
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
-  name: VirtualNode
-  nameWithType: VirtualNode
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary
@@ -3844,6 +3552,13 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ChangeDirectory
   nameWithType.vb: VirtualStorage(Of T).ChangeDirectory
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ChangeDirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNode
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  name: VirtualNode
+  nameWithType: VirtualNode
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNode
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
@@ -3861,7 +3576,7 @@ references:
   nameWithType.vb: VirtualStorage(Of T).UpdateItem
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).UpdateItem
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItem{{T}}
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem{`0}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItem{``0}
   parent: AkiraNetwork.VirtualStorageLibrary
   definition: AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
   href: AkiraNetwork.VirtualStorageLibrary.VirtualItem-1.html
