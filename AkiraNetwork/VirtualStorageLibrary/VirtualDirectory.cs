@@ -181,10 +181,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Performs an implicit conversion from <see cref="VirtualNodeName"/> to <see cref="VirtualDirectory"/>.
+        /// Implicitly converts the specified node name to a <see cref="VirtualDirectory"/>.
         /// </summary>
         /// <param name="nodeName">The node name to convert.</param>
         public static implicit operator VirtualDirectory(VirtualNodeName nodeName)
+        {
+            return new VirtualDirectory(nodeName);
+        }
+
+        /// <summary>
+        /// Implicitly converts the specified node name to a <see cref="VirtualDirectory"/>.
+        /// </summary>
+        /// <param name="nodeName">The node name to convert.</param>
+        public static implicit operator VirtualDirectory(string nodeName)
         {
             return new VirtualDirectory(nodeName);
         }
@@ -382,7 +391,14 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             set
             {
-                _nodes[name] = value;
+                if (!NodeExists(name))
+                {
+                    _nodes[name] = value;
+                }
+                else
+                {
+                    _nodes[name].Update(value);
+                }
             }
         }
 
@@ -536,6 +552,22 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNode node)
         {
             node = directory.Add(node);
+            if (directory.IsReferencedInStorage)
+            {
+                SetIsReferencedInStorageRecursively(node, true);
+            }
+            return directory;
+        }
+
+        /// <summary>
+        /// Overloads the addition operator to add a node to the directory.
+        /// </summary>
+        /// <param name="directory">The directory to which the node is added.</param>
+        /// <param name="nodeName">The node name of directory to add.</param>
+        /// <returns>The directory with the added node.</returns>
+        public static VirtualDirectory operator +(VirtualDirectory directory, VirtualNodeName nodeName)
+        {
+            VirtualNode node = directory.Add(new VirtualDirectory(nodeName));
             if (directory.IsReferencedInStorage)
             {
                 SetIsReferencedInStorageRecursively(node, true);

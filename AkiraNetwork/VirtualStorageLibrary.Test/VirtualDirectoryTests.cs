@@ -2267,10 +2267,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             var enumerator = directory.GetEnumerator();
-            List<VirtualNode> nodes = [];
 
             // Assert
-            Assert.AreEqual(0, nodes.Count);
+            Assert.IsFalse(enumerator.MoveNext());
         }
 
         [TestMethod]
@@ -2281,10 +2280,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             var enumerator = ((IEnumerable<VirtualNode>)directory).GetEnumerator();
-            List<VirtualNode> nodes = [];
 
             // Assert
-            Assert.AreEqual(0, nodes.Count);
+            Assert.IsFalse(enumerator.MoveNext());
         }
 
         [TestMethod]
@@ -2299,7 +2297,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             var enumerator = ((System.Collections.IEnumerable)directory).GetEnumerator();
-            List<VirtualNode> nodes = new();
+            List<VirtualNode> nodes = [];
 
             while (enumerator.MoveNext())
             {
@@ -2322,10 +2320,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             var enumerator = ((System.Collections.IEnumerable)directory).GetEnumerator();
-            List<VirtualNode> nodes = new();
 
             // Assert
-            Assert.AreEqual(0, nodes.Count);
+            Assert.IsFalse(enumerator.MoveNext());
         }
     }
 }

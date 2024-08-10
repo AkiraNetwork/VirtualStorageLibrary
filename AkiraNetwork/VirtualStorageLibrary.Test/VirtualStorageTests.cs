@@ -21,9 +21,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualStorageTests : VirtualTestBase
     {
-        private List<NotifyNodeInfo> _notifyNodeInfos = [];
+        private List<NotifyNodeInfo> _notifyNodeInformation = [];
 
-        private List<ActionNodeInfo> _actionNodeInfos = [];
+        private List<ActionNodeInfo> _actionNodeInformation = [];
 
         [TestInitialize]
         public override void TestInitialize()
@@ -35,8 +35,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorageSettings.Initialize();
             VirtualNodeName.ResetCounter();
 
-            _notifyNodeInfos = [];
-            _actionNodeInfos = [];
+            _notifyNodeInformation = [];
+            _actionNodeInformation = [];
         }
 
         [TestMethod]
@@ -5318,7 +5318,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/linkToDir2", NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5359,7 +5359,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5389,7 +5389,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5420,7 +5420,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, false);
 
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5457,7 +5457,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 結果を検証
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine(nodeContext);
@@ -5490,9 +5490,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(_actionNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_actionNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5596,9 +5596,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(_actionNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_actionNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5633,9 +5633,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 結果を検証
             Debug.WriteLine("");
             Debug.WriteLine("NotifyNode:");
-            Debug.WriteLine(_notifyNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_notifyNodeInformation.GenerateTableDebugText());
             Debug.WriteLine("ActionNode:");
-            Debug.WriteLine(_actionNodeInfos.GenerateTableDebugText());
+            Debug.WriteLine(_actionNodeInformation.GenerateTableDebugText());
 
             Debug.WriteLine("コンテキスト:");
             Debug.WriteLine($"Node = {nodeContext.Node?.Name}");
@@ -5707,7 +5707,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         private void NotifyNode(VirtualPath path, VirtualNode? node)
         {
             //Debug.WriteLine($"Path: {cycleInfo}, Node: {node}, isEnd: {isEnd}");
-            _notifyNodeInfos.Add(new NotifyNodeInfo(path, node));
+            _notifyNodeInformation.Add(new NotifyNodeInfo(path, node));
         }
 
         private bool ActionNode(VirtualDirectory parentDirectory, VirtualNodeName nodeName, VirtualPath nodePath)
@@ -5718,7 +5718,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             Debug.WriteLine($"IntermediateDirectory: {nodePath}");
 
-            _actionNodeInfos.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
+            _actionNodeInformation.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
 
             return true;
         }
@@ -5731,7 +5731,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             Debug.WriteLine($"IntermediateDirectory: {nodePath}");
 
-            _actionNodeInfos.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
+            _actionNodeInformation.Add(new ActionNodeInfo(parentDirectory, nodeName, nodePath));
 
             return nodeName != "dir2";
         }
@@ -9418,436 +9418,6 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("Indexer_Item")]
-        public void Indexer_Item_GetExistingItemTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            BinaryData data = [1, 2, 3];
-            VirtualNodeName itemName = "testItem";
-            VirtualItem<BinaryData> item = (itemName, data);
-            VirtualPath itemPath = "/testItem";  // VirtualPathとしてアイテムの完全なパスを設定
-
-            // 仮想ストレージにアイテムを追加
-            vs.AddItem(itemPath.DirectoryPath, item);
-
-            // Act
-            VirtualItem<BinaryData> retrievedItem = (VirtualItem<BinaryData>)vs[itemPath];
-
-            // Assert
-            Assert.AreEqual(item.Name, retrievedItem.Name);
-            CollectionAssert.AreEqual(item.ItemData!.Data, retrievedItem.ItemData!.Data);
-            Assert.IsTrue(retrievedItem.IsReferencedInStorage);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Item")]
-        public void Indexer_Item_GetNonExistingItemTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualPath itemPath = "/nonExistingItem";
-
-            // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[itemPath]);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Item")]
-        public void Indexer_Item_SetExistingItemTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            BinaryData data1 = [1, 2, 3];
-            BinaryData data2 = [4, 5, 6];
-            VirtualNodeName itemName = "testItem";
-            VirtualItem<BinaryData> item1 = (itemName, data1);
-            VirtualItem<BinaryData> item2 = (itemName, data2);
-            VirtualPath itemPath = "/testItem";
-
-            // 仮想ストレージにアイテムを追加
-            vs.AddItem(itemPath.DirectoryPath, item1);
-
-            // 仮想ストレージにアイテムを上書き
-            vs[itemPath] = item2;
-
-            // Act
-            VirtualItem<BinaryData> retrievedItem = (VirtualItem<BinaryData>)vs[itemPath];
-
-            // Assert
-            Assert.AreEqual(item2.Name, retrievedItem.Name);
-            CollectionAssert.AreEqual(item2.ItemData!.Data, retrievedItem.ItemData!.Data);
-            Assert.IsTrue(retrievedItem.IsReferencedInStorage);
-            Assert.AreNotSame(item2, retrievedItem);
-            Assert.AreSame(item2.ItemData, retrievedItem.ItemData);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Item")]
-        public void Indexer_Item_SetItemWithInvalidPathTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            BinaryData data = [1, 2, 3];
-            VirtualNodeName itemName = "testItem";
-            VirtualItem<BinaryData> item = (itemName, data);
-            VirtualPath invalidPath = "/nonexistent/parentDirectory/cycleInfo";  // 存在しないディレクトリへのパス
-
-            // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[invalidPath] = item);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Item")]
-        public void Indexer_Item_GetAndSetIndexerTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            BinaryData data1 = [1, 2, 3];
-            BinaryData data2 = [4, 5, 6];
-            VirtualNodeName itemName1 = "testItem1";
-            VirtualNodeName itemName2 = "testItem2";
-            VirtualItem<BinaryData> item1 = (itemName1, data1);
-            VirtualItem<BinaryData> item2 = (itemName2, data2);
-            VirtualPath itemPath1 = "/testItem1";
-            VirtualPath itemPath2 = "/testItem2";
-
-            // 仮想ストレージにアイテムを追加
-            vs.AddItem(itemPath1.DirectoryPath, item1);
-            vs.AddItem(itemPath2.DirectoryPath, item2);
-
-            // Act
-            vs[itemPath1] = vs[itemPath2];
-
-            // Assert
-            VirtualItem<BinaryData> retrievedItem1 = (VirtualItem<BinaryData>)vs[itemPath1];
-            VirtualItem<BinaryData> retrievedItem2 = (VirtualItem<BinaryData>)vs[itemPath2];
-
-            // itemPath1の確認
-            Assert.AreEqual(itemName1, retrievedItem1.Name); // 名前は変わらない
-            CollectionAssert.AreEqual(item2.ItemData!.Data, retrievedItem1.ItemData!.Data); // データは同じ
-
-            // ノードの実体が異なることを確認
-            Assert.AreNotSame(retrievedItem1, retrievedItem2);
-
-            // Dataの実体が異なることを確認
-            Assert.AreNotSame(retrievedItem1.ItemData, retrievedItem2.ItemData);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Directory")]
-        public void Indexer_Directory_GetExistingDirectoryTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualNodeName dirName = "testDir";
-            VirtualDirectory dir = new(dirName);
-            VirtualPath dirPath = "/testDir";
-
-            // 仮想ストレージにディレクトリを追加
-            vs.AddDirectory(dirPath.DirectoryPath, dir);
-
-            // Act
-            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dirPath];
-
-            // Assert
-            Assert.AreEqual(dir.Name, retrievedDir.Name);
-            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Directory")]
-        public void Indexer_Directory_GetNonExistingDirectoryTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualPath dirPath = "/nonExistingDir";
-
-            // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[dirPath]);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Directory")]
-        public void Indexer_Directory_SetExistingDirectoryTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualPath dir1Path = "/dir1";
-            VirtualDirectory dir2 = new("/dir2");
-
-            vs.AddDirectory(dir1Path);
-
-            // Act
-            vs[dir1Path] = dir2;
-
-            // Assert
-            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dir1Path];
-            Assert.AreEqual(dir1Path.NodeName, retrievedDir.Name);
-            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
-            Assert.AreNotSame(dir2, retrievedDir);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Directory")]
-        public void Indexer_Directory_SetExistingDirectoryWithItemsTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualPath dir1Path = "/dir1";
-            VirtualPath dir2Path = "/dir2";
-
-            BinaryData data1 = [1, 2, 3];
-            BinaryData data2 = [4, 5, 6];
-
-            VirtualItem<BinaryData> item1 = new("item1", data1);
-            VirtualItem<BinaryData> item2a = new("item2", data1);
-            VirtualItem<BinaryData> item2b = new("item2", data2);
-            VirtualItem<BinaryData> item3 = new("item3", data2);
-
-            vs.AddDirectory(dir1Path);
-            vs.AddDirectory(dir2Path);
-
-            vs.AddItem(dir1Path, item1);
-            vs.AddItem(dir1Path, item2a);
-            vs.AddItem(dir2Path, item2b);
-            vs.AddItem(dir2Path, item3);
-
-            // Act
-            vs[dir1Path] = vs[dir2Path];
-
-            // Assert
-            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dir1Path];
-
-            // /dir1の確認
-            Assert.AreEqual(dir1Path.NodeName, retrievedDir.Name);
-            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
-
-            // /dir1/item1の確認
-            VirtualItem<BinaryData> retrievedItem1 = (VirtualItem<BinaryData>)vs[dir1Path + "item1"];
-            CollectionAssert.AreEqual(data1.Data, retrievedItem1.ItemData!.Data);
-            Assert.IsTrue(retrievedItem1.IsReferencedInStorage);
-
-            // /dir1/item2の確認
-            VirtualItem<BinaryData> retrievedItem2 = (VirtualItem<BinaryData>)vs[dir1Path + "item2"];
-            CollectionAssert.AreEqual(data2.Data, retrievedItem2.ItemData!.Data);
-            Assert.IsTrue(retrievedItem2.IsReferencedInStorage);
-
-            // /dir1/item3の確認
-            VirtualItem<BinaryData> retrievedItem3 = (VirtualItem<BinaryData>)vs[dir1Path + "item3"];
-            CollectionAssert.AreEqual(data2.Data, retrievedItem3.ItemData!.Data);
-            Assert.IsTrue(retrievedItem3.IsReferencedInStorage);
-
-            // 各ノードの実体が個別であることを確認
-            Assert.AreNotSame(vs[dir1Path], vs[dir2Path]);
-            Assert.AreNotSame(vs[dir1Path + "item2"], vs[dir2Path + "item2"]);
-
-            // 各アイテムのデータの実体が個別であることを確認
-            Assert.AreNotSame(((VirtualItem<BinaryData>)vs[dir2Path + "item2"]).ItemData,
-                              ((VirtualItem<BinaryData>)vs[dir1Path + "item2"]).ItemData);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_Directory")]
-        public void Indexer_Directory_SetVirtualDirectoryInstanceWithItemsTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualPath dir1Path = "/dir1";
-
-            BinaryData data1 = [1, 2, 3];
-            BinaryData data2 = [4, 5, 6];
-
-            VirtualItem<BinaryData> item1 = new("item1", data1);
-            VirtualItem<BinaryData> item2a = new("item2", data1);
-            VirtualItem<BinaryData> item2b = new("item2", data2);
-            VirtualItem<BinaryData> item3 = new("item3", data2);
-            VirtualDirectory subDir1 = new("subDir1");
-
-            vs.AddDirectory(dir1Path);
-
-            vs.AddItem(dir1Path, item1);
-            vs.AddItem(dir1Path, item2a);
-
-            VirtualDirectory dir2 = new("dir2")
-            {
-                item2b,
-                item3,
-                subDir1
-            };
-
-            // ディレクトリ構造を出力
-            Debug.WriteLine("処理前:");
-            Debug.WriteLine(vs.GenerateTreeDebugText("/"), true, false);
-
-            // Act
-            vs[dir1Path] = dir2;
-
-            // ディレクトリ構造を出力
-            Debug.WriteLine("処理後:");
-            Debug.WriteLine(vs.GenerateTreeDebugText("/"), true, false);
-
-            // Assert
-            VirtualDirectory retrievedDir = (VirtualDirectory)vs[dir1Path];
-
-            // /dir1の確認
-            Assert.AreEqual(dir1Path.NodeName, retrievedDir.Name);
-            Assert.IsTrue(retrievedDir.IsReferencedInStorage);
-
-            // /dir1/item1の確認
-            VirtualItem<BinaryData> retrievedItem1 = (VirtualItem<BinaryData>)vs[dir1Path + "item1"];
-            CollectionAssert.AreEqual(data1.Data, retrievedItem1.ItemData!.Data);
-            Assert.IsTrue(retrievedItem1.IsReferencedInStorage);
-
-            // /dir1/item2の確認
-            VirtualItem<BinaryData> retrievedItem2 = (VirtualItem<BinaryData>)vs[dir1Path + "item2"];
-            CollectionAssert.AreEqual(data2.Data, retrievedItem2.ItemData!.Data);
-            Assert.IsTrue(retrievedItem2.IsReferencedInStorage);
-
-            // /dir1/item3の確認
-            VirtualItem<BinaryData> retrievedItem3 = (VirtualItem<BinaryData>)vs[dir1Path + "item3"];
-            CollectionAssert.AreEqual(data2.Data, retrievedItem3.ItemData!.Data);
-            Assert.IsTrue(retrievedItem3.IsReferencedInStorage);
-
-            // /dir1/subDir1の確認
-            VirtualDirectory retrievedSubDir1 = (VirtualDirectory)vs[dir1Path + "subDir1"];
-            Assert.AreEqual(subDir1.Name, retrievedSubDir1.Name);
-            Assert.IsTrue(retrievedSubDir1.IsReferencedInStorage);
-
-            // 各ノードの実体が個別であることを確認
-            Assert.AreNotSame(vs[dir1Path], dir2);
-            Assert.AreNotSame(vs[dir1Path + "item2"], dir2.Get("item2"));
-
-            // 各アイテムのデータの実体が個別であることを確認
-            Assert.AreNotSame(((VirtualItem<BinaryData>?)dir2.Get("item2"))!.ItemData,
-                              ((VirtualItem<BinaryData>)vs[dir1Path + "item2"]).ItemData);
-
-            // 各サブディレクトリの実体が個別であることを確認
-            Assert.AreNotSame(vs[dir1Path + "subDir1"], dir2.Get("subDir1"));
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_SymbolicLink")]
-        public void Indexer_SymbolicLink_GetExistingSymbolicLinkTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualNodeName linkName = "testLink";
-            VirtualPath targetPath = "/targetPath";
-            VirtualSymbolicLink link = new(linkName, targetPath);
-            VirtualPath linkPath = "/testLink";  // VirtualPathとしてシンボリックリンクの完全なパスを設定
-
-            // 仮想ストレージにシンボリックリンクを追加
-            vs.AddSymbolicLink(linkPath.DirectoryPath, link);
-
-            // Act
-            // followLinks=false リンク解決はせず、リンクそのものを扱う
-            VirtualSymbolicLink retrievedLink = (VirtualSymbolicLink)vs[linkPath, false];
-
-            // Assert
-            Assert.AreEqual(link.Name, retrievedLink.Name);
-            Assert.AreEqual(link.TargetPath, retrievedLink.TargetPath);
-            Assert.IsTrue(retrievedLink.IsReferencedInStorage);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_SymbolicLink")]
-        public void Indexer_SymbolicLink_GetNonExistingSymbolicLinkTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualPath linkPath = "/nonExistingLink";
-
-            // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[linkPath, false]);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_SymbolicLink")]
-        public void Indexer_SymbolicLink_SetExistingSymbolicLinkTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualNodeName linkName = "testLink";
-            VirtualPath targetPath1 = "/targetPath1";
-            VirtualPath targetPath2 = "/targetPath2";
-            VirtualSymbolicLink link1 = new(linkName, targetPath1);
-            VirtualSymbolicLink link2 = new(linkName, targetPath2);
-            VirtualPath linkPath = "/testLink";
-
-            // 仮想ストレージにシンボリックリンクを追加
-            vs.AddSymbolicLink(linkPath.DirectoryPath, link1);
-
-            // 仮想ストレージにシンボリックリンクを上書き
-            vs[linkPath, false] = link2;
-
-            // Act
-            // followLinks=false リンク解決はせず、リンクそのものを扱う
-            VirtualSymbolicLink retrievedLink = (VirtualSymbolicLink)vs[linkPath, false];
-
-            // Assert
-            Assert.AreEqual(link2.Name, retrievedLink.Name);
-            Assert.AreEqual(link2.TargetPath, retrievedLink.TargetPath);
-            Assert.IsTrue(retrievedLink.IsReferencedInStorage);
-            Assert.AreNotSame(link2, retrievedLink);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_SymbolicLink")]
-        public void Indexer_SymbolicLink_SetSymbolicLinkWithInvalidPathTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualNodeName linkName = "testLink";
-            VirtualPath targetPath = "/targetPath";
-            VirtualSymbolicLink link = new(linkName, targetPath);
-            VirtualPath invalidPath = "/nonexistent/parentDirectory/cycleInfo";  // 存在しないディレクトリへのパス
-
-            // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs[invalidPath, false] = link);
-        }
-
-        [TestMethod]
-        [TestCategory("Indexer_SymbolicLink")]
-        public void Indexer_SymbolicLink_GetAndSetIndexerTest()
-        {
-            // Arrange
-            VirtualStorage<BinaryData> vs = new();
-            VirtualNodeName linkName1 = "testLink1";
-            VirtualNodeName linkName2 = "testLink2";
-            VirtualPath targetPath1 = "/targetPath1";
-            VirtualPath targetPath2 = "/targetPath2";
-            VirtualSymbolicLink link1 = new(linkName1, targetPath1);
-            VirtualSymbolicLink link2 = new(linkName2, targetPath2);
-            VirtualPath linkPath1 = "/testLink1";
-            VirtualPath linkPath2 = "/testLink2";
-
-            // 仮想ストレージにシンボリックリンクを追加
-            vs.AddSymbolicLink(linkPath1.DirectoryPath, link1);
-            vs.AddSymbolicLink(linkPath2.DirectoryPath, link2);
-
-            // Act
-            // followLinks=false リンク解決はせず、リンクそのものを扱う
-            vs[linkPath1, false] = vs[linkPath2, false];
-
-            // Assert
-            VirtualSymbolicLink retrievedLink1 = (VirtualSymbolicLink)vs[linkPath1, false];
-            VirtualSymbolicLink retrievedLink2 = (VirtualSymbolicLink)vs[linkPath2, false];
-
-            // linkPath1の確認
-            Assert.AreEqual(linkName1, retrievedLink1.Name); // 名前は変わらない
-            Assert.AreEqual(targetPath2, retrievedLink1.TargetPath); // ターゲットパスは同じ
-            Assert.IsTrue(retrievedLink1.IsReferencedInStorage);
-
-            // ノードの実体が異なることを確認
-            Assert.AreNotSame(retrievedLink1, retrievedLink2);
-
-            // TargetPathの実体が同じであることを確認
-            // (VirtualPath内の_pathは string でありイミュータブルなので問題なし)
-            Assert.AreSame(retrievedLink1.TargetPath, retrievedLink2.TargetPath);
-        }
-
-        [TestMethod]
         [TestCategory("CycleReferenceCheck")]
         // リンクのターゲットが自身の上位ノードを指している場合
         // WalkPathTreeメソッドで循環参照を検出するかどうかのテスト
@@ -10317,6 +9887,187 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Assert
             Assert.AreEqual("ルートディレクトリは既に存在します。", exception.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test1()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            VirtualDirectory tempDir = new("tempDir");
+            tempDir.AddItem<BinaryData>("item1");
+            tempDir.AddItem<BinaryData>("item2");
+            tempDir.AddItem<BinaryData>("item3");
+
+            vs["/"] = tempDir;
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual("item2", (string)vs.GetItem("/item2").Name);
+            Assert.AreEqual("item3", (string)vs.GetItem("/item3").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test2()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualNodeName("dir1");
+
+            // Assert
+            Assert.AreEqual("dir1", (string)vs.GetDirectory("/dir1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test3()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += "dir1";
+
+            // Assert
+            Assert.AreEqual("dir1", (string)vs.GetDirectory("/dir1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test4()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualDirectory("dir1");
+
+            // Assert
+            Assert.AreEqual("dir1", (string)vs.GetDirectory("/dir1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test5()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualItem<BinaryData>("item1");
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test6()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            // Act
+            vs["/"] += new VirtualSymbolicLink("link1");
+
+            // Assert
+            Assert.AreEqual("link1", (string)vs.GetSymbolicLink("/link1").Name);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test7()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+
+            // Act
+            vs["/"] += item1;
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual(new BinaryData([1, 2, 3]), vs.GetItem("/item1").ItemData);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test8()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualSymbolicLink link1 = new("link1", "/item1");
+
+            // Act
+            vs["/"] += link1;
+
+            // Assert
+            Assert.AreEqual("link1", (string)vs.GetSymbolicLink("/link1").Name);
+            Assert.AreEqual("/item1", (string)vs.GetSymbolicLink("/link1").TargetPath);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test9()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+
+            // Act
+            vs["/"] += item1;
+            vs["/"] -= item1;
+
+            // Assert
+            Assert.AreEqual(0, vs.GetDirectory("/").Count);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test10()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+            VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
+
+            // Act
+            vs["/"] += item1;
+            vs["/"]["item1"] = item2;
+            var item = (VirtualItem<BinaryData>)vs["/"]["item1"];
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), vs.GetItem("/item1").ItemData);
+            Assert.AreEqual("item1", (string)item.Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), item.ItemData);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test11()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+            VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
+
+            // Act
+            vs["/"] += item1;
+            vs["/"]["item1"] = item2;
+            var item = (VirtualItem<BinaryData>)vs["/"]["item1"];
+
+            // Assert
+            Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), vs.GetItem("/item1").ItemData);
+            Assert.AreEqual("item1", (string)item.Name);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), item.ItemData);
         }
 
         [TestMethod]

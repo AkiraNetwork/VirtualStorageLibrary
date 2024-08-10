@@ -6,7 +6,43 @@
     <Nullable>enable</Nullable>
     <RootNamespace>AkiraNetwork.VirtualStorageLibrary</RootNamespace>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <Title>Virtual Storage Library</Title>
+    <Version>0.8.0</Version>
+    <Authors>Akira Shimodate</Authors>
+    <Company>AkiraNetwork</Company>
+    <Description>VirtualStorageLibrary is a fully in-memory .NET library that provides a tree-structured collection. 
+It offers a foundation for managing hierarchical data structures and supports items, directories, and symbolic links with user-defined types. 
+This library is not a file system; instead, it is inspired by traditional file system concepts but redesigned to be more flexible and user-friendly. 
+Users can intuitively reference, traverse, and manipulate nodes by specifying paths, making it ideal for applications needing a high-performance virtual storage solution.</Description>
+    <Copyright>© 2024 Akira Shimodate</Copyright>
+    <PackageProjectUrl>https://shimodateakira.github.io/VirtualStorageLibrary/</PackageProjectUrl>
+    <PackageIcon>tree.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/shimodateakira/VirtualStorageLibrary.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>tree;collection;library;virtual;akiranet;akiranetwork</PackageTags>
+    <PackageReleaseNotes>Preview release.</PackageReleaseNotes>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>AGPL-1.0-only</PackageLicenseExpression>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageOutputPath>../../packages</PackageOutputPath>
+    <AssemblyVersion>0.8.0</AssemblyVersion>
+    <FileVersion>0.8.0</FileVersion>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\Signature\VirtualStorageLibrary.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\tree.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Localization\Resources.Designer.cs">
