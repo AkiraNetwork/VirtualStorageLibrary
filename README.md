@@ -276,7 +276,7 @@ VirtualStorageSettings.Initialize();
 ```
 `VirtualStorageLibrary`を初期化します。アプリーションコードで最初に一度だけ呼び出してください。  
 この初期化では、パスで使われる文字(区切り文字、ルート、ドット、ドットドット)、パスやノード名の禁止文字、
-マイルドカードマッチャー、ノードリスト表示条件、ノード名生成時のprefix等を初期設定しています。
+マイルドカードマッチャー、ノードリスト表示条件、ノード名生成時のprefix等を初期設定しています。  
 この初期化を行わないと、後続の操作が正しく動作しない可能性があります。
 
 ### ユーザー定義クラスの定義
@@ -290,13 +290,13 @@ public class Person
 `VirtualStorageLibrary`で使用するユーザー定義クラスを定義します。  
 `VirtualStorageLibrary`は、ユーザー定義クラスのインスタンスをツリー構造で管理する事のできるジェネリック型のコレクションです。  
 その為、ユーザーアプリケーションでは管理したいユーザー定義クラスを定義しなければなりません。  
-この簡単なサンプルでは名前と年齢を管理する簡単なPersonクラスを定義しています。  
+この簡単なサンプルでは名前と年齢を管理する簡単な`Person`クラスを定義しています。  
 
 ### VirtualStorageクラスのインスタンスの作成
 ```csharp
 VirtualStorage<Person> vs = new();
 ```
-VirtualStorageクラスのインスタンスを作成します。  
+`VirtualStorage`クラスのインスタンスを作成します。  
 作成直後は、ルートディレクトリのみが存在しています。
 
 ### ユーザー定義クラスのインスタンスの作成
@@ -309,7 +309,7 @@ Person person1 = new() { Name = "John", Age = 20 };
 ```csharp
 VirtualItem<Person> item1 = new("item1", person1);
 ```
-VirtualItemクラスのインスタンスを作成します。
+`VirtualItem`クラスのインスタンスを作成します。
 コンストラクタの第一パラメータにはノード名を指定し、第二パラメータにはユーザー定義クラスのインスタンスを指定します。
 
 ### ディレクトリの追加
@@ -317,8 +317,8 @@ VirtualItemクラスのインスタンスを作成します。
 vs.AddDirectory("/home1");
 ```
 ルートディレクトリに"home1"というディレクトリを追加します。
-以下のようにサブディレクトリを一度に追加する場合は、第二パラメータ(createSubdirectories)をtrueで指定します。
-createSubdirectoriesのデフォルト値はfalseです。
+以下のようにサブディレクトリを一度に追加する場合は、第二パラメータ(`createSubdirectories`)をtrueで指定します。
+`createSubdirectories`のデフォルト値はfalseです。
 ```csharp
 vs.AddDirectory("/home1/subdir1/subdir2", true);
 ```
@@ -327,12 +327,12 @@ vs.AddDirectory("/home1/subdir1/subdir2", true);
 ```csharp
 vs.AddItem("/home1", item1);
 ```
-VirtualItemクラスのインスタンスを"/home1"ディレクトリに追加します。
-この時、このアイテムのノード名は、VirtualItemクラスのインスタンスを作成した時のノード名になります。
+`VirtualItem`クラスのインスタンスを"/home1"ディレクトリに追加します。
+この時、このアイテムのノード名は、`VirtualItem`クラスのインスタンスを作成した時のノード名になります。
 結果として"/home1/item1"という名前のノードが作成されます。
 同じディレクトリに同じ名前のノード名が既に存在している場合は例外が発生します。
-ただし、以下のように第三パラメータ(overwrite)をtrueで指定した場合は上書きする事ができます。
-overwriteのデフォルト値はfalseです。
+ただし、以下のように第三パラメータ(`overwrite`)をtrueで指定した場合は上書きする事ができます。
+`overwrite`のデフォルト値はfalseです。
 ```
 vs.AddItem("/home1", item1, true);
 ```
@@ -341,19 +341,42 @@ vs.AddItem("/home1", item1, true);
 ```csharp
 Person result = vs.GetItem("/home1/item1").ItemData!;
 ```
-GetItemメソッドはパラメータで指定したパスに対するVirtualItemのインスタンスを取得します。
-VirtualItemのItemDataプロパティは、ユーザー定義クラスのインスタンスを公開しています。
-その為、resultには"/home1/item1"に格納されたPersonクラスのインスタンスが設定されます。
+`GetItem()`メソッドはパラメータで指定したパスに対する`VirtualItem`のインスタンスを取得します。
+`VirtualItem`の`ItemData`プロパティは、ユーザー定義クラスのインスタンスを公開しています。
+その為、resultには"/home1/item1"に格納された`Person`クラスのインスタンスが設定されます。
 
 ### Personの表示
 ```csharp
 Console.WriteLine($"Name: {result.Name}, Age: {result.Age}");
 ```
-取得したPersonを表示します。
+取得した`Person`を表示します。
 結果として、以下のように表示されます。
 ```
 Name: John, Age: 20
 ```
+
+## ドキュメント
+このライブラリの詳細な使用方法やリファレンスについては、以下のドキュメントを参照してください。
+
+- [Introduction](https://shimodateakira.github.io/VirtualStorageLibrary/introduction.html)  
+  ライブラリの概要と設計思想を説明しています。どのような目的で開発されたのか、その基本的な機能と特徴を紹介します。新しいユーザーがライブラリの全体像を把握するための入門ガイドです。
+
+- [Getting Started](https://shimodateakira.github.io/VirtualStorageLibrary/getting-started.html)  
+  ライブラリを使い始めるためのステップバイステップガイドです。インストール方法から初期設定、簡単なサンプルコードまで、ライブラリを導入するために必要な基本的な手順を説明します。
+
+- [APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)  
+  ライブラリに含まれる全てのクラス、メソッド、およびプロパティについての詳細な情報を提供しています。各メンバーの使用方法やパラメータについての説明が含まれており、ライブラリの具体的な使い方を確認するのに役立ちます。
+
+- チュートリアル (執筆予定)
+  実際のユースケースに基づいた詳細な使用例を提供し、ライブラリの応用的な使い方を学ぶためのガイドです。今後追加予定です。
+
+## 設定とカスタマイズ
+このライブラリの初期設定は、`VirtualStorageSettings.Initialize()`メソッドを呼び出すことで自動的に行われます。  
+これにより、パス区切り文字やルートディレクトリの名前、禁止文字など、全てのデフォルト設定が適用されます。  
+特に手動で設定を行う必要はありませんが、アプリケーションの動作中に設定を変更したい場合は、
+`VirtualStorageState.State`プロパティを通じて各種設定プロパティを変更することが可能です。  
+詳細については、[APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)をご参照ください。
+
 
 
 
