@@ -355,6 +355,7 @@ Console.WriteLine($"Name: {result.Name}, Age: {result.Age}");
 Name: John, Age: 20
 ```
 
+[[▲](#目次)]
 ## ドキュメント
 このライブラリの詳細な使用方法やリファレンスについては、以下のドキュメントを参照してください。
 
@@ -370,6 +371,7 @@ Name: John, Age: 20
 - チュートリアル (執筆予定)
   実際のユースケースに基づいた詳細な使用例を提供し、ライブラリの応用的な使い方を学ぶためのガイドです。今後追加予定です。
 
+[[▲](#目次)]
 ## 設定とカスタマイズ
 このライブラリの初期設定は、`VirtualStorageSettings.Initialize()`メソッドを呼び出すことで自動的に行われます。  
 これにより、パス区切り文字やルートディレクトリの名前、禁止文字など、全てのデフォルト設定が適用されます。  
@@ -377,6 +379,7 @@ Name: John, Age: 20
 `VirtualStorageState.State`プロパティを通じて各種設定プロパティを変更することが可能です。  
 詳細については、[APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)をご参照ください。
 
+[[▲](#目次)]
 ## ライセンス
 このプロジェクトは、[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)のもとでライセンスされています。
 
@@ -386,7 +389,7 @@ VirtualStorageLibraryはフリーソフトウェアです。
 このソフトウェアは、GNU General Public Licenseのバージョン3、または（オプションとして）その後のバージョンの条件の下で配布されています。  
 VirtualStorageLibraryは有用であることを願って配布されていますが、いかなる保証も提供されていません。  
 商業的な価値の適合性や特定の目的への適合性についての黙示的な保証も含まれていません。  
-詳細については、GNU General Public Licenseをご覧ください。  
+詳細については、[GNU General Public License](LICENCE)をご覧ください。  
 このソフトウェアと共にGNU General Public Licenseのコピーが提供されているはずです。  
 提供されていない場合は、[こちら](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)でご確認ください。  
 
