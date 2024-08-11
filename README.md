@@ -20,7 +20,7 @@
 # VirtualStorageLibraryへようこそ！
 
 ## プロジェクトの概要と目的
-VirtualStorageLibraryは、完全にオンメモリで動作し、**ツリー構造コレクション**を提供する.NETライブラリです。
+`VirtualStorageLibrary`は、完全にオンメモリで動作し、**ツリー構造コレクション**を提供する.NETライブラリです。
 このライブラリは、**データの階層的な構造を管理するための基盤**を提供し、 ユーザー定義型<T>を内包するアイテム、ディレクトリ、シンボリックリンクをサポートします。
 このライブラリは **ファイルシステムではありません。** 
 従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために **ゼロから再設計** しました。
@@ -33,6 +33,7 @@ VirtualStorageLibraryは、完全にオンメモリで動作し、**ツリー構
 - [技術スタック](#技術スタック)
 - [ターゲットユーザー](#ターゲットユーザー)
 - [インストール方法](#インストール方法)
+- [使用方法](#使用方法)
 
 [[▲](#目次)]
 ## 主な機能
@@ -132,7 +133,7 @@ VirtualStorageLibraryは、完全にオンメモリで動作し、**ツリー構
 ## 技術スタック
 
 ### 概要
-VirtualStorageLibraryは、.NET 8プラットフォーム上で開発され、C#言語を使用しています。  
+`VirtualStorageLibrary`は、.NET 8プラットフォーム上で開発され、C#言語を使用しています。  
 
 ### プログラミング言語
 - **C#**: プロジェクトの主要な開発言語です。C#のバージョンは12を使用しています。
@@ -215,7 +216,8 @@ dotnet add package VirtualStorageLibrary --version 0.8.0
 [[▲](#目次)]
 ## 使用方法
 
-```
+### 簡単なサンプル
+```csharp
 using AkiraNetwork.VirtualStorageLibrary;
 
 namespace TestApplication
@@ -245,5 +247,37 @@ namespace TestApplication
     }
 }
 ```
+### usingの設定
+```csharp
+using AkiraNetwork.VirtualStorageLibrary;
+```
+`VirtualStorageLibrary`を参照する為の名前空間の指定です。
+ほとんどの機能はこれで十分ですが、使用する機能によってはオプションで以下の名前空間を指定する必要があります。
+```csharp
+using AkiraNetwork.VirtualStorageLibrary.Utilities;
+using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
+```
+
+### ライブラリの初期化
+```csharp
+VirtualStorageSettings.Initialize();
+```
+`VirtualStorageLibrary`を初期化します。アプリーションコードで最初に一度だけ呼び出してください。
+この初期化では、パスで使われる文字(区切り文字、ルート、ドット、ドットドット)、パスやノード名の禁止文字、
+マイルドカードマッチャー、ノードリスト表示条件、ノード名生成時のprefix等の設定しています。
+
+```csharp
+public class Person
+{
+    public string Name { get; set; } = string.Empty;
+    public int Age { get; set; } = 0;
+}
+```
+`VirtualStorageLibrary`で使用するユーザー定義クラスを定義します。
+`VirtualStorageLibrary`は、ユーザー定義クラスのインスタンスをツリー構造で管理する事のできるジェネリック型のコレクションです。
+その為、ユーザーアプリケーションでは管理したいユーザー定義クラスを定義しなければなりません。
+この簡単なサンプルでは名前と年齢を管理する簡単なPersonクラスを定義しています。
+
+
 
 
