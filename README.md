@@ -389,8 +389,8 @@ VirtualStorageLibraryはフリーソフトウェアです。
 このソフトウェアは、GNU General Public Licenseのバージョン3、または（オプションとして）その後のバージョンの条件の下で配布されています。  
 VirtualStorageLibraryは有用であることを願って配布されていますが、いかなる保証も提供されていません。  
 商業的な価値の適合性や特定の目的への適合性についての黙示的な保証も含まれていません。  
-詳細については、[GNU General Public License](LICENCE)をご覧ください。  
-このソフトウェアと共にGNU General Public Licenseのコピーが提供されているはずです。  
+詳細については、GNU General Public Licenseをご覧ください。  
+このソフトウェアと共にGNU General Public LicenseのコピーがリポジトリのルートにLICENSEというファイル名で保存されています。  
 提供されていない場合は、[こちら](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)でご確認ください。  
 
 
