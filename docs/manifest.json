@@ -434,6 +434,36 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/tree.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree32x32.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree32x32.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {

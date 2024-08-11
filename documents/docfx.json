@@ -44,7 +44,9 @@
       "_appTitle": "AkiraNetwork",
       "_enableSearch": true,
       "pdf": true,
-      "_disableContribution": true
+      "_disableContribution": true,
+      "favicon": "images/tree.png",
+      "_appLogoPath": "images/tree.svg"
     }
   }
 }
