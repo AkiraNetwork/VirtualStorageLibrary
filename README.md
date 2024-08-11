@@ -222,6 +222,7 @@ using AkiraNetwork.VirtualStorageLibrary;
 
 namespace TestApplication
 {
+    // User-defined class
     public class Person
     {
         public string Name { get; set; } = string.Empty;
@@ -232,26 +233,37 @@ namespace TestApplication
     {
         static void Main()
         {
+            // Initialize the VirtualStorageSettings
             VirtualStorageSettings.Initialize();
 
+            // Create a VirtualStorage instance
             VirtualStorage<Person> vs = new();
+
+            // Create a Person object
             Person person1 = new() { Name = "John", Age = 20 };
+
+            // Create a VirtualItem instance
             VirtualItem<Person> item1 = new("item1", person1);
 
+            // Add the directory and item to the VirtualStorage instance
             vs.AddDirectory("/home1");
             vs.AddItem("/home1", item1);
 
-            Person GuttedPerson1 = vs.GetItem("/home1/item1").ItemData!;
-            Console.WriteLine($"Name: {GuttedPerson1.Name}, Age: {GuttedPerson1.Age}");
+            // Retrieve the Person object from the VirtualStorage instance
+            Person result = vs.GetItem("/home1/item1").ItemData!;
+
+            // Display the retrieved Person object
+            Console.WriteLine($"Name: {result.Name}, Age: {result.Age}");
         }
     }
 }
 ```
+
 ### usingの設定
 ```csharp
 using AkiraNetwork.VirtualStorageLibrary;
 ```
-`VirtualStorageLibrary`を参照する為の名前空間の指定です。
+`VirtualStorageLibrary`を参照する為の名前空間の指定です。  
 ほとんどの機能はこれで十分ですが、使用する機能によってはオプションで以下の名前空間を指定する必要があります。
 ```csharp
 using AkiraNetwork.VirtualStorageLibrary.Utilities;
@@ -262,10 +274,12 @@ using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
 ```csharp
 VirtualStorageSettings.Initialize();
 ```
-`VirtualStorageLibrary`を初期化します。アプリーションコードで最初に一度だけ呼び出してください。
+`VirtualStorageLibrary`を初期化します。アプリーションコードで最初に一度だけ呼び出してください。  
 この初期化では、パスで使われる文字(区切り文字、ルート、ドット、ドットドット)、パスやノード名の禁止文字、
-マイルドカードマッチャー、ノードリスト表示条件、ノード名生成時のprefix等の設定しています。
+マイルドカードマッチャー、ノードリスト表示条件、ノード名生成時のprefix等を初期設定しています。
+この初期化を行わないと、後続の操作が正しく動作しない可能性があります。
 
+### ユーザー定義クラスの定義
 ```csharp
 public class Person
 {
@@ -273,10 +287,69 @@ public class Person
     public int Age { get; set; } = 0;
 }
 ```
-`VirtualStorageLibrary`で使用するユーザー定義クラスを定義します。
-`VirtualStorageLibrary`は、ユーザー定義クラスのインスタンスをツリー構造で管理する事のできるジェネリック型のコレクションです。
-その為、ユーザーアプリケーションでは管理したいユーザー定義クラスを定義しなければなりません。
-この簡単なサンプルでは名前と年齢を管理する簡単なPersonクラスを定義しています。
+`VirtualStorageLibrary`で使用するユーザー定義クラスを定義します。  
+`VirtualStorageLibrary`は、ユーザー定義クラスのインスタンスをツリー構造で管理する事のできるジェネリック型のコレクションです。  
+その為、ユーザーアプリケーションでは管理したいユーザー定義クラスを定義しなければなりません。  
+この簡単なサンプルでは名前と年齢を管理する簡単なPersonクラスを定義しています。  
+
+### VirtualStorageクラスのインスタンスの作成
+```csharp
+VirtualStorage<Person> vs = new();
+```
+VirtualStorageクラスのインスタンスを作成します。  
+作成直後は、ルートディレクトリのみが存在しています。
+
+### ユーザー定義クラスのインスタンスの作成
+```csharp
+Person person1 = new() { Name = "John", Age = 20 };
+```
+ユーザー定義クラスのインスタンスを作成します。
+
+### VirtualItemクラスのインスタンスの作成
+```csharp
+VirtualItem<Person> item1 = new("item1", person1);
+```
+VirtualItemクラスのインスタンスを作成します。
+コンストラクタの第一パラメータにはノード名を指定し、第二パラメータにはユーザー定義クラスのインスタンスを指定します。
+
+### ディレクリの追加
+```csharp
+vs.AddDirectory("/home1");
+```
+ルートディレクトリに"home1"というディレクトリを追加します。
+以下のようにサブディレクトリを一度に追加する場合は、第二パラメータ(createSubdirectories)をtrueで指定します。
+```csharp
+vs.AddDirectory("/home1/subdir1/subdir2", true);
+```
+
+### アイテムの追加
+```csharp
+vs.AddItem("/home1", item1);
+```
+VirtualItemクラスのインスタンスを"/home1"ディレクトリに追加します。
+この時、このアイテムのノード名は、VirtualItemクラスのインスタンスを作成した時のノード名になります。
+結果として"/home1/item1"という名前のノードが作成されます。
+
+### アイテムの取得
+```csharp
+Person result = vs.GetItem("/home1/item1").ItemData!;
+```
+GetItemメソッドはパラメータで指定したパスに対するVirtualItemのインスタンスを取得します。
+VirtualItemのItemDataプロパティは、ユーザー定義クラスのインスタンスを公開しています。
+その為、resultには"/home1/item1"に格納されたPersonクラスのインスタンスが設定されます。
+
+### Personの表示
+```csharp
+Console.WriteLine($"Name: {result.Name}, Age: {result.Age}");
+```
+取得したPersonを表示します。
+結果として、以下のように表示されます。
+```
+Name: John, Age: 20
+```
+
+
+
 
 
 
