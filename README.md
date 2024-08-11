@@ -388,7 +388,7 @@ Name: John, Age: 20
 
 Copyright (C) 2024 Akira Shimodate
 
-VirtualStorageLibraryはフリーソフトウェアです。
+VirtualStorageLibraryはフリーソフトウェアです。  
 このソフトウェアは、GNU General Public Licenseのバージョン3、または（オプションとして）その後のバージョンの条件の下で配布されています。  
 VirtualStorageLibraryは有用であることを願って配布されていますが、いかなる保証も提供されていません。  
 商業的な価値の適合性や特定の目的への適合性についての黙示的な保証も含まれていません。  
