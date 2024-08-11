@@ -312,12 +312,13 @@ VirtualItem<Person> item1 = new("item1", person1);
 VirtualItemクラスのインスタンスを作成します。
 コンストラクタの第一パラメータにはノード名を指定し、第二パラメータにはユーザー定義クラスのインスタンスを指定します。
 
-### ディレクリの追加
+### ディレクトリの追加
 ```csharp
 vs.AddDirectory("/home1");
 ```
 ルートディレクトリに"home1"というディレクトリを追加します。
 以下のようにサブディレクトリを一度に追加する場合は、第二パラメータ(createSubdirectories)をtrueで指定します。
+createSubdirectoriesのデフォルト値はfalseです。
 ```csharp
 vs.AddDirectory("/home1/subdir1/subdir2", true);
 ```
@@ -329,6 +330,12 @@ vs.AddItem("/home1", item1);
 VirtualItemクラスのインスタンスを"/home1"ディレクトリに追加します。
 この時、このアイテムのノード名は、VirtualItemクラスのインスタンスを作成した時のノード名になります。
 結果として"/home1/item1"という名前のノードが作成されます。
+同じディレクトリに同じ名前のノード名が既に存在している場合は例外が発生します。
+ただし、以下のように第三パラメータ(overwrite)をtrueで指定した場合は上書きする事ができます。
+overwriteのデフォルト値はfalseです。
+```
+vs.AddItem("/home1", item1, true);
+```
 
 ### アイテムの取得
 ```csharp
