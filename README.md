@@ -2,7 +2,7 @@
 
 #### This Readme is a work in progress. Once it's completed, an English version will be provided.
 ---
-![VirtualStorageLibraryLogo](images/tree_128x128.svg)
+![VirtualStorageLibraryLogo](tree_128x128.svg)
 <details>
   <summary>Language: English</summary>
   <ul>
