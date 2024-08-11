@@ -445,20 +445,40 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/tree.svg",
+      "source_relative_path": "images/tree_128x128.svg",
       "output": {
         "resource": {
-          "relative_path": "images/tree.svg"
+          "relative_path": "images/tree_128x128.svg"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/tree32x32.png",
+      "source_relative_path": "images/tree_16x16.svg",
       "output": {
         "resource": {
-          "relative_path": "images/tree32x32.png"
+          "relative_path": "images/tree_16x16.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_32x32.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_32x32.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_51x51.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_51x51.svg"
         }
       },
       "version": ""

@@ -46,7 +46,8 @@
       "pdf": true,
       "_disableContribution": true,
       "favicon": "images/tree.png",
-      "_appLogoPath": "images/tree.svg"
+      "_appFaviconPath": "images/tree_32x32.svg",
+      "_appLogoPath": "images/tree_51x51.svg"
     }
   }
 }
