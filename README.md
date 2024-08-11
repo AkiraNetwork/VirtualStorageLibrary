@@ -333,7 +333,7 @@ vs.AddItem("/home1", item1);
 同じディレクトリに同じ名前のノード名が既に存在している場合は例外が発生します。
 ただし、以下のように第三パラメータ(`overwrite`)をtrueで指定した場合は上書きする事ができます。
 `overwrite`のデフォルト値はfalseです。
-```
+```csharp
 vs.AddItem("/home1", item1, true);
 ```
 
@@ -377,7 +377,18 @@ Name: John, Age: 20
 `VirtualStorageState.State`プロパティを通じて各種設定プロパティを変更することが可能です。  
 詳細については、[APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)をご参照ください。
 
+## ライセンス
+このプロジェクトは、[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)のもとでライセンスされています。
 
+Copyright (C) 2024 Akira Shimodate
+
+VirtualStorageLibraryはフリーソフトウェアです。
+このソフトウェアは、GNU General Public Licenseのバージョン3、または（オプションとして）その後のバージョンの条件の下で配布されています。  
+VirtualStorageLibraryは有用であることを願って配布されていますが、いかなる保証も提供されていません。  
+商業的な価値の適合性や特定の目的への適合性についての黙示的な保証も含まれていません。  
+詳細については、GNU General Public Licenseをご覧ください。  
+このソフトウェアと共にGNU General Public Licenseのコピーが提供されているはずです。  
+提供されていない場合は、[こちら](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)でご確認ください。  
 
 
 
