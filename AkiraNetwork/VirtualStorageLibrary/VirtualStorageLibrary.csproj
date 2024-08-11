@@ -24,7 +24,7 @@ Users can intuitively reference, traverse, and manipulate nodes by specifying pa
     <PackageReleaseNotes>Preview release.</PackageReleaseNotes>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>AGPL-1.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageOutputPath>../../packages</PackageOutputPath>
     <AssemblyVersion>0.8.0</AssemblyVersion>
