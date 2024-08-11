@@ -212,7 +212,38 @@ dotnet add package VirtualStorageLibrary --version 0.8.0
 インストールが成功すると、プロジェクトの依存関係に `VirtualStorageLibrary` が追加され、使用できるようになります。  
 インストール後、必要に応じて `using` ディレクティブを追加してライブラリを参照してください。
 
+[[▲](#目次)]
+## 使用方法
 
+```
+using AkiraNetwork.VirtualStorageLibrary;
 
+namespace TestApplication
+{
+    public class Person
+    {
+        public string Name { get; set; } = string.Empty;
+        public int Age { get; set; } = 0;
+    }
+
+    internal class Program
+    {
+        static void Main()
+        {
+            VirtualStorageSettings.Initialize();
+
+            VirtualStorage<Person> vs = new();
+            Person person1 = new() { Name = "John", Age = 20 };
+            VirtualItem<Person> item1 = new("item1", person1);
+
+            vs.AddDirectory("/home1");
+            vs.AddItem("/home1", item1);
+
+            Person GuttedPerson1 = vs.GetItem("/home1/item1").ItemData!;
+            Console.WriteLine($"Name: {GuttedPerson1.Name}, Age: {GuttedPerson1.Age}");
+        }
+    }
+}
+```
 
 
