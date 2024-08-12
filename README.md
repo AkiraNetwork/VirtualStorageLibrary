@@ -455,7 +455,7 @@ documentation:
   Planned to provide detailed examples based on real-world use cases, guiding users in the advanced usage 
   of the library.
 
-  [[▲](#table-of-contents)]
+[[▲](#table-of-contents)]
 ## Configuration and Customization
 The initial settings of this library are automatically configured by calling the 
 `VirtualStorageSettings.Initialize()` method. This applies all default settings such as path delimiters, 
