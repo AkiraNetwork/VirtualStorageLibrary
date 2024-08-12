@@ -17,223 +17,281 @@
 [![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/)
 ![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)
 
-# VirtualStorageLibraryへようこそ！
+# Welcome to VirtualStorageLibrary!
 
-## プロジェクトの概要と目的
-`VirtualStorageLibrary`は、完全にオンメモリで動作し、**ツリー構造コレクション**を提供する.NETライブラリです。
-このライブラリは、**データの階層的な構造を管理するための基盤**を提供し、 ユーザー定義型<T>を内包するアイテム、ディレクトリ、シンボリックリンクをサポートします。
-このライブラリは **ファイルシステムではありません。** 
-従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために **ゼロから再設計** しました。
-このライブラリは、ユーザーが **パスの指定による** ノードの参照、探索、操作を **直感的** に行えるようにすることを目的としています。
+## Project Overview and Purpose
+`VirtualStorageLibrary` is a .NET library that operates entirely in-memory and 
+provides a **tree-structured collection**. This library offers a foundation 
+for managing **hierarchical data structures**, supporting items, directories, 
+and symbolic links that encapsulate user-defined types (`<T>`). It is **not a 
+file system**. Instead, it was **redesigned from scratch** to create a more 
+flexible and user-friendly tree structure. The library aims to make it 
+**intuitive** to reference, traverse, and manipulate nodes **by specifying 
+paths**.
 
-## プロジェクトの背景
-.NETが備えているコレクションは線形コレクションです。コレクションはハッシュセット型、配列型、リスト型、辞書型など様々ありますが、本質的には線の構造となっています。
-一方、一般のファイルシステムは木形コレクションと捉える事ができます。要素はノードで管理され、階層構造になっています。
-この様な木形コレクションをサポートするライブラリは既存でいくつか存在しますが、ファイルシステムのようなモデルのライブラリを見つけることができませんでした。
-そこで私はファイルシステムを論理的に解釈し、**純粋なオブジェクトとして扱える木型のコレクションとして実装できないか**と考えアイディアをまとめました。
-階層構造のデータを柔軟に管理し、直感的にアクセスできる仕組みを作ろうと考えたのです。
+## Project Background
+The collections provided by .NET are linear, including types like hash sets, 
+arrays, lists, and dictionaries, which inherently have a linear structure. In 
+contrast, common file systems can be viewed as tree-shaped collections, where 
+elements are managed as nodes in a hierarchical structure. While there are 
+existing libraries that support tree-shaped collections, I couldn�ft find one 
+that models a file system-like structure. Therefore, I conceptualized a 
+logical interpretation of a file system and asked, **"Can we implement a tree 
+collection purely as objects?"** The goal was to create a system that can 
+flexibly manage hierarchical data and allow intuitive access.
 
-## 目次
+## Table of Contents
 
-- [主な機能](#主な機能)
-- [想定されるユースケース](#想定されるユースケース)
-- [技術スタック](#技術スタック)
-- [ターゲットユーザー](#ターゲットユーザー)
-- [インストール方法](#インストール方法)
-- [使用方法](#使用方法)
-- [ドキュメント](#ドキュメント)
-- [設定とカスタマイズ](#設定とカスタマイズ)
-- [ライセンス](#ライセンス)
-- [貢献ガイドライン](#貢献ガイドライン)
+- [Key Features](#key-features)
+- [Use Cases](#use-cases)
+- [Technical Stack](#technical-stack)
+- [Target Users](#target-users)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Configuration and Customization](#configuration-and-customization)
+- [License](#license)
+- [Contribution Guidelines](#contribution-guidelines)
 
-[[▲](#目次)]
-## 主な機能
+[[��](#table-of-contents)]
+## Key Features
 
-#### 柔軟なツリー構造
-  親子関係に基づく階層的なデータ構造を提供し、柔軟なノード管理が可能です。
+#### Flexible Tree Structure
+  Provides a hierarchical data structure based on parent-child
+  relationships, allowing flexible node management.
 
-#### 多様なノードのサポート
-  ユーザー定義型\<T\>を含むアイテム、ディレクトリ、シンボリックリンクをサポートします。
+#### Support for Various Nodes
+  Supports items, directories, and symbolic links, including
+  user-defined types `<T>`.
 
-#### パスによる直感的なノード操作
-  パスを指定することでノードの参照、探索、追加、削除、変名、コピーおよび、移動が容易に行え、使いやすいAPIを提供します。
+#### Intuitive Node Operations via Paths
+  Offers an intuitive API for referencing, searching, adding,
+  deleting, renaming, copying, and moving nodes using paths.
 
-#### リンク管理
-  リンク辞書を使ったシンボリックリンクの変更を管理し、ターゲットパスの変更を追跡します。
+#### Link Management
+  Manages symbolic links with a link dictionary, tracking
+  target path changes.
 
-#### 循環参照防止
-  シンボリックリンクを含んだパスを解決時、ディレクトリを循環参照するような構造を検出した場合、例外をスローします。
+#### Circular Reference Prevention
+  Throws an exception when detecting circular references in
+  paths involving symbolic links.
 
-#### 柔軟なノードリストの取得
-  ディレクトリ内のノードのリストを取得する際、指定されたノードタイプでフィルタ、グルーピングし、指定された属性でソートした結果を取得します。
+#### Flexible Node List Retrieval
+  Retrieves node lists within directories, filtered, grouped, and
+  sorted by specified node types and attributes.
 
-[[▲](#目次)]
-## 想定されるユースケース
+[[��](#table-of-contents)]
+## Anticipated Use Cases
 
-### 自然言語処理(NLP)
-自然言語処理の分野では、テキストデータの解析や文書の構文解析に**ツリー構造**が頻繁に利用されます。
-例えば、文章の構文解析結果を**構文木**として表現し、文の各要素の関係性を視覚化します。
-このような**構造化データの管理**にはツリー構造が非常に有効です。
+### Natural Language Processing (NLP)
+In natural language processing, tree structures are often used to
+analyze and parse text data. For instance, parsing results can be
+represented as syntax trees, visualizing the relationships between
+elements of a sentence. Tree structures are highly effective for
+managing such structured data.
 
-仮想ストレージライブラリは、こうした**ツリー構造データの管理**や**パスを使ったノードアクセス**をサポートし、
-**効率的なデータ解析**を可能にします。具体的には、以下のようなシナリオで役立ちます：
+The Virtual Storage Library supports managing tree-structured data
+and accessing nodes via paths, enabling efficient data analysis. 
+Specific scenarios where it is useful include:
 
-- **構文木の管理**: 文法解析結果の構文木をノードとして保存し、ノード間の関係を階層的に管理します。
-- **エンティティリンクの管理**: テキスト内のエンティティ（人名、地名など）の関係をツリー構造で表現し、迅速な検索とアクセスをサポートします。
-- **トピックモデルの可視化**: トピック間の階層的な関係をモデル化し、複数のトピックやサブトピックを効率的に表示します。
+- **Managing Syntax Trees**: Stores syntax trees resulting from
+  grammar parsing and manages relationships hierarchically.
+- **Managing Entity Links**: Represents relationships of entities 
+  (e.g., names, places) within text as a tree structure, supporting 
+  quick search and access.
+- **Visualizing Topic Models**: Models hierarchical relationships 
+  between topics, efficiently displaying multiple topics and 
+  subtopics.
 
-これにより、NLPタスクにおいて**複雑なデータ構造の管理**が容易になり、**解析効率が向上**します。
+This facilitates easier management of complex data structures in NLP 
+tasks and enhances analysis efficiency.
 
-### ナレッジベースシステム
-ナレッジベースシステムでは、大量の文書や情報を**階層的に整理**し、**効率的な検索性**を提供することが求められます。
-仮想ストレージライブラリは、こうした情報の**階層構造を管理**し、ユーザーが**必要な情報に迅速にアクセス**できるようにします。
+### Knowledge Base Systems
+In knowledge base systems, it is essential to organize large volumes 
+of documents and information hierarchically, providing efficient 
+searchability. The Virtual Storage Library helps manage such 
+hierarchical structures, enabling users to quickly access the 
+information they need.
 
-具体的なシナリオとしては、以下のようなものがあります：
-- **技術文書の管理**: 製品の技術文書やマニュアルをカテゴリごとに分類し、ユーザーが特定の情報を素早く見つけられるようにします。
-- **FAQシステム**: よくある質問とその回答を階層的に整理し、検索性を高め、ユーザーが簡単に回答を見つけられるようにします。
-- **知識ベースの構築**: 組織内の専門知識を文書化し、ツリー構造で管理することで、新しいメンバーが素早く学習できる環境を提供します。
+Specific scenarios include:
 
-これにより、ナレッジベースシステムは**情報の整理とアクセスの効率化**を実現し、**情報の利活用を最大化**します。
+- **Technical Document Management**: Categorizes product technical 
+  documents and manuals, allowing users to quickly find specific 
+  information.
+- **FAQ Systems**: Organizes frequently asked questions and their 
+  answers hierarchically, enhancing searchability and helping users 
+  find answers easily.
+- **Building Knowledge Bases**: Documents organizational expertise 
+  and manages it in a tree structure, providing a learning 
+  environment for new members.
 
-### ゲーム開発
-ゲーム開発において、ゲーム内の**オブジェクトやシーンの管理**は重要です。
-特に、オブジェクトの**階層関係の管理**が必要な場合、仮想ストレージライブラリは、シーンの**ダイナミックな変更**をサポートし、
-**開発プロセスの効率化**に寄与します。
+This enables knowledge base systems to efficiently organize and 
+access information, maximizing the utility of information.
 
-具体的なシナリオとしては、以下のようなものがあります：
-- **シーン管理**: ゲーム内の異なるレベルやエリアのオブジェクトを階層的に管理し、プレイヤーの行動やイベントに応じて動的に変更します。
-- **キャラクターの装備管理**: キャラクターが装備するアイテムや武器をツリー構造で管理し、リアルタイムでの装備変更を容易に行います。
-- **レベルデザインの効率化**: レベルデザイナーがシーンやオブジェクトの階層を視覚的に管理し、配置や変更を迅速に行えるようにします。
+### Game Development
+In game development, managing in-game objects and scenes is 
+important. Particularly when managing hierarchical relationships 
+between objects, the Virtual Storage Library supports dynamic scene 
+changes, contributing to efficient development processes.
 
-これにより、ゲーム開発プロセスは**柔軟性とスピード**を持ち、**クリエイティブな要素**を最大限に活かすことができます。
+Specific scenarios include:
 
-### 階層型クラスタリング
-データの**階層的なグループ化や分類**を行う階層型クラスタリングでは、クラスタリング結果を**ツリー構造で管理**し、
-**データの分析と可視化**をサポートします。仮想ストレージライブラリは、このような分析プロセスを支援します。
+- **Scene Management**: Manages objects in different levels or areas 
+  of the game hierarchically, dynamically changing them according to 
+  player actions or events.
+- **Character Equipment Management**: Manages items and weapons that 
+  a character equips in a tree structure, making real-time equipment 
+  changes easy.
+- **Streamlining Level Design**: Allows level designers to visually 
+  manage scenes and object hierarchies, enabling quick placement and 
+  changes.
 
-具体的なシナリオとしては、以下のようなものがあります：
-- **顧客セグメンテーション**: 顧客データを購買行動やデモグラフィック情報に基づいて階層的に分類し、マーケティング戦略の最適化を図ります。
-- **生物分類学**: 種や属、科などの生物の分類情報をツリー構造で管理し、各レベルの分類における特性や関係を可視化します。
-- **階層型データ分析**: 大規模データセットを階層的にグループ化し、データのパターンやトレンドを発見するための探索的データ解析を行います。
+This gives the game development process flexibility and speed, 
+maximizing creative elements.
 
-これにより、階層型クラスタリングの結果を**効率的に管理**し、**視覚的な洞察**を得ることが可能になります。仮想ストレージライブラリは、
-このような**データの可視化と分析のプロセス**を支援し、データドリブンな意思決定をサポートします。
+### Hierarchical Clustering
+Hierarchical clustering involves grouping and classifying data in a 
+hierarchical manner, managing clustering results as a tree structure 
+and supporting data analysis and visualization. The Virtual Storage 
+Library supports this analysis process.
 
-### 教育と学習
-仮想ストレージライブラリのソースコードは、教育と学習の分野で活用できます。
-特に、プログラミング教育やデータ構造の理解を深めるために効果的です。
+Specific scenarios include:
 
-具体的なシナリオとしては、以下のようなものがあります：
+- **Customer Segmentation**: Classifies customer data hierarchically 
+  based on purchasing behavior and demographic information, 
+  optimizing marketing strategies.
+- **Biological Taxonomy**: Manages biological classification 
+  information (species, genus, family, etc.) in a tree structure, 
+  visualizing characteristics and relationships at each classification 
+  level.
+- **Hierarchical Data Analysis**: Groups large datasets hierarchically 
+  and conducts exploratory data analysis to discover patterns and 
+  trends.
 
-- **プログラミング教育**:
-  学生がツリー構造データの管理や操作方法を学ぶための実習教材として使用できます。
-  具体的な課題を通じて、仮想のディレクトリ構造やデータツリーを操作することで、データ構造やアルゴリズムの理解を深めます。
+This allows hierarchical clustering results to be efficiently managed 
+and visual insights to be gained. The Virtual Storage Library supports 
+this process of data visualization and analysis, aiding data-driven 
+decision-making.
 
-- **データ構造の可視化**:
-  データ構造を視覚的に表現することで、学生はデータの階層構造や関係性を直感的に理解できます。
-  これにより、複雑なデータ構造の概念をより容易に学ぶことが可能です。
+### Education and Learning
+The source code of the Virtual Storage Library can be used in education 
+and learning, particularly for deepening understanding of programming 
+and data structures.
 
-- **再帰プログラミング、コレクションの操作、遅延評価の学習**:
-  学生は仮想ストレージライブラリを使用して、再帰的なアルゴリズムの設計、コレクションデータの操作、遅延評価のテクニックなど、
-  重要なプログラミングの概念を実践的に学ぶことができます。
-  これにより、プログラミングの基礎から応用までのスキルを身につけることができます。
+Specific scenarios include:
 
-これにより、仮想ストレージライブラリは教育現場において、学生や学習者が実践的なプログラミングスキルやデータ構造の理解を深める手助けをします。
+- **Programming Education**: Used as a practical teaching material for 
+  students to learn how to manage and manipulate tree-structured data. 
+  By manipulating virtual directory structures and data trees through 
+  specific tasks, students deepen their understanding of data structures 
+  and algorithms.
+- **Visualizing Data Structures**: Visually representing data structures 
+  allows students to intuitively understand hierarchical structures and 
+  relationships. This makes it easier to learn complex data structure 
+  concepts.
+- **Learning Recursion, Collection Operations, and Lazy Evaluation**: 
+  Students can use the Virtual Storage Library to practically learn 
+  important programming concepts such as designing recursive algorithms, 
+  manipulating collection data, and lazy evaluation techniques. This 
+  helps them acquire skills ranging from the basics to the advanced 
+  level of programming.
 
-[[▲](#目次)]
-## 技術スタック
+Thus, the Virtual Storage Library helps students and learners deepen 
+their understanding of practical programming skills and data structures 
+in an educational setting.
 
-### 概要
-`VirtualStorageLibrary`は、.NET 8プラットフォーム上で開発され、C#言語を使用しています。  
+[[��](#table-of-contents)]
+## Technology Stack
 
-### プログラミング言語
-- **C#**: プロジェクトの主要な開発言語です。C#のバージョンは12を使用しています。
+### Overview
+`VirtualStorageLibrary` is developed on the .NET 8 platform using the C# language.
 
-### フレームワークとライブラリ
-- **.NET 8**: プロジェクトの基盤となるフレームワークで、高性能なアプリケーションを構築します。  
-              また、.NET 8をサポートする複数のプラットフォームで動作する事が可能です。
+### Programming Language
+- **C#**: The primary language used in this project. C# version 12 is utilized.
 
-### ツールとサービス
-- **Visual Studio 2022**: プロジェクトの主要な開発環境です。  
-  詳細は、[Visual Studioの公式サイト](https://visualstudio.microsoft.com/vs/)で確認できます。
+### Frameworks and Libraries
+- **.NET 8**: The foundation framework of the project, enabling high-performance applications.  
+  It also supports multiple platforms that are compatible with .NET 8.
 
-- **MSTest**: プロジェクトで使用しているテストフレームワークです。  
-  詳細は、[MSTset](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-intro)で確認できます。
+### Tools and Services
+- **Visual Studio 2022**: The main development environment for this project.  
+  For more details, visit [Visual Studio's official website](https://visualstudio.microsoft.com/vs/).
 
-- **GitHub**: 開発リソースを管理するプラットフォームです。  
-  詳細は、[GitHub ドキュメント](https://docs.github.com/)で確認できます。
+- **MSTest**: The testing framework used in the project.  
+  For more details, visit [MSTest](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-intro).
 
-- **DocFX**: ドキュメントを生成する高機能なツールです。  
-  詳細は、[DocFXのリポジトリ](https://dotnet.github.io/docfx/)で確認できます。
+- **GitHub**: The platform used for managing development resources.  
+  For more details, visit [GitHub Documentation](https://docs.github.com/).
 
-- **DocFX Material**: DocFX用のスタイルシートとテンプレートを提供し、ドキュメントの見栄えを向上させるために使用しています。  
-  詳細は、[DocFX Materialのリポジトリ](https://github.com/ovasquez/docfx-material)で確認できます。
+- **DocFX**: A powerful tool for generating documentation.  
+  For more details, visit the [DocFX repository](https://dotnet.github.io/docfx/).
 
-[[▲](#目次)]
-## ターゲットユーザー
+- **DocFX Material**: Provides stylesheets and templates for DocFX, enhancing the appearance of the documentation.  
+  For more details, visit the [DocFX Material repository](https://github.com/ovasquez/docfx-material).
 
-### 主なユーザー層
-仮想ストレージライブラリは、幅広いユーザー層を対象としています。以下は、主なユーザー層の例です：
+[[��](#table-of-contents)]
+## Target Users
 
-- **開発者**: .NETやC#を使用しているソフトウェア開発者。特にツリー構造データの管理に関心がある方が対象です。このライブラリは、複雑なデータ構造を簡単に扱うためのツールとして利用できます。
-- **データサイエンティスト**: 複雑なデータ構造の解析やモデリングに従事する専門家。特に、ツリー構造データの効率的な管理や分析が求められる状況で役立ちます。
-- **教育関係者と学生**: プログラミング教育やデータ構造の学習に興味がある方。実践的なプログラミングスキルやデータ構造の理解を深めるための教材として使用できます。
+### Primary User Groups
+The Virtual Storage Library is designed for a broad range of users, including:
 
-### 使用目的
-仮想ストレージライブラリは、以下のような目的で使用されます：
+- **Developers**: Software developers using .NET and C#, especially those interested in managing tree-structured data. This library serves as a tool to easily handle complex data structures.
+- **Data Scientists**: Professionals engaged in analyzing and modeling complex data structures, where efficient management and analysis of tree-structured data are required.
+- **Educators and Students**: Those interested in programming education or learning about data structures. It can be used as a teaching resource to deepen practical programming skills and understanding of data structures.
 
-- **データの管理と解析**: ツリー構造データを効率的に管理し、解析するためのツールとして。データの階層的な組織化や検索が可能です。
-- **データの組織化と整理**: 大量のデータを階層的に整理し、視覚的に理解しやすい構造にするため。データの関係性を明確にするのに役立ちます。
-- **教育と学習**: プログラミングやデータ構造の基本概念を学ぶ教材として。再帰プログラミング、コレクションの操作、遅延評価などの概念を学ぶことができます。
+### Use Cases
+The Virtual Storage Library can be used for the following purposes:
 
-### 対象とする業界
-仮想ストレージライブラリは、特に以下の業界での利用を想定しています：
+- **Data Management and Analysis**: A tool for efficiently managing and analyzing tree-structured data, enabling hierarchical organization and search capabilities.
+- **Data Organization and Structuring**: Organizing large amounts of data hierarchically and structuring it for better visualization and understanding of data relationships.
+- **Education and Learning**: A resource for learning the basic concepts of programming and data structures, including recursive programming, collection manipulation, and lazy evaluation.
 
-- **IT**: ソフトウェア開発やデータサイエンス分野での利用。効率的なデータ管理と解析が求められるプロジェクトで役立ちます。
-- **教育**: プログラミング教育や学習の分野。教育関係者や学生が実践的なスキルを習得するためのツールとして使用できます。
+### Target Industries
+The Virtual Storage Library is particularly useful in the following industries:
 
-## 開発状況と今後の予定
-現在 (2024/08/09) 、V1.0.0で実装すべき必要な機能は全て実装済みです。  
-しかし、数件のバグ修正と、30件近い機能改善、リファクタリングが残っている状況です。  
-V0.8.0では、この状態でユーザーの皆様に試用して頂き、フィードバックを頂きたいと考えています。  
-フィードバックには、バグ報告や機能改善の提案などが含まれます。  
-それと同時に、V0.9.0に向けて残作業を消化していく予定です。  
-V0.9.0のリリースは2024年10月を予定しています。  
-なお、この期間中、ライブラリで提供している機能のクラス名、メソッド名、プロパティ名等は予告なく変更、統合、廃止する事があります。
-その場合、リリースノートに詳細を掲載するのでご確認ください。
-詳細は、[現在の問題点と改善案](https://github.com/users/shimodateakira/projects/3/views/3)を参照してください (日本語)。
+- **IT**: In software development and data science, where efficient data management and analysis are essential for project success.
+- **Education**: In programming education and learning, where it serves as a tool for educators and students to acquire practical skills.
 
-[[▲](#目次)]
-## インストール方法
+## Development Status and Future Plans
+As of 2024/08/09, all essential features for version 1.0.0 have been implemented.  
+However, some bug fixes, around 30 feature improvements, and refactoring tasks remain.  
+With version 0.8.0, we aim to gather user feedback, including bug reports and feature enhancement suggestions.  
+Simultaneously, we plan to work through the remaining tasks for version 0.9.0, targeted for release in October 2024.  
+During this period, class names, method names, property names, and other elements in the library may change, merge, or be deprecated without notice.  
+Details will be provided in the release notes, so please check them.  
+For more information, please refer to [Current Issues and Improvement Plans](https://github.com/users/shimodateakira/projects/3/views/3) (Japanese).
 
-### Visual Studio 2022 でのインストール
-#### **NuGet パッケージマネージャーからインストール**する方法:
-   - Visual Studio 2022 のソリューションエクスプローラーで、プロジェクトを右クリックし、「NuGet パッケージの管理」を選択します。
-   - 「参照」タブで `VirtualStorageLibrary` を検索し、選択してインストールします。
-#### **パッケージマネージャーコンソールからインストール**する方法:
-   - Visual Studio 2022 のメニューから「ツール」>「NuGet パッケージマネージャー」>「パッケージマネージャーコンソール」を選択します。
-   - パッケージマネージャーコンソールで以下のコマンドを入力し、インストールします。
+[[��](#table-of-contents)]
+## Installation Instructions
+
+### Installing with Visual Studio 2022
+#### **Using the NuGet Package Manager:**
+   - Right-click on your project in the Solution Explorer in Visual Studio 2022 and select "Manage NuGet Packages."
+   - In the "Browse" tab, search for `VirtualStorageLibrary`, select it, and install.
+
+#### **Using the Package Manager Console:**
+   - In Visual Studio 2022, go to "Tools" > "NuGet Package Manager" > "Package Manager Console."
+   - Enter the following command in the console to install the package:
 ```
 Install-Package VirtualStorageLibrary -Version 0.8.0
 ```
 
-### .NET CLIを使用したインストール
-- コマンドラインで、プロジェクトファイル (`.csproj`) があるディレクトリに移動します。
-- Visual Studio 2022が起動していないことを確認してください。
-- 以下のコマンドを入力して、`VirtualStorageLibrary` をインストールします。  
-この方法でプロジェクトファイルに自動的にパッケージが追加されます。
+### Installing with .NET CLI
+- Navigate to the directory containing your project file (`.csproj`) via the command line.
+- Ensure that Visual Studio 2022 is not running.
+- Run the following command to install `VirtualStorageLibrary`, which will be automatically added to your project file:
 ```
 dotnet add package VirtualStorageLibrary --version 0.8.0
 ```
 
-### インストールの確認
-インストールが成功すると、プロジェクトの依存関係に `VirtualStorageLibrary` が追加され、使用できるようになります。  
-インストール後、必要に応じて `using` ディレクティブを追加してライブラリを参照してください。
+### Verifying the Installation
+Once installed, `VirtualStorageLibrary` will be added to your project's dependencies, and you can begin using it.  
+After installation, add the necessary `using` directives to reference the library in your code.
 
-[[▲](#目次)]
-## 使用方法
+[[��](#table-of-contents)]
+## Usage
 
-### 簡単なサンプル
+### Simple Example
 ```csharp
 using AkiraNetwork.VirtualStorageLibrary;
 
@@ -276,27 +334,30 @@ namespace TestApplication
 }
 ```
 
-### usingの設定
+### Setting up `using`
 ```csharp
 using AkiraNetwork.VirtualStorageLibrary;
 ```
-`VirtualStorageLibrary`を参照する為の名前空間の指定です。  
-ほとんどの機能はこれで十分ですが、使用する機能によってはオプションで以下の名前空間を指定する必要があります。
+This directive is needed to reference the VirtualStorageLibrary namespace.
+For most features, this is sufficient, but depending on the functionality you want to use,
+you may also need to include the following namespaces:
 ```csharp
 using AkiraNetwork.VirtualStorageLibrary.Utilities;
 using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
 ```
 
-### ライブラリの初期化
+### Library Initialization
 ```csharp
 VirtualStorageSettings.Initialize();
 ```
-`VirtualStorageLibrary`を初期化します。アプリーションコードで最初に一度だけ呼び出してください。  
-この初期化では、パスで使われる文字(区切り文字、ルート、ドット、ドットドット)、パスやノード名の禁止文字、
-マイルドカードマッチャー、ノードリスト表示条件、ノード名生成時のprefix等を初期設定しています。  
-この初期化を行わないと、後続の操作が正しく動作しない可能性があります。
+This initializes VirtualStorageLibrary. It should be called once at the start of your application code.
+This initialization configures various settings, such as characters used in 
+paths (delimiters, root, dot, dot-dot),
+prohibited characters for paths and node names, wildcard matchers, node list display conditions,
+prefixes for node name generation, etc.
+Without this initialization, subsequent operations may not function correctly.
 
-### ユーザー定義クラスの定義
+### Defining a User-Defined Class
 ```csharp
 public class Person
 {
@@ -304,146 +365,152 @@ public class Person
     public int Age { get; set; } = 0;
 }
 ```
-`VirtualStorageLibrary`で使用するユーザー定義クラスを定義します。  
-`VirtualStorageLibrary`は、ユーザー定義クラスのインスタンスをツリー構造で管理する事のできるジェネリック型のコレクションです。  
-その為、ユーザーアプリケーションでは管理したいユーザー定義クラスを定義しなければなりません。  
-この簡単なサンプルでは名前と年齢を管理する簡単な`Person`クラスを定義しています。  
+This defines the user-defined class to be used with VirtualStorageLibrary.
+VirtualStorageLibrary is a generic collection that can manage instances of user-defined classes 
+in a tree structure.
+Therefore, in your application, you need to define the class you want to manage.
+In this simple example, a Person class with name and age properties is defined.
 
-### VirtualStorageクラスのインスタンスの作成
+### Creating an Instance of the `VirtualStorage` Class
 ```csharp
 VirtualStorage<Person> vs = new();
 ```
-`VirtualStorage`クラスのインスタンスを作成します。  
-作成直後は、ルートディレクトリのみが存在しています。
+This creates an instance of the VirtualStorage class.
+Upon creation, only the root directory exists.
 
-### ユーザー定義クラスのインスタンスの作成
+### Creating an Instance of the User-Defined Class
 ```csharp
 Person person1 = new() { Name = "John", Age = 20 };
 ```
-ユーザー定義クラスのインスタンスを作成します。
+This creates an instance of the user-defined class.
 
-### VirtualItemクラスのインスタンスの作成
+### Creating an Instance of the `VirtualItem` Class
 ```csharp
 VirtualItem<Person> item1 = new("item1", person1);
 ```
-`VirtualItem`クラスのインスタンスを作成します。
-コンストラクタの第一パラメータにはノード名を指定し、第二パラメータにはユーザー定義クラスのインスタンスを指定します。
+This creates an instance of the VirtualItem class.
+The first parameter of the constructor specifies the node name, and the second parameter specifies 
+the instance of the user-defined class.
 
-### ディレクトリの追加
+### Adding a Directory
 ```csharp
 vs.AddDirectory("/home1");
 ```
-ルートディレクトリに"home1"というディレクトリを追加します。
-以下のようにサブディレクトリを一度に追加する場合は、第二パラメータ(`createSubdirectories`)をtrueで指定します。
-`createSubdirectories`のデフォルト値はfalseです。
+This adds a directory named "home1" to the root directory.
+To add subdirectories at once, specify the second parameter (createSubdirectories) as true.
+The default value of createSubdirectories is false.
 ```csharp
 vs.AddDirectory("/home1/subdir1/subdir2", true);
 ```
 
-### アイテムの追加
+### Adding an Item
 ```csharp
 vs.AddItem("/home1", item1);
 ```
-`VirtualItem`クラスのインスタンスを"/home1"ディレクトリに追加します。
-この時、このアイテムのノード名は、`VirtualItem`クラスのインスタンスを作成した時のノード名になります。
-結果として"/home1/item1"という名前のノードが作成されます。
-同じディレクトリに同じ名前のノード名が既に存在している場合は例外が発生します。
-ただし、以下のように第三パラメータ(`overwrite`)をtrueで指定した場合は上書きする事ができます。
-`overwrite`のデフォルト値はfalseです。
+This adds an instance of the VirtualItem class to the "/home1" directory.
+The node name for this item will be the name specified when the VirtualItem instance was created.
+As a result, a node named "/home1/item1" will be created.
+If a node with the same name already exists in the same directory, an exception will be thrown.
+However, if the third parameter (overwrite) is set to true, the existing item will be overwritten.
+The default value of overwrite is false.
 ```csharp
 vs.AddItem("/home1", item1, true);
 ```
 
-### アイテムの取得
+### Retrieving an Item
 ```csharp
 Person result = vs.GetItem("/home1/item1").ItemData!;
 ```
-`GetItem()`メソッドはパラメータで指定したパスに対する`VirtualItem`のインスタンスを取得します。
-`VirtualItem`の`ItemData`プロパティは、ユーザー定義クラスのインスタンスを公開しています。
-その為、resultには"/home1/item1"に格納された`Person`クラスのインスタンスが設定されます。
+The GetItem() method retrieves an instance of VirtualItem corresponding to the specified path.
+The ItemData property of VirtualItem exposes the instance of the user-defined class.
+As a result, the result will be set to the Person class instance stored at "/home1/item1".
 
-### Personの表示
+### Displaying the `Person`
 ```csharp
 Console.WriteLine($"Name: {result.Name}, Age: {result.Age}");
 ```
-取得した`Person`を表示します。
-結果として、以下のように表示されます。
+This displays the retrieved Person.
+The result will be displayed as follows:
 ```
 Name: John, Age: 20
 ```
 
-[[▲](#目次)]
-## ドキュメント
-このライブラリの詳細な使用方法やリファレンスについては、以下のドキュメントを参照してください。
+[[��](#table-of-contents)]
+## Documentation
+For detailed usage instructions and reference information on this library, please refer to the following 
+documentation:
 
 - [Introduction](https://shimodateakira.github.io/VirtualStorageLibrary/introduction.html)  
-  ライブラリの概要と設計思想を説明しています。  
-  どのような目的で開発されたのか、その基本的な機能と特徴を紹介します。  
-  新しいユーザーがライブラリの全体像を把握するための入門ガイドです。  
+  Provides an overview of the library and its design philosophy. It introduces the primary purpose, basic 
+  features, and characteristics, serving as an introductory guide for new users.
 
 - [Getting Started](https://shimodateakira.github.io/VirtualStorageLibrary/getting-started.html)  
-  ライブラリを使い始めるためのステップバイステップガイドです。  
-  インストール方法から初期設定、簡単なサンプルコードまで、ライブラリを導入するために必要な基本的な手順を説明します。  
+  A step-by-step guide to start using the library, including installation, initial setup, and basic sample 
+  code.
 
-- [APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)  
-  ライブラリに含まれる全てのクラス、メソッド、およびプロパティについての詳細な情報を提供しています。  
-  各メンバーの使用方法やパラメータについての説明が含まれており、ライブラリの具体的な使い方を確認するのに役立ちます。  
+- [API Reference](https://shimodateakira.github.io/VirtualStorageLibrary/)  
+  Detailed information on all classes, methods, and properties included in the library, helping users 
+  understand the specific usage of each member.
 
-- チュートリアル (執筆予定)  
-  実際のユースケースに基づいた詳細な使用例を提供し、ライブラリの応用的な使い方を学ぶためのガイドです。今後追加予定です。  
+- Tutorials (Coming Soon)  
+  Planned to provide detailed examples based on real-world use cases, guiding users in the advanced usage 
+  of the library.
 
-[[▲](#目次)]
-## 設定とカスタマイズ
-このライブラリの初期設定は、`VirtualStorageSettings.Initialize()`メソッドを呼び出すことで自動的に行われます。  
-これにより、パス区切り文字やルートディレクトリの名前、禁止文字など、全てのデフォルト設定が適用されます。  
-特に手動で設定を行う必要はありませんが、アプリケーションの動作中に設定を変更したい場合は、
-`VirtualStorageState.State`プロパティを通じて各種設定プロパティを変更することが可能です。  
-詳細については、[APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)をご参照ください。  
+  [[��](#table-of-contents)]
+## Configuration and Customization
+The initial settings of this library are automatically configured by calling the 
+`VirtualStorageSettings.Initialize()` method. This applies all default settings such as path delimiters, 
+root directory names, and prohibited characters. While manual configuration is not required, you can modify 
+settings during application runtime through the `VirtualStorageState.State` property. 
+For more details, refer to the [API Reference](https://shimodateakira.github.io/VirtualStorageLibrary/).
 
-[[▲](#目次)]
-## ライセンス
-このプロジェクトは、[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)のもとでライセンスされています。
+[[��](#table-of-contents)]
+## License
+This project is licensed under the 
+[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text).
 
 Copyright (C) 2024 Akira Shimodate
 
-VirtualStorageLibraryはフリーソフトウェアです。  
-このソフトウェアは、GNU General Public Licenseのバージョン3、または（オプションとして）その後のバージョンの条件の下で配布されています。  
-VirtualStorageLibraryは有用であることを願って配布されていますが、いかなる保証も提供されていません。  
-商業的な価値の適合性や特定の目的への適合性についての黙示的な保証も含まれていません。  
-詳細については、GNU General Public Licenseをご覧ください。  
-このソフトウェアと共にGNU General Public LicenseのコピーがリポジトリのルートにLICENSEというファイル名で保存されています。  
-提供されていない場合は、[こちら](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)でご確認ください。  
+VirtualStorageLibrary is free software. This software is distributed under the terms of the GNU General 
+Public License, version 3, or (at your option) any later version. VirtualStorageLibrary is distributed in 
+the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
+A copy of the GNU General Public License is saved in the LICENSE file at the root of the repository. If 
+not provided, you can check it [here](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text).
 
-[[▲](#目次)]
-## 貢献ガイドライン
-まずは、とにかくこの`VirtualStorageLibrary`を使ってみてください。  
-現在はプレリリースの段階です。実際に使ってみることで多くのフィードバックや改善点が見つかることを期待しています。  
+[[��](#table-of-contents)]
+## Contribution Guidelines
+First and foremost, please try out `VirtualStorageLibrary`. It is currently in the pre-release stage, 
+and we hope that by using it, you can help identify areas for feedback and improvement.
 
-- **フィードバック**: 使用感や機能についてのご意見があればお知らせください。  
-- **バグ報告**: 発見したバグがあればご報告ください。  
-- **機能の改善、追加の要望**: 必要な機能の改善、追加の要望があればお知らせください。  
+- **Feedback**: If you have any opinions or suggestions about its functionality, please let us know.
+- **Bug Reports**: If you find any bugs, please report them.
+- **Feature Requests**: If you have any requests for new features or improvements, please share them.
 
-これらは当プロジェクトの[Issue](https://github.com/shimodateakira/VirtualStorageLibrary/issues)にて受け付けております。  
+These can be submitted via the project's 
+[Issues](https://github.com/shimodateakira/VirtualStorageLibrary/issues) page.
 
-- **技術的質問**: 技術的な質問があれば[StackOverflow](https://stackoverflow.com/)に書き込みをしてみてください。  
-                  タグは「c#」、「.net」、「tree」、「shared-libraries」、「generic-collections」というタグのいずれかの組み合わせで指定して頂けると見つけやすいです。  
+- **Technical Questions**: If you have technical questions, consider posting them on 
+  [StackOverflow](https://stackoverflow.com/).  
+  Use the tags `c#`, `.net`, `tree`, 
+  `shared-libraries`, or `generic-collections` to make them easier to find.
 
-現在、複数人による開発体制を整えてない為、プルリクエストは当分の間、受け付けておりません。  
-ご理解のほど、よろしくお願い致します。  
+Currently, as we have not yet set up a multi-person development system, we are not accepting pull requests 
+at this time. Thank you for your understanding.
 
-## 著者と謝辞
+## Author and Acknowledgments
 
-### 著者
-このプロジェクトは、Akira Shimodateによって開発されています。
-個人的なプロジェクトとしてスタートし、仮想ストレージライブラリのアイデアを実現するために作成されました。
-`VirtualStorageLibrary`の設計および実装を担当。
+### Author
+This project was developed by Akira Shimodate. It started as a personal project to realize the idea 
+of a virtual storage library, with Akira responsible for the design and implementation of 
+`VirtualStorageLibrary`.
 
-### 謝辞
-このプロジェクトは、以下のツールとリソースに大きく依存しています。
-これらの貢献者に深く感謝いたします。
+### Acknowledgments
+This project heavily relies on the following tools and resources, and we are deeply grateful to their 
+contributors.
 
 - [DocFX](https://github.com/dotnet/docfx):
-  プロジェクトのドキュメント生成を支援する強力なツールです。
+  A powerful tool that supports the generation of project documentation.
   
 - [DocFX Material](https://github.com/ovasquez/docfx-material):
-  DocFX用の美しいMaterialデザインテーマを提供してくれました。
+  A beautiful Material design theme for DocFX.
