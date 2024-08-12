@@ -157,7 +157,7 @@
 - **Visual Studio 2022**: プロジェクトの主要な開発環境です。  
   詳細は、[Visual Studioの公式サイト](https://visualstudio.microsoft.com/vs/)で確認できます。
 
-- **MSTest**: プロジェクトで使用しているテストフレームワークです。
+- **MSTest**: プロジェクトで使用しているテストフレームワークです。  
   詳細は、[MSTset](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-intro)で確認できます。
 
 - **GitHub**: 開発リソースを管理するプラットフォームです。  
