@@ -1,7 +1,3 @@
-## Update README.md - Under Construction
-
-#### This Readme is a work in progress. Once it's completed, an English version will be provided.
----
 ![VirtualStorageLibraryLogo](tree_256x256.svg)
 <details>
   <summary>Language: Japanese</summary>
