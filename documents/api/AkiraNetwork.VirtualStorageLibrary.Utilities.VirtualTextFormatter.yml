@@ -23,7 +23,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualTextFormatter
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-    startLine: 26
+    startLine: 41
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
@@ -95,7 +95,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateTreeDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-    startLine: 65
+    startLine: 80
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
@@ -188,7 +188,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateLinkTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-    startLine: 143
+    startLine: 158
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
@@ -230,7 +230,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-    startLine: 183
+    startLine: 198
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.Utilities
@@ -272,7 +272,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateSingleTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-    startLine: 244
+    startLine: 259
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.Utilities

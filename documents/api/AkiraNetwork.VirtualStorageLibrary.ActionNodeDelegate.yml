@@ -19,7 +19,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ActionNodeDelegate
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
-    startLine: 18
+    startLine: 33
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
