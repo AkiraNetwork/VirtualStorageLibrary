@@ -40,7 +40,7 @@ flexibly manage hierarchical  and allow intuitive access.
 ## Table of Contents
 
 - [Key Features](#key-features)
-- [Use Cases](#use-cases)
+- [Anticipated Use Cases](#anticipated-use-cases)
 - [Technology Stack](#technology-stack)
 - [Target Users](#target-users)
 - [Installation Instructions](#installation-instructions)
