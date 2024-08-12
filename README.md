@@ -34,7 +34,7 @@ The collections provided by .NET are linear, including types like hash sets,
 arrays, lists, and dictionaries, which inherently have a linear structure. In 
 contrast, common file systems can be viewed as tree-shaped collections, where 
 elements are managed as nodes in a hierarchical structure. While there are 
-existing libraries that support tree-shaped collections, I couldnÅft find one 
+existing libraries that support tree-shaped collections, I couldn‚Äôt find one 
 that models a file system-like structure. Therefore, I conceptualized a 
 logical interpretation of a file system and asked, **"Can we implement a tree 
 collection purely as objects?"** The goal was to create a system that can 
@@ -53,7 +53,7 @@ flexibly manage hierarchical data and allow intuitive access.
 - [License](#license)
 - [Contribution Guidelines](#contribution-guidelines)
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Key Features
 
 #### Flexible Tree Structure
@@ -80,7 +80,7 @@ flexibly manage hierarchical data and allow intuitive access.
   Retrieves node lists within directories, filtered, grouped, and
   sorted by specified node types and attributes.
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Anticipated Use Cases
 
 ### Natural Language Processing (NLP)
@@ -200,7 +200,7 @@ Thus, the Virtual Storage Library helps students and learners deepen
 their understanding of practical programming skills and data structures 
 in an educational setting.
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Technology Stack
 
 ### Overview
@@ -229,7 +229,7 @@ in an educational setting.
 - **DocFX Material**: Provides stylesheets and templates for DocFX, enhancing the appearance of the documentation.  
   For more details, visit the [DocFX Material repository](https://github.com/ovasquez/docfx-material).
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Target Users
 
 ### Primary User Groups
@@ -261,7 +261,7 @@ During this period, class names, method names, property names, and other element
 Details will be provided in the release notes, so please check them.  
 For more information, please refer to [Current Issues and Improvement Plans](https://github.com/users/shimodateakira/projects/3/views/3) (Japanese).
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Installation Instructions
 
 ### Installing with Visual Studio 2022
@@ -288,7 +288,7 @@ dotnet add package VirtualStorageLibrary --version 0.8.0
 Once installed, `VirtualStorageLibrary` will be added to your project's dependencies, and you can begin using it.  
 After installation, add the necessary `using` directives to reference the library in your code.
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Usage
 
 ### Simple Example
@@ -435,7 +435,7 @@ The result will be displayed as follows:
 Name: John, Age: 20
 ```
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Documentation
 For detailed usage instructions and reference information on this library, please refer to the following 
 documentation:
@@ -456,7 +456,7 @@ documentation:
   Planned to provide detailed examples based on real-world use cases, guiding users in the advanced usage 
   of the library.
 
-  [[Å£](#table-of-contents)]
+  [[‚ñ≤](#table-of-contents)]
 ## Configuration and Customization
 The initial settings of this library are automatically configured by calling the 
 `VirtualStorageSettings.Initialize()` method. This applies all default settings such as path delimiters, 
@@ -464,7 +464,7 @@ root directory names, and prohibited characters. While manual configuration is n
 settings during application runtime through the `VirtualStorageState.State` property. 
 For more details, refer to the [API Reference](https://shimodateakira.github.io/VirtualStorageLibrary/).
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## License
 This project is licensed under the 
 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text).
@@ -478,7 +478,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public 
 A copy of the GNU General Public License is saved in the LICENSE file at the root of the repository. If 
 not provided, you can check it [here](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text).
 
-[[Å£](#table-of-contents)]
+[[‚ñ≤](#table-of-contents)]
 ## Contribution Guidelines
 First and foremost, please try out `VirtualStorageLibrary`. It is currently in the pre-release stage, 
 and we hope that by using it, you can help identify areas for feedback and improvement.
