@@ -497,6 +497,7 @@ These can be submitted via the project's
 Currently, as we have not yet set up a multi-person development system, we are not accepting pull requests 
 at this time. Thank you for your understanding.
 
+[[▲](#table-of-contents)]
 ## Author and Acknowledgments
 
 ### Author
