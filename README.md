@@ -412,8 +412,8 @@ VirtualStorageLibraryは有用であることを願って配布されていま�
 
 これらは当プロジェクトの[Issue](https://github.com/shimodateakira/VirtualStorageLibrary/issues)にて受け付けております。  
 
-技術的質問: 技術的な質問があれば[StackOverflow](https://stackoverflow.com/)に書き込みをしてみてください。  
-           タグは「c#」、「.net」、「tree」、「shared-libraries」、「generic-collections」というタグのいずれかの組み合わせで指定して頂けると見つけやすいです。  
+- **技術的質問**: 技術的な質問があれば[StackOverflow](https://stackoverflow.com/)に書き込みをしてみてください。  
+                  タグは「c#」、「.net」、「tree」、「shared-libraries」、「generic-collections」というタグのいずれかの組み合わせで指定して頂けると見つけやすいです。  
 
 現在、複数人による開発体制を整えてない為、プルリクエストは当分の間、受け付けておりません。  
 ご理解のほど、よろしくお願い致します。  
