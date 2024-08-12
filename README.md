@@ -19,8 +19,9 @@
 `VirtualStorageLibrary` is a .NET library that operates entirely in-memory and 
 provides a **tree-structured collection**. This library offers a foundation 
 for managing **hierarchical data structures**, supporting items, directories, 
-and symbolic links that encapsulate user-defined types (`<T>`). It is **not a 
-file system**. Instead, it was **redesigned from scratch** to create a more 
+and symbolic links that encapsulate user-defined types (`<T>`).  
+This library **is not a file system**.  
+Instead, it was **redesigned from scratch** to create a more 
 flexible and user-friendly tree structure. The library aims to make it 
 **intuitive** to reference, traverse, and manipulate nodes **by specifying 
 paths**.
@@ -34,15 +35,15 @@ existing libraries that support tree-shaped collections, I couldn’t find one
 that models a file system-like structure. Therefore, I conceptualized a 
 logical interpretation of a file system and asked, **"Can we implement a tree 
 collection purely as objects?"** The goal was to create a system that can 
-flexibly manage hierarchical data and allow intuitive access.
+flexibly manage hierarchical  and allow intuitive access.
 
 ## Table of Contents
 
 - [Key Features](#key-features)
 - [Use Cases](#use-cases)
-- [Technical Stack](#technical-stack)
+- [Technology Stack](#technology-stack)
 - [Target Users](#target-users)
-- [Installation](#installation)
+- [Installation Instructions](#installation-instructions)
 - [Usage](#usage)
 - [Documentation](#documentation)
 - [Configuration and Customization](#configuration-and-customization)
@@ -53,7 +54,7 @@ flexibly manage hierarchical data and allow intuitive access.
 ## Key Features
 
 #### Flexible Tree Structure
-  Provides a hierarchical data structure based on parent-child
+  Provides a hierarchical  structure based on parent-child
   relationships, allowing flexible node management.
 
 #### Support for Various Nodes
@@ -200,7 +201,9 @@ in an educational setting.
 ## Technology Stack
 
 ### Overview
-`VirtualStorageLibrary` is developed on the .NET 8 platform using the C# language.
+`VirtualStorageLibrary` is developed on the .NET 8 platform using the C# language.  
+This library **is not a file system**.  
+It operates entirely in-memory and provides a flexible foundation for managing hierarchical data structures.  
 
 ### Programming Language
 - **C#**: The primary language used in this project. C# version 12 is utilized.
