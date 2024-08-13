@@ -294,7 +294,7 @@ After installation, add the necessary `using` directives to reference the librar
 ```csharp
 using AkiraNetwork.VirtualStorageLibrary;
 
-namespace TestApplication
+namespace VSLSample01
 {
     // User-defined class
     public class Person
