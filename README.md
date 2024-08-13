@@ -19,7 +19,7 @@
 `VirtualStorageLibrary` is a .NET library that operates entirely in-memory and 
 provides a **tree-structured collection**. This library offers a foundation 
 for managing **hierarchical data structures**, supporting items, directories, 
-and symbolic links that encapsulate user-defined types (`<T>`).  
+and symbolic links that encapsulate user-defined types \<T\>.  
 This library **is not a file system**.  
 Instead, it was **redesigned from scratch** to create a more 
 flexible and user-friendly tree structure. The library aims to make it 
