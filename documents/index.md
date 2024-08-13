@@ -1,12 +1,69 @@
----
+﻿---
 _layout: landing
 ---
 
-# **Welcome to VirtualStorageLibrary**.
+Under Construction. This Readme is a work in progress. Once it's completed, an English version will be provided.
+
+---
+
+<details>
+  <summary>Language: English</summary>
+  <ul>
+    <li><a href="index.md">English</a></li>
+    <li><a href="index.ja.md">Japanese</a></li>
+  </ul>
+</details>
+
+# **Welcome to VirtualStorageLibrary!**
+
+---
+
+![tree_256x256.svg](images/tree_256x256.svg)
+
+---
+
+## **.NET開発者の為のツリー構造コレクション**
+
+VirtualStorageLibrary`は、完全にオンメモリで動作し、<mark>ツリー構造コレクション</mark>を提供する.NETライブラリです。  
+このライブラリは、<mark>データの階層的な構造を管理するための基盤</mark>を提供し、 ユーザー定義型を内包するアイテム、ディレクトリ、シンボリックリンクをサポートします。  
+このライブラリは <mark>ファイルシステムではありません。</mark>   
+従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために <mark>ゼロから再設計</mark> しました。  
+このライブラリは、ユーザーが <mark>パスの指定による</mark> ノードの参照、探索、操作を <mark>直感的</mark> に行えるようにすることを目的としています。  
 
 
 
+## 主な機能
 
-This documentation uses the DocFX Material theme, which is 息 2019 Oscar V叩squez.  
-It is licensed under the MIT License. For more details, please see the  
-[DocFX Material GitHub repository](https://github.com/ovasquez/docfx-material).
+#### 柔軟なツリー構造
+
+親子関係に基づく階層的なデータ構造を提供し、柔軟なノード管理が可能です。
+
+
+
+#### 多様なノードのサポート
+
+ユーザー定義型<T>を含むアイテム、ディレクトリ、シンボリックリンクをサポートします。
+
+
+
+#### パスによる直感的なノード操作
+
+パスを指定することでノードの参照、探索、追加、削除、変名、コピーおよび、移動が容易に行え、使いやすいAPIを提供します。
+
+
+
+#### リンク管理
+
+リンク辞書を使ったシンボリックリンクの変更を管理し、ターゲットパスの変更を追跡します。
+
+
+
+#### 循環参照防止
+
+シンボリックリンクを含んだパスを解決時、ディレクトリを循環参照するような構造を検出した場合、例外をスローします。
+
+
+
+#### 柔軟なノードリストの取得
+
+ディレクトリ内のノードのリストを取得する際、指定されたノードタイプでフィルタ、グルーピングし、指定された属性でソートした結果を取得します。

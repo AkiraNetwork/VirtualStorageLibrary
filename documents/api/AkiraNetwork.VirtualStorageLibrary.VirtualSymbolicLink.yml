@@ -29,11 +29,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 13
+    startLine: 28
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -88,11 +88,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TargetPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 23
+    startLine: 38
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -119,11 +119,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 32
+    startLine: 47
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -151,11 +151,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TargetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 37
+    startLine: 52
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -182,11 +182,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 42
+    startLine: 57
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -213,11 +213,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 51
+    startLine: 66
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -248,11 +248,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 60
+    startLine: 75
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -286,11 +286,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 72
+    startLine: 87
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -330,11 +330,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 81
+    startLine: 96
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -367,11 +367,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 90
+    startLine: 105
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -404,11 +404,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 99
+    startLine: 114
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -441,11 +441,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 108
+    startLine: 123
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -478,11 +478,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 119
+    startLine: 134
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -510,11 +510,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 126
+    startLine: 141
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -549,11 +549,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 136
+    startLine: 151
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

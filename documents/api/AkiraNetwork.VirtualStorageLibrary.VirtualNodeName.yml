@@ -31,11 +31,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 8
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -74,11 +74,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 21
+    startLine: 36
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -112,11 +112,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Name
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 32
+    startLine: 47
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -144,11 +144,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 38
+    startLine: 53
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -176,11 +176,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 46
+    startLine: 61
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -208,11 +208,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 61
+    startLine: 76
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -256,11 +256,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResetCounter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 77
+    startLine: 92
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -284,11 +284,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 87
+    startLine: 102
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -319,11 +319,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 117
+    startLine: 132
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -356,11 +356,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 126
+    startLine: 141
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -393,11 +393,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 139
+    startLine: 154
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -436,11 +436,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 152
+    startLine: 167
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -478,11 +478,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetHashCode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 165
+    startLine: 180
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -510,11 +510,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 174
+    startLine: 189
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -550,11 +550,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 194
+    startLine: 209
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -594,11 +594,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Equality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 218
+    startLine: 233
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -635,11 +635,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Inequality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 244
+    startLine: 259
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

@@ -18,11 +18,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualID
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 7
+    startLine: 22
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -60,11 +60,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ID
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 17
+    startLine: 32
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -92,11 +92,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 23
+    startLine: 38
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -124,11 +124,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualID.cs
-    startLine: 29
+    startLine: 44
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

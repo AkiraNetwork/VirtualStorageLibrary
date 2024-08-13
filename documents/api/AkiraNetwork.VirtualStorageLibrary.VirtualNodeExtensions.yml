@@ -16,11 +16,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeExtensions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 89
+    startLine: 104
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -54,11 +54,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolveNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 99
+    startLine: 114
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

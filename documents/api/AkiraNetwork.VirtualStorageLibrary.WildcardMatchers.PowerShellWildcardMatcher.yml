@@ -20,11 +20,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PowerShellWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-    startLine: 8
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
@@ -64,11 +64,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-    startLine: 33
+    startLine: 48
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
@@ -101,11 +101,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-    startLine: 41
+    startLine: 56
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
@@ -135,11 +135,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-    startLine: 49
+    startLine: 64
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
@@ -169,11 +169,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-    startLine: 57
+    startLine: 72
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
@@ -203,11 +203,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: gh-pages
+      branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-    startLine: 70
+    startLine: 85
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers

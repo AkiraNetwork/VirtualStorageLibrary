@@ -59,7 +59,7 @@ flexibly manage hierarchical  and allow intuitive access.
 
 #### Support for Various Nodes
   Supports items, directories, and symbolic links, including
-  user-defined types `<T>`.
+  user-defined types \<T\>.
 
 #### Intuitive Node Operations via Paths
   Offers an intuitive API for referencing, searching, adding,
