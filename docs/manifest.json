@@ -435,6 +435,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/burner.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/burner.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/index_tree1.png",
       "output": {
         "resource": {
@@ -445,10 +455,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/index_tree1.svg",
+      "source_relative_path": "images/index_tree2.png",
       "output": {
         "resource": {
-          "relative_path": "images/index_tree1.svg"
+          "relative_path": "images/index_tree2.png"
         }
       },
       "version": ""
