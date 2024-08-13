@@ -236,7 +236,7 @@ dotnet add package VirtualStorageLibrary --version 0.8.0
 ```csharp
 using AkiraNetwork.VirtualStorageLibrary;
 
-namespace TestApplication
+namespace VSLSample01
 {
     // User-defined class
     public class Person
