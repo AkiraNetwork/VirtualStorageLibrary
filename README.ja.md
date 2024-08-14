@@ -8,10 +8,10 @@
 </details>
 
 ![Version: 0.8.0](https://img.shields.io/badge/version-0.8.0-pink.svg)
-![License: AGPL-1.0-only](https://img.shields.io/badge/License-AGPL%201.0%20only-red.svg)
-![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)
-[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/)
-![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)
+[![License: AGPL-1.0-only](https://img.shields.io/badge/License-AGPL%201.0%20only-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text)
+[![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)](https://dotnet.microsoft.com/en-us/download/dotnet)
+[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
+[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/shimodateakira/projects/3)
 
 # VirtualStorageLibraryへようこそ！
 
