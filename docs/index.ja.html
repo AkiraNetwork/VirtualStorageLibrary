@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>VirtualStorageLibrary. | AkiraNetwork </title>
+      <title>VirtualStorageLibrary へようこそ! | AkiraNetwork </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="VirtualStorageLibrary. | AkiraNetwork ">
+      <meta name="title" content="VirtualStorageLibrary へようこそ! | AkiraNetwork ">
     
     
       <link rel="shortcut icon" href="images/tree_32x32.svg">
@@ -72,9 +72,9 @@
             <article class="content wrap" id="_content" data-uid="">
 
 
-<p>Under Construction
-This Readme is a work in progress. Once it's completed, an English version will be provided.</p>
+<p>Under Construction. This Readme is a work in progress. Once it's completed, an English version will be provided.</p>
 <hr>
+<p><img src="images/burner.png" alt="burner.png"></p>
 <details>
   <summary>Language: Japanese</summary>
   <ul>
@@ -82,12 +82,52 @@ This Readme is a work in progress. Once it's completed, an English version will 
     <li><a href="index.ja.html">Japanese</a></li>
   </ul>
 </details>
-<h1 id="virtualstoragelibrary"><strong>VirtualStorageLibrary</strong>.</h1>
+<h1 id="virtualstoragelibrary-へようこそ"><strong>VirtualStorageLibrary へようこそ!</strong></h1>
 <hr>
-<p><strong>.NET開発者の為の階層構造コレクション</strong><br>
-<img src="images/tree_256x256.svg" alt="tree_256x256.svg"></p>
-<hr>
-<p><img src="images/index_tree1.svg" alt="index_tree1.png"></p>
+<h2 id="net開発者の為のツリー構造コレクション"><strong>.NET開発者の為のツリー構造コレクション</strong></h2>
+<p><code>VirtualStorageLibrary</code>は、完全にオンメモリで動作し、<strong>ツリー構造コレクション</strong>を提供する.NETライブラリです。<br>
+このライブラリは、<strong>データの階層的な構造を管理するための基盤</strong>を提供し、<strong>ユーザー定義型</strong><code>T</code>を内包するアイテム、ディレクトリ、シンボリックリンクをサポートします。<br>
+このライブラリは<strong>ファイルシステムではありません。</strong><br>
+従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために<strong>ゼロから再設計</strong>しました。<br>
+このライブラリは、ユーザーが<strong>パスの指定による</strong>ノードの参照、探索、操作を <strong>直感的</strong> に行えるようにすることを目的としています。</p>
+<h2 id="主な機能">主な機能</h2>
+<h4 id="柔軟なツリー構造">柔軟なツリー構造</h4>
+<p>親子関係に基づく階層的なデータ構造を提供し、柔軟なノード管理が可能です。</p>
+<p><img src="images/index_tree1.png" alt="index_tree1.png"></p>
+<h4 id="多様なノードのサポート">多様なノードのサポート</h4>
+<p>ユーザー定義型<code>T</code>を含むアイテム、ディレクトリ、シンボリックリンクをサポートします。</p>
+<p>アイテムはジェネリック型であり、<code>T</code>はアイテムが内包するユーザー定義型<code>T</code>を表しています。</p>
+<p>リンクは一般的なシンボリックリンクに似た機能を備えており、リンク先のターゲットパスを内包しています。</p>
+<p><img src="images/index_tree2.png" alt="index_tree2.png"></p>
+<h4 id="パスによる直感的なノード操作">パスによる直感的なノード操作</h4>
+<p>パスを指定することでノードの参照、探索、追加、削除、変名、コピーおよび、移動が容易に行え、使いやすいAPIを提供します。</p>
+<ul>
+<li><p>フルパス指定<br>
+&quot;/dir1/item1&quot;</p>
+</li>
+<li><p>相対指定<br>
+&quot;item1&quot;</p>
+</li>
+<li><p>相対指定(ドット)<br>
+&quot;./item&quot;</p>
+</li>
+<li><p>相対指定(ドットドット)<br>
+&quot;../item&quot;</p>
+</li>
+</ul>
+<h4 id="リンク管理">リンク管理</h4>
+<p>一般のファイルシステムと同じようにシンボリックリンクを備えています。<br>
+存在していないノードをターゲットパスとして指定しシンボリックリンクを作成する事も可能です。また、ターゲーットパスとして<code>null</code>を指定する事も可能です。この様なシンボリックリンクを<code>VirtualStorageLibrary</code>では<code>nullリンク</code>と呼んでいます。<br>
+パス探索時、リンク解決が指定された状態でターゲットパスが存在していない場合は例外がスローされます。また、<code>nullリンク</code>の場合は、リンク解決が指定されていても解決は行いません(例外はスローされません)。</p>
+<p><img src="images/index_tree3.png" alt="index_tree3.png"></p>
+<p>リンク辞書を使ったシンボリックリンクの変更を管理し、ターゲットパスの変更を追跡します。</p>
+<p><img src="images/index_tree4.png" alt="index_tree4.png"></p>
+<h4 id="循環参照防止">循環参照防止</h4>
+<p>シンボリックリンクを含んだパスを探索時、ディレクトリを循環参照するような構造を検出した場合、例外をスローします。<code>VirtualStorageLibrary</code>では、循環参照チェック用辞書にパスを解決した際のリンク情報のみを記録していく方式を採用しています。<br>
+循環参照するリンクを作成する事は可能です。</p>
+<p><img src="images/index_tree5.png" alt="index_tree5.png"></p>
+<h4 id="柔軟なノードリストの取得">柔軟なノードリストの取得</h4>
+<p>ディレクトリ内のノードのリストを取得する際、指定されたノードタイプでフィルタ、グルーピングし、指定された属性でソートした結果を取得します。</p>
 
 </article>
           </div>

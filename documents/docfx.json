@@ -43,7 +43,7 @@
       "_appName": "AkiraNetwork",
       "_appTitle": "AkiraNetwork",
       "_enableSearch": true,
-      "pdf": true,
+      "pdf": false,
       "_disableContribution": true,
       "favicon": "images/tree.png",
       "_appFaviconPath": "images/tree_32x32.svg",

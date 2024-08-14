@@ -465,6 +465,66 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/index_tree3.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/index_tree3.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/index_tree4.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/index_tree4.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/index_tree5.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/index_tree5.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/index_tree6A.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/index_tree6A.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/index_tree6B.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/index_tree6B.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/index_tree6C.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/index_tree6C.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/tree.png",
       "output": {
         "resource": {

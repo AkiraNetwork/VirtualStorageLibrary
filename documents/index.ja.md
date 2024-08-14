@@ -2,10 +2,11 @@
 _layout: landing
 ---
 
-Under Construction
-This Readme is a work in progress. Once it's completed, an English version will be provided.
+Under Construction. This Readme is a work in progress. Once it's completed, an English version will be provided.
 
 ---
+
+![burner.png](images/burner.png)
 
 <details>
   <summary>Language: Japanese</summary>
@@ -15,13 +16,71 @@ This Readme is a work in progress. Once it's completed, an English version will 
   </ul>
 </details>
 
-# **VirtualStorageLibrary**.
+# **VirtualStorageLibrary へようこそ!**
 
 ---
 
-**.NET開発者の為の階層構造コレクション**  
-![tree_256x256.svg](images/tree_256x256.svg)
+## **.NET開発者の為のツリー構造コレクション**
 
----
+`VirtualStorageLibrary`は、完全にオンメモリで動作し、**ツリー構造コレクション**を提供する.NETライブラリです。  
+このライブラリは、**データの階層的な構造を管理するための基盤**を提供し、**ユーザー定義型**`T`を内包するアイテム、ディレクトリ、シンボリックリンクをサポートします。  
+このライブラリは**ファイルシステムではありません。**   
+従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために**ゼロから再設計**しました。  
+このライブラリは、ユーザーが**パスの指定による**ノードの参照、探索、操作を **直感的** に行えるようにすることを目的としています。  
 
-![index_tree1.png](images/index_tree1.svg)
+## 主な機能
+
+#### 柔軟なツリー構造
+
+親子関係に基づく階層的なデータ構造を提供し、柔軟なノード管理が可能です。
+
+![index_tree1.png](images/index_tree1.png)
+
+#### 多様なノードのサポート
+
+ユーザー定義型`T`を含むアイテム、ディレクトリ、シンボリックリンクをサポートします。
+
+アイテムはジェネリック型であり、`T`はアイテムが内包するユーザー定義型`T`を表しています。
+
+リンクは一般的なシンボリックリンクに似た機能を備えており、リンク先のターゲットパスを内包しています。
+
+![index_tree2.png](images/index_tree2.png)
+
+#### パスによる直感的なノード操作
+
+パスを指定することでノードの参照、探索、追加、削除、変名、コピーおよび、移動が容易に行え、使いやすいAPIを提供します。
+
+- フルパス指定  
+  "/dir1/item1"
+
+- 相対指定  
+  "item1"
+
+- 相対指定(ドット)  
+  "./item"
+
+- 相対指定(ドットドット)  
+  "../item"
+
+#### リンク管理
+
+一般のファイルシステムと同じようにシンボリックリンクを備えています。  
+存在していないノードをターゲットパスとして指定しシンボリックリンクを作成する事も可能です。また、ターゲーットパスとして`null`を指定する事も可能です。この様なシンボリックリンクを`VirtualStorageLibrary`では`nullリンク`と呼んでいます。  
+パス探索時、リンク解決が指定された状態でターゲットパスが存在していない場合は例外がスローされます。また、`nullリンク`の場合は、リンク解決が指定されていても解決は行いません(例外はスローされません)。
+
+![index_tree3.png](images/index_tree3.png)
+
+リンク辞書を使ったシンボリックリンクの変更を管理し、ターゲットパスの変更を追跡します。
+
+![index_tree4.png](images/index_tree4.png)
+
+#### 循環参照防止
+
+シンボリックリンクを含んだパスを探索時、ディレクトリを循環参照するような構造を検出した場合、例外をスローします。`VirtualStorageLibrary`では、循環参照チェック用辞書にパスを解決した際のリンク情報のみを記録していく方式を採用しています。  
+循環参照するリンクを作成する事は可能です。
+
+![index_tree5.png](images/index_tree5.png)
+
+#### 柔軟なノードリストの取得
+
+ディレクトリ内のノードのリストを取得する際、指定されたノードタイプでフィルタ、グルーピングし、指定された属性でソートした結果を取得します。
