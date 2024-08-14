@@ -384,7 +384,7 @@ Name: John, Age: 20
   ライブラリを使い始めるためのステップバイステップガイドです。  
   インストール方法から初期設定、簡単なサンプルコードまで、ライブラリを導入するために必要な基本的な手順を説明します。  
 
-- [APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)  
+- [APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary)  
   ライブラリに含まれる全てのクラス、メソッド、およびプロパティについての詳細な情報を提供しています。  
   各メンバーの使用方法やパラメータについての説明が含まれており、ライブラリの具体的な使い方を確認するのに役立ちます。  
 
