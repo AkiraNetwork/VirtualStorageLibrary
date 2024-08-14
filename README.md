@@ -10,7 +10,7 @@
 ![Version: 0.8.0](https://img.shields.io/badge/version-0.8.0-pink.svg)
 ![License: AGPL-1.0-only](https://img.shields.io/badge/License-AGPL%201.0%20only-red.svg)
 ![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)
-[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/)
+![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)
 ![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)
 
 # Welcome to VirtualStorageLibrary!
@@ -447,7 +447,7 @@ documentation:
   A step-by-step guide to start using the library, including installation, initial setup, and basic sample 
   code.
 
-- [API Reference](https://shimodateakira.github.io/VirtualStorageLibrary/)  
+- [API Reference](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary)  
   Detailed information on all classes, methods, and properties included in the library, helping users 
   understand the specific usage of each member.
 
