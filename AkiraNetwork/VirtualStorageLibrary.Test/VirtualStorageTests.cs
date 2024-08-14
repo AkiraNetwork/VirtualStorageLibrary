@@ -9432,6 +9432,237 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(err.Message);
         }
 
+        // ノードをディレクトリに移動した後、リンク辞書が正しく更新されることを確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void MoveNode_UpdatesLinkDictionaryForNodeMoveToDirectory()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData>? dir1Item1;
+            VirtualItem<BinaryData>? dir2Item1;
+            VirtualSymbolicLink link1;
+
+            // Add directories and items
+            Debug.WriteLine("\nAdd directories and items");
+
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir1/item1");
+            vs.AddSymbolicLink("/link1", "/dir1/item1");
+
+            dir1Item1 = vs.TryGetItem("/dir1/item1");
+            dir2Item1 = vs.TryGetItem("/dir2/item1");
+            Debug.WriteLine($"/dir1/item1: {dir1Item1?.Name}");
+            Debug.WriteLine($"/dir2/item1: {dir2Item1?.Name}");
+
+            link1 = vs.GetSymbolicLink("/link1");
+            Debug.WriteLine($"{link1}");
+
+            // Move /dir1/item1 to /dir2
+            Debug.WriteLine("\nMove /dir1/item1 to /dir2");
+
+            vs.MoveNode("/dir1/item1", "/dir2");
+
+            dir1Item1 = vs.TryGetItem("/dir1/item1");
+            dir2Item1 = vs.TryGetItem("/dir2/item1");
+            Debug.WriteLine($"/dir1/item1: {dir1Item1?.Name}");
+            Debug.WriteLine($"/dir2/item1: {dir2Item1?.Name}");
+
+            link1 = vs.GetSymbolicLink("/link1");
+            Debug.WriteLine($"{link1}");
+
+            // Assert
+            Assert.AreEqual("/dir2/item1", (string)link1.TargetPath);
+        }
+
+        // ノードをディレクトリ(ノード指定付き)に移動した後、リンク辞書が正しく更新されることを確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void MoveNode_UpdatesLinkDictionaryForNodeMoveToDirectoryWithNode()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData>? dir1Item1;
+            VirtualItem<BinaryData>? dir2Item1;
+            VirtualSymbolicLink link1;
+
+            // Add directories and items
+            Debug.WriteLine("\nAdd directories and items");
+
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir1/item1");
+            vs.AddSymbolicLink("/link1", "/dir1/item1");
+
+            dir1Item1 = vs.TryGetItem("/dir1/item1");
+            dir2Item1 = vs.TryGetItem("/dir2/item1");
+            Debug.WriteLine($"/dir1/item1: {dir1Item1?.Name}");
+            Debug.WriteLine($"/dir2/item1: {dir2Item1?.Name}");
+
+            link1 = vs.GetSymbolicLink("/link1");
+            Debug.WriteLine($"{link1}");
+
+            // Move /dir1/item1 to /dir2 with node
+            Debug.WriteLine("\nMove /dir1/item1 to /dir2 with node");
+
+            vs.MoveNode("/dir1/item1", "/dir2/item1");
+
+            dir1Item1 = vs.TryGetItem("/dir1/item1");
+            dir2Item1 = vs.TryGetItem("/dir2/item1");
+            Debug.WriteLine($"/dir1/item1: {dir1Item1?.Name}");
+            Debug.WriteLine($"/dir2/item1: {dir2Item1?.Name}");
+
+            link1 = vs.GetSymbolicLink("/link1");
+            Debug.WriteLine($"{link1}");
+
+            // Assert
+            Assert.AreEqual("/dir2/item1", (string)link1.TargetPath);
+        }
+
+        // ノードをディレクトリ(ノード指定付き、上書き対象ノードあり)に移動した後、
+        // リンク辞書が正しく更新されることを確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void MoveNode_UpdatesLinkDictionaryForNodeMoveToDirectoryWithNodeAndOverwrite()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData>? dir1Item1;
+            VirtualItem<BinaryData>? dir2Item1;
+            VirtualSymbolicLink link1;
+
+            // Add directories and items
+            Debug.WriteLine("\nAdd directories and items");
+
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir1/item1");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/link1", "/dir1/item1");
+
+            dir1Item1 = vs.TryGetItem("/dir1/item1");
+            dir2Item1 = vs.TryGetItem("/dir2/item1");
+            Debug.WriteLine($"/dir1/item1: {dir1Item1?.Name}");
+            Debug.WriteLine($"/dir2/item1: {dir2Item1?.Name}");
+
+            link1 = vs.GetSymbolicLink("/link1");
+            Debug.WriteLine($"{link1}");
+
+            // Move /dir1/item1 to /dir2 with node and overwrite
+            Debug.WriteLine("\nMove /dir1/item1 to /dir2 with node and overwrite");
+
+            vs.MoveNode("/dir1/item1", "/dir2/item1", true);
+
+            dir1Item1 = vs.TryGetItem("/dir1/item1");
+            dir2Item1 = vs.TryGetItem("/dir2/item1");
+            Debug.WriteLine($"/dir1/item1: {dir1Item1?.Name}");
+            Debug.WriteLine($"/dir2/item1: {dir2Item1?.Name}");
+
+            link1 = vs.GetSymbolicLink("/link1");
+            Debug.WriteLine($"{link1}");
+
+            // Assert
+            Assert.AreEqual("/dir2/item1", (string)link1.TargetPath);
+        }
+
+        // ディレクトリツリーをディレクトリに移動した後、リンク辞書が正しく更新されることを確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void MoveNode_UpdatesLinkDictionaryForDirectoryTreeMoveToDirectory()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            VirtualSymbolicLink link1;
+
+            // Add directories and items
+            Debug.WriteLine("\nAdd directories and items");
+
+            vs.AddDirectory("/dir1/subDir", true);
+            vs.AddItem("/dir1/subDir/item1");
+            vs.AddDirectory("/dir2");
+            vs.AddSymbolicLink("/link1", "/dir1/subDir/item1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // Move /dir1/dir2 to /dir2
+            Debug.WriteLine("\nMove /dir1 to /dir2");
+
+            vs.MoveNode("/dir1", "/dir2");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // Assert
+            link1 = vs.GetSymbolicLink("/link1");
+            Assert.AreEqual("/dir2/dir1/subDir/item1", (string)link1.TargetPath);
+        }
+
+        // ディレクトリツリーをディレクトリ(ノード指定付き)に移動した後、リンク辞書が正しく更新されることを確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void MoveNode_UpdatesLinkDictionaryForDirectoryTreeMoveToDirectoryWithNode()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            VirtualSymbolicLink link1;
+
+            // Add directories and items
+            Debug.WriteLine("\nAdd directories and items");
+
+            vs.AddDirectory("/dir1/subDir", true);
+            vs.AddItem("/dir1/subDir/item1");
+            vs.AddDirectory("/dir2");
+            vs.AddSymbolicLink("/link1", "/dir1/subDir/item1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // Move /dir1/dir2 to /dir2 with node
+            Debug.WriteLine("\nMove /dir1 to /dir2 with node");
+
+            vs.MoveNode("/dir1", "/dir2/dir1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // Assert
+            link1 = vs.GetSymbolicLink("/link1");
+            Assert.AreEqual("/dir2/dir1/subDir/item1", (string)link1.TargetPath);
+        }
+
+        // ディレクトリツリーをディレクトリ(ノード指定付き、上書き対象ノードあり)に移動した場合、
+        // 例外が発生する事を確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void MoveNode_ThrowsExceptionForDirectoryTreeMoveToDirectoryWithNodeAndOverwrite()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // Add directories and items
+            Debug.WriteLine("\nAdd directories and items");
+
+            vs.AddDirectory("/dir1/subDir", true);
+            vs.AddItem("/dir1/subDir/item1");
+            vs.AddDirectory("/dir2/dir1", true);
+            vs.AddSymbolicLink("/link1", "/dir1/subDir/item1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // Move /dir1/dir2 to /dir2 with node and overwrite
+            Debug.WriteLine("\nMove /dir1 to /dir2 with node and overwrite");
+
+            // Act & Assert
+            var err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.MoveNode("/dir1", "/dir2", true);
+            });
+
+            Debug.WriteLine(err.Message);
+        }
+
         [TestMethod]
         [TestCategory("CycleReferenceCheck")]
         // リンクのターゲットが自身の上位ノードを指している場合

@@ -203,7 +203,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 destinationParentDirectory = GetDirectory(destinationPath);
                 destinationNodeName = sourceNode.Name;
-                destinationNode = TryGetNode(destinationPath + sourceNode.Name);
+                destinationPath += sourceNode.Name;
+                destinationNode = TryGetNode(destinationPath);
             }
             else if (!NodeExists(destinationPath))
             {
