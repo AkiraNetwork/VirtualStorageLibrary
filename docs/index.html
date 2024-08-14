@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>VirtualStorageLibrary へようこそ! | AkiraNetwork </title>
+      <title>Welcome to VirtualStorageLibrary! | AkiraNetwork </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="VirtualStorageLibrary へようこそ! | AkiraNetwork ">
+      <meta name="title" content="Welcome to VirtualStorageLibrary! | AkiraNetwork ">
     
     
       <link rel="shortcut icon" href="images/tree_32x32.svg">
@@ -72,8 +72,6 @@
             <article class="content wrap" id="_content" data-uid="">
 
 
-<p>Under Construction. This Readme is a work in progress. Once it's completed, an English version will be provided.</p>
-<hr>
 <p><img src="images/burner.png" alt="burner.png"></p>
 <details>
   <summary>Language: English</summary>
@@ -82,84 +80,109 @@
     <li><a href="index.ja.html">Japanese</a></li>
   </ul>
 </details>
-<h1 id="virtualstoragelibrary-へようこそ"><strong>VirtualStorageLibrary へようこそ!</strong></h1>
+<h1 id="welcome-to-virtualstoragelibrary"><strong>Welcome to VirtualStorageLibrary!</strong></h1>
 <hr>
-<h2 id="net開発者の為のツリー構造コレクション"><strong>.NET開発者の為のツリー構造コレクション</strong></h2>
-<p><code>VirtualStorageLibrary</code>は、完全にオンメモリで動作し、<strong>ツリー構造コレクション</strong>を提供する.NETライブラリです。<br>
-このライブラリは、<strong>データの階層的な構造を管理するための基盤</strong>を提供し、<strong>ユーザー定義型</strong><code>T</code>を内包するアイテム、ディレクトリ、シンボリックリンクをサポートします。<br>
-このライブラリは<strong>ファイルシステムではありません。</strong><br>
-従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために<strong>ゼロから再設計</strong>しました。<br>
-このライブラリは、ユーザーが<strong>パスの指定による</strong>ノードの参照、探索、操作を <strong>直感的</strong> に行えるようにすることを目的としています。</p>
-<h2 id="主な機能">主な機能</h2>
-<h4 id="柔軟なツリー構造">柔軟なツリー構造</h4>
-<p>親子関係に基づく階層的なデータ構造を提供し、柔軟なノード管理が可能です。</p>
+<h2 id="tree-structure-collection-for-net-developers"><strong>Tree Structure Collection for .NET Developers</strong></h2>
+<p><code>VirtualStorageLibrary</code> is a .NET library that operates entirely in memory and provides a
+<strong>tree structure collection</strong>.<br>
+This library offers a <strong>foundation for managing hierarchical data structures</strong>,
+supporting items, directories, and symbolic links that encapsulate user-defined types <code>T</code>.<br>
+This library is <strong>not a file system</strong>.<br>
+Inspired by traditional file systems, it has been <strong>redesigned from scratch</strong> to offer a
+more flexible and user-friendly tree structure.<br>
+The library aims to enable users to <strong>intuitively</strong> reference, traverse, and manipulate
+nodes via <strong>path specification</strong>.</p>
+<p><img src="images/tree_256x256.svg" alt="tree_256x256.svg"></p>
+<h2 id="main-features">Main Features</h2>
+<h3 id="flexible-tree-structure">Flexible Tree Structure</h3>
+<p>Provides a hierarchical data structure based on parent-child relationships, enabling
+flexible node management.</p>
 <p><img src="images/index_tree1.png" alt="index_tree1.png"></p>
-<h4 id="多様なノードのサポート">多様なノードのサポート</h4>
-<p>ユーザー定義型<code>T</code>を含むアイテム、ディレクトリ、シンボリックリンクをサポートします。</p>
-<p>アイテムはジェネリック型であり、<code>T</code>はアイテムが内包するユーザー定義型<code>T</code>を表しています。</p>
-<p>リンクは一般的なシンボリックリンクに似た機能を備えており、リンク先のターゲットパスを内包しています。</p>
+<h3 id="support-for-various-node-types">Support for Various Node Types</h3>
+<p>Supports items, directories, and symbolic links containing user-defined types <code>T</code>.</p>
+<p>Items are of a generic type, with <code>T</code> representing the user-defined type encapsulated by
+the item.</p>
+<p>Links function similarly to traditional symbolic links and contain the target path they
+point to.</p>
 <p><img src="images/index_tree2.png" alt="index_tree2.png"></p>
-<h4 id="パスによる直感的なノード操作">パスによる直感的なノード操作</h4>
-<p>パスを指定することでノードの参照、探索、追加、削除、変名、コピーおよび、移動が容易に行え、使いやすいAPIを提供します。</p>
+<h3 id="intuitive-node-operations-via-paths">Intuitive Node Operations via Paths</h3>
+<p>Allows easy referencing, traversing, adding, deleting, renaming, copying, and moving of
+nodes through path specification, offering a user-friendly API.</p>
 <ul>
-<li><p>フルパス指定<br>
+<li><p>Full Path Specification<br>
 &quot;/dir1/item1&quot;</p>
 </li>
-<li><p>相対指定<br>
+<li><p>Relative Path Specification<br>
 &quot;item1&quot;</p>
 </li>
-<li><p>相対指定(ドット)<br>
+<li><p>Relative Path (Dot)<br>
 &quot;./item&quot;</p>
 </li>
-<li><p>相対指定(ドットドット)<br>
+<li><p>Relative Path (Dot Dot)<br>
 &quot;../item&quot;</p>
 </li>
 </ul>
-<h4 id="リンク管理">リンク管理</h4>
-<p>一般のファイルシステムと同じようにシンボリックリンクを備えています。<br>
-存在していないノードをターゲットパスとして指定しシンボリックリンクを作成する事も可能です。また、ターゲーットパスとして<code>null</code>を指定する事も可能です。この様なシンボリックリンクを<code>VirtualStorageLibrary</code>では<code>nullリンク</code>と呼んでいます。<br>
-パス探索時、リンク解決が指定された状態でターゲットパスが存在していない場合は例外がスローされます。また、<code>nullリンク</code>の場合は、リンク解決が指定されていても解決は行いません(例外はスローされません)。</p>
+<h3 id="link-management">Link Management</h3>
+<p>Just like general file systems, symbolic links are supported.<br>
+You can create symbolic links by specifying a target path for nodes that do not exist.
+It is also possible to specify <code>null</code> as the target path, creating what
+<code>VirtualStorageLibrary</code> refers to as <code>null links</code>.<br>
+If link resolution is specified during path traversal and the target path does not exist,
+an exception will be thrown. In the case of a <code>null link</code>, even if link resolution is
+specified, it will not resolve (no exception will be thrown).</p>
 <p><img src="images/index_tree3.png" alt="index_tree3.png"></p>
-<p>リンク辞書を使ったシンボリックリンクの変更を管理し、ターゲットパスの変更を追跡します。</p>
+<p>Manages changes to symbolic links using a link dictionary, tracking changes to the target path.</p>
 <p><img src="images/index_tree4.png" alt="index_tree4.png"></p>
-<h4 id="循環参照防止">循環参照防止</h4>
-<p>シンボリックリンクを含んだパスを探索時、ディレクトリを循環参照するような構造を検出した場合、例外をスローします。<code>VirtualStorageLibrary</code>では、循環参照チェック用辞書にパスを解決した際のリンク情報のみを記録していく方式を採用しています。<br>
-循環参照するリンクを作成する事は可能です。</p>
+<h3 id="prevention-of-circular-references">Prevention of Circular References</h3>
+<p>When traversing paths that include symbolic links, if a structure that would result in
+circular directory references is detected, an exception will be thrown.<br>
+<code>VirtualStorageLibrary</code> employs a method of recording only the link information at the
+time of path resolution in a circular reference check dictionary.<br>
+It is possible to create links that would result in circular references.</p>
 <p><img src="images/index_tree5.png" alt="index_tree5.png"></p>
-<h4 id="柔軟なノードリストの取得">柔軟なノードリストの取得</h4>
-<p>ディレクトリ内のノードのリストを取得する際、指定されたノードタイプでフィルタ、グルーピングし、指定されたプロパティでソートした結果を取得することができます。</p>
+<p>When traversing paths, the link information is registered in the dictionary during the first path resolution. During the second path resolution, the dictionary is checked for the link information, and if it is found, it is considered a circular reference.</p>
+<h3 id="flexible-node-list-retrieval">Flexible Node List Retrieval</h3>
+<p>When retrieving a list of nodes within a directory, you can filter and group by the
+specified node type and retrieve the sorted results based on the specified properties.</p>
 <ul>
-<li><p>デフォルト: ノードタイプでグルーピングされ、名前でソートされます。</p>
+<li><p>Default: Nodes are grouped by node type and sorted by name.</p>
 <p><img src="images/index_tree6A.png" alt="index_tree6A.png"></p>
 </li>
-<li><p>フィルタリング: 特定のノードタイプだけを取得する事ができます。</p>
+<li><p>Filtering: You can retrieve only specific node types.</p>
 <p><img src="images/index_tree6B.png" alt="index_tree6B.png"></p>
 </li>
-<li><p>ソート: 特定のプロパティでソートし取得する事ができます。</p>
+<li><p>Sorting: You can retrieve nodes sorted by specific properties.</p>
 <p><img src="images/index_tree6C.png" alt="index_tree6C.png"></p>
 </li>
 </ul>
-<h2 id="ドキュメント">ドキュメント</h2>
-<p>このライブラリの詳細な使用方法やリファレンスについては、以下のドキュメントを参照してください。</p>
+<h2 id="documentation">Documentation</h2>
+<p>For detailed usage and reference information about this library, please refer to the
+following documents.</p>
 <ul>
 <li><p><a href="introduction.html">Introduction</a><br>
-ライブラリの概要と設計思想を説明しています。<br>
-どのような目的で開発されたのか、その基本的な機能と特徴を紹介します。<br>
-新しいユーザーがライブラリの全体像を把握するための入門ガイドです。</p>
+An overview and design philosophy of the library.<br>
+It explains the purpose behind its development, introduces its basic functions and
+features, and serves as an introductory guide for new users to understand the library
+as a whole.</p>
 </li>
 <li><p><a href="getting-started.html">Getting Started</a><br>
-ライブラリを使い始めるためのステップバイステップガイドです。<br>
-インストール方法から初期設定、簡単なサンプルコードまで、ライブラリを導入するために必要な基本的な手順を説明します。</p>
+A step-by-step guide to getting started with the library.<br>
+It explains the basic steps necessary to install, configure, and use the library, from
+installation to sample code.</p>
 </li>
-<li><p><a class="xref" href="api/AkiraNetwork.VirtualStorageLibrary.html">APIリファレンス</a><br>
-ライブラリに含まれる全てのクラス、メソッド、およびプロパティについての詳細な情報を提供しています。<br>
-各メンバーの使用方法やパラメータについての説明が含まれており、ライブラリの具体的な使い方を確認するのに役立ちます。</p>
+<li><p><a class="xref" href="api/AkiraNetwork.VirtualStorageLibrary.html">API Reference</a><br>
+Detailed information about all classes, methods, and properties included in the
+library.<br>
+It includes explanations of how to use each member and its parameters, helping you
+understand the specific usage of the library.</p>
 </li>
-<li><p>チュートリアル (執筆予定)<br>
-実際のユースケースに基づいた詳細な使用例を提供し、ライブラリの応用的な使い方を学ぶためのガイドです。今後追加予定です。</p>
+<li><p>Tutorial (Coming Soon)<br>
+A guide based on real-world use cases, providing detailed examples to help you learn
+how to apply the library in practice. This will be added soon.</p>
 </li>
-<li><p><a href="licenses.html">ライセンス</a><br>
-このライブラリのライセンスと使用しているライブラリ、ツール、CSS等のライセンスについて情報を提供しています。</p>
+<li><p><a href="licenses.html">Licenses</a><br>
+Information about the license for this library and the licenses for the libraries,
+tools, CSS, etc., used.</p>
 </li>
 </ul>
 
