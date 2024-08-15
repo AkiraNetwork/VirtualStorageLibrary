@@ -15,9 +15,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.TargetPath
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
-  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualPath)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   langs:
   - csharp
@@ -316,80 +314,6 @@ items:
   nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName, VirtualPath, Date, Date)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Date, Date)
   name.vb: New(VirtualNodeName, VirtualPath, Date, Date)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  id: op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  langs:
-  - csharp
-  - vb
-  name: implicit operator VirtualSymbolicLink(VirtualNodeName)
-  nameWithType: VirtualSymbolicLink.implicit operator VirtualSymbolicLink(VirtualNodeName)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
-  type: Operator
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: master
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: op_Implicit
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 96
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Implicitly converts the specified node name to a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref>.
-  example: []
-  syntax:
-    content: public static implicit operator VirtualSymbolicLink(VirtualNodeName nodeName)
-    parameters:
-    - id: nodeName
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
-      description: The node name to convert.
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-    content.vb: Public Shared Widening Operator CType(nodeName As VirtualNodeName) As VirtualSymbolicLink
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit*
-  nameWithType.vb: VirtualSymbolicLink.CType(VirtualNodeName)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
-  name.vb: CType(VirtualNodeName)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  id: op_Implicit(System.String)~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-  langs:
-  - csharp
-  - vb
-  name: implicit operator VirtualSymbolicLink(string)
-  nameWithType: VirtualSymbolicLink.implicit operator VirtualSymbolicLink(string)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.implicit operator AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink(string)
-  type: Operator
-  source:
-    remote:
-      path: AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-      branch: master
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: op_Implicit
-    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 105
-  assemblies:
-  - VirtualStorageLibrary
-  namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Implicitly converts the specified node name to a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref>.
-  example: []
-  syntax:
-    content: public static implicit operator VirtualSymbolicLink(string nodeName)
-    parameters:
-    - id: nodeName
-      type: System.String
-      description: The node name to convert.
-    return:
-      type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-    content.vb: Public Shared Widening Operator CType(nodeName As String) As VirtualSymbolicLink
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit*
-  nameWithType.vb: VirtualSymbolicLink.CType(String)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.CType(String)
-  name.vb: CType(String)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
   id: op_Implicit(System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath})~AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
@@ -408,7 +332,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 114
+    startLine: 96
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -445,7 +369,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 123
+    startLine: 105
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -482,7 +406,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 134
+    startLine: 116
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -514,7 +438,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 141
+    startLine: 123
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -553,7 +477,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSymbolicLink.cs
-    startLine: 151
+    startLine: 133
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1157,17 +1081,6 @@ references:
   - name: implicit
   - name: " "
   - name: operator
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}
   commentId: T:System.ValueTuple{AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath}
   parent: System
@@ -1270,6 +1183,17 @@ references:
   name: ToString
   nameWithType: VirtualSymbolicLink.ToString
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNode.DeepClone(System.Boolean)
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualNode
