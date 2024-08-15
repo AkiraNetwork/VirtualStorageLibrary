@@ -205,15 +205,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Implicitly converts the specified node name to a <see cref="VirtualDirectory"/>.
-        /// </summary>
-        /// <param name="nodeName">The node name to convert.</param>
-        public static implicit operator VirtualDirectory(string nodeName)
-        {
-            return new VirtualDirectory(nodeName);
-        }
-
-        /// <summary>
         /// Returns a string representation of the directory.
         /// </summary>
         /// <returns>A string representation of the directory.</returns>

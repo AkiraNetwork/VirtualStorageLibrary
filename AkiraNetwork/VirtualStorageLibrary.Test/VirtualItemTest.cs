@@ -313,20 +313,20 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         // ノード名からの暗黙的な変換でVirtualItem オブジェクトが作成されることを検証します。
-        [TestMethod]
-        public void ImplicitConversionFromNodeName_CreatesObjectWithDefaultName()
-        {
-            // テストデータ
-            VirtualNodeName nodeName = "TestBinaryItem";
+        //[TestMethod]
+        //public void ImplicitConversionFromNodeName_CreatesObjectWithDefaultName()
+        //{
+        //    // テストデータ
+        //    VirtualNodeName nodeName = "TestBinaryItem";
 
-            // データを利用して VirtualItem<BinaryData> オブジェクトを作成
-            VirtualItem<BinaryData> item = nodeName;
+        //    // データを利用して VirtualItem<BinaryData> オブジェクトを作成
+        //    VirtualItem<BinaryData> item = nodeName;
 
-            // オブジェクトが正しく作成されたか検証
-            Assert.IsNotNull(item);
+        //    // オブジェクトが正しく作成されたか検証
+        //    Assert.IsNotNull(item);
 
-            Debug.WriteLine(item.Name);
-        }
+        //    Debug.WriteLine(item.Name);
+        //}
 
         [TestMethod]
         public void Update_ValidItem_UpdatesCorrectly()

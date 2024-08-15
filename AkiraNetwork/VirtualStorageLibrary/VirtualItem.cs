@@ -187,26 +187,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Implicitly converts the specified node name to a <see cref="VirtualItem{T}"/>.
-        /// </summary>
-        /// <param name="name">The name of the node.</param>
-        /// <returns>A <see cref="VirtualItem{T}"/> initialized with the specified node name.</returns>
-        public static implicit operator VirtualItem<T>(VirtualNodeName name)
-        {
-            return new VirtualItem<T>(name);
-        }
-
-        /// <summary>
-        /// Implicitly converts the specified node name to a <see cref="VirtualItem{T}"/>.
-        /// </summary>
-        /// <param name="name">The name of the node.</param>
-        /// <returns>A <see cref="VirtualItem{T}"/> initialized with the specified node name.</returns>
-        public static implicit operator VirtualItem<T>(string name)
-        {
-            return new VirtualItem<T>(name);
-        }
-
-        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>

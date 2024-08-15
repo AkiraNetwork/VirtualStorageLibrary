@@ -91,24 +91,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Implicitly converts the specified node name to a <see cref="VirtualSymbolicLink"/>.
-        /// </summary>
-        /// <param name="nodeName">The node name to convert.</param>
-        public static implicit operator VirtualSymbolicLink(VirtualNodeName nodeName)
-        {
-            return new VirtualSymbolicLink(nodeName);
-        }
-
-        /// <summary>
-        /// Implicitly converts the specified node name to a <see cref="VirtualSymbolicLink"/>.
-        /// </summary>
-        /// <param name="nodeName">The node name to convert.</param>
-        public static implicit operator VirtualSymbolicLink(string nodeName)
-        {
-            return new VirtualSymbolicLink(nodeName);
-        }
-
-        /// <summary>
         /// Performs an implicit conversion from a tuple to <see cref="VirtualSymbolicLink"/>.
         /// </summary>
         /// <param name="tuple">The tuple to convert.</param>
