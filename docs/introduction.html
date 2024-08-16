@@ -73,7 +73,105 @@
 
 <p>Under Construction. This Readme is a work in progress. Once it's completed, an English version will be provided.</p>
 <hr>
+<p><img src="images/burner.png" alt="burner.png"></p>
+<details>
+  <summary>Language: English</summary>
+  <ul>
+    <li><a href="index.html">English</a></li>
+    <li><a href="index.ja.html">Japanese</a></li>
+  </ul>
+</details>
 <h1 id="introduction">Introduction</h1>
+<h2 id="背景と動機">背景と動機</h2>
+<p>.NETが備えているコレクションは線形コレクションです。コレクションはハッシュセット型、配列型、リスト型、辞書型など様々ありますが、本質的には線の構造となっています。<br>
+一方、一般のファイルシステムは木形コレクションと捉える事ができます。要素はノードで管理され、階層構造になっています。<br>
+この様な木形コレクションをサポートするライブラリは既存でいくつか存在しますが、ファイルシステムのようなモデルのライブラリを見つけることができませんでした。<br>
+そこで私はファイルシステムを論理的に解釈し、<strong>純粋なオブジェクトとして扱える木型のコレクションとして実装できないか</strong>と考えアイディアをまとめました。<br>
+階層構造のデータを柔軟に管理し、直感的にアクセスできる仕組みを作ろうと考えたのです。</p>
+<h2 id="技術的アプローチと設計思想">技術的アプローチと設計思想</h2>
+<h4 id="設計の基本方針">設計の基本方針</h4>
+<p><code>VirtualStorageLibrary</code>は、オンメモリで動作するツリー構造をベースにしたコレクションを提供し、アプリケーション開発者がデータを効率的に管理できるよう設計されています。直感的なAPIを重視し、柔軟性、拡張性を考慮した設計を採用しています。</p>
+<h4 id="単純性">単純性</h4>
+<ul>
+<li><p><strong>ノードタイプのサポート</strong><br>
+<code>VirtualStorageLibrary</code>では、それぞれの役割に応じてノードの種類（ノードタイプ）を3つ定義しました。それは、アイテム、ディレクトリ、シンボリックリンクです。このように、ノードの役割をある程度具体化し限定することで、その役割に応じた実装が可能になります。これは、一つのノードに複数の役割を持たせる方式よりも単純で、効率的に動作させることができるという利点があります。</p>
+<ul>
+<li><p><code>VirtualItem&lt;T&gt;</code>: アイテムを表すノードです。ユーザー定義型<code>T</code>を内包しています。</p>
+</li>
+<li><p><code>VirtualDirectory</code>: ディレクトリを表すノードです。</p>
+</li>
+<li><p><code>VirtualSymbolicLink</code>: シンボリックリンクを表すノードです。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>ノード間の疎結合性</strong><br>
+ノード間の疎結合性とは、ノードの依存関係を最小限に抑えることで、ノード管理の柔軟性、効率性を高める性質を意味します。一般的にツリー構造は、ノード自身が他のノードへの参照を保持し、ノードの探索をサポートします。<code>VirtualStorageLibrary</code>では、ディレクトリのみが自分の子供達のノードへの参照を保持します。つまり、ディレクトリは自分の子供達のノードにししか関心を示しません。これは、ノードツリーのコピー、移動等の操作を効率的に実行できる利点があります。</p>
+</li>
+</ul>
+<h4 id="柔軟性">柔軟性</h4>
+<ul>
+<li><strong>ユーザー定義型のサポート</strong><br>
+<code>VirtualStorageLibrary</code>のメインとなる<code>VirtualStorage</code>クラスは、ユーザー定義型クラスを扱うジェネリック型クラスです。<br>
+ユーザー定義型はどのようなクラスを定義しても構いません。<br>
+これによって柔軟にアプリケーションデータを扱うことができます。</li>
+<li><strong>ディープクローンのサポート</strong><br>
+<code>VirtualStorageLibrary</code>は、一般のファイルシステムのように各ノードが個々の実体を持っています。<br>
+つまり、複数のノードが同じ実体を参照する、という事はありません。<br>
+ノードをコピーした場合、ノードのディープクローンが実行され、コピー元と同じ内容のノードが新たに作成されます。<br>
+アイテムに内包されているユーザー定義型クラスは<code>IVirtualDeepCloneable</code>インターフェースを実装する事によって、ディープクローンに対応させる事ができます。</li>
+<li><strong>パス文字の定義</strong><br>
+デフォルトで定義しているパス文字は、一般のファイルシステムで使われているセパレータ<code>/</code>、ドット<code>.</code>、ドットドット<code>..</code>、ルート文字<code>/</code>に準じて初期設定されています。<br>
+これらは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。</li>
+<li><strong>ノード名禁止文字、ノード名禁止文字列の定義</strong><br>
+デフォルトで定義しているノード名禁止文字は、ドット<code>.</code>、ドットドット<code>..</code>、ノード名禁止文字列はセパレータ<code>/</code>が初期設定されています。<br>
+これらはディレクトリにノードを追加する際のノード名の有効性チェックで使用されます。<br>
+これらは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。</li>
+<li><strong>ノードリスト表示条件の定義</strong><br>
+ノードリストはあらかじめ設定された表示条件に従って取得する事ができます。<br>
+表示条件は以下の要素で構成されます。<br>
+デフォルトは、フィルタリングなし、グルーピングあり(昇順)、ノード名プロパティによるソート(昇順)です。<br>
+これは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。
+<ul>
+<li>フィルタリング<br>
+ノードタイプ(ディレクトリ、アイテム、シンボリックリンク)をOR条件で指定する事によってフィルタリングする事ができます。</li>
+<li>グルーピング<br>
+ノードタイプによってグルーピングするか否かを指定できます。また、グルーピングした際には、グループの順番について昇順/降順を指定できます。</li>
+<li>ソート<br>
+グルーピングした際にはグループ内、グルーピングしない場合は全体に対して、指定したプロパティでソートする事ができます。その際、昇順/降順を指定できます。</li>
+</ul>
+</li>
+</ul>
+<h4 id="拡張性">拡張性</h4>
+<ul>
+<li><strong>ワイルドカードのサポート</strong><br>
+パスはワイルドカードを使用する事ができます。<br>
+ワイルドカードを含むパスは、ワイルドカード展開用のAPIを呼ぶことにより、複数の具体的なパスに展開する事ができます。<br>
+ノードを操作する各APIは、展開されたパスを渡すことによってノードの操作を行うことができます。</li>
+<li><strong>ワイルドカードマッチャーの定義</strong><br>
+ワイルドカードは、<code>IVirtualWildcardMatcher</code>インターフェースを実装したワイルドカードマッチャークラスによって処理されます。<br>
+<code>VirtualStorageLibrary</code>では、以下の二つのクラスを事前に用意しています。<br>
+デフォルトは<code>PowerShellWildcardMatcher</code>です。<br>
+これは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。<br>
+また、<code>IVirtualWildcardMatcher</code>インターフェースを実装する事より独自のワイルドカードマッチャーを使用する事も可能です。
+<ul>
+<li><code>DefaultWildcardMatcher</code>クラス<br>
+正規表現をそのまま使用するワイルドカード</li>
+<li><code>PowerShellWildcardMatcher</code>クラス<br>
+PowerShellで採用されているワイルドカード</li>
+</ul>
+</li>
+</ul>
+<h2 id="ユースケースと応用シナリオ">ユースケースと応用シナリオ</h2>
+<p><code>VirtualStorageLibrary</code>は、以下のような多様なユースケースでの活用が期待されます。</p>
+<ul>
+<li>自然言語処理(NLP)</li>
+<li>ナレッジベースシステム</li>
+<li>ゲーム開発</li>
+<li>階層型クラスタリング</li>
+<li>教育と学習</li>
+</ul>
+<p>これらの詳細なユースケースとその具体的な活用方法については、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/master/README.md">README</a></p>
+<p>をご参照ください。</p>
 
 </article>
           </div>
