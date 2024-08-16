@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Introduction | AkiraNetwork </title>
+      <title>Introduction | VirtualStorageLibrary </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Introduction | AkiraNetwork ">
+      <meta name="title" content="Introduction | VirtualStorageLibrary ">
     
     
       <link rel="shortcut icon" href="images/tree_32x32.svg">
@@ -35,7 +35,7 @@
               </button>
 
               <a class="navbar-brand" href="index.html">
-                <img id="logo" class="svg" src="images/tree_51x51.svg" alt="AkiraNetwork">
+                <img id="logo" class="svg" src="images/tree_51x51.svg" alt="VirtualStorageLibrary">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -71,8 +71,6 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
 
-<p>Under Construction. This Readme is a work in progress. Once it's completed, an English version will be provided.</p>
-<hr>
 <p><img src="images/burner.png" alt="burner.png"></p>
 <details>
   <summary>Language: English</summary>
@@ -82,128 +80,128 @@
   </ul>
 </details>
 <h1 id="introduction">Introduction</h1>
-<h2 id="背景と動機">背景と動機</h2>
-<p>.NETが備えているコレクションは線形コレクションです。コレクションはハッシュセット型、配列型、リスト型、辞書型など様々ありますが、本質的には線の構造となっています。<br>
-一方、一般のファイルシステムは木形コレクションと捉える事ができます。要素はノードで管理され、階層構造になっています。<br>
-この様な木形コレクションをサポートするライブラリは既存でいくつか存在しますが、ファイルシステムのようなモデルのライブラリを見つけることができませんでした。<br>
-そこで私はファイルシステムを論理的に解釈し、<strong>純粋なオブジェクトとして扱える木型のコレクションとして実装できないか</strong>と考えアイディアをまとめました。<br>
-階層構造のデータを柔軟に管理し、直感的にアクセスできる仕組みを作ろうと考えたのです。</p>
-<h2 id="ユースケース">ユースケース</h2>
-<p><code>VirtualStorageLibrary</code>は、以下のような多様なユースケースでの活用が期待されます。</p>
+<h2 id="background-and-motivation">Background and Motivation</h2>
+<p>.NET collections are linear collections. While there are various types such as hash sets, arrays, lists, and dictionaries, they fundamentally have a linear structure.<br>
+On the other hand, general file systems can be considered tree collections. Elements are managed as nodes, forming a hierarchical structure.<br>
+While there are existing libraries that support such tree collections, I couldn’t find one that models a file system.<br>
+So, I conceptualized and developed a <strong>tree collection that can be treated as pure objects by logically interpreting the file system</strong>.<br>
+The aim is to create a system that allows flexible management of hierarchical data and intuitive access.</p>
+<h2 id="use-cases">Use Cases</h2>
+<p><code>VirtualStorageLibrary</code> can be utilized in a variety of use cases, such as:</p>
 <ul>
-<li>自然言語処理(NLP)</li>
-<li>ナレッジベースシステム</li>
-<li>ゲーム開発</li>
-<li>階層型クラスタリング</li>
-<li>教育と学習</li>
+<li>Natural Language Processing (NLP)</li>
+<li>Knowledge-based systems</li>
+<li>Game development</li>
+<li>Hierarchical clustering</li>
+<li>Education and learning</li>
 </ul>
-<p>これらの詳細なユースケースとその具体的な活用方法については、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/master/README.md">README</a>を参照してください。</p>
-<h2 id="設計の方針">設計の方針</h2>
-<p><code>VirtualStorageLibrary</code>は、オンメモリで動作するツリー構造をベースにしたコレクションを提供し、アプリケーション開発者がデータを効率的に管理できるよう設計されています。直感的なAPIを重視し、柔軟性、拡張性を考慮した設計を採用しています。</p>
-<h4 id="単純性">単純性</h4>
+<p>For more detailed use cases and specific applications, please refer to the <a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/master/README.md">README</a>.</p>
+<h2 id="design-philosophy">Design Philosophy</h2>
+<p><code>VirtualStorageLibrary</code> is designed to provide a tree structure-based collection that operates in-memory, enabling application developers to efficiently manage data. The design emphasizes an intuitive API with flexibility and extensibility in mind.</p>
+<h4 id="simplicity">Simplicity</h4>
 <ul>
-<li><p><strong>ノードタイプのサポート</strong><br>
-<code>VirtualStorageLibrary</code>では、それぞれの役割に応じてノードの種類（ノードタイプ）を3つ定義しました。それは、アイテム、ディレクトリ、シンボリックリンクです。このように、ノードの役割をある程度具体化し限定することで、その役割に応じた実装が可能になります。これは、一つのノードに複数の役割を持たせる方式よりも単純で、効率的に動作させることができるという利点があります。</p>
+<li><p><strong>Support for Node Types</strong><br>
+In <code>VirtualStorageLibrary</code>, three node types have been defined according to their roles: items, directories, and symbolic links. By making the node roles somewhat specific and limited, it allows for role-specific implementations. This approach is simpler and more efficient than a method where a single node can have multiple roles.</p>
 <ul>
-<li><p><code>VirtualItem&lt;T&gt;</code>: アイテムを表すノードです。ユーザー定義型<code>T</code>を内包しています。</p>
+<li><p><code>VirtualItem&lt;T&gt;</code>: A node representing an item that encapsulates a user-defined type <code>T</code>.</p>
 </li>
-<li><p><code>VirtualDirectory</code>: ディレクトリを表すノードです。</p>
+<li><p><code>VirtualDirectory</code>: A node representing a directory.</p>
 </li>
-<li><p><code>VirtualSymbolicLink</code>: シンボリックリンクを表すノードです。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>ノード間の疎結合性</strong><br>
-ノード間の疎結合性とは、ノードの依存関係を最小限に抑えることで、ノード管理の柔軟性、効率性を高める性質を意味します。一般的にツリー構造は、ノード自身が他のノードへの参照を保持し、ノードの探索をサポートします。<code>VirtualStorageLibrary</code>では、ディレクトリのみが自分の子供達のノードへの参照を保持します。つまり、ディレクトリは自分の子供達のノードにししか関心を示しません。これは、ノードツリーのコピー、移動等の操作を効率的に実行できる利点があります。</p>
+<li><p><code>VirtualSymbolicLink</code>: A node representing a symbolic link.</p>
 </li>
 </ul>
-<h4 id="柔軟性">柔軟性</h4>
-<ul>
-<li><strong>ユーザー定義型のサポート</strong><br>
-<code>VirtualStorageLibrary</code>のメインとなる<code>VirtualStorage</code>クラスは、ユーザー定義型クラスを扱うジェネリック型クラスです。<br>
-ユーザー定義型はどのようなクラスを定義しても構いません。<br>
-これによって柔軟にアプリケーションデータを扱うことができます。</li>
-<li><strong>ディープクローンのサポート</strong><br>
-<code>VirtualStorageLibrary</code>は、一般のファイルシステムのように各ノードが個々の実体を持っています。<br>
-つまり、複数のノードが同じ実体を参照する、という事はありません。<br>
-ノードをコピーした場合、ノードのディープクローンが実行され、コピー元と同じ内容のノードが新たに作成されます。<br>
-アイテムに内包されているユーザー定義型クラスは<code>IVirtualDeepCloneable</code>インターフェースを実装する事によって、ディープクローンに対応させる事ができます。</li>
-<li><strong>パス文字の定義</strong><br>
-デフォルトで定義しているパス文字は、一般のファイルシステムで使われているセパレータ<code>/</code>、ドット<code>.</code>、ドットドット<code>..</code>、ルート文字<code>/</code>に準じて初期設定されています。<br>
-これらは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。</li>
-<li><strong>ノード名禁止文字、ノード名禁止文字列の定義</strong><br>
-デフォルトで定義しているノード名禁止文字は、ドット<code>.</code>、ドットドット<code>..</code>、ノード名禁止文字列はセパレータ<code>/</code>が初期設定されています。<br>
-これらはディレクトリにノードを追加する際のノード名の有効性チェックで使用されます。<br>
-これらは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。</li>
-<li><strong>ノードリスト表示条件の定義</strong><br>
-ノードリストはあらかじめ設定された表示条件に従って取得する事ができます。<br>
-表示条件は以下の要素で構成されます。<br>
-デフォルトは、フィルタリングなし、グルーピングあり(昇順)、ノード名プロパティによるソート(昇順)です。<br>
-これは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。
-<ul>
-<li>フィルタリング<br>
-ノードタイプ(ディレクトリ、アイテム、シンボリックリンク)をOR条件で指定する事によってフィルタリングする事ができます。</li>
-<li>グルーピング<br>
-ノードタイプによってグルーピングするか否かを指定できます。また、グルーピングした際には、グループの順番について昇順/降順を指定できます。</li>
-<li>ソート<br>
-グルーピングした際にはグループ内、グルーピングしない場合は全体に対して、指定したプロパティでソートする事ができます。その際、昇順/降順を指定できます。</li>
-</ul>
+</li>
+<li><p><strong>Loosely Coupled Nodes</strong><br>
+Loosely coupled nodes mean minimizing dependencies between nodes, which enhances the flexibility and efficiency of node management. Generally, tree structures have nodes that maintain references to other nodes, supporting node traversal. In <code>VirtualStorageLibrary</code>, only directories hold references to their children nodes, meaning directories only care about their children. This allows for efficient execution of operations like copying or moving the node tree.</p>
 </li>
 </ul>
-<h4 id="拡張性">拡張性</h4>
+<h4 id="flexibility">Flexibility</h4>
 <ul>
-<li><strong>ワイルドカードのサポート</strong><br>
-パスはワイルドカードを使用する事ができます。<br>
-ワイルドカードを含むパスは、ワイルドカード展開用のAPIを呼ぶことにより、複数の具体的なパスに展開する事ができます。<br>
-ノードを操作する各APIは、展開されたパスを渡すことによってノードの操作を行うことができます。</li>
-<li><strong>ワイルドカードマッチャーの定義</strong><br>
-ワイルドカードは、<code>IVirtualWildcardMatcher</code>インターフェースを実装したワイルドカードマッチャークラスによって処理されます。<br>
-<code>VirtualStorageLibrary</code>では、以下の二つのクラスを事前に用意しています。<br>
-デフォルトは<code>PowerShellWildcardMatcher</code>です。<br>
-これは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。<br>
-また、<code>IVirtualWildcardMatcher</code>インターフェースを実装する事より独自のワイルドカードマッチャーを使用する事も可能です。
+<li><strong>Support for User-defined Types</strong><br>
+The main <code>VirtualStorage</code> class in <code>VirtualStorageLibrary</code> is a generic class that handles user-defined types.<br>
+Users can define any class they wish.<br>
+This allows for flexible handling of application data.</li>
+<li><strong>Support for Deep Cloning</strong><br>
+Similar to a general file system, each node in <code>VirtualStorageLibrary</code> has its own instance.<br>
+This means that multiple nodes do not reference the same instance.<br>
+When a node is copied, a deep clone of the node is performed, creating a new node with the same content as the original.<br>
+The user-defined type classes encapsulated within the items can support deep cloning by implementing the <code>IVirtualDeepCloneable</code> interface.</li>
+<li><strong>Definition of Path Characters</strong><br>
+The path characters defined by default are initially set to follow common file system separators <code>/</code>, dot <code>.</code>, dot-dot <code>..</code>, and root character <code>/</code>.<br>
+These are initially set in the <code>VirtualStorageSettings</code> class, and after library initialization, they can be modified in the <code>VirtualStorageState</code> class.</li>
+<li><strong>Definition of Prohibited Node Name Characters and Strings</strong><br>
+The prohibited node name characters defined by default are dot <code>.</code>, dot-dot <code>..</code>, and the prohibited node name string is separator <code>/</code>.<br>
+These are used in the node name validity check when adding nodes to a directory.<br>
+These are initially set in the <code>VirtualStorageSettings</code> class, and after library initialization, they can be modified in the <code>VirtualStorageState</code> class.</li>
+<li><strong>Definition of Node List Display Conditions</strong><br>
+The node list can be retrieved according to pre-set display conditions.<br>
+The display conditions consist of the following elements:<br>
+The default is no filtering, grouping enabled (ascending), and sorting by node name property (ascending).<br>
+These are initially set in the <code>VirtualStorageSettings</code> class, and after library initialization, they can be modified in the <code>VirtualStorageState</code> class.
 <ul>
-<li><code>DefaultWildcardMatcher</code>クラス<br>
-正規表現をそのまま使用するワイルドカード</li>
-<li><code>PowerShellWildcardMatcher</code>クラス<br>
-PowerShellで採用されているワイルドカード</li>
+<li>Filtering<br>
+You can filter by specifying the node type (directory, item, symbolic link) with OR conditions.</li>
+<li>Grouping<br>
+You can specify whether to group by node type, and when grouping, you can specify the order of the groups (ascending/descending).</li>
+<li>Sorting<br>
+You can sort within the group when grouped or the entire list when not grouped, by the specified property. You can specify the order (ascending/descending) at that time.</li>
 </ul>
 </li>
 </ul>
-<h2 id="現在の状況と今後の予定">現在の状況と今後の予定</h2>
-<p>現在 (2024/08) 、V1.0.0で実装すべき機能は全て実装済みです。<br>
-V0.8.0では数件のバグ修正と、30件近い機能改善、リファクタリングが残っている状況です。<br>
-これらの作業を進めた上で、V0.9.0に向けた残作業を消化し、V1.0.0での安定版リリースを目指します。</p>
-<p>なお、この期間中、ライブラリで提供している機能のクラス名、メソッド名、プロパティ名等は予告なく変更、統合、廃止する事があります。<br>
-その場合、リリースノートに詳細を掲載するのでご確認ください。<br>
-詳細は、<a href="https://github.com/users/shimodateakira/projects/3/views/7">現在の問題点と改善案</a>を参照してください (日本語)。</p>
-<h2 id="拡張の可能性">拡張の可能性</h2>
-<h4 id="ロードマップ">ロードマップ</h4>
+<h4 id="extensibility">Extensibility</h4>
 <ul>
-<li><strong>V0.9.0</strong>: 現在残っているバグ修正、機能改善、リファクタリングを中心に進めます。</li>
-<li><strong>V1.0.0</strong>: ユーザーからのフィードバックを基に安定版を予定しています。</li>
-<li><strong>長期計画</strong>: インデクサーの機能改善、ノードの派生クラス、例外処理のスマート化等を計画しています。</li>
-</ul>
-<h4 id="フィードバックとコミュニティ協力のお願い">フィードバックとコミュニティ協力のお願い</h4>
-<p><code>VirtualStorageLibrary</code>は、皆様からのフィードバックと協力により成長していくプロジェクトです。次のバージョンで優先して取り組むべき機能や改善点について、ぜひ<a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issue</a>や<a href="https://github.com/shimodateakira/VirtualStorageLibrary/discussions">ディスカッション</a>でご意見をお寄せください。</p>
-<p>また、コードへの貢献、ドキュメントの改善、翻訳の手伝いなど、さまざまな形でのご協力をお待ちしています。プレリリースの段階にある今、ユーザーの皆様の参加が非常に重要です。積極的なご参加をお願いいたします。</p>
-<h4 id="ご協力いただきたい内容">ご協力いただきたい内容</h4>
-<p><code>VirtualStorageLibrary</code>の成長には、皆様のフィードバックと協力が欠かせません。以下の方法でプロジェクトに貢献していただけます。</p>
+<li><strong>Support for Wildcards</strong><br>
+Paths can include wildcards.<br>
+Paths containing wildcards can be expanded into multiple specific paths by calling the wildcard expansion API.<br>
+Each API that operates on nodes can perform node operations by passing the expanded paths.</li>
+<li><strong>Definition of Wildcard Matchers</strong><br>
+Wildcards are processed by a wildcard matcher class that implements the <code>IVirtualWildcardMatcher</code> interface.<br>
+<code>VirtualStorageLibrary</code> provides the following two classes in advance.<br>
+The default is <code>PowerShellWildcardMatcher</code>.<br>
+These are initially set in the <code>VirtualStorageSettings</code> class, and after library initialization, they can be modified in the <code>VirtualStorageState</code> class.<br>
+It is also possible to use a custom wildcard matcher by implementing the <code>IVirtualWildcardMatcher</code> interface.
 <ul>
-<li><strong>フィードバック</strong>: 使用感や機能についてのご意見をお寄せください。</li>
-<li><strong>バグ報告</strong>: 発見されたバグについてご報告ください。</li>
-<li><strong>機能の改善、追加の要望</strong>: 新しい機能の提案や、既存機能の改善要望をお待ちしています。</li>
+<li><code>DefaultWildcardMatcher</code> class<br>
+Wildcards using regular expressions as-is.</li>
+<li><code>PowerShellWildcardMatcher</code> class<br>
+Wildcards adopted in PowerShell.</li>
 </ul>
-<p>これらのご意見は、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issue</a>にて受け付けています。積極的なご参加をお願いいたします。</p>
-<h4 id="技術的な質問について">技術的な質問について</h4>
-<p>技術的な質問がある場合は、<a href="https://stackoverflow.com/">StackOverflow</a>をご利用ください。<br>
-<code>c#</code>、<code>.net</code>、<code>tree</code>、<code>shared-libraries</code>、<code>generic-collections</code>などのタグを組み合わせていただくと、質問が見つけやすくなります。</p>
-<h4 id="プルリクエストの受け付けについて">プルリクエストの受け付けについて</h4>
-<p>現在、複数人による開発体制が整っていないため、プルリクエストは当分の間、受け付けておりません。<br>
-今後の体制が整い次第、対応を進めてまいりますので、ご了承のほどよろしくお願いいたします。</p>
-<h2 id="長期ビジョン">長期ビジョン</h2>
-<p><code>VirtualStorageLibrary</code>は、ツリー構造の管理をさらにシンプルかつ直感的にし、アプリケーション開発者の創造的な活動を強力にサポートすることを目指しています。今後、追加したい機能は既にいくつか挙がっており、想定されるユースケースも既に述べた通りです。しかし、このライブラリの活用方法は無限に広がり、使う中で新たなアイデアが生まれるでしょう。<br>
-近い将来、このライブラリが多様な分野のアプリケーションに組み込まれ、さまざまなソリューションの一部として貢献できることを願っています。</p>
+</li>
+</ul>
+<h2 id="current-status-and-future-plans">Current Status and Future Plans</h2>
+<p>As of (2024/08), all the features to be implemented in V1.0.0 have been completed.<br>
+In V0.8.0, a few bug fixes, nearly 30 feature improvements, and refactoring remain.<br>
+After completing these tasks, the remaining tasks for V0.9.0 will be addressed, aiming for a stable release in V1.0.0.</p>
+<p>During this period, class names, method names, property names, etc., provided by the library may be changed, merged, or deprecated without notice.<br>
+In such cases, details will be included in the release notes, so please check them.<br>
+For more details, refer to the <a href="https://github.com/users/shimodateakira/projects/3/views/7">Current Issues and Improvement Proposals</a> (Japanese).</p>
+<h2 id="expansion-possibilities">Expansion Possibilities</h2>
+<h4 id="roadmap">Roadmap</h4>
+<ul>
+<li><strong>V0.9.0</strong>: Focus on bug fixes, feature improvements, and refactoring that remain.</li>
+<li><strong>V1.0.0</strong>: Plan for a stable release based on user feedback.</li>
+<li><strong>Long-term Plan</strong>: Plans include improving the indexer functionality, derived node classes, and smarter exception handling.</li>
+</ul>
+<h4 id="feedback-and-community-collaboration">Feedback and Community Collaboration</h4>
+<p><code>VirtualStorageLibrary</code> is a project that grows through feedback and collaboration from everyone. We welcome your suggestions on the features and improvements that should be prioritized in the next version, through <a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issues</a> or <a href="https://github.com/shimodateakira/VirtualStorageLibrary/discussions">Discussions</a>.</p>
+<p>We also look forward to various forms of collaboration, such as contributing to the code, improving documentation, and assisting with translation. As the project is still in the pre-release stage, the participation of users is crucial. We ask for your active participation.</p>
+<h4 id="how-you-can-help">How You Can Help</h4>
+<p>The growth of <code>VirtualStorageLibrary</code> relies on your feedback and collaboration. Here are ways you can contribute to the project:</p>
+<ul>
+<li><strong>Feedback</strong>: Share your opinions on usability and functionality.</li>
+<li><strong>Bug Reporting</strong>: Report any bugs you find.</li>
+<li><strong>Feature Improvement and Addition Requests</strong>: We welcome suggestions for new features and improvements to existing ones.</li>
+</ul>
+<p>These can be submitted through <a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issues</a>. We ask for your active participation.</p>
+<h4 id="technical-questions">Technical Questions</h4>
+<p>For technical questions, please use <a href="https://stackoverflow.com/">StackOverflow</a>.<br>
+Using tags like <code>c#</code>, <code>.net</code>, <code>tree</code>, <code>shared-libraries</code>, and <code>generic-collections</code> will make your questions easier to find.</p>
+<h4 id="pull-request-policy">Pull Request Policy</h4>
+<p>Currently, due to the lack of a multi-person development structure, we are not accepting pull requests for the time being.<br>
+We appreciate your understanding and will proceed with this once a proper structure is in place.</p>
+<h2 id="long-term-vision">Long-term Vision</h2>
+<p><code>VirtualStorageLibrary</code> aims to simplify and make the management of tree structures more intuitive, strongly supporting the creative activities of application developers. Some additional features have already been identified for future implementation, and potential use cases have been mentioned. However, the ways to utilize this library are limitless, and new ideas will likely emerge as it is used.<br>
+We hope that in the near future, this library will be incorporated into applications across various fields, contributing as part of numerous solutions.</p>
 <p><img src="images/tree_256x256.svg" alt="tree_256x256.svg"></p>
 
 </article>

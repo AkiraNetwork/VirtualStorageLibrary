@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Introduction | VirtualStorageLibrary </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Introduction | VirtualStorageLibrary ">
+    
+    
+      <link rel="shortcut icon" href="images/tree_32x32.svg">
+      <link rel="stylesheet" href="styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="styles/docfx.css">
+      <link rel="stylesheet" href="styles/main.css">
+      <meta property="docfx:navrel" content="toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="images/tree_51x51.svg" alt="VirtualStorageLibrary">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p><img src="images/burner.png" alt="burner.png"></p>
+<details>
+  <summary>Language: Japanese</summary>
+  <ul>
+    <li><a href="index.html">English</a></li>
+    <li><a href="index.ja.html">Japanese</a></li>
+  </ul>
+</details>
+<h1 id="introduction">Introduction</h1>
+<h2 id="背景と動機">背景と動機</h2>
+<p>.NETが備えているコレクションは線形コレクションです。コレクションはハッシュセット型、配列型、リスト型、辞書型など様々ありますが、本質的には線の構造となっています。<br>
+一方、一般のファイルシステムは木形コレクションと捉える事ができます。要素はノードで管理され、階層構造になっています。<br>
+この様な木形コレクションをサポートするライブラリは既存でいくつか存在しますが、ファイルシステムのようなモデルのライブラリを見つけることができませんでした。<br>
+そこで私はファイルシステムを論理的に解釈し、<strong>純粋なオブジェクトとして扱える木型のコレクションとして実装できないか</strong>と考えアイディアをまとめました。<br>
+階層構造のデータを柔軟に管理し、直感的にアクセスできる仕組みを作ろうと考えたのです。</p>
+<h2 id="ユースケース">ユースケース</h2>
+<p><code>VirtualStorageLibrary</code>は、以下のような多様なユースケースでの活用が期待されます。</p>
+<ul>
+<li>自然言語処理(NLP)</li>
+<li>ナレッジベースシステム</li>
+<li>ゲーム開発</li>
+<li>階層型クラスタリング</li>
+<li>教育と学習</li>
+</ul>
+<p>これらの詳細なユースケースとその具体的な活用方法については、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/master/README.md">README</a>を参照してください。</p>
+<h2 id="設計の方針">設計の方針</h2>
+<p><code>VirtualStorageLibrary</code>は、オンメモリで動作するツリー構造をベースにしたコレクションを提供し、アプリケーション開発者がデータを効率的に管理できるよう設計されています。直感的なAPIを重視し、柔軟性、拡張性を考慮した設計を採用しています。</p>
+<h4 id="単純性">単純性</h4>
+<ul>
+<li><p><strong>ノードタイプのサポート</strong><br>
+<code>VirtualStorageLibrary</code>では、それぞれの役割に応じてノードの種類（ノードタイプ）を3つ定義しました。それは、アイテム、ディレクトリ、シンボリックリンクです。このように、ノードの役割をある程度具体化し限定することで、その役割に応じた実装が可能になります。これは、一つのノードに複数の役割を持たせる方式よりも単純で、効率的に動作させることができるという利点があります。</p>
+<ul>
+<li><p><code>VirtualItem&lt;T&gt;</code>: アイテムを表すノードです。ユーザー定義型<code>T</code>を内包しています。</p>
+</li>
+<li><p><code>VirtualDirectory</code>: ディレクトリを表すノードです。</p>
+</li>
+<li><p><code>VirtualSymbolicLink</code>: シンボリックリンクを表すノードです。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>ノード間の疎結合性</strong><br>
+ノード間の疎結合性とは、ノードの依存関係を最小限に抑えることで、ノード管理の柔軟性、効率性を高める性質を意味します。一般的にツリー構造は、ノード自身が他のノードへの参照を保持し、ノードの探索をサポートします。<code>VirtualStorageLibrary</code>では、ディレクトリのみが自分の子供達のノードへの参照を保持します。つまり、ディレクトリは自分の子供達のノードにししか関心を示しません。これは、ノードツリーのコピー、移動等の操作を効率的に実行できる利点があります。</p>
+</li>
+</ul>
+<h4 id="柔軟性">柔軟性</h4>
+<ul>
+<li><strong>ユーザー定義型のサポート</strong><br>
+<code>VirtualStorageLibrary</code>のメインとなる<code>VirtualStorage</code>クラスは、ユーザー定義型クラスを扱うジェネリック型クラスです。<br>
+ユーザー定義型はどのようなクラスを定義しても構いません。<br>
+これによって柔軟にアプリケーションデータを扱うことができます。</li>
+<li><strong>ディープクローンのサポート</strong><br>
+<code>VirtualStorageLibrary</code>は、一般のファイルシステムのように各ノードが個々の実体を持っています。<br>
+つまり、複数のノードが同じ実体を参照する、という事はありません。<br>
+ノードをコピーした場合、ノードのディープクローンが実行され、コピー元と同じ内容のノードが新たに作成されます。<br>
+アイテムに内包されているユーザー定義型クラスは<code>IVirtualDeepCloneable</code>インターフェースを実装する事によって、ディープクローンに対応させる事ができます。</li>
+<li><strong>パス文字の定義</strong><br>
+デフォルトで定義しているパス文字は、一般のファイルシステムで使われているセパレータ<code>/</code>、ドット<code>.</code>、ドットドット<code>..</code>、ルート文字<code>/</code>に準じて初期設定されています。<br>
+これらは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。</li>
+<li><strong>ノード名禁止文字、ノード名禁止文字列の定義</strong><br>
+デフォルトで定義しているノード名禁止文字は、ドット<code>.</code>、ドットドット<code>..</code>、ノード名禁止文字列はセパレータ<code>/</code>が初期設定されています。<br>
+これらはディレクトリにノードを追加する際のノード名の有効性チェックで使用されます。<br>
+これらは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。</li>
+<li><strong>ノードリスト表示条件の定義</strong><br>
+ノードリストはあらかじめ設定された表示条件に従って取得する事ができます。<br>
+表示条件は以下の要素で構成されます。<br>
+デフォルトは、フィルタリングなし、グルーピングあり(昇順)、ノード名プロパティによるソート(昇順)です。<br>
+これは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。
+<ul>
+<li>フィルタリング<br>
+ノードタイプ(ディレクトリ、アイテム、シンボリックリンク)をOR条件で指定する事によってフィルタリングする事ができます。</li>
+<li>グルーピング<br>
+ノードタイプによってグルーピングするか否かを指定できます。また、グルーピングした際には、グループの順番について昇順/降順を指定できます。</li>
+<li>ソート<br>
+グルーピングした際にはグループ内、グルーピングしない場合は全体に対して、指定したプロパティでソートする事ができます。その際、昇順/降順を指定できます。</li>
+</ul>
+</li>
+</ul>
+<h4 id="拡張性">拡張性</h4>
+<ul>
+<li><strong>ワイルドカードのサポート</strong><br>
+パスはワイルドカードを使用する事ができます。<br>
+ワイルドカードを含むパスは、ワイルドカード展開用のAPIを呼ぶことにより、複数の具体的なパスに展開する事ができます。<br>
+ノードを操作する各APIは、展開されたパスを渡すことによってノードの操作を行うことができます。</li>
+<li><strong>ワイルドカードマッチャーの定義</strong><br>
+ワイルドカードは、<code>IVirtualWildcardMatcher</code>インターフェースを実装したワイルドカードマッチャークラスによって処理されます。<br>
+<code>VirtualStorageLibrary</code>では、以下の二つのクラスを事前に用意しています。<br>
+デフォルトは<code>PowerShellWildcardMatcher</code>です。<br>
+これは<code>VirtualStorageSettings</code>クラスで初期設定されており、ライブラリ初期化後は<code>VirtualStorageState</code>クラスで設定を変更する事ができます。<br>
+また、<code>IVirtualWildcardMatcher</code>インターフェースを実装する事より独自のワイルドカードマッチャーを使用する事も可能です。
+<ul>
+<li><code>DefaultWildcardMatcher</code>クラス<br>
+正規表現をそのまま使用するワイルドカード</li>
+<li><code>PowerShellWildcardMatcher</code>クラス<br>
+PowerShellで採用されているワイルドカード</li>
+</ul>
+</li>
+</ul>
+<h2 id="現在の状況と今後の予定">現在の状況と今後の予定</h2>
+<p>現在 (2024/08) 、V1.0.0で実装すべき機能は全て実装済みです。<br>
+V0.8.0では数件のバグ修正と、30件近い機能改善、リファクタリングが残っている状況です。<br>
+これらの作業を進めた上で、V0.9.0に向けた残作業を消化し、V1.0.0での安定版リリースを目指します。</p>
+<p>なお、この期間中、ライブラリで提供している機能のクラス名、メソッド名、プロパティ名等は予告なく変更、統合、廃止する事があります。<br>
+その場合、リリースノートに詳細を掲載するのでご確認ください。<br>
+詳細は、<a href="https://github.com/users/shimodateakira/projects/3/views/7">現在の問題点と改善案</a>を参照してください (日本語)。</p>
+<h2 id="拡張の可能性">拡張の可能性</h2>
+<h4 id="ロードマップ">ロードマップ</h4>
+<ul>
+<li><strong>V0.9.0</strong>: 現在残っているバグ修正、機能改善、リファクタリングを中心に進めます。</li>
+<li><strong>V1.0.0</strong>: ユーザーからのフィードバックを基に安定版を予定しています。</li>
+<li><strong>長期計画</strong>: インデクサーの機能改善、ノードの派生クラス、例外処理のスマート化等を計画しています。</li>
+</ul>
+<h4 id="フィードバックとコミュニティ協力のお願い">フィードバックとコミュニティ協力のお願い</h4>
+<p><code>VirtualStorageLibrary</code>は、皆様からのフィードバックと協力により成長していくプロジェクトです。次のバージョンで優先して取り組むべき機能や改善点について、ぜひ<a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issue</a>や<a href="https://github.com/shimodateakira/VirtualStorageLibrary/discussions">ディスカッション</a>でご意見をお寄せください。</p>
+<p>また、コードへの貢献、ドキュメントの改善、翻訳の手伝いなど、さまざまな形でのご協力をお待ちしています。プレリリースの段階にある今、ユーザーの皆様の参加が非常に重要です。積極的なご参加をお願いいたします。</p>
+<h4 id="ご協力いただきたい内容">ご協力いただきたい内容</h4>
+<p><code>VirtualStorageLibrary</code>の成長には、皆様のフィードバックと協力が欠かせません。以下の方法でプロジェクトに貢献していただけます。</p>
+<ul>
+<li><strong>フィードバック</strong>: 使用感や機能についてのご意見をお寄せください。</li>
+<li><strong>バグ報告</strong>: 発見されたバグについてご報告ください。</li>
+<li><strong>機能の改善、追加の要望</strong>: 新しい機能の提案や、既存機能の改善要望をお待ちしています。</li>
+</ul>
+<p>これらのご意見は、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issue</a>にて受け付けています。積極的なご参加をお願いいたします。</p>
+<h4 id="技術的な質問について">技術的な質問について</h4>
+<p>技術的な質問がある場合は、<a href="https://stackoverflow.com/">StackOverflow</a>をご利用ください。<br>
+<code>c#</code>、<code>.net</code>、<code>tree</code>、<code>shared-libraries</code>、<code>generic-collections</code>などのタグを組み合わせていただくと、質問が見つけやすくなります。</p>
+<h4 id="プルリクエストの受け付けについて">プルリクエストの受け付けについて</h4>
+<p>現在、複数人による開発体制が整っていないため、プルリクエストは当分の間、受け付けておりません。<br>
+今後の体制が整い次第、対応を進めてまいりますので、ご了承のほどよろしくお願いいたします。</p>
+<h2 id="長期ビジョン">長期ビジョン</h2>
+<p><code>VirtualStorageLibrary</code>は、ツリー構造の管理をさらにシンプルかつ直感的にし、アプリケーション開発者の創造的な活動を強力にサポートすることを目指しています。今後、追加したい機能は既にいくつか挙がっており、想定されるユースケースも既に述べた通りです。しかし、このライブラリの活用方法は無限に広がり、使う中で新たなアイデアが生まれるでしょう。<br>
+近い将来、このライブラリが多様な分野のアプリケーションに組み込まれ、さまざまなソリューションの一部として貢献できることを願っています。</p>
+<p><img src="images/tree_256x256.svg" alt="tree_256x256.svg"></p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

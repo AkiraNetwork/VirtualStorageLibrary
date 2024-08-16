@@ -40,8 +40,9 @@
       "templates/material"
     ],
     "globalMetadata": {
-      "_appName": "AkiraNetwork",
-      "_appTitle": "AkiraNetwork",
+      "_appName": "VirtualStorageLibrary",
+      "_appTitle": "VirtualStorageLibrary",
+      "site_name": "VirtualStorageLibrary",
       "_enableSearch": true,
       "pdf": false,
       "_disableContribution": true,

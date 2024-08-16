@@ -585,6 +585,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "introduction.ja.md",
+      "output": {
+        ".html": {
+          "relative_path": "introduction.ja.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "introduction.md",
       "output": {
         ".html": {
