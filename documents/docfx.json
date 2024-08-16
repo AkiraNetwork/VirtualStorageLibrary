@@ -47,7 +47,8 @@
       "_disableContribution": true,
       "favicon": "images/tree.png",
       "_appFaviconPath": "images/tree_32x32.svg",
-      "_appLogoPath": "images/tree_51x51.svg"
+      "_appLogoPath": "images/tree_51x51.svg",
+      "_enableNewTab": "true"
     }
   }
 }

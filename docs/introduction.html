@@ -18,7 +18,7 @@
       <meta property="docfx:tocrel" content="toc.html">
     
     <meta property="docfx:rel" content="">
-    
+    <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -88,8 +88,17 @@
 この様な木形コレクションをサポートするライブラリは既存でいくつか存在しますが、ファイルシステムのようなモデルのライブラリを見つけることができませんでした。<br>
 そこで私はファイルシステムを論理的に解釈し、<strong>純粋なオブジェクトとして扱える木型のコレクションとして実装できないか</strong>と考えアイディアをまとめました。<br>
 階層構造のデータを柔軟に管理し、直感的にアクセスできる仕組みを作ろうと考えたのです。</p>
-<h2 id="技術的アプローチと設計思想">技術的アプローチと設計思想</h2>
-<h4 id="設計の基本方針">設計の基本方針</h4>
+<h2 id="ユースケース">ユースケース</h2>
+<p><code>VirtualStorageLibrary</code>は、以下のような多様なユースケースでの活用が期待されます。</p>
+<ul>
+<li>自然言語処理(NLP)</li>
+<li>ナレッジベースシステム</li>
+<li>ゲーム開発</li>
+<li>階層型クラスタリング</li>
+<li>教育と学習</li>
+</ul>
+<p>これらの詳細なユースケースとその具体的な活用方法については、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/master/README.md">README</a>を参照してください。</p>
+<h2 id="設計の方針">設計の方針</h2>
 <p><code>VirtualStorageLibrary</code>は、オンメモリで動作するツリー構造をベースにしたコレクションを提供し、アプリケーション開発者がデータを効率的に管理できるよう設計されています。直感的なAPIを重視し、柔軟性、拡張性を考慮した設計を採用しています。</p>
 <h4 id="単純性">単純性</h4>
 <ul>
@@ -161,17 +170,41 @@ PowerShellで採用されているワイルドカード</li>
 </ul>
 </li>
 </ul>
-<h2 id="ユースケースと応用シナリオ">ユースケースと応用シナリオ</h2>
-<p><code>VirtualStorageLibrary</code>は、以下のような多様なユースケースでの活用が期待されます。</p>
+<h2 id="現在の状況と今後の予定">現在の状況と今後の予定</h2>
+<p>現在 (2024/08) 、V1.0.0で実装すべき機能は全て実装済みです。<br>
+V0.8.0では数件のバグ修正と、30件近い機能改善、リファクタリングが残っている状況です。<br>
+これらの作業を進めた上で、V0.9.0に向けた残作業を消化し、V1.0.0での安定版リリースを目指します。</p>
+<p>なお、この期間中、ライブラリで提供している機能のクラス名、メソッド名、プロパティ名等は予告なく変更、統合、廃止する事があります。<br>
+その場合、リリースノートに詳細を掲載するのでご確認ください。<br>
+詳細は、<a href="https://github.com/users/shimodateakira/projects/3/views/7">現在の問題点と改善案</a>を参照してください (日本語)。</p>
+<h2 id="拡張の可能性">拡張の可能性</h2>
+<h4 id="ロードマップ">ロードマップ</h4>
 <ul>
-<li>自然言語処理(NLP)</li>
-<li>ナレッジベースシステム</li>
-<li>ゲーム開発</li>
-<li>階層型クラスタリング</li>
-<li>教育と学習</li>
+<li><strong>V0.9.0</strong>: 現在残っているバグ修正、機能改善、リファクタリングを中心に進めます。</li>
+<li><strong>V1.0.0</strong>: ユーザーからのフィードバックを基に安定版を予定しています。</li>
+<li><strong>長期計画</strong>: インデクサーの機能改善、ノードの派生クラス、例外処理のスマート化等を計画しています。</li>
 </ul>
-<p>これらの詳細なユースケースとその具体的な活用方法については、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/blob/master/README.md">README</a></p>
-<p>をご参照ください。</p>
+<h4 id="フィードバックとコミュニティ協力のお願い">フィードバックとコミュニティ協力のお願い</h4>
+<p><code>VirtualStorageLibrary</code>は、皆様からのフィードバックと協力により成長していくプロジェクトです。次のバージョンで優先して取り組むべき機能や改善点について、ぜひ<a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issue</a>や<a href="https://github.com/shimodateakira/VirtualStorageLibrary/discussions">ディスカッション</a>でご意見をお寄せください。</p>
+<p>また、コードへの貢献、ドキュメントの改善、翻訳の手伝いなど、さまざまな形でのご協力をお待ちしています。プレリリースの段階にある今、ユーザーの皆様の参加が非常に重要です。積極的なご参加をお願いいたします。</p>
+<h4 id="ご協力いただきたい内容">ご協力いただきたい内容</h4>
+<p><code>VirtualStorageLibrary</code>の成長には、皆様のフィードバックと協力が欠かせません。以下の方法でプロジェクトに貢献していただけます。</p>
+<ul>
+<li><strong>フィードバック</strong>: 使用感や機能についてのご意見をお寄せください。</li>
+<li><strong>バグ報告</strong>: 発見されたバグについてご報告ください。</li>
+<li><strong>機能の改善、追加の要望</strong>: 新しい機能の提案や、既存機能の改善要望をお待ちしています。</li>
+</ul>
+<p>これらのご意見は、<a href="https://github.com/shimodateakira/VirtualStorageLibrary/issues">Issue</a>にて受け付けています。積極的なご参加をお願いいたします。</p>
+<h4 id="技術的な質問について">技術的な質問について</h4>
+<p>技術的な質問がある場合は、<a href="https://stackoverflow.com/">StackOverflow</a>をご利用ください。<br>
+<code>c#</code>、<code>.net</code>、<code>tree</code>、<code>shared-libraries</code>、<code>generic-collections</code>などのタグを組み合わせていただくと、質問が見つけやすくなります。</p>
+<h4 id="プルリクエストの受け付けについて">プルリクエストの受け付けについて</h4>
+<p>現在、複数人による開発体制が整っていないため、プルリクエストは当分の間、受け付けておりません。<br>
+今後の体制が整い次第、対応を進めてまいりますので、ご了承のほどよろしくお願いいたします。</p>
+<h2 id="長期ビジョン">長期ビジョン</h2>
+<p><code>VirtualStorageLibrary</code>は、ツリー構造の管理をさらにシンプルかつ直感的にし、アプリケーション開発者の創造的な活動を強力にサポートすることを目指しています。今後、追加したい機能は既にいくつか挙がっており、想定されるユースケースも既に述べた通りです。しかし、このライブラリの活用方法は無限に広がり、使う中で新たなアイデアが生まれるでしょう。<br>
+近い将来、このライブラリが多様な分野のアプリケーションに組み込まれ、さまざまなソリューションの一部として貢献できることを願っています。</p>
+<p><img src="images/tree_256x256.svg" alt="tree_256x256.svg"></p>
 
 </article>
           </div>
