@@ -35,14 +35,14 @@ VirtualStorageLibraryへようこそ！このガイドでは、ライブラリ�
 #### **NuGet パッケージマネージャーからインストール**する方法:
 
 - Visual Studio 2022 のソリューションエクスプローラーで、プロジェクトを右クリックし、「NuGet パッケージの管理」を選択します。
-- 「参照」タブで `VirtualStorageLibrary` を検索し、選択してインストールします。
+- 「参照」タブで `AkiraNetwork.VirtualStorageLibrary` を検索し、選択してインストールします。
   
   #### **パッケージマネージャーコンソールからインストール**する方法:
 - Visual Studio 2022 のメニューから「ツール」>「NuGet パッケージマネージャー」>「パッケージマネージャーコンソール」を選択します。
 - パッケージマネージャーコンソールで以下のコマンドを入力し、インストールします。
   
   ```powershell
-  Install-Package VirtualStorageLibrary -Version 0.8.0
+  Install-Package AkiraNetwork.VirtualStorageLibrary
   ```
 
 ### .NET CLIを使用したインストール
@@ -53,7 +53,7 @@ VirtualStorageLibraryへようこそ！このガイドでは、ライブラリ�
   この方法でプロジェクトファイルに自動的にパッケージが追加されます。
   
   ```bash
-  dotnet add package VirtualStorageLibrary --version 0.8.0
+  dotnet add package AkiraNetwork.VirtualStorageLibrary
   ```
 
 ### インストールの確認
