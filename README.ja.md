@@ -1,5 +1,5 @@
 
-![burner.png](docs/images/burner.png)
+![burner.png](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/docs/images/burner.png)
 
 <details>
   <summary>Language: Japanese</summary>
@@ -24,7 +24,7 @@
 従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために **ゼロから再設計** しました。
 このライブラリは、ユーザーが **パスの指定による** ノードの参照、探索、操作を **直感的** に行えるようにすることを目的としています。
 
-![VirtualStorageLibraryLogo](tree_256x256.svg)
+![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/tree_256x256.svg)
 
 ## プロジェクトの背景
 .NETが備えているコレクションは線形コレクションです。コレクションはハッシュセット型、配列型、リスト型、辞書型など様々ありますが、本質的には線の構造となっています。
