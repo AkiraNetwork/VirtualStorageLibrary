@@ -216,7 +216,7 @@ V0.9.0のリリースは2024年10月を予定しています。
 #### **パッケージマネージャーコンソールからインストール**する方法:
    - Visual Studio 2022 のメニューから「ツール」>「NuGet パッケージマネージャー」>「パッケージマネージャーコンソール」を選択します。
    - パッケージマネージャーコンソールで以下のコマンドを入力し、インストールします。
-```
+```powershell
 Install-Package VirtualStorageLibrary -Version 0.8.0
 ```
 
@@ -225,7 +225,7 @@ Install-Package VirtualStorageLibrary -Version 0.8.0
 - Visual Studio 2022が起動していないことを確認してください。
 - 以下のコマンドを入力して、`VirtualStorageLibrary` をインストールします。  
 この方法でプロジェクトファイルに自動的にパッケージが追加されます。
-```
+```bash
 dotnet add package VirtualStorageLibrary --version 0.8.0
 ```
 
