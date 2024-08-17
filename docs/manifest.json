@@ -425,6 +425,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "getting-started.ja.md",
+      "output": {
+        ".html": {
+          "relative_path": "getting-started.ja.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "getting-started.md",
       "output": {
         ".html": {
