@@ -1,5 +1,5 @@
 
-![burner.png](docs/images/burner.png)
+![burner.png](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/docs/images/burner.png)
 
 <details>
   <summary>Language: English</summary>
@@ -28,7 +28,7 @@ flexible and user-friendly tree structure. The library aims to make it
 **intuitive** to reference, traverse, and manipulate nodes **by specifying 
 paths**.
 
-![VirtualStorageLibraryLogo](tree_256x256.svg)
+![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/tree_256x256.svg)
 
 ## Project Background
 The collections provided by .NET are linear, including types like hash sets, 
