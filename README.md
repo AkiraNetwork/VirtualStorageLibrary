@@ -275,7 +275,7 @@ For more information, please refer to [Current Issues and Improvement Plans](htt
 #### **Using the Package Manager Console:**
    - In Visual Studio 2022, go to "Tools" > "NuGet Package Manager" > "Package Manager Console."
    - Enter the following command in the console to install the package:
-```
+```powershell
 Install-Package VirtualStorageLibrary -Version 0.8.0
 ```
 
@@ -283,7 +283,7 @@ Install-Package VirtualStorageLibrary -Version 0.8.0
 - Navigate to the directory containing your project file (`.csproj`) via the command line.
 - Ensure that Visual Studio 2022 is not running.
 - Run the following command to install `VirtualStorageLibrary`, which will be automatically added to your project file:
-```
+```bash
 dotnet add package VirtualStorageLibrary --version 0.8.0
 ```
 
