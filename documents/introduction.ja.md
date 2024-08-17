@@ -1,10 +1,14 @@
-﻿![burner.png](images/burner.png)
+﻿---
+title: "Introduction"
+---
+
+![burner.png](images/burner.png)
 
 <details>
   <summary>Language: Japanese</summary>
   <ul>
-    <li><a href="index.md">English</a></li>
-    <li><a href="index.ja.md">Japanese</a></li>
+    <li><a href="introduction.md">English</a></li>
+    <li><a href="introduction.ja.md">Japanese</a></li>
   </ul>
 </details>
 
