@@ -1,4 +1,15 @@
-﻿
+
+![burner.png](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/docs/images/burner.png)
+
+<details>
+  <summary>Language: English</summary>
+  <ul>
+    <li><a href="aboutme.md">English</a></li>
+    <li><a href="aboutme.ja.md">Japanese</a></li>
+  </ul>
+</details>
+
+
 # About Me
 
 Hello, my name is Akira. I am Japanese.
@@ -54,6 +65,8 @@ Since childhood, I've been fascinated by mysterious and mystical things. Not tha
 ## What I Truly Want to Do
 
 Bashar says, "What you want to do is not really what you want to do. What you really want to do is what you are already doing." When I heard these words, I asked myself, "What am I already doing now?" and answered, "Of course, programming." "Programming, which I've loved since childhood, is what I want to do and what I'm already doing. It's also what sustains me now and keeps me in a high vibration." When I took breaks from the physically and mentally taxing warehouse job to immerse myself in programming, it was a form of healing for me. From an outsider's perspective, it might have looked like slacking off, and socially, it might have been condemned. But at that time, it was a refuge for me. I really had no choice.
+
+![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/tree_256x256.svg)
 
 ## What I'm Doing Now
 
