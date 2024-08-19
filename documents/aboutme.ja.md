@@ -1,4 +1,15 @@
-﻿
+
+![burner.png](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/docs/images/burner.png)
+
+<details>
+  <summary>Language: English</summary>
+  <ul>
+    <li><a href="aboutme.md">English</a></li>
+    <li><a href="aboutme.ja.md">Japanese</a></li>
+  </ul>
+</details>
+
+ 
 # 私について
 
 こんにちは、あきらです。日本人です。
@@ -70,6 +81,8 @@
 ## 本当にやりたい事
 
 バシャールは言います「やりたい事は本当にやりたい事ではない。本当にやりたい事は既にやっている事だ」。私はこの言葉を知った時「今、既にやっている事はなんだろう？」と自分に問いました。「もちろんプログラミングだ」と答えました。「昔から大好きなプログラミングをする事が今の自分がやりたい事だし、やっている事だ。そして、今の自分を支えている事だし、自分を高い波動に維持し続ける事だ」。体力的にも精神的にもつらい倉庫の仕事を休んでプログラミングに夢中になる時、それは私にとっては癒しでもありました。外から見ればただのさぼりであり、社会的には非難されるものでしょう。しかし、その時の私にはそれが避難場所であったのです。本当にそうするしかなかった。
+
+![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/tree_256x256.svg)
 
 ## 今、やっている事
 
