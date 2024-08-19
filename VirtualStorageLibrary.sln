@@ -7,6 +7,52 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualStorageLibrary", "Ak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualStorageLibrary.Test", "AkiraNetwork\VirtualStorageLibrary.Test\VirtualStorageLibrary.Test.csproj", "{0663E095-E958-44A4-8137-174F9872CC5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documents", "documents", "{3C77738F-41D5-4A1B-A323-A8A813B7ECE6}"
+	ProjectSection(SolutionItems) = preProject
+		documents\aboutme.ja.md = documents\aboutme.ja.md
+		documents\aboutme.md = documents\aboutme.md
+		documents\docfx.json = documents\docfx.json
+		documents\getting-started.ja.md = documents\getting-started.ja.md
+		documents\getting-started.md = documents\getting-started.md
+		documents\index.ja.md = documents\index.ja.md
+		documents\index.md = documents\index.md
+		documents\introduction.ja.md = documents\introduction.ja.md
+		documents\introduction.md = documents\introduction.md
+		documents\licenses.md = documents\licenses.md
+		documents\toc.yml = documents\toc.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{33E318B8-D84D-4F65-A581-89EA442E3E41}"
+	ProjectSection(SolutionItems) = preProject
+		documents\images\burner.png = documents\images\burner.png
+		documents\images\index_tree1.png = documents\images\index_tree1.png
+		documents\images\index_tree2.png = documents\images\index_tree2.png
+		documents\images\index_tree3.png = documents\images\index_tree3.png
+		documents\images\index_tree4.png = documents\images\index_tree4.png
+		documents\images\index_tree5.png = documents\images\index_tree5.png
+		documents\images\index_tree6A.png = documents\images\index_tree6A.png
+		documents\images\index_tree6B.png = documents\images\index_tree6B.png
+		documents\images\index_tree6C.png = documents\images\index_tree6C.png
+		documents\images\tree.png = documents\images\tree.png
+		documents\images\tree_256x256.svg = documents\images\tree_256x256.svg
+		documents\images\tree_32x32.svg = documents\images\tree_32x32.svg
+		documents\images\tree_51x51.svg = documents\images\tree_51x51.svg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "styles", "styles", "{9E8DC177-DE75-41E0-871A-141E672A7499}"
+	ProjectSection(SolutionItems) = preProject
+		documents\styles\an_custom.css = documents\styles\an_custom.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{D732F07F-FD10-473B-AEA1-2CD979B1248E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "material", "material", "{2A3765A1-0A3B-44A2-97B2-2B8389858FFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "public", "public", "{07FA2120-C263-484B-AB25-FF9B853A81A5}"
+	ProjectSection(SolutionItems) = preProject
+		documents\templates\material\public\main.css = documents\templates\material\public\main.css
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +70,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33E318B8-D84D-4F65-A581-89EA442E3E41} = {3C77738F-41D5-4A1B-A323-A8A813B7ECE6}
+		{9E8DC177-DE75-41E0-871A-141E672A7499} = {3C77738F-41D5-4A1B-A323-A8A813B7ECE6}
+		{D732F07F-FD10-473B-AEA1-2CD979B1248E} = {3C77738F-41D5-4A1B-A323-A8A813B7ECE6}
+		{2A3765A1-0A3B-44A2-97B2-2B8389858FFF} = {D732F07F-FD10-473B-AEA1-2CD979B1248E}
+		{07FA2120-C263-484B-AB25-FF9B853A81A5} = {2A3765A1-0A3B-44A2-97B2-2B8389858FFF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A8605B9-7762-4E7E-A370-79CD7536FFC8}
