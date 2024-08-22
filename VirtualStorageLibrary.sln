@@ -34,9 +34,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{33E318
 		documents\images\index_tree6B.png = documents\images\index_tree6B.png
 		documents\images\index_tree6C.png = documents\images\index_tree6C.png
 		documents\images\tree.png = documents\images\tree.png
+		documents\images\treetree_earthtones.webp = documents\images\treetree_earthtones.webp
 		documents\images\tree_256x256.svg = documents\images\tree_256x256.svg
 		documents\images\tree_32x32.svg = documents\images\tree_32x32.svg
 		documents\images\tree_51x51.svg = documents\images\tree_51x51.svg
+		documents\images\tree_banner_960x540.png = documents\images\tree_banner_960x540.png
+		documents\images\tree_banner_960x540_1.png = documents\images\tree_banner_960x540_1.png
+		documents\images\tree_banner_960x540_2.png = documents\images\tree_banner_960x540_2.png
+		documents\images\tree_banner_960x540_3.png = documents\images\tree_banner_960x540_3.png
+		documents\images\tree_banner_960x540_4.png = documents\images\tree_banner_960x540_4.png
+		documents\images\tree_banner_960x540_5.png = documents\images\tree_banner_960x540_5.png
+		documents\images\tree_banner_960x540_6.png = documents\images\tree_banner_960x540_6.png
+		documents\images\tree_earthtones_240x240_trans.png = documents\images\tree_earthtones_240x240_trans.png
+		documents\images\tree_earthtones_512x512.png = documents\images\tree_earthtones_512x512.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "styles", "styles", "{9E8DC177-DE75-41E0-871A-141E672A7499}"
