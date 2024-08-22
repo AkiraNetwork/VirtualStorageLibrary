@@ -2113,6 +2113,57 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
         [TestMethod]
         [TestCategory("RemoveNode")]
+        public void RemoveNode_Dot_ThrowsInvalidOperationException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.ChangeDirectory("/dir1");
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.RemoveNode(VirtualPath.Dot);
+            });
+
+            Assert.AreEqual("Cannot remove the current or parent directory.", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("RemoveNode")]
+        public void RemoveNode_DotDot_ThrowsInvalidOperationException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/dir2", true);
+            vs.ChangeDirectory("/dir1/dir2");
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.RemoveNode(VirtualPath.DotDot);
+            });
+
+            Assert.AreEqual("Cannot remove the current or parent directory.", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("RemoveNode")]
+        public void RemoveNode_DotDot2_ThrowsInvalidOperationException()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.ChangeDirectory("/dir1/dir2/dir3");
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.RemoveNode("../..");
+            });
+
+            Assert.AreEqual("Cannot remove the current or parent directory.", err.Message);
+
+            Debug.WriteLine(err.Message);
+        }
+
+        [TestMethod]
+        [TestCategory("RemoveNode")]
         public void RemoveNode_CurrentDirectoryDot_ThrowsInvalidOperationException()
         {
             VirtualStorage<BinaryData> vs = new();

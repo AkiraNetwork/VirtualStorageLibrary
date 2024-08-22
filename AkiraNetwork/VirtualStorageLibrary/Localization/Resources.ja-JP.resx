@@ -219,4 +219,7 @@
   <data name="NodeWithSameNameAtDestination" xml:space="preserve">
     <value>移動先のパスに同名のノードが存在します。 [{0}] [{1}]</value>
   </data>
+  <data name="CannotRemoveCurrentOrParentDirectory" xml:space="preserve">
+    <value>現在、または、親のディレクトリを削除する事は出来ません。</value>
+  </data>
 </root>

@@ -253,4 +253,8 @@
     <value>A node with the same name already exists at the destination path. [{0}] [{1}]</value>
     <comment>Notifies when moving a node if a node with the same name already exists at the destination path.</comment>
   </data>
+  <data name="CannotRemoveCurrentOrParentDirectory" xml:space="preserve">
+    <value>Cannot remove the current or parent directory.</value>
+    <comment>Notifies when attempting to remove the current or parent directory.</comment>
+  </data>
 </root>

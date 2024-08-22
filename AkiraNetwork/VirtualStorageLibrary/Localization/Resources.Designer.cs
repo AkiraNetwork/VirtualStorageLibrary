@@ -106,6 +106,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Cannot remove the current or parent directory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotRemoveCurrentOrParentDirectory {
+            get {
+                return ResourceManager.GetString("CannotRemoveCurrentOrParentDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cannot remove the directory because it is not empty and the recursive parameter is set to false. [{0}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CannotRemoveNonEmptyDirectory {
@@ -165,15 +174,6 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         internal static string LinkPathIsNotAbsolutePath {
             get {
                 return ResourceManager.GetString("LinkPathIsNotAbsolutePath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Depth has become a negative value. [{0}] に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string NegativeDepthValue {
-            get {
-                return ResourceManager.GetString("NegativeDepthValue", resourceCulture);
             }
         }
         

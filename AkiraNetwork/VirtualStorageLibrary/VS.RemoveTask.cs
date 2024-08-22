@@ -51,6 +51,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 throw new InvalidOperationException(Resources.CannotRemoveRoot);
             }
 
+            if (nodePath == CurrentPath || CurrentPath.IsSubdirectory(nodePath))
+            {
+                throw new InvalidOperationException(Resources.CannotRemoveCurrentOrParentDirectory);
+            }
+
             VirtualPath resolvedNodePath = nodePath;
             if (resolveLinks)
             {
