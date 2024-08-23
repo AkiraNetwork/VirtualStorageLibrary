@@ -257,4 +257,8 @@
     <value>Cannot remove the current or parent directory.</value>
     <comment>Notifies when attempting to remove the current or parent directory.</comment>
   </data>
+  <data name="CannotMoveCurrentOrParentDirectory" xml:space="preserve">
+    <value>Cannot move the node if the source path is the current directory or a parent directory.</value>
+    <comment>Notifies when the node cannot be moved because the source path is either the current directory or a parent directory.</comment>
+  </data>
 </root>

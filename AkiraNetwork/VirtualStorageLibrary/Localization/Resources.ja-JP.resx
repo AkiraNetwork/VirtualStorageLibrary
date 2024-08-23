@@ -222,4 +222,7 @@
   <data name="CannotRemoveCurrentOrParentDirectory" xml:space="preserve">
     <value>現在、または、親のディレクトリを削除する事は出来ません。</value>
   </data>
+  <data name="CannotMoveCurrentOrParentDirectory" xml:space="preserve">
+    <value>移動元のパスが現在、または、親のディレクトリの場合、移動はできません。</value>
+  </data>
 </root>

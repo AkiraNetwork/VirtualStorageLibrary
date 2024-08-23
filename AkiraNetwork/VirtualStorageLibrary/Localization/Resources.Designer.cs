@@ -79,6 +79,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Cannot move the node if the source path is the current directory or a parent directory. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotMoveCurrentOrParentDirectory {
+            get {
+                return ResourceManager.GetString("CannotMoveCurrentOrParentDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cannot move the root directory. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CannotMoveRootDirectory {

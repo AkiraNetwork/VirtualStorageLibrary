@@ -95,6 +95,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, sourcePath.NodeName));
             }
 
+            // Check if the source path is the current directory or a parent directory, and throw an exception if it is.
+            if (sourcePath == CurrentPath || CurrentPath.IsSubdirectory(sourcePath))
+            {
+                throw new InvalidOperationException(Resources.CannotMoveCurrentOrParentDirectory);
+            }
+
             // Move the node
             if (DirectoryExists(sourcePath))
             {

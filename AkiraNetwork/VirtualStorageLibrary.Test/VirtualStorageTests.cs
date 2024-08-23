@@ -4290,6 +4290,66 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateLinkTableDebugText());
         }
 
+        // ソースパスとしてカレントパスのディレクトリを指定した場合に例外をスロー
+        [TestMethod]
+        [TestCategory("MoveNode")]
+        public void MoveNode_ThrowsWhenSourceIsCurrentDirectory()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/dir2", true);
+            vs.AddDirectory("/dir3");
+            vs.ChangeDirectory("/dir1/dir2");
+
+            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.MoveNode(".", "/dir3");
+            });
+
+            Assert.AreEqual("Cannot move the node if the source path is the current directory or a parent directory.", ex.Message);
+
+            Debug.WriteLine(ex.Message);
+        }
+
+        // ソースパスとして親のディレクトリを指定した場合に例外をスロー
+        [TestMethod]
+        [TestCategory("MoveNode")]
+        public void MoveNode_ThrowsWhenSourceIsParentDirectory()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddDirectory("/dir4");
+            vs.ChangeDirectory("/dir1/dir2/dir3");
+
+            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.MoveNode("..", "/dir4");
+            });
+
+            Assert.AreEqual("Cannot move the node if the source path is the current directory or a parent directory.", ex.Message);
+
+            Debug.WriteLine(ex.Message);
+        }
+
+        // ソースパスとして更に親のディレクトリを指定した場合に例外をスロー
+        [TestMethod]
+        [TestCategory("MoveNode")]
+        public void MoveNode_ThrowsWhenSourceIsParentDirectory2()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1/dir2/dir3", true);
+            vs.AddDirectory("/dir4");
+            vs.ChangeDirectory("/dir1/dir2/dir3");
+
+            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.MoveNode("../..", "/dir4");
+            });
+
+            Assert.AreEqual("Cannot move the node if the source path is the current directory or a parent directory.", ex.Message);
+
+            Debug.WriteLine(ex.Message);
+        }
+
         [TestMethod]
         [TestCategory("MoveNode - Directory")]
         // 単純なディレクトリの移動
