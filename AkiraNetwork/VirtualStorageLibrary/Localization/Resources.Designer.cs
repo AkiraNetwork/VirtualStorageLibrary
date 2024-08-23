@@ -169,15 +169,6 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
-        ///   Depth has become a negative value. [{0}] に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string NegativeDepthValue {
-            get {
-                return ResourceManager.GetString("NegativeDepthValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Cannot rename because a node with the new name already exists. [{0}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string NewNameNodeAlreadyExists {
