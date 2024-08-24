@@ -41,21 +41,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         private VirtualNodeName? _nodeName;
 
         /// <summary>
-        /// The root path value.
-        /// </summary>
-        private static readonly string _root;
-
-        /// <summary>
-        /// The dot symbol (".") used in paths.
-        /// </summary>
-        private static readonly string _dot;
-
-        /// <summary>
-        /// The double dot symbol ("..") used in paths.
-        /// </summary>
-        private static readonly string _dotDot;
-
-        /// <summary>
         /// Gets the path string.
         /// </summary>
         /// <value>The string representation of the path.</value>
@@ -195,34 +180,25 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// Gets the path separator character.
         /// </summary>
         /// <value>A character representing the path separator.</value>
-        public static char Separator => VirtualStorageSettings.Settings.PathSeparator;
+        public static char Separator => VirtualStorageState.State.PathSeparator;
 
         /// <summary>
         /// Gets the root path.
         /// </summary>
         /// <value>A string representing the root path.</value>
-        public static string Root
-        {
-            get => _root;
-        }
+        public static string Root => VirtualStorageState.State.PathRoot;
 
         /// <summary>
         /// Gets the dot (".") symbol.
         /// </summary>
         /// <value>A string representing the dot symbol.</value>
-        public static string Dot
-        {
-            get => _dot;
-        }
+        public static string Dot => VirtualStorageState.State.PathDot;
 
         /// <summary>
         /// Gets the double dot ("..") symbol.
         /// </summary>
         /// <value>A string representing the double dot symbol.</value>
-        public static string DotDot
-        {
-            get => _dotDot;
-        }
+        public static string DotDot => VirtualStorageState.State.PathDotDot;
 
         /// <summary>
         /// Returns a string that represents the instance's path.
@@ -306,16 +282,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public VirtualPath(IEnumerable<VirtualNodeName> parts)
         {
             _path = Separator + string.Join(Separator, parts.Select(node => node.Name));
-        }
-
-        /// <summary>
-        /// Initializes static members of the <see cref="VirtualPath"/> class.
-        /// </summary>
-        static VirtualPath()
-        {
-            _root = VirtualStorageSettings.Settings.PathRoot;
-            _dot = VirtualStorageSettings.Settings.PathDot;
-            _dotDot = VirtualStorageSettings.Settings.PathDotDot;
         }
 
         /// <summary>

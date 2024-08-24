@@ -32,6 +32,35 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeName.ResetCounter();
         }
 
+        // コンストラクタ VirtualPath(string path) のテスト
+        [TestMethod]
+        public void Constructor_WithAbsolutePath_ReturnsCorrectPath()
+        {
+            // テストデータ
+            string path = "/dir1";
+
+            // メソッドを実行
+            VirtualPath virtualPath = new(path);
+
+            // 結果を検証
+            Assert.AreEqual(path, virtualPath.Path);
+        }
+
+        // コンストラクタ public VirtualPath(IEnumerable<VirtualNodeName> parts) のテスト
+        [TestMethod]
+        public void Constructor_WithParts_ReturnsCorrectPath()
+        {
+            // テストデータ
+            List<VirtualNodeName> parts = new() { "dir1", "dir2", "file" };
+            string expected = "/dir1/dir2/file";
+            
+            // メソッドを実行
+            VirtualPath virtualPath = new(parts);
+            
+            // 結果を検証
+            Assert.AreEqual(expected, virtualPath.Path);
+        }
+
         [TestMethod]
         public void ImplicitConversion_FromString_CreatesVirtualPath()
         {
