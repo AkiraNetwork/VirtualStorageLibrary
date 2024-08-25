@@ -171,7 +171,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualDirectory, nodeContext.Node!.Name));
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeIsNotVirtualDirectory, nodeContext.Node!.Name));
             }
 
             return;

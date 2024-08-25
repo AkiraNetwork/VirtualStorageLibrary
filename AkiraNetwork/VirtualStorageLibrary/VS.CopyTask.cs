@@ -41,7 +41,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // Check if the source node exists
             if (!NodeExists(absoluteSourcePath, true))
             {
-                throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, absoluteSourcePath));
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, absoluteSourcePath.NodeName));
             }
 
             // Throw an exception if the source and destination paths are the same

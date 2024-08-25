@@ -92,7 +92,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             if (!NodeExists(sourcePath))
             {
                 // Throw an exception if the source node does not exist
-                throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, sourcePath));
+                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, sourcePath.NodeName));
             }
 
             // Check if the source path is the current directory or a parent directory, and throw an exception if it is.
