@@ -136,7 +136,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, node.Name));
+                throw new InvalidOperationException(string.Format(Resources.NodeNotFound, node.Name));
             }
         }
 
@@ -176,7 +176,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, node.Name));
+                throw new InvalidOperationException(string.Format(Resources.NodeNotFound, node.Name));
             }
         }
 
@@ -220,7 +220,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
-                throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, node.Name));
+                throw new InvalidOperationException(string.Format(Resources.NodeNotFound, node.Name));
             }
         }
 

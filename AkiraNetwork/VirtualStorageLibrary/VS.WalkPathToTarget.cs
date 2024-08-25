@@ -88,7 +88,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // If exceptions are enabled, throw an exception
                 if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, traversalPath));
+                    throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, traversalPath));
                 }
 
                 return new VirtualNodeContext(null, traversalPath, p.TraversalDirectory, -1, -1, traversalPath, p.Resolved);
@@ -148,7 +148,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // If exceptions are enabled, throw an exception
                 if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException(string.Format(Resources.CannotReachBecauseNodeItem, p.TargetPath, p.TraversalPath));
+                    throw new InvalidOperationException(string.Format(Resources.CannotReachBecauseNodeItem, p.TargetPath, p.TraversalPath));
                 }
 
                 return new VirtualNodeContext(null, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved);
@@ -175,7 +175,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                     // If exceptions are enabled, throw an exception
                     if (p.ExceptionEnabled)
                     {
-                        throw new VirtualNodeNotFoundException(string.Format(Resources.CannotReachBecauseNodeSymbolicLink, p.TargetPath, p.TraversalPath));
+                        throw new InvalidOperationException(string.Format(Resources.CannotReachBecauseNodeSymbolicLink, p.TargetPath, p.TraversalPath));
                     }
 
                     return new VirtualNodeContext(null, p.TraversalPath, p.TraversalDirectory, -1, -1, p.ResolvedPath, p.Resolved, link);
