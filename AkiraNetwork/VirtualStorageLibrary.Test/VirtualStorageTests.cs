@@ -79,7 +79,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath nonExistentDirectory = "/cycleInfo/to/nonexistent/parentDirectory";
 
             // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.ChangeDirectory(nonExistentDirectory));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.ChangeDirectory(nonExistentDirectory));
         }
 
         [TestMethod]
@@ -370,7 +370,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.AddDirectory("/test/parentDirectory", false));
         }
 
@@ -488,7 +488,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.AddDirectory("/test/subdirectory/anotherDirectory", false));
         }
 
@@ -553,7 +553,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act & Assert
             // "/dir1/item"がディレクトリではないノードの下に"dir2"ディレクトリを追加しようとすると例外がスローされることを確認
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<InvalidOperationException>(() =>
                 vs.AddDirectory("/dir1/item/dir2"));
 
             Assert.AreEqual("The specified node [item] is not of type VirtualDirectory.", err.Message);
@@ -701,7 +701,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             var newDirectory = new VirtualDirectory(new VirtualNodeName("newDirectory"));
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.AddDirectory(invalidPath, newDirectory));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.AddDirectory(invalidPath, newDirectory));
         }
 
         [TestMethod]
@@ -809,7 +809,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
 
             // メソッドを実行し、例外を検証
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetNode("/NonExistentDirectory"));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetNode("/NonExistentDirectory"));
         }
 
         [TestMethod]
@@ -861,7 +861,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/brokenLink", "/nonexistent/item");
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetNode("/brokenLink", true));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetNode("/brokenLink", true));
         }
 
         [TestMethod]
@@ -1128,9 +1128,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/nonexistent";
 
             // Act and Assert
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetDirectory(path));
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetDirectory(path));
 
-            Assert.AreEqual("Node not found. [/nonexistent]", err.Message);
+            Assert.AreEqual("Path not found. [/nonexistent]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -1147,7 +1147,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/test-file";
 
             // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetDirectory(path));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetDirectory(path));
         }
 
         [TestMethod]
@@ -1194,9 +1194,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/nonexistent";
 
             // Act and Assert
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetItem(path));
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetItem(path));
 
-            Assert.AreEqual("Node not found. [/nonexistent]", err.Message);
+            Assert.AreEqual("Path not found. [/nonexistent]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -1211,7 +1211,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/test-parentDirectory";
 
             // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetItem(path));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetItem(path));
         }
 
         [TestMethod]
@@ -1260,9 +1260,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/nonexistent-link";
 
             // Act and Assert
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetSymbolicLink(path));
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetSymbolicLink(path));
 
-            Assert.AreEqual("Node not found. [/nonexistent-link]", err.Message);
+            Assert.AreEqual("Path not found. [/nonexistent-link]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -1279,7 +1279,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath path = "/test-file";
 
             // Act and Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.GetSymbolicLink(path));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.GetSymbolicLink(path));
         }
 
         [TestMethod]
@@ -1374,7 +1374,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             BinaryData item = [1, 2, 3];
             VirtualPath path = "/NonExistentDirectory/ItemData";
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.AddItem(path, item));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.AddItem(path, item));
         }
 
         [TestMethod]
@@ -1531,7 +1531,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             BinaryData binaryData = [7, 8, 9];
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.AddItem("/linkToNowhere/newItem", binaryData));
         }
 
@@ -1551,7 +1551,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             BinaryData binaryData = [10, 11, 12];
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.AddItem(pathToItem, binaryData),
                 "中間のシンボリックリンクのターゲットが存在しない場合、VirtualNodeNotFoundExceptionがスローされるべきです。");
         }
@@ -1612,7 +1612,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeName itemName = "item";
             VirtualItem<string> item = new(itemName, "value");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.AddItem(directoryPath, item, false));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.AddItem(directoryPath, item, false));
         }
 
         [TestMethod]
@@ -1629,7 +1629,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeName itemName = "item";
             VirtualItem<string> item = new(itemName, "value");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.AddItem(linkPath, item, false));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.AddItem(linkPath, item, false));
         }
 
         [TestMethod]
@@ -1971,7 +1971,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.GetNodes("relative/cycleInfo", VirtualNodeTypeFilter.All, true).ToList());
         }
 
@@ -1994,7 +1994,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             VirtualStorage<BinaryData> vs = new();
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.RemoveNode("/NonExistingItem"));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.RemoveNode("/NonExistingItem"));
         }
 
         [TestMethod]
@@ -2015,7 +2015,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             VirtualStorage<BinaryData> vs = new();
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.RemoveNode("/NonExistingDirectory"));
         }
 
@@ -2194,7 +2194,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/test/link", "/target/cycleInfo");
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 vs.RemoveNode("/test/link");
             });
@@ -2306,7 +2306,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/test/nested/link", "/nonexistent");
 
             // Act
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 vs.RemoveNode("/test", true, true);
             });
@@ -2951,11 +2951,11 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         {
             VirtualStorage<BinaryData> vs = new();
 
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.SetNodeName("/nonExistentFile", "newName"));
 
             Assert.IsTrue(vs.GetNode("/").CreatedDate == vs.GetNode("/").UpdatedDate);
-            Assert.AreEqual("Node not found. [/nonExistentFile]", err.Message);
+            Assert.AreEqual("Path not found. [/nonExistentFile]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -3380,7 +3380,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine("リンク辞書 (処理前):");
             Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 vs.SetNodeName("/link", "newLink", true);
             });
@@ -3612,10 +3612,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/destinationDir");
 
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.MoveNode("/nonExistentSource", "/destinationDir", false, false));
 
-            Assert.AreEqual("Node not found. [nonExistentSource]", err.Message);
+            Assert.AreEqual("Path not found. [/nonExistentSource]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -3627,7 +3627,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/sourceDir");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.MoveNode("/sourceDir", "/nonExistentDestination/newDir", false, false));
         }
 
@@ -3740,7 +3740,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/validDir");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.MoveNode("/invalid?Path", "/validDir"));
         }
 
@@ -3892,7 +3892,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/existingDir");
             vs.AddItem("/existingDir/file", new BinaryData([1, 2, 3]));
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.MoveNode("/existingDir/file", "/nonExistentDir/file"));
         }
 
@@ -4215,7 +4215,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.GetLinksFromDictionary("/existingItem").Contains("/linkToItem"));
             Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.MoveNode("/nonExistentItem", "/newName"));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.MoveNode("/nonExistentItem", "/newName"));
 
             // リンク辞書が変更されていないことを確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/existingItem").Contains("/linkToItem"));
@@ -4671,7 +4671,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateLinkTableDebugText());
 
             // 親ディレクトリが存在しないため例外がスローされることを確認
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.MoveNode("/sourceDir", "/nonExistentDir/newDir"));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.MoveNode("/sourceDir", "/nonExistentDir/newDir"));
 
             // デバッグ出力
             Debug.WriteLine("\nMoveNode後:");
@@ -4985,7 +4985,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath targetPath = "/existing/target";
 
             // Act & Assert
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
                 vs.AddSymbolicLink(symbolicLinkPath, targetPath),
                 "親ディレクトリが存在しない場合、VirtualNodeNotFoundExceptionがスローされるべきです。");
         }
@@ -5051,7 +5051,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeName linkName = "link";
             VirtualSymbolicLink link = new(linkName, "/target");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.AddSymbolicLink(directoryPath, link, false));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.AddSymbolicLink(directoryPath, link, false));
         }
 
         // シンボリックリンクが指す存在しないディレクトリにリンクを追加しようとした場合、例外がスローされるか確認する。
@@ -5069,7 +5069,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualNodeName linkName = "link";
             VirtualSymbolicLink link = new(linkName, "/target");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.AddSymbolicLink(linkPath, link, false));
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.AddSymbolicLink(linkPath, link, false));
         }
 
         // シンボリックリンクが指すディレクトリにリンクを追加できるか確認する。
@@ -5169,7 +5169,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory(path, true);
             VirtualPath targetPath = path + "dir3";
 
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
@@ -5369,7 +5369,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             //VirtualStorageState.SetLocale("ja-JP");
 
-            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
@@ -5461,7 +5461,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1", true);
             vs.AddSymbolicLink("/dir1/link1", "/nonexistent");
 
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget("/dir1/link1", NotifyNode, null, true, true);
             });
@@ -6085,7 +6085,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1", true);
             vs.AddSymbolicLink("/dir1/emptyLink", "/nonexistent");
 
-            VirtualNodeNotFoundException exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/", VirtualNodeTypeFilter.All, true, true);
                 foreach (VirtualNodeContext nodeContext in nodeContexts)
@@ -6684,7 +6684,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // followLinks を true で指定したパターン
             // /dir1/file2.txt -> /dir1/nonexistent なのでノードが見つからないパターン
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt", VirtualNodeTypeFilter.All, true).ToList();
             });
@@ -6755,7 +6755,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // followLinks を true で指定したパターン
             // ワイルドカードマッチャーを使用しないので例外になる
-            Exception err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 List<VirtualPath> result = vs.ExpandPath("/dir1/*.txt", VirtualNodeTypeFilter.All, true).ToList();
             });
@@ -7003,7 +7003,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/file1.txt", "data");
 
             // 存在しないディレクトリパスの解決時に例外を期待
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() => vs.ExpandPath("/invalid/dir/*.txt").ToList());
+            Assert.ThrowsException<VirtualPathNotFoundException>(() => vs.ExpandPath("/invalid/dir/*.txt").ToList());
         }
 
         [TestMethod]
@@ -7541,12 +7541,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行 & 検査: 存在しない "/item1" をコピーしようとする
-            var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 vs.CopyNode("/item1", "/item2", false, false, false, contexts);
             });
 
-            Assert.AreEqual("Node not found. [item1]", err.Message);
+            Assert.AreEqual("Path not found. [/item1]", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -8487,7 +8487,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
-            var err = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            var err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 vs.CopyNode("/link1", "/link2", false, false, false, contexts);
             });
@@ -10148,14 +10148,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             // Act
-            Exception exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
             Debug.WriteLine($"ExceptionMessage: {exception.Message}");
 
             // Assert
-            Assert.AreEqual("Node not found. [/nonexistent]", exception.Message);
+            Assert.AreEqual("Path not found. [/nonexistent]", exception.Message);
         }
 
         [TestMethod]
@@ -10170,14 +10170,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("ko-KR");
 
             // Act
-            Exception exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
             Debug.WriteLine($"ExceptionMessage: {exception.Message}");
 
             // Assert
-            Assert.AreEqual("Node not found. [/nonexistent]", exception.Message);
+            Assert.AreEqual("Path not found. [/nonexistent]", exception.Message);
         }
 
         [TestMethod]
@@ -10192,14 +10192,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
 
             // Act
-            Exception exception = Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Exception exception = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 VirtualNodeContext? nodeContext = vs.WalkPathToTarget(targetPath, NotifyNode, null, true, true);
             });
             Debug.WriteLine($"ExceptionMessage: {exception.Message}");
 
             // Assert
-            Assert.AreEqual("ノードが見つかりません。 [/nonexistent]", exception.Message);
+            Assert.AreEqual("パスが見つかりません。 [/nonexistent]", exception.Message);
         }
 
         [TestMethod]
