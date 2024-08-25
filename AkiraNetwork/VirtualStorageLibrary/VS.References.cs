@@ -82,7 +82,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // Assume GetNode returns null or throws an exception if not found
                 return GetNode(absolutePath, followLinks);
             }
-            catch (VirtualNodeNotFoundException)
+            catch (VirtualNotFoundException)
             {
                 return null; // Return null if the node does not exist
             }
@@ -112,7 +112,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 return ResolveLinkTarget(path);
             }
-            catch (VirtualNodeNotFoundException)
+            catch (VirtualNotFoundException)
             {
                 return null;
             }
@@ -152,7 +152,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 return GetDirectory(path, followLinks);
             }
-            catch (VirtualNodeNotFoundException)
+            catch (VirtualNotFoundException)
             {
                 return null;
             }
@@ -192,7 +192,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 return GetItem(path, followLinks);
             }
-            catch (VirtualNodeNotFoundException)
+            catch (VirtualNotFoundException)
             {
                 return null;
             }
@@ -238,7 +238,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 return GetSymbolicLink(path);
             }
-            catch (VirtualNodeNotFoundException)
+            catch (VirtualNotFoundException)
             {
                 return null;
             }
