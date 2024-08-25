@@ -139,7 +139,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.Utilities
         public void GenerateTreeDebugText_NonExistentPathWithLinks()
         {
             VirtualStorage<string> vs = SetupVirtualStorage();
-            Assert.ThrowsException<VirtualNodeNotFoundException>(() =>
+            Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
                 string tree = vs.GenerateTreeDebugText("/nonexistent", true, true);
             });

@@ -88,7 +88,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 // If exceptions are enabled, throw an exception
                 if (p.ExceptionEnabled)
                 {
-                    throw new VirtualNodeNotFoundException(string.Format(Resources.NodeNotFound, traversalPath));
+                    throw new VirtualPathNotFoundException(string.Format(Resources.PathNotFound, traversalPath));
                 }
 
                 return new VirtualNodeContext(null, traversalPath, p.TraversalDirectory, -1, -1, traversalPath, p.Resolved);
