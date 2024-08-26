@@ -393,5 +393,36 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // Remove the old node from the parent directory and add the new named node
             parentDirectory.SetNodeName(node.Name, newName);
         }
+
+        /// <summary>
+        /// Sets the target path for the specified symbolic link and updates the link dictionary.
+        /// </summary>
+        /// <param name="linkPath">
+        /// The path where the symbolic link is set.
+        /// </param>
+        /// <param name="targetPath">
+        /// The target path referenced by the symbolic link.
+        /// </param>
+        public void SetLinkTargetPath(VirtualPath linkPath, VirtualPath targetPath)
+        {
+            // Convert to absolute path and normalize linkPath
+            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
+
+            // Separate the directory path and link name
+            VirtualPath linkDirectoryPath = linkPath.DirectoryPath;
+            VirtualNodeName linkName = linkPath.NodeName;
+
+            // Retrieve the directory where the symbolic link will be added
+            VirtualDirectory directory = GetDirectory(linkDirectoryPath, true);
+
+            // Check if the node already exists
+            VirtualSymbolicLink link = directory.GetSymbolicLink(linkName);
+
+            // Update the link dictionary
+            UpdateLinkInDictionary(linkPath, targetPath);
+
+            // Update the target path
+            link.TargetPath = targetPath;
+        }
     }
 }

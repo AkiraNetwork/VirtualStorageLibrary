@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>AkiraNetwork.VirtualStorageLibrary</RootNamespace>
-    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Title>Virtual Storage Library</Title>
     <Version>0.8.0.9</Version>
     <Authors>Akira Shimodate</Authors>
@@ -60,12 +60,4 @@ Users can intuitively reference, traverse, and manipulate nodes by specifying pa
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <!--
-  <Target Name="GenerateDocumentation" AfterTargets="Build">
-    <Exec WorkingDirectory="$(SolutionDir)documents" Command="docfx metadata" />
-    <Exec WorkingDirectory="$(SolutionDir)documents" Command="docfx build" />
-  </Target>
-  -->
-
 </Project>

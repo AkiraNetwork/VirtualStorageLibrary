@@ -39,7 +39,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public VirtualPath? TargetPath
         {
             get => _targetPath;
-            set => _targetPath = value;
+            internal set => _targetPath = value;
         }
 
         /// <summary>
