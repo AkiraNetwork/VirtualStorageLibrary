@@ -407,15 +407,26 @@ Name: John, Age: 20
 ## ライセンス
 このプロジェクトは、[GNU Lesser General Public License v3.0 or later (LGPL-3.0-or-later)](https://www.gnu.org/licenses/lgpl-3.0.html)のもとでライセンスされています。
 
-Copyright (C) 2024 Akira Shimodate
+© 2024 Akira Shimodate
 
-VirtualStorageLibraryはフリーソフトウェアです。  
-このソフトウェアは、GNU Lesser General Public Licenseのバージョン3、または（オプションとして）その後のバージョンの条件の下で配布されています。  
-VirtualStorageLibraryは有用であることを願って配布されていますが、いかなる保証も提供されていません。  
-商業的な価値の適合性や特定の目的への適合性についての黙示的な保証も含まれていません。  
-詳細については、GNU Lesser General Public Licenseをご覧ください。  
-このソフトウェアと共にGNU Lesser General Public LicenseのコピーがリポジトリのルートにLICENSEというファイル名で保存されています。  
-提供されていない場合は、[こちら](https://www.gnu.org/licenses/lgpl-3.0.html)でご確認ください。  
+VirtualStorageLibraryはフリーソフトウェアです。このソフトウェアは、GNU Lesser General Public Licenseのバージョン3、または（オプションとして）その後のバージョンの条件の下で配布されています。VirtualStorageLibraryは有用であることを願って配布されていますが、いかなる保証も提供されていません。商業的な価値の適合性や特定の目的への適合性についての黙示的な保証も含まれていません。詳細については、GNU Lesser General Public Licenseをご覧ください。このソフトウェアと共にGNU Lesser General Public LicenseのコピーがリポジトリのルートにLICENSEというファイル名で保存されています。提供されていない場合は、[こちら](https://www.gnu.org/licenses/lgpl-3.0.html)でご確認ください。
+
+### 将来の商用ライセンス
+今後、VirtualStorageLibraryの商用ライセンスを導入する予定があります。商用ライセンスの詳細や導入時期については、[akiranetwork211@gmail.com](mailto:akiranetwork211@gmail.com)までお問い合わせください。
+
+---
+
+## docfx
+
+このドキュメントはDocFXを使用しており、© 2019 Oscar Vasquezによって作成されています。  
+このソフトウェアはMITライセンスのもとでライセンスされています。詳細については、[docfx GitHub リポジトリ](https://github.com/dotnet/docfx)をご覧ください。
+
+---
+
+## DocFX Material
+
+このドキュメントはDocFX Materialテーマを使用しており、© 2019 Oscar Vásquezによって作成されています。  
+このテーマはMITライセンスのもとでライセンスされています。詳細については、[DocFX Material GitHub リポジトリ](https://github.com/ovasquez/docfx-material)をご覧ください。
 
 [[▲](#目次)]
 ## 貢献ガイドライン

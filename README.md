@@ -481,6 +481,9 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General 
 A copy of the GNU Lesser General Public License is saved in the LICENSE file at the root of the repository. If 
 not provided, you can check it [here](https://www.gnu.org/licenses/lgpl-3.0.html).
 
+### Future Commercial License
+We are considering offering a commercial license for VirtualStorageLibrary in the future. For more details or to inquire about the commercial license, please contact us at [akiranetwork211@gmail.com](mailto:akiranetwork211@gmail.com).
+
 [[▲](#table-of-contents)]
 ## Contribution Guidelines
 First and foremost, please try out `VirtualStorageLibrary`. It is currently in the pre-release stage, 
