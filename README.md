@@ -470,16 +470,16 @@ For more details, refer to the [API Reference](https://shimodateakira.github.io/
 [[▲](#table-of-contents)]
 ## License
 This project is licensed under the 
-[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text).
+[GNU Lesser General Public License v3.0 or later (LGPL-3.0-or-later)](https://www.gnu.org/licenses/lgpl-3.0.html).
 
 Copyright (C) 2024 Akira Shimodate
 
-VirtualStorageLibrary is free software. This software is distributed under the terms of the GNU General 
+VirtualStorageLibrary is free software. This software is distributed under the terms of the GNU Lesser General 
 Public License, version 3, or (at your option) any later version. VirtualStorageLibrary is distributed in 
 the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
-A copy of the GNU General Public License is saved in the LICENSE file at the root of the repository. If 
-not provided, you can check it [here](https://www.gnu.org/licenses/gpl-3.0.html.en#license-text).
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. 
+A copy of the GNU Lesser General Public License is saved in the LICENSE file at the root of the repository. If 
+not provided, you can check it [here](https://www.gnu.org/licenses/lgpl-3.0.html).
 
 [[▲](#table-of-contents)]
 ## Contribution Guidelines
