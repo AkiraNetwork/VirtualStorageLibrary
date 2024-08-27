@@ -62,6 +62,22 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public bool IsRoot => _name == VirtualStorageState.State.PathRoot;
 
         /// <summary>
+        /// Indicates whether the node is a single dot representing the current directory.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this node is dot; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsDot => _name == VirtualStorageState.State.PathDot;
+
+        /// <summary>
+        /// Indicates whether the node is a double dot representing the parent directory.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this node is double dot"; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsDotDot => _name == VirtualStorageState.State.PathDotDot;
+
+        /// <summary>
         /// Generates a new node name using the specified prefix.
         /// </summary>
         /// <param name="prefix">The prefix for the node name.</param>
@@ -107,7 +123,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 return false;
             }
 
-            foreach (char c in VirtualStorageSettings.Settings.InvalidNodeNameCharacters)
+            foreach (char c in VirtualStorageState.State.InvalidNodeNameCharacters)
             {
                 if (nodeName.Name.Contains(c))
                 {
@@ -115,7 +131,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 }
             }
 
-            foreach (string invalidFullNodeName in VirtualStorageSettings.Settings.InvalidNodeNames)
+            foreach (string invalidFullNodeName in VirtualStorageState.State.InvalidNodeNames)
             {
                 if (nodeName.Name == invalidFullNodeName)
                 {

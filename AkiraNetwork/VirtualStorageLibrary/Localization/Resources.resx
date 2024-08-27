@@ -265,4 +265,8 @@
     <value>Cannot change the target path of the links associated with the storage. [{0}]</value>
     <comment>Notifies when the target path of the links associated with the storage is attempted to be changed, which is not allowed.</comment>
   </data>
+  <data name="InvalidTargetPath" xml:space="preserve">
+    <value>Target path [{0}] is invalid. Forbidden characters are used.</value>
+    <comment>Notifies if the target path contains invalid characters that are not allowed.</comment>
+  </data>
 </root>

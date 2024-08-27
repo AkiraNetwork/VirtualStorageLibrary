@@ -19,6 +19,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
     /// Manages the state of the virtual storage. This class implements the singleton pattern
     /// and maintains the current settings and state.
     /// </summary>
+    [DebuggerStepThrough]
     public class VirtualStorageState
     {
         private static VirtualStorageState _state = new();
@@ -77,7 +78,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <value>
         /// An array of characters that are invalid in node names.
         /// </value>
-        public char[] InvalidNodeNameCharacters { get; set; }
+        public HashSet<char> InvalidNodeNameCharacters { get; set; }
 
         /// <summary>
         /// Gets or sets an array of invalid node names.
@@ -85,7 +86,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <value>
         /// An array of invalid node names.
         /// </value>
-        public string[] InvalidNodeNames { get; set; }
+        public HashSet<string> InvalidNodeNames { get; set; }
 
         /// <summary>
         /// Gets or sets the wildcard matcher.
@@ -142,8 +143,8 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 PathRoot = settings.PathRoot,
                 PathDot = settings.PathDot,
                 PathDotDot = settings.PathDotDot,
-                InvalidNodeNameCharacters = (char[])settings.InvalidNodeNameCharacters.Clone(),
-                InvalidNodeNames = (string[])settings.InvalidNodeNames.Clone(),
+                InvalidNodeNameCharacters = new HashSet<char>(settings.InvalidNodeNameCharacters),
+                InvalidNodeNames = new HashSet<string>(settings.InvalidNodeNames),
                 WildcardMatcher = settings.WildcardMatcher,
                 NodeListConditions = settings.NodeListConditions,
                 PrefixItem = settings.PrefixItem,

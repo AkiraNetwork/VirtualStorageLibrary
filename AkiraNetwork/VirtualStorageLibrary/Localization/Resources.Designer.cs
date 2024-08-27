@@ -187,6 +187,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Target path [{0}] is invalid. Forbidden characters are used. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidTargetPath {
+            get {
+                return ResourceManager.GetString("InvalidTargetPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The symbolic link path specified in the parameter must be an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LinkPathIsNotAbsolutePath {

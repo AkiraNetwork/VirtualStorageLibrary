@@ -51,7 +51,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         public void Constructor_WithParts_ReturnsCorrectPath()
         {
             // テストデータ
-            List<VirtualNodeName> parts = new() { "dir1", "dir2", "file" };
+            List<VirtualNodeName> parts = ["dir1", "dir2", "file"];
             string expected = "/dir1/dir2/file";
             
             // メソッドを実行
@@ -1286,7 +1286,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Act and Assert
             Exception err = Assert.ThrowsException<ArgumentException>(() => path.CompareTo(nonVirtualPathObject));
 
-            Assert.AreEqual("The object specified by the parameter is not of type VirtualPath. (Parameter 'obj')", err.Message);
+            Assert.AreEqual("The object specified by the parameter is not of type VirtualPath. (Parameter 'other')", err.Message);
 
             Debug.WriteLine(err.Message);
         }
@@ -1989,7 +1989,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             Debug.WriteLine(ex.Message);
 
-            Assert.AreEqual("The object specified by the parameter is not of type VirtualPath. (Parameter 'obj')", ex.Message);
+            Assert.AreEqual("The object specified by the parameter is not of type VirtualPath. (Parameter 'other')", ex.Message);
         }
 
         [TestMethod]
@@ -2001,6 +2001,111 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             int result = virtualPath1.CompareTo(obj);
             Assert.AreEqual(string.Compare(virtualPath1.Path, virtualPath2.Path, StringComparison.Ordinal), result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithValidPath_ReturnsTrue()
+        {
+            // Arrange
+            string path = "/dir1/dir2/dir3";
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithInvalidNodeName_ReturnsFalse()
+        {
+            // Arrange
+            VirtualStorageState.State.InvalidNodeNameCharacters.Add('@');
+            string path = "/dir1/dir2/@dir3";
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithEmptyPath_ReturnsFalse()
+        {
+            // Arrange
+            string path = string.Empty;
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithDotInPath_ReturnsTrue()
+        {
+            // Arrange
+            string path = "/dir1/dir/.";
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithDotDotInPath_ReturnsTrue()
+        {
+            // Arrange
+            string path = "/dir1/dir/..";
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithEmptyNodeName_ReturnsTrue()
+        {
+            // Arrange
+            string path = "/dir1//dir2";
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithOnlyRelativePaths_ReturnsTrue()
+        {
+            // Arrange
+            string path = "/./..";
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsValidPath_WithMultipleDots_ReturnsTrue()
+        {
+            // Arrange
+            string path = "/dir1/...";
+
+            // Act
+            bool result = VirtualPath.IsValidPath(path);
+
+            // Assert
+            Assert.IsTrue(result);
         }
     }
 }

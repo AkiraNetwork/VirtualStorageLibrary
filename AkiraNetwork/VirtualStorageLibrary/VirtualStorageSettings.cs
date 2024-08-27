@@ -105,7 +105,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <value>
         /// An array of characters that cannot be used in node names.
         /// </value>
-        public char[] InvalidNodeNameCharacters { get; set; }
+        public HashSet<Char> InvalidNodeNameCharacters { get; set; }
 
         /// <summary>
         /// Gets or sets an array of invalid node names.
@@ -113,7 +113,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <value>
         /// An array of node names that are not allowed in the virtual storage.
         /// </value>
-        public string[] InvalidNodeNames { get; set; }
+        public HashSet<string> InvalidNodeNames { get; set; }
 
         /// <summary>
         /// Gets or sets the wildcard matcher.

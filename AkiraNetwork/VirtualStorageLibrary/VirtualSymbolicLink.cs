@@ -75,6 +75,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="targetPath">The target path of the symbolic link.</param>
         public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath) : base(name)
         {
+            if (targetPath != null && !VirtualPath.IsValidPath(targetPath))
+            {
+                throw new ArgumentException(string.Format(Resources.InvalidTargetPath, targetPath), nameof(targetPath));
+            }
+
             _targetPath = targetPath;
         }
 
@@ -87,6 +92,10 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="updatedDate">The update date.</param>
         public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
+            if (targetPath != null && !VirtualPath.IsValidPath(targetPath))
+            {
+                throw new ArgumentException(string.Format(Resources.InvalidTargetPath, targetPath), nameof(targetPath));
+            }
             _targetPath = targetPath;
         }
 
@@ -157,7 +166,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
             CreatedDate = newLink.CreatedDate;
             UpdatedDate = DateTime.Now;
-            TargetPath = newLink.TargetPath;
+            _targetPath = newLink.TargetPath;
         }
     }
 }

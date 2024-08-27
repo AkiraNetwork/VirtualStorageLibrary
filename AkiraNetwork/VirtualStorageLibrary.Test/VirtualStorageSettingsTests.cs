@@ -21,7 +21,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
     [TestClass]
     public class VirtualStorageSettingsTests : VirtualTestBase
     {
-        private static readonly char[] InvalidCharsForTest = ['*', '?'];
+        private static readonly HashSet<char> InvalidCharsForTest = ['*', '?'];
 
         [TestInitialize]
         public override void TestInitialize()
@@ -41,12 +41,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             var settings = VirtualStorageSettings.Settings;
 
             // Assert
+            HashSet<char> expectedInvalidNodeNameCharacters = [settings.PathSeparator];
+            HashSet<string> expectedInvalidNodeNames = [settings.PathDot, settings.PathDotDot];
+
             Assert.AreEqual('/', settings.PathSeparator);
             Assert.AreEqual("/", settings.PathRoot);
             Assert.AreEqual(".", settings.PathDot);
             Assert.AreEqual("..", settings.PathDotDot);
-            CollectionAssert.AreEqual(new char[] { settings.PathSeparator }, settings.InvalidNodeNameCharacters);
-            CollectionAssert.AreEqual(new string[] { settings.PathDot, settings.PathDotDot }, settings.InvalidNodeNames);
+            Assert.IsTrue(settings.InvalidNodeNameCharacters.SetEquals(expectedInvalidNodeNameCharacters));
+            Assert.IsTrue(settings.InvalidNodeNames.SetEquals(expectedInvalidNodeNames));
             Assert.IsNotNull(settings.WildcardMatcher);
             Assert.AreEqual("item", settings.PrefixItem);
             Assert.AreEqual("dir", settings.PrefixDirectory);
@@ -94,7 +97,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             settings.InvalidNodeNameCharacters = InvalidCharsForTest;
 
             // Assert
-            CollectionAssert.AreEqual(InvalidCharsForTest, settings.InvalidNodeNameCharacters);
+            Assert.IsTrue(InvalidCharsForTest.SetEquals(settings.InvalidNodeNameCharacters));
         }
 
         [TestMethod]

@@ -228,4 +228,7 @@
   <data name="CannotChangeTargetPath" xml:space="preserve">
     <value>ストレージに関連付けられているリンクのターゲットパスは変更できません。 [{0}]</value>
   </data>
+  <data name="InvalidTargetPath" xml:space="preserve">
+    <value>ターゲットパス [{0}] は無効です。使用禁止の文字が使われています。</value>
+  </data>
 </root>

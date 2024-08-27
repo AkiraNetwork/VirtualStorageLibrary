@@ -755,22 +755,22 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <summary>
         /// Compares the instance's path with another object.
         /// </summary>
-        /// <param name="obj">The object to compare with.</param>
+        /// <param name="other">The object to compare with.</param>
         /// <returns>An integer indicating the relative order of the paths.</returns>
         /// <exception cref="ArgumentException">Thrown if the object is not a <see cref="VirtualPath"/>.</exception>
-        public int CompareTo(object? obj)
+        public int CompareTo(object? other)
         {
-            if (obj == null)
+            if (other == null)
             {
                 return 1;
             }
 
-            if (obj is not VirtualPath)
+            if (other is not VirtualPath)
             {
-                throw new ArgumentException(Resources.ParameterIsNotVirtualPath, nameof(obj));
+                throw new ArgumentException(Resources.ParameterIsNotVirtualPath, nameof(other));
             }
 
-            return CompareTo((VirtualPath)obj);
+            return CompareTo((VirtualPath)other);
         }
 
         /// <summary>
@@ -959,6 +959,37 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Checks if all node names in the specified <see cref="VirtualPath"/> are considered valid 
+        /// by <see cref="VirtualNodeName.IsValidNodeName"/>. Returns <c>false</c> immediately if an invalid node name is found.
+        /// </summary>
+        /// <param name="path">The <see cref="VirtualPath"/> object to validate.</param>
+        /// <returns>
+        /// <c>true</c> if all node names are valid; otherwise, <c>false</c> if any invalid node name is found.
+        /// </returns>
+        public static bool IsValidPath(VirtualPath path)
+        {
+            if (path.IsEmpty)
+            {
+                return false;
+            }
+
+            foreach (var part in path.PartsList)
+            {
+                // Dots and double dots in the path are considered as relative paths.
+                if (part.IsDot || part.IsDotDot)
+                {
+                    continue;
+                }
+
+                if (!VirtualNodeName.IsValidNodeName(part))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
