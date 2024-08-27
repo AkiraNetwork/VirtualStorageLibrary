@@ -245,6 +245,28 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
+        /// Retrieves the unique identifier (VirtualID) of the node located at the specified path.
+        /// </summary>
+        /// <param name="path">
+        /// The <see cref="VirtualPath"/> representing the location of the node whose VirtualID is to be retrieved.
+        /// </param>
+        /// <param name="followLinks">
+        /// A boolean value indicating whether to follow symbolic links while resolving the node.
+        /// If set to <c>true</c>, the method follows symbolic links to resolve the target node.
+        /// If set to <c>false</c>, symbolic links are not followed.
+        /// The default value is <c>false</c>.
+        /// </param>
+        /// <returns>
+        /// The <see cref="VirtualID"/> of the node located at the specified path.
+        /// </returns>
+        public VirtualID GetNodeID(VirtualPath path, bool followLinks = false)
+        {
+            path = ConvertToAbsolutePath(path).NormalizePath();
+            VirtualNode node = GetNode(path, followLinks);
+            return node.VID;
+        }
+
+        /// <summary>
         /// Gets the node type at the specified path.
         /// </summary>
         /// <param name="path">The node's path.</param>

@@ -9774,6 +9774,58 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(err.Message);
         }
 
+        // ストレージから参照されている状態でリンクのターゲットを変更した時、例外が発生する事を確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void Update_SetNewTargetWithRef_Successful()
+        {
+            // arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/link1", "/dir1/item1");
+
+            // act & assert
+            VirtualSymbolicLink link = vs.GetSymbolicLink("/link1");
+            VirtualSymbolicLink newLink = new("/link1", "/dir2/item1");
+            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                link.Update(newLink);
+            });
+
+            Debug.WriteLine(ex.Message);
+
+            Assert.AreEqual("Cannot change the target path of the links associated with the storage. [link1]", ex.Message);
+        }
+
+        // ストレージから参照されてない状態でリンクのターゲットを変更した時、正常に変更される事を確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void Update_SetNewTarget_Successful()
+        {
+            // arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualSymbolicLink link1 = new("/link1", "/dir1/item1");
+            VirtualSymbolicLink newLink = new("/link1", "/dir2/item1");
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // act
+            link1.Update(newLink);
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // assert
+            Assert.AreEqual("/dir2/item1", (string)link1.TargetPath);
+        }
+
         // リンクのターゲットを変更した時、ターゲットパスが変更されていることを確認するテスト
         [TestMethod]
         [TestCategory("SetLinkPathTarget")]

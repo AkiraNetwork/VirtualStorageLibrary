@@ -29,7 +29,15 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public VirtualDirectory this[VirtualPath path, bool followLinks = true]
         {
             get => GetDirectory(path, followLinks);
-            set => SetNode(path, value);
+            set
+            {
+                // Compare the node ID of the target with the source.
+                if (GetNodeID(path) != value.VID)
+                {
+                    // If they are different, set it.
+                    SetNode(path, value);
+                }
+            }
         }
     }
 }
