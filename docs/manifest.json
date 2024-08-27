@@ -292,10 +292,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.yml",
       "output": {
         ".html": {
           "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html"
         }
       },
       "version": ""
@@ -465,6 +485,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/burner.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/burner.jpg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/burner.png",
       "output": {
         "resource": {
@@ -589,6 +619,106 @@
       "output": {
         "resource": {
           "relative_path": "images/tree_51x51.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_banner_960x540.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_banner_960x540.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_banner_960x540_1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_banner_960x540_1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_banner_960x540_2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_banner_960x540_2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_banner_960x540_3.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_banner_960x540_3.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_banner_960x540_4.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_banner_960x540_4.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_banner_960x540_5.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_banner_960x540_5.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_banner_960x540_6.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_banner_960x540_6.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_earthtones_240x240_trans.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_earthtones_240x240_trans.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tree_earthtones_512x512.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tree_earthtones_512x512.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/treetree_earthtones.webp",
+      "output": {
+        "resource": {
+          "relative_path": "images/treetree_earthtones.webp"
         }
       },
       "version": ""

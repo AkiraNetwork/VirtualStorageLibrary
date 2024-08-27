@@ -35,7 +35,7 @@ items:
   - System.Object
   - System.Exception
   derivedClasses:
-  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
   implements:
   - System.Runtime.Serialization.ISerializable
   inheritedMembers:

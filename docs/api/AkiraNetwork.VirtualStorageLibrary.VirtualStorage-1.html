@@ -1235,6 +1235,58 @@ other than the terminal node in the virtual path are symbolic links.
       </tr>
     </tbody>
   </table>
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeID_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeID*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeID_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeID(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">GetNodeID(VirtualPath, bool)</h4>
+  <div class="markdown level1 summary"><p>Retrieves the unique identifier (VirtualID) of the node located at the specified path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VirtualID GetNodeID(VirtualPath path, bool followLinks = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a> representing the location of the node whose VirtualID is to be retrieved.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">followLinks</span></td>
+        <td><p>A boolean value indicating whether to follow symbolic links while resolving the node.
+If set to <code>true</code>, the method follows symbolic links to resolve the target node.
+If set to <code>false</code>, symbolic links are not followed.
+The default value is <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualID.html">VirtualID</a></td>
+        <td><p>The <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualID.html">VirtualID</a> of the node located at the specified path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeType_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">GetNodeType(VirtualPath, bool)</h4>
   <div class="markdown level1 summary"><p>Gets the node type at the specified path.</p>
@@ -1999,6 +2051,39 @@ terminal node) in the path are symbolic links.
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeType.html">VirtualNodeType</a></td>
         <td><span class="parametername">nodeType</span></td>
         <td><p>The target node type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetPath*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)">SetLinkTargetPath(VirtualPath, VirtualPath)</h4>
+  <div class="markdown level1 summary"><p>Sets the target path for the specified symbolic link and updates the link dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLinkTargetPath(VirtualPath linkPath, VirtualPath targetPath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">linkPath</span></td>
+        <td><p>The path where the symbolic link is set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
+        <td><span class="parametername">targetPath</span></td>
+        <td><p>The target path referenced by the symbolic link.</p>
 </td>
       </tr>
     </tbody>

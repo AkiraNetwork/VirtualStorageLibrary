@@ -5,11 +5,11 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class VirtualException | VirtualStorageLibrary </title>
+      <title>Class VirtualNotFoundException | VirtualStorageLibrary </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class VirtualException | VirtualStorageLibrary ">
+      <meta name="title" content="Class VirtualNotFoundException | VirtualStorageLibrary ">
     
-    <meta name="description" content="The base class for exceptions that occur within the virtual storage library.">
+    <meta name="description" content="The base exception that is thrown when an entity is not found in the virtual storage.">
       <link rel="shortcut icon" href="../images/tree_32x32.svg">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -76,20 +76,22 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException">
+            <article class="content wrap" id="_content" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException">
 
 
 
-  <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualException" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException" class="text-break">Class VirtualException</h1>
-  <div class="markdown level0 summary"><p>The base class for exceptions that occur within the virtual storage library.</p>
+  <h1 id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException" class="text-break">Class VirtualNotFoundException</h1>
+  <div class="markdown level0 summary"><p>The base exception that is thrown when an entity is not found in the virtual storage.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></div>
-    <div class="level2"><span class="xref">VirtualException</span></div>
-      <div class="level3"><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html">VirtualNotFoundException</a></div>
+    <div class="level2"><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualException.html">VirtualException</a></div>
+    <div class="level3"><span class="xref">VirtualNotFoundException</span></div>
+      <div class="level4"><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html">VirtualNodeNotFoundException</a></div>
+      <div class="level4"><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html">VirtualPathNotFoundException</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -151,29 +153,29 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="AkiraNetwork.html">AkiraNetwork</a>.<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.html">VirtualStorageLibrary</a></h6>
   <h6><strong>Assembly</strong>: VirtualStorageLibrary.dll</h6>
-  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualException_syntax">Syntax</h5>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class VirtualException : Exception, ISerializable</code></pre>
+    <pre><code class="lang-csharp hljs">public class VirtualNotFoundException : VirtualException, ISerializable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
-  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualException__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor*"></a>
-  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualException__ctor" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor">VirtualException()</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualException.html">VirtualException</a> class.</p>
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor">VirtualNotFoundException()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html">VirtualNotFoundException</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualException()</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualNotFoundException()</code></pre>
   </div>
-  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualException__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor*"></a>
-  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualException__ctor_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor(System.String)">VirtualException(string)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualException.html">VirtualException</a> class with a specified error message.</p>
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String)">VirtualNotFoundException(string)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html">VirtualNotFoundException</a> class with a specified error message.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualException(string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualNotFoundException(string message)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -193,14 +195,14 @@
       </tr>
     </tbody>
   </table>
-  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualException__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor*"></a>
-  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualException__ctor_System_String_System_Exception_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualException.#ctor(System.String,System.Exception)">VirtualException(string, Exception)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualException.html">VirtualException</a> class with a specified error message and a reference to the inner exception that is the cause of this exception.</p>
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_System_String_System_Exception_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String,System.Exception)">VirtualNotFoundException(string, Exception)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html">VirtualNotFoundException</a> class with a specified error message and a reference to the inner exception that is the cause of this exception.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualException(string message, Exception innerException)</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualNotFoundException(string message, Exception innerException)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">

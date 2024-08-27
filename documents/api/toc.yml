@@ -43,8 +43,12 @@ items:
     name: VirtualNodeType
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
     name: VirtualNodeTypeFilter
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+    name: VirtualNotFoundException
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
     name: VirtualPath
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
+    name: VirtualPathNotFoundException
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
     name: VirtualSortCondition<T>
   - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions

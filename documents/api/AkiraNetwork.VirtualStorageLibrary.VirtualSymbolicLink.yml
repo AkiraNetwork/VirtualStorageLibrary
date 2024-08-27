@@ -97,7 +97,7 @@ items:
   summary: Gets or sets the target path of the symbolic link.
   example: []
   syntax:
-    content: public VirtualPath? TargetPath { get; set; }
+    content: public VirtualPath? TargetPath { get; }
     parameters: []
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath

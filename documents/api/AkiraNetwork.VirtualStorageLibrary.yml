@@ -24,7 +24,9 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeType
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  - AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
   - AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings
@@ -96,12 +98,25 @@ references:
   name: VirtualException
   nameWithType: VirtualException
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualException
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
+  name: VirtualNotFoundException
+  nameWithType: VirtualNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
   href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
   name: VirtualNodeNotFoundException
   nameWithType: VirtualNodeNotFoundException
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html
+  name: VirtualPathNotFoundException
+  nameWithType: VirtualPathNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorageExtensions
   parent: AkiraNetwork.VirtualStorageLibrary

@@ -1,41 +1,43 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  id: VirtualNodeNotFoundException
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  id: VirtualNotFoundException
   parent: AkiraNetwork.VirtualStorageLibrary
   children:
-  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor
-  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor(System.String)
-  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor(System.String,System.Exception)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
-  name: VirtualNodeNotFoundException
-  nameWithType: VirtualNodeNotFoundException
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  name: VirtualNotFoundException
+  nameWithType: VirtualNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
   type: Class
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
       branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: VirtualNodeNotFoundException
+    id: VirtualNotFoundException
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 68
+    startLine: 44
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: The exception that is thrown when a node is not found in the virtual storage.
+  summary: The base exception that is thrown when an entity is not found in the virtual storage.
   example: []
   syntax:
-    content: 'public class VirtualNodeNotFoundException : VirtualNotFoundException, ISerializable'
-    content.vb: Public Class VirtualNodeNotFoundException Inherits VirtualNotFoundException Implements ISerializable
+    content: 'public class VirtualNotFoundException : VirtualException, ISerializable'
+    content.vb: Public Class VirtualNotFoundException Inherits VirtualException Implements ISerializable
   inheritance:
   - System.Object
   - System.Exception
   - AkiraNetwork.VirtualStorageLibrary.VirtualException
-  - AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  derivedClasses:
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  - AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
   implements:
   - System.Runtime.Serialization.ISerializable
   inheritedMembers:
@@ -57,17 +59,17 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   extensionMethods:
-  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor
   id: '#ctor'
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
   langs:
   - csharp
   - vb
-  name: VirtualNodeNotFoundException()
-  nameWithType: VirtualNodeNotFoundException.VirtualNodeNotFoundException()
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.VirtualNodeNotFoundException()
+  name: VirtualNotFoundException()
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException()
   type: Constructor
   source:
     remote:
@@ -76,29 +78,29 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 73
+    startLine: 49
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException" data-throw-if-not-resolved="false"></xref> class.
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException" data-throw-if-not-resolved="false"></xref> class.
   example: []
   syntax:
-    content: public VirtualNodeNotFoundException()
+    content: public VirtualNotFoundException()
     content.vb: Public Sub New()
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor*
-  nameWithType.vb: VirtualNodeNotFoundException.New()
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.New()
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*
+  nameWithType.vb: VirtualNotFoundException.New()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New()
   name.vb: New()
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor(System.String)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor(System.String)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String)
   id: '#ctor(System.String)'
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
   langs:
   - csharp
   - vb
-  name: VirtualNodeNotFoundException(string)
-  nameWithType: VirtualNodeNotFoundException.VirtualNodeNotFoundException(string)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.VirtualNodeNotFoundException(string)
+  name: VirtualNotFoundException(string)
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException(string)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException(string)
   type: Constructor
   source:
     remote:
@@ -107,33 +109,33 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 79
+    startLine: 55
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException" data-throw-if-not-resolved="false"></xref> class with a specified error message.
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException" data-throw-if-not-resolved="false"></xref> class with a specified error message.
   example: []
   syntax:
-    content: public VirtualNodeNotFoundException(string message)
+    content: public VirtualNotFoundException(string message)
     parameters:
     - id: message
       type: System.String
       description: The error message.
     content.vb: Public Sub New(message As String)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor*
-  nameWithType.vb: VirtualNodeNotFoundException.New(String)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.New(String)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*
+  nameWithType.vb: VirtualNotFoundException.New(String)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New(String)
   name.vb: New(String)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor(System.String,System.Exception)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor(System.String,System.Exception)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String,System.Exception)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
   langs:
   - csharp
   - vb
-  name: VirtualNodeNotFoundException(string, Exception)
-  nameWithType: VirtualNodeNotFoundException.VirtualNodeNotFoundException(string, Exception)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.VirtualNodeNotFoundException(string, System.Exception)
+  name: VirtualNotFoundException(string, Exception)
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException(string, Exception)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException(string, System.Exception)
   type: Constructor
   source:
     remote:
@@ -142,14 +144,14 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualException.cs
-    startLine: 86
+    startLine: 62
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
-  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException" data-throw-if-not-resolved="false"></xref> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException" data-throw-if-not-resolved="false"></xref> class with a specified error message and a reference to the inner exception that is the cause of this exception.
   example: []
   syntax:
-    content: public VirtualNodeNotFoundException(string message, Exception innerException)
+    content: public VirtualNotFoundException(string message, Exception innerException)
     parameters:
     - id: message
       type: System.String
@@ -158,9 +160,9 @@ items:
       type: System.Exception
       description: The exception that is the cause of this exception.
     content.vb: Public Sub New(message As String, innerException As Exception)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor*
-  nameWithType.vb: VirtualNodeNotFoundException.New(String, Exception)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.New(String, System.Exception)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*
+  nameWithType.vb: VirtualNotFoundException.New(String, Exception)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New(String, System.Exception)
   name.vb: New(String, Exception)
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
@@ -211,13 +213,6 @@ references:
   name: VirtualException
   nameWithType: VirtualException
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualException
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
-  parent: AkiraNetwork.VirtualStorageLibrary
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
-  name: VirtualNotFoundException
-  nameWithType: VirtualNotFoundException
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
 - uid: System.Runtime.Serialization.ISerializable
   commentId: T:System.Runtime.Serialization.ISerializable
   parent: System.Runtime.Serialization
@@ -535,46 +530,46 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.object
   - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1
   commentId: M:AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
   parent: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter
   definition: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(``0)
   href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
-  name: GenerateSingleTableDebugText<VirtualNodeNotFoundException>(VirtualNodeNotFoundException)
-  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<VirtualNodeNotFoundException>(VirtualNodeNotFoundException)
-  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException>(AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException)
-  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of VirtualNodeNotFoundException)(VirtualNodeNotFoundException)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException)(AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException)
-  name.vb: GenerateSingleTableDebugText(Of VirtualNodeNotFoundException)(VirtualNodeNotFoundException)
+  name: GenerateSingleTableDebugText<VirtualNotFoundException>(VirtualNotFoundException)
+  nameWithType: VirtualTextFormatter.GenerateSingleTableDebugText<VirtualNotFoundException>(VirtualNotFoundException)
+  fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText<AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException>(AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException)
+  nameWithType.vb: VirtualTextFormatter.GenerateSingleTableDebugText(Of VirtualNotFoundException)(VirtualNotFoundException)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText(Of AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException)(AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException)
+  name.vb: GenerateSingleTableDebugText(Of VirtualNotFoundException)(VirtualNotFoundException)
   spec.csharp:
-  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException)
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException)
     name: GenerateSingleTableDebugText
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
   - name: <
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-    name: VirtualNodeNotFoundException
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+    name: VirtualNotFoundException
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
   - name: '>'
   - name: (
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-    name: VirtualNodeNotFoundException
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+    name: VirtualNotFoundException
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
   - name: )
   spec.vb:
-  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException)
+  - uid: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateSingleTableDebugText``1(AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException)
     name: GenerateSingleTableDebugText
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_
   - name: (
   - name: Of
   - name: " "
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-    name: VirtualNodeNotFoundException
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+    name: VirtualNotFoundException
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
   - name: )
   - name: (
-  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-    name: VirtualNodeNotFoundException
-    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+    name: VirtualNotFoundException
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
   - name: )
 - uid: System
   commentId: N:System
@@ -688,20 +683,21 @@ references:
   - uid: AkiraNetwork.VirtualStorageLibrary.Utilities
     name: Utilities
     href: AkiraNetwork.VirtualStorageLibrary.Utilities.html
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html
-  name: VirtualNodeNotFoundException
-  nameWithType: VirtualNodeNotFoundException
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.#ctor
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeNotFoundException__ctor
-  name: VirtualNodeNotFoundException
-  nameWithType: VirtualNodeNotFoundException.VirtualNodeNotFoundException
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.VirtualNodeNotFoundException
-  nameWithType.vb: VirtualNodeNotFoundException.New
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNodeNotFoundException.New
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  parent: AkiraNetwork.VirtualStorageLibrary
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
+  name: VirtualNotFoundException
+  nameWithType: VirtualNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor
+  name: VirtualNotFoundException
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException
+  nameWithType.vb: VirtualNotFoundException.New
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New
   name.vb: New
 - uid: System.String
   commentId: T:System.String

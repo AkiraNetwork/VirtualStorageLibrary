@@ -2599,6 +2599,49 @@ references:
   commentId: F:AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.SymbolicLink
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter.SymbolicLink
   nameWithType: VirtualNodeTypeFilter.SymbolicLink
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  name: VirtualNotFoundException
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException
+  nameWithType: VirtualNotFoundException
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor
+  name: VirtualNotFoundException()
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor
+  name.vb: New()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New()
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException()
+  nameWithType.vb: VirtualNotFoundException.New()
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String)
+  name: VirtualNotFoundException(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_System_String_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String)
+  name.vb: New(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New(String)
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException(string)
+  nameWithType.vb: VirtualNotFoundException.New(String)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String,System.Exception)
+  name: VirtualNotFoundException(string, Exception)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_System_String_System_Exception_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException(string, System.Exception)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New(String, System.Exception)
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException(string, Exception)
+  nameWithType.vb: VirtualNotFoundException.New(String, Exception)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor*
+  name: VirtualNotFoundException
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualNotFoundException__ctor_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.VirtualNotFoundException
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualNotFoundException.New
+  nameWithType: VirtualNotFoundException.VirtualNotFoundException
+  nameWithType.vb: VirtualNotFoundException.New
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath
   name: VirtualPath
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html
@@ -3266,6 +3309,49 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualPath.<>
   nameWithType: VirtualPath.operator !=
   nameWithType.vb: VirtualPath.<>
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
+  name: VirtualPathNotFoundException
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException
+  nameWithType: VirtualPathNotFoundException
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor
+  name: VirtualPathNotFoundException()
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualPathNotFoundException__ctor
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor
+  name.vb: New()
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.VirtualPathNotFoundException()
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.New()
+  nameWithType: VirtualPathNotFoundException.VirtualPathNotFoundException()
+  nameWithType.vb: VirtualPathNotFoundException.New()
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor(System.String)
+  name: VirtualPathNotFoundException(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualPathNotFoundException__ctor_System_String_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor(System.String)
+  name.vb: New(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.VirtualPathNotFoundException(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.New(String)
+  nameWithType: VirtualPathNotFoundException.VirtualPathNotFoundException(string)
+  nameWithType.vb: VirtualPathNotFoundException.New(String)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor(System.String,System.Exception)
+  name: VirtualPathNotFoundException(string, Exception)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualPathNotFoundException__ctor_System_String_System_Exception_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.VirtualPathNotFoundException(string, System.Exception)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.New(String, System.Exception)
+  nameWithType: VirtualPathNotFoundException.VirtualPathNotFoundException(string, Exception)
+  nameWithType.vb: VirtualPathNotFoundException.New(String, Exception)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor*
+  name: VirtualPathNotFoundException
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.html#AkiraNetwork_VirtualStorageLibrary_VirtualPathNotFoundException__ctor_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.VirtualPathNotFoundException
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualPathNotFoundException.New
+  nameWithType: VirtualPathNotFoundException.VirtualPathNotFoundException
+  nameWithType.vb: VirtualPathNotFoundException.New
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition`1
   name: VirtualSortCondition<T>
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html
@@ -4098,6 +4184,24 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNode
   nameWithType: VirtualStorage<T>.GetNode
   nameWithType.vb: VirtualStorage(Of T).GetNode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeID(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  name: GetNodeID(VirtualPath, bool)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeID_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeID(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  name.vb: GetNodeID(VirtualPath, Boolean)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodeID(AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodeID(AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
+  nameWithType: VirtualStorage<T>.GetNodeID(VirtualPath, bool)
+  nameWithType.vb: VirtualStorage(Of T).GetNodeID(VirtualPath, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeID*
+  name: GetNodeID
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeID_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeID
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodeID
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodeID
+  nameWithType: VirtualStorage<T>.GetNodeID
+  nameWithType.vb: VirtualStorage(Of T).GetNodeID
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   name: GetNodeType(VirtualPath, bool)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodeType_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -4381,6 +4485,23 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetLinkTargetNodeType
   nameWithType: VirtualStorage<T>.SetLinkTargetNodeType
   nameWithType.vb: VirtualStorage(Of T).SetLinkTargetNodeType
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name: SetLinkTargetPath(VirtualPath, VirtualPath)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetLinkTargetPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetLinkTargetPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  nameWithType: VirtualStorage<T>.SetLinkTargetPath(VirtualPath, VirtualPath)
+  nameWithType.vb: VirtualStorage(Of T).SetLinkTargetPath(VirtualPath, VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetPath*
+  name: SetLinkTargetPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetLinkTargetPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetLinkTargetPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.SetLinkTargetPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).SetLinkTargetPath
+  nameWithType: VirtualStorage<T>.SetLinkTargetPath
+  nameWithType.vb: VirtualStorage(Of T).SetLinkTargetPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.SetNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   name: SetNode(VirtualPath, VirtualNode)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_SetNode_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNode_
