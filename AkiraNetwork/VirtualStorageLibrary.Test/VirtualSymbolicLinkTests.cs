@@ -93,6 +93,53 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualSymbolicLink_ConstructorWithInvalidTargetPath_ThrowsArgumentException()
+        {
+            // Arrange
+            VirtualStorageState.State.InvalidNodeNameCharacters.Add('@');
+            VirtualNodeName name = "TestLink";
+            VirtualPath targetPath = "/dir1/dir2/@dir3";
+
+            // Act & Assert
+            var ex = Assert.ThrowsException<ArgumentException>(() => 
+            { 
+                new VirtualSymbolicLink(name, targetPath);
+            });
+            Debug.WriteLine(ex.Message);
+            Assert.AreEqual("Target path [/dir1/dir2/@dir3] is invalid. Forbidden characters are used. (Parameter 'targetPath')", ex.Message);
+        }
+
+        [TestMethod]
+        public void VirtualSymbolicLink_ConstructorWithValidTargetPathDot_Successful()
+        {
+            // Arrange
+            VirtualNodeName name = "TestLink";
+            VirtualPath targetPath = "./dir1/dir2";
+
+            // Act
+            VirtualSymbolicLink link = new VirtualSymbolicLink(name, targetPath);
+
+            // Assert
+            Assert.AreEqual(name, link.Name);
+            Assert.AreEqual(targetPath, link.TargetPath);
+        }
+
+        [TestMethod]
+        public void VirtualSymbolicLink_ConstructorWithValidTargetPathDotDot_Successful()
+        {
+            // Arrange
+            VirtualNodeName name = "TestLink";
+            VirtualPath targetPath = "../dir1/dir2";
+
+            // Act
+            VirtualSymbolicLink link = new VirtualSymbolicLink(name, targetPath);
+
+            // Assert
+            Assert.AreEqual(name, link.Name);
+            Assert.AreEqual(targetPath, link.TargetPath);
+        }
+
+        [TestMethod]
         public void VirtualSymbolicLink_DeepClone_CreatesExactCopy()
         {
             // Arrange
