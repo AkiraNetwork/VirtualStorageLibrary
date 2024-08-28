@@ -7357,6 +7357,34 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("ExpandPath")]
+        public void ExpandPath_WithInvalidWildcard_ThrowException()
+        {
+            // VirtualStorage インスタンスのセットアップ
+            VirtualStorage<string> vs = new();
+            ExpandPath_SetData(vs);
+
+            // 有効なワイルドカードの場合
+            var pathWithWildcard = "/dir1/file*.txt";
+            var paths = vs.ExpandPath(pathWithWildcard).ToList();
+            Debug.WriteLine($"\nValid paths: {pathWithWildcard}");
+            foreach (var path in paths)
+            {
+                Debug.WriteLine(path);
+            }
+
+            // 無効なワイルドカードの場合
+            pathWithWildcard = "/dir1/file[abc.txt";
+            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                var paths = vs.ExpandPath(pathWithWildcard).ToList();
+            });
+            Debug.WriteLine($"\nInvalid paths: {pathWithWildcard}");
+            Debug.WriteLine(ex.Message);
+            Assert.AreEqual("Invalid wildcard pattern found in path [/dir1/file[abc.txt].", ex.Message);
+        }
+
+        [TestMethod]
         [TestCategory("GetNodeType")]
         public void GetNodeType_ShouldReturnDirectoryForDirectoryPath()
         {

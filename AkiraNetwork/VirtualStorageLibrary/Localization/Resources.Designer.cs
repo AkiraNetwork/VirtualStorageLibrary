@@ -196,6 +196,15 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
+        ///   Invalid wildcard pattern found in path [{0}]. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidWildcardPatternInPath {
+            get {
+                return ResourceManager.GetString("InvalidWildcardPatternInPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The symbolic link path specified in the parameter must be an absolute path. [{0}] に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LinkPathIsNotAbsolutePath {

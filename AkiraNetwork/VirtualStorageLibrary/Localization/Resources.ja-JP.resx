@@ -231,4 +231,7 @@
   <data name="InvalidTargetPath" xml:space="preserve">
     <value>ターゲットパス [{0}] は無効です。使用禁止の文字が使われています。</value>
   </data>
+  <data name="InvalidWildcardPatternInPath" xml:space="preserve">
+    <value>無効なワイルドカードパターンがパス [{0}] に含まれています。</value>
+  </data>
 </root>

@@ -93,5 +93,31 @@ namespace AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
             // Uses the pattern string as is for regular expression matching
             return Regex.IsMatch(nodeName, pattern);
         }
+
+        /// <summary>
+        /// Determines whether the specified wildcard pattern is valid according to the rules 
+        /// defined by the wildcard matcher implementation. 
+        /// This method checks if the wildcard pattern adheres to the syntax rules defined 
+        /// by the wildcard matcher implementation. If the pattern is not valid, 
+        /// this method returns <c>false</c>.
+        /// </summary>
+        /// <param name="pattern">The wildcard pattern to validate.</param>
+        /// <returns>
+        /// <c>true</c> if the pattern is a valid wildcard pattern; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsValidWildcardPattern(string pattern)
+        {
+            try
+            {
+                // Uses the pattern string as is for regular expression matching
+                _ = new Regex(pattern);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                // If the regex pattern is not valid
+                return false;
+            }
+        }
     }
 }

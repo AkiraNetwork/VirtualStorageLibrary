@@ -81,5 +81,12 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="pattern">The pattern to compare against.</param>
         /// <returns>True if the node name matches the pattern; otherwise, false.</returns>
         bool PatternMatcher(string nodeName, string pattern);
+
+        /// <summary>
+        /// Checks if the provided wildcard pattern is valid.
+        /// </summary>
+        /// <param name="pattern">The wildcard pattern to validate.</param>
+        /// <returns>True if the pattern is valid; otherwise, false.</returns>
+        bool IsValidWildcardPattern(string pattern);
     }
 }

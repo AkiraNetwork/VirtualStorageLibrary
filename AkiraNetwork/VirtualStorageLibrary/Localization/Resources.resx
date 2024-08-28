@@ -269,4 +269,8 @@
     <value>Target path [{0}] is invalid. Forbidden characters are used.</value>
     <comment>Notifies if the target path contains invalid characters that are not allowed.</comment>
   </data>
+  <data name="InvalidWildcardPatternInPath" xml:space="preserve">
+    <value>Invalid wildcard pattern found in path [{0}].</value>
+    <comment>Notifies if an invalid wildcard pattern is detected during the validation of the specified path.</comment>
+  </data>
 </root>

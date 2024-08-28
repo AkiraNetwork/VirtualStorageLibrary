@@ -113,5 +113,54 @@ namespace AkiraNetwork.VirtualStorageLibrary.WildcardMatchers
             // Perform matching using the constructed regular expression
             return Regex.IsMatch(nodeName, regexPattern);
         }
+
+        /// <summary>
+        /// Determines whether the specified wildcard pattern is valid according to the rules 
+        /// defined by the wildcard matcher implementation. 
+        /// This method checks if the wildcard pattern adheres to the syntax rules defined 
+        /// by the wildcard matcher implementation. If the pattern is not valid, 
+        /// this method returns <c>false</c>.
+        /// </summary>
+        /// <param name="pattern">The wildcard pattern to validate.</param>
+        /// <returns>
+        /// <c>true</c> if the pattern is a valid wildcard pattern; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsValidWildcardPattern(string pattern)
+        {
+            try
+            {
+                string regexPattern = "^";
+                for (int i = 0; i < pattern.Length; i++)
+                {
+                    if (pattern[i] == '`' && i + 1 < pattern.Length && Wildcards.Contains(pattern[i + 1].ToString()))
+                    {
+                        regexPattern += Regex.Escape(pattern[i + 1].ToString());
+                        i++; // Skip the escaped character
+                    }
+                    else
+                    {
+                        string currentChar = pattern[i].ToString();
+                        if (WildcardDictionary.TryGetValue(currentChar, out string? value))
+                        {
+                            regexPattern += value;
+                        }
+                        else
+                        {
+                            regexPattern += Regex.Escape(currentChar);
+                        }
+                    }
+                }
+                regexPattern += "$";
+
+                // Compiling the regex pattern to ensure it is valid
+                _ = new Regex(regexPattern);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                // If the regex pattern is not valid
+                return false;
+            }
+        }
     }
 }

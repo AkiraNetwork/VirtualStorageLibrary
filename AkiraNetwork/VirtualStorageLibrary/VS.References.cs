@@ -357,11 +357,42 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public IEnumerable<VirtualPath> ExpandPath(VirtualPath path, VirtualNodeTypeFilter filter = VirtualNodeTypeFilter.All, bool followLinks = true, bool resolveLinks = true)
         {
             path = ConvertToAbsolutePath(path).NormalizePath();
+
+            // Throws an exception if the path contains an invalid wildcard pattern.
+            if (!IsValidWildcardPath(path))
+            {
+                throw new InvalidOperationException(string.Format(Resources.InvalidWildcardPatternInPath, path));
+            }
+
             VirtualPath fixedPath = path.FixedPath;
             IEnumerable<VirtualNodeContext> nodeContexts = ExpandPathTree(path, filter, followLinks, resolveLinks);
             IEnumerable<VirtualPath> resolvedPaths = nodeContexts.Select(info => (fixedPath + info.TraversalPath).NormalizePath());
 
             return resolvedPaths;
+        }
+
+        /// <summary>
+        /// Checks if all parts of the given path are valid wildcard patterns.
+        /// </summary>
+        /// <param name="path">The <see cref="VirtualPath"/> object to validate.</param>
+        /// <returns>True if all parts of the path are valid wildcard patterns; otherwise, false.</returns>
+        public bool IsValidWildcardPath(VirtualPath path)
+        {
+            IVirtualWildcardMatcher? wildcardMatcher = VirtualStorageState.State.WildcardMatcher;
+            if (wildcardMatcher == null)
+            {
+                return true;
+            }
+
+            foreach (var node in path.PartsList)
+            {
+                // 各ノード名が有効なワイルドカードパターンかどうかをチェック
+                if (!wildcardMatcher.IsValidWildcardPattern(node.ToString()))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
