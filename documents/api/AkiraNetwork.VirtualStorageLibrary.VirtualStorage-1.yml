@@ -35,6 +35,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)
@@ -2131,6 +2132,43 @@ items:
   nameWithType.vb: VirtualStorage(Of T).ExpandPath(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ExpandPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
   name.vb: ExpandPath(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
+  langs:
+  - csharp
+  - vb
+  name: IsValidWildcardPath(VirtualPath)
+  nameWithType: VirtualStorage<T>.IsValidWildcardPath(VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
+      branch: master
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: IsValidWildcardPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
+    startLine: 378
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks if all parts of the given path are valid wildcard patterns.
+  example: []
+  syntax:
+    content: public bool IsValidWildcardPath(VirtualPath path)
+    parameters:
+    - id: path
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object to validate.
+    return:
+      type: System.Boolean
+      description: True if all parts of the path are valid wildcard patterns; otherwise, false.
+    content.vb: Public Function IsValidWildcardPath(path As VirtualPath) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath*
+  nameWithType.vb: VirtualStorage(Of T).IsValidWildcardPath(VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   id: NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
@@ -2149,7 +2187,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 372
+    startLine: 403
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2190,7 +2228,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 385
+    startLine: 416
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2231,7 +2269,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 403
+    startLine: 434
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2272,7 +2310,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 417
+    startLine: 448
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -4039,6 +4077,14 @@ references:
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.ExpandPath
   nameWithType.vb: VirtualStorage(Of T).ExpandPath
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ExpandPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_IsValidWildcardPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: IsValidWildcardPath
+  nameWithType: VirtualStorage<T>.IsValidWildcardPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.IsValidWildcardPath
+  nameWithType.vb: VirtualStorage(Of T).IsValidWildcardPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).IsValidWildcardPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_NodeExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_

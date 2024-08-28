@@ -129,7 +129,7 @@ and maintains the current settings and state.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public char[] InvalidNodeNameCharacters { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public HashSet&lt;char&gt; InvalidNodeNameCharacters { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -141,7 +141,7 @@ and maintains the current settings and state.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><p>An array of characters that are invalid in node names.</p>
 </td>
       </tr>
@@ -154,7 +154,7 @@ and maintains the current settings and state.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] InvalidNodeNames { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public HashSet&lt;string&gt; InvalidNodeNames { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -166,7 +166,7 @@ and maintains the current settings and state.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
         <td><p>An array of invalid node names.</p>
 </td>
       </tr>
@@ -490,6 +490,36 @@ Used for auto-generating node names.</p>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition-1.html">VirtualSortCondition</a>&lt;<a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html">VirtualNode</a>&gt;&gt;</td>
         <td><span class="parametername">sortConditions</span></td>
         <td><p>The conditions for sorting nodes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetWildcardMatcher_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetWildcardMatcher_AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)">SetWildcardMatcher(IVirtualWildcardMatcher)</h4>
+  <div class="markdown level1 summary"><p>Sets the wildcard matcher.
+This method configures the matcher used for searching and filtering node names
+with the specified wildcard matcher. By setting the wildcard matcher, you can
+easily search for nodes that match specific patterns.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetWildcardMatcher(IVirtualWildcardMatcher wildcardMatcher)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html">IVirtualWildcardMatcher</a></td>
+        <td><span class="parametername">wildcardMatcher</span></td>
+        <td><p>The instance of the wildcard matcher to set.</p>
 </td>
       </tr>
     </tbody>

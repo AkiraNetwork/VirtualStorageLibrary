@@ -17,6 +17,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.PrefixSymbolicLink
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions(AkiraNetwork.VirtualStorageLibrary.VirtualNodeListConditions)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Object},System.Collections.Generic.List{AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition{AkiraNetwork.VirtualStorageLibrary.VirtualNode}})
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.State
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher
   langs:
@@ -75,7 +76,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: State
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -106,7 +107,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathSeparator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 45
+    startLine: 46
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -138,7 +139,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 53
+    startLine: 54
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -170,7 +171,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 62
+    startLine: 63
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -205,7 +206,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 71
+    startLine: 72
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -240,19 +241,19 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: InvalidNodeNameCharacters
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 79
+    startLine: 80
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
   summary: Gets or sets an array of characters that are invalid in node names.
   example: []
   syntax:
-    content: public char[] InvalidNodeNameCharacters { get; set; }
+    content: public HashSet<char> InvalidNodeNameCharacters { get; set; }
     parameters: []
     return:
-      type: System.Char[]
+      type: System.Collections.Generic.HashSet{System.Char}
       description: An array of characters that are invalid in node names.
-    content.vb: Public Property InvalidNodeNameCharacters As Char()
+    content.vb: Public Property InvalidNodeNameCharacters As HashSet(Of Char)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
@@ -272,19 +273,19 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: InvalidNodeNames
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 87
+    startLine: 88
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
   summary: Gets or sets an array of invalid node names.
   example: []
   syntax:
-    content: public string[] InvalidNodeNames { get; set; }
+    content: public HashSet<string> InvalidNodeNames { get; set; }
     parameters: []
     return:
-      type: System.String[]
+      type: System.Collections.Generic.HashSet{System.String}
       description: An array of invalid node names.
-    content.vb: Public Property InvalidNodeNames As String()
+    content.vb: Public Property InvalidNodeNames As HashSet(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher
@@ -304,7 +305,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 95
+    startLine: 96
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -336,7 +337,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 103
+    startLine: 104
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -368,7 +369,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 112
+    startLine: 113
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -403,7 +404,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 121
+    startLine: 122
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -438,7 +439,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 130
+    startLine: 131
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -473,7 +474,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 158
+    startLine: 159
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -505,7 +506,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-    startLine: 169
+    startLine: 170
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -528,6 +529,45 @@ items:
   nameWithType.vb: VirtualStorageState.SetNodeListConditions(VirtualNodeTypeFilter, VirtualGroupCondition(Of VirtualNode, Object), List(Of VirtualSortCondition(Of VirtualNode)))
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode, Object), System.Collections.Generic.List(Of AkiraNetwork.VirtualStorageLibrary.VirtualSortCondition(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)))
   name.vb: SetNodeListConditions(VirtualNodeTypeFilter, VirtualGroupCondition(Of VirtualNode, Object), List(Of VirtualSortCondition(Of VirtualNode)))
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
+  id: SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState
+  langs:
+  - csharp
+  - vb
+  name: SetWildcardMatcher(IVirtualWildcardMatcher)
+  nameWithType: VirtualStorageState.SetWildcardMatcher(IVirtualWildcardMatcher)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
+      branch: master
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: SetWildcardMatcher
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
+    startLine: 185
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Sets the wildcard matcher.
+
+    This method configures the matcher used for searching and filtering node names
+
+    with the specified wildcard matcher. By setting the wildcard matcher, you can
+
+    easily search for nodes that match specific patterns.
+  example: []
+  syntax:
+    content: public static void SetWildcardMatcher(IVirtualWildcardMatcher wildcardMatcher)
+    parameters:
+    - id: wildcardMatcher
+      type: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+      description: The instance of the wildcard matcher to set.
+    content.vb: Public Shared Sub SetWildcardMatcher(wildcardMatcher As IVirtualWildcardMatcher)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher*
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -962,57 +1002,146 @@ references:
   name: InvalidNodeNameCharacters
   nameWithType: VirtualStorageState.InvalidNodeNameCharacters
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNameCharacters
-- uid: System.Char[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.char
-  name: char[]
-  nameWithType: char[]
-  fullName: char[]
-  nameWithType.vb: Char()
-  fullName.vb: Char()
-  name.vb: Char()
+- uid: System.Collections.Generic.HashSet{System.Char}
+  commentId: T:System.Collections.Generic.HashSet{System.Char}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<char>
+  nameWithType: HashSet<char>
+  fullName: System.Collections.Generic.HashSet<char>
+  nameWithType.vb: HashSet(Of Char)
+  fullName.vb: System.Collections.Generic.HashSet(Of Char)
+  name.vb: HashSet(Of Char)
   spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
   - uid: System.Char
     name: char
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.char
-  - name: '['
-  - name: ']'
+  - name: '>'
   spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Char
     name: Char
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.char
-  - name: (
   - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_InvalidNodeNames
   name: InvalidNodeNames
   nameWithType: VirtualStorageState.InvalidNodeNames
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.InvalidNodeNames
-- uid: System.String[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string[]
-  nameWithType: string[]
-  fullName: string[]
-  nameWithType.vb: String()
-  fullName.vb: String()
-  name.vb: String()
+- uid: System.Collections.Generic.HashSet{System.String}
+  commentId: T:System.Collections.Generic.HashSet{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<string>
+  nameWithType: HashSet<string>
+  fullName: System.Collections.Generic.HashSet<string>
+  nameWithType.vb: HashSet(Of String)
+  fullName.vb: System.Collections.Generic.HashSet(Of String)
+  name.vb: HashSet(Of String)
   spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
   - uid: System.String
     name: string
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: '['
-  - name: ']'
+  - name: '>'
   spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.String
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: (
   - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.WildcardMatcher
@@ -1218,40 +1347,9 @@ references:
   - name: " "
   - name: T
   - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetWildcardMatcher_AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_
+  name: SetWildcardMatcher
+  nameWithType: VirtualStorageState.SetWildcardMatcher
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher

@@ -59,6 +59,22 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count
   nameWithType: IVirtualWildcardMatcher.Count
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(System.String)
+  name: IsValidWildcardPattern(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_IsValidWildcardPattern_System_String_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(System.String)
+  name.vb: IsValidWildcardPattern(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(String)
+  nameWithType: IVirtualWildcardMatcher.IsValidWildcardPattern(string)
+  nameWithType.vb: IVirtualWildcardMatcher.IsValidWildcardPattern(String)
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern*
+  name: IsValidWildcardPattern
+  href: api/AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_IsValidWildcardPattern_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern
+  nameWithType: IVirtualWildcardMatcher.IsValidWildcardPattern
 - uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
   name: PatternMatcher(string, string)
   href: api/AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_PatternMatcher_System_String_System_String_
@@ -2359,6 +2375,32 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GetHashCode
   nameWithType: VirtualNodeName.GetHashCode
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  name: IsDot
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsDot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  nameWithType: VirtualNodeName.IsDot
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot*
+  name: IsDot
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsDot_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  nameWithType: VirtualNodeName.IsDot
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  name: IsDotDot
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsDotDot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  nameWithType: VirtualNodeName.IsDotDot
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot*
+  name: IsDotDot
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsDotDot_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  nameWithType: VirtualNodeName.IsDotDot
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsRoot
   name: IsRoot
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsRoot
@@ -3053,6 +3095,19 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory
   nameWithType: VirtualPath.IsSubdirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name: IsValidPath(VirtualPath)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsValidPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  nameWithType: VirtualPath.IsValidPath(VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath*
+  name: IsValidPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsValidPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath
+  nameWithType: VirtualPath.IsValidPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName
   name: NodeName
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_NodeName
@@ -3785,6 +3840,19 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetNodeListConditions
   nameWithType: VirtualStorageState.SetNodeListConditions
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
+  name: SetWildcardMatcher(IVirtualWildcardMatcher)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetWildcardMatcher_AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher(AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher)
+  nameWithType: VirtualStorageState.SetWildcardMatcher(IVirtualWildcardMatcher)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher*
+  name: SetWildcardMatcher
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_SetWildcardMatcher_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.SetWildcardMatcher
+  nameWithType: VirtualStorageState.SetWildcardMatcher
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.State
   name: State
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorageState.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageState_State
@@ -4310,6 +4378,23 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).this[]
   nameWithType: VirtualStorage<T>.this
   nameWithType.vb: VirtualStorage(Of T).this[]
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name: IsValidWildcardPath(VirtualPath)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_IsValidWildcardPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  nameWithType: VirtualStorage<T>.IsValidWildcardPath(VirtualPath)
+  nameWithType.vb: VirtualStorage(Of T).IsValidWildcardPath(VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath*
+  name: IsValidWildcardPath
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_IsValidWildcardPath_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.IsValidWildcardPath
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).IsValidWildcardPath
+  nameWithType: VirtualStorage<T>.IsValidWildcardPath
+  nameWithType.vb: VirtualStorage(Of T).IsValidWildcardPath
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   name: ItemExists(VirtualPath, bool)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ItemExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -5461,6 +5546,22 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.Count
   nameWithType: DefaultWildcardMatcher.Count
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.IsValidWildcardPattern(System.String)
+  name: IsValidWildcardPattern(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_IsValidWildcardPattern_System_String_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.IsValidWildcardPattern(System.String)
+  name.vb: IsValidWildcardPattern(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.IsValidWildcardPattern(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.IsValidWildcardPattern(String)
+  nameWithType: DefaultWildcardMatcher.IsValidWildcardPattern(string)
+  nameWithType.vb: DefaultWildcardMatcher.IsValidWildcardPattern(String)
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.IsValidWildcardPattern*
+  name: IsValidWildcardPattern
+  href: api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_IsValidWildcardPattern_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.IsValidWildcardPattern
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.IsValidWildcardPattern
+  nameWithType: DefaultWildcardMatcher.IsValidWildcardPattern
 - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.PatternMatcher(System.String,System.String)
   name: PatternMatcher(string, string)
   href: api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.DefaultWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_DefaultWildcardMatcher_PatternMatcher_System_String_System_String_
@@ -5535,6 +5636,22 @@ references:
   isSpec: "True"
   fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.Count
   nameWithType: PowerShellWildcardMatcher.Count
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern(System.String)
+  name: IsValidWildcardPattern(string)
+  href: api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_PowerShellWildcardMatcher_IsValidWildcardPattern_System_String_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern(System.String)
+  name.vb: IsValidWildcardPattern(String)
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern(string)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern(String)
+  nameWithType: PowerShellWildcardMatcher.IsValidWildcardPattern(string)
+  nameWithType.vb: PowerShellWildcardMatcher.IsValidWildcardPattern(String)
+- uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern*
+  name: IsValidWildcardPattern
+  href: api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_PowerShellWildcardMatcher_IsValidWildcardPattern_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern
+  nameWithType: PowerShellWildcardMatcher.IsValidWildcardPattern
 - uid: AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.PatternMatcher(System.String,System.String)
   name: PatternMatcher(string, string)
   href: api/AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_PowerShellWildcardMatcher_PatternMatcher_System_String_System_String_

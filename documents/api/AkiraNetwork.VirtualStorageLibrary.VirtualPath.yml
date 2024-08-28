@@ -36,6 +36,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsEndsWithSlash
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsRoot
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.NodeName
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath
   - AkiraNetwork.VirtualStorageLibrary.VirtualPath.NormalizePath(System.String)
@@ -1779,15 +1780,15 @@ items:
   summary: Compares the instance's path with another object.
   example: []
   syntax:
-    content: public int CompareTo(object? obj)
+    content: public int CompareTo(object? other)
     parameters:
-    - id: obj
+    - id: other
       type: System.Object
       description: The object to compare with.
     return:
       type: System.Int32
       description: An integer indicating the relative order of the paths.
-    content.vb: Public Function CompareTo(obj As Object) As Integer
+    content.vb: Public Function CompareTo(other As Object) As Integer
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.CompareTo*
   exceptions:
   - type: System.ArgumentException
@@ -1935,6 +1936,44 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: Thrown if this instance's path or the parent path is empty.
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+  langs:
+  - csharp
+  - vb
+  name: IsValidPath(VirtualPath)
+  nameWithType: VirtualPath.IsValidPath(VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
+      branch: master
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: IsValidPath
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
+    startLine: 971
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: >-
+    Checks if all node names in the specified <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> are considered valid 
+
+    by <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)" data-throw-if-not-resolved="false"></xref>. Returns <code>false</code> immediately if an invalid node name is found.
+  example: []
+  syntax:
+    content: public static bool IsValidPath(VirtualPath path)
+    parameters:
+    - id: path
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
+      description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualPath" data-throw-if-not-resolved="false"></xref> object to validate.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if all node names are valid; otherwise, <code>false</code> if any invalid node name is found.
+    content.vb: Public Shared Function IsValidPath(path As VirtualPath) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath*
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -3189,3 +3228,33 @@ references:
   name: IsSubdirectory
   nameWithType: VirtualPath.IsSubdirectory
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsSubdirectory
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsValidNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  name: IsValidNodeName(VirtualNodeName)
+  nameWithType: VirtualNodeName.IsValidNodeName(VirtualNodeName)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+    name: IsValidNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsValidNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    name: VirtualNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  - name: )
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+    name: IsValidNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsValidNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_
+  - name: (
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+    name: VirtualNodeName
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualPath.html#AkiraNetwork_VirtualStorageLibrary_VirtualPath_IsValidPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  name: IsValidPath
+  nameWithType: VirtualPath.IsValidPath
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath.IsValidPath

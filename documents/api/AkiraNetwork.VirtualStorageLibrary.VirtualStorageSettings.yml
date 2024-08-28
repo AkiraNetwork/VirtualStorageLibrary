@@ -278,12 +278,12 @@ items:
   summary: Gets or sets an array of characters that are invalid in node names.
   example: []
   syntax:
-    content: public char[] InvalidNodeNameCharacters { get; set; }
+    content: public HashSet<char> InvalidNodeNameCharacters { get; set; }
     parameters: []
     return:
-      type: System.Char[]
+      type: System.Collections.Generic.HashSet{System.Char}
       description: An array of characters that cannot be used in node names.
-    content.vb: Public Property InvalidNodeNameCharacters As Char()
+    content.vb: Public Property InvalidNodeNameCharacters As HashSet(Of Char)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNameCharacters*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
@@ -310,12 +310,12 @@ items:
   summary: Gets or sets an array of invalid node names.
   example: []
   syntax:
-    content: public string[] InvalidNodeNames { get; set; }
+    content: public HashSet<string> InvalidNodeNames { get; set; }
     parameters: []
     return:
-      type: System.String[]
+      type: System.Collections.Generic.HashSet{System.String}
       description: An array of node names that are not allowed in the virtual storage.
-    content.vb: Public Property InvalidNodeNames As String()
+    content.vb: Public Property InvalidNodeNames As HashSet(Of String)
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.WildcardMatcher
   commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.WildcardMatcher
@@ -926,57 +926,146 @@ references:
   name: InvalidNodeNameCharacters
   nameWithType: VirtualStorageSettings.InvalidNodeNameCharacters
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNameCharacters
-- uid: System.Char[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.char
-  name: char[]
-  nameWithType: char[]
-  fullName: char[]
-  nameWithType.vb: Char()
-  fullName.vb: Char()
-  name.vb: Char()
+- uid: System.Collections.Generic.HashSet{System.Char}
+  commentId: T:System.Collections.Generic.HashSet{System.Char}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<char>
+  nameWithType: HashSet<char>
+  fullName: System.Collections.Generic.HashSet<char>
+  nameWithType.vb: HashSet(Of Char)
+  fullName.vb: System.Collections.Generic.HashSet(Of Char)
+  name.vb: HashSet(Of Char)
   spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
   - uid: System.Char
     name: char
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.char
-  - name: '['
-  - name: ']'
+  - name: '>'
   spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.Char
     name: Char
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.char
-  - name: (
   - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorageSettings_InvalidNodeNames
   name: InvalidNodeNames
   nameWithType: VirtualStorageSettings.InvalidNodeNames
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.InvalidNodeNames
-- uid: System.String[]
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string[]
-  nameWithType: string[]
-  fullName: string[]
-  nameWithType.vb: String()
-  fullName.vb: String()
-  name.vb: String()
+- uid: System.Collections.Generic.HashSet{System.String}
+  commentId: T:System.Collections.Generic.HashSet{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<string>
+  nameWithType: HashSet<string>
+  fullName: System.Collections.Generic.HashSet<string>
+  nameWithType.vb: HashSet(Of String)
+  fullName.vb: System.Collections.Generic.HashSet(Of String)
+  name.vb: HashSet(Of String)
   spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
   - uid: System.String
     name: string
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: '['
-  - name: ']'
+  - name: '>'
   spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
   - uid: System.String
     name: String
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.string
-  - name: (
   - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.WildcardMatcher*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorageSettings.WildcardMatcher

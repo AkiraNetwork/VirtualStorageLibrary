@@ -12,6 +12,8 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Equals(System.Object)
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName(System.String)
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GetHashCode
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsRoot
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsValidNodeName(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.Name
@@ -194,6 +196,70 @@ items:
       description: <code>true</code> if this is the root node; otherwise, <code>false</code>.
     content.vb: Public ReadOnly Property IsRoot As Boolean
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsRoot*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  id: IsDot
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  langs:
+  - csharp
+  - vb
+  name: IsDot
+  nameWithType: VirtualNodeName.IsDot
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
+      branch: master
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: IsDot
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
+    startLine: 69
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Indicates whether the node is a single dot representing the current directory.
+  example: []
+  syntax:
+    content: public bool IsDot { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code> if this node is dot; otherwise, <code>false</code>.
+    content.vb: Public ReadOnly Property IsDot As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot*
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  id: IsDotDot
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+  langs:
+  - csharp
+  - vb
+  name: IsDotDot
+  nameWithType: VirtualNodeName.IsDotDot
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  type: Property
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
+      branch: master
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: IsDotDot
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
+    startLine: 77
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Indicates whether the node is a double dot representing the parent directory.
+  example: []
+  syntax:
+    content: public bool IsDotDot { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <code>true</code> if this node is double dot"; otherwise, <code>false</code>.
+    content.vb: Public ReadOnly Property IsDotDot As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot*
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName(System.String)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.GenerateNodeName(System.String)
   id: GenerateNodeName(System.String)
@@ -212,7 +278,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 76
+    startLine: 92
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -260,7 +326,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResetCounter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 92
+    startLine: 108
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -288,7 +354,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 102
+    startLine: 118
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -323,7 +389,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 132
+    startLine: 148
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -360,7 +426,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 141
+    startLine: 157
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -397,7 +463,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 154
+    startLine: 170
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -440,7 +506,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 167
+    startLine: 183
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -482,7 +548,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetHashCode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 180
+    startLine: 196
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -514,7 +580,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 189
+    startLine: 205
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -554,7 +620,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 209
+    startLine: 225
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -598,7 +664,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Equality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 233
+    startLine: 249
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -639,7 +705,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Inequality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeName.cs
-    startLine: 259
+    startLine: 275
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1160,6 +1226,18 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsDot
+  name: IsDot
+  nameWithType: VirtualNodeName.IsDot
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDot
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.html#AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_IsDotDot
+  name: IsDotDot
+  nameWithType: VirtualNodeName.IsDotDot
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName.IsDotDot
 - uid: System.ArgumentException
   commentId: T:System.ArgumentException
   isExternal: true

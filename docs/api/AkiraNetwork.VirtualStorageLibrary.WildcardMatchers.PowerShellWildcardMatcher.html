@@ -229,6 +229,53 @@ are their corresponding regular expression patterns.</p>
   </table>
   <h3 id="methods">Methods
 </h3>
+  <a id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_PowerShellWildcardMatcher_IsValidWildcardPattern_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern*"></a>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_PowerShellWildcardMatcher_IsValidWildcardPattern_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.IsValidWildcardPattern(System.String)">IsValidWildcardPattern(string)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified wildcard pattern is valid according to the rules
+defined by the wildcard matcher implementation.
+This method checks if the wildcard pattern adheres to the syntax rules defined
+by the wildcard matcher implementation. If the pattern is not valid,
+this method returns <code>false</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsValidWildcardPattern(string pattern)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">pattern</span></td>
+        <td><p>The wildcard pattern to validate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><code>true</code> if the pattern is a valid wildcard pattern; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <a id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_PowerShellWildcardMatcher_PatternMatcher_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.PatternMatcher*"></a>
   <h4 id="AkiraNetwork_VirtualStorageLibrary_WildcardMatchers_PowerShellWildcardMatcher_PatternMatcher_System_String_System_String_" data-uid="AkiraNetwork.VirtualStorageLibrary.WildcardMatchers.PowerShellWildcardMatcher.PatternMatcher(System.String,System.String)">PatternMatcher(string, string)</h4>
   <div class="markdown level1 summary"><p>Performs pattern matching using the specified PowerShell wildcard pattern.</p>

@@ -6,6 +6,7 @@ items:
   parent: AkiraNetwork.VirtualStorageLibrary
   children:
   - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Count
+  - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(System.String)
   - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(System.String,System.String)
   - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.Patterns
   - AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.WildcardDictionary
@@ -207,6 +208,44 @@ items:
   nameWithType.vb: IVirtualWildcardMatcher.PatternMatcher(String, String)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.PatternMatcher(String, String)
   name.vb: PatternMatcher(String, String)
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(System.String)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(System.String)
+  id: IsValidWildcardPattern(System.String)
+  parent: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher
+  langs:
+  - csharp
+  - vb
+  name: IsValidWildcardPattern(string)
+  nameWithType: IVirtualWildcardMatcher.IsValidWildcardPattern(string)
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(string)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
+      branch: master
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: IsValidWildcardPattern
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
+    startLine: 89
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Checks if the provided wildcard pattern is valid.
+  example: []
+  syntax:
+    content: bool IsValidWildcardPattern(string pattern)
+    parameters:
+    - id: pattern
+      type: System.String
+      description: The wildcard pattern to validate.
+    return:
+      type: System.Boolean
+      description: True if the pattern is valid; otherwise, false.
+    content.vb: Function IsValidWildcardPattern(pattern As String) As Boolean
+  overload: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern*
+  nameWithType.vb: IVirtualWildcardMatcher.IsValidWildcardPattern(String)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern(String)
+  name.vb: IsValidWildcardPattern(String)
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -627,3 +666,9 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern
+  href: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.html#AkiraNetwork_VirtualStorageLibrary_IVirtualWildcardMatcher_IsValidWildcardPattern_System_String_
+  name: IsValidWildcardPattern
+  nameWithType: IVirtualWildcardMatcher.IsValidWildcardPattern
+  fullName: AkiraNetwork.VirtualStorageLibrary.IVirtualWildcardMatcher.IsValidWildcardPattern
