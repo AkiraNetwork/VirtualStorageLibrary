@@ -175,5 +175,17 @@ namespace AkiraNetwork.VirtualStorageLibrary
         {
             _state.NodeListConditions = new VirtualNodeListConditions(filter, groupCondition, sortConditions);
         }
+
+        /// <summary>
+        /// Sets the wildcard matcher.
+        /// This method configures the matcher used for searching and filtering node names
+        /// with the specified wildcard matcher. By setting the wildcard matcher, you can
+        /// easily search for nodes that match specific patterns.
+        /// </summary>
+        /// <param name="wildcardMatcher">The instance of the wildcard matcher to set.</param>
+        public static void SetWildcardMatcher(IVirtualWildcardMatcher wildcardMatcher)
+        {
+            _state.WildcardMatcher = wildcardMatcher;
+        }
     }
 }

@@ -13,7 +13,9 @@
 // You should have received a copy of the GNU General Public License along 
 // with VirtualStorageLibrary. If not, see https://www.gnu.org/licenses/.
 
+using System.Diagnostics;
 using System.Globalization;
+using AkiraNetwork.VirtualStorageLibrary.WildcardMatchers;
 
 namespace AkiraNetwork.VirtualStorageLibrary.Test
 {
@@ -71,6 +73,71 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(filter, state.NodeListConditions.Filter);
             Assert.AreEqual(groupCondition, state.NodeListConditions.GroupCondition);
             CollectionAssert.AreEqual(sortConditions, state.NodeListConditions.SortConditions!.ToList());
+        }
+
+        [TestMethod]
+        public void SetWildcardMatcher_UpdatesMatcherCorrectly()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            DefaultWildcardMatcher matcher = new DefaultWildcardMatcher();
+
+            // Act
+            VirtualStorageState.SetWildcardMatcher(matcher);
+
+            // Assert
+            Assert.AreEqual(matcher, VirtualStorageState.State.WildcardMatcher);
+
+            // Arrange
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1.txt");
+            vs.AddItem("/dir1/item2.txt");
+            vs.AddItem("/dir1/item3.bin");
+
+            // Act
+            var paths = vs.ExpandPath(@"/dir1/item.*\.txt").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("*:");
+            foreach (var node in paths)
+            {
+                Debug.WriteLine(node);
+            }
+
+            // Assert
+            Assert.AreEqual(2, paths.Count);
+            Assert.AreEqual("/dir1/item1.txt", (string)paths[0]);
+            Assert.AreEqual("/dir1/item2.txt", (string)paths[1]);
+
+            // Act
+            paths = vs.ExpandPath(@"/dir1/item.?\.txt").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("\n?:");
+            foreach (var node in paths)
+            {
+                Debug.WriteLine(node);
+            }
+
+            // Assert
+            Assert.AreEqual(2, paths.Count);
+            Assert.AreEqual("/dir1/item1.txt", (string)paths[0]);
+            Assert.AreEqual("/dir1/item2.txt", (string)paths[1]);
+
+            // Act
+            paths = vs.ExpandPath(@"/dir1/item.+\.txt").ToList();
+
+            // デバッグ出力
+            Debug.WriteLine("\n+:");
+            foreach (var node in paths)
+            {
+                Debug.WriteLine(node);
+            }
+
+            // Assert
+            Assert.AreEqual(2, paths.Count);
+            Assert.AreEqual("/dir1/item1.txt", (string)paths[0]);
+            Assert.AreEqual("/dir1/item2.txt", (string)paths[1]);
         }
     }
 }
