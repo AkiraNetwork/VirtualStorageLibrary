@@ -4702,7 +4702,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/sourceDir", true);
             vs.AddDirectory("/sourceDir/subDir1", true);
             vs.AddItem("/sourceDir/item1", new BinaryData([1, 2, 3]));
-            vs.AddItem("/sourceDir/subDir1/item2", new BinaryData([4, 5, 6]));
+            vs.AddItem("/sourceDir/subDir1/newItem", new BinaryData([4, 5, 6]));
 
             // ディスティネーションディレクトリを作成
             vs.AddDirectory("/destinationDir", true);
@@ -4711,13 +4711,13 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/linkToSourceDir", "/sourceDir");
             vs.AddSymbolicLink("/linkToSubDir1", "/sourceDir/subDir1");
             vs.AddSymbolicLink("/linkToItem1", "/sourceDir/item1");
-            vs.AddSymbolicLink("/linkToItem2", "/sourceDir/subDir1/item2");
+            vs.AddSymbolicLink("/linkToItem2", "/sourceDir/subDir1/newItem");
 
             // リンク辞書の初期状態を確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/item1").Contains("/linkToItem1"));
-            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/item2").Contains("/linkToItem2"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/sourceDir/subDir1/newItem").Contains("/linkToItem2"));
 
             // デバッグ出力
             Debug.WriteLine("MoveNode前:");
@@ -4737,17 +4737,17 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir"));
             Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1"));
             Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/item1"));
-            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/item2"));
+            Assert.IsTrue(vs.NodeExists("/destinationDir/sourceDir/subDir1/newItem"));
 
             // リンク辞書が更新されていることを確認
             Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1").Contains("/linkToSubDir1"));
             Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/item1").Contains("/linkToItem1"));
-            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1/item2").Contains("/linkToItem2"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/destinationDir/sourceDir/subDir1/newItem").Contains("/linkToItem2"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir").Contains("/linkToSourceDir"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1").Contains("/linkToSubDir1"));
             Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/item1").Contains("/linkToItem1"));
-            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/item2").Contains("/linkToItem2"));
+            Assert.IsFalse(vs.GetLinksFromDictionary("/sourceDir/subDir1/newItem").Contains("/linkToItem2"));
         }
 
         [TestMethod]
@@ -5936,7 +5936,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/item0", data1);
             vs.AddDirectory("/dir1", true);
             vs.AddItem("/dir1/item1", data1);
-            vs.AddItem("/dir1/item2");
+            vs.AddItem("/dir1/newItem");
             vs.AddDirectory("/dir2/sub", true);
             vs.AddItem("/dir2/sub/item3", data1);
             vs.AddItem("/dir2/sub/item4", data1);
@@ -5946,7 +5946,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddSymbolicLink("/item7", "/dir1");
             vs.AddDirectory("/all-dir", true);
             vs.AddSymbolicLink("/all-dir/item1", "/dir1/item1");
-            vs.AddSymbolicLink("/all-dir/item2", "/dir1/item2");
+            vs.AddSymbolicLink("/all-dir/newItem", "/dir1/newItem");
             vs.AddSymbolicLink("/all-dir/sub", "/dir2/sub");
 
 
@@ -5967,14 +5967,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine("ノード(/dir1/item1):");
             Debug.WriteLine(vs.GetItem("/dir1/item1").GenerateSingleTableDebugText());
 
-            Debug.WriteLine("ノード(/dir1/item2):");
-            Debug.WriteLine(vs.GetItem("/dir1/item2").GenerateSingleTableDebugText());
+            Debug.WriteLine("ノード(/dir1/newItem):");
+            Debug.WriteLine(vs.GetItem("/dir1/newItem").GenerateSingleTableDebugText());
 
             Debug.WriteLine("ノード(/all-dir/item1):");
             Debug.WriteLine(vs.GetSymbolicLink("/all-dir/item1").GenerateSingleTableDebugText());
 
-            Debug.WriteLine("ノード(/all-dir/item2):");
-            Debug.WriteLine(vs.GetSymbolicLink("/all-dir/item2").GenerateSingleTableDebugText());
+            Debug.WriteLine("ノード(/all-dir/newItem):");
+            Debug.WriteLine(vs.GetSymbolicLink("/all-dir/newItem").GenerateSingleTableDebugText());
 
             string tree = vs.GenerateTreeDebugText("/", true, true);
             Debug.WriteLine(tree);
@@ -6004,7 +6004,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<string> vs = new();
             vs.AddDirectory("/dirWithItems", true);
             vs.AddItem("/dirWithItems/item1", "content1");
-            vs.AddItem("/dirWithItems/item2", "content2");
+            vs.AddItem("/dirWithItems/newItem", "content2");
 
             IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/dirWithItems", VirtualNodeTypeFilter.All, true, true);
             foreach (VirtualNodeContext nodeContext in nodeContexts)
@@ -6014,7 +6014,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             Assert.AreEqual(3, nodeContexts.Count()); // ディレクトリと2つのアイテムが含まれる
             Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "item1"));
-            Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "item2"));
+            Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "newItem"));
         }
 
         [TestMethod]
@@ -6249,14 +6249,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<string> vs = new();
             vs.AddDirectory("/dir1", true);
             vs.AddItem("/dir1/item1", "content1");
-            vs.AddItem("/dir1/item2", "content2");
+            vs.AddItem("/dir1/newItem", "content2");
 
             List<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.Item, true, true).ToList();
 
             // ディレクトリ自体は含まれないため、アイテムの数だけを期待する
             Assert.AreEqual(2, nodeContexts.Count); // 正しいアイテム数を確認
             Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "item1"));
-            Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "item2"));
+            Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "newItem"));
         }
 
         [TestMethod]
@@ -6335,7 +6335,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<string> vs = new();
             vs.AddDirectory("/dir3", true);
             vs.AddItem("/dir3/item1", "content1");
-            vs.AddItem("/dir3/item2", "content2");
+            vs.AddItem("/dir3/newItem", "content2");
 
             List<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/dir3", VirtualNodeTypeFilter.Directory, true, true).ToList();
 
@@ -6350,7 +6350,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/dir1", true);
             vs.AddSymbolicLink("/dir1/link1", "/item1");
-            vs.AddSymbolicLink("/dir1/link2", "/item2");
+            vs.AddSymbolicLink("/dir1/link2", "/newItem");
 
             List<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.SymbolicLink, true, false).ToList();
 
@@ -6383,7 +6383,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/testDir", true);
             vs.AddItem("/testDir/item1", "content1");
             vs.AddDirectory("/testDir/subDir1", true);
-            vs.AddItem("/testDir/subDir1/item2", "content2");
+            vs.AddItem("/testDir/subDir1/newItem", "content2");
             vs.AddDirectory("/testDir/subDir1/subSubDir1", true);
             vs.AddItem("/testDir/subDir1/subSubDir1/item3", "content3");
 
@@ -6406,7 +6406,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/testDir", true);
             vs.AddItem("/testDir/item1", "content1");
             vs.AddDirectory("/testDir/subDir1", true);
-            vs.AddItem("/testDir/subDir1/item2", "content2");
+            vs.AddItem("/testDir/subDir1/newItem", "content2");
             vs.AddDirectory("/testDir/subDir1/subSubDir1", true);
             vs.AddItem("/testDir/subDir1/subSubDir1/item3", "content3");
             vs.AddDirectory("/testDir/subDir1/subSubDir1/subSubSubDir1", true);
@@ -6419,7 +6419,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(3, nodeContexts.Count, "Should return the starting parentDirectory and its immediate children only.");
             Assert.IsTrue(nodeContexts[0].TraversalPath.ToString() == ".");
             Assert.IsTrue(nodeContexts[1].TraversalPath.ToString() == "subSubDir1");
-            Assert.IsTrue(nodeContexts[2].TraversalPath.ToString() == "item2");
+            Assert.IsTrue(nodeContexts[2].TraversalPath.ToString() == "newItem");
         }
 
         [TestMethod]
@@ -7584,7 +7584,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
-            vs.CopyNode("/item1", "/item2", false, false, false, contexts);
+            vs.CopyNode("/item1", "/newItem", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
@@ -7595,9 +7595,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/newItem");
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            Assert.IsTrue(copiedItem.Name == "item2");
+            Assert.IsTrue(copiedItem.Name == "newItem");
             Assert.AreNotEqual(originalItem, copiedItem);
             CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
@@ -7625,7 +7625,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
-            vs.CopyNode("/item1", "/dir1/dir2/item2", false, false, false, contexts);
+            vs.CopyNode("/item1", "/dir1/dir2/newItem", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
@@ -7636,9 +7636,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/dir2/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/dir2/newItem");
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            Assert.IsTrue(copiedItem.Name == "item2");
+            Assert.IsTrue(copiedItem.Name == "newItem");
             Assert.AreNotEqual(originalItem, copiedItem);
             CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
@@ -7660,14 +7660,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // テストデータ
             vs.AddItem("/item1", originalData);
-            vs.AddItem("/item2", newData);
+            vs.AddItem("/newItem", newData);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
-            // 実行: "/item1"を"/item2"に overwrite オプションを true でコピー
-            vs.CopyNode("/item1", "/item2", true, false, false, contexts);
+            // 実行: "/item1"を"/newItem"に overwrite オプションを true でコピー
+            vs.CopyNode("/item1", "/newItem", true, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
@@ -7678,9 +7678,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(contexts.GenerateTableDebugText());
 
             // 検査
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/newItem");
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            Assert.IsTrue(copiedItem.Name == "item2");
+            Assert.IsTrue(copiedItem.Name == "newItem");
             Assert.AreNotEqual(originalItem, copiedItem);
             CollectionAssert.AreEqual(originalItem.ItemData!.Data, copiedItem.ItemData!.Data);
             Assert.AreNotSame(originalItem, copiedItem);
@@ -7705,7 +7705,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 実行 & 検査: 存在しない "/item1" をコピーしようとする
             var err = Assert.ThrowsException<VirtualPathNotFoundException>(() =>
             {
-                vs.CopyNode("/item1", "/item2", false, false, false, contexts);
+                vs.CopyNode("/item1", "/newItem", false, false, false, contexts);
             });
 
             Assert.AreEqual("Path not found. [/item1]", err.Message);
@@ -7749,16 +7749,16 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // テストデータ
             vs.AddItem("/item1", data);
-            vs.AddItem("/item2", data);
+            vs.AddItem("/newItem", data);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
-            // 実行 & 検査: overwriteを指定せずに"/item1"を"/item2"にコピー
+            // 実行 & 検査: overwriteを指定せずに"/item1"を"/newItem"にコピー
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/item1", "/item2", false, false, false, contexts);
+                vs.CopyNode("/item1", "/newItem", false, false, false, contexts);
             });
             Debug.WriteLine(err.Message);
         }
@@ -7780,7 +7780,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行: アイテムが存在しないディレクトリ "/dir1" にコピー
-            vs.CopyNode("/item1", "/dir1/item2", false, false, false, contexts);
+            vs.CopyNode("/item1", "/dir1/newItem", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
@@ -7792,9 +7792,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/newItem");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);
+            Assert.AreEqual("newItem", (string)copiedItem.Name);
             CollectionAssert.AreEqual(data.Data, copiedItem.ItemData!.Data);
 
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
@@ -7850,7 +7850,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
-            vs.CopyNode("/item1", "/link/item2", false, false, false, contexts);
+            vs.CopyNode("/item1", "/link/newItem", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
@@ -7862,9 +7862,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/newItem");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);
+            Assert.AreEqual("newItem", (string)copiedItem.Name);
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);
 
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
@@ -7892,7 +7892,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由して、新しいアイテム名でコピーを試みる
-            vs.CopyNode("/item1", "/dir1/link/dir3/item2", false, false, false, contexts);
+            vs.CopyNode("/item1", "/dir1/link/dir3/newItem", false, false, false, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
@@ -7904,9 +7904,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1", true);
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/link/dir3/item2", true);
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/link/dir3/newItem", true);
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);
+            Assert.AreEqual("newItem", (string)copiedItem.Name);
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);
 
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
@@ -7935,12 +7935,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // ターゲットディレクトリに既存のアイテムを追加
-            vs.AddItem("/dir1/item2", existingData);
+            vs.AddItem("/dir1/newItem", existingData);
 
             // シンボリックリンクを経由して、既存のアイテム名で上書きなしのコピーを試みる
             var err = Assert.ThrowsException<InvalidOperationException>(() =>
             {
-                vs.CopyNode("/item1", "/dir1/item2", false, false, false, contexts);
+                vs.CopyNode("/item1", "/dir1/newItem", false, false, false, contexts);
             });
             Debug.WriteLine(err.Message);
         }
@@ -7967,7 +7967,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // シンボリックリンクを経由してアイテムにコピー
-            vs.CopyNode("/linkToItem", "/dir1/item2", false, false, true, contexts);
+            vs.CopyNode("/linkToItem", "/dir1/newItem", false, false, true, contexts);
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理後):");
@@ -7979,9 +7979,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualDirectory originalDir = vs.GetDirectory("/dir1");
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/newItem");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            Assert.AreEqual("newItem", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             Assert.AreNotEqual(originalDir.CreatedDate, copiedItem.CreatedDate);
@@ -8004,7 +8004,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
 
             // アイテムへのシンボリックリンクを作成
-            vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
+            vs.AddSymbolicLink("/linkToItem", "/dir1/newItem");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -8023,9 +8023,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/newItem");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            Assert.AreEqual("newItem", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
@@ -8050,7 +8050,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // アイテムへのシンボリックリンクを作成
             vs.AddSymbolicLink("/linkToItem", "/linkToItem2");
             vs.AddSymbolicLink("/linkToItem2", "/linkToItem3");
-            vs.AddSymbolicLink("/linkToItem3", "/dir1/item2");
+            vs.AddSymbolicLink("/linkToItem3", "/dir1/newItem");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -8069,9 +8069,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/newItem");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            Assert.AreEqual("newItem", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
@@ -8093,10 +8093,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ターゲットアイテムの作成とデータ追加
             vs.AddDirectory("/dir1");
-            vs.AddItem("/dir1/item2", targetItemData);
+            vs.AddItem("/dir1/newItem", targetItemData);
 
             // アイテムへのシンボリックリンクを作成
-            vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
+            vs.AddSymbolicLink("/linkToItem", "/dir1/newItem");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -8124,10 +8124,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ターゲットアイテムの作成とデータ追加
             vs.AddDirectory("/dir1");
-            vs.AddItem("/dir1/item2", targetItemData);
+            vs.AddItem("/dir1/newItem", targetItemData);
 
             // アイテムへのシンボリックリンクを作成
-            vs.AddSymbolicLink("/linkToItem", "/dir1/item2");
+            vs.AddSymbolicLink("/linkToItem", "/dir1/newItem");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -8146,9 +8146,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/newItem");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            Assert.AreEqual("newItem", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
@@ -8170,12 +8170,12 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // ターゲットアイテムの作成とデータ追加
             vs.AddDirectory("/dir1");
-            vs.AddItem("/dir1/item2", targetItemData);
+            vs.AddItem("/dir1/newItem", targetItemData);
 
             // アイテムへのシンボリックリンクを作成
             vs.AddSymbolicLink("/linkToItem", "/linkToItem2");
             vs.AddSymbolicLink("/linkToItem2", "/linkToItem3");
-            vs.AddSymbolicLink("/linkToItem3", "/dir1/item2");
+            vs.AddSymbolicLink("/linkToItem3", "/dir1/newItem");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("ディレクトリ構造 (処理前):");
@@ -8194,9 +8194,9 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // 検査
             VirtualItem<BinaryData> originalItem = vs.GetItem("/item1");
-            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/item2");
+            VirtualItem<BinaryData> copiedItem = vs.GetItem("/dir1/newItem");
             Assert.IsNotNull(copiedItem);
-            Assert.AreEqual("item2", (string)copiedItem.Name);  // パスをキャストして確認
+            Assert.AreEqual("newItem", (string)copiedItem.Name);  // パスをキャストして確認
             CollectionAssert.AreEqual(originalData.Data, copiedItem.ItemData!.Data);  // データが正しくコピーされたことを確認
 
             Assert.AreNotEqual(originalItem.CreatedDate, copiedItem.CreatedDate);
@@ -8298,7 +8298,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
             vs.AddItem("/dir1/item1", originalData);
             vs.AddDirectory("/dst/dir1", true);
-            vs.AddItem("/dst/dir1/item2", originalData);
+            vs.AddItem("/dst/dir1/newItem", originalData);
             vs.AddItem("/dst/dir1/item3", originalData);
 
             // ディレクトリ構造のデバッグ出力
@@ -8383,7 +8383,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", originalData);
 
             vs.AddDirectory("/dst/dir1", true);
-            vs.AddItem("/dst/dir1/item2", originalData);
+            vs.AddItem("/dst/dir1/newItem", originalData);
             vs.AddItem("/dst/dir1/item3", originalData);
 
             // ディレクトリ構造のデバッグ出力
@@ -8427,7 +8427,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir1/item1", originalData);
 
             vs.AddDirectory("/dst/dir1", true);
-            vs.AddItem("/dst/dir1/item2", originalData);
+            vs.AddItem("/dst/dir1/newItem", originalData);
             vs.AddItem("/dst/dir1/item3", originalData);
 
             DateTime dir1Date = vs.GetDirectory("/dir1").UpdatedDate;
@@ -8451,7 +8451,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualDirectory copiedDirectory = vs.GetDirectory("/dst/dir1");
             VirtualDirectory originalDirectory = vs.GetDirectory("/dir1");
             Assert.IsTrue(vs.NodeExists("/dst/dir1/item1"));
-            Assert.IsTrue(vs.NodeExists("/dst/dir1/item2"));
+            Assert.IsTrue(vs.NodeExists("/dst/dir1/newItem"));
             Assert.IsTrue(vs.NodeExists("/dst/dir1/item3"));
             Assert.AreNotEqual(dir1Date, vs.GetDirectory("/dst/dir1").UpdatedDate);
 
@@ -8824,7 +8824,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1/dir2/dir3", true);
             vs.AddItem("/dir1/item1", data);
             vs.AddSymbolicLink("/dir1/itemA", "/data/itemA");
-            vs.AddItem("/dir1/dir2/item2", data);
+            vs.AddItem("/dir1/dir2/newItem", data);
             vs.AddSymbolicLink("/dir1/dir2/itemB", "/data/itemB");
             vs.AddItem("/dir1/dir2/dir3/item3", data);
             vs.AddSymbolicLink("/dir1/dir2/dir3/itemC", "/data/itemC");
@@ -8853,7 +8853,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreNotSame(originalDirectory, copiedDirectory);
             Assert.AreEqual(3, copiedDirectory.Count);
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/item1").Name == "item1");
-            Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/item2").Name == "item2");
+            Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/newItem").Name == "newItem");
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/dir3/item3").Name == "item3");
             Assert.IsTrue(vs.GetSymbolicLink("/dst1/dst2/dir1/itemA").Name == "itemA");
             Assert.IsTrue(vs.GetSymbolicLink("/dst1/dst2/dir1/dir2/itemB").Name == "itemB");
@@ -8880,7 +8880,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1/dir2/dir3", true);
             vs.AddItem("/dir1/item1", data);
             vs.AddSymbolicLink("/dir1/itemA", "/data/itemA");
-            vs.AddItem("/dir1/dir2/item2", data);
+            vs.AddItem("/dir1/dir2/newItem", data);
             vs.AddSymbolicLink("/dir1/dir2/itemB", "/data/itemB");
             vs.AddItem("/dir1/dir2/dir3/item3", data);
             vs.AddSymbolicLink("/dir1/dir2/dir3/itemC", "/data/itemC");
@@ -8909,7 +8909,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreNotSame(originalDirectory, copiedDirectory);
             Assert.AreEqual(3, copiedDirectory.Count);
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/item1").Name == "item1");
-            Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/item2").Name == "item2");
+            Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/newItem").Name == "newItem");
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/dir3/item3").Name == "item3");
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/itemA").Name == "itemA");
             Assert.IsTrue(vs.GetItem("/dst1/dst2/dir1/dir2/itemB").Name == "itemB");
@@ -9086,7 +9086,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
             // 実行
-            List<VirtualNodeContext> contexts = new();
+            List<VirtualNodeContext> contexts = [];
             vs.CopyNode("/dir1/linkToDir2/item1", "/dir3", false, false, true, contexts);
 
             // ディレクトリ構造のデバッグ出力
@@ -9521,7 +9521,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualPath directoryPath = "/dir1/dir2";
             VirtualPath subDirectoryPath = "/dir1/dir2/dir3";
             VirtualPath itemPath1 = "/dir1/dir2/item1";
-            VirtualPath itemPath2 = "/dir1/dir2/dir3/item2";
+            VirtualPath itemPath2 = "/dir1/dir2/dir3/newItem";
             VirtualPath linkToItem1Path = "/dir1/linkToItem1";
             VirtualPath linkToItem2Path = "/dir1/linkToItem2";
             VirtualPath linkToDirectoryPath = "/dir1/linkToDir2";
@@ -10334,7 +10334,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             VirtualStorage<BinaryData> vs = new();
             vs.AddDirectory("/dir1");
             vs.AddItem("/dir1/item1");
-            vs.AddItem("/dir1/item2");
+            vs.AddItem("/dir1/newItem");
 
             // Act
             IEnumerable<VirtualNodeContext> nodeContexts = vs.WalkPathTree("/dir1", VirtualNodeTypeFilter.All, true, true).ToList();
@@ -10604,14 +10604,14 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Act
             VirtualDirectory tempDir = new("tempDir");
             tempDir.AddItem<BinaryData>("item1");
-            tempDir.AddItem<BinaryData>("item2");
+            tempDir.AddItem<BinaryData>("newItem");
             tempDir.AddItem<BinaryData>("item3");
 
             vs["/"] = tempDir;
 
             // Assert
             Assert.AreEqual("item1", (string)vs.GetItem("/item1").Name);
-            Assert.AreEqual("item2", (string)vs.GetItem("/item2").Name);
+            Assert.AreEqual("newItem", (string)vs.GetItem("/newItem").Name);
             Assert.AreEqual("item3", (string)vs.GetItem("/item3").Name);
         }
 
@@ -10740,7 +10740,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
-            VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
+            VirtualItem<BinaryData> item2 = new("newItem", [4, 5, 6]);
 
             // Act
             vs["/"] += item1;
@@ -10761,7 +10761,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Arrange
             VirtualStorage<BinaryData> vs = new();
             VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
-            VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
+            VirtualItem<BinaryData> item2 = new("newItem", [4, 5, 6]);
 
             // Act
             vs["/"] += item1;
@@ -10776,6 +10776,75 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("SetNode")]
+        public void SetNode_Directory()
+        {
+            // Arrange
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+
+            VirtualStorage<BinaryData> vs = new();
+            VirtualDirectory newDir = [];
+            VirtualItem<BinaryData> newItem = new("item1", data2);
+            newDir += newItem;
+
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data1);
+
+            // Act
+            vs.SetNode("/dir1", newDir);
+
+            // Assert
+            Assert.IsTrue(vs.NodeExists("/dir1/item1"));
+            Assert.AreEqual(data2, vs.GetItem("/dir1/item1").ItemData);
+        }
+
+        [TestMethod]
+        [TestCategory("SetNode")]
+        public void SetNode_Item()
+        {
+            // Arrange
+            BinaryData data1 = [1, 2, 3];
+            BinaryData data2 = [4, 5, 6];
+
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> newItem = new("newItem", data2);
+
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1", data1);
+
+            // Act
+            vs.SetNode("/dir1/item1", newItem);
+
+            // Assert
+            Assert.IsTrue(vs.NodeExists("/dir1/item1"));
+            Assert.AreEqual(data2, vs.GetItem("/dir1/item1").ItemData);
+        }
+
+        // If referenced in storage, changing the target path is not allowed
+        // Instead, use the SetLinkTargetPath method of the VirtualStorage class to change the target path
+        [TestMethod]
+        [TestCategory("SetNode")]
+        public void SetNode_SymbolicLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualSymbolicLink newLink = new("link1", "/dir3");
+
+            vs.AddDirectory("/dir1");
+            vs.AddSymbolicLink("/dir1/link1", "/dir2");
+
+            // Act && Assert
+            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                vs.SetNode("/dir1/link1", newLink);
+            });
+            Debug.WriteLine(ex.Message);
+
+            Assert.AreEqual("Cannot change the target path of the links associated with the storage. [link1]", ex.Message);
+        }
+
+        [TestMethod]
         [TestCategory("Free Test")]
         public void Free_Test_CollectionExpressions()
         {
@@ -10784,7 +10853,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             BinaryData data2 = [4, 5, 6];
             BinaryData data3 = [7, 8, 9];
             VirtualItem<BinaryData> item1 = new("item1", data1);
-            VirtualItem<BinaryData> item2 = new("item2", data2);
+            VirtualItem<BinaryData> item2 = new("newItem", data2);
             VirtualItem<BinaryData> item3 = new("item3", data3);
 
             // Act
@@ -10803,7 +10872,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Assert
             Assert.AreEqual(3, dir1.Count);
             Assert.AreEqual(item1, dir1.Get("item1"));
-            Assert.AreEqual(item2, dir1.Get("item2"));
+            Assert.AreEqual(item2, dir1.Get("newItem"));
             Assert.AreEqual(item3, dir1.Get("item3"));
         }
 
@@ -10936,7 +11005,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddDirectory("/dir1");
             vs.AddItem("/dir1/item1");
 
-            vs.CopyNode("/dir1/item1", "/item2");
+            vs.CopyNode("/dir1/item1", "/newItem");
         }
     }
 }

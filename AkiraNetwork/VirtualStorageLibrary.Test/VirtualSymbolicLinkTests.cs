@@ -255,5 +255,22 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             Debug.WriteLine(err.Message);
         }
+
+        [TestMethod]
+        public void Update_CreatesDeepCloneWhenNewLinkIsReferencedInStorage()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddSymbolicLink("/link1", "/item1");
+            VirtualSymbolicLink link1 = vs.GetSymbolicLink("/link1");
+            VirtualSymbolicLink link2 = new("link1", "/item2");
+
+            // Act
+            link2.Update(link1);
+
+            // Assert
+            Assert.AreEqual("/item1", (string)link2.TargetPath);
+            Assert.IsFalse(link2.IsReferencedInStorage);
+        }
     }
 }
