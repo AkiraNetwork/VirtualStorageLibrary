@@ -134,5 +134,30 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.WildcardMatchers
             Assert.IsTrue(matcher.PatternMatcher("test.txt", "test.txt|sample.txt"));
             Assert.IsFalse(matcher.PatternMatcher("sample.txt", "test.txt|sample1.txt"));
         }
+
+        [TestMethod]
+        public void IsValidWildcardPattern_ReturnsTrueForValidPatterns()
+        {
+            var matcher = new DefaultWildcardMatcher();
+
+            // Valid patterns
+            Assert.IsTrue(matcher.IsValidWildcardPattern(".*"));     // Matches any number of any characters
+            Assert.IsTrue(matcher.IsValidWildcardPattern("a.*"));    // Matches 'a' followed by any characters
+            Assert.IsTrue(matcher.IsValidWildcardPattern("^a.*$"));  // Matches 'a' at the start and any characters followed by end of line
+            Assert.IsTrue(matcher.IsValidWildcardPattern("[a-z]"));  // Matches any lowercase letter
+            Assert.IsTrue(matcher.IsValidWildcardPattern("test|sample")); // Matches "test" or "sample"
+        }
+
+        [TestMethod]
+        public void IsValidWildcardPattern_ReturnsFalseForInvalidPatterns()
+        {
+            var matcher = new DefaultWildcardMatcher();
+
+            // Invalid patterns
+            Assert.IsFalse(matcher.IsValidWildcardPattern("[a-z"));     // Missing closing bracket
+            Assert.IsFalse(matcher.IsValidWildcardPattern("(*)"));      // UnEscaped special characters
+            Assert.IsFalse(matcher.IsValidWildcardPattern("*test"));    // Asterisk at the start without preceding characters
+            Assert.IsFalse(matcher.IsValidWildcardPattern("(test"));  // Missing closing parenthesis
+        }
     }
 }

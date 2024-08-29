@@ -88,5 +88,30 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test.WildcardMatchers
             Assert.IsTrue(matcher.PatternMatcher("test.txt", "tes[stu].txt"));
             Assert.IsFalse(matcher.PatternMatcher("test.txt", "tes[pqr].txt"));
         }
+
+        [TestMethod]
+        public void IsValidWildcardPattern_ReturnsTrueForValidPatterns()
+        {
+            var matcher = new PowerShellWildcardMatcher();
+
+            // Valid patterns
+            Assert.IsTrue(matcher.IsValidWildcardPattern("*"));       // Matches zero or more characters
+            Assert.IsTrue(matcher.IsValidWildcardPattern("?"));       // Matches any single character
+            Assert.IsTrue(matcher.IsValidWildcardPattern("[a-z]"));   // Character class
+            Assert.IsTrue(matcher.IsValidWildcardPattern("test*"));   // Matches "test" followed by any characters
+            Assert.IsTrue(matcher.IsValidWildcardPattern("file[1-5].txt")); // Matches "file1.txt" to "file5.txt"
+            Assert.IsTrue(matcher.IsValidWildcardPattern("a`*b"));    // Escaped asterisk as literal '*'
+        }
+
+        [TestMethod]
+        public void IsValidWildcardPattern_ReturnsFalseForInvalidPatterns()
+        {
+            var matcher = new PowerShellWildcardMatcher();
+
+            // Invalid patterns
+            Assert.IsFalse(matcher.IsValidWildcardPattern("[a-z"));   // Missing closing bracket in character class
+            Assert.IsFalse(matcher.IsValidWildcardPattern("test[`]")); // Improper escape within character class
+            Assert.IsFalse(matcher.IsValidWildcardPattern("file[`")); // Unclosed escape character
+        }
     }
 }

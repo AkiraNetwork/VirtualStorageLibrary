@@ -60,4 +60,92 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(innerException, exception.InnerException);
         }
     }
+
+    [TestClass]
+    public class VirtualNotFoundExceptionTests : VirtualTestBase
+    {
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
+        }
+
+        [TestMethod]
+        public void DefaultConstructor_CreatesInstance()
+        {
+            VirtualNotFoundException exception = new();
+            Assert.IsNotNull(exception);
+        }
+
+        [TestMethod]
+        public void ConstructorWithMessage_CreatesInstanceWithMessage()
+        {
+            string message = "Test message";
+            VirtualNotFoundException exception = new(message);
+
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(message, exception.Message);
+        }
+
+        [TestMethod]
+        public void ConstructorWithMessageAndInnerException_CreatesInstanceWithMessageAndInnerException()
+        {
+            string message = "Test message";
+            Exception innerException = new("Inner exception");
+            VirtualNotFoundException exception = new(message, innerException);
+
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(message, exception.Message);
+            Assert.AreEqual(innerException, exception.InnerException);
+        }
+    }
+
+    [TestClass]
+    public class VirtualPathNotFoundExceptionTests : VirtualTestBase
+    {
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            VirtualStorageSettings.Initialize();
+            VirtualNodeName.ResetCounter();
+        }
+
+        [TestMethod]
+        public void DefaultConstructor_CreatesInstance()
+        {
+            VirtualPathNotFoundException exception = new();
+            Assert.IsNotNull(exception);
+        }
+
+        [TestMethod]
+        public void ConstructorWithMessage_CreatesInstanceWithMessage()
+        {
+            string message = "Test message";
+            VirtualPathNotFoundException exception = new(message);
+
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(message, exception.Message);
+        }
+
+        [TestMethod]
+        public void ConstructorWithMessageAndInnerException_CreatesInstanceWithMessageAndInnerException()
+        {
+            string message = "Test message";
+            Exception innerException = new("Inner exception");
+            VirtualPathNotFoundException exception = new(message, innerException);
+
+            Assert.IsNotNull(exception);
+            Assert.AreEqual(message, exception.Message);
+            Assert.AreEqual(innerException, exception.InnerException);
+        }
+    }
 }
