@@ -109,13 +109,16 @@ namespace AkiraNetwork.VirtualStorageLibrary
             VirtualNodeContext nodeContext = WalkPathToTarget(basePath, null, null, resolveLinks, true);
             VirtualPath traversalBasePath = nodeContext.TraversalPath;
             VirtualPath resolvedBasePath = nodeContext.ResolvedPath!;
+
             VirtualPath parentDirectoryPath = resolvedBasePath.DirectoryPath;
             VirtualDirectory parentDirectory = GetDirectory(parentDirectoryPath, followLinks);
 
             VirtualSymbolicLink? link = null;
             if (traversalBasePath != resolvedBasePath)
             {
-                link = GetSymbolicLink(basePath);
+                // Retrieve the node only if the node pointed to by basePath is a symbolic link.
+                // Otherwise, return null.
+                link = TryGetSymbolicLink(basePath);
             }
 
             WalkPathTreeParameters p = new(

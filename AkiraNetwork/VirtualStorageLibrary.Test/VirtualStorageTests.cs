@@ -5830,6 +5830,70 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsNull(nodeContext.ResolvedLink);
         }
 
+        [TestMethod]
+        [TestCategory("WalkPathToTarget")]
+        // ベースパスにシンボリックリンクが含まれている場合のテスト
+        public void WalkPathToTarget_LinkInSourcePath()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/dir1/linkToDir2", "/dir2");
+
+            // デバッグ出力でツリー構造を表示
+            Debug.WriteLine("処理前:");
+            string tree = vs.GenerateTreeDebugText("/");
+            Debug.WriteLine(tree);
+
+            var context = vs.WalkPathToTarget("/dir1/linkToDir2");
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(context.GenerateSingleTableDebugText());
+
+            // 結果を検証
+            Assert.AreEqual("dir2", (string)context.Node!.Name);
+            Assert.AreEqual("/dir1/linkToDir2", (string)context.TraversalPath);
+            Assert.AreEqual("/", (string)context.ParentDirectory!.Name);
+            Assert.AreEqual("/dir2", (string)context.ResolvedPath);
+            Assert.IsTrue(context.Resolved);
+        }
+
+        [TestMethod]
+        [TestCategory("WalkPathToTarget")]
+        // ベースパスにシンボリックリンクが含まれている場合のテスト
+        public void WalkPathToTarget_LinkInSourcePath2()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/dir1/linkToDir2", "/dir2");
+
+            // デバッグ出力でツリー構造を表示
+            Debug.WriteLine("処理前:");
+            string tree = vs.GenerateTreeDebugText("/");
+            Debug.WriteLine(tree);
+
+            var context = vs.WalkPathToTarget("/dir1/linkToDir2/item1");
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(context.GenerateSingleTableDebugText());
+
+            // 結果を検証
+            Assert.AreEqual("item1", (string)context.Node!.Name);
+            Assert.AreEqual("/dir1/linkToDir2/item1", (string)context.TraversalPath);
+            Assert.AreEqual("dir2", (string)context.ParentDirectory!.Name);
+            Assert.AreEqual("/dir2/item1", (string)context.ResolvedPath);
+            Assert.IsTrue(context.Resolved);
+        }
+
         private void NotifyNode(VirtualPath path, VirtualNode? node)
         {
             //Debug.WriteLine($"Path: {cycleInfo}, Node: {node}, isEnd: {isEnd}");
@@ -6382,6 +6446,76 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(vs.GenerateTreeDebugText("/", true, false));
 
             Assert.IsTrue(nodeContexts.Any(r => r.TraversalPath.ToString() == "dir2/dir3/link1"));
+        }
+
+        [TestMethod]
+        [TestCategory("WalkPathTree")]
+        // ベースパスにシンボリックリンクが含まれている場合のテスト
+        public void WalkPathTree_LinkInSourcePath()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/dir1/linkToDir2", "/dir2");
+
+            // デバッグ出力でツリー構造を表示
+            Debug.WriteLine("処理前:");
+            string tree = vs.GenerateTreeDebugText("/");
+            Debug.WriteLine(tree);
+
+            var contexts = vs.WalkPathTree("/dir1/linkToDir2").ToList();
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(contexts.GenerateTableDebugText());
+
+            // 結果を検証
+            VirtualNodeContext context = contexts[0];
+            Assert.AreEqual("dir2", (string)context.Node!.Name);
+            Assert.AreEqual(".", (string)context.TraversalPath);
+            Assert.AreEqual("/", (string)context.ParentDirectory!.Name);
+            Assert.AreEqual("linkToDir2", (string)context.ResolvedLink!.Name);
+
+            context = contexts[1];
+            Assert.AreEqual("item1", (string)context.Node!.Name);
+            Assert.AreEqual("item1", (string)context.TraversalPath);
+            Assert.AreEqual("dir2", (string)context.ParentDirectory!.Name);
+            Assert.IsNull(context.ResolvedLink);
+        }
+
+        [TestMethod]
+        [TestCategory("WalkPathTree")]
+        // ベースパスにシンボリックリンクが含まれている場合のテスト
+        public void WalkPathTree_LinkInSourcePath2()
+        {
+            VirtualStorage<BinaryData> vs = new();
+
+            // テストデータの設定
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/dir1/linkToDir2", "/dir2");
+
+            // デバッグ出力でツリー構造を表示
+            Debug.WriteLine("処理前:");
+            string tree = vs.GenerateTreeDebugText("/");
+            Debug.WriteLine(tree);
+
+            var contexts = vs.WalkPathTree("/dir1/linkToDir2/item1").ToList();
+
+            // コンテキストの表示
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(contexts.GenerateTableDebugText());
+
+            // 結果を検証
+            var context = contexts[0];
+            Assert.AreEqual("item1", (string)context.Node!.Name);
+            Assert.AreEqual(".", (string)context.TraversalPath);
+            Assert.AreEqual("dir2", (string)context.ParentDirectory!.Name);
+            Assert.IsNull(context.ResolvedLink);
         }
 
         private static void ExpandPath_SetData(VirtualStorage<string> vs)
@@ -8933,6 +9067,45 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // 検査
             Assert.IsTrue(vs.NodeExists("/dir1/subdir1/item1"));
             Assert.IsTrue(vs.NodeExists("/subdir1"));
+        }
+
+        [TestMethod]
+        [TestCategory("CopyNode")]
+        public void CopyNode_CopyLinkInPathToDirectory()
+        {
+            VirtualStorage<BinaryData> vs = new();
+            
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/dir1/linkToDir2", "/dir2");
+            vs.AddDirectory("/dir3");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // 実行
+            List<VirtualNodeContext> contexts = new();
+            vs.CopyNode("/dir1/linkToDir2/item1", "/dir3", false, false, true, contexts);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // コンテキスト出力
+            Debug.WriteLine("コンテキスト:");
+            Debug.WriteLine(contexts.GenerateTableDebugText());
+
+            // 検査
+            Assert.IsTrue(vs.NodeExists("/dir3/item1"));
+
+            var context = contexts[0];
+            Assert.AreEqual("item1", (string)context.Node!.Name);
+            Assert.AreEqual("/dir3/item1", (string)context.TraversalPath);
+            Assert.AreEqual("dir3", (string)context.ParentDirectory!.Name);
+            Assert.AreEqual(1, context.Depth);
+            Assert.AreEqual(0, context.Index);
         }
 
         [TestMethod]
