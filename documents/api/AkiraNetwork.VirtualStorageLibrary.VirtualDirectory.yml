@@ -7,6 +7,7 @@ items:
   children:
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
@@ -675,7 +676,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 181
+    startLine: 180
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -692,6 +693,44 @@ items:
   nameWithType.vb: VirtualDirectory.New(VirtualNodeName)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   name.vb: New(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime)
+  id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime)'
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: VirtualDirectory(VirtualNodeName, DateTime)
+  nameWithType: VirtualDirectory.VirtualDirectory(VirtualNodeName, DateTime)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.VirtualDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, System.DateTime)
+  type: Constructor
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: master
+      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+    id: .ctor
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 189
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Initializes a new instance of the <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualDirectory" data-throw-if-not-resolved="false"></xref> class with the specified name, creation date, and update date.
+  example: []
+  syntax:
+    content: public VirtualDirectory(VirtualNodeName name, DateTime createdDate)
+    parameters:
+    - id: name
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeName
+      description: The name of the directory.
+    - id: createdDate
+      type: System.DateTime
+      description: The creation date.
+    content.vb: Public Sub New(name As VirtualNodeName, createdDate As Date)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor*
+  nameWithType.vb: VirtualDirectory.New(VirtualNodeName, Date)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, Date)
+  name.vb: New(VirtualNodeName, Date)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)
   id: '#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)'
@@ -710,7 +749,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 192
+    startLine: 199
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -751,7 +790,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 201
+    startLine: 207
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -788,7 +827,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 210
+    startLine: 216
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -820,7 +859,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 217
+    startLine: 223
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -859,7 +898,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesView
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 234
+    startLine: 240
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -890,7 +929,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Add
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 298
+    startLine: 304
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -938,7 +977,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 349
+    startLine: 355
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -985,7 +1024,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 362
+    startLine: 368
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1029,7 +1068,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 374
+    startLine: 380
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1070,7 +1109,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 386
+    startLine: 392
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1112,7 +1151,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Remove
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 432
+    startLine: 438
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1148,7 +1187,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Get
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 454
+    startLine: 460
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1189,7 +1228,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetEnumerator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 474
+    startLine: 480
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1222,7 +1261,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 490
+    startLine: 496
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1270,7 +1309,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 513
+    startLine: 519
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1312,7 +1351,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 535
+    startLine: 541
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1354,7 +1393,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 557
+    startLine: 563
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1395,7 +1434,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 573
+    startLine: 579
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1436,7 +1475,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Subtraction
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 589
+    startLine: 595
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1477,7 +1516,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 618
+    startLine: 624
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

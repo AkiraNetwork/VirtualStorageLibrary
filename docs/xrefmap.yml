@@ -843,6 +843,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   nameWithType: VirtualDirectory.VirtualDirectory(VirtualNodeName)
   nameWithType.vb: VirtualDirectory.New(VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime)
+  name: VirtualDirectory(VirtualNodeName, DateTime)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_DateTime_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime)
+  name.vb: New(VirtualNodeName, Date)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.VirtualDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, System.DateTime)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, Date)
+  nameWithType: VirtualDirectory.VirtualDirectory(VirtualNodeName, DateTime)
+  nameWithType.vb: VirtualDirectory.New(VirtualNodeName, Date)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.DateTime,System.DateTime)
   name: VirtualDirectory(VirtualNodeName, DateTime, DateTime)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_System_DateTime_System_DateTime_
@@ -5346,6 +5355,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   nameWithType: VirtualSymbolicLink.VirtualSymbolicLink(VirtualNodeName, VirtualPath?)
   nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName, VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime)
+  name: VirtualSymbolicLink(VirtualNodeName, VirtualPath?, DateTime)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_DateTime_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime)
+  name.vb: New(VirtualNodeName, VirtualPath, Date)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.VirtualSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath?, System.DateTime)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.New(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, AkiraNetwork.VirtualStorageLibrary.VirtualPath, Date)
+  nameWithType: VirtualSymbolicLink.VirtualSymbolicLink(VirtualNodeName, VirtualPath?, DateTime)
+  nameWithType.vb: VirtualSymbolicLink.New(VirtualNodeName, VirtualPath, Date)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.DateTime,System.DateTime)
   name: VirtualSymbolicLink(VirtualNodeName, VirtualPath?, DateTime, DateTime)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink__ctor_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_DateTime_System_DateTime_
