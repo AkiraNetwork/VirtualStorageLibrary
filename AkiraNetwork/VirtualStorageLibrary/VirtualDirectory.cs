@@ -172,7 +172,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public VirtualDirectory()
             : base(VirtualNodeName.GenerateNodeName(VirtualStorageState.State.PrefixDirectory))
         {
-            _nodes = [];
         }
 
         /// <summary>
@@ -181,7 +180,15 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="name">The name of the directory.</param>
         public VirtualDirectory(VirtualNodeName name) : base(name)
         {
-            _nodes = [];
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualDirectory"/> class with the specified name, creation date, and update date.
+        /// </summary>
+        /// <param name="name">The name of the directory.</param>
+        /// <param name="createdDate">The creation date.</param>
+        public VirtualDirectory(VirtualNodeName name, DateTime createdDate) : base(name, createdDate)
+        {
         }
 
         /// <summary>
@@ -192,7 +199,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="updatedDate">The update date.</param>
         public VirtualDirectory(VirtualNodeName name, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
-            _nodes = [];
         }
 
         /// <summary>

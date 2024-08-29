@@ -60,6 +60,24 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualDirectoryConstructorWithCreatedDate_CreatesObjectCorrectly()
+        {
+            // テストデータ
+            VirtualNodeName name = "TestDirectory";
+            DateTime createdDate = new(2024, 1, 1);
+
+            // VirtualDirectory オブジェクトを作成
+            VirtualDirectory directory = new(name, createdDate);
+
+            // オブジェクトが正しく作成されたか検証
+            Assert.IsNotNull(directory);
+            Assert.AreEqual(name, directory.Name);
+            Assert.AreEqual(createdDate, directory.CreatedDate);
+            Assert.AreEqual(createdDate, directory.UpdatedDate);
+            Assert.AreEqual(0, directory.Count);
+        }
+
+        [TestMethod]
         public void VirtualDirectoryConstructorWithDates_CreatesObjectCorrectly()
         {
             // テストデータ

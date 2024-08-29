@@ -73,6 +73,25 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void VirtualSymbolicLink_ConstructorWithCreatedDate_SetsNameTargetPathAndDates()
+        {
+            // Arrange
+            VirtualNodeName name = "TestLink";
+            VirtualPath targetPath = "/target/path";
+            DateTime now = DateTime.Now;
+            DateTime createdDate = now;
+
+            // Act
+            VirtualSymbolicLink link = new(name, targetPath, createdDate);
+
+            // Assert
+            Assert.AreEqual(name, link.Name);
+            Assert.AreEqual(targetPath, link.TargetPath);
+            Assert.AreEqual(createdDate, link.CreatedDate);
+            Assert.AreEqual(createdDate, link.UpdatedDate);
+        }
+
+        [TestMethod]
         public void VirtualSymbolicLink_ConstructorWithDates_SetsNameTargetPathAndDates()
         {
             // Arrange

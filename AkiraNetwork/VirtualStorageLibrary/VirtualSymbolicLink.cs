@@ -75,11 +75,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="targetPath">The target path of the symbolic link.</param>
         public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath) : base(name)
         {
-            if (targetPath != null && !VirtualPath.IsValidPath(targetPath))
-            {
-                throw new ArgumentException(string.Format(Resources.InvalidTargetPath, targetPath), nameof(targetPath));
-            }
+            ValidateTargetPath(targetPath);
+            _targetPath = targetPath;
+        }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualSymbolicLink"/> class with the specified name, target path, creation date, and update date.
+        /// </summary>
+        /// <param name="name">The name of the symbolic link.</param>
+        /// <param name="targetPath">The target path of the symbolic link.</param>
+        /// <param name="createdDate">The creation date.</param>
+        public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath, DateTime createdDate) : base(name, createdDate)
+        {
+            ValidateTargetPath(targetPath);
             _targetPath = targetPath;
         }
 
@@ -92,11 +100,23 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="updatedDate">The update date.</param>
         public VirtualSymbolicLink(VirtualNodeName name, VirtualPath? targetPath, DateTime createdDate, DateTime updatedDate) : base(name, createdDate, updatedDate)
         {
+            ValidateTargetPath(targetPath);
+            _targetPath = targetPath;
+        }
+
+        /// <summary>
+        /// Validates the specified target path to ensure it is either null or a valid path.
+        /// </summary>
+        /// <param name="targetPath">The target path to validate.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the target path is not valid.
+        /// </exception>
+        private static void ValidateTargetPath(VirtualPath? targetPath)
+        {
             if (targetPath != null && !VirtualPath.IsValidPath(targetPath))
             {
                 throw new ArgumentException(string.Format(Resources.InvalidTargetPath, targetPath), nameof(targetPath));
             }
-            _targetPath = targetPath;
         }
 
         /// <summary>
