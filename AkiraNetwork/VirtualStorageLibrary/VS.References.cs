@@ -306,9 +306,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <remarks>This method may be integrated, reorganized, or deprecated in the near future.</remarks>
         public IEnumerable<VirtualNode> GetNodes(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
-            IEnumerable<VirtualNode> nodes = nodeContexts.Select(info => info.Node!);
-            return nodes;
+            return GetNodes(CurrentPath, nodeType, recursive, followLinks);
         }
 
         /// <summary>
@@ -320,7 +318,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="followLinks">Whether to follow symbolic links.</param>
         /// <returns>The paths in the path tree starting from the specified path <see cref="IEnumerable{T}"/>.</returns>
         /// <remarks>This method may be integrated, reorganized, or deprecated in the near future.</remarks>
-        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
+        public IEnumerable<VirtualPath> GetPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
             IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(basePath, nodeType, recursive, followLinks);
             IEnumerable<VirtualPath> paths = nodeContexts.Select(info => info.TraversalPath);
@@ -335,11 +333,9 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <param name="followLinks">Whether to follow symbolic links.</param>
         /// <returns>The paths in the path tree starting from the current path <see cref="IEnumerable{T}"/>.</returns>
         /// <remarks>This method may be integrated, reorganized, or deprecated in the near future.</remarks>
-        public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
+        public IEnumerable<VirtualPath> GetPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
         {
-            IEnumerable<VirtualNodeContext> nodeContexts = WalkPathTree(CurrentPath, nodeType, recursive, followLinks);
-            IEnumerable<VirtualPath> paths = nodeContexts.Select(info => info.TraversalPath);
-            return paths;
+            return GetPaths(CurrentPath, nodeType, recursive, followLinks);
         }
 
         /// <summary>

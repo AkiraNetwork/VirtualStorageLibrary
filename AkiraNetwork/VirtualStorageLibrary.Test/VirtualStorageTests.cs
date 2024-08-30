@@ -1893,58 +1893,58 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
-        [TestCategory("GetNodes")]
-        public void GetNodes_WithPaths_ValidTest()
+        [TestCategory("GetPaths")]
+        public void GetPaths_WithPaths_ValidTest()
         {
             VirtualStorage<BinaryData> vs = new();
 
             SetTestData(vs);
 
-            Assert.AreEqual(23, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
+            Assert.AreEqual(23, vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true).Count());
             Debug.WriteLine("\nAll nodeContexts:");
-            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
+            foreach (VirtualPath name in vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.All, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
             }
 
-            Assert.AreEqual(7, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true).Count());
+            Assert.AreEqual(7, vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true).Count());
             Debug.WriteLine("\nDirectories:");
-            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true))
+            foreach (VirtualPath name in vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.Directory, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
             }
 
-            Assert.AreEqual(14, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Item, true).Count());
+            Assert.AreEqual(14, vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.Item, true).Count());
             Debug.WriteLine("\nItems:");
-            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.Item, true))
+            foreach (VirtualPath name in vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.Item, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
             }
 
-            Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true).Count());
+            Assert.AreEqual(2, vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true).Count());
             Debug.WriteLine("\nSymbolicLink:");
-            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true))
+            foreach (VirtualPath name in vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
             }
 
             vs.ChangeDirectory("/Directory1");
-            Assert.AreEqual(3, vs.GetNodesWithPaths(VirtualNodeTypeFilter.Directory, false).Count());
+            Assert.AreEqual(3, vs.GetPaths(VirtualNodeTypeFilter.Directory, false).Count());
             Debug.WriteLine("\nDirectories in /Directory1:");
-            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualNodeTypeFilter.Directory, false))
+            foreach (VirtualPath name in vs.GetPaths(VirtualNodeTypeFilter.Directory, false))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
             }
 
             vs.ChangeDirectory("/Directory1");
-            Assert.AreEqual(2, vs.GetNodesWithPaths(VirtualNodeTypeFilter.Item, false).Count());
+            Assert.AreEqual(2, vs.GetPaths(VirtualNodeTypeFilter.Item, false).Count());
             Debug.WriteLine("\nItems in /Directory1:");
-            foreach (VirtualPath name in vs.GetNodesWithPaths(VirtualNodeTypeFilter.Item, false))
+            foreach (VirtualPath name in vs.GetPaths(VirtualNodeTypeFilter.Item, false))
             {
                 Assert.IsNotNull(name);
                 Debug.WriteLine(name);
