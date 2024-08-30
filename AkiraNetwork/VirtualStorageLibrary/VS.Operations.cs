@@ -418,8 +418,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             // Check if the node already exists
             VirtualSymbolicLink link = directory.GetSymbolicLink(linkName);
 
+            // Use the directory path where the symbolic link was created as the base
+            VirtualPath absoluteTargetPath = ConvertToAbsolutePath(targetPath, linkDirectoryPath).NormalizePath();
+
             // Update the link dictionary
-            UpdateLinkInDictionary(linkPath, targetPath);
+            UpdateLinkInDictionary(linkPath, absoluteTargetPath);
 
             // Update the target path
             link.TargetPath = targetPath;

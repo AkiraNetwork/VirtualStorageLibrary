@@ -10058,6 +10058,38 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual("/link1", (string)vs.GetLinksFromDictionary("/dir2/item1").ToList()[0]);
         }
 
+        // リンクのターゲットを相対パスで変更した時、ターゲットパスが変更されていることを確認するテスト
+        [TestMethod]
+        [TestCategory("SetLinkPathTarget")]
+        public void SetLinkPathTarget_SetNewRelativeTarget_Successful()
+        {
+            // arrange
+            VirtualStorage<BinaryData> vs = new();
+
+            vs.AddDirectory("/dir1");
+            vs.AddItem("/dir1/item1");
+            vs.AddDirectory("/dir2");
+            vs.AddItem("/dir2/item1");
+            vs.AddSymbolicLink("/dir1/link1", "/dir1/item1");
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // act
+            vs.ChangeDirectory("/dir1");
+            vs.SetLinkTargetPath("link1", "../dir2/item1");
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // assert
+            Assert.AreEqual("../dir2/item1", (string)vs.GetSymbolicLink("/dir1/link1").TargetPath);
+            Assert.AreEqual(1, vs.GetLinksFromDictionary("/dir2/item1").Count);
+            Assert.AreEqual("/dir1/link1", (string)vs.GetLinksFromDictionary("/dir2/item1").ToList()[0]);
+        }
+
         // 存在しないリンクパスを設定しようとした場合、例外がスローされることを確認するテスト
         [TestMethod]
         [TestCategory("SetLinkPathTarget")]
