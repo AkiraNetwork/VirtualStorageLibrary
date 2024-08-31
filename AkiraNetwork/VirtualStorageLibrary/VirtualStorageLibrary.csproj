@@ -7,7 +7,7 @@
     <RootNamespace>AkiraNetwork.VirtualStorageLibrary</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Title>Virtual Storage Library</Title>
-    <Version>0.9.0.0</Version>
+    <Version>0.9.0.1</Version>
     <Authors>Akira Shimodate</Authors>
     <Company>AkiraNetwork</Company>
     <Description>VirtualStorageLibrary is a fully in-memory .NET library that provides a tree-structured collection. 
@@ -52,8 +52,8 @@ Users can intuitively reference, traverse, and manipulate nodes by specifying pa
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageOutputPath>../../packages</PackageOutputPath>
-    <AssemblyVersion>0.9.0.0</AssemblyVersion>
-    <FileVersion>0.9.0.0</FileVersion>
+    <AssemblyVersion>0.9.0.1</AssemblyVersion>
+    <FileVersion>0.9.0.1</FileVersion>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\Signature\VirtualStorageLibrary.snk</AssemblyOriginatorKeyFile>
     <PackageId>AkiraNetwork.VirtualStorageLibrary</PackageId>
