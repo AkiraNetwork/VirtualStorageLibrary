@@ -1,6 +1,6 @@
-[*]
+﻿[*]
 spelling_exclusion_path = .\project-specific-exclusion.dic
 
 [*.cs]
 dotnet_diagnostic.IDE0290.severity = none
-file_header_template = This file is part of VirtualStorageLibrary.\n\nCopyright (C) 2024 Akira Shimodate\n\nVirtualStorageLibrary is free software, and it is distributed under the terms of \nthe GNU General Public License (version 3, or at your option, any later version). \nThis license is published by the Free Software Foundation.\n\nVirtualStorageLibrary is distributed in the hope that it will be useful, \nbut WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or \nFITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along \nwith VirtualStorageLibrary. If not, see https://www.gnu.org/licenses/.
+file_header_template = This file is part of VirtualStorageLibrary.\n\nCopyright (C) 2024 Akira Shimodate\n\nVirtualStorageLibrary is free software, and it is distributed under the terms of \nthe GNU Lesser General Public License (version 3, or at your option, any later \nversion). This license is published by the Free Software Foundation.\n\nVirtualStorageLibrary is distributed in the hope that it will be useful, \nbut WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or \nFITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for \nmore details.\n\nYou should have received a copy of the GNU Lesser General Public License along \nwith VirtualStorageLibrary. If not, see https://www.gnu.org/licenses/.

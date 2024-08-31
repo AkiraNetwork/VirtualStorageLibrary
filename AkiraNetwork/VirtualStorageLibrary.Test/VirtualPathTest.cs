@@ -3,14 +3,15 @@
 // Copyright (C) 2024 Akira Shimodate
 //
 // VirtualStorageLibrary is free software, and it is distributed under the terms of 
-// the GNU General Public License (version 3, or at your option, any later version). 
-// This license is published by the Free Software Foundation.
+// the GNU Lesser General Public License (version 3, or at your option, any later 
+// version). This license is published by the Free Software Foundation.
 //
 // VirtualStorageLibrary is distributed in the hope that it will be useful, 
 // but WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or 
-// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for 
+// more details.
 //
-// You should have received a copy of the GNU General Public License along 
+// You should have received a copy of the GNU Lesser General Public License along 
 // with VirtualStorageLibrary. If not, see https://www.gnu.org/licenses/.
 
 using System.Diagnostics;
@@ -53,10 +54,10 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // テストデータ
             List<VirtualNodeName> parts = ["dir1", "dir2", "file"];
             string expected = "/dir1/dir2/file";
-            
+
             // メソッドを実行
             VirtualPath virtualPath = new(parts);
-            
+
             // 結果を検証
             Assert.AreEqual(expected, virtualPath.Path);
         }
