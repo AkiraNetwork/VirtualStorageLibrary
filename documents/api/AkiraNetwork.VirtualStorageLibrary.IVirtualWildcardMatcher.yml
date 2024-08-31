@@ -25,7 +25,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IVirtualWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -54,7 +54,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -89,7 +89,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 58
+    startLine: 59
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -121,7 +121,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 66
+    startLine: 67
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -153,7 +153,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 74
+    startLine: 75
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -185,7 +185,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 82
+    startLine: 83
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -226,7 +226,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidWildcardPattern
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 89
+    startLine: 90
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

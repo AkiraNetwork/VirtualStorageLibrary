@@ -24,7 +24,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -60,7 +60,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Filter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -98,7 +98,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -136,7 +136,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SortConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -174,7 +174,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 56
+    startLine: 57
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -208,7 +208,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeListConditions.cs
-    startLine: 72
+    startLine: 73
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

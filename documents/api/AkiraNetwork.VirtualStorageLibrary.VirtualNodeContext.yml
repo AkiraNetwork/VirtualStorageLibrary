@@ -29,7 +29,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeContext
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -72,7 +72,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Node
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -104,7 +104,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TraversalPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -136,7 +136,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ParentDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -168,7 +168,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Depth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 56
+    startLine: 57
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -203,7 +203,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Index
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -238,7 +238,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolvedPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 74
+    startLine: 75
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -273,7 +273,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Resolved
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 83
+    startLine: 84
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -308,7 +308,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolvedLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 91
+    startLine: 92
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -340,7 +340,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 104
+    startLine: 105
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -396,7 +396,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNodeContext.cs
-    startLine: 128
+    startLine: 129
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

@@ -31,8 +31,8 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodeType(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodes(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Indexer(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.IsValidWildcardPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
@@ -78,7 +78,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualStorage
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-    startLine: 19
+    startLine: 20
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -125,7 +125,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Root
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -159,7 +159,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CurrentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 35
+    startLine: 36
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -193,7 +193,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -227,7 +227,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDetectorForTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -261,7 +261,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-    startLine: 52
+    startLine: 53
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -292,7 +292,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CopyNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.CopyTask.cs
-    startLine: 81
+    startLine: 82
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -352,7 +352,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -393,7 +393,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: LinkDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -427,7 +427,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddLinkToDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 38
+    startLine: 39
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -468,7 +468,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 59
+    startLine: 60
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -502,7 +502,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateAllTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 72
+    startLine: 73
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -532,7 +532,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveLinkFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 85
+    startLine: 86
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -569,7 +569,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetLinksFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 106
+    startLine: 107
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -606,7 +606,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetLinkTargetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 120
+    startLine: 121
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -644,7 +644,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateLinkInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 137
+    startLine: 138
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -681,7 +681,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateLinksToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 163
+    startLine: 164
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -718,7 +718,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveLinkByLinkPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-    startLine: 201
+    startLine: 202
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -756,7 +756,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.MoveTask.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -818,7 +818,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ChangeDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -852,7 +852,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -889,7 +889,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 64
+    startLine: 65
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -927,7 +927,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 81
+    startLine: 82
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -964,7 +964,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdateSymbolicLInk
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 98
+    startLine: 99
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1001,7 +1001,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 117
+    startLine: 118
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1042,7 +1042,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 143
+    startLine: 144
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1083,7 +1083,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 184
+    startLine: 185
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1121,7 +1121,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 226
+    startLine: 227
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1162,7 +1162,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 266
+    startLine: 267
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1203,7 +1203,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 288
+    startLine: 289
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1244,7 +1244,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 337
+    startLine: 338
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1285,7 +1285,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 359
+    startLine: 360
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1326,7 +1326,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetLinkTargetPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-    startLine: 405
+    startLine: 406
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1363,7 +1363,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ConvertToAbsolutePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1408,7 +1408,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 63
+    startLine: 64
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1453,7 +1453,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 76
+    startLine: 77
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1494,7 +1494,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 96
+    startLine: 97
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1535,7 +1535,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 108
+    startLine: 109
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1572,7 +1572,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 127
+    startLine: 128
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1617,7 +1617,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 148
+    startLine: 149
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1658,7 +1658,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 167
+    startLine: 168
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1703,7 +1703,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 188
+    startLine: 189
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1744,7 +1744,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 207
+    startLine: 208
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1786,7 +1786,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TryGetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 234
+    startLine: 235
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1824,7 +1824,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeID
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 261
+    startLine: 262
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1872,7 +1872,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 274
+    startLine: 275
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1913,7 +1913,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 291
+    startLine: 292
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1961,7 +1961,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 306
+    startLine: 307
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1988,25 +1988,25 @@ items:
   nameWithType.vb: VirtualStorage(Of T).GetNodes(VirtualNodeTypeFilter, Boolean, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodes(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
   name.vb: GetNodes(VirtualNodeTypeFilter, Boolean, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  id: GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  id: GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
   langs:
   - csharp
   - vb
-  name: GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
-  nameWithType: VirtualStorage<T>.GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
+  name: GetPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  nameWithType: VirtualStorage<T>.GetPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
   type: Method
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
       branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: GetNodesWithPaths
+    id: GetPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 322
+    startLine: 321
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2014,7 +2014,7 @@ items:
   remarks: This method may be integrated, reorganized, or deprecated in the near future.
   example: []
   syntax:
-    content: public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
+    content: public IEnumerable<VirtualPath> GetPaths(VirtualPath basePath, VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
     parameters:
     - id: basePath
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
@@ -2031,30 +2031,30 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
       description: The paths in the path tree starting from the specified path <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref>.
-    content.vb: Public Function GetNodesWithPaths(basePath As VirtualPath, nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*
-  nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
-  name.vb: GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  id: GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+    content.vb: Public Function GetPaths(basePath As VirtualPath, nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths*
+  nameWithType.vb: VirtualStorage(Of T).GetPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
+  name.vb: GetPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  id: GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
   langs:
   - csharp
   - vb
-  name: GetNodesWithPaths(VirtualNodeTypeFilter, bool, bool)
-  nameWithType: VirtualStorage<T>.GetNodesWithPaths(VirtualNodeTypeFilter, bool, bool)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
+  name: GetPaths(VirtualNodeTypeFilter, bool, bool)
+  nameWithType: VirtualStorage<T>.GetPaths(VirtualNodeTypeFilter, bool, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
   type: Method
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
       branch: master
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
-    id: GetNodesWithPaths
+    id: GetPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 337
+    startLine: 336
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2062,7 +2062,7 @@ items:
   remarks: This method may be integrated, reorganized, or deprecated in the near future.
   example: []
   syntax:
-    content: public IEnumerable<VirtualPath> GetNodesWithPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
+    content: public IEnumerable<VirtualPath> GetPaths(VirtualNodeTypeFilter nodeType = VirtualNodeTypeFilter.All, bool recursive = false, bool followLinks = false)
     parameters:
     - id: nodeType
       type: AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter
@@ -2076,11 +2076,11 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
       description: The paths in the path tree starting from the current path <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref>.
-    content.vb: Public Function GetNodesWithPaths(nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualPath)
-  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*
-  nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths(VirtualNodeTypeFilter, Boolean, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
-  name.vb: GetNodesWithPaths(VirtualNodeTypeFilter, Boolean, Boolean)
+    content.vb: Public Function GetPaths(nodeType As VirtualNodeTypeFilter = VirtualNodeTypeFilter.All, recursive As Boolean = False, followLinks As Boolean = False) As IEnumerable(Of VirtualPath)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths*
+  nameWithType.vb: VirtualStorage(Of T).GetPaths(VirtualNodeTypeFilter, Boolean, Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
+  name.vb: GetPaths(VirtualNodeTypeFilter, Boolean, Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ExpandPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
   id: ExpandPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
@@ -2099,7 +2099,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 356
+    startLine: 353
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2150,7 +2150,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidWildcardPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 378
+    startLine: 375
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2187,7 +2187,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 403
+    startLine: 400
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2228,7 +2228,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 416
+    startLine: 413
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2269,7 +2269,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 434
+    startLine: 431
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2310,7 +2310,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-    startLine: 448
+    startLine: 445
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2347,7 +2347,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: RemoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2417,7 +2417,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathToTarget.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2467,7 +2467,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ExpandPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -2532,7 +2532,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WalkPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-    startLine: 97
+    startLine: 98
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -4028,14 +4028,14 @@ references:
     name: VirtualNode
     href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
   - name: )
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
-  name: GetNodesWithPaths
-  nameWithType: VirtualStorage<T>.GetNodesWithPaths
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodesWithPaths
-  nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodesWithPaths
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetPaths_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
+  name: GetPaths
+  nameWithType: VirtualStorage<T>.GetPaths
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetPaths
+  nameWithType.vb: VirtualStorage(Of T).GetPaths
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetPaths
 - uid: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
   commentId: T:System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualPath}
   parent: System.Collections.Generic

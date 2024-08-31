@@ -22,7 +22,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualSortCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 21
+    startLine: 22
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -67,7 +67,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -105,7 +105,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SortBy
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -139,7 +139,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Ascending
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-    startLine: 49
+    startLine: 50
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

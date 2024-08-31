@@ -4324,33 +4324,33 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodes
   nameWithType: VirtualStorage<T>.GetNodes
   nameWithType.vb: VirtualStorage(Of T).GetNodes
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  name: GetNodesWithPaths(VirtualNodeTypeFilter, bool, bool)
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  name.vb: GetNodesWithPaths(VirtualNodeTypeFilter, Boolean, Boolean)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
-  nameWithType: VirtualStorage<T>.GetNodesWithPaths(VirtualNodeTypeFilter, bool, bool)
-  nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths(VirtualNodeTypeFilter, Boolean, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  name: GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
-  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
-  name.vb: GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodesWithPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
-  nameWithType: VirtualStorage<T>.GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
-  nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths*
-  name: GetNodesWithPaths
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetNodesWithPaths_
-  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetNodesWithPaths
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  name: GetPaths(VirtualNodeTypeFilter, bool, bool)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetPaths_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  name.vb: GetPaths(VirtualNodeTypeFilter, Boolean, Boolean)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
+  nameWithType: VirtualStorage<T>.GetPaths(VirtualNodeTypeFilter, bool, bool)
+  nameWithType.vb: VirtualStorage(Of T).GetPaths(VirtualNodeTypeFilter, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  name: GetPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetPaths_AkiraNetwork_VirtualStorageLibrary_VirtualPath_AkiraNetwork_VirtualStorageLibrary_VirtualNodeTypeFilter_System_Boolean_System_Boolean_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter,System.Boolean,System.Boolean)
+  name.vb: GetPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, bool, bool)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetPaths(AkiraNetwork.VirtualStorageLibrary.VirtualPath, AkiraNetwork.VirtualStorageLibrary.VirtualNodeTypeFilter, Boolean, Boolean)
+  nameWithType: VirtualStorage<T>.GetPaths(VirtualPath, VirtualNodeTypeFilter, bool, bool)
+  nameWithType.vb: VirtualStorage(Of T).GetPaths(VirtualPath, VirtualNodeTypeFilter, Boolean, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths*
+  name: GetPaths
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetPaths_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetPaths
   isSpec: "True"
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetNodesWithPaths
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetNodesWithPaths
-  nameWithType: VirtualStorage<T>.GetNodesWithPaths
-  nameWithType.vb: VirtualStorage(Of T).GetNodesWithPaths
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.GetPaths
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).GetPaths
+  nameWithType: VirtualStorage<T>.GetPaths
+  nameWithType.vb: VirtualStorage(Of T).GetPaths
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.GetSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   name: GetSymbolicLink(VirtualPath)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_GetSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualPath_

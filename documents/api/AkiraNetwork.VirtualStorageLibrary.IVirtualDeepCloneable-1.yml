@@ -20,7 +20,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IVirtualDeepCloneable
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -55,7 +55,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualInterfaces.cs
-    startLine: 35
+    startLine: 36
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

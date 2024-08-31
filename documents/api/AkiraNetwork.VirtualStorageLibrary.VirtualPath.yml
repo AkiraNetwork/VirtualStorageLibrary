@@ -71,7 +71,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 24
+    startLine: 25
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -116,7 +116,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Path
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 46
+    startLine: 47
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -148,7 +148,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 68
+    startLine: 69
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -186,7 +186,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 78
+    startLine: 79
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -224,7 +224,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 92
+    startLine: 93
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -256,7 +256,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 108
+    startLine: 109
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -288,7 +288,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 124
+    startLine: 125
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -320,7 +320,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Depth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 137
+    startLine: 138
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -352,7 +352,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: FixedPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 146
+    startLine: 147
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -385,7 +385,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: FixedDepth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 166
+    startLine: 167
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -421,7 +421,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Separator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 182
+    startLine: 183
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -453,7 +453,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Root
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 188
+    startLine: 189
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -485,7 +485,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 194
+    startLine: 195
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -517,7 +517,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 200
+    startLine: 201
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -549,7 +549,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 206
+    startLine: 207
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -581,7 +581,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsEmpty
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 212
+    startLine: 213
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -613,7 +613,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 221
+    startLine: 222
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -645,7 +645,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsAbsolute
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 230
+    startLine: 231
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -677,7 +677,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsEndsWithSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 239
+    startLine: 240
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -709,7 +709,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 248
+    startLine: 249
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -741,7 +741,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsDotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 257
+    startLine: 258
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -773,7 +773,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetHashCode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 266
+    startLine: 267
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -805,7 +805,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 272
+    startLine: 273
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -840,7 +840,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 281
+    startLine: 282
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -875,7 +875,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 291
+    startLine: 292
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -914,7 +914,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 305
+    startLine: 306
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -954,7 +954,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Equality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 316
+    startLine: 317
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -995,7 +995,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Inequality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 340
+    startLine: 341
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1036,7 +1036,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 351
+    startLine: 352
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1077,7 +1077,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 362
+    startLine: 363
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1118,7 +1118,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 374
+    startLine: 375
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1159,7 +1159,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 386
+    startLine: 387
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1200,7 +1200,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 398
+    startLine: 399
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1241,7 +1241,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 410
+    startLine: 411
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1282,7 +1282,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TrimEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 420
+    startLine: 421
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1313,7 +1313,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 433
+    startLine: 434
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1344,7 +1344,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddStartSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 446
+    startLine: 447
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1375,7 +1375,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: StartsWith
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 460
+    startLine: 461
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1410,7 +1410,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 469
+    startLine: 470
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1441,7 +1441,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 486
+    startLine: 487
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1483,7 +1483,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 560
+    startLine: 561
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1514,7 +1514,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 594
+    startLine: 595
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1552,7 +1552,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 609
+    startLine: 610
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1590,7 +1590,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetParentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 670
+    startLine: 671
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1621,7 +1621,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsLinkedList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 694
+    startLine: 695
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1652,7 +1652,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 713
+    startLine: 714
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1692,7 +1692,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CombineFromIndex
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 724
+    startLine: 725
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1733,7 +1733,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 744
+    startLine: 745
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1773,7 +1773,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 760
+    startLine: 761
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1817,7 +1817,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetRelativePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 791
+    startLine: 792
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1873,7 +1873,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ArePathsSubdirectories
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 876
+    startLine: 877
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1915,7 +1915,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsSubdirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 927
+    startLine: 928
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1954,7 +1954,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-    startLine: 971
+    startLine: 972
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

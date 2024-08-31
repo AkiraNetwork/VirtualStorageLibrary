@@ -22,7 +22,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualGroupCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -69,7 +69,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -107,7 +107,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupBy
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -141,7 +141,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Ascending
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualGroupCondition.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

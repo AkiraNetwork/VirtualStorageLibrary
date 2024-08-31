@@ -24,7 +24,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNodeTypeFilter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 38
+    startLine: 39
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -53,7 +53,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: None
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -81,7 +81,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Item
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -109,7 +109,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Directory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -137,7 +137,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -165,7 +165,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: All
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualEnums.cs
-    startLine: 53
+    startLine: 54
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

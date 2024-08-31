@@ -24,7 +24,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualCycleDetector
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 21
+    startLine: 22
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -66,7 +66,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -101,7 +101,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -133,7 +133,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 49
+    startLine: 50
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -164,7 +164,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Clear
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 57
+    startLine: 58
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -192,7 +192,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsNodeInCycle
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-    startLine: 67
+    startLine: 68
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary

@@ -21,7 +21,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualStorageExtensions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 20
+    startLine: 21
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -59,7 +59,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GroupAndSort
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -107,7 +107,7 @@ items:
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ApplySortConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualExtensions.cs
-    startLine: 66
+    startLine: 67
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
