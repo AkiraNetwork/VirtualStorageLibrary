@@ -9,7 +9,7 @@
   </ul>
 </details>
 
-![Version: 0.8.0](https://img.shields.io/badge/version-0.8.0-pink.svg)
+![Version: 0.9.0](https://img.shields.io/badge/version-0.9.0-pink.svg)
 [![License: LGPL-3.0-or-later](https://img.shields.io/badge/License-LGPL%20v3.0%20or%20later-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
 [![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)](https://dotnet.microsoft.com/en-us/download/dotnet)
 [![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
