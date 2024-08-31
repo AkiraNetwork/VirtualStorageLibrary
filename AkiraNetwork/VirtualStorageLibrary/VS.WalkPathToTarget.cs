@@ -251,6 +251,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <summary>
         /// A structure that holds parameters for the WalkPathToTarget method.
         /// </summary>
+        [DebuggerStepThrough]
         private struct WalkPathToTargetParameters
         {
             /// <summary>
