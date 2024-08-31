@@ -7,7 +7,7 @@
     <RootNamespace>AkiraNetwork.VirtualStorageLibrary</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Title>Virtual Storage Library</Title>
-    <Version>0.9.0.1</Version>
+    <Version>0.9.0.2</Version>
     <Authors>Akira Shimodate</Authors>
     <Company>AkiraNetwork</Company>
     <Description>VirtualStorageLibrary is a fully in-memory .NET library that provides a tree-structured collection. 
@@ -21,39 +21,35 @@ Users can intuitively reference, traverse, and manipulate nodes by specifying pa
     <RepositoryUrl>https://github.com/shimodateakira/VirtualStorageLibrary.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>tree;collection;library;virtual;akiranet;akiranetwork</PackageTags>
-    <PackageReleaseNotes>
-      <![CDATA[
-      ![burner.png](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/docs/images/burner.png)
+	<PackageReleaseNotes>
+Version 0.9.0 - Prerelease
 
-      # Version 0.9.0 - Prerelease
+This is the prerelease of the project, focusing on bug fixes and enhancements.
 
-      This is the prerelease of the project, focusing on bug fixes and enhancements.
+Bug Fixes and Enhancements
 
-      ## Bug Fixes and Enhancements
+- #56: Introduced validity checks during link creation to ensure the integrity of the links.
+- #69: Considered deprecating GetNodes and GetNodesWithPath methods, evaluating alternative approaches for future versions.
+- #86: Resolved an issue in AddLinkToDictionary where ConvertToAbsolutePath was not functioning as expected.
+- #144: Corrected an issue where the current path could be deleted in the RemoveNode method, preventing potential data loss.
+- #145: Added validation checks for incorrectly specified regular expressions to prevent runtime errors.
+- #146: Added additional information to exceptions when a node is not found, improving error diagnostics.
+- #147: Implemented a mechanism to dynamically switch wildcard matchers, enhancing the flexibility of pattern matching.
+- #148: Improved the organization of DebuggerStepThrough attributes across the codebase for a better debugging experience.
+- #158: Fixed an initialization bug in the VirtualPath class that could cause unexpected behavior during setup.
+- #184: Fixed an exception that occurred when copying items under a symbolic link in the CopyNode method.
 
-      - **#56**: Introduced validity checks during link creation to ensure the integrity of the links.
-      - **#69**: Considered deprecating `GetNodes` and `GetNodesWithPath` methods, evaluating alternative approaches for future versions.
-      - **#86**: Resolved an issue in `AddLinkToDictionary` where `ConvertToAbsolutePath` was not functioning as expected.
-      - **#144**: Corrected an issue where the current path could be deleted in the `RemoveNode` method, preventing potential data loss.
-      - **#145**: Added validation checks for incorrectly specified regular expressions to prevent runtime errors.
-      - **#146**: Added additional information to exceptions when a node is not found, improving error diagnostics.
-      - **#147**: Implemented a mechanism to dynamically switch wildcard matchers, enhancing the flexibility of pattern matching.
-      - **#148**: Improved the organization of `DebuggerStepThrough` attributes across the codebase for a better debugging experience.
-      - **#158**: Fixed an initialization bug in the `VirtualPath` class that could cause unexpected behavior during setup.
-      - **#184**: Fixed an exception that occurred when copying items under a symbolic link in the `CopyNode` method.
+Please refer to the VirtualStorageLibrary homepage for more details:
 
-      Please refer to the [VirtualStorageLibrary homepage](https://shimodateakira.github.io/VirtualStorageLibrary/index.html) for more details.
-
-      ![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/tree_256x256.svg)
-      ]]>
-    </PackageReleaseNotes>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+https://shimodateakira.github.io/VirtualStorageLibrary/index.html
+	</PackageReleaseNotes>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageOutputPath>../../packages</PackageOutputPath>
-    <AssemblyVersion>0.9.0.1</AssemblyVersion>
-    <FileVersion>0.9.0.1</FileVersion>
+    <AssemblyVersion>0.9.0.2</AssemblyVersion>
+    <FileVersion>0.9.0.2</FileVersion>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\Signature\VirtualStorageLibrary.snk</AssemblyOriginatorKeyFile>
     <PackageId>AkiraNetwork.VirtualStorageLibrary</PackageId>
