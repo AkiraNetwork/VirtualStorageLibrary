@@ -9444,6 +9444,51 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.AreEqual(VirtualNodeType.Directory, vs.GetSymbolicLink(linkToLink).TargetNodeType);
         }
 
+        // VirtualStorageから参照されたVirtualDirectoryにVirtualSymbolicLinkを追加した場合、
+        // リンク辞書が更新されるか確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void AddSymbolicLink_UpdateLinkDictionary()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            VirtualDirectory dir1 = vs.GetDirectory("/dir1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Act
+            dir1.AddSymbolicLink("link1", "/dir2");
+            vs.RefreshLinkDictionary();
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("\nディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Assert
+            Assert.IsTrue(vs.SymbolicLinkExists("/dir1/link1"));
+            Assert.AreEqual("/dir2", (string)vs.GetSymbolicLink("/dir1/link1").TargetPath);
+
+            // コンテキストのデバッグ出力
+            var paths = vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true, false).Select(path => VirtualPath.Root + path);
+            Debug.WriteLine("\nシンボリックのパス:");
+            foreach (var path in paths)
+            {
+                Debug.WriteLine(path);
+            }
+        }
+
         [TestMethod]
         [TestCategory("LinkDictionary")]
         public void AddDirectory_UpdatesLinkTypeForNonExistentIntermediateTargetToDirectory()

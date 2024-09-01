@@ -228,5 +228,28 @@ namespace AkiraNetwork.VirtualStorageLibrary
                 _linkDictionary.Remove(targetPath);
             }
         }
+
+        /// <summary>
+        /// Refreshes the link dictionary by collecting all symbolic links starting from the root path.
+        /// </summary>
+        public void RefreshLinkDictionary()
+        {
+            // Clear the existing link dictionary
+            _linkDictionary.Clear();
+
+            // Retrieve all symbolic link paths starting from the root
+            var linkPaths = GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true, false)
+                            .Select(path => VirtualPath.Root + path);
+
+            // Iterate through each symbolic link path and add it to the link dictionary
+            foreach (var linkPath in linkPaths)
+            {
+                VirtualSymbolicLink link = GetSymbolicLink(linkPath);
+                if (link.TargetPath != null)
+                {
+                    AddLinkToDictionary(link.TargetPath, linkPath);
+                }
+            }
+        }
     }
 }
