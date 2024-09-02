@@ -230,25 +230,60 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
-        /// Refreshes the link dictionary by collecting all symbolic links starting from the root path.
+        /// Refreshes the link dictionary by updating the target path of the symbolic link at the specified path.
+        /// If the link is not found in the dictionary, it will be added and the TargetNodeType will be set.
         /// </summary>
-        public void RefreshLinkDictionary()
+        /// <param name="linkPath">The path of the symbolic link to be used for updating the link dictionary.</param>
+        public void RefreshLinkDictionary(VirtualPath linkPath)
         {
-            // Clear the existing link dictionary
-            _linkDictionary.Clear();
+            // Convert to absolute path and normalize linkPath
+            linkPath = ConvertToAbsolutePath(linkPath).NormalizePath();
 
-            // Retrieve all symbolic link paths starting from the root
-            var linkPaths = GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true, false)
-                            .Select(path => VirtualPath.Root + path);
+            // Separate the directory path and link name
+            VirtualPath linkDirectoryPath = linkPath.DirectoryPath;
+            VirtualNodeName linkName = linkPath.NodeName;
 
-            // Iterate through each symbolic link path and add it to the link dictionary
-            foreach (var linkPath in linkPaths)
+            // Retrieve the directory where the symbolic link will be added
+            VirtualDirectory directory = GetDirectory(linkDirectoryPath, true);
+
+            // Check if the node already exists
+            VirtualSymbolicLink link = directory.GetSymbolicLink(linkName);
+
+            // Check if the link's target path is null; if so, exit early
+            if (link.TargetPath == null)
             {
-                VirtualSymbolicLink link = GetSymbolicLink(linkPath);
-                if (link.TargetPath != null)
+                return;
+            }
+
+            // Retrieve all symbolic link paths from the existing link dictionary that match the link path
+            var matchingLinkPaths = _linkDictionary
+                .SelectMany(entry => entry.Value)
+                .Where(lp => lp == linkPath)
+                .ToList(); // Convert to a list to allow multiple iterations
+
+            // Check if there are any matching link paths
+            if (matchingLinkPaths.Count != 0)
+            {
+                // Update the target path for each matching link path in the dictionary
+                foreach (var existingLinkPath in matchingLinkPaths)
                 {
-                    AddLinkToDictionary(link.TargetPath, linkPath);
+                    // Remove the old entry if it exists
+                    RemoveLinkFromDictionary(_linkDictionary.First(entry => entry.Value.Contains(existingLinkPath)).Key, existingLinkPath);
+
+                    // Add the link with the updated target path to the dictionary
+                    AddLinkToDictionary(link.TargetPath, existingLinkPath);
                 }
+
+                // Directly set the TargetNodeType for the link
+                link.TargetNodeType = GetNodeType(link.TargetPath, true);
+            }
+            else
+            {
+                // If no matching link paths were found, add the new link to the dictionary using the provided link path
+                AddLinkToDictionary(link.TargetPath, linkPath);
+
+                // Directly set the TargetNodeType for the newly added link
+                link.TargetNodeType = GetNodeType(link.TargetPath, true);
             }
         }
     }

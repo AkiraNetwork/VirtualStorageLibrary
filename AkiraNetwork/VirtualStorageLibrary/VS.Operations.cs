@@ -50,6 +50,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
 
                 case VirtualSymbolicLink symbolicLink:
                     UpdateSymbolicLInk(destinationPath, symbolicLink);
+                    RefreshLinkDictionary(destinationPath);
                     break;
 
                 case VirtualItem<T> item:

@@ -9466,7 +9466,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             // Act
             dir1.AddSymbolicLink("link1", "/dir2");
-            vs.RefreshLinkDictionary();
+            vs.RefreshLinkDictionary("/dir1/link1");
 
             // ディレクトリ構造のデバッグ出力
             Debug.WriteLine("\nディレクトリ構造 (処理後):");
@@ -9479,14 +9479,126 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             // Assert
             Assert.IsTrue(vs.SymbolicLinkExists("/dir1/link1"));
             Assert.AreEqual("/dir2", (string)vs.GetSymbolicLink("/dir1/link1").TargetPath);
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey("/dir2"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/dir2").Contains("/dir1/link1"));
+        }
 
-            // コンテキストのデバッグ出力
-            var paths = vs.GetPaths(VirtualPath.Root, VirtualNodeTypeFilter.SymbolicLink, true, false).Select(path => VirtualPath.Root + path);
-            Debug.WriteLine("\nシンボリックのパス:");
-            foreach (var path in paths)
-            {
-                Debug.WriteLine(path);
-            }
+        // VirtualStorageから参照されたVirtualDirectoryにVirtualSymbolicLinkを追加した場合、
+        // リンク辞書が更新されるか確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void AddSymbolicLink_UpdateLinkDictionaryWithSameTargetLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            VirtualDirectory dir1 = vs.GetDirectory("/dir1");
+            vs.AddSymbolicLink("/link1", "/dir2");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Act
+            dir1.AddSymbolicLink("link1", "/dir2");
+            vs.RefreshLinkDictionary("/dir1/link1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("\nディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Assert
+            Assert.IsTrue(vs.SymbolicLinkExists("/dir1/link1"));
+            Assert.AreEqual("/dir2", (string)vs.GetSymbolicLink("/dir1/link1").TargetPath);
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey("/dir2"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/dir2").Contains("/dir1/link1"));
+        }
+
+        // VirtualStorageから参照されたVirtualDirectoryのVirtualSymbolicLinkを更新した場合、
+        // リンク辞書が更新されるか確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void AddSymbolicLink_UpdateLinkDictionaryWithUpdateLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+            vs.AddSymbolicLink("/dir1/link1", "/defaultDir");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Act
+            VirtualSymbolicLink link1 = vs.GetSymbolicLink("/dir1/link1");
+            VirtualSymbolicLink newLink1 = new("link1", "/dir2");
+            link1.Update(newLink1);
+
+            vs.RefreshLinkDictionary("/dir1/link1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("\nディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Assert
+            Assert.IsTrue(vs.SymbolicLinkExists("/dir1/link1"));
+            Assert.AreEqual("/dir2", (string)vs.GetSymbolicLink("/dir1/link1").TargetPath);
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey("/dir2"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/dir2").Contains("/dir1/link1"));
+        }
+
+        // VirtualStorageから参照されたVirtualDirectoryにVirtualSymbolicLink(NULL)を追加した場合、
+        // リンク辞書が更新されないこと確認するテスト
+        [TestMethod]
+        [TestCategory("LinkDictionary")]
+        public void AddSymbolicLink_UpdateLinkDictionaryWithNullLink()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            vs.AddDirectory("/dir1");
+            vs.AddDirectory("/dir2");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Act
+            vs.AddSymbolicLink("/dir1/link1");
+            vs.RefreshLinkDictionary("/dir1/link1");
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("\nディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Assert
+            Assert.IsTrue(vs.SymbolicLinkExists("/dir1/link1"));
+            Assert.AreEqual(0, vs.LinkDictionary.Count);
         }
 
         [TestMethod]
@@ -10021,7 +10133,8 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Debug.WriteLine(err.Message);
         }
 
-        // ストレージから参照されている状態でリンクのターゲットを変更した時、例外が発生する事を確認するテスト
+        // ストレージから参照されている状態でリンクのターゲットを変更した時、
+        // リンク辞書が正常に更新される事を確認するテスト
         [TestMethod]
         [TestCategory("LinkDictionary")]
         public void Update_SetNewTargetWithRef_Successful()
@@ -10035,17 +10148,32 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             vs.AddItem("/dir2/item1");
             vs.AddSymbolicLink("/link1", "/dir1/item1");
 
-            // act & assert
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // act
             VirtualSymbolicLink link = vs.GetSymbolicLink("/link1");
             VirtualSymbolicLink newLink = new("/link1", "/dir2/item1");
-            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
-            {
-                link.Update(newLink);
-            });
+            link.Update(newLink);
+            vs.RefreshLinkDictionary("/link1");
 
-            Debug.WriteLine(ex.Message);
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
-            Assert.AreEqual("Cannot change the target path of the links associated with the storage. [link1]", ex.Message);
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // assert
+            Assert.AreEqual("/dir2/item1", (string)link.TargetPath);
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey("/dir2/item1"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/dir2/item1").Contains("/link1"));
         }
 
         // ストレージから参照されてない状態でリンクのターゲットを変更した時、正常に変更される事を確認するテスト
@@ -10911,15 +11039,31 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             vs.AddDirectory("/dir1");
             vs.AddSymbolicLink("/dir1/link1", "/dir2");
+            vs.AddDirectory("/dir3");
 
-            // Act && Assert
-            var ex = Assert.ThrowsException<InvalidOperationException>(() =>
-            {
-                vs.SetNode("/dir1/link1", newLink);
-            });
-            Debug.WriteLine(ex.Message);
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理前):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
 
-            Assert.AreEqual("Cannot change the target path of the links associated with the storage. [link1]", ex.Message);
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理前):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Act
+            vs.SetNode("/dir1/link1", newLink);
+
+            // ディレクトリ構造のデバッグ出力
+            Debug.WriteLine("ディレクトリ構造 (処理後):");
+            Debug.WriteLine(vs.GenerateTreeDebugText(VirtualPath.Root, true, false));
+
+            // リンク辞書のデバッグ出力
+            Debug.WriteLine("リンク辞書 (処理後):");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            // Assert
+            Assert.AreEqual("/dir3", (string)vs.GetSymbolicLink("/dir1/link1").TargetPath);
+            Assert.IsTrue(vs.LinkDictionary.ContainsKey("/dir3"));
+            Assert.IsTrue(vs.GetLinksFromDictionary("/dir3").Contains("/dir1/link1"));
         }
 
         [TestMethod]

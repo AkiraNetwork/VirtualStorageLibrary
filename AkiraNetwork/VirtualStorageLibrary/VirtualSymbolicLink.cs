@@ -163,14 +163,6 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// <exception cref="ArgumentException">Thrown if the specified node is not a VirtualSymbolicLink.</exception>
         public override void Update(VirtualNode node)
         {
-            // Check IsReferencedInStorage for the current instance
-            if (IsReferencedInStorage)
-            {
-                // If referenced in storage, changing the target path is not allowed
-                // Instead, use the SetLinkTargetPath method of the VirtualStorage class to change the target path
-                throw new InvalidOperationException(string.Format(Resources.CannotChangeTargetPath, Name));
-            }
-
             // Check the node type
             if (node is not VirtualSymbolicLink newLink)
             {
