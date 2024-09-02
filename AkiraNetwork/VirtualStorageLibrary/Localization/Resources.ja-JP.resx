@@ -225,9 +225,6 @@
   <data name="CannotMoveCurrentOrParentDirectory" xml:space="preserve">
     <value>移動元のパスが現在、または、親のディレクトリの場合、移動はできません。</value>
   </data>
-  <data name="CannotChangeTargetPath" xml:space="preserve">
-    <value>ストレージに関連付けられているリンクのターゲットパスは変更できません。 [{0}]</value>
-  </data>
   <data name="InvalidTargetPath" xml:space="preserve">
     <value>ターゲットパス [{0}] は無効です。使用禁止の文字が使われています。</value>
   </data>

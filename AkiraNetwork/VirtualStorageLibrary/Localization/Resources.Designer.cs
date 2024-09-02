@@ -79,15 +79,6 @@ namespace AkiraNetwork.VirtualStorageLibrary.Localization {
         }
         
         /// <summary>
-        ///   Cannot change the target path of the links associated with the storage. [{0}] に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string CannotChangeTargetPath {
-            get {
-                return ResourceManager.GetString("CannotChangeTargetPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Cannot move the node if the source path is the current directory or a parent directory. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CannotMoveCurrentOrParentDirectory {
