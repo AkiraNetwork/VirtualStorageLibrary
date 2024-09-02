@@ -161,6 +161,26 @@ namespace AkiraNetwork.VirtualStorageLibrary
         /// </summary>
         /// <param name="node">The node to use for the update.</param>
         /// <exception cref="ArgumentException">Thrown if the specified node is not a VirtualSymbolicLink.</exception>
+        /// <remarks>
+        /// After updating an instance of VirtualSymbolicLink that has been added to VirtualStorage,
+        /// call the RefreshLinkDictionary method of the VirtualStorage class to update the link dictionary.
+        /// However, this is not necessary if the symbolic link is updated using the SetNode method of the VirtualStorage class.
+        /// <code>
+        /// VirtualStorage&lt;UserType&gt; vs = new();
+        ///
+        /// vs.AddDirectory("/dir1");
+        /// vs.AddItem("/dir1/item1");
+        /// vs.AddDirectory("/dir2");
+        /// vs.AddItem("/dir2/item1");
+        /// vs.AddSymbolicLink("/link1", "/dir1/item1");
+        ///
+        /// VirtualSymbolicLink link = vs.GetSymbolicLink("/link1");
+        /// VirtualSymbolicLink newLink = new("/link1", "/dir2/item1");
+        ///
+        /// link.Update(newLink);
+        /// vs.RefreshLinkDictionary("/link1");
+        /// </code>
+        /// </remarks>
         public override void Update(VirtualNode node)
         {
             // Check the node type
