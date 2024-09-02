@@ -475,6 +475,24 @@ the target is undefined or dynamically determined.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualNode.html#AkiraNetwork_VirtualStorageLibrary_VirtualNode_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode_">VirtualNode.Update(VirtualNode)</a></div>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLink_Update_AkiraNetwork_VirtualStorageLibrary_VirtualNode__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>After updating an instance of VirtualSymbolicLink that has been added to VirtualStorage,
+call the RefreshLinkDictionary method of the VirtualStorage class to update the link dictionary.
+However, this is not necessary if the symbolic link is updated using the SetNode method of the VirtualStorage class.</p>
+<pre><code class="lang-csharp">VirtualStorage&lt;UserType&gt; vs = new();
+
+vs.AddDirectory("/dir1");
+vs.AddItem("/dir1/item1");
+vs.AddDirectory("/dir2");
+vs.AddItem("/dir2/item1");
+vs.AddSymbolicLink("/link1", "/dir1/item1");
+
+VirtualSymbolicLink link = vs.GetSymbolicLink("/link1");
+VirtualSymbolicLink newLink = new("/link1", "/dir2/item1");
+
+link.Update(newLink);
+vs.RefreshLinkDictionary("/link1");</code></pre>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>

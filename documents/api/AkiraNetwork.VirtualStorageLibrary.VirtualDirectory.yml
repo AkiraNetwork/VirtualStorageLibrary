@@ -54,7 +54,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -157,7 +157,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeNames
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Nodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -219,7 +219,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -250,7 +250,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -281,7 +281,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -312,7 +312,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -343,7 +343,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodesView
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -374,7 +374,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodesViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -405,7 +405,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -436,7 +436,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -467,7 +467,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -498,7 +498,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -533,7 +533,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -568,7 +568,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -603,7 +603,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -638,7 +638,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -672,7 +672,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -707,7 +707,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -745,7 +745,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -786,7 +786,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -823,7 +823,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -855,7 +855,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -894,7 +894,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodesView
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -925,7 +925,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Add
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -973,7 +973,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1020,7 +1020,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1064,7 +1064,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1105,7 +1105,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1147,7 +1147,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Remove
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1183,7 +1183,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Get
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1224,7 +1224,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetEnumerator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1257,7 +1257,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1305,7 +1305,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1347,7 +1347,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1389,7 +1389,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1430,7 +1430,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1471,7 +1471,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Subtraction
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
@@ -1512,7 +1512,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs

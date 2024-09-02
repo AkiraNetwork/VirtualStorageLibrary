@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualCycleDetector
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CycleDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
@@ -97,7 +97,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
@@ -129,7 +129,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Clear
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsNodeInCycle
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualCycleDetector.cs

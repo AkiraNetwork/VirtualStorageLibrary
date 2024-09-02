@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatch
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDelegates.cs

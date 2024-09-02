@@ -4475,6 +4475,23 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).NodeExists
   nameWithType: VirtualStorage<T>.NodeExists
   nameWithType.vb: VirtualStorage(Of T).NodeExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RefreshLinkDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name: RefreshLinkDictionary(VirtualPath)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RefreshLinkDictionary_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RefreshLinkDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RefreshLinkDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RefreshLinkDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  nameWithType: VirtualStorage<T>.RefreshLinkDictionary(VirtualPath)
+  nameWithType.vb: VirtualStorage(Of T).RefreshLinkDictionary(VirtualPath)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RefreshLinkDictionary*
+  name: RefreshLinkDictionary
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RefreshLinkDictionary_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RefreshLinkDictionary
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.RefreshLinkDictionary
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).RefreshLinkDictionary
+  nameWithType: VirtualStorage<T>.RefreshLinkDictionary
+  nameWithType.vb: VirtualStorage(Of T).RefreshLinkDictionary
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   name: RemoveLinkByLinkPath(VirtualPath)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_RemoveLinkByLinkPath_AkiraNetwork_VirtualStorageLibrary_VirtualPath_

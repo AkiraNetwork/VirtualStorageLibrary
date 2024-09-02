@@ -296,6 +296,7 @@
   "AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary": "AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",
   "AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.MoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean)": "AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",
   "AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.NodeExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)": "AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",
+  "AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RefreshLinkDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath)": "AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",
   "AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkByLinkPath(AkiraNetwork.VirtualStorageLibrary.VirtualPath)": "AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",
   "AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveLinkFromDictionary(AkiraNetwork.VirtualStorageLibrary.VirtualPath,AkiraNetwork.VirtualStorageLibrary.VirtualPath)": "AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",
   "AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.RemoveNode(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean,System.Boolean,System.Boolean)": "AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.yml",

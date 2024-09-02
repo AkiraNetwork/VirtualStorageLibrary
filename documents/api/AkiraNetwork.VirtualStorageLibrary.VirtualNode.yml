@@ -26,7 +26,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Name
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CreatedDate
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -134,7 +134,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: UpdatedDate
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -168,7 +168,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -199,7 +199,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VID
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -230,7 +230,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -282,7 +282,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -314,7 +314,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsReferencedInStorage
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -348,7 +348,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -383,7 +383,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
@@ -421,7 +421,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
-      branch: master
+      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualNode.cs
