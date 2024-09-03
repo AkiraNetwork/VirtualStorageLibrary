@@ -15,6 +15,7 @@
 // with VirtualStorageLibrary. If not, see https://www.gnu.org/licenses/.
 
 using System.Runtime.CompilerServices;
+using AkiraNetwork.VirtualStorageLibrary.Localization;
 
 namespace AkiraNetwork.VirtualStorageLibrary
 {
@@ -29,7 +30,19 @@ namespace AkiraNetwork.VirtualStorageLibrary
         [IndexerName("Indexer")]
         public VirtualDirectory this[VirtualPath path, bool followLinks = true]
         {
-            get => GetDirectory(path, followLinks);
+            get
+            {
+                VirtualNode node = GetNode(path, followLinks);
+                if (node is VirtualDirectory directory)
+                {
+                    return directory;
+                }
+                else
+                {
+                    throw new InvalidOperationException(string.Format(Resources.NodeIsNotVirtualDirectory, node.Name));
+                }
+            }
+
             set
             {
                 // Compare the node ID of the target with the source.
