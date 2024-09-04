@@ -7,7 +7,7 @@
     <RootNamespace>AkiraNetwork.VirtualStorageLibrary</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Title>Virtual Storage Library</Title>
-    <Version>0.9.0.3</Version>
+    <Version>0.9.1.0</Version>
     <Authors>Akira Shimodate</Authors>
     <Company>AkiraNetwork</Company>
     <Description>VirtualStorageLibrary is a fully in-memory .NET library that provides a tree-structured collection. 
@@ -21,12 +21,27 @@ Users can intuitively reference, traverse, and manipulate nodes by specifying pa
     <RepositoryUrl>https://github.com/shimodateakira/VirtualStorageLibrary.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>tree;collection;library;virtual;akiranet;akiranetwork</PackageTags>
-	<PackageReleaseNotes>
+	<PackageReleaseNotes>Version 0.9.1 - Prerelease
+
+This is the prerelease of the project, focusing on bug fixes, enhancements, and new features.
+
+Issues:
+
+- #189: Add adapter for item and symbolic link in indexer.
+
+Version 0.9.0.3 - Prerelease
+
+This is the prerelease of the project, focusing on bug fixes and enhancements.
+
+Issues:
+
+- #188: When updating symbolic links, the link dictionary was not being updated.
+
 Version 0.9.0 - Prerelease
 
 This is the prerelease of the project, focusing on bug fixes and enhancements.
 
-Bug Fixes and Enhancements
+Bug Fixes and Enhancements:
 
 - #56: Introduced validity checks during link creation to ensure the integrity of the links.
 - #69: Considered deprecating GetNodes and GetNodesWithPath methods, evaluating alternative approaches for future versions.
@@ -42,14 +57,14 @@ Bug Fixes and Enhancements
 Please refer to the VirtualStorageLibrary homepage for more details:
 
 https://shimodateakira.github.io/VirtualStorageLibrary/index.html
-	</PackageReleaseNotes>
+</PackageReleaseNotes>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageOutputPath>../../packages</PackageOutputPath>
-    <AssemblyVersion>0.9.0.3</AssemblyVersion>
-    <FileVersion>0.9.0.3</FileVersion>
+    <AssemblyVersion>0.9.1.0</AssemblyVersion>
+    <FileVersion>0.9.1.0</FileVersion>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\Signature\VirtualStorageLibrary.snk</AssemblyOriginatorKeyFile>
     <PackageId>AkiraNetwork.VirtualStorageLibrary</PackageId>

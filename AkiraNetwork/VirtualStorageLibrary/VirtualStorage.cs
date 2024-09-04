@@ -49,6 +49,18 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public VirtualCycleDetector CycleDetectorForTree { get; } = new();
 
         /// <summary>
+        /// Gets the adapter providing operations for virtual items.
+        /// </summary>
+        /// <value>An instance of <see cref="VirtualItemAdapter{T}"/></value>
+        public VirtualItemAdapter<T> Item { get; }
+
+        /// <summary>
+        /// Gets the adapter providing operations for virtual symbolic links.
+        /// </summary>
+        /// <value>An instance of <see cref="VirtualSymbolicLinkAdapter{T}"/></value>
+        public VirtualSymbolicLinkAdapter<T> Link { get; }
+
+        /// <summary>
         /// Initializes a new instance of the VirtualStorage class.
         /// </summary>
         public VirtualStorage()
@@ -61,6 +73,9 @@ namespace AkiraNetwork.VirtualStorageLibrary
             CurrentPath = VirtualPath.Root;
 
             _linkDictionary = [];
+
+            Item = new(this);
+            Link = new(this);
         }
     }
 }
