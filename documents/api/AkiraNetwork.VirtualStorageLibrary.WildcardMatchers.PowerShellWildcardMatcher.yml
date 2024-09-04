@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PowerShellWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
@@ -102,7 +102,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
@@ -136,7 +136,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
@@ -170,7 +170,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
@@ -204,7 +204,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
@@ -253,7 +253,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidWildcardPattern
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs

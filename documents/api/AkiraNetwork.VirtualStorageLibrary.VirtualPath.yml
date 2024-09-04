@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Path
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -144,7 +144,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -182,7 +182,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -220,7 +220,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DirectoryPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -252,7 +252,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -316,7 +316,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Depth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -348,7 +348,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: FixedPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -381,7 +381,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: FixedDepth
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -417,7 +417,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Separator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -449,7 +449,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Root
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -481,7 +481,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Dot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -513,7 +513,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: DotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -545,7 +545,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -577,7 +577,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsEmpty
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -609,7 +609,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -641,7 +641,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsAbsolute
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -673,7 +673,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsEndsWithSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -705,7 +705,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -737,7 +737,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsDotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -769,7 +769,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetHashCode
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -801,7 +801,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -836,7 +836,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -871,7 +871,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -910,7 +910,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Equals
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -950,7 +950,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Equality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -991,7 +991,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Inequality
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1032,7 +1032,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1073,7 +1073,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1114,7 +1114,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1155,7 +1155,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1196,7 +1196,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1237,7 +1237,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1278,7 +1278,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: TrimEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1309,7 +1309,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddEndSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1340,7 +1340,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: AddStartSlash
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1371,7 +1371,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: StartsWith
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1406,7 +1406,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1437,7 +1437,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NormalizePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1479,7 +1479,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1510,7 +1510,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1548,7 +1548,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: Combine
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1586,7 +1586,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetParentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1617,7 +1617,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsLinkedList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1648,7 +1648,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetPartsList
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1688,7 +1688,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CombineFromIndex
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1729,7 +1729,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1769,7 +1769,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: CompareTo
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1813,7 +1813,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GetRelativePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1869,7 +1869,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: ArePathsSubdirectories
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1911,7 +1911,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsSubdirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
@@ -1950,7 +1950,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: IsValidPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualPath.cs

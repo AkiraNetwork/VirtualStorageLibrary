@@ -30,7 +30,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualStorageState
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: State
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathSeparator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -135,7 +135,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathRoot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -202,7 +202,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PathDotDot
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -237,7 +237,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: InvalidNodeNameCharacters
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -269,7 +269,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: InvalidNodeNames
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -301,7 +301,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: WildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -333,7 +333,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: NodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -365,7 +365,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -400,7 +400,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -435,7 +435,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: PrefixSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -470,7 +470,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -502,7 +502,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetNodeListConditions
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
@@ -543,7 +543,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: SetWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorageState.cs

@@ -4404,6 +4404,23 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).IsValidWildcardPath
   nameWithType: VirtualStorage<T>.IsValidWildcardPath
   nameWithType.vb: VirtualStorage(Of T).IsValidWildcardPath
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
+  name: Item
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
+  nameWithType: VirtualStorage<T>.Item
+  nameWithType.vb: VirtualStorage(Of T).Item
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item*
+  name: Item
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Item_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Item
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Item
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Item
+  nameWithType: VirtualStorage<T>.Item
+  nameWithType.vb: VirtualStorage(Of T).Item
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.ItemExists(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   name: ItemExists(VirtualPath, bool)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_ItemExists_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -4422,6 +4439,23 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).ItemExists
   nameWithType: VirtualStorage<T>.ItemExists
   nameWithType.vb: VirtualStorage(Of T).ItemExists
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
+  name: Link
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Link
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
+  nameWithType: VirtualStorage<T>.Link
+  nameWithType.vb: VirtualStorage(Of T).Link
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link*
+  name: Link
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_Link_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.Link
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualStorage<T>.Link
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T).Link
+  nameWithType: VirtualStorage<T>.Link
+  nameWithType.vb: VirtualStorage(Of T).Link
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1.LinkDictionary
   name: LinkDictionary
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualStorage_1_LinkDictionary
@@ -5537,15 +5571,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T).New
   nameWithType: VirtualSymbolicLinkAdapter<T>.VirtualSymbolicLinkAdapter
   nameWithType.vb: VirtualSymbolicLinkAdapter(Of T).New
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  name: this[VirtualPath, bool]
-  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  name.vb: this[](VirtualPath, Boolean)
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>.this[AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool]
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T).this[](AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
-  nameWithType: VirtualSymbolicLinkAdapter<T>.this[VirtualPath, bool]
-  nameWithType.vb: VirtualSymbolicLinkAdapter(Of T).this[](VirtualPath, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name: this[VirtualPath]
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name.vb: this[](VirtualPath)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>.this[AkiraNetwork.VirtualStorageLibrary.VirtualPath]
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T).this[](AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  nameWithType: VirtualSymbolicLinkAdapter<T>.this[VirtualPath]
+  nameWithType.vb: VirtualSymbolicLinkAdapter(Of T).this[](VirtualPath)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item*
   name: this
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_

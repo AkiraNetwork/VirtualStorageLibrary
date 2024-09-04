@@ -15,6 +15,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualGroupCondition`2
   - AkiraNetwork.VirtualStorageLibrary.VirtualID
   - AkiraNetwork.VirtualStorageLibrary.VirtualItem
+  - AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
   - AkiraNetwork.VirtualStorageLibrary.VirtualItem`1
   - AkiraNetwork.VirtualStorageLibrary.VirtualNode
   - AkiraNetwork.VirtualStorageLibrary.VirtualNodeContext
@@ -33,6 +34,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorageState
   - AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
   langs:
   - csharp
   - vb
@@ -43,6 +45,56 @@ items:
   assemblies:
   - VirtualStorageLibrary
 references:
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
+  name: VirtualItemAdapter<T>
+  nameWithType: VirtualItemAdapter<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter<T>
+  nameWithType.vb: VirtualItemAdapter(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter(Of T)
+  name.vb: VirtualItemAdapter(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+    name: VirtualItemAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter`1
+    name: VirtualItemAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualItemAdapter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
+  name: VirtualSymbolicLinkAdapter<T>
+  nameWithType: VirtualSymbolicLinkAdapter<T>
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>
+  nameWithType.vb: VirtualSymbolicLinkAdapter(Of T)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T)
+  name.vb: VirtualSymbolicLinkAdapter(Of T)
+  spec.csharp:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
+    name: VirtualSymbolicLinkAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
+    name: VirtualSymbolicLinkAdapter
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
   commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualCycleDetector
   parent: AkiraNetwork.VirtualStorageLibrary

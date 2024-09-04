@@ -169,13 +169,13 @@ users to easily manage specific node types.</p>
   <h3 id="properties">Properties
 </h3>
   <a id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item*"></a>
-  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)">this[VirtualPath, bool]</h4>
+  <h4 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_" data-uid="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath)">this[VirtualPath]</h4>
   <div class="markdown level1 summary"><p>Gets or sets the virtual symbolic link corresponding to the specified path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink this[VirtualPath path, bool followLinks = true] { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public VirtualSymbolicLink this[VirtualPath path] { get; set; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -191,12 +191,6 @@ users to easily manage specific node types.</p>
         <td><a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualPath.html">VirtualPath</a></td>
         <td><span class="parametername">path</span></td>
         <td><p>The path of the symbolic link.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">followLinks</span></td>
-        <td><p>A flag indicating whether to follow links.</p>
 </td>
       </tr>
     </tbody>
@@ -217,26 +211,10 @@ users to easily manage specific node types.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To operate on the symbolic link itself, specify <code>followLinks</code> as false.
-Note that the default value of this parameter may change in the future.</p>
+  <h5 id="AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This adapter directly operates on the symbolic link itself and does not resolve the link to its target.
+Ensure that this behavior is desired, as any operations will affect the symbolic link rather than the linked item.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the node is not a <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink.html">VirtualSymbolicLink</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.html#AkiraNetwork_VirtualStorageLibrary_Utilities_VirtualTextFormatter_GenerateSingleTableDebugText__1___0_">VirtualTextFormatter.GenerateSingleTableDebugText&lt;T&gt;(T)</a>

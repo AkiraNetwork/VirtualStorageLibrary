@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualTextFormatter
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -91,7 +91,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateTreeDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -184,7 +184,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateLinkTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -226,7 +226,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -268,7 +268,7 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: bugfix/issue-188-check-link-dictionary-when-add-symboliclink
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: GenerateSingleTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
@@ -570,7 +570,7 @@ references:
   nameWithType: VirtualTextFormatter.GenerateTreeDebugText
   fullName: AkiraNetwork.VirtualStorageLibrary.Utilities.VirtualTextFormatter.GenerateTreeDebugText
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualStorage{{T}}
-  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage{``0}
+  commentId: T:AkiraNetwork.VirtualStorageLibrary.VirtualStorage{`0}
   parent: AkiraNetwork.VirtualStorageLibrary
   definition: AkiraNetwork.VirtualStorageLibrary.VirtualStorage`1
   href: AkiraNetwork.VirtualStorageLibrary.VirtualStorage-1.html

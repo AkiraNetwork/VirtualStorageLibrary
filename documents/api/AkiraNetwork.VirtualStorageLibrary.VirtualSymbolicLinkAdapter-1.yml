@@ -6,7 +6,7 @@ items:
   parent: AkiraNetwork.VirtualStorageLibrary
   children:
   - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.#ctor(AkiraNetwork.VirtualStorageLibrary.VirtualStorage{`0})
-  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   langs:
   - csharp
   - vb
@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-      branch: gh-pages
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: VirtualSymbolicLinkAdapter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 102
+    startLine: 56
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -67,11 +67,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-      branch: gh-pages
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 110
+    startLine: 64
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -88,55 +88,48 @@ items:
   nameWithType.vb: VirtualSymbolicLinkAdapter(Of T).New(VirtualStorage(Of T))
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T).New(AkiraNetwork.VirtualStorageLibrary.VirtualStorage(Of T))
   name.vb: New(VirtualStorage(Of T))
-- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
-  id: Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  commentId: P:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  id: Item(AkiraNetwork.VirtualStorageLibrary.VirtualPath)
   parent: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1
   langs:
   - csharp
   - vb
-  name: this[VirtualPath, bool]
-  nameWithType: VirtualSymbolicLinkAdapter<T>.this[VirtualPath, bool]
-  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>.this[AkiraNetwork.VirtualStorageLibrary.VirtualPath, bool]
+  name: this[VirtualPath]
+  nameWithType: VirtualSymbolicLinkAdapter<T>.this[VirtualPath]
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>.this[AkiraNetwork.VirtualStorageLibrary.VirtualPath]
   type: Property
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-      branch: gh-pages
+      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
       repo: https://github.com/shimodateakira/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-    startLine: 128
+    startLine: 78
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
   summary: Gets or sets the virtual symbolic link corresponding to the specified path.
   remarks: >-
-    To operate on the symbolic link itself, specify `followLinks` as false.
+    This adapter directly operates on the symbolic link itself and does not resolve the link to its target. 
 
-    Note that the default value of this parameter may change in the future.
+    Ensure that this behavior is desired, as any operations will affect the symbolic link rather than the linked item.
   example: []
   syntax:
-    content: public VirtualSymbolicLink this[VirtualPath path, bool followLinks = true] { get; set; }
+    content: public VirtualSymbolicLink this[VirtualPath path] { get; set; }
     parameters:
     - id: path
       type: AkiraNetwork.VirtualStorageLibrary.VirtualPath
       description: The path of the symbolic link.
-    - id: followLinks
-      type: System.Boolean
-      description: A flag indicating whether to follow links.
     return:
       type: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
       description: The <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref> corresponding to the specified path.
-    content.vb: Public Default Property this[](path As VirtualPath, followLinks As Boolean = True) As VirtualSymbolicLink
+    content.vb: Public Default Property this[](path As VirtualPath) As VirtualSymbolicLink
   overload: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item*
-  exceptions:
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: Thrown when the node is not a <xref href="AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink" data-throw-if-not-resolved="false"></xref>.
-  nameWithType.vb: VirtualSymbolicLinkAdapter(Of T).this[](VirtualPath, Boolean)
-  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T).this[](AkiraNetwork.VirtualStorageLibrary.VirtualPath, Boolean)
-  name.vb: this[](VirtualPath, Boolean)
+  nameWithType.vb: VirtualSymbolicLinkAdapter(Of T).this[](VirtualPath)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter(Of T).this[](AkiraNetwork.VirtualStorageLibrary.VirtualPath)
+  name.vb: this[](VirtualPath)
 references:
 - uid: AkiraNetwork.VirtualStorageLibrary
   commentId: N:AkiraNetwork.VirtualStorageLibrary
@@ -615,16 +608,9 @@ references:
   name: VirtualSymbolicLink
   nameWithType: VirtualSymbolicLink
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLink
-- uid: System.InvalidOperationException
-  commentId: T:System.InvalidOperationException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
-  name: InvalidOperationException
-  nameWithType: InvalidOperationException
-  fullName: System.InvalidOperationException
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter`1.Item
-  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter-1.html#AkiraNetwork_VirtualStorageLibrary_VirtualSymbolicLinkAdapter_1_Item_AkiraNetwork_VirtualStorageLibrary_VirtualPath_
   name: this
   nameWithType: VirtualSymbolicLinkAdapter<T>.this
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualSymbolicLinkAdapter<T>.this
@@ -638,14 +624,3 @@ references:
   name: VirtualPath
   nameWithType: VirtualPath
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualPath
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
