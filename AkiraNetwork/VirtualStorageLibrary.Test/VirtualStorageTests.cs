@@ -11032,6 +11032,34 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test14()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+
+            vs["/"] += new VirtualDirectory("dir1");
+            vs["/dir1"] += new VirtualItem<string>("item1", "Hello, World!");
+            vs["/dir1"] += new VirtualSymbolicLink("link1", "/dir1/item1");  // #191 ターゲットを相対パスにすると例外。
+            vs.RefreshLinkDictionary("/dir1/link1");
+
+            Debug.WriteLine("\nTree:");
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
+            Debug.WriteLine($"/dir1/link1(ItemData) = {vs.Item["/dir1/link1"].ItemData}");
+
+            Debug.WriteLine("\nLink Dictionary:");
+            Debug.WriteLine(vs.GenerateLinkTableDebugText());
+
+            vs["/"] += new VirtualDirectory("dir2");
+            vs["/dir2"] = vs["/dir1"];
+
+            Debug.WriteLine("\nTree:");
+            Debug.WriteLine(vs.GenerateTreeDebugText("/"));
+            Debug.WriteLine($"/dir1/link1(ItemData) = {vs.Item["/dir1/link1"].ItemData}");
+            Debug.WriteLine($"/dir2/link1(ItemData) = {vs.Item["/dir2/link1"].ItemData}");
+        }
+
+        [TestMethod]
         [TestCategory("SetNode")]
         public void SetNode_Directory()
         {
