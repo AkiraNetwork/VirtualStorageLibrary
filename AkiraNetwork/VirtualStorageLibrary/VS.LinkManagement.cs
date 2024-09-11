@@ -279,8 +279,11 @@ namespace AkiraNetwork.VirtualStorageLibrary
             }
             else
             {
+                // Use the directory path where the symbolic link was created as the base
+                VirtualPath absoluteTargetPath = ConvertToAbsolutePath(link.TargetPath, linkDirectoryPath).NormalizePath();
+
                 // If no matching link paths were found, add the new link to the dictionary using the provided link path
-                AddLinkToDictionary(link.TargetPath, linkPath);
+                AddLinkToDictionary(absoluteTargetPath, linkPath);
 
                 // Directly set the TargetNodeType for the newly added link
                 link.TargetNodeType = GetNodeType(link.TargetPath, true);

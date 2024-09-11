@@ -11040,7 +11040,7 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
 
             vs["/"] += new VirtualDirectory("dir1");
             vs["/dir1"] += new VirtualItem<string>("item1", "Hello, World!");
-            vs["/dir1"] += new VirtualSymbolicLink("link1", "/dir1/item1");  // #191 ターゲットを相対パスにすると例外。
+            vs["/dir1"] += new VirtualSymbolicLink("link1", "./item1");
             vs.RefreshLinkDictionary("/dir1/link1");
 
             Debug.WriteLine("\nTree:");
