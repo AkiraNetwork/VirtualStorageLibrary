@@ -347,6 +347,28 @@ namespace AkiraNetwork.VirtualStorageLibrary
         }
 
         /// <summary>
+        /// Adds multiple nodes to the directory.
+        /// </summary>
+        /// <param name="nodes">The nodes to add.</param>
+        /// <param name="allowOverwrite">If true, allows overwriting existing nodes with the same names.</param>
+        /// <returns>A list of the added nodes. If a node was cloned, the cloned instance is returned in the list.</returns>
+        /// <exception cref="ArgumentException">Thrown if an invalid node name is specified in any of the nodes.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if a node with the same name already exists and overwriting is not allowed.</exception>
+        public IList<VirtualNode> AddRange(IEnumerable<VirtualNode> nodes, bool allowOverwrite = false)
+        {
+            var addedNodes = new List<VirtualNode>();
+
+            foreach (var node in nodes)
+            {
+                // Add the node and collect the returned node (original or cloned)
+                var addedNode = Add(node, allowOverwrite);
+                addedNodes.Add(addedNode);
+            }
+
+            return addedNodes;
+        }
+
+        /// <summary>
         /// Adds an item with the specified name.
         /// </summary>
         /// <typeparam name="T">The data type of the item.</typeparam>
@@ -569,6 +591,29 @@ namespace AkiraNetwork.VirtualStorageLibrary
             {
                 SetIsReferencedInStorageRecursively(node, true);
             }
+            return directory;
+        }
+
+        /// <summary>
+        /// Overloads the addition operator to add multiple nodes to the directory using AddRange.
+        /// </summary>
+        /// <param name="directory">The directory to which the nodes are added.</param>
+        /// <param name="nodes">The nodes to add.</param>
+        /// <returns>The directory with the added nodes.</returns>
+        public static VirtualDirectory operator +(VirtualDirectory directory, IList<VirtualNode> nodes)
+        {
+            // Use AddRange to add multiple nodes
+            var addedNodes = directory.AddRange(nodes, allowOverwrite: false);
+
+            // If the directory is referenced in storage, propagate IsReferencedInStorage to each added node
+            if (directory.IsReferencedInStorage)
+            {
+                foreach (var node in addedNodes)
+                {
+                    SetIsReferencedInStorageRecursively(node, true);
+                }
+            }
+
             return directory;
         }
 

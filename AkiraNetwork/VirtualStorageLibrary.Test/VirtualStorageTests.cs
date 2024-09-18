@@ -11060,6 +11060,77 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test15()
+        {
+            // Arrange
+            VirtualStorage<string> vs = new();
+            VirtualItem<string> item1 = new("item1", "pen");
+            VirtualItem<string> item2 = new("item2", "pineapple");
+            VirtualItem<string> item3 = new("item3", "apple");
+            vs["/"] += new VirtualDirectory("PPAP");
+
+            // Act
+            vs["/PPAP"] += [item1, item2, item3];
+
+            // Debug Out
+            Debug.WriteLine($"/PPAP/item1 = {vs.Item["/PPAP/item1"].ItemData}");
+            Debug.WriteLine($"/PPAP/item2 = {vs.Item["/PPAP/item2"].ItemData}");
+            Debug.WriteLine($"/PPAP/item3 = {vs.Item["/PPAP/item3"].ItemData}");
+
+            // Assert
+            Assert.AreEqual("pen", vs.Item["/PPAP/item1"].ItemData);
+            Assert.AreEqual("pineapple", vs.Item["/PPAP/item2"].ItemData);
+            Assert.AreEqual("apple", vs.Item["/PPAP/item3"].ItemData);
+        }
+
+        [TestMethod]
+        [TestCategory("Indexer")]
+        public void Indexer_Test16()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualItem<BinaryData> item1 = new("item1", [1, 2, 3]);
+            VirtualItem<BinaryData> item2 = new("item2", [4, 5, 6]);
+            VirtualItem<BinaryData> item3 = new("item3", [7, 8, 9]);
+            vs["/"] += new VirtualDirectory("dir1");
+            vs["/"] += new VirtualDirectory("dir2");
+
+            // Act
+            vs["/dir1"] += [item1, item2, item3];
+
+            // Debug Out
+            Debug.WriteLine($"\n/dir1/item1 = {vs.Item["/dir1/item1"].ItemData}");
+            Debug.WriteLine($"/dir1/item2 = {vs.Item["/dir1/item2"].ItemData}");
+            Debug.WriteLine($"/dir1/item3 = {vs.Item["/dir1/item3"].ItemData}");
+
+            // Act
+            vs["/dir2"] += [vs.Item["/dir1/item1"], vs.Item["/dir1/item2"], vs.Item["/dir1/item3"]];
+
+            // Debug Out
+            Debug.WriteLine($"\n/dir2/item1 = {vs.Item["/dir2/item1"].ItemData}");
+            Debug.WriteLine($"/dir2/item2 = {vs.Item["/dir2/item2"].ItemData}");
+            Debug.WriteLine($"/dir2/item3 = {vs.Item["/dir2/item3"].ItemData}");
+
+            // Assert
+            Assert.AreEqual(new BinaryData([1, 2, 3]), vs.Item["/dir1/item1"].ItemData);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), vs.Item["/dir1/item2"].ItemData);
+            Assert.AreEqual(new BinaryData([7, 8, 9]), vs.Item["/dir1/item3"].ItemData);
+
+            Assert.AreEqual(new BinaryData([1, 2, 3]), vs.Item["/dir2/item1"].ItemData);
+            Assert.AreEqual(new BinaryData([4, 5, 6]), vs.Item["/dir2/item2"].ItemData);
+            Assert.AreEqual(new BinaryData([7, 8, 9]), vs.Item["/dir2/item3"].ItemData);
+
+            Assert.AreNotEqual(vs.Item["/dir2/item1"], vs.Item["/dir1/item1"]);
+            Assert.AreNotEqual(vs.Item["/dir2/item2"], vs.Item["/dir1/item2"]);
+            Assert.AreNotEqual(vs.Item["/dir2/item3"], vs.Item["/dir1/item3"]);
+
+            Assert.AreNotSame(vs.Item["/dir2/item1"].ItemData, vs.Item["/dir1/item1"].ItemData);
+            Assert.AreNotSame(vs.Item["/dir2/item2"].ItemData, vs.Item["/dir1/item2"].ItemData);
+            Assert.AreNotSame(vs.Item["/dir2/item3"].ItemData, vs.Item["/dir1/item3"].ItemData);
+        }
+
+        [TestMethod]
         [TestCategory("SetNode")]
         public void SetNode_Directory()
         {

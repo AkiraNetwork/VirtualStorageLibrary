@@ -339,6 +339,31 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
         }
 
         [TestMethod]
+        public void AddRange_AddNodes()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualDirectory dir = vs.GetDirectory("/");
+
+            // Act
+            IList<VirtualNode> addedNodes = dir.AddRange(
+                [
+                    new VirtualItem<BinaryData>("item1"),
+                    new VirtualItem<BinaryData>("item2"),
+                    new VirtualItem<BinaryData>("item3")
+                ]);
+
+            // Assert
+            Assert.IsTrue(vs.ItemExists("/item1"));
+            Assert.IsTrue(vs.ItemExists("/item2"));
+            Assert.IsTrue(vs.ItemExists("/item3"));
+            Assert.AreEqual(3, addedNodes.Count);
+            Assert.AreEqual("item1", (string)addedNodes[0].Name);
+            Assert.AreEqual("item2", (string)addedNodes[1].Name);
+            Assert.AreEqual("item3", (string)addedNodes[2].Name);
+        }
+
+        [TestMethod]
         public void AddItem_AddsNewItemSuccessfully()
         {
             VirtualDirectory directory = new("TestDirectory");
@@ -1698,6 +1723,28 @@ namespace AkiraNetwork.VirtualStorageLibrary.Test
             Assert.IsFalse(addedTestSubDir.IsReferencedInStorage);
             Assert.IsFalse(addedTestItem.IsReferencedInStorage);
             Assert.IsFalse(addedTestLink.IsReferencedInStorage);
+        }
+
+        [TestMethod]
+        public void Operator_Plus_AddsNodesToDirectory()
+        {
+            // Arrange
+            VirtualStorage<BinaryData> vs = new();
+            VirtualDirectory dir = vs.GetDirectory("/");
+
+            // Act
+            dir +=
+                [
+                    new VirtualItem<BinaryData>("item1"),
+                    new VirtualItem<BinaryData>("item2"),
+                    new VirtualItem<BinaryData>("item3")
+                ];
+
+            // Assert
+            Assert.AreEqual(3, dir.Count);
+            Assert.IsTrue(dir.ItemExists("item1"));
+            Assert.IsTrue(dir.ItemExists("item2"));
+            Assert.IsTrue(dir.ItemExists("item3"));
         }
 
         [TestMethod]
