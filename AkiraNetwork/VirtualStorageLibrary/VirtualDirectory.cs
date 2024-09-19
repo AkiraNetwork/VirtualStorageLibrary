@@ -603,7 +603,7 @@ namespace AkiraNetwork.VirtualStorageLibrary
         public static VirtualDirectory operator +(VirtualDirectory directory, IList<VirtualNode> nodes)
         {
             // Use AddRange to add multiple nodes
-            var addedNodes = directory.AddRange(nodes, allowOverwrite: false);
+            var addedNodes = directory.AddRange(nodes);
 
             // If the directory is referenced in storage, propagate IsReferencedInStorage to each added node
             if (directory.IsReferencedInStorage)
