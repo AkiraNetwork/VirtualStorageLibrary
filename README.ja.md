@@ -1,5 +1,5 @@
 
-![burner.png](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/docs/images/burner.png)
+![burner.png](https://raw.githubusercontent.com/AkiraNetwork/VirtualStorageLibrary/master/docs/images/burner.png)
 
 <details>
   <summary>Language: Japanese</summary>
@@ -12,8 +12,8 @@
 ![Version: 0.9.0](https://img.shields.io/badge/version-0.9.0-pink.svg)
 [![License: LGPL-3.0-or-later](https://img.shields.io/badge/License-LGPL%20v3.0%20or%20later-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
 [![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)](https://dotnet.microsoft.com/en-us/download/dotnet)
-[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
-[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/shimodateakira/projects/3)
+[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://akiranetwork.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
+[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/AkiraNetwork/projects/3)
 
 # VirtualStorageLibraryへようこそ！
 
@@ -24,7 +24,7 @@
 従来のファイルシステムの概念を参考にしつつ、より柔軟で使いやすいツリー構造を実現するために **ゼロから再設計** しました。
 このライブラリは、ユーザーが **パスの指定による** ノードの参照、探索、操作を **直感的** に行えるようにすることを目的としています。
 
-![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/tree_256x256.svg)
+![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/AkiraNetwork/VirtualStorageLibrary/master/tree_256x256.svg)
 
 ## プロジェクトの背景
 .NETが備えているコレクションは線形コレクションです。コレクションはハッシュセット型、配列型、リスト型、辞書型など様々ありますが、本質的には線の構造となっています。
@@ -204,7 +204,7 @@ V0.8.0では、この状態でユーザーの皆様に試用して頂き、フ�
 V0.9.0のリリースは2024年10月を予定しています。  
 なお、この期間中、ライブラリで提供している機能のクラス名、メソッド名、プロパティ名等は予告なく変更、統合、廃止する事があります。
 その場合、リリースノートに詳細を掲載するのでご確認ください。
-詳細は、[現在の問題点と改善案](https://github.com/users/shimodateakira/projects/3/views/3)を参照してください (日本語)。
+詳細は、[現在の問題点と改善案](https://github.com/users/AkiraNetwork/projects/3/views/3)を参照してください (日本語)。
 
 [[▲](#目次)]
 ## インストール方法
@@ -379,16 +379,16 @@ Name: John, Age: 20
 ## ドキュメント
 このライブラリの詳細な使用方法やリファレンスについては、以下のドキュメントを参照してください。
 
-- [Introduction](https://shimodateakira.github.io/VirtualStorageLibrary/introduction.html)  
+- [Introduction](https://akiranetwork.github.io/VirtualStorageLibrary/introduction.html)  
   ライブラリの概要と設計思想を説明しています。  
   どのような目的で開発されたのか、その基本的な機能と特徴を紹介します。  
   新しいユーザーがライブラリの全体像を把握するための入門ガイドです。  
 
-- [Getting Started](https://shimodateakira.github.io/VirtualStorageLibrary/getting-started.html)  
+- [Getting Started](https://akiranetwork.github.io/VirtualStorageLibrary/getting-started.html)  
   ライブラリを使い始めるためのステップバイステップガイドです。  
   インストール方法から初期設定、簡単なサンプルコードまで、ライブラリを導入するために必要な基本的な手順を説明します。  
 
-- [APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary)  
+- [APIリファレンス](https://akiranetwork.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary)  
   ライブラリに含まれる全てのクラス、メソッド、およびプロパティについての詳細な情報を提供しています。  
   各メンバーの使用方法やパラメータについての説明が含まれており、ライブラリの具体的な使い方を確認するのに役立ちます。  
 
@@ -401,7 +401,7 @@ Name: John, Age: 20
 これにより、パス区切り文字やルートディレクトリの名前、禁止文字など、全てのデフォルト設定が適用されます。  
 特に手動で設定を行う必要はありませんが、アプリケーションの動作中に設定を変更したい場合は、
 `VirtualStorageState.State`プロパティを通じて各種設定プロパティを変更することが可能です。  
-詳細については、[APIリファレンス](https://shimodateakira.github.io/VirtualStorageLibrary/)をご参照ください。  
+詳細については、[APIリファレンス](https://akiranetwork.github.io/VirtualStorageLibrary/)をご参照ください。  
 
 [[▲](#目次)]
 ## ライセンス
@@ -437,7 +437,7 @@ VirtualStorageLibraryはフリーソフトウェアです。このソフトウ�
 - **バグ報告**: 発見したバグがあればご報告ください。  
 - **機能の改善、追加の要望**: 必要な機能の改善、追加の要望があればお知らせください。  
 
-これらは当プロジェクトの[Issue](https://github.com/shimodateakira/VirtualStorageLibrary/issues)にて受け付けております。  
+これらは当プロジェクトの[Issue](https://github.com/AkiraNetwork/VirtualStorageLibrary/issues)にて受け付けております。  
 
 - **技術的質問**: 技術的な質問があれば[StackOverflow](https://stackoverflow.com/)に書き込みをしてみてください。  
                   タグは「c#」、「.net」、「tree」、「shared-libraries」、「generic-collections」というタグのいずれかの組み合わせで指定して頂けると見つけやすいです。  
