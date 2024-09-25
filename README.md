@@ -502,7 +502,9 @@ For technical questions and feature suggestions, please use our [Discussions](ht
 - `General`: Engage in casual discussions about anything related to VirtualStorageLibrary.
 - `Show and tell`: Share and showcase what you've created using VirtualStorageLibrary.
 
-Please note that as we have not yet set up a multi-person development system, we are currently not accepting pull requests. We appreciate your understanding and look forward to your feedback.
+We are currently not accepting pull requests as the multi-person development system is not yet in place. We look forward to your feedback and suggestions.
+
+**We welcome your feedback and look forward to hearing from you!**
 
 [[▲](#table-of-contents)]
 ## Author and Acknowledgments
