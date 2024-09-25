@@ -1,5 +1,5 @@
 
-![burner.png](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/docs/images/burner.png)
+![burner.png](https://raw.githubusercontent.com/AkiraNetwork/VirtualStorageLibrary/master/docs/images/burner.png)
 
 <details>
   <summary>Language: English</summary>
@@ -12,8 +12,8 @@
 ![Version: 0.9.0](https://img.shields.io/badge/version-0.9.0-pink.svg)
 [![License: LGPL-3.0-or-later](https://img.shields.io/badge/License-LGPL%20v3.0%20or%20later-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
 [![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)](https://dotnet.microsoft.com/en-us/download/dotnet)
-[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
-[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/shimodateakira/projects/3)
+[![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://AkiraNetwork.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
+[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/AkiraNetwork/projects/3)
 
 # Welcome to VirtualStorageLibrary!
 
@@ -28,7 +28,7 @@ flexible and user-friendly tree structure. The library aims to make it
 **intuitive** to reference, traverse, and manipulate nodes **by specifying 
 paths**.
 
-![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/shimodateakira/VirtualStorageLibrary/master/tree_256x256.svg)
+![VirtualStorageLibraryLogo](https://raw.githubusercontent.com/AkiraNetwork/VirtualStorageLibrary/master/tree_256x256.svg)
 
 ## Project Background
 The collections provided by .NET are linear, including types like hash sets, 
@@ -262,7 +262,7 @@ With version 0.8.0, we aim to gather user feedback, including bug reports and fe
 Simultaneously, we plan to work through the remaining tasks for version 0.9.0, targeted for release in October 2024.  
 During this period, class names, method names, property names, and other elements in the library may change, merge, or be deprecated without notice.  
 Details will be provided in the release notes, so please check them.  
-For more information, please refer to [Current Issues and Improvement Plans](https://github.com/users/shimodateakira/projects/3/views/3) (Japanese).
+For more information, please refer to [Current Issues and Improvement Plans](https://github.com/users/AkiraNetwork/projects/3/views/3) (Japanese).
 
 [[▲](#table-of-contents)]
 ## Installation Instructions
@@ -443,15 +443,15 @@ Name: John, Age: 20
 For detailed usage instructions and reference information on this library, please refer to the following 
 documentation:
 
-- [Introduction](https://shimodateakira.github.io/VirtualStorageLibrary/introduction.html)  
+- [Introduction](https://AkiraNetwork.github.io/VirtualStorageLibrary/introduction.html)  
   Provides an overview of the library and its design philosophy. It introduces the primary purpose, basic 
   features, and characteristics, serving as an introductory guide for new users.
 
-- [Getting Started](https://shimodateakira.github.io/VirtualStorageLibrary/getting-started.html)  
+- [Getting Started](https://AkiraNetwork.github.io/VirtualStorageLibrary/getting-started.html)  
   A step-by-step guide to start using the library, including installation, initial setup, and basic sample 
   code.
 
-- [API Reference](https://shimodateakira.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary)  
+- [API Reference](https://AkiraNetwork.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary)  
   Detailed information on all classes, methods, and properties included in the library, helping users 
   understand the specific usage of each member.
 
@@ -465,7 +465,7 @@ The initial settings of this library are automatically configured by calling the
 `VirtualStorageSettings.Initialize()` method. This applies all default settings such as path delimiters, 
 root directory names, and prohibited characters. While manual configuration is not required, you can modify 
 settings during application runtime through the `VirtualStorageState.State` property. 
-For more details, refer to the [API Reference](https://shimodateakira.github.io/VirtualStorageLibrary/).
+For more details, refer to the [API Reference](https://akiranetwork.github.io/VirtualStorageLibrary/).
 
 [[▲](#table-of-contents)]
 ## License
@@ -494,7 +494,7 @@ and we hope that by using it, you can help identify areas for feedback and impro
 - **Feature Requests**: If you have any requests for new features or improvements, please share them.
 
 These can be submitted via the project's 
-[Issues](https://github.com/shimodateakira/VirtualStorageLibrary/issues) page.
+[Issues](https://github.com/AkiraNetwork/VirtualStorageLibrary/issues) page.
 
 - **Technical Questions**: If you have technical questions, consider posting them on 
   [StackOverflow](https://stackoverflow.com/).  
