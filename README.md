@@ -263,7 +263,7 @@ With version 0.8.0, we aim to gather user feedback, including bug reports and fe
 Simultaneously, we plan to work through the remaining tasks for version 0.9.0, targeted for release in October 2024.  
 During this period, class names, method names, property names, and other elements in the library may change, merge, or be deprecated without notice.  
 Details will be provided in the release notes, so please check them.  
-For more information, please refer to [Current Issues and Improvement Plans](https://github.com/users/AkiraNetwork/projects/3/views/3) (Japanese).
+For more information, please refer to [Current Issues and Improvement Plans](https://github.com/orgs/AkiraNetwork/projects/2) (Japanese).
 
 [[▲](#table-of-contents)]
 ## Installation Instructions
