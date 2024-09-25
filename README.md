@@ -53,6 +53,7 @@ flexibly manage hierarchical  and allow intuitive access.
 - [Configuration and Customization](#configuration-and-customization)
 - [License](#license)
 - [Contribution Guidelines](#contribution-guidelines)
+- [Author and Acknowledgments](author-and-acknowledgments)
 
 [[▲](#table-of-contents)]
 ## Key Features
