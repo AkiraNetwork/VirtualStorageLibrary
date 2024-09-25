@@ -13,7 +13,7 @@
 [![License: LGPL-3.0-or-later](https://img.shields.io/badge/License-LGPL%20v3.0%20or%20later-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
 [![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)](https://dotnet.microsoft.com/en-us/download/dotnet)
 [![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://akiranetwork.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
-[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/AkiraNetwork/projects/3)
+[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/orgs/AkiraNetwork/projects/2)
 
 # VirtualStorageLibraryへようこそ！
 
@@ -204,7 +204,7 @@ V0.8.0では、この状態でユーザーの皆様に試用して頂き、フ�
 V0.9.0のリリースは2024年10月を予定しています。  
 なお、この期間中、ライブラリで提供している機能のクラス名、メソッド名、プロパティ名等は予告なく変更、統合、廃止する事があります。
 その場合、リリースノートに詳細を掲載するのでご確認ください。
-詳細は、[現在の問題点と改善案](https://github.com/users/AkiraNetwork/projects/3/views/3)を参照してください (日本語)。
+詳細は、[現在の問題点と改善案](https://github.com/orgs/AkiraNetwork/projects/2)を参照してください (日本語)。
 
 [[▲](#目次)]
 ## インストール方法
