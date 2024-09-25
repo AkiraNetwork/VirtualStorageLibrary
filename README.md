@@ -494,12 +494,11 @@ Here are some ways you can contribute:
 
 - **Feedback**: If you have any opinions or suggestions about the functionality, please let us know. Your insights help shape the future of the project.
 - **Bug Reports**: If you find any bugs, please report them on our [Issues](https://github.com/AkiraNetwork/VirtualStorageLibrary/issues) page.
-- **Feature Requests**: If you have ideas for new features or improvements, feel free to share them on our [Issues](https://github.com/AkiraNetwork/VirtualStorageLibrary/issues) page.
 
-For technical questions, please use our [Discussions](https://github.com/AkiraNetwork/VirtualStorageLibrary/discussions) forum. Choose the appropriate category:
+For technical questions and feature suggestions, please use our [Discussions](https://github.com/AkiraNetwork/VirtualStorageLibrary/discussions) forum. Choose the appropriate category:
 
 - `Q&A`: Ask for help from the community.
-- `Ideas`: Suggest new features or improvements.
+- `Ideas`: Suggest new features or improvements. Adopted ideas will be added as Issues by the maintainer.
 - `General`: Engage in casual discussions about anything related to VirtualStorageLibrary.
 - `Show and tell`: Share and showcase what you've created using VirtualStorageLibrary.
 
