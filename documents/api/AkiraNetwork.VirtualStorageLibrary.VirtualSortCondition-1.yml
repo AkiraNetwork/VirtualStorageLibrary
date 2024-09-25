@@ -18,8 +18,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: VirtualSortCondition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
     startLine: 22
@@ -63,8 +63,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
     startLine: 29
@@ -101,8 +101,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SortBy
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
     startLine: 41
@@ -135,8 +135,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Ascending
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualSortCondition.cs
     startLine: 50

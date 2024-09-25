@@ -17,8 +17,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: VirtualSymbolicLinkAdapter
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
     startLine: 56
@@ -67,8 +67,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
     startLine: 64
@@ -102,8 +102,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualAdapter.cs
     startLine: 78

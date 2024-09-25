@@ -21,8 +21,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: DefaultWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
     startLine: 24
@@ -65,8 +65,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
     startLine: 59
@@ -102,8 +102,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
     startLine: 67
@@ -136,8 +136,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
     startLine: 75
@@ -170,8 +170,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
     startLine: 83
@@ -204,8 +204,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
     startLine: 91
@@ -247,8 +247,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: IsValidWildcardPattern
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/DefaultWildcardMatcher.cs
     startLine: 108

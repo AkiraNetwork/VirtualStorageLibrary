@@ -919,6 +919,22 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem(Of T)(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName, T, Boolean)
   nameWithType: VirtualDirectory.AddItem<T>(VirtualNodeName, T?, bool)
   nameWithType.vb: VirtualDirectory.AddItem(Of T)(VirtualNodeName, T, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Boolean)
+  name: AddRange(IEnumerable<VirtualNode>, bool)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddRange_System_Collections_Generic_IEnumerable_AkiraNetwork_VirtualStorageLibrary_VirtualNode__System_Boolean_
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Boolean)
+  name.vb: AddRange(IEnumerable(Of VirtualNode), Boolean)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>, bool)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode), Boolean)
+  nameWithType: VirtualDirectory.AddRange(IEnumerable<VirtualNode>, bool)
+  nameWithType.vb: VirtualDirectory.AddRange(IEnumerable(Of VirtualNode), Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange*
+  name: AddRange
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddRange_
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange
+  isSpec: "True"
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange
+  nameWithType: VirtualDirectory.AddRange
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   name: AddSymbolicLink(VirtualNodeName, VirtualPath, bool)
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddSymbolicLink_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName_AkiraNetwork_VirtualStorageLibrary_VirtualPath_System_Boolean_
@@ -1319,6 +1335,15 @@ references:
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   nameWithType: VirtualDirectory.operator +(VirtualDirectory, VirtualNodeName)
   nameWithType.vb: VirtualDirectory.+(VirtualDirectory, VirtualNodeName)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
+  name: operator +(VirtualDirectory, IList<VirtualNode>)
+  href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_System_Collections_Generic_IList_AkiraNetwork_VirtualStorageLibrary_VirtualNode__
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
+  name.vb: +(VirtualDirectory, IList(Of VirtualNode))
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.operator +(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, System.Collections.Generic.IList<AkiraNetwork.VirtualStorageLibrary.VirtualNode>)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, System.Collections.Generic.IList(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode))
+  nameWithType: VirtualDirectory.operator +(VirtualDirectory, IList<VirtualNode>)
+  nameWithType.vb: VirtualDirectory.+(VirtualDirectory, IList(Of VirtualNode))
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*
   name: operator +
   href: api/AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_op_Addition_

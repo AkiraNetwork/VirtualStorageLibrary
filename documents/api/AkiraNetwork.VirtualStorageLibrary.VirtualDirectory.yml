@@ -12,6 +12,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddDirectory(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddSymbolicLink(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,AkiraNetwork.VirtualStorageLibrary.VirtualPath,System.Boolean)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Count
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.DeepClone(System.Boolean)
@@ -42,6 +43,7 @@ items:
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Update(AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
+  - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Implicit(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)~AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
   - AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Subtraction(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   langs:
@@ -54,8 +56,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: VirtualDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 34
@@ -125,8 +127,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: NodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 44
@@ -157,8 +159,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: NodeNames
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 49
@@ -188,8 +190,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Nodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 54
@@ -219,8 +221,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 59
@@ -250,8 +252,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: DirectoryCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 64
@@ -281,8 +283,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ItemCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 69
@@ -312,8 +314,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SymbolicLinkCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 74
@@ -343,8 +345,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: NodesView
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 79
@@ -374,8 +376,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: NodesViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 84
@@ -405,8 +407,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: DirectoryViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 89
@@ -436,8 +438,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ItemViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 94
@@ -467,8 +469,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SymbolicLinkViewCount
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 99
@@ -498,8 +500,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 116
@@ -533,8 +535,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 123
@@ -568,8 +570,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 142
@@ -603,8 +605,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 157
@@ -638,8 +640,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 172
@@ -672,8 +674,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 181
@@ -707,8 +709,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 190
@@ -745,8 +747,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 200
@@ -786,8 +788,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: op_Implicit
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 208
@@ -823,8 +825,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ToString
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 217
@@ -855,8 +857,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: DeepClone
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 224
@@ -894,8 +896,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetNodesView
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 241
@@ -925,8 +927,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Add
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
     startLine: 305
@@ -959,6 +961,54 @@ items:
   nameWithType.vb: VirtualDirectory.Add(VirtualNode, Boolean)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add(AkiraNetwork.VirtualStorageLibrary.VirtualNode, Boolean)
   name.vb: Add(VirtualNode, Boolean)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Boolean)
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Boolean)
+  id: AddRange(System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode},System.Boolean)
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: AddRange(IEnumerable<VirtualNode>, bool)
+  nameWithType: VirtualDirectory.AddRange(IEnumerable<VirtualNode>, bool)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable<AkiraNetwork.VirtualStorageLibrary.VirtualNode>, bool)
+  type: Method
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
+    id: AddRange
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 356
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Adds multiple nodes to the directory.
+  example: []
+  syntax:
+    content: public IList<VirtualNode> AddRange(IEnumerable<VirtualNode> nodes, bool allowOverwrite = false)
+    parameters:
+    - id: nodes
+      type: System.Collections.Generic.IEnumerable{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+      description: The nodes to add.
+    - id: allowOverwrite
+      type: System.Boolean
+      description: If true, allows overwriting existing nodes with the same names.
+    return:
+      type: System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+      description: A list of the added nodes. If a node was cloned, the cloned instance is returned in the list.
+    content.vb: Public Function AddRange(nodes As IEnumerable(Of VirtualNode), allowOverwrite As Boolean = False) As IList(Of VirtualNode)
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if an invalid node name is specified in any of the nodes.
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if a node with the same name already exists and overwriting is not allowed.
+  nameWithType.vb: VirtualDirectory.AddRange(IEnumerable(Of VirtualNode), Boolean)
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange(System.Collections.Generic.IEnumerable(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode), Boolean)
+  name.vb: AddRange(IEnumerable(Of VirtualNode), Boolean)
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
   id: AddItem``1(AkiraNetwork.VirtualStorageLibrary.VirtualNodeName,``0,System.Boolean)
@@ -973,11 +1023,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 356
+    startLine: 378
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1020,11 +1070,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 369
+    startLine: 391
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1064,11 +1114,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 381
+    startLine: 403
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1105,11 +1155,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 393
+    startLine: 415
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1147,11 +1197,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Remove
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 439
+    startLine: 461
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1183,11 +1233,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Get
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 461
+    startLine: 483
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1224,11 +1274,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetEnumerator
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 481
+    startLine: 503
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1257,11 +1307,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 497
+    startLine: 519
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1305,11 +1355,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 520
+    startLine: 542
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1347,11 +1397,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 542
+    startLine: 564
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1389,11 +1439,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 564
+    startLine: 586
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1416,6 +1466,47 @@ items:
   nameWithType.vb: VirtualDirectory.+(VirtualDirectory, VirtualNode)
   fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, AkiraNetwork.VirtualStorageLibrary.VirtualNode)
   name.vb: +(VirtualDirectory, VirtualNode)
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
+  commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
+  id: op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode})
+  parent: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+  langs:
+  - csharp
+  - vb
+  name: operator +(VirtualDirectory, IList<VirtualNode>)
+  nameWithType: VirtualDirectory.operator +(VirtualDirectory, IList<VirtualNode>)
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.operator +(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, System.Collections.Generic.IList<AkiraNetwork.VirtualStorageLibrary.VirtualNode>)
+  type: Operator
+  source:
+    remote:
+      path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
+    id: op_Addition
+    path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
+    startLine: 602
+  assemblies:
+  - VirtualStorageLibrary
+  namespace: AkiraNetwork.VirtualStorageLibrary
+  summary: Overloads the addition operator to add multiple nodes to the directory using AddRange.
+  example: []
+  syntax:
+    content: public static VirtualDirectory operator +(VirtualDirectory directory, IList<VirtualNode> nodes)
+    parameters:
+    - id: directory
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The directory to which the nodes are added.
+    - id: nodes
+      type: System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+      description: The nodes to add.
+    return:
+      type: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory
+      description: The directory with the added nodes.
+    content.vb: Public Shared Operator +(directory As VirtualDirectory, nodes As IList(Of VirtualNode)) As VirtualDirectory
+  overload: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition*
+  nameWithType.vb: VirtualDirectory.+(VirtualDirectory, IList(Of VirtualNode))
+  fullName.vb: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.+(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory, System.Collections.Generic.IList(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode))
+  name.vb: +(VirtualDirectory, IList(Of VirtualNode))
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   commentId: M:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
   id: op_Addition(AkiraNetwork.VirtualStorageLibrary.VirtualDirectory,AkiraNetwork.VirtualStorageLibrary.VirtualNodeName)
@@ -1430,11 +1521,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: op_Addition
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 580
+    startLine: 625
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1471,11 +1562,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: op_Subtraction
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 596
+    startLine: 641
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -1512,11 +1603,11 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Update
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualDirectory.cs
-    startLine: 625
+    startLine: 670
   assemblies:
   - VirtualStorageLibrary
   namespace: AkiraNetwork.VirtualStorageLibrary
@@ -3056,6 +3147,73 @@ references:
   name: Add
   nameWithType: VirtualDirectory.Add
   fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.Add
+- uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange*
+  commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange
+  href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddRange_System_Collections_Generic_IEnumerable_AkiraNetwork_VirtualStorageLibrary_VirtualNode__System_Boolean_
+  name: AddRange
+  nameWithType: VirtualDirectory.AddRange
+  fullName: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddRange
+- uid: System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  commentId: T:System.Collections.Generic.IList{AkiraNetwork.VirtualStorageLibrary.VirtualNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<VirtualNode>
+  nameWithType: IList<VirtualNode>
+  fullName: System.Collections.Generic.IList<AkiraNetwork.VirtualStorageLibrary.VirtualNode>
+  nameWithType.vb: IList(Of VirtualNode)
+  fullName.vb: System.Collections.Generic.IList(Of AkiraNetwork.VirtualStorageLibrary.VirtualNode)
+  name.vb: IList(Of VirtualNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: AkiraNetwork.VirtualStorageLibrary.VirtualNode
+    name: VirtualNode
+    href: AkiraNetwork.VirtualStorageLibrary.VirtualNode.html
+  - name: )
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem*
   commentId: Overload:AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.AddItem
   href: AkiraNetwork.VirtualStorageLibrary.VirtualDirectory.html#AkiraNetwork_VirtualStorageLibrary_VirtualDirectory_AddItem__1_AkiraNetwork_VirtualStorageLibrary_VirtualNodeName___0_System_Boolean_

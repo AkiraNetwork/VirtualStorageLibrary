@@ -143,3 +143,7 @@ following documents.
 - [Licenses](licenses.md)  
   Information about the license for this library and the licenses for the libraries,
   tools, CSS, etc., used.
+
+## Repository
+
+[VirtualStorageLibrary GitHub](https://github.com/AkiraNetwork/VirtualStorageLibrary)

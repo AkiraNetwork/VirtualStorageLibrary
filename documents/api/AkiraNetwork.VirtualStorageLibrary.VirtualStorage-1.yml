@@ -77,8 +77,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: VirtualStorage
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
     startLine: 20
@@ -124,8 +124,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Root
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
     startLine: 30
@@ -158,8 +158,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: CurrentPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
     startLine: 36
@@ -192,8 +192,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: CycleDetectorForTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
     startLine: 42
@@ -226,8 +226,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: CycleDetectorForTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
     startLine: 48
@@ -260,8 +260,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Item
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
     startLine: 54
@@ -294,8 +294,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Link
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
     startLine: 60
@@ -328,8 +328,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: .ctor
     path: ../AkiraNetwork/VirtualStorageLibrary/VirtualStorage.cs
     startLine: 65
@@ -359,8 +359,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.CopyTask.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: CopyNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.CopyTask.cs
     startLine: 82
@@ -419,8 +419,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: this[]
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Indexer.cs
     startLine: 29
@@ -460,8 +460,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: LinkDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 31
@@ -494,8 +494,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddLinkToDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 39
@@ -535,8 +535,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: UpdateTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 60
@@ -569,8 +569,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: UpdateAllTargetNodeTypesInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 73
@@ -599,8 +599,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: RemoveLinkFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 86
@@ -636,8 +636,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetLinksFromDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 107
@@ -673,8 +673,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SetLinkTargetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 121
@@ -711,8 +711,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: UpdateLinkInDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 138
@@ -748,8 +748,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: UpdateLinksToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 164
@@ -785,8 +785,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: RemoveLinkByLinkPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 202
@@ -823,8 +823,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: RefreshLinkDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.LinkManagement.cs
     startLine: 236
@@ -860,8 +860,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.MoveTask.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: MoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.MoveTask.cs
     startLine: 42
@@ -922,8 +922,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ChangeDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 26
@@ -956,8 +956,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 40
@@ -993,8 +993,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: UpdateItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 66
@@ -1031,8 +1031,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: UpdateDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 83
@@ -1068,8 +1068,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: UpdateSymbolicLInk
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 100
@@ -1105,8 +1105,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 119
@@ -1146,8 +1146,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 145
@@ -1187,8 +1187,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 186
@@ -1225,8 +1225,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 228
@@ -1266,8 +1266,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 268
@@ -1307,8 +1307,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 290
@@ -1348,8 +1348,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: AddSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 339
@@ -1389,8 +1389,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SetNodeName
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 361
@@ -1430,8 +1430,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SetLinkTargetPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.Operations.cs
     startLine: 407
@@ -1467,8 +1467,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ConvertToAbsolutePath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 29
@@ -1512,8 +1512,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 64
@@ -1557,8 +1557,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: TryGetNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 77
@@ -1598,8 +1598,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 97
@@ -1639,8 +1639,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: TryResolveLinkTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 109
@@ -1676,8 +1676,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 128
@@ -1721,8 +1721,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: TryGetDirectory
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 149
@@ -1762,8 +1762,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 168
@@ -1807,8 +1807,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: TryGetItem
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 189
@@ -1848,8 +1848,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 208
@@ -1890,8 +1890,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: TryGetSymbolicLink
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 235
@@ -1928,8 +1928,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetNodeID
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 262
@@ -1976,8 +1976,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetNodeType
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 275
@@ -2017,8 +2017,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 292
@@ -2065,8 +2065,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetNodes
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 307
@@ -2110,8 +2110,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 321
@@ -2158,8 +2158,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GetPaths
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 336
@@ -2203,8 +2203,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ExpandPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 353
@@ -2254,8 +2254,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: IsValidWildcardPath
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 375
@@ -2291,8 +2291,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: NodeExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 400
@@ -2332,8 +2332,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: DirectoryExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 413
@@ -2373,8 +2373,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ItemExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 431
@@ -2414,8 +2414,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.References.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: SymbolicLinkExists
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.References.cs
     startLine: 445
@@ -2451,8 +2451,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: RemoveNode
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.RemoveTask.cs
     startLine: 45
@@ -2521,8 +2521,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathToTarget.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: WalkPathToTarget
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathToTarget.cs
     startLine: 31
@@ -2571,8 +2571,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: ExpandPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
     startLine: 41
@@ -2636,8 +2636,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: WalkPathTree
     path: ../AkiraNetwork/VirtualStorageLibrary/VS.WalkPathTree.cs
     startLine: 98

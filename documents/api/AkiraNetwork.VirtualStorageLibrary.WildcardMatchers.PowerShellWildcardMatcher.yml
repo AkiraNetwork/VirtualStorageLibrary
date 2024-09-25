@@ -21,8 +21,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: PowerShellWildcardMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
     startLine: 24
@@ -65,8 +65,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: WildcardDictionary
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
     startLine: 49
@@ -102,8 +102,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Wildcards
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
     startLine: 57
@@ -136,8 +136,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Patterns
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
     startLine: 65
@@ -170,8 +170,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: Count
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
     startLine: 73
@@ -204,8 +204,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: PatternMatcher
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
     startLine: 86
@@ -253,8 +253,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: IsValidWildcardPattern
     path: ../AkiraNetwork/VirtualStorageLibrary/WildcardMatchers/PowerShellWildcardMatcher.cs
     startLine: 128

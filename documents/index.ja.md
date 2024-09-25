@@ -120,3 +120,7 @@ _layout: landing
 
 - [ライセンス](licenses.md)  
   このライブラリのライセンスと使用しているライブラリ、ツール、CSS等のライセンスについて情報を提供しています。
+
+## リポジトリ
+
+[VirtualStorageLibrary GitHub](https://github.com/AkiraNetwork/VirtualStorageLibrary)

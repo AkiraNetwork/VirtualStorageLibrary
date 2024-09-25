@@ -19,8 +19,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: VirtualTextFormatter
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
     startLine: 42
@@ -91,8 +91,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GenerateTreeDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
     startLine: 81
@@ -184,8 +184,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GenerateLinkTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
     startLine: 159
@@ -226,8 +226,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GenerateTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
     startLine: 199
@@ -268,8 +268,8 @@ items:
   source:
     remote:
       path: AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
-      branch: feature/issue-189-add-adapter-for-item-symbolic-link-in-indexer
-      repo: https://github.com/shimodateakira/VirtualStorageLibrary
+      branch: master
+      repo: https://github.com/AkiraNetwork/VirtualStorageLibrary
     id: GenerateSingleTableDebugText
     path: ../AkiraNetwork/VirtualStorageLibrary/Utilities/VirtualTextFormatter.cs
     startLine: 260
