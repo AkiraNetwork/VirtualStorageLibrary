@@ -13,7 +13,7 @@
 [![License: LGPL-3.0-or-later](https://img.shields.io/badge/License-LGPL%20v3.0%20or%20later-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
 [![Platform: .NET 8](https://img.shields.io/badge/platform-.NET%208-green)](https://dotnet.microsoft.com/en-us/download/dotnet)
 [![Documentation: online](https://img.shields.io/badge/docs-online-purple.svg)](https://AkiraNetwork.github.io/VirtualStorageLibrary/api/AkiraNetwork.VirtualStorageLibrary.html)
-[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/AkiraNetwork/projects/3)
+[![Maintenance: active](https://img.shields.io/badge/maintenance-active-blue.svg)](https://github.com/users/AkiraNetwork/projects/1)
 
 # Welcome to VirtualStorageLibrary!
 
