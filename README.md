@@ -487,23 +487,23 @@ We are considering offering a commercial license for VirtualStorageLibrary in th
 
 [[▲](#table-of-contents)]
 ## Contribution Guidelines
-First and foremost, please try out `VirtualStorageLibrary`. It is currently in the pre-release stage, 
-and we hope that by using it, you can help identify areas for feedback and improvement.
 
-- **Feedback**: If you have any opinions or suggestions about its functionality, please let us know.
-- **Bug Reports**: If you find any bugs, please report them.
-- **Feature Requests**: If you have any requests for new features or improvements, please share them.
+Thank you for your interest in contributing to `VirtualStorageLibrary`. As it is currently in the pre-release stage, we encourage you to try it out. Your feedback and suggestions are invaluable in helping us improve the library.
 
-These can be submitted via the project's 
-[Issues](https://github.com/AkiraNetwork/VirtualStorageLibrary/issues) page.
+Here are some ways you can contribute:
 
-- **Technical Questions**: If you have technical questions, consider posting them on 
-  [StackOverflow](https://stackoverflow.com/).  
-  Use the tags `c#`, `.net`, `tree`, 
-  `shared-libraries`, or `generic-collections` to make them easier to find.
+- **Feedback**: If you have any opinions or suggestions about the functionality, please let us know. Your insights help shape the future of the project.
+- **Bug Reports**: If you find any bugs, please report them on our [Issues](https://github.com/AkiraNetwork/VirtualStorageLibrary/issues) page.
+- **Feature Requests**: If you have ideas for new features or improvements, feel free to share them on our [Issues](https://github.com/AkiraNetwork/VirtualStorageLibrary/issues) page.
 
-Currently, as we have not yet set up a multi-person development system, we are not accepting pull requests 
-at this time. Thank you for your understanding.
+For technical questions, please use our [Discussions](https://github.com/AkiraNetwork/VirtualStorageLibrary/discussions) forum. Choose the appropriate category:
+
+- `Q&A`: Ask for help from the community.
+- `Ideas`: Suggest new features or improvements.
+- `General`: Engage in casual discussions about anything related to VirtualStorageLibrary.
+- `Show and tell`: Share and showcase what you've created using VirtualStorageLibrary.
+
+Please note that as we have not yet set up a multi-person development system, we are currently not accepting pull requests. We appreciate your understanding and look forward to your feedback.
 
 [[▲](#table-of-contents)]
 ## Author and Acknowledgments
